@@ -1,0 +1,109 @@
+<UserControl
+    x:Class="DivePlannerMk3.Views.UserControls.DiveInfo.InfoDiveModelReadOnlyView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel IsVisible="{Binding DivePlan.DiveModelSelector.IsReadOnlyUiVisible}" >
+
+        <StackPanel Background="#FF5D99C6">
+            <TextBlock
+                Margin="4"
+                FontSize="16"
+                FontWeight="DemiBold"
+                Text="Dive Model Information" />
+        </StackPanel>
+
+        <StackPanel Margin="4,0" Background="#FFC3FDFF">
+            <TextBlock Margin="4" Text="Dive Model:" FontWeight="Bold"/>
+            <TextBlock Margin="4" Text="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.DiveModelName}" />
+           
+            <TextBlock Margin="4" Text="Compartments:" FontWeight="Bold"/>
+            <TextBlock Margin="4" Text="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.CompartmentCount}" />
+                           
+            <Expander Margin="0" Header="Nitrogen Half Times ..." FontWeight="Bold">
+            <ListBox
+                HorizontalAlignment="Left"
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.NitrogenHalfTime}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+
+            <Expander Margin="0" Header="Helium Half Times ..." FontWeight="Bold">
+            <ListBox
+                HorizontalAlignment="Left"
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.HeliumHalfTime}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+            
+            <Expander Margin="0" Header="A Values Nitrogen ..." FontWeight="Bold">
+            <ListBox
+                HorizontalAlignment="Left"
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.AValuesNitrogen}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />                        
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+            
+            <Expander Margin="0" Header="B Values Nitrogen ..." FontWeight="Bold">
+            <ListBox
+                HorizontalAlignment="Left"
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.BValuesNitrogen}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>                        
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />                       
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+
+            <Expander Margin="0" Header="A Values Helium ..." FontWeight="Bold">
+            <ListBox
+                HorizontalAlignment="Left"
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.AValuesHelium}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>                        
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />                       
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox> 
+            </Expander>
+
+            <Expander Margin="0" Header="B Values Helium ..." FontWeight="Bold">
+            <ListBox
+                HorizontalAlignment="Left"
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.BValuesHelium}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontWeight="Normal" Text="{Binding}" /> 
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

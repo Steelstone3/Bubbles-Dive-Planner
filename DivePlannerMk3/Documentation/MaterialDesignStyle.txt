@@ -1,0 +1,19 @@
+Primary Colour 
+#FF90CAF9
+
+Light Primary Colour 
+#FFC3FDFF
+
+Dark Primary Colour 
+#FF5D99C6
+
+
+
+Secondary Colour 
+#FF9E9E9E
+
+Light Secondary Colour 
+#FFCFCFCF
+
+Secondary Colour Dark
+#FF707070
