@@ -1,0 +1,27 @@
+<UserControl
+    x:Class="DivePlannerMk3.Views.UserControls.DiveResult.DiveResultTabSwitcherView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:diveresultuc="clr-namespace:DivePlannerMk3.Views.UserControls.DiveResult;assembly=DivePlannerMk3"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <!--  In here put in file header however you do it!  -->
+
+    <StackPanel>
+
+        <TabControl>
+            <TabItem Header="Current Dive">
+                <diveresultuc:DiveResultView />
+            </TabItem>
+            <TabItem Header="Dive History">
+                <diveresultuc:DiveResultHistoryView />
+            </TabItem>
+        </TabControl>
+
+    </StackPanel>
+</UserControl>
