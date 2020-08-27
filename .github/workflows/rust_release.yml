@@ -1,0 +1,117 @@
+name: Rust Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'The Git tag for the release (e.g., v1.0.0)'
+        required: true
+        type: string
+      commit_sha:
+        description: 'Specific commit/SHA to build (leave blank for latest on branch)'
+        required: true
+        type: string
+
+jobs:
+  linux_release:
+    name: Linux release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    # Set the ref to use the provided commit_sha, or the branch's HEAD if blank
+    env:
+      BUILD_REF: ${{ github.event.inputs.commit_sha || github.ref }}
+      TAG: ${{ github.event.inputs.tag_name }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # Use the commit_sha input if provided, otherwise use the branch's current HEAD
+          ref: ${{ env.BUILD_REF }}
+
+      - name: Setup toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+
+      - name: Build release
+        run: cargo build --release
+
+      - name: Prepare and archive binary
+        id: archive
+        run: |
+          EXECUTABLE_NAME="bubbles-dive-planner-iced" 
+          ARCHIVE_NAME="${EXECUTABLE_NAME}-${{ env.TAG }}-x86_64-unknown-linux-gnu.tar.gz"
+          
+          # Prepare directory and create tar.gz
+          mkdir -p release_package
+          mv target/release/$EXECUTABLE_NAME release_package/
+          tar -czvf $ARCHIVE_NAME -C release_package/ .
+          
+          echo "ARCHIVE_PATH=$ARCHIVE_NAME" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          name: Release ${{ env.TAG }}
+          files: ${{ steps.archive.outputs.ARCHIVE_PATH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  windows_release:
+    needs: linux_release
+    name: Windows release
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    env:
+      BUILD_REF: ${{ github.event.inputs.commit_sha || github.ref }}
+      TAG: ${{ github.event.inputs.tag_name }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.BUILD_REF }}
+
+      - name: Setup toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+
+      - name: Build release
+        # On Windows, you might use cmd or powershell, but run: works for simple commands
+        run: cargo build --release
+
+      - name: Prepare and archive binary
+        id: archive
+        # PowerShell commands are used for file operations on Windows runners
+        shell: powershell
+        run: |
+          $EXECUTABLE_NAME="bubbles-dive-planner-iced" 
+          # Use string expansion for concatenation, referencing the environment variable $env:TAG
+          # and the local variable $EXECUTABLE_NAME
+          $ARCHIVE_NAME = "$EXECUTABLE_NAME-$($env:TAG)-x86_64-pc-windows-msvc.zip"
+          $EXECUTABLE_PATH = "target/release/$EXECUTABLE_NAME.exe"
+  
+          # Create a Zip file containing the executable
+          Compress-Archive -Path $EXECUTABLE_PATH -DestinationPath $ARCHIVE_NAME
+  
+          # Set the output variable using PowerShell's echo/Out-File approach
+          echo "ARCHIVE_PATH=$ARCHIVE_NAME" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding UTF8 -Append
+
+      - name: Create Github release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          files: ${{ steps.archive.outputs.ARCHIVE_PATH }}
+          # This tells the action to search for an EXISTING release with this tag and upload the file
+          draft: false 
+          # The Windows job does *not* create the release, so we omit 'name' and 'prerelease' inputs 
+          # to avoid errors if the Linux job hasn't completed yet.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

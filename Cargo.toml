@@ -1,0 +1,54 @@
+[package]
+name = "bubbles-dive-planner-iced"
+version = "1.2.0"
+authors = ["Skippy <steelstone3@gmail.com>"]
+edition = "2024"
+homepage = "https://github.com/Steelstone3/Bubbles-Dive-Planner/tree/iced-version"
+repository = "https://github.com/Steelstone3/Bubbles-Dive-Planner/tree/iced-version"
+license = "GPLv3"
+readme = "README.md"
+include = []
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+resolver = "2"
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
+
+[profile.dev]
+opt-level = 0
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[dev-dependencies]
+rstest = "0"
+pretty_assertions="0"
+
+[dependencies]
+# Fixed Version
+iced_aw = "0.13"
+iced_table = { git = "https://github.com/Steelstone3/Iced-Table", branch = "main"}
+
+# Variable Version
+toml = "0"
+serde_json = "1"
+rfd = "0"
+
+[dependencies.iced]
+# Fixed Version
+version = "0.14"
+features = ["tokio"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.chrono]
+version = "0"
+default-features = false
+features = []
