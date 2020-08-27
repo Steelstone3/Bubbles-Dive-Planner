@@ -1,0 +1,72 @@
+<UserControl
+    x:Class="DivePlannerMk3.Views.UserControls.DiveResult.DiveParametersResultsView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel>
+        <TextBlock
+            Margin="32,4"
+            FontSize="16"
+            FontWeight="DemiBold"
+            Text="Current Dive Step" />
+
+        <Grid Margin="32,4" Background="#FFCFCFCF">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Row="0"
+                Margin="8,0"
+                Text="Dive Model:" FontWeight="Bold"/>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="8,0"
+                Text="{Binding DiveResults.DiveParametersResult.DiveModelUsed}" />
+
+            <TextBlock
+                Grid.Row="1"
+                Margin="8,0"
+                Text="Depth:" FontWeight="Bold"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8,0"
+                Text="{Binding DiveResults.DiveParametersResult.Depth}" />
+            <TextBlock
+                Grid.Row="2"
+                Margin="8,0"
+                Text="Time:" FontWeight="Bold"/>
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="8,0"
+                Text="{Binding DiveResults.DiveParametersResult.Time}" />
+            <TextBlock
+                Grid.Row="3"
+                Margin="8,0"
+                Text="Gas Mixture Name:" FontWeight="Bold"/>
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="8,0"
+                Text="{Binding DiveResults.DiveParametersResult.GasName}" />
+        </Grid>
+    </StackPanel>
+</UserControl>
