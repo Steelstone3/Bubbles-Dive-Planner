@@ -1,0 +1,40 @@
+name: .NET Core
+
+on:
+  push:
+    branches: 
+    - '**'
+  pull_request:
+    branches: 
+    - '**'
+
+jobs:
+  build:
+
+    name: TestApplication
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        include:
+        - os: macos-latest
+        - os: ubuntu-latest
+        - os: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 8.0.105
+    - name: Install app dependencies
+      working-directory: ./BubblesDivePlanner
+      run: dotnet restore
+    - name: Build
+      working-directory: ./BubblesDivePlanner
+      run: dotnet build --configuration Release --no-restore
+    - name: Install test dependencies
+      working-directory: ./BubblesDivePlannerTests
+      run: dotnet restore
+    - name: Test
+      working-directory: ./BubblesDivePlannerTests
+      run: dotnet test --no-restore --verbosity normal
