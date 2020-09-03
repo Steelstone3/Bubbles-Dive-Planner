@@ -24,3 +24,9 @@ jobs:
     - name: Build
       working-directory: ./DivePlannerMk3
       run: dotnet build --configuration Release --no-restore
+    - name: Install test dependencies
+      working-directory: ./DivePlannerTests
+      run: dotnet restore
+    - name: Test
+      working-directory: ./DivePlannerTests
+      run: dotnet test --no-restore --verbosity normal
