@@ -9,39 +9,13 @@ using DivePlannerMK3.Contracts;
 
 namespace DivePlannerMk3.Controllers
 {
-    public sealed class DiveProfileController : IDiveProfileController
+    public sealed class DiveProfileService : IDiveProfileController
     {
         private double aValues = 0.0;
         private double bValues = 0.0;
         private IDiveProfile _diveProfile = new DiveProfile();
 
-        private static readonly object Instancelock = new object();
-        private static DiveProfileController instance = null;
-
         //TODO AH Composition
-
-        public static DiveProfileController GetInstance
-        {
-            get
-            {
-                if( instance == null )
-                {
-                    lock( Instancelock )
-                    {
-                        if( instance == null )
-                        {
-                            instance = new DiveProfileController();
-                        }
-                    }
-                }
-                return instance;
-            }
-        }
-
-        private DiveProfileController()
-        {
-
-        }
 
         public IDiveModel _theDiveModel;
         public IDiveModel TheDiveModel
@@ -71,7 +45,7 @@ namespace DivePlannerMk3.Controllers
 
         public IEnumerable<DiveProfileResultsListViewModel> RunDecompressionDiveSteps(  InfoDecompressionProfileViewModel decompressionDiveSteps, PlanGasMixtureViewModel gasMixture )
         {
-            //TODO AH Insert Dive Step Calculation and enviroment dependencies
+            //TODO AH Insert Dive Step Calculation and environment dependencies
 
             //TODO AH consider how the dive model and dive profile are to be updated external to this class' state post calculations
 
