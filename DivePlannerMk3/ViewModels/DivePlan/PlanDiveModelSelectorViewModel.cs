@@ -21,7 +21,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             {
                 _selectedDiveModel = value;
 
-                var diveProfileController = DiveProfileController.GetInstance;
+                var diveProfileController = DiveProfileService.GetInstance;
                 diveProfileController.TheDiveModel = SelectedDiveModel;
             }
         }
