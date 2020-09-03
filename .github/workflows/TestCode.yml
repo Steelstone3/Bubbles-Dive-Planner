@@ -18,10 +18,18 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-    - name: Install dependencies
+    - name: Install app dependencies
       working-directory: ./DivePlannerMk3
       run: dotnet restore
+      
     - name: Build
+      working-directory: ./DivePlannerMk3
       run: dotnet build --configuration Release --no-restore
+      
+    - name: Install test dependencies
+      working-directory: ./DivePlannerTests
+      run: dotnet restore
+      
     - name: Test
+      working-directory: ./DivePlannerTests
       run: dotnet test --no-restore --verbosity normal
