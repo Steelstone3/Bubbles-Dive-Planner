@@ -1,5 +1,3 @@
-using System;
-using DivePlannerMk3.Controllers;
 using Xunit;
 
 namespace DivePlannerTests

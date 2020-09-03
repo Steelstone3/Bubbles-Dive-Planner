@@ -17,7 +17,7 @@ namespace DivePlannerMk3.Controllers
 
         //TODO AH Composition
 
-        public IDiveModel _theDiveModel;
+        private IDiveModel _theDiveModel;
         public IDiveModel TheDiveModel
         {
             get => _theDiveModel;

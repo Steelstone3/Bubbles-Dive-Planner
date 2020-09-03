@@ -17,7 +17,7 @@ namespace DivePlannerMk3.ViewModels
 
         public MainWindowViewModel()
         {
-            _diveProfileController = DiveProfileService.GetInstance;
+            _diveProfileController = new DiveProfileService();
 
             CalculateDiveStepCommand = ReactiveCommand.Create( RunDiveStep );
 
