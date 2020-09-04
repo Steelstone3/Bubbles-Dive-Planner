@@ -8,19 +8,21 @@ namespace DivePlannerMk3.Controllers
     {
         private IDiveModel _theDiveModel;
         private IDiveProfile _diveProfile;
+        private int _compartment;
 
-        public DiveStageABValues(IDiveModel theDiveModel, IDiveProfile diveProfile)
+        public DiveStageABValues(int compartment, IDiveModel theDiveModel, IDiveProfile diveProfile)
         {
             _theDiveModel = theDiveModel;
             _diveProfile = diveProfile;
+            _compartment = compartment;
         }
 
         //calculates the ab values
         public void RunStage()
         {
             //a and  b coefficients set based on user input
-            var aValues = ( ( _theDiveModel.AValuesNitrogen[compartment] * _diveProfile.TissuePressuresNitrogen[compartment] ) + ( _theDiveModel.AValuesHelium[compartment] * _diveProfile.TissuePressuresHelium[compartment] ) ) / _diveProfile.TissuePressuresTotal[compartment];
-            var bValues = ( ( _theDiveModel.BValuesNitrogen[compartment] * _diveProfile.TissuePressuresNitrogen[compartment] ) + ( _theDiveModel.BValuesHelium[compartment] * _diveProfile.TissuePressuresHelium[compartment] ) ) / _diveProfile.TissuePressuresTotal[compartment];
+            var aValues = ( ( _theDiveModel.AValuesNitrogen[_compartment] * _diveProfile.TissuePressuresNitrogen[_compartment] ) + ( _theDiveModel.AValuesHelium[_compartment] * _diveProfile.TissuePressuresHelium[_compartment] ) ) / _diveProfile.TissuePressuresTotal[_compartment];
+            var bValues = ( ( _theDiveModel.BValuesNitrogen[_compartment] * _diveProfile.TissuePressuresNitrogen[_compartment] ) + ( _theDiveModel.BValuesHelium[_compartment] * _diveProfile.TissuePressuresHelium[_compartment] ) ) / _diveProfile.TissuePressuresTotal[_compartment];
             
         }
     }
