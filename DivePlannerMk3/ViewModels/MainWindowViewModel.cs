@@ -13,7 +13,7 @@ namespace DivePlannerMk3.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private IDiveProfileController _diveProfileController;
+        private IDiveProfileService _diveProfileController;
 
         public MainWindowViewModel()
         {

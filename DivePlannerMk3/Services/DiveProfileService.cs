@@ -9,7 +9,7 @@ using DivePlannerMK3.Contracts;
 
 namespace DivePlannerMk3.Controllers
 {
-    public sealed class DiveProfileService : IDiveProfileController
+    public class DiveProfileService : IDiveProfileService
     {
         private double aValues = 0.0;
         private double bValues = 0.0;
@@ -83,14 +83,14 @@ namespace DivePlannerMk3.Controllers
             {
                 IDiveProfileStepOutputModel output = new DiveProfileStepOutputModel();
 
-                SetAmbientPressures( gasMixture.SelectedGasMixture.Oxygen, gasMixture.SelectedGasMixture.Helium, diveStep.Depth );
+                //SetAmbientPressures( gasMixture.SelectedGasMixture.Oxygen, gasMixture.SelectedGasMixture.Helium, diveStep.Depth );
 
-                output.Compartment = compartment + 1;
-                output.TissuePressureResult = Math.Round( CalculateTissuePressures( compartment, diveStep.Time ), 2 );
-                CalculateABValues( compartment );
-                output.ToleratedAmbientPressureResult = Math.Round( CalculateToleratedAmbientPressure( compartment ), 2 );
-                output.MaximumSurfacePressureResult = Math.Round( CalculateMaximumSurfacePressure( compartment ), 2 );
-                output.CompartmentLoadResult = Math.Round( CalculateCompartmentLoad( compartment ), 2 );
+                //output.Compartment = compartment + 1;
+                //output.TissuePressureResult = Math.Round( CalculateTissuePressures( compartment, diveStep.Time ), 2 );
+                //CalculateABValues( compartment );
+                //output.ToleratedAmbientPressureResult = Math.Round( CalculateToleratedAmbientPressure( compartment ), 2 );
+                //output.MaximumSurfacePressureResult = Math.Round( CalculateMaximumSurfacePressure( compartment ), 2 );
+                //output.CompartmentLoadResult = Math.Round( CalculateCompartmentLoad( compartment ), 2 );
 
                 outputResults.DiveProfileStepOutput.Add( output );
             }
@@ -98,7 +98,7 @@ namespace DivePlannerMk3.Controllers
             return outputResults;
         }
 
-        private void SetAmbientPressures( double oxygenPercentage, double heliumPercentage, int depth )
+        /*private void SetAmbientPressures( double oxygenPercentage, double heliumPercentage, int depth )
         {
 
             //taken from user input used to calculate the pressure at depth for nitrogen
@@ -146,7 +146,7 @@ namespace DivePlannerMk3.Controllers
         private double CalculateCompartmentLoad( int compartmentCount )
         {
             return _diveProfile.CompartmentLoad[compartmentCount] = _diveProfile.TissuePressuresTotal[compartmentCount] / _diveProfile.MaxSurfacePressures[compartmentCount] * 100;
-        }
+        }*/
 
         private void InitaliseDiveProfile()
         {
