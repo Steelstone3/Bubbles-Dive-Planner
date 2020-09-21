@@ -7,6 +7,10 @@ namespace DivePlannerMk3.Contracts
 {
     public interface IDiveProfileService
     {
+        IDiveModel TheDiveModel
+        {
+            get; set;
+        }
         DiveProfileResultsListViewModel RunDiveStep(PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture);
         //IEnumerable<DiveProfileResultsListViewModel> RunDecompressionDiveSteps( InfoDecompressionProfileViewModel decompressionDiveSteps, PlanGasMixtureViewModel gasMixture );
     }
