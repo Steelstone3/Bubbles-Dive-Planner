@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 
 namespace DivePlannerMk3.Contracts
@@ -40,6 +41,16 @@ namespace DivePlannerMk3.Contracts
         }
 
         List<double> BValuesHelium
+        {
+            get; set;
+        }
+
+        List<double> AValues
+        {
+            get; set;
+        }
+
+        List<double> BValues
         {
             get; set;
         }

@@ -20,9 +20,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             set
             {
                 _selectedDiveModel = value;
-
-                var diveProfileController = new DiveProfileService();
-                diveProfileController.TheDiveModel = SelectedDiveModel;
             }
         }
     }

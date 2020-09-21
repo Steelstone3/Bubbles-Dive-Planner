@@ -12,6 +12,7 @@ namespace DivePlannerMk3.Controllers
 
         public DiveStageTissuePressure(IDiveModel diveModel, IDiveProfile diveProfile, int bottomTime)
         {
+            //TODO AH dive model null
             _diveModel = diveModel;
             _diveProfile = diveProfile;
             _bottomTime = bottomTime;
@@ -26,28 +27,28 @@ namespace DivePlannerMk3.Controllers
 
         private void CalculateTissuePressureNitrogen()
         {
-            foreach (int tissuePressureNitrogen in _diveProfile.TissuePressuresNitrogen)
+            for (int i = 0; i < _diveProfile.TissuePressuresNitrogen.Count; i++)
             {
                 //works out tissue pressure for a given compartment (Nitrogen)
-                _diveProfile.TissuePressuresNitrogen[tissuePressureNitrogen] = _diveProfile.TissuePressuresNitrogen[tissuePressureNitrogen] + ((_diveProfile.PressureNitrogen - _diveProfile.TissuePressuresNitrogen[tissuePressureNitrogen]) * (1.0f - Math.Pow(2.0f, -(_bottomTime / _diveModel.NitrogenHalfTime[tissuePressureNitrogen]))));
+                _diveProfile.TissuePressuresNitrogen[i] = _diveProfile.TissuePressuresNitrogen[i] + ((_diveProfile.PressureNitrogen - _diveProfile.TissuePressuresNitrogen[i]) * (1.0f - Math.Pow(2.0f, -(_bottomTime / _diveModel.NitrogenHalfTime[i]))));
             }
         }
 
         private void CalculateTissuePressureHelium()
         {
-            foreach (int tissuePressureHelium in _diveProfile.TissuePressuresHelium)
+            for (int i = 0; i < _diveProfile.TissuePressuresHelium.Count; i++)
             {
                 //works out tissue pressure for a given compartment (Helium)
-                _diveProfile.TissuePressuresHelium[tissuePressureHelium] = _diveProfile.TissuePressuresHelium[tissuePressureHelium] + ((_diveProfile.PressureHelium - _diveProfile.TissuePressuresHelium[tissuePressureHelium]) * (1.0f - Math.Pow(2.0f, -(_bottomTime / _diveModel.HeliumHalfTime[tissuePressureHelium]))));
+                _diveProfile.TissuePressuresHelium[i] = _diveProfile.TissuePressuresHelium[i] + ((_diveProfile.PressureHelium - _diveProfile.TissuePressuresHelium[i]) * (1.0f - Math.Pow(2.0f, -(_bottomTime / _diveModel.HeliumHalfTime[i]))));
             }
         }
 
         private void CalculateTotalTissuesPressure()
         {
-            foreach (int tissuePressure in _diveProfile.TissuePressuresNitrogen)
+            for (int i = 0; i < _diveProfile.TissuePressuresNitrogen.Count; i++)
             {
                 //total combined tissue pressure
-                _diveProfile.TissuePressuresTotal[tissuePressure] = _diveProfile.TissuePressuresHelium[tissuePressure] + _diveProfile.TissuePressuresNitrogen[tissuePressure];
+                _diveProfile.TissuePressuresTotal[i] = _diveProfile.TissuePressuresHelium[i] + _diveProfile.TissuePressuresNitrogen[i];
             }
         }
     }

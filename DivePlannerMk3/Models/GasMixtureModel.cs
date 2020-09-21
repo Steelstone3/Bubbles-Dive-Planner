@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DivePlannerMk3.Models
+﻿namespace DivePlannerMk3.Models
 {
     public class GasMixtureModel
     {
