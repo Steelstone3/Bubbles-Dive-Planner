@@ -7,43 +7,38 @@ namespace DivePlannerMk3.Models
     {
         public DiveProfile()
         {
-            MaxSurfacePressures = new List<double>();
-            TissuePressuresNitrogen = new List<double>();
-            TissuePressuresHelium = new List<double>();
-            TissuePressuresTotal = new List<double>();
-            ToleratedAmbientPressures = new List<double>();
-            CompartmentLoad = new List<double>();
+
         }
 
         public List<double> MaxSurfacePressures
         {
             get; set;
-        }
+        } = new List<double>();
 
         public List<double> CompartmentLoad
         {
             get; set;
-        }
+        } = new List<double>();
 
         public List<double> TissuePressuresNitrogen
         {
             get; set;
-        }
+        } = new List<double>();
 
         public List<double> TissuePressuresHelium
         {
             get; set;
-        }
+        } = new List<double>();
 
         public List<double> TissuePressuresTotal
         {
             get; set;
-        }
+        } = new List<double>();
 
         public List<double> ToleratedAmbientPressures
         {
             get; set;
-        }
+        } = new List<double>();
 
         public double PressureOxygen
         {
@@ -59,6 +54,5 @@ namespace DivePlannerMk3.Models
         {
             get; set;
         }
-
     }
 }

@@ -11,8 +11,8 @@ namespace DivePlannerMk3.Controllers
 {
     public class DiveProfileService : IDiveProfileService
     {
-        private double aValues = 0.0;
-        private double bValues = 0.0;
+        //private double aValues = 0.0;
+        //private double bValues = 0.0;
         private IDiveProfile _diveProfile = new DiveProfile();
 
         //TODO AH Composition
@@ -30,20 +30,37 @@ namespace DivePlannerMk3.Controllers
 
         //TODO AH Strategy pattern
 
-        public DiveProfileResultsListViewModel RunDiveStep( PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture )
+        public DiveProfileResultsListViewModel RunDiveStep(PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture)
         {
-
-            var outputResults = new DiveProfileResultsListViewModel()
+            //TODO AH reconsider the whole output and input view model architechture to optimise the amount of classes...
+            /*var outputResults = new DiveProfileResultsListViewModel()
             {
                 DiveProfileStepHeader = _theDiveModel.DiveModelName + "\r\nDepth: " + diveStep.Depth.ToString() + " Time: " + diveStep.Time.ToString(),
             };
 
             var updatedOutputResults = DiveParameterOutput( diveStep, gasMixture, outputResults );
 
-            return RunDiveStep( diveStep, gasMixture, updatedOutputResults );
+            return RunDiveStep( diveStep, gasMixture, updatedOutputResults );*/
+
+            IDiveStage[] diveStages = new IDiveStage[]
+            {
+                new DiveStageTissuePressure(_theDiveModel, _diveProfile, diveStep.Time),
+                new DiveStageABValues(_theDiveModel, _diveProfile),
+                new DiveStageToleratedAmbientPressure(),
+                new DiveStageMaximumSurfacePressure(),
+                new DiveStageCompartmentLoad(),
+            };
+
+            foreach(var stage in diveStages)
+            {
+                stage.RunStage();
+            }
+
+            return null;
         }
 
-        public IEnumerable<DiveProfileResultsListViewModel> RunDecompressionDiveSteps(  InfoDecompressionProfileViewModel decompressionDiveSteps, PlanGasMixtureViewModel gasMixture )
+        //TODO AH finish this later
+        /*public IEnumerable<DiveProfileResultsListViewModel> RunDecompressionDiveSteps(InfoDecompressionProfileViewModel decompressionDiveSteps, PlanGasMixtureViewModel gasMixture)
         {
             //TODO AH Insert Dive Step Calculation and environment dependencies
 
@@ -60,10 +77,10 @@ namespace DivePlannerMk3.Controllers
 
                 yield return RunDiveStep( diveStep, gasMixture, updatedOutputResults );
             }
-        }
+        }*/
 
 
-        private DiveProfileResultsListViewModel DiveParameterOutput( PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture, DiveProfileResultsListViewModel outputResults )
+        private DiveProfileResultsListViewModel DiveParameterOutput(PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture, DiveProfileResultsListViewModel outputResults)
         {
             outputResults.ParameterOutput.DiveModelUsed = _theDiveModel.DiveModelName;
             outputResults.ParameterOutput.StepDepthParameter = diveStep.Depth;
@@ -77,12 +94,11 @@ namespace DivePlannerMk3.Controllers
             return outputResults;
         }
 
-        private DiveProfileResultsListViewModel RunDiveStep( PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture, DiveProfileResultsListViewModel outputResults )
+        private DiveProfileResultsListViewModel RunDiveStep(PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture, DiveProfileResultsListViewModel outputResults)
         {
-            for( int compartment = 0; compartment < TheDiveModel.CompartmentIndexMax; compartment++ )
+            for (int compartment = 0; compartment < TheDiveModel.CompartmentIndexMax; compartment++)
             {
                 IDiveProfileStepOutputModel output = new DiveProfileStepOutputModel();
-
                 //SetAmbientPressures( gasMixture.SelectedGasMixture.Oxygen, gasMixture.SelectedGasMixture.Helium, diveStep.Depth );
 
                 //output.Compartment = compartment + 1;
@@ -92,7 +108,7 @@ namespace DivePlannerMk3.Controllers
                 //output.MaximumSurfacePressureResult = Math.Round( CalculateMaximumSurfacePressure( compartment ), 2 );
                 //output.CompartmentLoadResult = Math.Round( CalculateCompartmentLoad( compartment ), 2 );
 
-                outputResults.DiveProfileStepOutput.Add( output );
+                outputResults.DiveProfileStepOutput.Add(output);
             }
 
             return outputResults;
@@ -152,15 +168,15 @@ namespace DivePlannerMk3.Controllers
         {
             ResetDiveProfile();
 
-            for( int i = 0; i < TheDiveModel.CompartmentIndexMax; i++ )
+            for (int i = 0; i < TheDiveModel.CompartmentIndexMax; i++)
             {
-                _diveProfile.MaxSurfacePressures.Add( 0 );
-                _diveProfile.ToleratedAmbientPressures.Add( 0 );
-                _diveProfile.CompartmentLoad.Add( 0 );
+                _diveProfile.MaxSurfacePressures.Add(0);
+                _diveProfile.ToleratedAmbientPressures.Add(0);
+                _diveProfile.CompartmentLoad.Add(0);
 
-                _diveProfile.TissuePressuresNitrogen.Add( 0.79 );
-                _diveProfile.TissuePressuresHelium.Add( 0 );
-                _diveProfile.TissuePressuresTotal.Add( 0 );
+                _diveProfile.TissuePressuresNitrogen.Add(0.79);
+                _diveProfile.TissuePressuresHelium.Add(0);
+                _diveProfile.TissuePressuresTotal.Add(0);
             }
 
         }

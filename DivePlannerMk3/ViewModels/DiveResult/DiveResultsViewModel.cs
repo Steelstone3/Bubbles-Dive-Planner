@@ -10,14 +10,14 @@ namespace DivePlannerMk3.ViewModels.DiveResult
     {
         public DiveResultsViewModel()
         {
-            DiveProfileResults = new DiveProfileResultsListViewModel();
+
         }
 
-        private DiveProfileResultsListViewModel _diveProfileResults;
+        private DiveProfileResultsListViewModel _diveProfileResults = new DiveProfileResultsListViewModel();
         public DiveProfileResultsListViewModel DiveProfileResults
         {
             get => _diveProfileResults;
-            set => this.RaiseAndSetIfChanged( ref _diveProfileResults, value );
+            set => this.RaiseAndSetIfChanged(ref _diveProfileResults, value);
         }
 
         public ObservableCollection<DiveProfileResultsListViewModel> DiveProfileHistoryResults

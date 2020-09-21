@@ -6,22 +6,20 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
     {
         public DiveInfoViewModel()
         {
-            DecompressionProfile = new InfoDecompressionProfileViewModel();
-            DiveBoundaries = new InfoDiveBoundariesViewModel();
         }
 
-        private InfoDecompressionProfileViewModel _decompressionProfile;
+        private InfoDecompressionProfileViewModel _decompressionProfile = new InfoDecompressionProfileViewModel();
         public InfoDecompressionProfileViewModel DecompressionProfile
         {
             get => _decompressionProfile;
-            set => this.RaiseAndSetIfChanged( ref _decompressionProfile, value );
+            set => this.RaiseAndSetIfChanged(ref _decompressionProfile, value);
         }
 
-        private InfoDiveBoundariesViewModel _diveBoundaries;
+        private InfoDiveBoundariesViewModel _diveBoundaries = new InfoDiveBoundariesViewModel();
         public InfoDiveBoundariesViewModel DiveBoundaries
         {
             get => _diveBoundaries;
-            set => this.RaiseAndSetIfChanged( ref _diveBoundaries, value );
+            set => this.RaiseAndSetIfChanged(ref _diveBoundaries, value);
         }
     }
 }
