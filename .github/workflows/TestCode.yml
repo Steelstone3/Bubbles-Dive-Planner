@@ -22,7 +22,6 @@ jobs:
         - os: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - run: echo ${{matrix.TARGET}}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
