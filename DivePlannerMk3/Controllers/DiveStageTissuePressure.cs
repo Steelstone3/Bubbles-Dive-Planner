@@ -6,13 +6,14 @@ namespace DivePlannerMk3.Controllers
 {
     public class DiveStageTissuePressure : IDiveStage
     {
+        private IDiveProfileStepOutputModel _result;
         private IDiveModel _diveModel;
         private IDiveProfile _diveProfile;
         private int _bottomTime;
 
-        public DiveStageTissuePressure(IDiveModel diveModel, IDiveProfile diveProfile, int bottomTime)
+        public DiveStageTissuePressure(IDiveProfileStepOutputModel result, IDiveModel diveModel, IDiveProfile diveProfile, int bottomTime)
         {
-            //TODO AH dive model null
+            _result = result;
             _diveModel = diveModel;
             _diveProfile = diveProfile;
             _bottomTime = bottomTime;
@@ -47,8 +48,9 @@ namespace DivePlannerMk3.Controllers
         {
             for (int i = 0; i < _diveProfile.TissuePressuresNitrogen.Count; i++)
             {
+                //TODO AH wont produce all the results
                 //total combined tissue pressure
-                _diveProfile.TissuePressuresTotal[i] = _diveProfile.TissuePressuresHelium[i] + _diveProfile.TissuePressuresNitrogen[i];
+                _result.TissuePressureResult = _diveProfile.TissuePressuresTotal[i] = _diveProfile.TissuePressuresHelium[i] + _diveProfile.TissuePressuresNitrogen[i];
             }
         }
     }
