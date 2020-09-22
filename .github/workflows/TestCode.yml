@@ -10,7 +10,6 @@ jobs:
   build:
 
     name: TestApplication
-    #runs-on: ubuntu-latest
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
