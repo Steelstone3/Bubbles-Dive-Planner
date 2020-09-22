@@ -5,7 +5,7 @@ namespace DivePlannerMk3.Models
 {
     public class DiveModel : IDiveModel
     {
-        public int CompartmentIndexMax
+        public int CompartmentCount
         {
             get; set;
         }

@@ -5,7 +5,8 @@ namespace DivePlannerMk3.Models
     {
         public Zhl16Buhlmann()
         {
-            CompartmentIndexMax = 16;
+            
+            CompartmentCount = 16;
             DiveModelName = "ZHL-16B Model";
             NitrogenHalfTime = _nitrogenHalfTime.ToList();
             HeliumHalfTime = _heliumHalfTime.ToList();
