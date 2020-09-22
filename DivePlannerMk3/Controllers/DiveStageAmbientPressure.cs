@@ -1,16 +1,19 @@
+using DivePlannerMk3.Contracts;
 using DivePlannerMK3.Contracts;
 
 namespace DivePlannerMk3.Controllers
 {
     public class DiveStageAmbientPressure : IDiveStage
     {
+        private IDiveProfileStepOutputModel _result;
         private IDiveProfile _diveProfile;
         private double _oxygenPercentage;
         private double _heliumPercentage;
         private int _depth;
 
-        public DiveStageAmbientPressure(IDiveProfile diveProfile, double oxygenPercentage, double heliumPercentage, int depth)
+        public DiveStageAmbientPressure( IDiveProfileStepOutputModel result, IDiveProfile diveProfile, double oxygenPercentage, double heliumPercentage, int depth)
         {
+            _result = result;
             _diveProfile = diveProfile;
             _oxygenPercentage = oxygenPercentage;
             _heliumPercentage = heliumPercentage;

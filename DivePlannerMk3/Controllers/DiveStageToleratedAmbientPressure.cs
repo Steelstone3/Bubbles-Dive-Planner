@@ -5,11 +5,13 @@ namespace DivePlannerMk3.Controllers
 {
     public class DiveStageToleratedAmbientPressure : IDiveStage
     {
+        private IDiveProfileStepOutputModel _result;
         private IDiveModel _diveModel;
         private IDiveProfile _diveProfile;
 
-        public DiveStageToleratedAmbientPressure(IDiveModel diveModel, IDiveProfile diveProfile)
+        public DiveStageToleratedAmbientPressure(IDiveProfileStepOutputModel result, IDiveModel diveModel, IDiveProfile diveProfile)
         {
+            _result = result;
             _diveModel = diveModel;
             _diveProfile = diveProfile;
         }
@@ -23,7 +25,8 @@ namespace DivePlannerMk3.Controllers
         {
             for (int i = 0; i < _diveProfile.TissuePressuresTotal.Count; i++)
             {
-                _diveProfile.ToleratedAmbientPressures[i] = (_diveProfile.TissuePressuresTotal[i] - _diveModel.AValues[i]) * _diveModel.BValues[i];
+                //TODO AH wont produce all the results
+                _result.ToleratedAmbientPressureResult = _diveProfile.ToleratedAmbientPressures[i] = (_diveProfile.TissuePressuresTotal[i] - _diveModel.AValues[i]) * _diveModel.BValues[i];
             }
         }
     }

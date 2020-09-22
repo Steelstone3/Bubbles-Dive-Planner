@@ -6,12 +6,13 @@ namespace DivePlannerMk3.Controllers
 {
     public class DiveStageABValues : IDiveStage
     {
+        private IDiveProfileStepOutputModel _result;
         private IDiveModel _diveModel;
         private IDiveProfile _diveProfile;
 
-        public DiveStageABValues(IDiveModel diveModel, IDiveProfile diveProfile)
+        public DiveStageABValues(IDiveProfileStepOutputModel result, IDiveModel diveModel, IDiveProfile diveProfile)
         {
-            //TODO AH dive model is null
+            _result = result;
             _diveModel = diveModel;
             _diveProfile = diveProfile;
         }
