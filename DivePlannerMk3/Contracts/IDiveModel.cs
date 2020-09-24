@@ -1,10 +1,11 @@
+using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 
 namespace DivePlannerMk3.Contracts
 {
     public interface IDiveModel
     {
-        int CompartmentIndexMax
+        int CompartmentCount
         {
             get; set;
         }

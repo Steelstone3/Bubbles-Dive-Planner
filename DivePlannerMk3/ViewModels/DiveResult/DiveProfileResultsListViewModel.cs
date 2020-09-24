@@ -8,7 +8,7 @@ namespace DivePlannerMk3.ViewModels.DiveResult
     {
         public DiveProfileResultsListViewModel()
         {
-            ParameterOutput = new DiveProfileStepParametersOutputModel();
+
         }
 
         public string DiveProfileStepHeader
@@ -24,6 +24,6 @@ namespace DivePlannerMk3.ViewModels.DiveResult
         public IDiveProfileStepParametersOutputModel ParameterOutput
         {
             get;set;
-        }
+        } = new DiveProfileStepParametersOutputModel();
     }
 }
