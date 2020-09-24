@@ -16,13 +16,9 @@ namespace DivePlannerMk3.Services
 
         //updated using UpdateDiveStageHandler()
         private IDiveModel _diveModel;
+        private IDiveProfile _diveProfile;
         private PlanDiveStepViewModel _diveStep;
         private PlanGasMixtureViewModel _gasMixture;
-
-        public IDiveProfile DiveProfile
-        {
-            get; private set;
-        }
 
         public DiveProfileResultsListViewModel RunAllDiveStages()
         {
@@ -38,7 +34,7 @@ namespace DivePlannerMk3.Services
         public void UpdateDiveStageHandler(IDiveModel diveModel, IDiveProfile diveProfile, PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture)
         {
             _diveModel = diveModel;
-            DiveProfile = diveProfile;
+            _diveProfile = diveProfile;
             _diveStep = diveStep;
             _gasMixture = gasMixture;
         }
@@ -65,7 +61,7 @@ namespace DivePlannerMk3.Services
             return new IDiveStage[]
             {
                 new PreDiveStageStepInfo(_outputResults, _diveModel, _diveStep, _gasMixture),
-                new PreDiveStageAmbientPressure(DiveProfile, _gasMixture.SelectedGasMixture.Oxygen, _gasMixture.SelectedGasMixture.Helium, _diveStep.Depth),
+                new PreDiveStageAmbientPressure(_diveProfile, _gasMixture.SelectedGasMixture.Oxygen, _gasMixture.SelectedGasMixture.Helium, _diveStep.Depth),
             };
         }
 
@@ -73,12 +69,12 @@ namespace DivePlannerMk3.Services
         {
             return new IDiveStage[]
             {
-                new DiveStageTissuePressure(_diveModel, DiveProfile, _diveStep.Time),
-                new DiveStageABValues(_diveModel, DiveProfile),
-                new DiveStageToleratedAmbientPressure(_diveModel.CompartmentCount,DiveProfile),
-                new DiveStageMaximumSurfacePressure(_diveModel.CompartmentCount, DiveProfile),
-                new DiveStageCompartmentLoad(_diveModel, DiveProfile),
-                new DiveStageResults(_diveModel.CompartmentCount,_outputResults, DiveProfile)
+                new DiveStageTissuePressure(_diveModel, _diveProfile, _diveStep.Time),
+                new DiveStageABValues(_diveModel, _diveProfile),
+                new DiveStageToleratedAmbientPressure(_diveModel.CompartmentCount,_diveProfile),
+                new DiveStageMaximumSurfacePressure(_diveModel.CompartmentCount, _diveProfile),
+                new DiveStageCompartmentLoad(_diveModel, _diveProfile),
+                new DiveStageResults(_diveModel.CompartmentCount,_outputResults, _diveProfile)
             };
         }
     }

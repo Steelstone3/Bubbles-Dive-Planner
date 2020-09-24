@@ -26,12 +26,12 @@ namespace DivePlannerMk3.Controllers.DiveStages
 
         private void CalculateAValues()
         {
-            _diveProfile.AValues.Add((_diveModel.AValuesNitrogen[Compartment] * _diveProfile.TissuePressuresNitrogen[Compartment] + _diveModel.AValuesHelium[Compartment] * _diveProfile.TissuePressuresHelium[Compartment]) / _diveProfile.TissuePressuresTotal[Compartment]);
+            _diveProfile.AValues[Compartment] = ((_diveModel.AValuesNitrogen[Compartment] * _diveProfile.TissuePressuresNitrogen[Compartment] + _diveModel.AValuesHelium[Compartment] * _diveProfile.TissuePressuresHelium[Compartment]) / _diveProfile.TissuePressuresTotal[Compartment]);
         }
 
         private void CalculateBValues()
         {
-            _diveProfile.BValues.Add((_diveModel.BValuesNitrogen[Compartment] * _diveProfile.TissuePressuresNitrogen[Compartment] + _diveModel.BValuesHelium[Compartment] * _diveProfile.TissuePressuresHelium[Compartment]) / _diveProfile.TissuePressuresTotal[Compartment]);
+            _diveProfile.BValues[Compartment] = ((_diveModel.BValuesNitrogen[Compartment] * _diveProfile.TissuePressuresNitrogen[Compartment] + _diveModel.BValuesHelium[Compartment] * _diveProfile.TissuePressuresHelium[Compartment]) / _diveProfile.TissuePressuresTotal[Compartment]);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DivePlannerMk3.Controllers.DiveStages
 
         public void CompartmentCountCheck(int compartmentCount)
         {
-            if(Compartment > compartmentCount)
+            if(Compartment >= compartmentCount)
             {
                 Compartment = 0;
             }

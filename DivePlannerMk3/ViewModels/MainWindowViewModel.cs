@@ -18,6 +18,7 @@ namespace DivePlannerMk3.ViewModels
         public MainWindowViewModel()
         {
             _diveProfileController = new DiveProfileService();
+            _divePlan = new DivePlanViewModel(_diveProfileController);
 
             CalculateDiveStepCommand = ReactiveCommand.Create( RunDiveStep );
 
@@ -30,9 +31,9 @@ namespace DivePlannerMk3.ViewModels
         {
             get => _diveProfile;
             set => this.RaiseAndSetIfChanged( ref _diveProfile, value );
-        } 
+        }
 
-        private DivePlanViewModel _divePlan = new DivePlanViewModel();
+        private DivePlanViewModel _divePlan;
         public DivePlanViewModel DivePlan
         {
             get => _divePlan;
@@ -69,7 +70,7 @@ namespace DivePlannerMk3.ViewModels
             //TODO AH Work out can execute!!!
             if( DivePlan.GasMixture.SelectedGasMixture != null && DivePlan.DiveModelSelector.SelectedDiveModel != null )
             {
-                _diveProfileController.TheDiveModel = DivePlan.DiveModelSelector.SelectedDiveModel;
+                
                 
                 DiveProfile.DiveProfileResults = _diveProfileController.RunDiveStep( DivePlan.DiveStep, DivePlan.GasMixture );
                 DiveProfile.DiveProfileHistoryResults.Add( DiveProfile.DiveProfileResults );

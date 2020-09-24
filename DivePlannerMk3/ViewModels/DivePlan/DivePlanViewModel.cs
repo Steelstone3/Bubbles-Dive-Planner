@@ -1,13 +1,11 @@
-﻿using ReactiveUI;
+﻿using DivePlannerMk3.Contracts;
+using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
     public class DivePlanViewModel : ViewModelBase
     {
-        public DivePlanViewModel()
-        {
-
-        }
+        private IDiveProfileService _diveProfileController;
 
         private PlanAddGasMixtureViewModel _addGasMixture = new PlanAddGasMixtureViewModel();
         public PlanAddGasMixtureViewModel AddGasMixture
@@ -23,7 +21,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             set => this.RaiseAndSetIfChanged(ref _gasMixture, value);
         }
 
-        private PlanDiveModelSelectorViewModel _diveModelSelector = new PlanDiveModelSelectorViewModel();
+        private PlanDiveModelSelectorViewModel _diveModelSelector;
         public PlanDiveModelSelectorViewModel DiveModelSelector
         {
             get => _diveModelSelector;
@@ -39,10 +37,17 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         }
 
         private PlanGasManagementViewModel _gasManagement = new PlanGasManagementViewModel();
+
         public PlanGasManagementViewModel GasManagement
         {
             get => _gasManagement;
             set => this.RaiseAndSetIfChanged(ref _gasManagement, value);
+        }
+
+        public DivePlanViewModel(IDiveProfileService diveProfileController)
+        {
+            _diveProfileController = diveProfileController;
+            _diveModelSelector = new PlanDiveModelSelectorViewModel(_diveProfileController);
         }
     }
 }
