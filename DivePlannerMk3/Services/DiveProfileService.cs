@@ -10,8 +10,8 @@ namespace DivePlannerMk3.Controllers
     public class DiveProfileService : IDiveProfileService
     {
         private DiveStageHandler _diveStages;
-        private IDiveProfile _diveProfile = new DiveProfile();
-        private IDiveModel _theDiveModel = new DiveModel();
+        private IDiveProfile _diveProfile;
+        private IDiveModel _theDiveModel;
 
         public IDiveModel TheDiveModel
         {
@@ -26,6 +26,8 @@ namespace DivePlannerMk3.Controllers
         public DiveProfileService()
         {
             _diveStages = new DiveStageHandler();
+            _diveProfile = new DiveProfile();
+            _theDiveModel = new DiveModel();
         }
 
         //TODO AH Strategy pattern on deco model stuff
@@ -50,6 +52,9 @@ namespace DivePlannerMk3.Controllers
                 _diveProfile.TissuePressuresNitrogen.Add(0.79);
                 _diveProfile.TissuePressuresHelium.Add(0);
                 _diveProfile.TissuePressuresTotal.Add(0);
+
+                _diveProfile.AValues.Add(0);
+                _diveProfile.BValues.Add(0);
             }
 
         }
@@ -63,6 +68,9 @@ namespace DivePlannerMk3.Controllers
             _diveProfile.TissuePressuresNitrogen.Clear();
             _diveProfile.TissuePressuresHelium.Clear();
             _diveProfile.TissuePressuresTotal.Clear();
+
+            _diveProfile.AValues.Clear();
+            _diveProfile.BValues.Clear();
         }
     }
 }
