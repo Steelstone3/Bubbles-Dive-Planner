@@ -14,18 +14,19 @@
     <StackPanel>
 
         <TextBlock
-            Margin="4"
+            Margin="32,4"
             FontSize="16"
             FontWeight="DemiBold"
             Text="Dive Result History" />
         <ListBox
-            Margin="4"
+            Margin="32,4"
             Background="#FFCFCFCF"
+            MaxHeight="600"
             Items="{Binding DiveProfile.DiveProfileHistoryResults}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBox
-                        Margin="0,4"
+                        Margin="-4,4"
                         Background="#FFCFCFCF"
                         Items="{Binding DiveProfileStepOutput}">
                         <ListBox.ItemTemplate>
@@ -63,12 +64,12 @@
 
         <!--  List box of dive steps in dive step history model  -->
         <TextBlock
-            Margin="4"
+            Margin="32,4"
             FontSize="16"
             FontWeight="DemiBold"
             Text="Dive Step History" />
 
-        <Grid Margin="4" Background="#FFCFCFCF">
+        <Grid Margin="32,4" Background="#FFCFCFCF">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -83,25 +84,25 @@
 
             <TextBlock
                 Grid.Row="0"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Depth:" />
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Here" />
             <TextBlock
                 Grid.Row="1"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Time:" />
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Here" />
             <TextBlock
                 Grid.Row="2"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Gas Mix:" />
             <TextBlock
                 Grid.Row="2"
@@ -110,21 +111,21 @@
                 Text="Here" />
             <TextBlock
                 Grid.Row="3"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Gas Used:" />
             <TextBlock
                 Grid.Row="3"
                 Grid.Column="1"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Here" />
             <TextBlock
                 Grid.Row="4"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Gas Remaining:" />
             <TextBlock
                 Grid.Row="4"
                 Grid.Column="1"
-                Margin="4,0"
+                Margin="8,0"
                 Text="Here" />
         </Grid>
 
