@@ -44,15 +44,5 @@ namespace DivePlannerMk3.Contracts
         {
             get; set;
         }
-
-        List<double> AValues
-        {
-            get; set;
-        }
-
-        List<double> BValues
-        {
-            get; set;
-        }
     }
 }

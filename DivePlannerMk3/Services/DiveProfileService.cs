@@ -9,9 +9,10 @@ namespace DivePlannerMk3.Controllers
 {
     public class DiveProfileService : IDiveProfileService
     {
+        private DiveStageHandler _diveStages;
         private IDiveProfile _diveProfile = new DiveProfile();
+        private IDiveModel _theDiveModel = new DiveModel();
 
-        private IDiveModel _theDiveModel;
         public IDiveModel TheDiveModel
         {
             get => _theDiveModel;
@@ -22,13 +23,18 @@ namespace DivePlannerMk3.Controllers
             }
         }
 
-        //TODO AH Strategy pattern
+        public DiveProfileService()
+        {
+            _diveStages = new DiveStageHandler();
+        }
+
+        //TODO AH Strategy pattern on deco model stuff
         public DiveProfileResultsListViewModel RunDiveStep(PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture)
         {
-            var diveStages = new DiveStageHandler(TheDiveModel, _diveProfile, diveStep, gasMixture);
-            var outputResults = new DiveProfileResultsListViewModel();
-
-           return diveStages.RunAllDiveStages();
+            //update internal state
+            _diveStages.UpdateDiveStageHandler(TheDiveModel, _diveProfile, diveStep, gasMixture);
+            //run all stages
+            return _diveStages.RunAllDiveStages();
         }
 
         private void InitaliseDiveProfile()
