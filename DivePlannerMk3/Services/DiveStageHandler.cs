@@ -13,7 +13,6 @@ namespace DivePlannerMk3.Services
         private DiveProfileResultsListViewModel _outputResults;
         private IDiveStage[] _preDiveStages;
         private IDiveStage[] _diveStages;
-        private IDiveStage[] _postDiveStages;
 
         //updated using UpdateDiveStageHandler()
         private IDiveModel _diveModel;
@@ -30,7 +29,6 @@ namespace DivePlannerMk3.Services
             _outputResults = new DiveProfileResultsListViewModel();
             _preDiveStages = CreatePreDiveStages();
             _diveStages = CreateDiveStages();
-            _postDiveStages = CreatePostDiveStages();
 
             RunStages();
 
@@ -52,15 +50,13 @@ namespace DivePlannerMk3.Services
                 stage.RunStage();
             }
 
-            //For each stage run for the amount of compartments
+            //For each compartment run all stages
             for (int i = 0; i < _diveModel.CompartmentCount; i++)
             {
-                _diveStages[0].RunStage();
-                _diveStages[1].RunStage();
-                _diveStages[2].RunStage();
-                _diveStages[3].RunStage();
-                _diveStages[4].RunStage();
-                _postDiveStages[0].RunStage();
+                foreach (var diveStage in _diveStages)
+                {
+                    diveStage.RunStage();
+                }
             }
         }
 
@@ -73,7 +69,6 @@ namespace DivePlannerMk3.Services
             };
         }
 
-
         private IDiveStage[] CreateDiveStages()
         {
             return new IDiveStage[]
@@ -83,13 +78,6 @@ namespace DivePlannerMk3.Services
                 new DiveStageToleratedAmbientPressure(_diveModel.CompartmentCount,DiveProfile),
                 new DiveStageMaximumSurfacePressure(_diveModel.CompartmentCount, DiveProfile),
                 new DiveStageCompartmentLoad(_diveModel, DiveProfile),
-            };
-        }
-
-        private IDiveStage[] CreatePostDiveStages()
-        {
-            return new IDiveStage[]
-            {
                 new DiveStageResults(_diveModel.CompartmentCount,_outputResults, DiveProfile)
             };
         }

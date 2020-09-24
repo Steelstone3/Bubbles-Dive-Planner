@@ -30,7 +30,8 @@ namespace DivePlannerMk3.Controllers
         {
             var stepResult = new DiveProfileStepOutputModel();
 
-            stepResult.Compartment = Compartment;
+            stepResult.DiveProfileStepHeader = "Dive Step";
+            stepResult.Compartment = Compartment + 1;
             stepResult.TissuePressureResult = _diveProfile.TissuePressuresTotal[Compartment];
             stepResult.CompartmentLoadResult = _diveProfile.CompartmentLoad[Compartment];
             stepResult.MaximumSurfacePressureResult = _diveProfile.MaxSurfacePressures[Compartment];
