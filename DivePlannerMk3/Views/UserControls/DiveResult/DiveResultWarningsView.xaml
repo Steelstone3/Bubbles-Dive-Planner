@@ -15,28 +15,28 @@
 
         <!--  in its own user control  -->
         <TextBlock
-            Margin="4"
+            Margin="32,4"
             FontSize="16"
             FontWeight="DemiBold"
             Text="Warnings" />
-        <StackPanel Margin="4" Background="#FFCFCFCF">
+        <StackPanel Margin="32,4" Background="#FFCFCFCF">
 
-            <TextBlock Margin="4,0" Text="Here" />
+            <TextBlock Margin="8,0" Text="Here" />
         </StackPanel>
 
         <!--  in its own user control  -->
         <TextBlock
-            Margin="4"
+            Margin="32,4"
             FontSize="16"
             FontWeight="DemiBold"
             Text="Key" />
 
-        <StackPanel Margin="4" Background="#FFCFCFCF">
-            <TextBlock Margin="4,0" Text="C = Compartment" />
-            <TextBlock Margin="4,0" Text="TP = Tissue Pressure" />
-            <TextBlock Margin="4,0" Text="TAP = Tolerated Ambient Pressure" />
-            <TextBlock Margin="4,0" Text="MSP = Maximum Surface Pressure" />
-            <TextBlock Margin="4,0" Text="CLP = Compartment Load Percentage" />
+        <StackPanel Margin="32,4" Background="#FFCFCFCF">
+            <TextBlock Margin="8,0" Text="C = Compartment" />
+            <TextBlock Margin="8,0" Text="TP = Tissue Pressure" />
+            <TextBlock Margin="8,0" Text="TAP = Tolerated Ambient Pressure" />
+            <TextBlock Margin="8,0" Text="MSP = Maximum Surface Pressure" />
+            <TextBlock Margin="8,0" Text="CLP = Compartment Load Percentage" />
         </StackPanel>
 
     </StackPanel>
