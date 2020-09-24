@@ -13,11 +13,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-18.04, ubuntu-20.04, windows-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
         include:
         - os: macos-latest
-        - os: ubuntu-18.04
-        - os: ubuntu-20.04
+        - os: ubuntu-latest
         - os: windows-latest
     steps:
     - uses: actions/checkout@v2
