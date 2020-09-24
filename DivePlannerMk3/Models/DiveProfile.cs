@@ -40,6 +40,16 @@ namespace DivePlannerMk3.Models
             get; set;
         } = new List<double>();
 
+        public List<double> AValues
+        {
+            get; set;
+        } = new List<double>();
+
+        public List<double> BValues
+        {
+            get; set;
+        } = new List<double>();
+
         public double PressureOxygen
         {
             get; set;

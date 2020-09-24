@@ -3,34 +3,26 @@ using DivePlannerMK3.Contracts;
 
 namespace DivePlannerMk3.Controllers.DiveStages
 {
-    public class DiveStageToleratedAmbientPressure : IDiveStage
+    public class DiveStageToleratedAmbientPressure : DiveStage
     {
-        private IDiveModel _diveModel;
+        private int _compartmentCount;
         private IDiveProfile _diveProfile;
 
-        public int Compartment
+        public DiveStageToleratedAmbientPressure(int compartmentCount, IDiveProfile diveProfile) : base()
         {
-            get; set;
-        }
-
-        public DiveStageToleratedAmbientPressure(IDiveModel diveModel, IDiveProfile diveProfile)
-        {
-            _diveModel = diveModel;
+            _compartmentCount = compartmentCount;
             _diveProfile = diveProfile;
         }
 
-        public void RunStage()
+        public override void RunStage()
         {
             CalculateToleratedAmbientPressure();
+            CompartmentCountCheck(_compartmentCount - 1);
         }
 
         private void CalculateToleratedAmbientPressure()
         {
-            //for (int i = 0; i < _diveProfile.TissuePressuresTotal.Count; i++)
-            //{
-            //TODO AH wont produce all the results
-            _diveProfile.ToleratedAmbientPressures[Compartment] = (_diveProfile.TissuePressuresTotal[Compartment] - _diveModel.AValues[Compartment]) * _diveModel.BValues[Compartment];
-            //}
+            _diveProfile.ToleratedAmbientPressures[Compartment] = (_diveProfile.TissuePressuresTotal[Compartment] - _diveProfile.AValues[Compartment]) * _diveProfile.BValues[Compartment];
         }
     }
 }

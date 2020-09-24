@@ -3,34 +3,26 @@ using DivePlannerMk3.Contracts;
 
 namespace DivePlannerMk3.Controllers.DiveStages
 {
-    public class DiveStageMaximumSurfacePressure : IDiveStage
+    public class DiveStageMaximumSurfacePressure : DiveStage
     {
-        private IDiveModel _diveModel;
+        private int _compartmentCount;
         private IDiveProfile _diveProfile;
-        
-        public int Compartment 
+
+        public DiveStageMaximumSurfacePressure(int compartmentCount, IDiveProfile diveProfile) : base()
         {
-            get;set;
-        }
-        
-        public DiveStageMaximumSurfacePressure(IDiveModel diveModel, IDiveProfile diveProfile)
-        {
-            _diveModel = diveModel;
+            _compartmentCount = compartmentCount;
             _diveProfile = diveProfile;
         }
 
-        public void RunStage()
+        public override void RunStage()
         {
             CalculateMaximumSurfacePressure();
+            CompartmentCountCheck(_compartmentCount - 1);
         }
 
         private void CalculateMaximumSurfacePressure()
         {
-            //for (int i = 0; i < _diveModel.AValues.Count; i++)
-            //{
-            //TODO AH wont produce all the results
-            _diveProfile.MaxSurfacePressures[Compartment] = (1.0f / _diveModel.BValues[Compartment]) + _diveModel.AValues[Compartment];
-            //}
+            _diveProfile.MaxSurfacePressures[Compartment] = (1.0f / _diveProfile.BValues[Compartment]) + _diveProfile.AValues[Compartment];
         }
     }
 }

@@ -11,12 +11,6 @@ namespace DivePlannerMk3.Controllers.DiveStages
         private PlanDiveStepViewModel _diveStep;
         private PlanGasMixtureViewModel _gasMixture;
 
-        //TODO AH base class of Dive Plan with common things such as this and an abstract RunStage method
-        public int Compartment
-        {
-            get; set;
-        }
-
         //TODO AH the constructor
         public PreDiveStageStepInfo(DiveProfileResultsListViewModel outputResults, IDiveModel diveModel, PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture)
         {

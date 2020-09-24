@@ -10,11 +10,6 @@ namespace DivePlannerMk3.Controllers.DiveStages
         private double _heliumPercentage;
         private int _depth;
 
-        public int Compartment 
-        {
-             get;set; 
-             }
-
         public PreDiveStageAmbientPressure(IDiveProfile diveProfile, double oxygenPercentage, double heliumPercentage, int depth)
         {
             _diveProfile = diveProfile;
