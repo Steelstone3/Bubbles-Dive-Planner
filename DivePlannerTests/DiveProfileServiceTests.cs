@@ -4,40 +4,46 @@ namespace DivePlannerTests
 {
     public class DiveProfileServiceTests
     {
-        [Fact]
+        [Theory]
+        [InlineData()]
         public void RunDiveStages()
         {
-            
+
         }
 
-        [Fact]
+        [Theory]
+        [InlineData()]
         public void RunStage()
         {
 
         }
 
-         [Fact]
+        [Theory]
+        [InlineData()]
         public void RunStage2()
         {
-            
+
         }
 
-         [Fact]
+        [Theory]
+        [InlineData()]
         public void RunStage3()
         {
-            
+
         }
 
-         [Fact]
+        [Theory]
+        [InlineData()]
         public void RunStage4()
         {
-            
+
         }
 
-         [Fact]
+        [Theory]
+        [InlineData()]
         public void RunStage5()
         {
-            
+
         }
     }
 }
