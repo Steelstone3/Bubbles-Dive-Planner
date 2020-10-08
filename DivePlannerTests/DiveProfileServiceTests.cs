@@ -67,7 +67,6 @@ namespace DivePlannerTests
         [InlineData()]
         public void RunDiveStages()
         {
-
             
         }
     }
