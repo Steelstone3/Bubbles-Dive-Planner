@@ -28,10 +28,10 @@ namespace DivePlannerMk3.Controllers.DiveStages
         {
             //taken from user input used to calculate the pressure at depth for nitrogen
             //calcs nitrogen pressure being breathed
-            var nitrogenFraction = 1.0 - (_oxygenPercentage / 100 + _heliumPercentage / 100);
+            var nitrogenFraction = 1.0 - _oxygenPercentage / 100.0 - _heliumPercentage / 100.0;
 
             //calculates ambient pressure
-            var pressureAmbient = 1.0 + _depth / 10.0;
+            var pressureAmbient = 1.0 + (double)_depth / 10.0;
 
             //calculates ambient pressure of each gas
             _diveProfile.PressureNitrogen = nitrogenFraction * pressureAmbient;
