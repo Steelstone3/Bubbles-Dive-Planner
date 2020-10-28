@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using DivePlannerMk3.Controllers;
 using DivePlannerMk3.Models;
 using DivePlannerMk3.ViewModels.DiveResult;
@@ -8,38 +10,60 @@ namespace DivePlannerTests
     public class CurrentDiveResultsUiTests
     {
         private Zhl16Buhlmann _diveModel = new Zhl16Buhlmann();
-        private DiveProfileResultsListViewModel _results = new DiveProfileResultsListViewModel()
-        {
+        private DiveProfileResultsListViewModel _results = new DiveProfileResultsListViewModel();
 
+        private DiveProfile _diveProfile = new DiveProfile()
+        {
+            TissuePressuresTotal = new List<double>()
+            {
+                1.1111,1.1111,1.1111,1.1111,
+                1.1111,1.1111,1.1111,1.1111,
+                1.1111,1.1111,1.1111,1.1111,
+                1.1111,1.1111,1.1111,1.1111,
+            },
+
+            CompartmentLoad = new List<double>()
+            {
+                2.2222, 2.2222, 2.2222, 2.2222,
+                2.2222, 2.2222, 2.2222, 2.2222,
+                2.2222, 2.2222, 2.2222, 2.2222,
+                2.2222, 2.2222, 2.2222, 2.2222,
+            },
+
+            MaxSurfacePressures = new List<double>()
+            {
+                3.3333, 3.3333, 3.3333, 3.3333,
+                3.3333, 3.3333, 3.3333, 3.3333,
+                3.3333, 3.3333, 3.3333, 3.3333,
+                3.3333, 3.3333, 3.3333, 3.3333,
+            },
+
+            ToleratedAmbientPressures = new List<double>()
+            {
+                4.4444,4.4444,4.4444,4.4444,
+                4.4444,4.4444,4.4444,4.4444,
+                4.4444,4.4444,4.4444,4.4444,
+                4.4444,4.4444,4.4444,4.4444,
+            },
         };
 
-        private DiveProfile _diveProfile = new DiveProfile();
-
-
-        [Theory(Skip = "Test needs implementing")]
-        [InlineData()]
-        private void PreDiveStageStepInfoOutputTest()
+        [Fact]
+        private void PreDiveStageStepInfoOutputTwoDecimalPlacesTest()
         {
-
+            //Arrange
             var diveStage = new DiveStageResults(_diveModel.CompartmentCount, _results, _diveProfile);
 
-            /* stepResult.DiveProfileStepHeader = "Dive Step";
-               stepResult.Compartment = Compartment + 1;
-               stepResult.TissuePressureResult = _diveProfile.TissuePressuresTotal[Compartment];
-               stepResult.CompartmentLoadResult = _diveProfile.CompartmentLoad[Compartment];
-               stepResult.MaximumSurfacePressureResult = _diveProfile.MaxSurfacePressures[Compartment];
-               stepResult.ToleratedAmbientPressureResult = _diveProfile.ToleratedAmbientPressures[Compartment];
-
-               _results.DiveProfileStepOutput.Add(stepResult);*/
+            //Act
+            for (int i = 0; i < _diveModel.CompartmentCount; i++)
+            {
+                diveStage.RunStage();
+                
+                //Assert
+                Assert.Equal(Math.Round(_diveProfile.CompartmentLoad[i], 2), _results.DiveProfileStepOutput[i].CompartmentLoadResult);
+                Assert.Equal(Math.Round(_diveProfile.TissuePressuresTotal[i], 2), _results.DiveProfileStepOutput[i].TissuePressureResult);
+                Assert.Equal(Math.Round(_diveProfile.MaxSurfacePressures[i], 2), _results.DiveProfileStepOutput[i].MaximumSurfacePressureResult);
+                Assert.Equal(Math.Round(_diveProfile.ToleratedAmbientPressures[i], 2), _results.DiveProfileStepOutput[i].ToleratedAmbientPressureResult);
+            }
         }
-
-        [Fact(Skip = "Test needs implementing")]
-        private void DiveStageInfoLimitedToTwoDecimalPoints()
-        {
-
-        }
-
     }
-
-
 }
