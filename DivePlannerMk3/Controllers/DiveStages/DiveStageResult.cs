@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DivePlannerMk3.Controllers.DiveStages;
 using DivePlannerMk3.Models;
@@ -32,11 +33,11 @@ namespace DivePlannerMk3.Controllers
 
             stepResult.DiveProfileStepHeader = "Dive Step";
             stepResult.Compartment = Compartment + 1;
-            stepResult.TissuePressureResult = _diveProfile.TissuePressuresTotal[Compartment];
-            stepResult.CompartmentLoadResult = _diveProfile.CompartmentLoad[Compartment];
-            stepResult.MaximumSurfacePressureResult = _diveProfile.MaxSurfacePressures[Compartment];
-            stepResult.ToleratedAmbientPressureResult = _diveProfile.ToleratedAmbientPressures[Compartment];
-            
+            stepResult.TissuePressureResult = Math.Round(_diveProfile.TissuePressuresTotal[Compartment], 2);
+            stepResult.CompartmentLoadResult = Math.Round(_diveProfile.CompartmentLoad[Compartment], 2);
+            stepResult.MaximumSurfacePressureResult = Math.Round(_diveProfile.MaxSurfacePressures[Compartment], 2);
+            stepResult.ToleratedAmbientPressureResult = Math.Round(_diveProfile.ToleratedAmbientPressures[Compartment], 2);
+
             _results.DiveProfileStepOutput.Add(stepResult);
         }
     }
