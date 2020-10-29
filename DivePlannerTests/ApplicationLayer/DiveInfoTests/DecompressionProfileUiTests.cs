@@ -2,7 +2,7 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class HistoricDiveResultUiTests
+    public class DecompressionProfileUiTests
     {
         [Fact(Skip = "Needs implementing")]
         public void TestName()
