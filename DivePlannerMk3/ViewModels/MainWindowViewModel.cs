@@ -70,8 +70,6 @@ namespace DivePlannerMk3.ViewModels
             //TODO AH Work out can execute!!!
             if( DivePlan.GasMixture.SelectedGasMixture != null && DivePlan.DiveModelSelector.SelectedDiveModel != null )
             {
-                
-                
                 DiveProfile.DiveProfileResults = _diveProfileController.RunDiveStep( DivePlan.DiveStep, DivePlan.GasMixture );
                 DiveProfile.DiveProfileHistoryResults.Add( DiveProfile.DiveProfileResults );
             }
