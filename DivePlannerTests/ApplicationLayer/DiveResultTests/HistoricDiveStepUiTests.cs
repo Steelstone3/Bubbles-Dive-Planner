@@ -4,7 +4,7 @@ namespace DivePlannerTests
 {
     public class HistoricDiveStepUiTests
     {
-        [Fact(Skip = "Needs implementing")]
+        [Fact(Skip = "Tests Needs implementing")]
         public void TestName()
         {
             //Arrange
