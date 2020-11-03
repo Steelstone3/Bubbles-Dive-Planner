@@ -8,7 +8,7 @@ namespace DivePlannerTests
 {
     public class DiveModelUiTests
     {
-        //Dive model selection + no selection = no execute
+        //TODO Dive model selection + no selection = no execute
         private IDiveProfileService _diveProfileController = new DiveProfileService();
         private PlanDiveModelSelectorViewModel _diveModelSelectorViewModel;
 
@@ -33,6 +33,7 @@ namespace DivePlannerTests
             }
         }
 
+        //TODO Setup cannot execute in the view model command and test that
         [Fact(Skip="Test needs work and possibly logic implementing")]
         public void CanNotChangeDiveModelOnceDivePlanStartedTest()
         {
@@ -53,6 +54,7 @@ namespace DivePlannerTests
             }
         }
 
+        //TODO Setup cannot execute in the view model command and test that
         [Fact(Skip = "Test needs implementing")]
         public void DiveModelNotSelectedCanNotExcuteDiveStepTest()
         {
