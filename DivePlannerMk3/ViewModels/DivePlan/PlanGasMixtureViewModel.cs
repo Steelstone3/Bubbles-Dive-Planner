@@ -25,8 +25,11 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             get => _selectedGasMixture;
             set
             {
-                _selectedGasMixture = value;
-                this.RaisePropertyChanged(nameof(SelectedGasMixture));
+                if(_selectedGasMixture != value)
+                {
+                    _selectedGasMixture = value;
+                    this.RaisePropertyChanged(nameof(SelectedGasMixture));
+                }
             }
         }
 

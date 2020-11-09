@@ -20,9 +20,12 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             get => _selectedDiveModel;
             set
             {
-                _selectedDiveModel = value;
-                _diveProfileController.TheDiveModel = _selectedDiveModel;
-                this.RaisePropertyChanged(nameof(SelectedDiveModel));
+                if(_selectedDiveModel != value)
+                {
+                    _selectedDiveModel = value;
+                    _diveProfileController.TheDiveModel = _selectedDiveModel;
+                    this.RaisePropertyChanged(nameof(SelectedDiveModel));
+                }
             }
         }
 
