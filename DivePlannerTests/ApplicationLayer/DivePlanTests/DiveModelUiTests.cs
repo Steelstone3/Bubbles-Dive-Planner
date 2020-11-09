@@ -30,10 +30,11 @@ namespace DivePlannerTests
                 
                 //Assert
                 Assert.NotNull(_diveModelSelectorViewModel.SelectedDiveModel);
+                Assert.NotNull(_diveProfileController.TheDiveModel);
             }
         }
 
-        [Fact(Skip = "Test needs implementing")]
+        [Fact(Skip = "Test needs implementing and a second dive model")]
         public void CanNotChangeDiveModelOnceDivePlanStartedTest()
         {
             //Arrange
@@ -44,7 +45,7 @@ namespace DivePlannerTests
         }
 
         //TODO Setup cannot execute in the view model command and test that
-        [Fact(Skip = "Test needs implementing")]
+        [Fact(Skip = "Test needs implementing - is can execute dive step false when selected dive model or gas mixture is null")]
         public void DiveModelNotSelectedCanNotExcuteDiveStepTest()
         {
             //Arrange

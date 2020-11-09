@@ -23,7 +23,11 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         public GasMixtureModel SelectedGasMixture
         {
             get => _selectedGasMixture;
-            set => this.RaisePropertyChanged( nameof(SelectedGasMixture) );
+            set
+            {
+                _selectedGasMixture = value;
+                this.RaisePropertyChanged(nameof(SelectedGasMixture));
+            }
         }
 
         public ReactiveCommand<Unit, Unit> AddGasMixtureCommand
