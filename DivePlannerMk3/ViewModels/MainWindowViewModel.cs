@@ -13,7 +13,6 @@ namespace DivePlannerMk3.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        //TODO AH Work out can execute!!!
         private IDiveProfileService _diveProfileController;
 
         public MainWindowViewModel()
@@ -21,15 +20,7 @@ namespace DivePlannerMk3.ViewModels
             _diveProfileController = new DiveProfileService();
             _divePlan = new DivePlanViewModel(_diveProfileController);
 
-            //var CanExecuteDiveStep = this.WhenAnyValue(vm => vm.CanRunDiveStep);
-            //CalculateDiveStepCommand = ReactiveCommand.Create( RunDiveStep );
-
-            CanExecuteDiveStep = this.WhenAnyValue(vm => vm.CanRunDiveStep); // set condition
             CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
-            //CalculateDiveStepCommand.ThrownExceptions.Subscribe(error => { }); // catch exceptions
-
-            //TODO AH Add this feature later
-            //CalculateDecompressionCommand = ReactiveCommand.Create( RunDecompressionProfile );
         }
 
         private DiveResultsViewModel _diveProfile= new DiveResultsViewModel();
@@ -67,32 +58,13 @@ namespace DivePlannerMk3.ViewModels
 
         public IObservable<bool> CanExecuteDiveStep
         {
-            get;
+            get => this.WhenAnyValue(vm => vm.DivePlan.GasMixture.SelectedGasMixture, vm => vm.DivePlan.DiveModelSelector.SelectedDiveModel, (selectedGasMixture, selectedDiveModel) => selectedGasMixture != null && selectedDiveModel != null);
         }
-
-        public bool CanRunDiveStep 
-        { 
-            //TODO to update this code here**
-            get =>  DivePlan.GasMixture.SelectedGasMixture != null && DivePlan.DiveModelSelector.SelectedDiveModel != null;
-            //private set;
-        }
-
-        //TODO AH Add this feature later
-        /*public ReactiveCommand<Unit, Unit> CalculateDecompressionCommand
-        {
-            get;
-        }*/
 
         private void RunDiveStep()
         {
             DiveProfile.DiveProfileResults = _diveProfileController.RunDiveStep( DivePlan.DiveStep, DivePlan.GasMixture );
             DiveProfile.DiveProfileHistoryResults.Add( DiveProfile.DiveProfileResults );
         }
-
-        //TODO AH add decompression feature
-        /*private void RunDecompressionProfile()
-        {
-            _diveProfileController.RunDecompressionDiveSteps( DiveInfo.DecompressionProfile, DivePlan.GasMixture );
-        }*/
     }
 }

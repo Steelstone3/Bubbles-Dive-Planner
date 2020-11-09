@@ -33,25 +33,14 @@ namespace DivePlannerTests
             }
         }
 
-        //TODO Setup cannot execute in the view model command and test that
-        [Fact(Skip="Test needs work and possibly logic implementing")]
+        [Fact(Skip = "Test needs implementing")]
         public void CanNotChangeDiveModelOnceDivePlanStartedTest()
         {
             //Arrange
-            DiveModelSetup();
 
             //Act
-            for (int i = 0; i < _diveModelSelectorViewModel.DiveModels.Count; i++)
-            {
-                _diveModelSelectorViewModel.SelectedDiveModel = _diveModelSelectorViewModel.DiveModels[i];
-                //run a calculate
-                
-                //check disabled bool for model selector
 
-                //Assert
-                //Assuming the first dive model index does not change
-                Assert.Equal( _diveModelSelectorViewModel.DiveModels[0], _diveModelSelectorViewModel.SelectedDiveModel);
-            }
+            //Assert
         }
 
         //TODO Setup cannot execute in the view model command and test that
