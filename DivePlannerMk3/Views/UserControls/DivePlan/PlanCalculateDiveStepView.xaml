@@ -13,6 +13,7 @@
             Margin="8,4"
             HorizontalAlignment="Right"
             Command="{Binding CalculateDiveStepCommand}"
+            IsEnabled="{Binding CanRunDiveStep}"
             Content="Calculate Dive Profile" />
     </StackPanel>
 </UserControl>

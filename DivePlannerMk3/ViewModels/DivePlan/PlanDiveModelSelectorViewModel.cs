@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using DivePlannerMk3.Contracts;
-using DivePlannerMk3.Controllers;
 using DivePlannerMk3.Models;
-using System.Linq;
+using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
@@ -23,6 +22,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             {
                 _selectedDiveModel = value;
                 _diveProfileController.TheDiveModel = _selectedDiveModel;
+
+                this.RaisePropertyChanged(nameof(SelectedDiveModel));
             }
         }
 

@@ -20,10 +20,7 @@ namespace DivePlannerMk3.ViewModels
             _diveProfileController = new DiveProfileService();
             _divePlan = new DivePlanViewModel(_diveProfileController);
 
-            CalculateDiveStepCommand = ReactiveCommand.Create( RunDiveStep );
-
-            //TODO AH Add this feature later
-            //CalculateDecompressionCommand = ReactiveCommand.Create( RunDecompressionProfile );
+            CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
         }
 
         private DiveResultsViewModel _diveProfile= new DiveResultsViewModel();
@@ -59,26 +56,15 @@ namespace DivePlannerMk3.ViewModels
             get;
         }
 
-        //TODO AH Add this feature later
-        /*public ReactiveCommand<Unit, Unit> CalculateDecompressionCommand
+        public IObservable<bool> CanExecuteDiveStep
         {
-            get;
-        }*/
+            get => this.WhenAnyValue(vm => vm.DivePlan.GasMixture.SelectedGasMixture, vm => vm.DivePlan.DiveModelSelector.SelectedDiveModel, (selectedGasMixture, selectedDiveModel) => selectedGasMixture != null && selectedDiveModel != null);
+        }
 
         private void RunDiveStep()
         {
-            //TODO AH Work out can execute!!!
-            if( DivePlan.GasMixture.SelectedGasMixture != null && DivePlan.DiveModelSelector.SelectedDiveModel != null )
-            {
-                DiveProfile.DiveProfileResults = _diveProfileController.RunDiveStep( DivePlan.DiveStep, DivePlan.GasMixture );
-                DiveProfile.DiveProfileHistoryResults.Add( DiveProfile.DiveProfileResults );
-            }
+            DiveProfile.DiveProfileResults = _diveProfileController.RunDiveStep( DivePlan.DiveStep, DivePlan.GasMixture );
+            DiveProfile.DiveProfileHistoryResults.Add( DiveProfile.DiveProfileResults );
         }
-
-        //TODO AH add decompression feature
-        /*private void RunDecompressionProfile()
-        {
-            _diveProfileController.RunDecompressionDiveSteps( DiveInfo.DecompressionProfile, DivePlan.GasMixture );
-        }*/
     }
 }
