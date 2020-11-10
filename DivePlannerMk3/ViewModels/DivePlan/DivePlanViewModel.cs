@@ -5,15 +5,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 {
     public class DivePlanViewModel : ViewModelBase
     {
-        private IDiveProfileService _diveProfileController;
-
-        private PlanAddGasMixtureViewModel _addGasMixture = new PlanAddGasMixtureViewModel();
-        public PlanAddGasMixtureViewModel AddGasMixture
-        {
-            get => _addGasMixture;
-            set => this.RaiseAndSetIfChanged(ref _addGasMixture, value);
-        }
-
         private PlanGasMixtureViewModel _gasMixture = new PlanGasMixtureViewModel();
         public PlanGasMixtureViewModel GasMixture
         {
@@ -29,7 +20,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         }
 
         private PlanDiveStepViewModel _diveStep = new PlanDiveStepViewModel();
-
         public PlanDiveStepViewModel DiveStep
         {
             get => _diveStep;
@@ -37,13 +27,13 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         }
 
         private PlanGasManagementViewModel _gasManagement = new PlanGasManagementViewModel();
-
         public PlanGasManagementViewModel GasManagement
         {
             get => _gasManagement;
             set => this.RaiseAndSetIfChanged(ref _gasManagement, value);
         }
 
+        private IDiveProfileService _diveProfileController;
         public DivePlanViewModel(IDiveProfileService diveProfileController)
         {
             _diveProfileController = diveProfileController;

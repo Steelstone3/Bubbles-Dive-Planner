@@ -17,9 +17,6 @@
                 Text="Gas Mixtures" />
         </controls:StackPanel>
         <controls:StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="4" Text="Gas Mixtures" />
-            <!--  TODO AH XAML Behaviour this for double click event selects the selected gas model :)  -->
-
             <TextBlock Margin="4" Text="Selected Gas Mixture:" />
             <TextBlock Margin="4" Text="{Binding DivePlan.GasMixture.SelectedGasMixture.GasName}" />
             <ListBox
@@ -45,17 +42,10 @@
                                 <TextBlock Margin="4,0" Text="He:" />
                                 <TextBlock Margin="4,0" Text="{Binding Helium}" />
                             </StackPanel>
-
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
-            <Button
-                Margin="4"
-                HorizontalAlignment="Right"
-                Command="{Binding GasMixture.AddGasMixtureCommand}"
-                Content="Add To Gas Mixtures ..." />
         </controls:StackPanel>
 
     </controls:StackPanel>

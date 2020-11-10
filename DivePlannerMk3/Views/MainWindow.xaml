@@ -52,11 +52,14 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Plan" />
-                <diveplanuc:PlanDiveModelSelectorView Grid.Row="1" />
-                <diveplanuc:PlanDiveStepView Grid.Row="2" />
-                <diveplanuc:PlanGasMixtureView Grid.Row="3" />
-                <diveplanuc:PlanGasManagementSetup Grid.Row="4" />
-                <diveplanuc:PlanCalculateDiveStepView Grid.Row="5" />
+                <diveplanuc:PlanDiveModelSelectorView />
+                <diveplanuc:PlanDiveStepView />
+                <diveplanuc:PlanGasMixtureView />
+                <Expander Header="Add Gas Mixtures ..." Background="#FFC3FDFF" Margin="4,0">
+                    <diveplanuc:PlanAddGasMixtureView />
+                </Expander>
+                <diveplanuc:PlanGasManagementSetup />
+                <diveplanuc:PlanCalculateDiveStepView />
             </StackPanel>
         </ScrollViewer>
 
@@ -82,8 +85,8 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Information" />
-                <diveinfouc:InfoDecompressionProfileView Grid.Row="1" />
-                <diveinfouc:InfoDiveBoundariesView Grid.Row="2" />
+                <diveinfouc:InfoDecompressionProfileView />
+                <diveinfouc:InfoDiveBoundariesView />
             </StackPanel>
         </ScrollViewer>
 

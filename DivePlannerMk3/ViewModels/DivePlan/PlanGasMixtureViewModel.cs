@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Reactive;
 using DivePlannerMk3.Models;
 using ReactiveUI;
 
@@ -9,8 +8,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
     {
         public PlanGasMixtureViewModel()
         {
-            AddGasMixtureCommand = ReactiveCommand.Create( AddGasMixture );
-
             SetDefaults();
         }
 
@@ -33,14 +30,11 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             }
         }
 
-        public ReactiveCommand<Unit, Unit> AddGasMixtureCommand
+        private PlanAddGasMixtureViewModel _addGasMixture = new PlanAddGasMixtureViewModel();
+        public PlanAddGasMixtureViewModel AddGasMixture
         {
-            get;
-        }
-
-        private void AddGasMixture()
-        {
-            //TODO AH Add a gas mixture to the list box containing the gas mixtures from a pop-up containing the fields
+            get => _addGasMixture;
+            set => this.RaiseAndSetIfChanged(ref _addGasMixture, value);
         }
 
         private void SetDefaults()

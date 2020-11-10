@@ -9,6 +9,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <controls:StackPanel>
+
         <controls:StackPanel Background="#FF5D99C6">
             <TextBlock
                 Margin="4"
@@ -16,22 +17,22 @@
                 FontWeight="DemiBold"
                 Text="Add Gas Mixtures" />
         </controls:StackPanel>
-        <controls:StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="4" Text="Add Gas Mixture" />
 
+        <controls:StackPanel Margin="4,0" Background="#FFC3FDFF">
+        
             <TextBlock Margin="4" Text="Gas Name:" />
-            <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.GasName}" />
+            <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.AddGasMixture.GasName}" />
             <TextBlock Margin="4" Text="Oxygen:" />
-            <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.Oxygen}" />
+            <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.AddGasMixture.Oxygen}" />
             <TextBlock Margin="4" Text="Helium:" />
-            <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.Helium}" />
+            <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.AddGasMixture.Helium}" />
             <TextBlock Margin="4" Text="Nitrogen:" />
-            <TextBlock Margin="4" Text="{Binding DivePlan.GasMixture.Nitrogen}" />
+            <TextBlock Margin="4" Text="{Binding DivePlan.GasMixture.AddGasMixture.Nitrogen}" />
 
             <Button
                 Margin="4"
                 HorizontalAlignment="Right"
-                Command="{Binding DivePlan.GasMixture.AddGasMixtureCommand}"
+                Command="{Binding DivePlan.GasMixture.AddGasMixture.AddGasMixtureCommand}"
                 Content="Add Gas Mixture" />
         </controls:StackPanel>
 
