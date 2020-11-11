@@ -66,13 +66,10 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                 GasName = NewGasMixture.GasName,
                 Oxygen = NewGasMixture.Oxygen,
                 Helium = NewGasMixture.Helium,
-                Nitrogen = CalculateNitrogen(NewGasMixture.Oxygen,NewGasMixture.Helium),
             };
 
             GasMixtures.Add(newGasMixture);
         }
-
-        private double CalculateNitrogen(double oxygenPercentage, double heliumPercentage) => 100 - oxygenPercentage - heliumPercentage;
 
         private void SetDefaults()
         {
@@ -88,7 +85,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                 GasName = "EAN32",
                 Helium = 0,
                 Oxygen = ean32,
-                Nitrogen = CalculateNitrogen(ean32,0),
             };
 
             GasMixtureModel nitrox36 = new GasMixtureModel()
@@ -96,7 +92,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                 GasName = "EAN36",
                 Helium = 0,
                 Oxygen = ean36,
-                Nitrogen = CalculateNitrogen(ean36,0),
             };
 
             GasMixtureModel nitrox50 = new GasMixtureModel()
@@ -104,7 +99,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                 GasName = "EAN50",
                 Helium = 0,
                 Oxygen = ean50,
-                Nitrogen = CalculateNitrogen(ean50,0),
             };
 
             GasMixtures.Add(defaultGasMixture);
