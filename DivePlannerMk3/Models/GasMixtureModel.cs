@@ -40,7 +40,7 @@
         public double Nitrogen
         {
             get => _nitrogen;
-            set
+            private set
             {
                 _nitrogen = value;
             }
