@@ -21,7 +21,7 @@
             set
             {
                 _oxygen = value;
-                CalculateNitrogen();
+                _nitrogen = CalculateNitrogen();
             }
         }
 
@@ -32,13 +32,18 @@
             set
             {
                 _helium = value;
-                CalculateNitrogen();
+                _nitrogen = CalculateNitrogen();
             }
         }
 
+        private double _nitrogen;
         public double Nitrogen
         {
-            get => CalculateNitrogen();
+            get => _nitrogen;
+            private set
+            {
+                _nitrogen = value;
+            }
         }
 
         private double CalculateNitrogen() => 100 - Oxygen - Helium;
