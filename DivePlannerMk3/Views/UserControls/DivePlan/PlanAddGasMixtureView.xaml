@@ -26,9 +26,7 @@
             <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.NewGasMixture.Oxygen}" />
             <TextBlock Margin="4" Text="Helium:" />
             <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.NewGasMixture.Helium}" />
-            <TextBlock Margin="4" Text="Nitrogen:" />
-            <TextBlock Margin="4" Text="{Binding DivePlan.GasMixture.NewGasMixture.Nitrogen}" />
-
+            
             <Button
                 Margin="4"
                 HorizontalAlignment="Right"

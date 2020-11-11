@@ -7,7 +7,6 @@
             GasName = "Air";
             Oxygen = 21;
             Helium = 0;
-            Nitrogen = 100 - Oxygen - Helium;
         }
 
         public string GasName
@@ -15,20 +14,33 @@
             get; set;
         }
 
+        private double _oxygen;
         public double Oxygen
         {
-            get; set;
+            get => _oxygen;
+            set
+            {
+                _oxygen = value;
+                CalculateNitrogen();
+            }
         }
 
-
+        private double _helium;
         public double Helium
         {
-            get; set;
+            get => _helium;
+            set
+            {
+                _helium = value;
+                CalculateNitrogen();
+            }
         }
 
         public double Nitrogen
         {
-            get; set;
+            get => CalculateNitrogen();
         }
+
+        private double CalculateNitrogen() => 100 - Oxygen - Helium;
     }
 }
