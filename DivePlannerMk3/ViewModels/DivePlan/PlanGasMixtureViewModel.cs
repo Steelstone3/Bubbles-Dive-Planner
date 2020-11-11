@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive;
 using DivePlannerMk3.Models;
 using ReactiveUI;
@@ -9,8 +11,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
     {
         public PlanGasMixtureViewModel()
         {
-            AddGasMixtureCommand = ReactiveCommand.Create( AddGasMixture );
-
+            AddGasMixtureCommand = ReactiveCommand.Create(AddGasMixture, CanAddGasMixture);
             SetDefaults();
         }
 
@@ -25,11 +26,22 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             get => _selectedGasMixture;
             set
             {
-                if(_selectedGasMixture != value)
+                if (_selectedGasMixture != value)
                 {
                     _selectedGasMixture = value;
                     this.RaisePropertyChanged(nameof(SelectedGasMixture));
                 }
+            }
+        }
+
+        private GasMixtureModel _newGasMixture = new GasMixtureModel();
+        public GasMixtureModel NewGasMixture
+        {
+            get => _newGasMixture;
+            set
+            {
+                _newGasMixture = value;
+                this.RaisePropertyChanged(nameof(NewGasMixture));
             }
         }
 
@@ -38,9 +50,25 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             get;
         }
 
+        public IObservable<bool> CanAddGasMixture
+        {
+            get => this.WhenAnyValue(vm => vm.NewGasMixture.GasName, (gasName) => !string.IsNullOrEmpty(gasName));
+            
+            //TODO only allow unique name enteries
+            //&& GasMixtures.Any(gas => gas.GasName.Contains(gasName)));
+        }
+
         private void AddGasMixture()
         {
-            //TODO AH Add a gas mixture to the list box containing the gas mixtures from a pop-up containing the fields
+            //Add to gas mixtures list
+            var newGasMixture = new GasMixtureModel()
+            {
+                GasName = NewGasMixture.GasName,
+                Oxygen = NewGasMixture.Oxygen,
+                Helium = NewGasMixture.Helium,
+            };
+
+            GasMixtures.Add(newGasMixture);
         }
 
         private void SetDefaults()
@@ -48,34 +76,35 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             GasMixtureModel defaultGasMixture = new GasMixtureModel();
             SelectedGasMixture = defaultGasMixture;
 
+            const double ean32 = 32;
+            const double ean36 = 32;
+            const double ean50 = 32;
+
             GasMixtureModel nitrox32 = new GasMixtureModel()
             {
                 GasName = "EAN32",
                 Helium = 0,
-                Oxygen = 32,
-                Nitrogen = 100 - 32,
+                Oxygen = ean32,
             };
 
             GasMixtureModel nitrox36 = new GasMixtureModel()
             {
                 GasName = "EAN36",
                 Helium = 0,
-                Oxygen = 36,
-                Nitrogen = 100 - 36,
+                Oxygen = ean36,
             };
 
             GasMixtureModel nitrox50 = new GasMixtureModel()
             {
                 GasName = "EAN50",
                 Helium = 0,
-                Oxygen = 50,
-                Nitrogen = 100 - 50,
+                Oxygen = ean50,
             };
 
-            GasMixtures.Add( defaultGasMixture );
-            GasMixtures.Add( nitrox32 );
-            GasMixtures.Add( nitrox36 );
-            GasMixtures.Add( nitrox50 );
+            GasMixtures.Add(defaultGasMixture);
+            GasMixtures.Add(nitrox32);
+            GasMixtures.Add(nitrox36);
+            GasMixtures.Add(nitrox50);
         }
     }
 }
