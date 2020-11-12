@@ -77,8 +77,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             SelectedGasMixture = defaultGasMixture;
 
             const double ean32 = 32;
-            const double ean36 = 32;
-            const double ean50 = 32;
+            const double ean36 = 36;
+            const double ean50 = 50;
 
             GasMixtureModel nitrox32 = new GasMixtureModel()
             {
