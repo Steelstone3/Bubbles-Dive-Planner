@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="DivePlannerMk3.Views.UserControls.DiveResult.DiveResultHistoryView"
+    x:Class="DivePlannerMk3.Views.UserControls.DiveResult.DiveResultsView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
@@ -9,20 +9,17 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <!--  In here put in file header however you do it!  -->
-
     <StackPanel>
-
         <TextBlock
             Margin="32,4"
             FontSize="16"
             FontWeight="DemiBold"
-            Text="Dive Result History" />
+            Text="Dive Results" />
         <ListBox
             Margin="32,4"
             Background="#FFCFCFCF"
             MaxHeight="600"
-            Items="{Binding DiveProfile.DiveProfileHistoryResults}">
+            Items="{Binding DiveStepProfiles.DiveProfileResults}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBox
@@ -67,10 +64,11 @@
             Margin="32,4"
             FontSize="16"
             FontWeight="DemiBold"
-            Text="Dive Step History" />
+            Text="Current Dive Step" />
 
         <Grid Margin="32,4" Background="#FFCFCFCF">
             <Grid.RowDefinitions>
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -85,48 +83,58 @@
             <TextBlock
                 Grid.Row="0"
                 Margin="8,0"
-                Text="Depth:" />
+                Text="Dive Model:" />
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="8,0"
-                Text="Here" />
+                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.DiveModelUsed}" />
+
             <TextBlock
                 Grid.Row="1"
+                Margin="8,0"
+                Text="Depth:" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8,0"
+                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.DiveDepthUsed}" />
+            <TextBlock
+                Grid.Row="2"
                 Margin="8,0"
                 Text="Time:" />
             <TextBlock
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="8,0"
-                Text="Here" />
-            <TextBlock
-                Grid.Row="2"
-                Margin="8,0"
-                Text="Gas Mix:" />
-            <TextBlock
                 Grid.Row="2"
                 Grid.Column="1"
-                Margin="4,0"
-                Text="Here" />
+                Margin="8,0"
+                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.DiveTimeUsed}" />
             <TextBlock
                 Grid.Row="3"
+                Margin="8,0"
+                Text="Gas Mixture Name:" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="8,0"
+                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.GasMixNameUsed}" />
+            <TextBlock
+                Grid.Row="4"
                 Margin="8,0"
                 Text="Gas Used:" />
             <TextBlock
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="1"
                 Margin="8,0"
-                Text="Here" />
+                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.GasUsedOnDiveStep}" />
             <TextBlock
-                Grid.Row="4"
+                Grid.Row="5"
                 Margin="8,0"
                 Text="Gas Remaining:" />
             <TextBlock
-                Grid.Row="4"
+                Grid.Row="5"
                 Grid.Column="1"
                 Margin="8,0"
-                Text="Here" />
+                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.GasRemaining}" />
         </Grid>
 
     </StackPanel>

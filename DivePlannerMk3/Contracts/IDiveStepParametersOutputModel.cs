@@ -1,28 +1,33 @@
 ﻿namespace DivePlannerMk3.Contracts
 {
-    public interface IDiveProfileStepParametersOutputModel
+    public interface IDiveParametersOutputModel
     {
-        int StepDepthParameter
+        string DiveProfileStepHeader
         {
             get; set;
         }
 
-        int StepTimeParameter
+        int DiveDepthUsed
         {
             get; set;
         }
 
-        string StepGasMixNameParameter
+        int DiveTimeUsed
         {
             get; set;
         }
 
-        int GasUsedParameter
+        string GasMixNameUsed
         {
             get; set;
         }
 
-        int GasRemainingParameter
+        int GasUsedOnDiveStep
+        {
+            get; set;
+        }
+
+        int GasRemaining
         {
             get; set;
         }

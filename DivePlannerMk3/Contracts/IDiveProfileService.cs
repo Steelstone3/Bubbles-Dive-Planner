@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using DivePlannerMk3.ViewModels.DiveInfo;
+using DivePlannerMk3.Models;
 using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.ViewModels.DiveResult;
 
 namespace DivePlannerMk3.Contracts
 {
@@ -11,7 +9,7 @@ namespace DivePlannerMk3.Contracts
         {
             get; set;
         }
-        DiveProfileResultsListViewModel RunDiveStep(PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture);
+        DiveResultsModel RunDiveStep(PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture);
         //IEnumerable<DiveProfileResultsListViewModel> RunDecompressionDiveSteps( InfoDecompressionProfileViewModel decompressionDiveSteps, PlanGasMixtureViewModel gasMixture );
     }
 }

@@ -1,19 +1,17 @@
-using System;
-using System.Collections.Generic;
-using DivePlannerMk3.Controllers.DiveStages;
 using DivePlannerMk3.Models;
-using DivePlannerMk3.ViewModels.DiveResult;
+using DivePlannerMk3.Controllers.DiveStages;
 using DivePlannerMK3.Contracts;
+using System;
 
 namespace DivePlannerMk3.Controllers
 {
     public class DiveStageResults : DiveStage
     {
         private int _compartmentCount;
-        private DiveProfileResultsListViewModel _results;
+        private DiveResultsModel _results;
         private IDiveProfile _diveProfile;
 
-        public DiveStageResults(int compartmentCount, DiveProfileResultsListViewModel results, IDiveProfile diveProfile)
+        public DiveStageResults(int compartmentCount, DiveResultsModel results, IDiveProfile diveProfile)
         {
             _compartmentCount = compartmentCount;
             _results = results;
