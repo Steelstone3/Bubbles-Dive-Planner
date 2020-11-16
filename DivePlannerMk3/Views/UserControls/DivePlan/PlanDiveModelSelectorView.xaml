@@ -23,6 +23,7 @@
                 Background="#FFFFFFFF"
                 Items="{Binding DivePlan.DiveModelSelector.DiveModels}"
                 SelectedIndex="0"
+                IsEnabled="{Binding DivePlan.DiveModelSelector.UiEnabled}"
                 SelectedItem="{Binding DivePlan.DiveModelSelector.SelectedDiveModel}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

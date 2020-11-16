@@ -15,14 +15,14 @@
                 FontWeight="DemiBold"
                 Text="Gas Management" />
         </StackPanel>
-        <StackPanel>
+        <StackPanel IsEnabled="{Binding DivePlan.GasManagement.UiEnabled}">
             <StackPanel Margin="4,0" Background="#FFC3FDFF">
                 <TextBlock Margin="4" Text="Cylinder Volume (L):" />
-                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.CylinderVolume}" />
+                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.GasManagementModel.CylinderVolume}" />
                 <TextBlock Margin="4" Text="Cylinder Pressure (Bar):" />
-                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.CylinderPressure}" />
+                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.GasManagementModel.CylinderPressure}" />
                 <TextBlock Margin="4" Text="SAC Rate (L/min):" />
-                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.SacRate}" />
+                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.GasManagementModel.SacRate}" />
             </StackPanel>
         </StackPanel>
     </StackPanel>
