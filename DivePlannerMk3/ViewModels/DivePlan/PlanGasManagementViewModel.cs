@@ -1,17 +1,25 @@
-﻿namespace DivePlannerMk3.ViewModels.DivePlan
+﻿using DivePlannerMk3.Models;
+using ReactiveUI;
+
+namespace DivePlannerMk3.ViewModels.DivePlan
 {
-    public class PlanGasManagementViewModel
+    public class PlanGasManagementViewModel : ViewModelBase
     {
-        public int CylinderVolume
+        private bool _uiEnabled = true;
+        public bool UiEnabled
         {
-            get; set;
-        }
-        public int CylinderPressure
-        {
-            get; set;
+            get => _uiEnabled;
+            set
+            {
+                if (_uiEnabled != value)
+                {
+                    _uiEnabled = value;
+                    this.RaisePropertyChanged(nameof(UiEnabled));
+                }
+            }
         }
 
-        public int SacRate
+        public GasManagementModel GasManagementModel
         {
             get; set;
         }
