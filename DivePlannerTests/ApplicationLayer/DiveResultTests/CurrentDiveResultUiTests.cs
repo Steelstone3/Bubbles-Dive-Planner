@@ -10,7 +10,7 @@ namespace DivePlannerTests
     public class CurrentDiveResultsUiTests
     {
         private Zhl16Buhlmann _diveModel = new Zhl16Buhlmann();
-        private DiveProfileResultsListViewModel _results = new DiveProfileResultsListViewModel();
+        private DiveResultsModel _results = new DiveResultsModel();
 
         private DiveProfile _diveProfile = new DiveProfile()
         {

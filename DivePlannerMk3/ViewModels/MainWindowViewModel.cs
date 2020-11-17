@@ -22,11 +22,11 @@ namespace DivePlannerMk3.ViewModels
             CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
         }
 
-        private DiveResultsViewModel _diveProfile = new DiveResultsViewModel();
-        public DiveResultsViewModel DiveProfile
+        private DiveResultsViewModel _diveStepProfile = new DiveResultsViewModel();
+        public DiveResultsViewModel DiveStepProfiles
         {
-            get => _diveProfile;
-            set => this.RaiseAndSetIfChanged(ref _diveProfile, value);
+            get => _diveStepProfile;
+            set => this.RaiseAndSetIfChanged(ref _diveStepProfile, value);
         }
 
         private DivePlanViewModel _divePlan;
@@ -43,6 +43,7 @@ namespace DivePlannerMk3.ViewModels
             set => this.RaiseAndSetIfChanged(ref _diveInfo, value);
         }
 
+        //TODO AH need to rename this for all the file, edit functionality
         private DiveHeaderViewModel _diveHeader = new DiveHeaderViewModel();
         public DiveHeaderViewModel DiveHeader
         {
@@ -63,9 +64,11 @@ namespace DivePlannerMk3.ViewModels
         private void RunDiveStep()
         {
             DisableUiElements();
+            
+            var result = _diveProfileController.RunDiveStep(DivePlan.DiveStep, DivePlan.GasMixture);
 
-            DiveProfile.DiveProfileResults = _diveProfileController.RunDiveStep(DivePlan.DiveStep, DivePlan.GasMixture);
-            DiveProfile.DiveProfileHistoryResults.Add(DiveProfile.DiveProfileResults);
+            DiveStepProfiles.DiveParametersUsed = (result.DiveParametersOutput);
+            DiveStepProfiles.DiveProfileResults.Add(result);
         }
 
         private void DisableUiElements()

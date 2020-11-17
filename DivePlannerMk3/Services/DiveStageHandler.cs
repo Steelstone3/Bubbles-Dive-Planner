@@ -4,13 +4,12 @@ using DivePlannerMk3.Controllers;
 using DivePlannerMk3.ViewModels.DivePlan;
 using DivePlannerMk3.Controllers.DiveStages;
 using DivePlannerMk3.Models;
-using DivePlannerMk3.ViewModels.DiveResult;
 
 namespace DivePlannerMk3.Services
 {
     public class DiveStageHandler
     {
-        private DiveProfileResultsListViewModel _outputResults;
+        private DiveResultsModel _outputResults;
         private IDiveStage[] _preDiveStages;
         private IDiveStage[] _diveStages;
 
@@ -20,11 +19,11 @@ namespace DivePlannerMk3.Services
         private PlanDiveStepViewModel _diveStep;
         private PlanGasMixtureViewModel _gasMixture;
 
-        public DiveProfileResultsListViewModel RunAllDiveStages()
+        public DiveResultsModel RunDiveStages()
         {
-            _outputResults = new DiveProfileResultsListViewModel();
-            _preDiveStages = CreatePreDiveStages();
+            _outputResults = new DiveResultsModel();
             _diveStages = CreateDiveStages();
+            _preDiveStages = CreatePreDiveStages();
 
             RunStages();
 

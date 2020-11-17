@@ -1,28 +1,21 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
+using DivePlannerMk3.Contracts;
+using DivePlannerMk3.Models;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveResult
 {
-    /// <summary>
-    /// Results to output on the main view
-    /// </summary>
     public class DiveResultsViewModel : ViewModelBase
     {
-        public DiveResultsViewModel()
-        {
-
-        }
-
-        private DiveProfileResultsListViewModel _diveProfileResults = new DiveProfileResultsListViewModel();
-        public DiveProfileResultsListViewModel DiveProfileResults
-        {
-            get => _diveProfileResults;
-            set => this.RaiseAndSetIfChanged(ref _diveProfileResults, value);
-        }
-
-        public ObservableCollection<DiveProfileResultsListViewModel> DiveProfileHistoryResults
+        public ObservableCollection<DiveResultsModel> DiveProfileResults
         {
             get;
-        } = new ObservableCollection<DiveProfileResultsListViewModel>();
+        } = new ObservableCollection<DiveResultsModel>();
+
+	 	public IDiveParametersOutputModel DiveParametersUsed
+        {
+            get; set;
+        }
     }
 }
+

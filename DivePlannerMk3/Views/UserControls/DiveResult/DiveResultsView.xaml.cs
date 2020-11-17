@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace DivePlannerMk3.Views.UserControls.DiveResult
 {
-    public class DiveResultView : UserControl
+    public class DiveResultsView : UserControl
     {
-        public DiveResultView()
+        public DiveResultsView()
         {
             InitializeComponent();
         }

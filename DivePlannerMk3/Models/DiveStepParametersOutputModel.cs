@@ -2,29 +2,34 @@
 
 namespace DivePlannerMk3.Models
 {
-    public class DiveProfileStepParametersOutputModel : IDiveProfileStepParametersOutputModel
+    public class DiveParametersOutputModel : IDiveParametersOutputModel
     {
-        public int StepDepthParameter
+        public string DiveProfileStepHeader 
+        { 
+            get;set;
+        }
+
+        public int DiveDepthUsed
         {
             get; set;
         }
 
-        public int StepTimeParameter
+        public int DiveTimeUsed
         {
             get; set;
         }
 
-        public string StepGasMixNameParameter
+        public string GasMixNameUsed
         {
             get; set;
         }
 
-        public int GasUsedParameter
+        public int GasUsedOnDiveStep
         {
             get; set;
         }
 
-        public int GasRemainingParameter
+        public int GasRemaining
         {
             get; set;
         }
