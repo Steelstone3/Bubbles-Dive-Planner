@@ -19,7 +19,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             }
         }
 
-        public GasManagementModel GasManagementModel
+        public GasManagementSetupModel GasManagementModel
         {
             get; set;
         }

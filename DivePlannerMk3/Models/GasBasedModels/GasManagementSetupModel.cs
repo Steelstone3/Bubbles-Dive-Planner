@@ -1,6 +1,6 @@
 namespace DivePlannerMk3.Models
 {
-    public class GasManagementModel
+    public class GasManagementSetupModel
     {
         public int CylinderVolume
         {

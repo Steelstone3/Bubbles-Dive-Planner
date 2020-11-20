@@ -1,6 +1,8 @@
-﻿namespace DivePlannerMk3.Models
+﻿using DivePlannerMk3.Contracts;
+
+namespace DivePlannerMk3.Models
 {
-    public class GasMixtureModel
+    public class GasMixtureModel : IGasMixtureModel
     {
         public GasMixtureModel()
         {

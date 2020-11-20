@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ReactiveUI;
+﻿using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveInfo
 {
     public class InfoDiveBoundariesViewModel : ViewModelBase
     {
-
         private int _maximumOperatingDepth;
         public int MaximumOperatingDepth
         {
