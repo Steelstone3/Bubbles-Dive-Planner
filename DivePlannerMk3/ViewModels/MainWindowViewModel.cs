@@ -75,6 +75,8 @@ namespace DivePlannerMk3.ViewModels
         {
             DivePlan.DiveModelSelector.UiEnabled = false;
             DivePlan.GasManagement.UiEnabled = false;
+            DiveInfo.InfoGasManagementReadOnly.UiEnabled = true;
+            DiveInfo.InfoDiveModelSelectedReadOnly.UiEnabled = true;
         }
     }
 }

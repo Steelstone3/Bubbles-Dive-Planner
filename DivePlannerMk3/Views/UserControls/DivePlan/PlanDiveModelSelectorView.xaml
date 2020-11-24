@@ -7,7 +7,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <StackPanel>
+    <StackPanel IsVisible="{Binding DivePlan.DiveModelSelector.UiEnabled}">
 
         <StackPanel Background="#FF5D99C6">
             <TextBlock
@@ -23,7 +23,6 @@
                 Background="#FFFFFFFF"
                 Items="{Binding DivePlan.DiveModelSelector.DiveModels}"
                 SelectedIndex="0"
-                IsEnabled="{Binding DivePlan.DiveModelSelector.UiEnabled}"
                 SelectedItem="{Binding DivePlan.DiveModelSelector.SelectedDiveModel}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

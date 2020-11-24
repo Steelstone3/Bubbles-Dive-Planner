@@ -21,5 +21,19 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             get => _diveBoundaries;
             set => this.RaiseAndSetIfChanged(ref _diveBoundaries, value);
         }
+
+        private InfoGasManagementReadOnlyViewModel _infoGasManagementReadOnly = new InfoGasManagementReadOnlyViewModel();
+        public InfoGasManagementReadOnlyViewModel InfoGasManagementReadOnly
+        {
+            get => _infoGasManagementReadOnly;
+            set => this.RaiseAndSetIfChanged(ref _infoGasManagementReadOnly, value);
+        }
+
+        private InfoDiveModelSelectedReadOnlyViewModel _infoDiveModelSelectedReadOnly = new InfoDiveModelSelectedReadOnlyViewModel();
+        public InfoDiveModelSelectedReadOnlyViewModel InfoDiveModelSelectedReadOnly
+        {
+            get => _infoDiveModelSelectedReadOnly;
+            set => this.RaiseAndSetIfChanged(ref _infoDiveModelSelectedReadOnly, value);
+        }
     }
 }
