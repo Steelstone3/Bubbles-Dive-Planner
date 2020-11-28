@@ -91,6 +91,8 @@
                 <diveinfouc:InfoDecompressionProfileView />
                 <diveinfouc:InfoDiveBoundariesView />
                 <diveinfouc:InfoGasManagementView />
+                <diveinfouc:InfoDiveModelReadOnlyView />
+                <diveinfouc:InfoCnsToxicityReadOnlyView />
             </StackPanel>
         </ScrollViewer>
 

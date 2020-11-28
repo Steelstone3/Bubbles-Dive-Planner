@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="DivePlannerMk3.Views.UserControls.DiveInfo.InfoDecompressionProfileView"
+    x:Class="DivePlannerMk3.Views.UserControls.DiveInfo.InfoCnsToxicityReadOnlyView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,16 +15,11 @@
                 Margin="4"
                 FontSize="16"
                 FontWeight="DemiBold"
-                Text="Decompression Profile" />
+                Text="CNS Toxicity" />
         </StackPanel>
 
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="4" Text="Step increment combo box 3, 6, 9 or 12. Seeded on gas changed read only items list of decompression steps (depth and time). Gas mix (user selected and read only) to be used by name (may want to stop duplicate names)" />
-            <Button
-                Margin="8,4"
-                HorizontalAlignment="Right"
-                Command="{Binding CalculateDecompressionCommand}"
-                Content="Calculate Decompression" />
+            <TextBlock Margin="4" Text="Insert in here a table that represents CNS toxicity that is read only" />
         </StackPanel>
 
     </StackPanel>
