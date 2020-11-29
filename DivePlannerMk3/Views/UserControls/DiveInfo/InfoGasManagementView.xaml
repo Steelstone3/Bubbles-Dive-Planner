@@ -20,9 +20,9 @@
         <StackPanel>
             <StackPanel Margin="4,0" Background="#FFC3FDFF">
                 <TextBlock Margin="4" Text="Gas Remaining (L):" />
-                <TextBlock Margin="4" Text="{Binding DiveInfo.InfoGasManagementReadOnly.GasRemaining}" />
+                <TextBlock Margin="4" Text="{Binding DiveInfo.InfoGasManagementReadOnly.GasManagementInfoModel.GasRemaining}" />
                 <TextBlock Margin="4" Text="Gas Used (L):" />
-                <TextBlock Margin="4" Text="{Binding DiveInfo.InfoGasManagementReadOnly.GasUsedForStep}" />
+                <TextBlock Margin="4" Text="{Binding DiveInfo.InfoGasManagementReadOnly.GasManagementInfoModel.GasUsedForStep}" />
                 <TextBlock Margin="4" Text="SAC Rate (L/min):" />
                 <TextBlock Margin="4" Text="{Binding DivePlan.GasManagement.GasManagementModel.SacRate}" />
             </StackPanel>

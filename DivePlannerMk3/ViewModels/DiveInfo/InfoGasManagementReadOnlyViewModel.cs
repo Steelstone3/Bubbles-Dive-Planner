@@ -1,40 +1,18 @@
+using DivePlannerMk3.Models;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveInfo
 {
     public class InfoGasManagementReadOnlyViewModel : ViewModelBase
     {
-       public InfoGasManagementReadOnlyViewModel()
-       {
-           UiEnabled = false;
-       }
-
-        private int _gasUsedForStep;
-        public int GasUsedForStep
+        public InfoGasManagementReadOnlyViewModel()
         {
-            get => _gasUsedForStep;
-            set
-            {
-                if (_gasUsedForStep != value)
-                {
-                    _gasUsedForStep = value;
-                    this.RaisePropertyChanged(nameof(GasUsedForStep));
-                }
-            }
+            UiEnabled = false;
         }
 
-        private int _gasRemaining;
-        public int GasRemaining
+        public GasManagementInfoModel GasManagementInfoModel
         {
-            get => _gasRemaining;
-            set
-            {
-                if (_gasRemaining != value)
-                {
-                    _gasRemaining = value;
-                    this.RaisePropertyChanged(nameof(GasRemaining));
-                }
-            }
-        }
+            get; set;
+        } = new GasManagementInfoModel();
     }
 }
