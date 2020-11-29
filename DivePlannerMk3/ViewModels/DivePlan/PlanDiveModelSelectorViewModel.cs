@@ -11,6 +11,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         public PlanDiveModelSelectorViewModel(IDiveProfileService diveProfileController)
         {
+            UiEnabled = true;
             _diveProfileController = diveProfileController;
         }
 
@@ -30,20 +31,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                     _selectedDiveModel = value;
                     _diveProfileController.TheDiveModel = _selectedDiveModel;
                     this.RaisePropertyChanged(nameof(SelectedDiveModel));
-                }
-            }
-        }
-
-        private bool _uiEnabled = true;
-        public bool UiEnabled
-        {
-            get => _uiEnabled;
-            set
-            {
-                if (_uiEnabled != value)
-                {
-                    _uiEnabled = value;
-                    this.RaisePropertyChanged(nameof(UiEnabled));
                 }
             }
         }

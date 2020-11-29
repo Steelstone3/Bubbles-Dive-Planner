@@ -1,22 +1,24 @@
 using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Models;
-using DivePlannerMk3.ViewModels.DivePlan;
 
 namespace DivePlannerMk3.Controllers.DiveStages
 {
     public class PreDiveStageStepInfo : IDiveStage
     {
-        private DiveResultsModel _outputModel;
+        private GasManagementController _gasManagementController;
+        private DiveParametersOutputModel _diveParametersModel;
         private IDiveModel _diveModel;
-        private PlanDiveStepViewModel _diveStep;
-        private PlanGasMixtureViewModel _gasMixture;
+        private DiveStepModel _diveStep;
+        private GasMixtureModel _gasMixture;
 
-        public PreDiveStageStepInfo(DiveResultsModel outputModel, IDiveModel diveModel, PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture)
+        public PreDiveStageStepInfo(DiveParametersOutputModel diveParametersModel, IDiveModel diveModel, DiveStepModel diveStep, GasMixtureModel gasMixture)
         {
-            _outputModel = outputModel;
+            _diveParametersModel = diveParametersModel;
             _diveModel = diveModel;
             _diveStep = diveStep;
             _gasMixture = gasMixture;
+
+            _gasManagementController = new GasManagementController();
         }
 
         public void RunStage()
@@ -25,18 +27,21 @@ namespace DivePlannerMk3.Controllers.DiveStages
             PopulateDiveStepParameters();
         }
 
-        private void PopulateHeader() => _outputModel.DiveParametersOutput.DiveProfileStepHeader = _diveModel.DiveModelName + "\r\nDepth: " + _diveStep.Depth.ToString() + " Time: " + _diveStep.Time.ToString();
+        private void PopulateHeader() => _diveParametersModel.DiveProfileStepHeader = _diveModel.DiveModelName + "\r\nDepth: " + _diveStep.Depth.ToString() + " Time: " + _diveStep.Time.ToString();
 
         private void PopulateDiveStepParameters()
         {
-            _outputModel.DiveParametersOutput.DiveModelUsed = _diveModel.DiveModelName;
-            _outputModel.DiveParametersOutput.DiveDepthUsed = _diveStep.Depth;
-            _outputModel.DiveParametersOutput.DiveTimeUsed = _diveStep.Time;
-            _outputModel.DiveParametersOutput.GasMixNameUsed = _gasMixture.SelectedGasMixture.GasName;
+            _diveParametersModel.DiveModelUsed = _diveModel.DiveModelName;
+
+            _diveParametersModel.DiveStepModel.Depth = _diveStep.Depth;
+            _diveParametersModel.DiveStepModel.Time = _diveStep.Time;
+
+            _diveParametersModel.GasMixtureModel.GasName = _gasMixture.GasName;
 
             //TODO AH add when gas management is integrated
-            //_outputModel.DiveParametersOutput.GasUsedParameter;
-            //_outputModel.DiveParametersOutput.GasRemainingParameter;
+            //Inject gas managment controller to do the calculations
+            //_diveParametersModel.GasUsedParameter;
+            //_diveParametersModel.GasRemainingParameter;
         }
     }
 }

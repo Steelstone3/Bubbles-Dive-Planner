@@ -4,6 +4,11 @@ namespace DivePlannerMk3.Controllers
 {
     class GasManagementController : IGasManagementController
     {
+        public int CalculateGasRemaining(int gasRemaining, int gasUsed)
+        {
+            return gasRemaining - gasUsed;
+        }
+
         public int CalculateGasUsed( int depth, int time, int sacRate )
         {
             return ( ( depth / 10 ) + 1 ) * time * sacRate;

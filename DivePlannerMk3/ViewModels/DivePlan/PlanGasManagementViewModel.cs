@@ -5,21 +5,12 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 {
     public class PlanGasManagementViewModel : ViewModelBase
     {
-        private bool _uiEnabled = true;
-        public bool UiEnabled
+        public PlanGasManagementViewModel()
         {
-            get => _uiEnabled;
-            set
-            {
-                if (_uiEnabled != value)
-                {
-                    _uiEnabled = value;
-                    this.RaisePropertyChanged(nameof(UiEnabled));
-                }
-            }
+            UiEnabled = true;
         }
 
-        public GasManagementModel GasManagementModel
+        public GasManagementSetupModel GasManagementModel
         {
             get; set;
         }

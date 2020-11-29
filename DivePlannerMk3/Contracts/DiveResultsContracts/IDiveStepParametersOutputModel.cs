@@ -7,31 +7,16 @@
             get; set;
         }
 
-        int DiveDepthUsed
+        IDiveStepModel DiveStepModel
         {
             get; set;
         }
 
-        int DiveTimeUsed
+        IGasMixtureModel GasMixtureModel
         {
             get; set;
         }
 
-        string GasMixNameUsed
-        {
-            get; set;
-        }
-
-        int GasUsedOnDiveStep
-        {
-            get; set;
-        }
-
-        int GasRemaining
-        {
-            get; set;
-        }
-        
         string DiveModelUsed
         {
             get; set;

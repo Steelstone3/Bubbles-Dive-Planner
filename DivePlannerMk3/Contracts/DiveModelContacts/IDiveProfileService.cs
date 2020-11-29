@@ -1,5 +1,4 @@
 using DivePlannerMk3.Models;
-using DivePlannerMk3.ViewModels.DivePlan;
 
 namespace DivePlannerMk3.Contracts
 {
@@ -9,7 +8,9 @@ namespace DivePlannerMk3.Contracts
         {
             get; set;
         }
-        DiveResultsModel RunDiveStep(PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture);
+        DiveResultsModel RunDiveStep(DiveStepModel diveStep, GasMixtureModel gasMixture);
+        DiveParametersOutputModel UpdateParametersUsed(DiveStepModel diveStep, GasMixtureModel gasMixture);
+        
         //IEnumerable<DiveProfileResultsListViewModel> RunDecompressionDiveSteps( InfoDecompressionProfileViewModel decompressionDiveSteps, PlanGasMixtureViewModel gasMixture );
     }
 }

@@ -9,30 +9,21 @@ namespace DivePlannerMk3.Models
             get;set;
         }
 
-        public int DiveDepthUsed
+        public IDiveStepModel DiveStepModel 
         {
             get; set;
-        }
-
-        public int DiveTimeUsed
+        } = new DiveStepModel();
+        
+        public IGasMixtureModel GasMixtureModel 
         {
             get; set;
-        }
-
-        public string GasMixNameUsed
+        } = new GasMixtureModel();
+        
+        //TODO AH GasUsageModel and calculation
+        /*public IGasUsageModel GasUsage
         {
             get; set;
-        }
-
-        public int GasUsedOnDiveStep
-        {
-            get; set;
-        }
-
-        public int GasRemaining
-        {
-            get; set;
-        }
+        } = new GasUsageModel();*/
 
         public string DiveModelUsed
         {

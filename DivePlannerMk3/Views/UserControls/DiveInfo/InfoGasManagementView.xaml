@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="DivePlannerMk3.Views.UserControls.DivePlan.PlanGasManagementSetup"
+    x:Class="DivePlannerMk3.Views.UserControls.DiveInfo.InfoGasManagementView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,24 +7,26 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <StackPanel IsVisible="{Binding DivePlan.GasManagement.UiEnabled}">
+
+    <StackPanel IsVisible="{Binding DiveInfo.InfoGasManagementReadOnly.UiEnabled}">
+
         <StackPanel Background="#FF5D99C6">
             <TextBlock
                 Margin="4"
                 FontSize="16"
                 FontWeight="DemiBold"
-                Text="Gas Management Setup" />
+                Text="Gas Management Infomation" />
         </StackPanel>
         <StackPanel>
             <StackPanel Margin="4,0" Background="#FFC3FDFF">
-                <TextBlock Margin="4" Text="Cylinder Volume (L):" />
-                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.GasManagementModel.CylinderVolume}" />
-                <TextBlock Margin="4" Text="Cylinder Pressure (Bar):" />
-                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.GasManagementModel.CylinderPressure}" />
+                <TextBlock Margin="4" Text="Gas Remaining (L):" />
+                <TextBlock Margin="4" Text="{Binding DiveInfo.InfoGasManagementReadOnly.GasRemaining}" />
+                <TextBlock Margin="4" Text="Gas Used (L):" />
+                <TextBlock Margin="4" Text="{Binding DiveInfo.InfoGasManagementReadOnly.GasUsedForStep}" />
                 <TextBlock Margin="4" Text="SAC Rate (L/min):" />
-                <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.GasManagementModel.SacRate}" />
+                <TextBlock Margin="4" Text="{Binding DivePlan.GasManagement.GasManagementModel.SacRate}" />
             </StackPanel>
         </StackPanel>
-    </StackPanel>
 
+    </StackPanel>
 </UserControl>
