@@ -12,18 +12,28 @@ namespace DivePlannerTests
         };
 
         [Theory]
-        [InlineData(12)]
-        [InlineData(1)]
-        [InlineData(15)]
-        public void GasManagementCylinderVolumeCanBeSetTest(int cylinderVolume)
+        [InlineData(12, 12, 50)]
+        [InlineData(1, 12, 200)]
+        [InlineData(15, 30, 300)]
+        public void GasManagementModelCanBeSetTest(int cylinderVolume, int sacRate, int cylinderPressure)
         {
             //Arrange
 
             //Act
             gasManagementSetup.GasManagementModel.CylinderVolume = cylinderVolume;
-
+            gasManagementSetup.GasManagementModel.SacRate = sacRate;
+            gasManagementSetup.GasManagementModel.CylinderPressure = cylinderPressure;
+            
             //Assert
+            Assert.Equal(cylinderPressure, gasManagementSetup.GasManagementModel.CylinderPressure);
+            Assert.Equal(sacRate, gasManagementSetup.GasManagementModel.SacRate);
             Assert.Equal(cylinderVolume, gasManagementSetup.GasManagementModel.CylinderVolume);
+        }
+
+        [Fact]
+        public void IsVisible()
+        {
+            Assert.Equal(true, gasManagementSetup.UiEnabled);
         }
 
         [Theory(Skip="Need to check validation in this test")]
@@ -46,18 +56,6 @@ namespace DivePlannerTests
             //TODO AH Assert cannot calculate
         }
 
-        [Theory]
-        [InlineData(12)]
-        public void GasManagementSacRateCanBeSetTest(int sacRate)
-        {
-            //Arrange
-
-            //Act
-            gasManagementSetup.GasManagementModel.SacRate = sacRate;
-            //Assert
-            Assert.Equal(sacRate, gasManagementSetup.GasManagementModel.SacRate);
-        }
-
         [Theory(Skip="Need to check validation in this test")]
         //May use these values as warnings in version 2
         //[InlineData(5)]
@@ -77,20 +75,6 @@ namespace DivePlannerTests
             Assert.Equal(sacRate, gasManagementSetup.GasManagementModel.SacRate);
 
             //TODO AH check validation this test isn't valid
-        }
-
-        [Theory]
-        [InlineData(50)]
-        [InlineData(200)]
-        [InlineData(300)]
-        public void GasManagementCylinderPressureCanBeSetTest(int cylinderPressure)
-        {
-            //Arrange
-
-           //Act
-            gasManagementSetup.GasManagementModel.CylinderPressure = cylinderPressure;
-            //Assert
-            Assert.Equal(cylinderPressure, gasManagementSetup.GasManagementModel.CylinderPressure);
         }
 
          [Theory(Skip="Need to check validation in this test")]

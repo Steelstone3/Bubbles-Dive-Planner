@@ -1,3 +1,5 @@
+using System.Reflection;
+using DivePlannerMk3.Models;
 using DivePlannerMk3.ViewModels.DivePlan;
 using Xunit;
 
@@ -11,14 +13,35 @@ namespace DivePlannerTests
  
         private PlanGasMixtureViewModel _gasMixtureViewModel = new PlanGasMixtureViewModel();
 
-        [Fact(Skip = "Test needs implementing")]
-        public void GasMixtureCanBeSetTest()
+        [Fact]
+        public void HasAtLeastOneGasMixtureTest()
         {
-            //Arrange
+           //Arrange
 
             //Act
+            
+            //Assert
+            Assert.NotNull(_gasMixtureViewModel.GasMixtures);
+            Assert.NotEmpty(_gasMixtureViewModel.GasMixtures);
+        }
+
+        [Fact]
+        public void GasMixtureCanBeSetTest()
+        {
+           //Arrange
+            var gasMix = new GasMixtureModel()
+            {
+                GasName = "Bob",
+                Oxygen = 50,
+                Helium = 30,
+                Nitrogen = 20,
+            };
+
+            //Act
+            _gasMixtureViewModel.SelectedGasMixture = gasMix;
 
             //Assert
+            Assert.Equal(gasMix, _gasMixtureViewModel.SelectedGasMixture);
         }
 
         [Fact(Skip = "Test needs implementing")]
@@ -41,14 +64,25 @@ namespace DivePlannerTests
             //Assert
         }
 
-        [Fact(Skip = "Logic needs implementing (with a pop out), Test needs implementing")]
-        public void GasMixtureCanBeAddedTest()
+        [Theory]
+        [InlineData(21,79,0,"Air")]
+        [InlineData(50,20,30,"Crazy")]
+        public void GasMixtureCanBeAddedTest(int oxygen, int nitrogen, int helium, string gasName)
         {
-            //Arrange
+           //Arrange
+            var gasMix = new GasMixtureModel()
+            {
+                GasName = gasName,
+                Oxygen = oxygen,
+                Helium = helium,
+                Nitrogen = nitrogen,
+            };
 
             //Act
+            _gasMixtureViewModel.GasMixtures.Add(gasMix);
 
             //Assert
+            Assert.Equal(2, _gasMixtureViewModel.GasMixtures.Count);
         }
 
         [Fact(Skip = "Logic needs implementing (with a pop out), Test needs implementing")]
