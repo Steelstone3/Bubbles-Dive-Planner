@@ -1,4 +1,3 @@
-using DivePlannerMk3.ViewModels.DivePlan;
 using Xunit;
 
 namespace DivePlannerTests
@@ -6,10 +5,6 @@ namespace DivePlannerTests
     public class GasMixtureUiTests
     {
         //Select gas mixture, add gas mixture, check limits so that no gas mixture can have more than 100% total gas!
- 
-        //TODO AH Additional functionality added that also needs doing
- 
-        private PlanGasMixtureViewModel _gasMixtureViewModel = new PlanGasMixtureViewModel();
 
         [Fact(Skip = "Test needs implementing")]
         public void GasMixtureCanBeSetTest()

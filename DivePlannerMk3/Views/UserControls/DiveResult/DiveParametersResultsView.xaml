@@ -67,6 +67,24 @@
                 Grid.Column="1"
                 Margin="8,0"
                 Text="{Binding DiveParametersResults.DiveParametersUsed.GasMixtureModel.GasName}" />
+            <!--<TextBlock
+                Grid.Row="4"
+                Margin="8,0"
+                Text="Gas Used:" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="1"
+                Margin="8,0"
+                Text="{Binding DiveParametersResults.DiveParametersUsed.GasUsageModel.GasUsedOnDiveStep}" />
+            <TextBlock
+                Grid.Row="5"
+                Margin="8,0"
+                Text="Gas Remaining:" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="8,0"
+                Text="{Binding DiveParametersResults.DiveParametersUsed.GasUsageModel.GasRemaining}" />-->
         </Grid>
     </StackPanel>
 </UserControl>
