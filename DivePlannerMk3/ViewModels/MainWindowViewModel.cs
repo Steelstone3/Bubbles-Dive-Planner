@@ -77,8 +77,8 @@ namespace DivePlannerMk3.ViewModels
             
             //TODO This could potentially be moved down another layer to DivePlan itself an event would need to be set up for all UI visibiltiy
             //As in pass in dive step and gas mixture which returns a result
-
-            //CalculateGasUsage();
+            //Try using a composite command which has serveral sub commands contained each of which can handle their thing such as the dive model calculations, the gas usage etc
+            //https://www.reactiveui.net/docs/handbook/commands/ combing commands section
 
             var result = _diveProfileController.RunDiveStep(DivePlan.DiveStep.DiveStepModel, DivePlan.GasMixture.SelectedGasMixture);
             var parametersUsed = _diveProfileController.UpdateParametersUsed(DivePlan.DiveStep.DiveStepModel, DivePlan.GasMixture.SelectedGasMixture);
@@ -101,10 +101,5 @@ namespace DivePlannerMk3.ViewModels
             //TODO AH complexity to be added later true when user needs to decompress
             DiveInfo.DecompressionProfile.UiEnabled = true;
         }
-
-        /*private void CalculateGasUsage()
-        {
-            DiveInfo.InfoGasManagementReadOnly.GasUsedForStep = _gasManagementController.CalculateGasUsed(DivePlan.DiveStep.Depth, DivePlan.DiveStep.Time, DivePlan.GasManagement.GasManagementModel.SacRate);
-        }*/
     }
 }
