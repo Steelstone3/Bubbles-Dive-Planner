@@ -4,19 +4,10 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
 {
     public class InfoGasManagementReadOnlyViewModel : ViewModelBase
     {
-        private bool _uiEnabled = false;
-        public bool UiEnabled
-        {
-            get => _uiEnabled;
-            set
-            {
-                if (_uiEnabled != value)
-                {
-                    _uiEnabled = value;
-                    this.RaisePropertyChanged(nameof(UiEnabled));
-                }
-            }
-        }
+       public InfoGasManagementReadOnlyViewModel()
+       {
+           UiEnabled = false;
+       }
 
         private int _gasUsedForStep;
         public int GasUsedForStep

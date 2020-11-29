@@ -1,15 +1,12 @@
+using DivePlannerMk3.Models;
+
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
     public class PlanDiveStepViewModel : ViewModelBase
     {
-        public int Depth
+        public DiveStepModel DiveStepModel
         {
             get; set;
-        }
-        public int Time
-        {
-            get; set;
-        }
-
+        } = new DiveStepModel();
     }
 }

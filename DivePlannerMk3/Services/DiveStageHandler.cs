@@ -16,8 +16,8 @@ namespace DivePlannerMk3.Services
         //updated using UpdateDiveStageHandler()
         private IDiveModel _diveModel;
         private IDiveProfile _diveProfile;
-        private PlanDiveStepViewModel _diveStep;
-        private PlanGasMixtureViewModel _gasMixture;
+        private DiveStepModel _diveStep;
+        private GasMixtureModel _selectedGasMixture;
 
         public DiveResultsModel RunDiveStages()
         {
@@ -30,12 +30,23 @@ namespace DivePlannerMk3.Services
             return _outputResults;
         }
 
-        public void UpdateDiveStageHandler(IDiveModel diveModel, IDiveProfile diveProfile, PlanDiveStepViewModel diveStep, PlanGasMixtureViewModel gasMixture)
+        public DiveParametersOutputModel UpdateDiveParameters(DiveStepModel diveStep, GasMixtureModel selectedGasMixture)
+        {
+            var diveParameters = new DiveParametersOutputModel();
+
+            var stepInfo = new PreDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture);
+
+            stepInfo.RunStage();
+
+            return diveParameters;
+        }
+
+        public void UpdateDiveStageHandler(IDiveModel diveModel, IDiveProfile diveProfile, DiveStepModel diveStep, GasMixtureModel selectedGasMixture)
         {
             _diveModel = diveModel;
             _diveProfile = diveProfile;
             _diveStep = diveStep;
-            _gasMixture = gasMixture;
+            _selectedGasMixture = selectedGasMixture;
         }
 
         private void RunStages()
@@ -59,8 +70,7 @@ namespace DivePlannerMk3.Services
         {
             return new IDiveStage[]
             {
-                new PreDiveStageStepInfo(_outputResults, _diveModel, _diveStep, _gasMixture),
-                new PreDiveStageAmbientPressure(_diveProfile, _gasMixture.SelectedGasMixture.Oxygen, _gasMixture.SelectedGasMixture.Helium, _diveStep.Depth),
+                new PreDiveStageAmbientPressure(_diveProfile, _selectedGasMixture.Oxygen, _selectedGasMixture.Helium, _diveStep.Depth),
             };
         }
 

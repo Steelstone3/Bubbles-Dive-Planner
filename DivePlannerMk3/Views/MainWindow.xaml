@@ -72,6 +72,7 @@
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF9E9E9E">
                 <diveresultuc:DiveResultsView />
+                <diveresultuc:DiveParametersResultsView />
                 <diveresultuc:DiveResultWarningsView />
             </StackPanel>
         </ScrollViewer>

@@ -13,20 +13,30 @@ namespace DivePlannerMk3.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private IDiveProfileService _diveProfileController;
+        //private IGasManagementController _gasManagementController;
 
         public MainWindowViewModel()
         {
             _diveProfileController = new DiveProfileService();
             _divePlan = new DivePlanViewModel(_diveProfileController);
 
+            //_gasManagementController = new GasManagementController();
+
             CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
         }
 
-        private DiveResultsViewModel _diveStepProfile = new DiveResultsViewModel();
-        public DiveResultsViewModel DiveStepProfiles
+        private DiveResultsViewModel _diveResults = new DiveResultsViewModel();
+        public DiveResultsViewModel DiveResults
         {
-            get => _diveStepProfile;
-            set => this.RaiseAndSetIfChanged(ref _diveStepProfile, value);
+            get => _diveResults;
+            set => this.RaiseAndSetIfChanged(ref _diveResults, value);
+        }
+
+        private DiveParametersResultsViewModel _diveParametersResults = new DiveParametersResultsViewModel();
+        public DiveParametersResultsViewModel DiveParametersResults
+        {
+            get => _diveParametersResults;
+            set => this.RaiseAndSetIfChanged(ref _diveParametersResults, value);
         }
 
         private DivePlanViewModel _divePlan;
@@ -63,20 +73,38 @@ namespace DivePlannerMk3.ViewModels
 
         private void RunDiveStep()
         {
-            DisableUiElements();
+            UpdateUiElementsVisibility();
             
-            var result = _diveProfileController.RunDiveStep(DivePlan.DiveStep, DivePlan.GasMixture);
+            //TODO This could potentially be moved down another layer to DivePlan itself an event would need to be set up for all UI visibiltiy
+            //As in pass in dive step and gas mixture which returns a result
 
-            DiveStepProfiles.DiveParametersUsed = (result.DiveParametersOutput);
-            DiveStepProfiles.DiveProfileResults.Add(result);
+            //CalculateGasUsage();
+
+            var result = _diveProfileController.RunDiveStep(DivePlan.DiveStep.DiveStepModel, DivePlan.GasMixture.SelectedGasMixture);
+            var parametersUsed = _diveProfileController.UpdateParametersUsed(DivePlan.DiveStep.DiveStepModel, DivePlan.GasMixture.SelectedGasMixture);
+           
+            //TODO AH fix this line
+            DiveParametersResults.DiveParametersUsed = parametersUsed;
+            DiveResults.DiveProfileResults.Add(result);
+
         }
 
-        private void DisableUiElements()
+        private void UpdateUiElementsVisibility()
         {
             DivePlan.DiveModelSelector.UiEnabled = false;
             DivePlan.GasManagement.UiEnabled = false;
+
             DiveInfo.InfoGasManagementReadOnly.UiEnabled = true;
             DiveInfo.InfoDiveModelSelectedReadOnly.UiEnabled = true;
+            DiveInfo.DiveBoundaries.UiEnabled = true;
+
+            //TODO AH complexity to be added later true when user needs to decompress
+            DiveInfo.DecompressionProfile.UiEnabled = true;
         }
+
+        /*private void CalculateGasUsage()
+        {
+            DiveInfo.InfoGasManagementReadOnly.GasUsedForStep = _gasManagementController.CalculateGasUsed(DivePlan.DiveStep.Depth, DivePlan.DiveStep.Time, DivePlan.GasManagement.GasManagementModel.SacRate);
+        }*/
     }
 }

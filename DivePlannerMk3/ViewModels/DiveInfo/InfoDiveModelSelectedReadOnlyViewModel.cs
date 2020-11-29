@@ -4,23 +4,9 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
 {
     public class InfoDiveModelSelectedReadOnlyViewModel : ViewModelBase
     {
-        //public string DiveModelName
-        //{
-
-        //}
-
-        private bool _uiEnabled = false;
-        public bool UiEnabled
+        public InfoDiveModelSelectedReadOnlyViewModel()
         {
-            get => _uiEnabled;
-            set
-            {
-                if( _uiEnabled != value )
-                {
-                    _uiEnabled = value;
-                    this.RaisePropertyChanged( nameof( UiEnabled ) );
-                }
-            }
+            UiEnabled = false;
         }
     }
 }

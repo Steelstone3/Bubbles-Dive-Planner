@@ -8,7 +8,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <StackPanel>
+    <StackPanel IsVisible="{Binding DiveInfo.InfoDiveModelSelectedReadOnly.UiEnabled}" >
 
         <StackPanel Background="#FF5D99C6">
             <TextBlock
@@ -19,6 +19,8 @@
         </StackPanel>
 
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
+            <TextBlock Margin="4" Text="Dive Model:" />
+            <TextBlock Margin="4" Text="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.DiveModelName}" />
            <TextBlock Margin="4" Text="Nitrogen and helium half time, (Constant) a and b values nitrogen and helium" />
         </StackPanel>
 

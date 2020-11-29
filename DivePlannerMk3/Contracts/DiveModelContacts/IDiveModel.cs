@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 
 namespace DivePlannerMk3.Contracts

@@ -19,7 +19,7 @@
             Margin="32,4"
             Background="#FFCFCFCF"
             MaxHeight="600"
-            Items="{Binding DiveStepProfiles.DiveProfileResults}">
+            Items="{Binding DiveResults.DiveProfileResults}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBox
@@ -58,84 +58,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
-        <!--  List box of dive steps in dive step history model  -->
-        <TextBlock
-            Margin="32,4"
-            FontSize="16"
-            FontWeight="DemiBold"
-            Text="Current Dive Step" />
-
-        <Grid Margin="32,4" Background="#FFCFCFCF">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock
-                Grid.Row="0"
-                Margin="8,0"
-                Text="Dive Model:" />
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="8,0"
-                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.DiveModelUsed}" />
-
-            <TextBlock
-                Grid.Row="1"
-                Margin="8,0"
-                Text="Depth:" />
-            <TextBlock
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="8,0"
-                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.DiveDepthUsed}" />
-            <TextBlock
-                Grid.Row="2"
-                Margin="8,0"
-                Text="Time:" />
-            <TextBlock
-                Grid.Row="2"
-                Grid.Column="1"
-                Margin="8,0"
-                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.DiveTimeUsed}" />
-            <TextBlock
-                Grid.Row="3"
-                Margin="8,0"
-                Text="Gas Mixture Name:" />
-            <TextBlock
-                Grid.Row="3"
-                Grid.Column="1"
-                Margin="8,0"
-                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.GasMixNameUsed}" />
-            <TextBlock
-                Grid.Row="4"
-                Margin="8,0"
-                Text="Gas Used:" />
-            <TextBlock
-                Grid.Row="4"
-                Grid.Column="1"
-                Margin="8,0"
-                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.GasUsedOnDiveStep}" />
-            <TextBlock
-                Grid.Row="5"
-                Margin="8,0"
-                Text="Gas Remaining:" />
-            <TextBlock
-                Grid.Row="5"
-                Grid.Column="1"
-                Margin="8,0"
-                Text="{Binding DiveStepProfiles.DiveParametersUsed.ParameterOutput.GasRemaining}" />
-        </Grid>
 
     </StackPanel>
 </UserControl>
