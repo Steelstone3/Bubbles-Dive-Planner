@@ -60,7 +60,7 @@ namespace DivePlannerTests
         [Fact]
         public void IsVisible()
         {
-            Assert.Equal(true, _gasManagementSetup.UiEnabled);
+            Assert.True(_gasManagementSetup.UiEnabled);
         }
     }
 }

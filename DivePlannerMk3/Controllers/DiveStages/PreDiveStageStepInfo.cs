@@ -5,20 +5,20 @@ namespace DivePlannerMk3.Controllers.DiveStages
 {
     public class PreDiveStageStepInfo : IDiveStage
     {
-        private GasManagementController _gasManagementController;
-        private DiveParametersOutputModel _diveParametersModel;
+        //private GasManagementController _gasManagementController;
+        private IDiveParametersOutputModel _diveParametersModel;
         private IDiveModel _diveModel;
-        private DiveStepModel _diveStep;
-        private GasMixtureModel _gasMixture;
+        private IDiveStepModel _diveStep;
+        private IGasMixtureModel _gasMixture;
 
-        public PreDiveStageStepInfo(DiveParametersOutputModel diveParametersModel, IDiveModel diveModel, DiveStepModel diveStep, GasMixtureModel gasMixture)
+        public PreDiveStageStepInfo(IDiveParametersOutputModel diveParametersModel, IDiveModel diveModel, IDiveStepModel diveStep, IGasMixtureModel gasMixture)
         {
             _diveParametersModel = diveParametersModel;
             _diveModel = diveModel;
             _diveStep = diveStep;
             _gasMixture = gasMixture;
 
-            _gasManagementController = new GasManagementController();
+            //_gasManagementController = new GasManagementController();
         }
 
         public void RunStage()
@@ -33,15 +33,12 @@ namespace DivePlannerMk3.Controllers.DiveStages
         {
             _diveParametersModel.DiveModelUsed = _diveModel.DiveModelName;
 
-            _diveParametersModel.DiveStepModel.Depth = _diveStep.Depth;
-            _diveParametersModel.DiveStepModel.Time = _diveStep.Time;
+            _diveParametersModel.Depth = _diveStep.Depth;
+            _diveParametersModel.Time = _diveStep.Time;
 
-            _diveParametersModel.GasMixtureModel.GasName = _gasMixture.GasName;
+            _diveParametersModel.GasName = _gasMixture.GasName;
 
-            //TODO AH add when gas management is integrated
-            //Inject gas managment controller to do the calculations
-            //_diveParametersModel.GasUsedParameter;
-            //_diveParametersModel.GasRemainingParameter;
+            //TODO AH Oxygen, Helium, Nitrogen aren't used here should they be added to the dive parameters used?
         }
     }
 }

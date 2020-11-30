@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using System;
+using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveInfo
 {
@@ -22,11 +23,11 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _diveBoundaries, value);
         }
 
-        private InfoGasManagementReadOnlyViewModel _infoGasManagementReadOnly = new InfoGasManagementReadOnlyViewModel();
-        public InfoGasManagementReadOnlyViewModel InfoGasManagementReadOnly
+        private InfoGasUsageViewModel _infoGasUsage = new InfoGasUsageViewModel();
+        public InfoGasUsageViewModel InfoGasUsage
         {
-            get => _infoGasManagementReadOnly;
-            set => this.RaiseAndSetIfChanged(ref _infoGasManagementReadOnly, value);
+            get => _infoGasUsage;
+            set => this.RaiseAndSetIfChanged(ref _infoGasUsage, value);
         }
 
         private InfoDiveModelSelectedReadOnlyViewModel _infoDiveModelSelectedReadOnly = new InfoDiveModelSelectedReadOnlyViewModel();
@@ -34,6 +35,21 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
         {
             get => _infoDiveModelSelectedReadOnly;
             set => this.RaiseAndSetIfChanged(ref _infoDiveModelSelectedReadOnly, value);
+        }
+
+        public void CalculateDiveStep()
+        {
+            UpdateUiVisibility();
+        }
+
+        private void UpdateUiVisibility()
+        {
+            InfoGasUsage.UiEnabled = true;
+            InfoDiveModelSelectedReadOnly.UiEnabled = true;
+            DiveBoundaries.UiEnabled = true;
+
+            //TODO AH complexity to be added later true when user needs to decompress
+            DecompressionProfile.UiEnabled = true;
         }
     }
 }

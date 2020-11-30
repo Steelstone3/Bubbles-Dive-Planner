@@ -8,8 +8,8 @@ namespace DivePlannerMk3.Contracts
         {
             get; set;
         }
-        DiveResultsModel RunDiveStep(DiveStepModel diveStep, GasMixtureModel gasMixture);
-        DiveParametersOutputModel UpdateParametersUsed(DiveStepModel diveStep, GasMixtureModel gasMixture);
+        DiveResultsModel RunDiveStep(IDiveStepModel diveStep, IGasMixtureModel gasMixture);
+        DiveParametersOutputModel UpdateParametersUsed(IDiveStepModel diveStep, IGasMixtureModel gasMixture);
         
         //IEnumerable<DiveProfileResultsListViewModel> RunDecompressionDiveSteps( InfoDecompressionProfileViewModel decompressionDiveSteps, PlanGasMixtureViewModel gasMixture );
     }

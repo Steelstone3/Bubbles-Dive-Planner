@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace DivePlannerMk3.Views.UserControls.DiveInfo
 {
-    public class InfoGasManagementView : UserControl
+    public class InfoGasUsageView : UserControl
     {
-        public InfoGasManagementView()
+        public InfoGasUsageView()
         {
             InitializeComponent();
         }

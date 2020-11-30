@@ -19,7 +19,7 @@ namespace DivePlannerMk3.Contracts
 
         double Nitrogen
         {
-            get; set;
+            get;
         }
     }
 }

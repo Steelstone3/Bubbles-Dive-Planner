@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reactive;
-using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Controllers;
 using DivePlannerMk3.ViewModels.DiveHeader;
 using DivePlannerMk3.ViewModels.DiveInfo;
@@ -10,17 +9,12 @@ using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels
 {
+    //TODO AH check all the binding from big structure changes :)
     public class MainWindowViewModel : ViewModelBase
     {
-        private IDiveProfileService _diveProfileController;
-        //private IGasManagementController _gasManagementController;
-
         public MainWindowViewModel()
         {
-            _diveProfileController = new DiveProfileService();
-            _divePlan = new DivePlanViewModel(_diveProfileController);
-
-            //_gasManagementController = new GasManagementController();
+            _divePlan = new DivePlanViewModel(new DiveProfileService());
 
             CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
         }
@@ -32,11 +26,11 @@ namespace DivePlannerMk3.ViewModels
             set => this.RaiseAndSetIfChanged(ref _diveResults, value);
         }
 
-        private DiveParametersResultsViewModel _diveParametersResults = new DiveParametersResultsViewModel();
-        public DiveParametersResultsViewModel DiveParametersResults
+        private DiveParametersResultViewModel _diveParameterResults = new DiveParametersResultViewModel();
+        public DiveParametersResultViewModel DiveParameterResults
         {
-            get => _diveParametersResults;
-            set => this.RaiseAndSetIfChanged(ref _diveParametersResults, value);
+            get => _diveParameterResults;
+            set => this.RaiseAndSetIfChanged(ref _diveParameterResults, value);
         }
 
         private DivePlanViewModel _divePlan;
@@ -53,7 +47,6 @@ namespace DivePlannerMk3.ViewModels
             set => this.RaiseAndSetIfChanged(ref _diveInfo, value);
         }
 
-        //TODO AH need to rename this for all the file, edit functionality
         private DiveHeaderViewModel _diveHeader = new DiveHeaderViewModel();
         public DiveHeaderViewModel DiveHeader
         {
@@ -73,33 +66,8 @@ namespace DivePlannerMk3.ViewModels
 
         private void RunDiveStep()
         {
-            UpdateUiElementsVisibility();
-            
-            //TODO This could potentially be moved down another layer to DivePlan itself an event would need to be set up for all UI visibiltiy
-            //As in pass in dive step and gas mixture which returns a result
-            //Try using a composite command which has serveral sub commands contained each of which can handle their thing such as the dive model calculations, the gas usage etc
-            //https://www.reactiveui.net/docs/handbook/commands/ combing commands section
-
-            var result = _diveProfileController.RunDiveStep(DivePlan.DiveStep.DiveStepModel, DivePlan.GasMixture.SelectedGasMixture);
-            var parametersUsed = _diveProfileController.UpdateParametersUsed(DivePlan.DiveStep.DiveStepModel, DivePlan.GasMixture.SelectedGasMixture);
-           
-            //TODO AH fix this line
-            DiveParametersResults.DiveParametersUsed = parametersUsed;
-            DiveResults.DiveProfileResults.Add(result);
-
-        }
-
-        private void UpdateUiElementsVisibility()
-        {
-            DivePlan.DiveModelSelector.UiEnabled = false;
-            DivePlan.GasManagement.UiEnabled = false;
-
-            DiveInfo.InfoGasManagementReadOnly.UiEnabled = true;
-            DiveInfo.InfoDiveModelSelectedReadOnly.UiEnabled = true;
-            DiveInfo.DiveBoundaries.UiEnabled = true;
-
-            //TODO AH complexity to be added later true when user needs to decompress
-            DiveInfo.DecompressionProfile.UiEnabled = true;
+            DivePlan.CalculateDiveStep(DiveResults, DiveParameterResults);
+            DiveInfo.CalculateDiveStep();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using DivePlannerMk3.Contracts;
+using DivePlannerMk3.ViewModels.DiveResult;
 using ReactiveUI;
+using DivePlannerMk3.Controllers.ModelConverters;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
@@ -38,6 +40,30 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         {
             _diveProfileController = diveProfileController;
             _diveModelSelector = new PlanDiveModelSelectorViewModel(_diveProfileController);
+        }
+
+        public void CalculateDiveStep(DiveResultsViewModel diveResults, DiveParametersResultViewModel diveParametersResult)
+        {
+            CalculateDiveSteps(diveResults);
+            UpdateUsedParameters(diveParametersResult);
+            UpdateUiVisibility();
+        }
+
+        private void CalculateDiveSteps(DiveResultsViewModel diveResults)
+        {
+            diveResults.DiveProfileResults.Add(_diveProfileController.RunDiveStep(DiveStep, GasMixture.SelectedGasMixture) );
+        }
+
+        private void UpdateUsedParameters(DiveParametersResultViewModel diveParameterResults)
+        {
+            var converter = new DiveParametersResultModelConverter();
+            diveParameterResults = converter.ConvertToViewModel(_diveProfileController.UpdateParametersUsed(DiveStep, GasMixture.SelectedGasMixture));
+        }
+
+        private void UpdateUiVisibility()
+        {
+            DiveModelSelector.UiEnabled = false;
+            GasManagement.UiEnabled = false;
         }
     }
 }

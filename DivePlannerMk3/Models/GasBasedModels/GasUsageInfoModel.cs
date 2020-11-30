@@ -2,7 +2,7 @@ using DivePlannerMk3.Contracts;
 
 namespace DivePlannerMk3.Models
 {
-    public class GasManagementInfoModel : IGasManagementInfoModel
+    public class GasUsageInfoModel : IGasUsageModel
     {
         public int GasUsedForStep
         {

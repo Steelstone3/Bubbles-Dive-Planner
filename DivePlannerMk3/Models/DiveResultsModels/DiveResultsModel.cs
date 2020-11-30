@@ -10,10 +10,5 @@ namespace DivePlannerMk3.Models
         {
             get;
         } = new List<IDiveProfileStepOutputModel>();
-
-        /*public DiveParametersOutputModel DiveParametersOutput
-        {
-            get; set;
-        } = new DiveParametersOutputModel();*/
     }
 }

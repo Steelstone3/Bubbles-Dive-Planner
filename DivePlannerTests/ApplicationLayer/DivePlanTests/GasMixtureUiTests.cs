@@ -86,7 +86,7 @@ namespace DivePlannerTests
             var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
 
             //Assert
-            Assert.Equal(false, canExecute);
+            Assert.False(canExecute);
         }
 
         //TODO update this view model with the oxygen starved parts
@@ -116,7 +116,7 @@ namespace DivePlannerTests
             var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
 
             //Assert
-            Assert.Equal(false, canExecute);
+            Assert.False(canExecute);
         }
     }
 }

@@ -1,18 +1,8 @@
 ﻿namespace DivePlannerMk3.Contracts
 {
-    public interface IDiveParametersOutputModel
+    public interface IDiveParametersOutputModel : IDiveStepModel, IGasMixtureModel
     {
         string DiveProfileStepHeader
-        {
-            get; set;
-        }
-
-        IDiveStepModel DiveStepModel
-        {
-            get; set;
-        }
-
-        IGasMixtureModel GasMixtureModel
         {
             get; set;
         }

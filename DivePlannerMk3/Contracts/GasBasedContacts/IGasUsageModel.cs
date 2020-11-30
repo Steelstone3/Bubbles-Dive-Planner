@@ -1,6 +1,6 @@
 namespace DivePlannerMk3.Contracts
 {
-    public interface IGasManagementInfoModel
+    public interface IGasUsageModel
     {
         int GasUsedForStep
         {

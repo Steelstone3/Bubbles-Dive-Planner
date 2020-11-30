@@ -6,12 +6,12 @@ namespace DivePlannerMk3.Models
     {
         public int Depth
         {
-            get;set;
+            get; set;
         }
 
         public int Time
         {
-            get;set;
+            get; set;
         }
     }
 }
