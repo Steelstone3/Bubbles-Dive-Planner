@@ -1,6 +1,5 @@
-using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Models;
-using DivePlannerMk3.ViewModels;
+using DivePlannerMk3.ViewModels.DivePlan;
 
 namespace DivePlannerMk3.Controllers.ModelConverters
 {

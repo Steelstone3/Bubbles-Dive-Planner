@@ -1,22 +1,21 @@
-﻿using System.ComponentModel;
-using ReactiveUI;
+﻿using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {
-        private bool _uiEnabled = false;
-        public bool UiEnabled
+        private bool _isUiVisible = false;
+        public bool IsUiVisible
         {
-            get => _uiEnabled;
-            set
-            {
-                if( _uiEnabled != value )
-                {
-                    _uiEnabled = value;
-                    this.RaisePropertyChanged( nameof( UiEnabled ) );
-                }
-            }
+            get => _isUiVisible;
+            set => this.RaiseAndSetIfChanged(ref _isUiVisible, value);
+        }
+
+        private bool _isUiEnabled = true;
+        public bool IsUiEnabled
+        {
+            get => _isUiEnabled;
+            set => this.RaiseAndSetIfChanged(ref _isUiEnabled, value);
         }
     }
 }

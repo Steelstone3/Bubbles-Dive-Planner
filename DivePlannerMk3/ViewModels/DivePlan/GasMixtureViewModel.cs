@@ -1,8 +1,9 @@
-﻿using ReactiveUI;
+﻿using DivePlannerMk3.Contracts;
+using ReactiveUI;
 
-namespace DivePlannerMk3.ViewModels
+namespace DivePlannerMk3.ViewModels.DivePlan
 {
-    public class GasMixtureViewModel : ViewModelBase
+    public class GasMixtureViewModel : ViewModelBase, IGasMixtureModel
     {
         public GasMixtureViewModel()
         {

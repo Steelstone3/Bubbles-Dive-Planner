@@ -16,8 +16,8 @@ namespace DivePlannerMk3.Services
         //updated using UpdateDiveStageHandler()
         private IDiveModel _diveModel;
         private IDiveProfile _diveProfile;
-        private DiveStepModel _diveStep;
-        private GasMixtureModel _selectedGasMixture;
+        private IDiveStepModel _diveStep;
+        private IGasMixtureModel _selectedGasMixture;
 
         public DiveResultsModel RunDiveStages()
         {
@@ -30,18 +30,18 @@ namespace DivePlannerMk3.Services
             return _outputResults;
         }
 
-        public DiveParametersOutputModel UpdateDiveParameters(DiveStepModel diveStep, GasMixtureModel selectedGasMixture)
+        public DiveParametersOutputModel UpdateUsedDiveParameters(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementModel)
         {
             var diveParameters = new DiveParametersOutputModel();
 
-            var stepInfo = new PreDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture);
+            var stepInfo = new PreDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture, gasManagementModel);
 
             stepInfo.RunStage();
 
             return diveParameters;
         }
 
-        public void UpdateDiveStageHandler(IDiveModel diveModel, IDiveProfile diveProfile, DiveStepModel diveStep, GasMixtureModel selectedGasMixture)
+        public void UpdateDiveStageHandler(IDiveModel diveModel, IDiveProfile diveProfile, IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture)
         {
             _diveModel = diveModel;
             _diveProfile = diveProfile;

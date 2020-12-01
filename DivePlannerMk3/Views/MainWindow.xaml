@@ -62,6 +62,7 @@
                     <diveplanuc:PlanAddGasMixtureView />
                 </Expander>
                 <diveplanuc:PlanGasManagementSetup />
+                <diveplanuc:GasUsageView />
                 <diveplanuc:PlanCalculateDiveStepView />
             </StackPanel>
         </ScrollViewer>
@@ -91,7 +92,6 @@
                     Text="Dive Information" />
                 <diveinfouc:InfoDecompressionProfileView />
                 <diveinfouc:InfoDiveBoundariesView />
-                <diveinfouc:InfoGasManagementView />
                 <diveinfouc:InfoDiveModelReadOnlyView />
                 <diveinfouc:InfoCnsToxicityReadOnlyView />
             </StackPanel>

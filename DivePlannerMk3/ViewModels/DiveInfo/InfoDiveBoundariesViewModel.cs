@@ -6,7 +6,7 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
     {
         public InfoDiveBoundariesViewModel()
         {
-          UiEnabled = false;  
+          IsUiVisible = false;  
         }
 
         private int _maximumOperatingDepth;

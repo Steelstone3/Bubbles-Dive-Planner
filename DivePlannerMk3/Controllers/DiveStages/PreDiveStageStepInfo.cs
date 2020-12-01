@@ -5,20 +5,19 @@ namespace DivePlannerMk3.Controllers.DiveStages
 {
     public class PreDiveStageStepInfo : IDiveStage
     {
-        private GasManagementController _gasManagementController;
-        private DiveParametersOutputModel _diveParametersModel;
+        private IDiveParametersOutputModel _diveParametersModel;
         private IDiveModel _diveModel;
-        private DiveStepModel _diveStep;
-        private GasMixtureModel _gasMixture;
+        private IDiveStepModel _diveStep;
+        private IGasMixtureModel _gasMixture;
+        private IGasManagementModel _gasManagement;
 
-        public PreDiveStageStepInfo(DiveParametersOutputModel diveParametersModel, IDiveModel diveModel, DiveStepModel diveStep, GasMixtureModel gasMixture)
-        {
+        public PreDiveStageStepInfo(IDiveParametersOutputModel diveParametersModel, IDiveModel diveModel, IDiveStepModel diveStep, IGasMixtureModel gasMixture, IGasManagementModel gasManagement)
+        {            
             _diveParametersModel = diveParametersModel;
             _diveModel = diveModel;
             _diveStep = diveStep;
             _gasMixture = gasMixture;
-
-            _gasManagementController = new GasManagementController();
+            _gasManagement = gasManagement;
         }
 
         public void RunStage()
@@ -31,17 +30,19 @@ namespace DivePlannerMk3.Controllers.DiveStages
 
         private void PopulateDiveStepParameters()
         {
+            var gasManagementController = new GasManagementController();
+
             _diveParametersModel.DiveModelUsed = _diveModel.DiveModelName;
 
-            _diveParametersModel.DiveStepModel.Depth = _diveStep.Depth;
-            _diveParametersModel.DiveStepModel.Time = _diveStep.Time;
+            _diveParametersModel.Depth = _diveStep.Depth;
+            _diveParametersModel.Time = _diveStep.Time;
 
-            _diveParametersModel.GasMixtureModel.GasName = _gasMixture.GasName;
+            _diveParametersModel.GasName = _gasMixture.GasName;
+            //TODO AH Oxygen, Helium and (Nitrogen (calculated)) aren't used here should they be added to the dive parameters used?
+            _diveParametersModel.Oxygen = _gasMixture.Oxygen;
+            _diveParametersModel.Helium = _gasMixture.Helium;
 
-            //TODO AH add when gas management is integrated
-            //Inject gas managment controller to do the calculations
-            //_diveParametersModel.GasUsedParameter;
-            //_diveParametersModel.GasRemainingParameter;
+            _gasManagement.GasUsedForStep = gasManagementController.CalculateGasUsed(_diveStep.Depth, _diveStep.Time, _gasManagement.SacRate);
         }
     }
 }

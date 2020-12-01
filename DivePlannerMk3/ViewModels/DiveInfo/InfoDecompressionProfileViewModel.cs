@@ -10,7 +10,7 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
         //TODO decompression behaviour
         public InfoDecompressionProfileViewModel()
         {
-            UiEnabled = false;
+            IsUiVisible = false;
         }
 
         public ObservableCollection<PlanDiveStepViewModel> DecoDiveSteps
