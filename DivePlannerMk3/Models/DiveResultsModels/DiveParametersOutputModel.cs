@@ -47,10 +47,5 @@ namespace DivePlannerMk3.Models
         {
             get; set;
         }
-
-        public int GasRemaining
-        {
-            get; set;
-        }
     }
 }
