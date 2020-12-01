@@ -37,9 +37,9 @@ namespace DivePlannerMk3.Controllers
             return _diveStages.RunDiveStages();
         }
 
-        public DiveParametersOutputModel UpdateParametersUsed(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture)
+        public DiveParametersOutputModel UpdateParametersUsed(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementSetupModel)
         {
-            return _diveStages.UpdateDiveParameters(diveStep, selectedGasMixture);
+            return _diveStages.UpdateUsedDiveParameters(diveStep, selectedGasMixture, gasManagementSetupModel);
         }
 
         private void InitaliseDiveProfile()

@@ -17,9 +17,9 @@
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="4" Text="Depth (m):" />
-            <TextBox Margin="4" Text="{Binding DivePlan.DiveStep.DiveStepModel.Depth}" />
+            <TextBox Margin="4" Text="{Binding DivePlan.DiveStep.Depth}" />
             <TextBlock Margin="4" Text="Time (min):" />
-            <TextBox Margin="4" Text="{Binding DivePlan.DiveStep.DiveStepModel.Time}" />
+            <TextBox Margin="4" Text="{Binding DivePlan.DiveStep.Time}" />
         </StackPanel>
 
     </StackPanel>

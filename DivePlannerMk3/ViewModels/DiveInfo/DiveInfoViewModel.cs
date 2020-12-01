@@ -23,13 +23,6 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _diveBoundaries, value);
         }
 
-        private InfoGasUsageViewModel _infoGasUsage = new InfoGasUsageViewModel();
-        public InfoGasUsageViewModel InfoGasUsage
-        {
-            get => _infoGasUsage;
-            set => this.RaiseAndSetIfChanged(ref _infoGasUsage, value);
-        }
-
         private InfoDiveModelSelectedReadOnlyViewModel _infoDiveModelSelectedReadOnly = new InfoDiveModelSelectedReadOnlyViewModel();
         public InfoDiveModelSelectedReadOnlyViewModel InfoDiveModelSelectedReadOnly
         {
@@ -44,12 +37,11 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
 
         private void UpdateUiVisibility()
         {
-            InfoGasUsage.UiEnabled = true;
-            InfoDiveModelSelectedReadOnly.UiEnabled = true;
-            DiveBoundaries.UiEnabled = true;
+            InfoDiveModelSelectedReadOnly.IsUiVisible = true;
+            DiveBoundaries.IsUiVisible = true;
 
             //TODO AH complexity to be added later true when user needs to decompress
-            DecompressionProfile.UiEnabled = true;
+            DecompressionProfile.IsUiVisible = true;
         }
     }
 }

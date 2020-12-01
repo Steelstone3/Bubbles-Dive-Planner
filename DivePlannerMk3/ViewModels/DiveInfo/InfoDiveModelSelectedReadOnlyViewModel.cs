@@ -6,7 +6,7 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
     {
         public InfoDiveModelSelectedReadOnlyViewModel()
         {
-            UiEnabled = false;
+            IsUiVisible = false;
         }
     }
 }

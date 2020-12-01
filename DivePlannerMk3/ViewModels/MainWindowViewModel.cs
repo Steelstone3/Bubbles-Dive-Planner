@@ -9,7 +9,6 @@ using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels
 {
-    //TODO AH check all the binding from big structure changes :)
     public class MainWindowViewModel : ViewModelBase
     {
         public MainWindowViewModel()
@@ -26,11 +25,11 @@ namespace DivePlannerMk3.ViewModels
             set => this.RaiseAndSetIfChanged(ref _diveResults, value);
         }
 
-        private DiveParametersResultViewModel _diveParameterResults = new DiveParametersResultViewModel();
-        public DiveParametersResultViewModel DiveParameterResults
+        private DiveParametersResultViewModel _diveParametersResult = new DiveParametersResultViewModel();
+        public DiveParametersResultViewModel DiveParametersResult
         {
-            get => _diveParameterResults;
-            set => this.RaiseAndSetIfChanged(ref _diveParameterResults, value);
+            get => _diveParametersResult;
+            set => this.RaiseAndSetIfChanged(ref _diveParametersResult, value);
         }
 
         private DivePlanViewModel _divePlan;
@@ -66,7 +65,7 @@ namespace DivePlannerMk3.ViewModels
 
         private void RunDiveStep()
         {
-            DivePlan.CalculateDiveStep(DiveResults, DiveParameterResults);
+            DivePlan.CalculateDiveStep(DiveResults, DiveParametersResult);
             DiveInfo.CalculateDiveStep();
         }
     }

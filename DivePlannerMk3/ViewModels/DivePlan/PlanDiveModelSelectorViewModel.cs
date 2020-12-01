@@ -11,7 +11,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         public PlanDiveModelSelectorViewModel(IDiveProfileService diveProfileController)
         {
-            UiEnabled = true;
+            IsUiVisible = true;
             _diveProfileController = diveProfileController;
         }
 

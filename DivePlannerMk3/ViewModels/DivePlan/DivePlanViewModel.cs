@@ -28,18 +28,18 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             set => this.RaiseAndSetIfChanged(ref _diveStep, value);
         }
 
-        private PlanGasManagementViewModel _gasManagement = new PlanGasManagementViewModel();
-        public PlanGasManagementViewModel GasManagement
+        private GasManagementViewModel _gasManagement = new GasManagementViewModel();
+        public GasManagementViewModel GasManagement
         {
             get => _gasManagement;
             set => this.RaiseAndSetIfChanged(ref _gasManagement, value);
         }
 
-        private IDiveProfileService _diveProfileController;
-        public DivePlanViewModel(IDiveProfileService diveProfileController)
+        private IDiveProfileService _diveProfileService;
+        public DivePlanViewModel(IDiveProfileService diveProfileService)
         {
-            _diveProfileController = diveProfileController;
-            _diveModelSelector = new PlanDiveModelSelectorViewModel(_diveProfileController);
+            _diveProfileService = diveProfileService;
+            _diveModelSelector = new PlanDiveModelSelectorViewModel(_diveProfileService);
         }
 
         public void CalculateDiveStep(DiveResultsViewModel diveResults, DiveParametersResultViewModel diveParametersResult)
@@ -51,19 +51,24 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         private void CalculateDiveSteps(DiveResultsViewModel diveResults)
         {
-            diveResults.DiveProfileResults.Add(_diveProfileController.RunDiveStep(DiveStep, GasMixture.SelectedGasMixture) );
+            diveResults.DiveProfileResults.Add(_diveProfileService.RunDiveStep(DiveStep, GasMixture.SelectedGasMixture) );
         }
 
         private void UpdateUsedParameters(DiveParametersResultViewModel diveParameterResults)
         {
             var converter = new DiveParametersResultModelConverter();
-            diveParameterResults = converter.ConvertToViewModel(_diveProfileController.UpdateParametersUsed(DiveStep, GasMixture.SelectedGasMixture));
+            diveParameterResults = converter.ConvertToViewModel(_diveProfileService.UpdateParametersUsed(DiveStep, GasMixture.SelectedGasMixture, GasManagement));
         }
 
         private void UpdateUiVisibility()
         {
-            DiveModelSelector.UiEnabled = false;
-            GasManagement.UiEnabled = false;
+            GasManagement.IsGasUsageVisible = true;
+
+            DiveModelSelector.IsUiVisible = false;
+            DiveModelSelector.IsUiEnabled = false;
+
+            GasManagement.IsUiVisible = false;
+            GasManagement.IsUiEnabled = false;
         }
     }
 }

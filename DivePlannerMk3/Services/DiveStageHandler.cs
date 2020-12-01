@@ -30,11 +30,11 @@ namespace DivePlannerMk3.Services
             return _outputResults;
         }
 
-        public DiveParametersOutputModel UpdateDiveParameters(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture)
+        public DiveParametersOutputModel UpdateUsedDiveParameters(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementModel)
         {
             var diveParameters = new DiveParametersOutputModel();
 
-            var stepInfo = new PreDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture);
+            var stepInfo = new PreDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture, gasManagementModel);
 
             stepInfo.RunStage();
 

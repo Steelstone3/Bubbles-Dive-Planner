@@ -2,11 +2,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace DivePlannerMk3.Views.UserControls.DiveInfo
+namespace DivePlannerMk3.Views.UserControls.DivePlan
 {
-    public class InfoGasUsageView : UserControl
+    public class GasUsageView : UserControl
     {
-        public InfoGasUsageView()
+        public GasUsageView()
         {
             InitializeComponent();
         }

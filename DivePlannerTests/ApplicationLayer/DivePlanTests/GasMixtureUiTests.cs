@@ -8,7 +8,7 @@ namespace DivePlannerTests
 {
     public class GasMixtureUiTests
     {
-        //TODO validate this view model's ranges
+        //TODO AH validate this view model's ranges
         private PlanGasMixtureViewModel _gasMixtureViewModel = new PlanGasMixtureViewModel();
 
         [Fact]
@@ -89,13 +89,12 @@ namespace DivePlannerTests
             Assert.False(canExecute);
         }
 
-        //TODO update this view model with the oxygen starved parts
         [Theory]
         [InlineData(0, 0, 101, "Helium")]
         [InlineData(100, 0, -1, "Negative Helium")]
         [InlineData(101, 0, 0, "O2")]
-        //[InlineData(1,99,0,"Oxygen Starved")]
-        //[InlineData(4,96,0,"Oxygen Starved 2")]
+        [InlineData(1,99,0,"Oxygen Starved")]
+        [InlineData(4,96,0,"Oxygen Starved 2")]
         [InlineData(-1, 0, 100, "Negative Oxygen")]
         public async void GasMixtureLimitsTest(double oxygen, double nitrogen, double helium, string gasName)
         {
