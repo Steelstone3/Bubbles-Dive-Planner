@@ -102,21 +102,6 @@ namespace DivePlannerTests
             //Assert.Equal(false, canExecute);
         }
 
-        [Theory(Skip="Not sure if wanted behaviour")]
-        [InlineData(-1, 20)]
-        [InlineData(300, -50)]
-        public void GasUsageLimitsTest(int gasRemaining, int gasUsedForStep)
-        {
-            //Arrange
-            _gasManagement.GasRemaining = gasRemaining;
-            _gasManagement.GasUsedForStep = gasUsedForStep;
-
-            //Act
-            //TODO AH Allow x < 0 for either gas remaining or used?
-
-            //Assert
-        }
-
         [Fact]
         public void GasManagementVisiblityTest()
         {
