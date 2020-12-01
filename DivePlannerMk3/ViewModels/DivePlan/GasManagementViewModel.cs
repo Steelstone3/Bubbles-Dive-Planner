@@ -1,6 +1,5 @@
 ﻿using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Controllers;
-using DivePlannerMk3.Models;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan

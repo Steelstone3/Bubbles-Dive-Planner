@@ -1,7 +1,6 @@
 using Xunit;
 using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.Models;
-using DivePlannerMk3.Controllers;
+using System.Collections.Generic;
 
 namespace DivePlannerTests
 {
@@ -9,43 +8,69 @@ namespace DivePlannerTests
     {
         private GasManagementViewModel _gasManagement = new GasManagementViewModel();
 
-        [Fact(Skip="Test needs seperating into seperate unit tests")]
-        public void RaisePropertyChangedTests()
+        [Fact]
+        public void RaisePropertyChangedCylinderVolumeTests()
         {
-             //Arrange
-            string cylinderVolumeEvent = "Not Fired";
-            string cylinderPressureEvent = "Not Fired";
-            string initialGasEvent = "Not Fired";
-            string gasRemainingEvent = "Not Fired";
-            string gasUsedEvent = "Not Fired";
-            string sacRateEvent = "Not Fired";
+            //Arrange
+            var cylinderVolumeEvent = "Not Fired";
 
             //AAA
             _gasManagement.PropertyChanged += ((sender, e) => cylinderVolumeEvent = e.PropertyName);
             _gasManagement.CylinderVolume = 10;
             Assert.Equal(nameof(_gasManagement.CylinderVolume), cylinderVolumeEvent);
+        }
+
+        [Fact]
+        public void RaisePropertyChangedCylinderPressureTests()
+        {
+            string cylinderPressureEvent = "Not Fired";
 
             //AAA
             _gasManagement.PropertyChanged += ((sender, e) => cylinderPressureEvent = e.PropertyName);
             _gasManagement.CylinderPressure = 200;
             Assert.Equal(nameof(_gasManagement.CylinderPressure), cylinderPressureEvent);
+        }
+
+        [Fact]
+        public void RaisePropertyGasRemainingVolumeTests()
+        {
+            string gasRemainingEvent = "Not Fired";
 
             //AAA
             _gasManagement.PropertyChanged += ((sender, e) => gasRemainingEvent = e.PropertyName);
             _gasManagement.GasRemaining = 2000;
             Assert.Equal(nameof(_gasManagement.GasRemaining), gasRemainingEvent);
-            
+        }
+
+        [Fact]
+        public void RaisePropertyGasUsedVolumeTests()
+        {
+            var gasUsedEvents = new List<string>();
+
             //AAA
-            _gasManagement.PropertyChanged += ((sender, e) => gasUsedEvent = e.PropertyName);
+            _gasManagement.PropertyChanged += ((sender, e) => gasUsedEvents.Add( e.PropertyName));
             _gasManagement.GasUsedForStep = 200;
-            Assert.Equal(nameof(_gasManagement.GasUsedForStep), gasUsedEvent);
-            
+            Assert.Equal(nameof(_gasManagement.GasUsedForStep), gasUsedEvents[0]);
+            Assert.Equal(nameof(_gasManagement.GasRemaining), gasUsedEvents[1]);
+        }
+
+        [Fact]
+        public void RaisePropertyChangedSurfaceAirConsumptionRateTests()
+        {
+            string sacRateEvent = "Not Fired";
+
             //AAA
             _gasManagement.PropertyChanged += ((sender, e) => sacRateEvent = e.PropertyName);
             _gasManagement.SacRate = 12;
             Assert.Equal(nameof(_gasManagement.SacRate), sacRateEvent);
+        }
 
-              //AAA
+        [Fact]
+        public void RaisePropertyChangedInitialGasVolumeTests()
+        {
+            string initialGasEvent = "Not Fired";
+
+            //AAA
             _gasManagement.PropertyChanged += ((sender, e) => initialGasEvent = e.PropertyName);
             _gasManagement.InitialCylinderTotalVolume = 4000;
             Assert.Equal(nameof(_gasManagement.InitialCylinderTotalVolume), initialGasEvent);
@@ -61,7 +86,7 @@ namespace DivePlannerTests
             _gasManagement.CylinderVolume = cylinderVolume;
             _gasManagement.CylinderPressure = cylinderPressure;
             _gasManagement.SacRate = sacRate;
-            
+
             _gasManagement.GasUsedForStep = gasUsedForStep;
 
             //Assert
@@ -75,7 +100,7 @@ namespace DivePlannerTests
 
 
 
-        [Theory(Skip="Composite can execute command needs to be created, Can execute command needs to be created")]
+        [Theory(Skip = "Composite can execute command needs to be created, Can execute command needs to be created")]
         [InlineData(0, 11, 49)]
         [InlineData(16, 31, 301)]
         public void GasManagementModelLimitsTests(int cylinderVolume, int sacRate, int cylinderPressure)
@@ -88,7 +113,7 @@ namespace DivePlannerTests
             //TODO AH use range attribute on sac rate
 
             //TODO AH provide a range between 50 and 300 for Cylinder Pressure
-            
+
             //Arrange
             _gasManagement.CylinderPressure = cylinderPressure;
             _gasManagement.CylinderVolume = cylinderVolume;
