@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
-using DivePlannerMk3.Controllers.ModelConverters;
+using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Models;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
-    public class PlanGasMixtureViewModel : ViewModelBase
+    public class GasMixtureSelectorViewModel : ViewModelBase
     {
-        public PlanGasMixtureViewModel()
+        public GasMixtureSelectorViewModel()
         {
             AddGasMixtureCommand = ReactiveCommand.Create(AddGasMixture, CanAddGasMixture);
             SetDefaults();
         }
 
-        public ObservableCollection<GasMixtureModel> GasMixtures
+        public ObservableCollection<IGasMixtureModel> GasMixtures
         {
             get;
-        } = new ObservableCollection<GasMixtureModel>();
+        } = new ObservableCollection<IGasMixtureModel>();
 
-        private GasMixtureModel _selectedGasMixture;
-        public GasMixtureModel SelectedGasMixture
+        private IGasMixtureModel _selectedGasMixture = new GasMixtureViewModel();
+        public IGasMixtureModel SelectedGasMixture
         {
             get => _selectedGasMixture;
             set
@@ -65,9 +65,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         private void AddGasMixture()
         {
-            //Add to gas mixtures list
-            var gasMixtureModelConverter = new GasMixtureModelConverter();
-            GasMixtures.Add(gasMixtureModelConverter.ConvertToModel(NewGasMixture));
+            GasMixtures.Add(NewGasMixture);
         }
 
         private void SetDefaults()

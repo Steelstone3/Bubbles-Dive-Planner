@@ -1,10 +1,17 @@
 using DivePlannerMk3.Contracts;
+using DivePlannerMk3.Controllers.DiveInformationControllers;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
     public class DiveStepViewModel : ViewModelBase, IDiveStepModel
     {
+        public DiveStepViewModel()
+        {
+            //subscribe to event
+
+        }
+
         private int _depth;
         public int Depth 
         { 
@@ -24,6 +31,14 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         {
             get => _maximumOperatingDepth;
             set => this.RaiseAndSetIfChanged(ref _maximumOperatingDepth, value);
+        }
+
+        private void UpdateMaximumOperatingDepth(double oxygen)
+        {
+            var controller = new DiveBounderiesController();
+
+            //TODO AH populate parameter from event arguments
+            MaximumOperatingDepth = controller.CalculateMaximumOperatingDepth(oxygen);
         }
     }
 }

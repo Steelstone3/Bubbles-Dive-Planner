@@ -1,5 +1,4 @@
-﻿using System;
-using DivePlannerMk3.Contracts;
+﻿using DivePlannerMk3.Contracts;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
@@ -33,7 +32,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                 _oxygen = value;
                 this.RaisePropertyChanged(nameof(Oxygen));
                 Nitrogen = CalculateNitrogen();
-                //TODO AH Update the max operating depth when this is set
+                //TODO AH send message to dive plan view model
             }
         }
 

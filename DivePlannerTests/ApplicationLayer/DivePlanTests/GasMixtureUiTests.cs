@@ -12,7 +12,7 @@ namespace DivePlannerTests
         //TODO AH test for raise property changed event on view model
         //TODO AH test Nitrogen is calculated correctly for new gas mixtures on view model
 
-        private PlanGasMixtureViewModel _gasMixtureViewModel = new PlanGasMixtureViewModel();
+        private GasMixtureSelectorViewModel _gasMixtureViewModel = new GasMixtureSelectorViewModel();
 
         [Fact]
         public void HasAtLeastOneGasMixtureTest()
@@ -83,18 +83,15 @@ namespace DivePlannerTests
         public async void GasMixtureLimitsTest(double oxygen, double nitrogen, double helium, string gasName)
         {
             //Arrange
-            var gasConverter = new GasMixtureModelConverter();
-
-            var gasMix = new GasMixtureModel()
+            var gasMix = new GasMixtureViewModel()
             {
                 GasName = gasName,
                 Oxygen = oxygen,
                 Helium = helium,
-                Nitrogen = nitrogen,
             };
 
             //Act
-            _gasMixtureViewModel.NewGasMixture = gasConverter.ConvertToViewModel(gasMix);
+            _gasMixtureViewModel.NewGasMixture = gasMix;
 
             var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
 
