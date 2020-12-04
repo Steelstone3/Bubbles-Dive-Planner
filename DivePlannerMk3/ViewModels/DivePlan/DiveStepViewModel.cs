@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
-    public class PlanDiveStepViewModel : ViewModelBase, IDiveStepModel
+    public class DiveStepViewModel : ViewModelBase, IDiveStepModel
     {
         private int _depth;
         public int Depth 
@@ -17,6 +17,13 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         { 
             get => _time;
             set => this.RaiseAndSetIfChanged(ref _time, value);
+        }
+
+        private double _maximumOperatingDepth;
+        public double MaximumOperatingDepth
+        {
+            get => _maximumOperatingDepth;
+            set => this.RaiseAndSetIfChanged(ref _maximumOperatingDepth, value);
         }
     }
 }

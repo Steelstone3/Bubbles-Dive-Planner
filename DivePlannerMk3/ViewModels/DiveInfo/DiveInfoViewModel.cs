@@ -16,8 +16,8 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _decompressionProfile, value);
         }
 
-        private InfoDiveBoundariesViewModel _diveBoundaries = new InfoDiveBoundariesViewModel();
-        public InfoDiveBoundariesViewModel DiveBoundaries
+        private DiveBoundariesViewModel _diveBoundaries = new DiveBoundariesViewModel();
+        public DiveBoundariesViewModel DiveBoundaries
         {
             get => _diveBoundaries;
             set => this.RaiseAndSetIfChanged(ref _diveBoundaries, value);

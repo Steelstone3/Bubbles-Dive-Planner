@@ -7,10 +7,12 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class CurrentDiveResultsUiTests
+    public class DiveResultsUiTests
     {
         private Zhl16Buhlmann _diveModel = new Zhl16Buhlmann();
         private DiveResultsModel _results = new DiveResultsModel();
+
+        //TODO AH Test to check raise property changed on the results view model
 
         private DiveProfile _diveProfile = new DiveProfile()
         {

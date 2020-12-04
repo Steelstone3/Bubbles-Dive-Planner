@@ -18,8 +18,6 @@
         </StackPanel>
 
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="4" Text="Maximum Operating Depth (m):" />
-            <TextBlock Margin="4" Text="{Binding DiveInfo.DiveBoundaries.MaximumOperatingDepth}" />
             <TextBlock Margin="4" Text="Ceiling (m):" />
             <TextBlock Margin="4" Text="{Binding DiveInfo.DiveBoundaries.DiveCeiling}" />
         </StackPanel>

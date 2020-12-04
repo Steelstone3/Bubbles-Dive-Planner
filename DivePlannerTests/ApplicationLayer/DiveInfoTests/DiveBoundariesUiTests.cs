@@ -1,35 +1,22 @@
 using Xunit;
+using DivePlannerMk3.ViewModels.DiveInfo;
+using DivePlannerMk3.Controllers.DiveInformationControllers;
+using DivePlannerMk3.ViewModels.DivePlan;
 
 namespace DivePlannerTests
 {
     public class DiveBoundariesUiTests
     {
-        [Fact(Skip = "Needs implementing")]
+        private DiveBoundariesViewModel _diveBoundaries = new DiveBoundariesViewModel();
+
+        [Fact]
         public void DiveBoundariesModelCanBeSetTest()
         {
-            //Arrange
-
             //Act
+            _diveBoundaries.DiveCeiling = 10;
 
             //Assert
-        }
-
-        [Fact(Skip = "Need to implement test")]
-        public void MaxOperatingDepthRaisePropertyChangedTest()
-        {
-
-        }
-
-        [Fact(Skip = "Need to implement test")]
-        public void MaxDepthChangesOnGasChangeTest()
-        {
-
-        }
-
-        [Fact(Skip = "Need to implement test")]
-        public void MaxOperatingDepthCalculatedCorrectlyTest()
-        {
-
+            Assert.Equal(10, _diveBoundaries.DiveCeiling);
         }
     }
 }

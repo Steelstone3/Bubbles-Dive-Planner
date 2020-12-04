@@ -9,6 +9,9 @@ namespace DivePlannerTests
     public class GasMixtureUiTests
     {
         //TODO AH validate this view model's ranges
+        //TODO AH test for raise property changed event on view model
+        //TODO AH test Nitrogen is calculated correctly for new gas mixtures on view model
+
         private PlanGasMixtureViewModel _gasMixtureViewModel = new PlanGasMixtureViewModel();
 
         [Fact]
@@ -45,6 +48,7 @@ namespace DivePlannerTests
             Assert.Equal(2, _gasMixtureViewModel.GasMixtures.Count);
         }
 
+        //TODO AH change to a view model and check correct nitrogen
         [Fact]
         public void GasMixtureCanBeSetTest()
         {
@@ -54,6 +58,7 @@ namespace DivePlannerTests
                 GasName = "Bob",
                 Oxygen = 50,
                 Helium = 30,
+                //TODO AH reconsider the use of set for nitrogen
                 Nitrogen = 20,
             };
 
@@ -64,32 +69,11 @@ namespace DivePlannerTests
             Assert.Equal(gasMix, _gasMixtureViewModel.SelectedGasMixture);
         }
 
+        //TODO AH here put a test relating to raise property changed
+
         [Theory]
         [InlineData(25, -5, 80, "Loads of Helium")]
         [InlineData(80, -5, 25, "Loads of Oxygen")]
-        public async void GasMixtureCanNotBeOver100PercentTest(double oxygen, double nitrogen, double helium, string gasName)
-        {
-            //Arrange
-            var gasConverter = new GasMixtureModelConverter();
-
-            var gasMix = new GasMixtureModel()
-            {
-                GasName = gasName,
-                Oxygen = oxygen,
-                Helium = helium,
-                Nitrogen = nitrogen,
-            };
-
-            //Act
-            _gasMixtureViewModel.NewGasMixture = gasConverter.ConvertToViewModel(gasMix);
-
-            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
-
-            //Assert
-            Assert.False(canExecute);
-        }
-
-        [Theory]
         [InlineData(0, 0, 101, "Helium")]
         [InlineData(100, 0, -1, "Negative Helium")]
         [InlineData(101, 0, 0, "O2")]

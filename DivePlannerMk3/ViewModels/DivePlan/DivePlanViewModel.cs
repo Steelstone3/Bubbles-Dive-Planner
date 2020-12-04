@@ -21,8 +21,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             set => this.RaiseAndSetIfChanged(ref _diveModelSelector, value);
         }
 
-        private PlanDiveStepViewModel _diveStep = new PlanDiveStepViewModel();
-        public PlanDiveStepViewModel DiveStep
+        private DiveStepViewModel _diveStep = new DiveStepViewModel();
+        public DiveStepViewModel DiveStep
         {
             get => _diveStep;
             set => this.RaiseAndSetIfChanged(ref _diveStep, value);
@@ -56,6 +56,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         private void UpdateUsedParameters(DiveParametersResultViewModel diveParameterResults)
         {
+            //TODO AH put the converter in the update parameters used method on the dive service...
+            //TODO AH or just output the viewmodel
             var converter = new DiveParametersResultModelConverter();
             diveParameterResults = converter.ConvertToViewModel(_diveProfileService.UpdateParametersUsed(DiveStep, GasMixture.SelectedGasMixture, GasManagement));
         }
