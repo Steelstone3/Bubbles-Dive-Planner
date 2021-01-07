@@ -7,8 +7,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 {
     public class DivePlanViewModel : ViewModelBase
     {
-        private PlanGasMixtureViewModel _gasMixture = new PlanGasMixtureViewModel();
-        public PlanGasMixtureViewModel GasMixture
+        private GasMixtureSelectorViewModel _gasMixture = new GasMixtureSelectorViewModel();
+        public GasMixtureSelectorViewModel GasMixture
         {
             get => _gasMixture;
             set => this.RaiseAndSetIfChanged(ref _gasMixture, value);
@@ -21,8 +21,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             set => this.RaiseAndSetIfChanged(ref _diveModelSelector, value);
         }
 
-        private PlanDiveStepViewModel _diveStep = new PlanDiveStepViewModel();
-        public PlanDiveStepViewModel DiveStep
+        private DiveStepViewModel _diveStep = new DiveStepViewModel();
+        public DiveStepViewModel DiveStep
         {
             get => _diveStep;
             set => this.RaiseAndSetIfChanged(ref _diveStep, value);
@@ -51,11 +51,13 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         private void CalculateDiveSteps(DiveResultsViewModel diveResults)
         {
-            diveResults.DiveProfileResults.Add(_diveProfileService.RunDiveStep(DiveStep, GasMixture.SelectedGasMixture) );
+            diveResults.DiveProfileResults.Add(_diveProfileService.RunDiveStep(DiveStep, GasMixture.SelectedGasMixture));
         }
 
         private void UpdateUsedParameters(DiveParametersResultViewModel diveParameterResults)
         {
+            //TODO AH put the converter in the update parameters used method on the dive service...
+            //TODO AH or just output the viewmodel/ interface
             var converter = new DiveParametersResultModelConverter();
             diveParameterResults = converter.ConvertToViewModel(_diveProfileService.UpdateParametersUsed(DiveStep, GasMixture.SelectedGasMixture, GasManagement));
         }

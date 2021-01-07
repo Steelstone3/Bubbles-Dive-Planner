@@ -3,18 +3,18 @@ using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
-    public class PlanDiveStepViewModel : ViewModelBase, IDiveStepModel
+    public class DiveStepViewModel : ViewModelBase, IDiveStepModel
     {
         private int _depth;
-        public int Depth 
-        { 
+        public int Depth
+        {
             get => _depth;
             set => this.RaiseAndSetIfChanged(ref _depth, value);
         }
 
         private int _time;
         public int Time
-        { 
+        {
             get => _time;
             set => this.RaiseAndSetIfChanged(ref _time, value);
         }

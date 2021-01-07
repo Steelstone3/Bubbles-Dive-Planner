@@ -13,9 +13,9 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             IsUiVisible = false;
         }
 
-        public ObservableCollection<PlanDiveStepViewModel> DecoDiveSteps
+        public ObservableCollection<DiveStepViewModel> DecoDiveSteps
         {
             get;
-        } = new ObservableCollection<PlanDiveStepViewModel>();
+        } = new ObservableCollection<DiveStepViewModel>();
     }
 }

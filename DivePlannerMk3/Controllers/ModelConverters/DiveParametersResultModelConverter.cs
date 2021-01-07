@@ -20,6 +20,7 @@ namespace DivePlannerMk3.Controllers.ModelConverters
             };
         }
 
+        //TODO AH Could use an interface
         public DiveParametersResultViewModel ConvertToViewModel(DiveParametersOutputModel model)
         {
             return new DiveParametersResultViewModel
