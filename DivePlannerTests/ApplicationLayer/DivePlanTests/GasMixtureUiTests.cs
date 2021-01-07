@@ -1,5 +1,5 @@
 using System.Reactive.Linq;
-using DivePlannerMk3.Controllers.ModelConverters;
+using DivePlannerMk3.Controllers;
 using DivePlannerMk3.Models;
 using DivePlannerMk3.ViewModels.DivePlan;
 using Xunit;
@@ -72,15 +72,15 @@ namespace DivePlannerTests
         //TODO AH here put a test relating to raise property changed
 
         [Theory]
-        [InlineData(25, -5, 80, "Loads of Helium")]
-        [InlineData(80, -5, 25, "Loads of Oxygen")]
-        [InlineData(0, 0, 101, "Helium")]
-        [InlineData(100, 0, -1, "Negative Helium")]
-        [InlineData(101, 0, 0, "O2")]
-        [InlineData(1,99,0,"Oxygen Starved")]
-        [InlineData(4,96,0,"Oxygen Starved 2")]
-        [InlineData(-1, 0, 100, "Negative Oxygen")]
-        public async void GasMixtureLimitsTest(double oxygen, double nitrogen, double helium, string gasName)
+        [InlineData(25, 80, "Loads of Helium")]
+        [InlineData(80, 25, "Loads of Oxygen")]
+        [InlineData(0, 101, "Helium")]
+        [InlineData(100, -1, "Negative Helium")]
+        [InlineData(101, 0, "O2")]
+        [InlineData(1,0,"Oxygen Starved")]
+        [InlineData(4,0,"Oxygen Starved 2")]
+        [InlineData(-1, 100, "Negative Oxygen")]
+        public async void GasMixtureLimitsTest(double oxygen, double helium, string gasName)
         {
             //Arrange
             var gasMix = new GasMixtureViewModel()

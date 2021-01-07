@@ -1,6 +1,5 @@
 using Xunit;
 using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.Controllers.DiveInformationControllers;
 
 namespace DivePlannerTests
 {
@@ -16,12 +15,12 @@ namespace DivePlannerTests
             //Act
             _diveStep.Depth = 10;
             _diveStep.Time = 50;
-            _diveStep.MaximumOperatingDepth = 55;
+            //_diveStep.MaximumOperatingDepth = 55;
 
             //Assert
             Assert.Equal(10, _diveStep.Depth);
             Assert.Equal(50, _diveStep.Time);
-            Assert.Equal(55, _diveStep.MaximumOperatingDepth);
+            //Assert.Equal(55, _diveStep.MaximumOperatingDepth);
         }
 
         [Fact(Skip = "Depth should not be allowed to exceed max operating depth, time and depth should both have reasonable ranges")]
@@ -70,51 +69,6 @@ namespace DivePlannerTests
 
             //Assert
             Assert.Equal(nameof(_diveStep.Time), timeEvent);
-        }
-
-        [Fact]
-        public void MaxOperatingDepthRaisePropertyChangedTest()
-        {
-            //Arrange
-            string maxOperatingDepthEvent = "Not Fired";
-            _diveStep.PropertyChanged += ((sender, e) => maxOperatingDepthEvent = e.PropertyName);
-
-            //Act
-            _diveStep.MaximumOperatingDepth = 200;
-
-            //Assert
-            Assert.Equal(nameof(_diveStep.MaximumOperatingDepth), maxOperatingDepthEvent);
-        }
-
-        [Fact(Skip="The last test that needs to be sorted for MOD")]
-        public void MaxDepthChangesOnGasChangeTest()
-        {
-            //Arrange
-            var gasMix = new GasMixtureViewModel();
-
-            string maxOperatingDepthEvent = "Not Fired";
-            _diveStep.PropertyChanged += ((sender, e) => maxOperatingDepthEvent = e.PropertyName);
-
-            //Act
-            gasMix.Oxygen = 34;
-
-            //Assert
-            Assert.Equal(nameof(_diveStep.MaximumOperatingDepth), maxOperatingDepthEvent);
-        }
-
-        [Theory]
-        [InlineData(21, 56.67)]
-        [InlineData(100, 4)]
-        public void MaxOperatingDepthCalculatedCorrectlyTest(double oxygenPercentage, double expectedDepth)
-        {
-            //Arrange
-            var diveBoundariesController = new DiveBounderiesController();
-
-            //Act
-            _diveStep.MaximumOperatingDepth = diveBoundariesController.CalculateMaximumOperatingDepth(oxygenPercentage);
-
-            //Assert
-            Assert.Equal(expectedDepth, _diveStep.MaximumOperatingDepth);
         }
     }
 }

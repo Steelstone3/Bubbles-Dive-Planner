@@ -30,9 +30,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             set
             {
                 _oxygen = value;
-                this.RaisePropertyChanged(nameof(Oxygen));
                 Nitrogen = CalculateNitrogen();
-                //TODO AH send message to dive plan view model
+                this.RaisePropertyChanged(nameof(Oxygen));
             }
         }
 
@@ -43,8 +42,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             set
             {
                 _helium = value;
-                this.RaisePropertyChanged(nameof(Helium));
                 Nitrogen = CalculateNitrogen();
+                this.RaisePropertyChanged(nameof(Helium));
             }
         }
 
@@ -52,11 +51,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         public double Nitrogen
         {
             get => _nitrogen;
-            private set
-            {
-                _nitrogen = value;
-                this.RaisePropertyChanged(nameof(Nitrogen));
-            }
+            private set => this.RaiseAndSetIfChanged(ref _nitrogen, value);
         }
 
         private double CalculateNitrogen() => 100 - Oxygen - Helium;

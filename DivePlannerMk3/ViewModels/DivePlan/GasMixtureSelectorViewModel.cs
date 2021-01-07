@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Reactive;
 using DivePlannerMk3.Contracts;
+using DivePlannerMk3.Controllers;
 using DivePlannerMk3.Models;
 using ReactiveUI;
 
@@ -9,10 +10,20 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 {
     public class GasMixtureSelectorViewModel : ViewModelBase
     {
+        DiveBounderiesController _diveBoundariesController;
+
         public GasMixtureSelectorViewModel()
         {
             AddGasMixtureCommand = ReactiveCommand.Create(AddGasMixture, CanAddGasMixture);
+            _diveBoundariesController = new DiveBounderiesController();
             SetDefaults();
+        }
+
+        private double _maximumOperatingDepth;
+        public double MaximumOperatingDepth
+        {
+           get => _maximumOperatingDepth;
+           set => this.RaiseAndSetIfChanged(ref _maximumOperatingDepth, value);
         }
 
         public ObservableCollection<IGasMixtureModel> GasMixtures
@@ -29,6 +40,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                 if (_selectedGasMixture != value)
                 {
                     _selectedGasMixture = value;
+                    MaximumOperatingDepth = UpdateMaximumOperatingDepth();
                     this.RaisePropertyChanged(nameof(SelectedGasMixture));
                 }
             }
@@ -58,9 +70,9 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             && helium + oxygen <= 100);
         }
 
-        public ReactiveCommand<Unit, Unit> AddGasMixtureCommand 
-        { 
-            get; 
+        public ReactiveCommand<Unit, Unit> AddGasMixtureCommand
+        {
+            get;
         }
 
         private void AddGasMixture()
@@ -75,5 +87,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
             GasMixtures.Add(defaultGasMixture);
         }
+
+        private double UpdateMaximumOperatingDepth() => _diveBoundariesController.CalculateMaximumOperatingDepth(_selectedGasMixture.Oxygen);
     }
 }

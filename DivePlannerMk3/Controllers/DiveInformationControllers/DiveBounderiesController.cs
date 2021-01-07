@@ -1,6 +1,6 @@
 using System;
 
-namespace DivePlannerMk3.Controllers.DiveInformationControllers
+namespace DivePlannerMk3.Controllers
 {
     public class DiveBounderiesController
     {

@@ -51,7 +51,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         private void CalculateDiveSteps(DiveResultsViewModel diveResults)
         {
-            diveResults.DiveProfileResults.Add(_diveProfileService.RunDiveStep(DiveStep, GasMixture.SelectedGasMixture) );
+            diveResults.DiveProfileResults.Add(_diveProfileService.RunDiveStep(DiveStep, GasMixture.SelectedGasMixture));
         }
 
         private void UpdateUsedParameters(DiveParametersResultViewModel diveParameterResults)
