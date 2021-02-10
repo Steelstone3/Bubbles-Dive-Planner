@@ -17,7 +17,7 @@
                 Text="Dive Model Selection" />
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="4" Text="Dive Model:" />
+            <TextBlock Margin="4" Text="Dive Model:" FontWeight="Bold" />
             <ComboBox
                 Margin="4"
                 Background="#FFFFFFFF"
