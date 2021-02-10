@@ -16,11 +16,11 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _decompressionProfile, value);
         }
 
-        private DiveBoundariesViewModel _diveBoundaries = new DiveBoundariesViewModel();
-        public DiveBoundariesViewModel DiveBoundaries
+        private DiveCeilingViewModel _diveCeilingViewModel = new DiveCeilingViewModel();
+        public DiveCeilingViewModel DiveCeilingViewModel
         {
-            get => _diveBoundaries;
-            set => this.RaiseAndSetIfChanged(ref _diveBoundaries, value);
+            get => _diveCeilingViewModel;
+            set => this.RaiseAndSetIfChanged(ref _diveCeilingViewModel, value);
         }
 
         private InfoDiveModelSelectedReadOnlyViewModel _infoDiveModelSelectedReadOnly = new InfoDiveModelSelectedReadOnlyViewModel();
@@ -38,7 +38,7 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
         private void UpdateUiVisibility()
         {
             InfoDiveModelSelectedReadOnly.IsUiVisible = true;
-            DiveBoundaries.IsUiVisible = true;
+            DiveCeilingViewModel.IsUiVisible = true;
 
             //TODO AH complexity to be added later true when user needs to decompress
             DecompressionProfile.IsUiVisible = true;

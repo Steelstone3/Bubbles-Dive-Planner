@@ -2,7 +2,7 @@ using System;
 
 namespace DivePlannerMk3.Controllers
 {
-    public class DiveBounderiesController
+    public class MaxOperatingDepthController
     {
         public double CalculateMaximumOperatingDepth(double oxygenPercentage)
         {
