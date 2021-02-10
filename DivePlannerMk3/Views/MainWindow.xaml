@@ -11,10 +11,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:DivePlannerMk3.ViewModels;assembly=DivePlannerMk3"
     Title="Kratos Dive Planner"
-    MinWidth="848"
+    MinWidth="1080"
     MinHeight="480"
-    d:DesignHeight="480"
-    d:DesignWidth="848"
+    d:DesignHeight="720"
+    d:DesignWidth="1000"
     Icon="/Assets/diveplanner-logo.ico"
     mc:Ignorable="d">
 
@@ -30,9 +30,9 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="300" />
+            <ColumnDefinition MinWidth="250" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition MinWidth="300" />
+            <ColumnDefinition MinWidth="250" />
         </Grid.ColumnDefinitions>
 
         <diveheaderuc:DiveHeaderFileHeaderView
