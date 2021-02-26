@@ -20,13 +20,13 @@
 
         <controls:StackPanel Margin="4,0" Background="#FFC3FDFF">
         
-            <TextBlock Margin="4" Text="Gas Name:" />
+            <TextBlock Margin="4" Text="Gas Name:" FontWeight="Bold"/>
             <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.NewGasMixture.GasName}" />
-            <TextBlock Margin="4" Text="Oxygen %:" />
+            <TextBlock Margin="4" Text="Oxygen %:" FontWeight="Bold"/>
             <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.NewGasMixture.Oxygen}" />
-            <TextBlock Margin="4" Text="Helium %:" />
+            <TextBlock Margin="4" Text="Helium %:" FontWeight="Bold"/>
             <TextBox Margin="4" Text="{Binding DivePlan.GasMixture.NewGasMixture.Helium}" />
-            <TextBlock Margin="4" Text="Nitrogen %:" />
+            <TextBlock Margin="4" Text="Nitrogen %:" FontWeight="Bold"/>
             <TextBlock Margin="4" Text="{Binding DivePlan.GasMixture.NewGasMixture.Nitrogen}" />
             
             <Button

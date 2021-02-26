@@ -17,11 +17,11 @@
         </StackPanel>
         <StackPanel>
             <StackPanel Margin="4,0" Background="#FFC3FDFF">
-                <TextBlock Margin="4" Text="Cylinder Volume (L):" />
+                <TextBlock Margin="4" Text="Cylinder Volume (L):" FontWeight="Bold" />
                 <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.CylinderVolume}" />
-                <TextBlock Margin="4" Text="Cylinder Pressure (Bar):" />
+                <TextBlock Margin="4" Text="Cylinder Pressure (Bar):" FontWeight="Bold" />
                 <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.CylinderPressure}" />
-                <TextBlock Margin="4" Text="SAC Rate (L/min):" />
+                <TextBlock Margin="4" Text="SAC Rate (L/min):" FontWeight="Bold" />
                 <TextBox Margin="4" Text="{Binding DivePlan.GasManagement.SacRate}" />
             </StackPanel>
         </StackPanel>
