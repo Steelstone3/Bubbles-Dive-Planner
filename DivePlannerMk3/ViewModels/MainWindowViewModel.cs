@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive;
 using DivePlannerMk3.Controllers;
 using DivePlannerMk3.ViewModels.DiveHeader;
@@ -65,8 +66,8 @@ namespace DivePlannerMk3.ViewModels
 
         private void RunDiveStep()
         {
-            DivePlan.CalculateDiveStep(DiveResults, DiveParametersResult);
-            DiveInfo.CalculateDiveStep();
+            DivePlan.CalculateDiveStep(DiveResults, DiveParametersResult);            
+            DiveInfo.CalculateDiveStep(DiveResults.DiveProfileResults.SelectMany(diveModel => diveModel.DiveProfileStepOutput.Select(x => x.ToleratedAmbientPressureResult)));
         }
     }
 }

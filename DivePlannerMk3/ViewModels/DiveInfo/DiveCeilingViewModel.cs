@@ -19,7 +19,7 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
         }
 
 //TODO AH Need to hook this in!
-        public void CalculateDiveCeiling(List<double> toleratedAmbientPressures)
+        public void CalculateDiveCeiling(IEnumerable<double> toleratedAmbientPressures)
         {
             var diveCeilingController = new DiveCeilingController();
 

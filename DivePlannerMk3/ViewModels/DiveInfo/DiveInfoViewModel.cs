@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveInfo
@@ -30,9 +31,10 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _infoDiveModelSelectedReadOnly, value);
         }
 
-        public void CalculateDiveStep()
+        public void CalculateDiveStep(IEnumerable<double> toleratedAmbientPressures)
         {
             UpdateUiVisibility();
+            DiveCeilingViewModel.CalculateDiveCeiling(toleratedAmbientPressures);
         }
 
         private void UpdateUiVisibility()
