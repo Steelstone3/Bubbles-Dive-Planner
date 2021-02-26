@@ -10,12 +10,12 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 {
     public class GasMixtureSelectorViewModel : ViewModelBase
     {
-        DiveBounderiesController _diveBoundariesController;
+        MaxOperatingDepthController _maxOperatingDepthController;
 
         public GasMixtureSelectorViewModel()
         {
             AddGasMixtureCommand = ReactiveCommand.Create(AddGasMixture, CanAddGasMixture);
-            _diveBoundariesController = new DiveBounderiesController();
+            _maxOperatingDepthController = new MaxOperatingDepthController();
             SetDefaults();
         }
 
@@ -88,6 +88,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             GasMixtures.Add(defaultGasMixture);
         }
 
-        private double UpdateMaximumOperatingDepth() => _diveBoundariesController.CalculateMaximumOperatingDepth(_selectedGasMixture.Oxygen);
+        private double UpdateMaximumOperatingDepth() => _maxOperatingDepthController.CalculateMaximumOperatingDepth(_selectedGasMixture.Oxygen);
     }
 }
