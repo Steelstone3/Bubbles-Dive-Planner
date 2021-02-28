@@ -31,7 +31,7 @@
                 Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.NitrogenHalfTime}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}" />
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -43,7 +43,7 @@
                 Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.HeliumHalfTime}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}" />
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -55,7 +55,7 @@
                 Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.AValuesNitrogen}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}" />                        
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />                        
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -67,7 +67,7 @@
                 Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.BValuesNitrogen}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>                        
-                        <TextBlock Text="{Binding}" />                       
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />                       
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -79,7 +79,7 @@
                 Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.AValuesHelium}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>                        
-                        <TextBlock Text="{Binding}" />                       
+                        <TextBlock FontWeight="Normal" Text="{Binding}" />                       
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox> 
@@ -91,7 +91,7 @@
                 Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.BValuesHelium}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}" /> 
+                        <TextBlock FontWeight="Normal" Text="{Binding}" /> 
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

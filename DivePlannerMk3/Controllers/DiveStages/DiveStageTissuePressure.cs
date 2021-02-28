@@ -1,6 +1,5 @@
 using System;
 using DivePlannerMk3.Contracts;
-using DivePlannerMK3.Contracts;
 
 namespace DivePlannerMk3.Controllers.DiveStages
 {

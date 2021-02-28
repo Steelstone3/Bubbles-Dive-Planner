@@ -1,4 +1,6 @@
-namespace DivePlannerMk3.Controllers.DiveStages
+using DivePlannerMk3.Contracts;
+
+namespace DivePlannerMk3.Controllers
 {
     public abstract class DiveStage : IDiveStage
     {

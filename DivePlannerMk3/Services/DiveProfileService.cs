@@ -1,7 +1,6 @@
 using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Models;
 using DivePlannerMk3.Services;
-using DivePlannerMK3.Contracts;
 
 namespace DivePlannerMk3.Controllers
 {

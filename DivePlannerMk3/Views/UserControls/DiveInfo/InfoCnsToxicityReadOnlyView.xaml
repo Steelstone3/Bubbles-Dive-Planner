@@ -20,6 +20,41 @@
 
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <!--Insert in here a table that represents CNS toxicity that is read only-->
+
+            <Expander Margin="0,4" Header="CNS Table ..." FontWeight="Bold">
+                <StackPanel>
+                    <ListBox
+                        Background="#FFC3FDFF"
+                        Items="{Binding DiveInfo.CnsToxicityViewModel.CnsToxicity.OxygenPartialPressureConstant }">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <ListBox
+                        Background="#FFC3FDFF"
+                        Items="{Binding DiveInfo.CnsToxicityViewModel.CnsToxicity.MaximumSingleDiveDuration }">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <ListBox
+                        Background="#FFC3FDFF"
+                        Items="{Binding DiveInfo.CnsToxicityViewModel.CnsToxicity.Total24HourDuration }">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>     
+            </Expander>
+
         </StackPanel>
 
     </StackPanel>

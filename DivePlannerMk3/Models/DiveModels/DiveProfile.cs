@@ -1,4 +1,4 @@
-using DivePlannerMK3.Contracts;
+using DivePlannerMk3.Contracts;
 using System.Collections.Generic;
 
 namespace DivePlannerMk3.Models

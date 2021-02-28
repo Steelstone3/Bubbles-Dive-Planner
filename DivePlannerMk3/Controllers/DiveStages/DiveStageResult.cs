@@ -1,7 +1,7 @@
 using DivePlannerMk3.Models;
 using DivePlannerMk3.Controllers.DiveStages;
-using DivePlannerMK3.Contracts;
 using System;
+using DivePlannerMk3.Contracts;
 
 namespace DivePlannerMk3.Controllers
 {

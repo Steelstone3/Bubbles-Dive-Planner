@@ -24,12 +24,11 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _diveCeilingViewModel, value);
         }
 
-        private CnsToxicityViewModel _cnsToxicityViewModel = new CnsToxicityViewModel();
+        //private CnsToxicityViewModel _cnsToxicityViewModel = new CnsToxicityViewModel();
         public CnsToxicityViewModel CnsToxicityViewModel
         {
-            get => _cnsToxicityViewModel;
-            set => this.RaiseAndSetIfChanged(ref _cnsToxicityViewModel, value);
-        }
+            get; set;
+        } = new CnsToxicityViewModel();
 
         private InfoDiveModelSelectedReadOnlyViewModel _infoDiveModelSelectedReadOnly = new InfoDiveModelSelectedReadOnlyViewModel();
         public InfoDiveModelSelectedReadOnlyViewModel InfoDiveModelSelectedReadOnly
