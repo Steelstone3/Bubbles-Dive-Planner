@@ -21,34 +21,41 @@
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <!--Insert in here a table that represents CNS toxicity that is read only-->
 
-            <Expander Margin="0,4" Header="CNS Table ..." FontWeight="Bold">
-                <StackPanel>
+            <Expander Margin="0" Header="CNS Table ..." FontWeight="Bold">
+                <StackPanel Orientation="Horizontal">
                     <ListBox
                         Background="#FFC3FDFF"
                         Items="{Binding DiveInfo.CnsToxicityViewModel.CnsToxicity.OxygenPartialPressureConstant }">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="PPO2: "/>
+                                    <TextBlock FontWeight="Normal" Text="{Binding}" />
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                     <ListBox
                         Background="#FFC3FDFF"
                         Items="{Binding DiveInfo.CnsToxicityViewModel.CnsToxicity.MaximumSingleDiveDuration }">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Dive: "/>
+                                    <TextBlock FontWeight="Normal" Text="{Binding}" />
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                     <ListBox
                         Background="#FFC3FDFF"
                         Items="{Binding DiveInfo.CnsToxicityViewModel.CnsToxicity.Total24HourDuration }">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="24H: "/>
+                                    <TextBlock FontWeight="Normal" Text="{Binding}" />
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

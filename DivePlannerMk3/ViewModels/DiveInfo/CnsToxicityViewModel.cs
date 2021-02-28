@@ -14,6 +14,6 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
         public CnsToxicityModel CnsToxicity
         {
             get; set;
-        }
+        } = new CnsToxicityModel();
     }
 }
