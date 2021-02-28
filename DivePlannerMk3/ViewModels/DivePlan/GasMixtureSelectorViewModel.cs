@@ -63,7 +63,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             vm => vm.NewGasMixture.Helium,
             (gasName, oxygen, helium) =>
             !string.IsNullOrEmpty(gasName)
-            && oxygen > 5.0
+            && oxygen >= 5.0
             && oxygen <= 100.0
             && helium >= 0.0
             && helium <= 100.0
