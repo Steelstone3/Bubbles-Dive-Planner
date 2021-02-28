@@ -66,7 +66,8 @@ namespace DivePlannerMk3.ViewModels
 
         private void RunDiveStep()
         {
-            DivePlan.CalculateDiveStep(DiveResults, DiveParametersResult);            
+            DivePlan.CalculateDiveStep(DiveResults);
+            DiveParametersResult = DivePlan.UpdateUsedParameters(DiveParametersResult);
             DiveInfo.CalculateDiveStep(DiveResults.DiveProfileResults.SelectMany(diveModel => diveModel.DiveProfileStepOutput.Select(x => x.ToleratedAmbientPressureResult)));
         }
     }

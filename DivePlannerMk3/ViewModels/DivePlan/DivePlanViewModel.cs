@@ -42,24 +42,23 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             _diveModelSelector = new PlanDiveModelSelectorViewModel(_diveProfileService);
         }
 
-        public void CalculateDiveStep(DiveResultsViewModel diveResults, DiveParametersResultViewModel diveParametersResult)
+        public void CalculateDiveStep(DiveResultsViewModel diveResults)
         {
             CalculateDiveSteps(diveResults);
-            UpdateUsedParameters(diveParametersResult);
             UpdateUiVisibility();
+        }
+
+        public DiveParametersResultViewModel UpdateUsedParameters(DiveParametersResultViewModel diveParameterResults)
+        {
+            //TODO AH put the converter in the update parameters used method on the dive service...
+            //TODO AH or just output the viewmodel/ interface
+            var converter = new DiveParametersResultModelConverter();
+            return converter.ConvertToViewModel(_diveProfileService.UpdateParametersUsed(DiveStep, GasMixture.SelectedGasMixture, GasManagement));
         }
 
         private void CalculateDiveSteps(DiveResultsViewModel diveResults)
         {
             diveResults.DiveProfileResults.Add(_diveProfileService.RunDiveStep(DiveStep, GasMixture.SelectedGasMixture));
-        }
-
-        private void UpdateUsedParameters(DiveParametersResultViewModel diveParameterResults)
-        {
-            //TODO AH put the converter in the update parameters used method on the dive service...
-            //TODO AH or just output the viewmodel/ interface
-            var converter = new DiveParametersResultModelConverter();
-            diveParameterResults = converter.ConvertToViewModel(_diveProfileService.UpdateParametersUsed(DiveStep, GasMixture.SelectedGasMixture, GasManagement));
         }
 
         private void UpdateUiVisibility()
