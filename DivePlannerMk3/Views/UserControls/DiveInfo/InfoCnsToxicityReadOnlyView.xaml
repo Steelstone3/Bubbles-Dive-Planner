@@ -19,7 +19,7 @@
         </StackPanel>
 
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="4" Text="Insert in here a table that represents CNS toxicity that is read only" />
+            <!--Insert in here a table that represents CNS toxicity that is read only-->
         </StackPanel>
 
     </StackPanel>

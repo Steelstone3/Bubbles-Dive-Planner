@@ -19,7 +19,7 @@
         </StackPanel>
 
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="4" Text="Step increment combo box 3, 6, 9 or 12. Seeded on gas changed read only items list of decompression steps (depth and time). Gas mix (user selected and read only) to be used by name (may want to stop duplicate names)" />
+            <!--Step increment combo box 3, 6, 9 or 12. Seeded on gas changed read only items list of decompression steps (depth and time). Gas mix (user selected and read only) to be used by name (may want to stop duplicate names)-->
             <Button
                 Margin="8,4"
                 HorizontalAlignment="Right"
