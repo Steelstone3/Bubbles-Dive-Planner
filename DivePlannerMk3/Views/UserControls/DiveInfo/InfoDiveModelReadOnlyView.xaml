@@ -21,7 +21,82 @@
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="4" Text="Dive Model:" FontWeight="Bold"/>
             <TextBlock Margin="4" Text="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.DiveModelName}" />
-           <TextBlock Margin="4" Text="Nitrogen and helium half time, (Constant) a and b values nitrogen and helium" />
+           
+            <TextBlock Margin="4" Text="Compartments:" FontWeight="Bold"/>
+            <TextBlock Margin="4,0" Text="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.CompartmentCount}" />
+                           
+            <Expander Margin="0,4" Header="Nitrogen Half Times ..." FontWeight="Bold">
+            <ListBox
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.NitrogenHalfTime}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+
+            <Expander Margin="0,4" Header="Helium Half Times ..." FontWeight="Bold">
+            <ListBox
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.HeliumHalfTime}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+            
+            <Expander Margin="0,4" Header="A Values Nitrogen ..." FontWeight="Bold">
+            <ListBox
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.AValuesNitrogen}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />                        
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+            
+            <Expander Margin="0,4" Header="B Values Nitrogen ..." FontWeight="Bold">
+            <ListBox
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.BValuesNitrogen}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>                        
+                        <TextBlock Text="{Binding}" />                       
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+
+            <Expander Margin="0,4" Header="A Values Helium ..." FontWeight="Bold">
+            <ListBox
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.AValuesHelium}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>                        
+                        <TextBlock Text="{Binding}" />                       
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox> 
+            </Expander>
+
+            <Expander Margin="0,4" Header="B Values Helium ..." FontWeight="Bold">
+            <ListBox
+                Background="#FFC3FDFF"
+                Items="{Binding DivePlan.DiveModelSelector.SelectedDiveModel.BValuesHelium}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" /> 
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            </Expander>
+
         </StackPanel>
 
     </StackPanel>
