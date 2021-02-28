@@ -22,7 +22,7 @@
                 Command="{Binding CalculateDiveStepCommand}"
                 IsEnabled="{Binding CanRunDiveStep}"
                 FontWeight="Bold"
-                Content="Calculate" />
+                Content="Calculate Dive Profile" />
         </StackPanel>
     </StackPanel>
 </UserControl>

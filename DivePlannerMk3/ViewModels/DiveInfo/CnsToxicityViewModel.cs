@@ -1,4 +1,6 @@
 using ReactiveUI;
+using DivePlannerMk3.Models;
+using System.Collections.Generic;
 
 namespace DivePlannerMk3.ViewModels.DiveInfo
 {
@@ -8,5 +10,10 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
         {
             IsUiVisible = false;
         }
+
+        public CnsToxicityModel CnsToxicity
+        {
+            get; set;
+        } = new CnsToxicityModel();
     }
 }

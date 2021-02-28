@@ -1,4 +1,7 @@
-public interface IDiveStage
+namespace DivePlannerMk3.Contracts
 {
-    void RunStage();
+    public interface IDiveStage
+    {
+        void RunStage();
+    }
 }

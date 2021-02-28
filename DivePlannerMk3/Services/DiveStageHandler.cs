@@ -1,7 +1,5 @@
 using DivePlannerMk3.Contracts;
-using DivePlannerMK3.Contracts;
 using DivePlannerMk3.Controllers;
-using DivePlannerMk3.ViewModels.DivePlan;
 using DivePlannerMk3.Controllers.DiveStages;
 using DivePlannerMk3.Models;
 

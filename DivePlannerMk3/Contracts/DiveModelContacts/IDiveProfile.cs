@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace DivePlannerMK3.Contracts
+namespace DivePlannerMk3.Contracts
 {
     public interface IDiveProfile
     {
