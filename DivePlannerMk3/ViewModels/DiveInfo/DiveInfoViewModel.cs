@@ -24,6 +24,13 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _diveCeilingViewModel, value);
         }
 
+        private CnsToxicityViewModel _cnsToxicityViewModel = new CnsToxicityViewModel();
+        public CnsToxicityViewModel CnsToxicityViewModel
+        {
+            get => _cnsToxicityViewModel;
+            set => this.RaiseAndSetIfChanged(ref _cnsToxicityViewModel, value);
+        }
+
         private InfoDiveModelSelectedReadOnlyViewModel _infoDiveModelSelectedReadOnly = new InfoDiveModelSelectedReadOnlyViewModel();
         public InfoDiveModelSelectedReadOnlyViewModel InfoDiveModelSelectedReadOnly
         {
@@ -41,6 +48,7 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
         {
             InfoDiveModelSelectedReadOnly.IsUiVisible = true;
             DiveCeilingViewModel.IsUiVisible = true;
+            CnsToxicityViewModel.IsUiVisible = true;
 
             //TODO AH complexity to be added later true when user needs to decompress
             DecompressionProfile.IsUiVisible = true;

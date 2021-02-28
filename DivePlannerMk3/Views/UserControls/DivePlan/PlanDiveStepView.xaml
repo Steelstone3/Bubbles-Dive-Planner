@@ -20,8 +20,6 @@
             <TextBox Margin="4" Text="{Binding DivePlan.DiveStep.Depth}" />
             <TextBlock Margin="4" Text="Time (min):" FontWeight="Bold"/>
             <TextBox Margin="4" Text="{Binding DivePlan.DiveStep.Time}" />
-            <TextBlock Margin="4" Text="Maximum Operating Depth (m):" FontWeight="Bold" />
-            <TextBlock Margin="4" Text="{Binding DivePlan.GasMixture.MaximumOperatingDepth}" />
         </StackPanel>
 
     </StackPanel>

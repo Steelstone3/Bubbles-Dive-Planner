@@ -20,6 +20,8 @@
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="4" Text="Ceiling (m):" FontWeight="Bold"/>
             <TextBlock Margin="4" Text="{Binding DiveInfo.DiveCeilingViewModel.DiveCeiling}" />
+            <TextBlock Margin="4" Text="Maximum Operating Depth (m):" FontWeight="Bold" />
+            <TextBlock Margin="4" Text="{Binding DivePlan.GasMixture.MaximumOperatingDepth}" />
         </StackPanel>
 
     </StackPanel>

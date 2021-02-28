@@ -7,13 +7,22 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-
     <StackPanel>
-        <Button
-            Margin="8,4"
-            HorizontalAlignment="Right"
-            Command="{Binding CalculateDiveStepCommand}"
-            IsEnabled="{Binding CanRunDiveStep}"
-            Content="Calculate Dive Profile" />
+        <StackPanel Background="#FF5D99C6">
+            <TextBlock
+                Margin="4"
+                FontSize="16"
+                FontWeight="DemiBold"
+                Text="Calculate Dive Profile" />
+        </StackPanel>
+        <StackPanel Margin="4,0" Background="#FFC3FDFF">
+            <Button
+                Margin="4"
+                HorizontalAlignment="Stretch"
+                Command="{Binding CalculateDiveStepCommand}"
+                IsEnabled="{Binding CanRunDiveStep}"
+                FontWeight="Bold"
+                Content="Calculate" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

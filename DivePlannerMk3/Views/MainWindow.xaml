@@ -55,12 +55,7 @@
                 <diveplanuc:PlanDiveModelSelectorView />
                 <diveplanuc:PlanDiveStepView />
                 <diveplanuc:PlanGasMixtureView />
-                <Expander
-                    Margin="4,0"
-                    Background="#FFC3FDFF"
-                    Header="Add Gas Mixtures ...">
-                    <diveplanuc:PlanAddGasMixtureView />
-                </Expander>
+                <diveplanuc:PlanAddGasMixtureView />
                 <diveplanuc:PlanGasManagementSetup />
                 <diveplanuc:GasUsageView />
                 <diveplanuc:PlanCalculateDiveStepView />
