@@ -17,6 +17,7 @@ namespace DivePlannerMk3.ViewModels
             _divePlan = new DivePlanViewModel(new DiveProfileService());
 
             CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
+            NewCommand = ReactiveCommand.Create(CreateNewDiveSession);
         }
 
         private DiveResultsViewModel _diveResults = new DiveResultsViewModel();
@@ -58,10 +59,15 @@ namespace DivePlannerMk3.ViewModels
         {
             get;
         }
-
+        
         public IObservable<bool> CanExecuteDiveStep
         {
             get => this.WhenAnyValue(vm => vm.DivePlan.GasMixture.SelectedGasMixture, vm => vm.DivePlan.DiveModelSelector.SelectedDiveModel, (selectedGasMixture, selectedDiveModel) => selectedGasMixture != null && selectedDiveModel != null);
+        }
+
+        public ReactiveCommand<Unit, Unit> NewCommand 
+        {
+            get;
         }
 
         private void RunDiveStep()
@@ -69,6 +75,15 @@ namespace DivePlannerMk3.ViewModels
             DivePlan.CalculateDiveStep(DiveResults);
             DiveParametersResult = DivePlan.UpdateUsedParameters(DiveParametersResult);
             DiveInfo.CalculateDiveStep(DiveResults.DiveProfileResults.SelectMany(diveModel => diveModel.DiveProfileStepOutput.Select(x => x.ToleratedAmbientPressureResult)));
+        }
+
+        private void CreateNewDiveSession()
+        {
+            DiveResults = new DiveResultsViewModel();
+            DiveParametersResult = new DiveParametersResultViewModel();
+            DivePlan = new DivePlanViewModel(new DiveProfileService());
+            DiveInfo = new DiveInfoViewModel();
+            DiveHeader = new DiveHeaderViewModel();
         }
     }
 }
