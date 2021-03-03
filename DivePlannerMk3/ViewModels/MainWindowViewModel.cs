@@ -3,7 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Reactive;
 using Avalonia.Controls;
+using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Controllers;
+using DivePlannerMk3.DataAccessLayer;
 using DivePlannerMk3.ViewModels.DiveHeader;
 using DivePlannerMk3.ViewModels.DiveInfo;
 using DivePlannerMk3.ViewModels.DivePlan;
@@ -115,11 +117,19 @@ namespace DivePlannerMk3.ViewModels
 
             //var jsonFile = JsonConvert.SerializeObject(this, Formatting.Indented);
 
-            var jsonFile = JsonConvert.SerializeObject(DiveResults, Formatting.Indented);
+            /*var jsonFile = JsonConvert.SerializeObject(DiveResults, Formatting.Indented);
             jsonFile += JsonConvert.SerializeObject(DiveParametersResult, Formatting.Indented);
             jsonFile += JsonConvert.SerializeObject(DivePlan, Formatting.Indented);
             jsonFile += JsonConvert.SerializeObject(DiveInfo, Formatting.Indented);
-            jsonFile += JsonConvert.SerializeObject(DiveHeader, Formatting.Indented);
+            jsonFile += JsonConvert.SerializeObject(DiveHeader, Formatting.Indented);*/
+
+            var jsonFile = string.Empty;
+            var dataConverters = CreateDataConverters();
+
+            foreach (var dataConverter in dataConverters)
+            {
+                jsonFile = dataConverter.ConvertModelToEntity();
+            }
 
             // File name  
             //string fileName = $"{homePath}{Path.DirectorySeparatorChar}{Path.DirectorySeparatorChar}DivePlan.json";
@@ -143,6 +153,14 @@ namespace DivePlannerMk3.ViewModels
             {
                 Console.Write(ex.Message);
             }
+        }
+
+        private IDataConverter[] CreateDataConverters()
+        {
+            return new IDataConverter[]
+            {
+                new DivePlanConverter(DivePlan),
+            };
         }
     }
 }
