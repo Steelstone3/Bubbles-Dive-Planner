@@ -19,7 +19,7 @@
             <Button
                 Margin="4"
                 HorizontalAlignment="Stretch"
-                Command="{Binding CalculateDiveStepCommand}"
+                Command="{Binding CalculateDiveStepCommand}" HotKey="Enter"
                 IsEnabled="{Binding CanRunDiveStep}"
                 FontWeight="Bold"
                 Content="Calculate Dive Profile" />
