@@ -10,7 +10,7 @@
     xmlns:diveresultuc="clr-namespace:DivePlannerMk3.Views.UserControls.DiveResult;assembly=DivePlannerMk3"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:DivePlannerMk3.ViewModels;assembly=DivePlannerMk3"
-    Title="Kratos Dive Planner"
+    Title="Bubbles Dive Planner"
     MinWidth="1080"
     MinHeight="480"
     d:DesignHeight="720"
