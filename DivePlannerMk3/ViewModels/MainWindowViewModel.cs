@@ -128,7 +128,7 @@ namespace DivePlannerMk3.ViewModels
 
             foreach (var dataConverter in dataConverters)
             {
-                jsonFile = dataConverter.ConvertModelToEntity();
+                jsonFile += dataConverter.ConvertModelToEntity();
             }
 
             // File name  

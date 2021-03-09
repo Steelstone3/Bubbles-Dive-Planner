@@ -22,7 +22,7 @@ namespace DivePlannerMk3.DataAccessLayer
         {
             var jsonFile = string.Empty;
 
-            jsonFile = Newtonsoft.Json.JsonConvert.SerializeObject(_divePlan.DiveModelSelector.SelectedDiveModel, Formatting.Indented);
+            jsonFile += SerialiseDiveModelSelector();
             jsonFile += Newtonsoft.Json.JsonConvert.SerializeObject(_divePlan.DiveStep, Formatting.Indented);
             jsonFile += Newtonsoft.Json.JsonConvert.SerializeObject(_divePlan.GasManagement, Formatting.Indented);
             jsonFile += Newtonsoft.Json.JsonConvert.SerializeObject(_divePlan.GasMixture.MaximumOperatingDepth, Formatting.Indented);
@@ -33,6 +33,11 @@ namespace DivePlannerMk3.DataAccessLayer
             jsonFile += Newtonsoft.Json.JsonConvert.SerializeObject(_divePlan.GasMixture.GasMixtures, Formatting.Indented);
 
             return jsonFile;
+        }
+
+        private string SerialiseDiveModelSelector()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(_divePlan.DiveModelSelector.SelectedDiveModel, Formatting.Indented);
         }
     }
 }
