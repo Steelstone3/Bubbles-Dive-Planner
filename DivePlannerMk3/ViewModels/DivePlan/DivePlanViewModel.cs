@@ -2,10 +2,13 @@
 using DivePlannerMk3.ViewModels.DiveResult;
 using ReactiveUI;
 using DivePlannerMk3.Controllers.ModelConverters;
+using DivePlannerMk3.DataAccessLayer.Converter;
+using DivePlannerMk3.DataAccessLayer.EntityModels;
+using Newtonsoft.Json;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
-    public class DivePlanViewModel : ViewModelBase
+    public class DivePlanViewModel : ViewModelBase//, IModelConverter
     {
         private GasMixtureSelectorViewModel _gasMixture = new GasMixtureSelectorViewModel();
         public GasMixtureSelectorViewModel GasMixture
@@ -70,6 +73,16 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
             GasManagement.IsUiVisible = false;
             GasManagement.IsUiEnabled = false;
+        }
+
+        public DivePlanEntityModel ModelToEntity()
+        {
+            return new DivePlanEntityModelConverter().ModelToEntity(this);
+        }
+
+        public void EntityToModel()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

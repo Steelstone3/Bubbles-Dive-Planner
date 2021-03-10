@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Controllers;
 using DivePlannerMk3.DataAccessLayer;
+using DivePlannerMk3.DataAccessLayer.Serialisers;
 using DivePlannerMk3.ViewModels.DiveHeader;
 using DivePlannerMk3.ViewModels.DiveInfo;
 using DivePlannerMk3.ViewModels.DivePlan;
@@ -31,13 +32,6 @@ namespace DivePlannerMk3.ViewModels
         {
             get => _diveResults;
             set => this.RaiseAndSetIfChanged(ref _diveResults, value);
-        }
-
-        private DiveParametersResultViewModel _diveParametersResult = new DiveParametersResultViewModel();
-        public DiveParametersResultViewModel DiveParametersResult
-        {
-            get => _diveParametersResult;
-            set => this.RaiseAndSetIfChanged(ref _diveParametersResult, value);
         }
 
         private DivePlanViewModel _divePlan;
@@ -84,19 +78,19 @@ namespace DivePlannerMk3.ViewModels
         private void RunDiveStep()
         {
             DivePlan.CalculateDiveStep(DiveResults);
-            DiveParametersResult = DivePlan.UpdateUsedParameters(DiveParametersResult);
+            DiveResults.DiveParametersResult = DivePlan.UpdateUsedParameters(DiveResults.DiveParametersResult);
             DiveInfo.CalculateDiveStep(DiveResults.DiveProfileResults.SelectMany(diveModel => diveModel.DiveProfileStepOutput.Select(x => x.ToleratedAmbientPressureResult)));
         }
 
         private void CreateNewDiveSession()
         {
             DiveResults = new DiveResultsViewModel();
-            DiveParametersResult = new DiveParametersResultViewModel();
             DivePlan = new DivePlanViewModel(new DiveProfileService());
             DiveInfo = new DiveInfoViewModel();
             DiveHeader = new DiveHeaderViewModel();
         }
 
+        //TODO AH this whole method needs breaking down and moving into a controller once the functionality is in
         private void SaveDivePlannerState()
         {
             //http://reference.avaloniaui.net/api/Avalonia.Controls/SaveFileDialog/
@@ -109,27 +103,18 @@ namespace DivePlannerMk3.ViewModels
             {
     
             }*/
+            
+            var divePlanEntity = DivePlan.ModelToEntity();
+            DiveInfo.ModelToEntity();
+            DiveResults.ModelToEntity();
+            DiveHeader.ModelToEntity();
 
             string homePath = (Environment.OSVersion.Platform == PlatformID.Unix ||
                 Environment.OSVersion.Platform == PlatformID.MacOSX)
                 ? Environment.GetEnvironmentVariable("HOME")
                 : Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
 
-            //var jsonFile = JsonConvert.SerializeObject(this, Formatting.Indented);
-
-            /*var jsonFile = JsonConvert.SerializeObject(DiveResults, Formatting.Indented);
-            jsonFile += JsonConvert.SerializeObject(DiveParametersResult, Formatting.Indented);
-            jsonFile += JsonConvert.SerializeObject(DivePlan, Formatting.Indented);
-            jsonFile += JsonConvert.SerializeObject(DiveInfo, Formatting.Indented);
-            jsonFile += JsonConvert.SerializeObject(DiveHeader, Formatting.Indented);*/
-
             var jsonFile = string.Empty;
-            var dataConverters = CreateDataConverters();
-
-            foreach (var dataConverter in dataConverters)
-            {
-                jsonFile += dataConverter.ConvertModelToEntity();
-            }
 
             // File name  
             //string fileName = $"{homePath}{Path.DirectorySeparatorChar}{Path.DirectorySeparatorChar}DivePlan.json";
@@ -138,7 +123,17 @@ namespace DivePlannerMk3.ViewModels
             {
                 using (StreamWriter writer = new StreamWriter(fileName))
                 {
-                    writer.Write(jsonFile);
+                    using (JsonWriter jsonWriter = new JsonTextWriter(writer))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+
+                        CreateDataConverters(serializer);
+                        CreateSerializerSettings(serializer);
+
+                        serializer.Converters[0].WriteJson(jsonWriter, divePlanEntity, serializer);
+                    }
+
+                    //writer.Write(jsonFile);
                 }
             }
             catch (UnauthorizedAccessException uaex)
@@ -155,12 +150,36 @@ namespace DivePlannerMk3.ViewModels
             }
         }
 
-        private IDataConverter[] CreateDataConverters()
+        private void CreateDataConverters(JsonSerializer serializer)
         {
-            return new IDataConverter[]
-            {
-                new DivePlanConverter(DivePlan),
-            };
+            serializer.Converters.Add(new DivePlanSerialiser());
         }
+
+        private void CreateSerializerSettings(JsonSerializer serializer)
+        {
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+        }
+
+        //TODO AH ****Consider potentially something like this (below)****
+        /*private void CreateEntityModels()
+        {
+            var modelConverters = CreateDataConverters();
+
+            foreach(var converter in modelConverters)
+            {
+                converter.EntityToModel();
+            }
+        }
+
+        private IModelConverter[] CreateDataConverters()
+        {
+            return new IModelConverter[]
+            {
+                DivePlan,
+                DiveInfo,
+                DiveResults,
+                DiveHeader,
+            };
+        }*/
     }
 }

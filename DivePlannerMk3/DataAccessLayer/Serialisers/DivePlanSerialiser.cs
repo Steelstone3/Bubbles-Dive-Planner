@@ -2,23 +2,26 @@ using DivePlannerMk3.Contracts;
 using DivePlannerMk3.ViewModels.DivePlan;
 using Newtonsoft.Json;
 
-namespace DivePlannerMk3.DataAccessLayer
+namespace DivePlannerMk3.DataAccessLayer.Serialisers
 {
-    public class DivePlanConverter : IDataConverter
+    public class DivePlanSerialiser : JsonConverter
     {
-        private DivePlanViewModel _divePlan;
-
-        public DivePlanConverter(DivePlanViewModel divePlan)
+        public override bool CanConvert(System.Type objectType)
         {
-            _divePlan = divePlan;
+            throw new System.NotImplementedException();
         }
 
-        public string ConvertModelToEntity()
+        public override object ReadJson(JsonReader reader, System.Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return SerialiseDiveDivePlan();
+            throw new System.NotImplementedException();
         }
 
-        private string SerialiseDiveDivePlan()
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            Newtonsoft.Json.JsonConvert.SerializeObject( value, Formatting.Indented);
+        }
+
+        /*private string SerialiseDiveDivePlan()
         {
             var jsonFile = string.Empty;
 
@@ -38,6 +41,6 @@ namespace DivePlannerMk3.DataAccessLayer
         private string SerialiseDiveModelSelector()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(_divePlan.DiveModelSelector.SelectedDiveModel, Formatting.Indented);
-        }
+        }*/
     }
 }
