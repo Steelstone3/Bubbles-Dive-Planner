@@ -38,7 +38,7 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="8,0"
-                Text="{Binding DiveParametersResult.DiveModelUsed}" />
+                Text="{Binding DiveResults.DiveParametersResult.DiveModelUsed}" />
 
             <TextBlock
                 Grid.Row="1"
@@ -48,7 +48,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="8,0"
-                Text="{Binding DiveParametersResult.Depth}" />
+                Text="{Binding DiveResults.DiveParametersResult.Depth}" />
             <TextBlock
                 Grid.Row="2"
                 Margin="8,0"
@@ -57,7 +57,7 @@
                 Grid.Row="2"
                 Grid.Column="1"
                 Margin="8,0"
-                Text="{Binding DiveParametersResult.Time}" />
+                Text="{Binding DiveResults.DiveParametersResult.Time}" />
             <TextBlock
                 Grid.Row="3"
                 Margin="8,0"
@@ -66,7 +66,7 @@
                 Grid.Row="3"
                 Grid.Column="1"
                 Margin="8,0"
-                Text="{Binding DiveParametersResult.GasName}" />
+                Text="{Binding DiveResults.DiveParametersResult.GasName}" />
         </Grid>
     </StackPanel>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using DivePlannerMk3.Contracts;
+﻿using System;
+using DivePlannerMk3.Contracts;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
@@ -55,5 +56,16 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         }
 
         private double CalculateNitrogen() => 100 - Oxygen - Helium;
+
+        public IGasMixtureModel Clone()
+        {
+            return new GasMixtureViewModel()
+            {
+                GasName = this.GasName,
+                Oxygen = this.Oxygen,
+                Helium = this.Helium,
+                Nitrogen = this.Nitrogen,
+            };
+        }
     }
 }
