@@ -1,7 +1,7 @@
 using DivePlannerMk3.DataAccessLayer.EntityModels;
 using DivePlannerMk3.ViewModels.DivePlan;
 
-namespace DivePlannerMk3.DataAccessLayer.Converter
+namespace DivePlannerMk3.DataAccessLayer.Converters
 {
     public class DivePlanEntityModelConverter
     {
@@ -22,6 +22,8 @@ namespace DivePlannerMk3.DataAccessLayer.Converter
             
             return _divePlanEntityModel;
         }
+
+        #region ModelToEntity
 
         private void DiveModelSelectorDataMappingToEntity(DivePlanViewModel divePlanViewModel)
         {
@@ -58,8 +60,15 @@ namespace DivePlannerMk3.DataAccessLayer.Converter
             _divePlanEntityModel.SelectedGasMixtureNitrogen = divePlanViewModel.GasMixture.SelectedGasMixture.Nitrogen;
             _divePlanEntityModel.SelectedGasMixtureOxygen = divePlanViewModel.GasMixture.SelectedGasMixture.Oxygen;
             
+            //TODO AH WORK OUT GAS MIXTURES
             //_divePlanEntityModel.GasMixtures.Add(divePlanViewModel.GasMixture.GasMixtures);
         }
+
+        #endregion
+
+        #region EntityToModel
+
+        #endregion
 
     }
 }
