@@ -1,8 +1,9 @@
 using DivePlannerMk3.Contracts;
+using DivePlannerMk3.Contracts.DataAccessContracts;
 
 namespace DivePlannerMk3.DataAccessLayer.EntityModels
 {
-    public class DivePlanEntityModel
+    public class DivePlanEntityModel : IEntityModel
     {
         public int CylinderPressure { get; set; }
         public int Depth { get; set; }
@@ -12,8 +13,6 @@ namespace DivePlannerMk3.DataAccessLayer.EntityModels
         public int GasUsedForStep { get; set; }
         public int InitialCylinderTotalVolume { get; set; }
         public int SacRate { get; set; }
-        
-        //TODO AH Should work based on IList
         public IDiveModel SelectedDiveModel { get; set; }
         public double MaximumOperatingDepth { get; set; }
         public string NewGasMixtureGasName { get; set; }
@@ -24,5 +23,6 @@ namespace DivePlannerMk3.DataAccessLayer.EntityModels
         public double SelectedGasMixtureHelium { get; set; }
         public double SelectedGasMixtureNitrogen { get; set; }
         public double SelectedGasMixtureOxygen { get; set; }
+        //TODO AH WORK OUT HOW TO DO GAS MIXTURES
     }
 }

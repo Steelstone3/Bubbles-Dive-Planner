@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using DivePlannerMk3.Contracts;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveInfo
 {
-    public class DiveInfoViewModel : ViewModelBase, IModelConverter
+    public class DiveInfoViewModel : ViewModelBase
     {
         public DiveInfoViewModel()
         {
@@ -53,16 +50,6 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
 
             //TODO AH complexity to be added later true when user needs to decompress
             DecompressionProfile.IsUiVisible = true;
-        }
-
-        public void EntityToModel()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ModelToEntity()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,17 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Reactive;
-using Avalonia.Controls;
-using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Controllers;
-using DivePlannerMk3.DataAccessLayer;
+using DivePlannerMk3.DataAccessLayer.EntityModels;
 using DivePlannerMk3.DataAccessLayer.Serialisers;
 using DivePlannerMk3.ViewModels.DiveHeader;
 using DivePlannerMk3.ViewModels.DiveInfo;
 using DivePlannerMk3.ViewModels.DivePlan;
 using DivePlannerMk3.ViewModels.DiveResult;
-using Newtonsoft.Json;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels
@@ -103,83 +99,14 @@ namespace DivePlannerMk3.ViewModels
             {
     
             }*/
-            
-            var divePlanEntity = DivePlan.ModelToEntity();
-            DiveInfo.ModelToEntity();
-            DiveResults.ModelToEntity();
-            DiveHeader.ModelToEntity();
 
-            string homePath = (Environment.OSVersion.Platform == PlatformID.Unix ||
-                Environment.OSVersion.Platform == PlatformID.MacOSX)
-                ? Environment.GetEnvironmentVariable("HOME")
-                : Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
+            var applicationConverter = new ApplicationEntityModelConverter();
+            var applicationSaver = new ApplicationSaveLoad();
 
-            var jsonFile = string.Empty;
+            //TODO AH Container for all entitymodelconverters
 
-            // File name  
-            //string fileName = $"{homePath}{Path.DirectorySeparatorChar}{Path.DirectorySeparatorChar}DivePlan.json";
-            string fileName = $"DivePlan.json";
-            try
-            {
-                using (StreamWriter writer = new StreamWriter(fileName))
-                {
-                    using (JsonWriter jsonWriter = new JsonTextWriter(writer))
-                    {
-                        JsonSerializer serializer = new JsonSerializer();
-
-                        CreateDataConverters(serializer);
-                        CreateSerializerSettings(serializer);
-
-                        serializer.Converters[0].WriteJson(jsonWriter, divePlanEntity, serializer);
-                    }
-
-                    //writer.Write(jsonFile);
-                }
-            }
-            catch (UnauthorizedAccessException uaex)
-            {
-                Console.Write(uaex.Message);
-            }
-            catch (IOException ioex)
-            {
-                Console.Write(ioex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-            }
+            var entityModels = applicationConverter.GenerateEntityModels(this);
+            applicationSaver.SaveApplication(entityModels.ToList());
         }
-
-        private void CreateDataConverters(JsonSerializer serializer)
-        {
-            serializer.Converters.Add(new DivePlanSerialiser());
-        }
-
-        private void CreateSerializerSettings(JsonSerializer serializer)
-        {
-            serializer.NullValueHandling = NullValueHandling.Ignore;
-        }
-
-        //TODO AH ****Consider potentially something like this (below)****
-        /*private void CreateEntityModels()
-        {
-            var modelConverters = CreateDataConverters();
-
-            foreach(var converter in modelConverters)
-            {
-                converter.EntityToModel();
-            }
-        }
-
-        private IModelConverter[] CreateDataConverters()
-        {
-            return new IModelConverter[]
-            {
-                DivePlan,
-                DiveInfo,
-                DiveResults,
-                DiveHeader,
-            };
-        }*/
     }
 }

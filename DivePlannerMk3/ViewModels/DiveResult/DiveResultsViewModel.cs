@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveResult
 {
-    public class DiveResultsViewModel : ViewModelBase, IModelConverter
+    public class DiveResultsViewModel : ViewModelBase
     {
         public ObservableCollection<DiveResultsModel> DiveProfileResults
         {
@@ -17,16 +17,6 @@ namespace DivePlannerMk3.ViewModels.DiveResult
         {
             get => _diveParametersResult;
             set => this.RaiseAndSetIfChanged(ref _diveParametersResult, value);
-        }
-
-        public void ModelToEntity()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void EntityToModel()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

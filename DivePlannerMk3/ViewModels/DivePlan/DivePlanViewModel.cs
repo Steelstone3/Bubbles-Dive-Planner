@@ -2,13 +2,10 @@
 using DivePlannerMk3.ViewModels.DiveResult;
 using ReactiveUI;
 using DivePlannerMk3.Controllers.ModelConverters;
-using DivePlannerMk3.DataAccessLayer.Converter;
-using DivePlannerMk3.DataAccessLayer.EntityModels;
-using Newtonsoft.Json;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
-    public class DivePlanViewModel : ViewModelBase//, IModelConverter
+    public class DivePlanViewModel : ViewModelBase
     {
         private GasMixtureSelectorViewModel _gasMixture = new GasMixtureSelectorViewModel();
         public GasMixtureSelectorViewModel GasMixture
@@ -75,7 +72,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             GasManagement.IsUiEnabled = false;
         }
 
-        public DivePlanEntityModel ModelToEntity()
+        //Move this off the view model to a controller with them all in under a strategy pattern prehaps
+        /*public DivePlanEntityModel ModelToEntity()
         {
             return new DivePlanEntityModelConverter().ModelToEntity(this);
         }
@@ -83,6 +81,6 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         public void EntityToModel()
         {
             throw new System.NotImplementedException();
-        }
+        }*/
     }
 }
