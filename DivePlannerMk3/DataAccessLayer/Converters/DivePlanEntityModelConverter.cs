@@ -19,7 +19,7 @@ namespace DivePlannerMk3.DataAccessLayer.Converters
             DiveStepDataMappingToEntity(divePlanViewModel);
             GasManagementDataMappingToEntity(divePlanViewModel);
             GasMixtureDataMappingToEntity(divePlanViewModel);
-            
+
             return _divePlanEntityModel;
         }
 
@@ -38,12 +38,12 @@ namespace DivePlannerMk3.DataAccessLayer.Converters
 
         private void GasManagementDataMappingToEntity(DivePlanViewModel divePlanViewModel)
         {
-             _divePlanEntityModel.CylinderPressure = divePlanViewModel.GasManagement.CylinderPressure;
-             _divePlanEntityModel.CylinderVolume = divePlanViewModel.GasManagement.CylinderVolume;
-             _divePlanEntityModel.GasRemaining = divePlanViewModel.GasManagement.GasRemaining;
-             _divePlanEntityModel.GasUsedForStep = divePlanViewModel.GasManagement.GasUsedForStep;
-             _divePlanEntityModel.InitialCylinderTotalVolume = divePlanViewModel.GasManagement.InitialCylinderTotalVolume;
-             _divePlanEntityModel.SacRate = divePlanViewModel.GasManagement.SacRate;
+            _divePlanEntityModel.CylinderPressure = divePlanViewModel.GasManagement.CylinderPressure;
+            _divePlanEntityModel.CylinderVolume = divePlanViewModel.GasManagement.CylinderVolume;
+            _divePlanEntityModel.GasRemaining = divePlanViewModel.GasManagement.GasRemaining;
+            _divePlanEntityModel.GasUsedForStep = divePlanViewModel.GasManagement.GasUsedForStep;
+            _divePlanEntityModel.InitialCylinderTotalVolume = divePlanViewModel.GasManagement.InitialCylinderTotalVolume;
+            _divePlanEntityModel.SacRate = divePlanViewModel.GasManagement.SacRate;
         }
 
         private void GasMixtureDataMappingToEntity(DivePlanViewModel divePlanViewModel)
@@ -59,9 +59,15 @@ namespace DivePlannerMk3.DataAccessLayer.Converters
             _divePlanEntityModel.SelectedGasMixtureHelium = divePlanViewModel.GasMixture.SelectedGasMixture.Helium;
             _divePlanEntityModel.SelectedGasMixtureNitrogen = divePlanViewModel.GasMixture.SelectedGasMixture.Nitrogen;
             _divePlanEntityModel.SelectedGasMixtureOxygen = divePlanViewModel.GasMixture.SelectedGasMixture.Oxygen;
-            
-            //TODO AH WORK OUT GAS MIXTURES
-            //_divePlanEntityModel.GasMixtures.Add(divePlanViewModel.GasMixture.GasMixtures);
+
+            //TODO AH may have to do a linq statement to get each gas mix index based on each name or redesign this!
+            foreach (var gasMixture in divePlanViewModel.GasMixture.GasMixtures)
+            {
+                _divePlanEntityModel.GasName.Add(gasMixture.GasName);
+                _divePlanEntityModel.Helium.Add(gasMixture.Helium);
+                _divePlanEntityModel.Nitrogen.Add(gasMixture.Nitrogen);
+                _divePlanEntityModel.Oxygen.Add(gasMixture.Oxygen);
+            }
         }
 
         #endregion

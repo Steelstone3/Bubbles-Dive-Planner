@@ -103,8 +103,6 @@ namespace DivePlannerMk3.ViewModels
             var applicationConverter = new ApplicationEntityModelConverter();
             var applicationSaver = new ApplicationSaveLoad();
 
-            //TODO AH Container for all entitymodelconverters
-
             var entityModels = applicationConverter.GenerateEntityModels(this);
             applicationSaver.SaveApplication(entityModels.ToList());
         }

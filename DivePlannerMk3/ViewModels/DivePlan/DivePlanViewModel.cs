@@ -63,24 +63,11 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         private void UpdateUiVisibility()
         {
+            GasManagement.IsUiVisible = false;
             GasManagement.IsGasUsageVisible = true;
 
             DiveModelSelector.IsUiVisible = false;
-            DiveModelSelector.IsUiEnabled = false;
-
-            GasManagement.IsUiVisible = false;
-            GasManagement.IsUiEnabled = false;
+            DiveModelSelector.IsReadOnlyUiVisible = true;
         }
-
-        //Move this off the view model to a controller with them all in under a strategy pattern prehaps
-        /*public DivePlanEntityModel ModelToEntity()
-        {
-            return new DivePlanEntityModelConverter().ModelToEntity(this);
-        }
-
-        public void EntityToModel()
-        {
-            throw new System.NotImplementedException();
-        }*/
     }
 }

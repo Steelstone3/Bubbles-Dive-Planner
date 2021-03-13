@@ -6,7 +6,7 @@ namespace DivePlannerMk3.DataAccessLayer.Converters
     public class DiveHeaderEntityModelConverter
     {
         //TODO AH Finish off
-         //UI Visibility later
+        //UI Visibility later
         private DiveHeaderEntityModel _diveHeaderEntityModel = new DiveHeaderEntityModel();
 
         public void EntityToModel()
@@ -16,9 +16,7 @@ namespace DivePlannerMk3.DataAccessLayer.Converters
 
         public DiveHeaderEntityModel ModelToEntity(DiveHeaderViewModel diveHeaderViewModel)
         {
-            DataMappingToEntity(diveHeaderViewModel);
-            
-            return _diveHeaderEntityModel;
+            throw new System.NotImplementedException();
         }
 
         #region ModelToEntity
