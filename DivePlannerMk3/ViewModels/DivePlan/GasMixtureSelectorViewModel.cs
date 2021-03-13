@@ -77,7 +77,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         private void AddGasMixture()
         {
-            GasMixtures.Add(NewGasMixture);
+            GasMixtures.Add((GasMixtureViewModel)NewGasMixture.Clone());
         }
 
         private void SetDefaults()

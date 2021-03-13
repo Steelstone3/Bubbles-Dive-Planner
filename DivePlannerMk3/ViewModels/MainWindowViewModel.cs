@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Reactive;
 using DivePlannerMk3.Controllers;
+using DivePlannerMk3.DataAccessLayer.EntityModels;
+using DivePlannerMk3.DataAccessLayer.Serialisers;
 using DivePlannerMk3.ViewModels.DiveHeader;
 using DivePlannerMk3.ViewModels.DiveInfo;
 using DivePlannerMk3.ViewModels.DivePlan;
@@ -18,6 +20,7 @@ namespace DivePlannerMk3.ViewModels
 
             CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
             NewCommand = ReactiveCommand.Create(CreateNewDiveSession);
+            SaveCommand = ReactiveCommand.Create(SaveDivePlannerState);
         }
 
         private DiveResultsViewModel _diveResults = new DiveResultsViewModel();
@@ -25,13 +28,6 @@ namespace DivePlannerMk3.ViewModels
         {
             get => _diveResults;
             set => this.RaiseAndSetIfChanged(ref _diveResults, value);
-        }
-
-        private DiveParametersResultViewModel _diveParametersResult = new DiveParametersResultViewModel();
-        public DiveParametersResultViewModel DiveParametersResult
-        {
-            get => _diveParametersResult;
-            set => this.RaiseAndSetIfChanged(ref _diveParametersResult, value);
         }
 
         private DivePlanViewModel _divePlan;
@@ -59,13 +55,18 @@ namespace DivePlannerMk3.ViewModels
         {
             get;
         }
-        
+
         public IObservable<bool> CanExecuteDiveStep
         {
             get => this.WhenAnyValue(vm => vm.DivePlan.GasMixture.SelectedGasMixture, vm => vm.DivePlan.DiveModelSelector.SelectedDiveModel, (selectedGasMixture, selectedDiveModel) => selectedGasMixture != null && selectedDiveModel != null);
         }
 
-        public ReactiveCommand<Unit, Unit> NewCommand 
+        public ReactiveCommand<Unit, Unit> NewCommand
+        {
+            get;
+        }
+
+        public ReactiveCommand<Unit, Unit> SaveCommand
         {
             get;
         }
@@ -73,17 +74,37 @@ namespace DivePlannerMk3.ViewModels
         private void RunDiveStep()
         {
             DivePlan.CalculateDiveStep(DiveResults);
-            DiveParametersResult = DivePlan.UpdateUsedParameters(DiveParametersResult);
+            DiveResults.DiveParametersResult = DivePlan.UpdateUsedParameters(DiveResults.DiveParametersResult);
             DiveInfo.CalculateDiveStep(DiveResults.DiveProfileResults.SelectMany(diveModel => diveModel.DiveProfileStepOutput.Select(x => x.ToleratedAmbientPressureResult)));
         }
 
         private void CreateNewDiveSession()
         {
             DiveResults = new DiveResultsViewModel();
-            DiveParametersResult = new DiveParametersResultViewModel();
             DivePlan = new DivePlanViewModel(new DiveProfileService());
             DiveInfo = new DiveInfoViewModel();
             DiveHeader = new DiveHeaderViewModel();
+        }
+
+        //TODO AH this whole method needs breaking down and moving into a controller once the functionality is in
+        private void SaveDivePlannerState()
+        {
+            //http://reference.avaloniaui.net/api/Avalonia.Controls/SaveFileDialog/
+
+            /*var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filters.Add(new FileDialogFilter() { Name = "Json", Extensions = { "json" } });
+            saveFileDialog.InitialFileName = "DivePlan";
+            var result = await saveFileDialog.ShowAsync(this);
+            if (result != null)
+            {
+    
+            }*/
+
+            var applicationConverter = new ApplicationEntityModelConverter();
+            var applicationSaver = new ApplicationSaveLoad();
+
+            var entityModels = applicationConverter.GenerateEntityModels(this);
+            applicationSaver.SaveApplication(entityModels.ToList());
         }
     }
 }

@@ -63,13 +63,11 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         private void UpdateUiVisibility()
         {
+            GasManagement.IsUiVisible = false;
             GasManagement.IsGasUsageVisible = true;
 
             DiveModelSelector.IsUiVisible = false;
-            DiveModelSelector.IsUiEnabled = false;
-
-            GasManagement.IsUiVisible = false;
-            GasManagement.IsUiEnabled = false;
+            DiveModelSelector.IsReadOnlyUiVisible = true;
         }
     }
 }
