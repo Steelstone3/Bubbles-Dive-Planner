@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Contracts.DataAccessContracts;
 
@@ -15,7 +16,7 @@ namespace DivePlannerMk3.DataAccessLayer.EntityModels
         public int SacRate { get; set; }
         public IDiveModel SelectedDiveModel { get; set; }
         public double MaximumOperatingDepth { get; set; }
-        public string NewGasMixtureGasName { get; set; }
+        public string NewGasMixtureGasName { get; set; } = string.Empty;
         public double NewGasMixtureHelium { get; set; }
         public double NewGasMixtureNitrogen { get; set; }
         public double NewGasMixtureOxygen { get; set; }
@@ -23,6 +24,9 @@ namespace DivePlannerMk3.DataAccessLayer.EntityModels
         public double SelectedGasMixtureHelium { get; set; }
         public double SelectedGasMixtureNitrogen { get; set; }
         public double SelectedGasMixtureOxygen { get; set; }
-        //TODO AH WORK OUT HOW TO DO GAS MIXTURES
+        public List<string> GasName { get; set; } = new List<string>();
+        public List<double> Helium { get; set; } = new List<double>();
+        public List<double> Nitrogen { get; set; } = new List<double>();
+        public List<double> Oxygen { get; set; } = new List<double>();
     }
 }

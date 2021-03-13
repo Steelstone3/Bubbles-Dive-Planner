@@ -14,7 +14,7 @@ namespace DivePlannerMk3.DataAccessLayer.EntityModels
             new DivePlanEntityModelConverter().ModelToEntity(mainViewModel.DivePlan),
             new DiveInfoEntityModelConverter().ModelToEntity(mainViewModel.DiveInfo),
             new DiveResultsEntityModelConverter().ModelToEntity(mainViewModel.DiveResults),
-            new DiveHeaderEntityModelConverter().ModelToEntity(mainViewModel.DiveHeader),
+            //new DiveHeaderEntityModelConverter().ModelToEntity(mainViewModel.DiveHeader),
           };
         }
     }
