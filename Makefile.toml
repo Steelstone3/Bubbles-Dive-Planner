@@ -1,0 +1,54 @@
+[tasks.watch]
+args = ["watch", "-c", "-x", "test", "-x", "clippy"]
+command = "cargo"
+install_crate = "cargo-watch"
+
+[tasks.run]
+args = ["run"]
+command = "cargo"
+
+[tasks.format]
+args = ["fmt", "--all"]
+command = "cargo"
+
+[tasks.check]
+args = ["check", "--all-features"]
+command = "cargo"
+
+[tasks.lint]
+args = ["clippy", "--all-features", "--", "-D", "warnings"]
+command = "cargo"
+
+[tasks.test]
+args = ["test", "--all-features"]
+command = "cargo"
+
+[tasks.test_coverage]
+args = ["tarpaulin", "--skip-clean"]
+command = "cargo"
+install_crate = "tarpaulin"
+
+# workflows
+
+[tasks.check_all]
+dependencies = ["check", "format", "lint"]
+
+[tasks.submit]
+dependencies = ["check", "format", "test", "lint"]
+
+# aliases
+
+[tasks.w]
+alias = "watch"
+
+[tasks.r]
+alias = "run"
+
+[tasks.c]
+alias = "check_all"
+
+[tasks.s]
+alias = "submit"
+
+[tasks.tc]
+alias = "test_coverage"
