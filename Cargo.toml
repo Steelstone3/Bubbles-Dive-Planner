@@ -1,0 +1,25 @@
+[package]
+name = "bubbles-dive-planner-rust"
+version = "0.1.0"
+authors = ["Skippy <steelstone3@gmail.com>"]
+edition = "2021"
+homepage = "https://github.com/Steelstone3/Bubbles-Dive-Planner-Console"
+repository = "https://github.com/Steelstone3/Bubbles-Dive-Planner-Console"
+license = "GPLv3"
+readme = "README.md"
+include = [
+
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
+
+[dependencies]
+iced = { version = "0.10" }
+iced_aw = { version = "0.6.*" }
+serde = { version = "1.*", features = ["derive"] }
+serde_json = { version = "1.*" }
