@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reactive;
 using DivePlannerMk3.Controllers;
-using DivePlannerMk3.DataAccessLayer.EntityModels;
+using DivePlannerMk3.DataAccessLayer.DataMappers;
 using DivePlannerMk3.DataAccessLayer.Serialisers;
 using DivePlannerMk3.ViewModels.DiveHeader;
 using DivePlannerMk3.ViewModels.DiveInfo;
@@ -100,7 +100,7 @@ namespace DivePlannerMk3.ViewModels
     
             }*/
 
-            var applicationConverter = new ApplicationEntityModelConverter();
+            var applicationConverter = new ApplicationEntityModelDataMapper();
             var applicationSaver = new ApplicationSaveLoad();
 
             var entityModels = applicationConverter.GenerateEntityModels(this);

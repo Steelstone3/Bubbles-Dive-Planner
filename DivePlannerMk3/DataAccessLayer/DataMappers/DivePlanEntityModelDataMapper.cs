@@ -1,9 +1,9 @@
 using DivePlannerMk3.DataAccessLayer.EntityModels;
 using DivePlannerMk3.ViewModels.DivePlan;
 
-namespace DivePlannerMk3.DataAccessLayer.Converters
+namespace DivePlannerMk3.DataAccessLayer.DataMappers
 {
-    public class DivePlanEntityModelConverter
+    public class DivePlanEntityModelDataMapper
     {
         //UI Visibility later
         private DivePlanEntityModel _divePlanEntityModel = new DivePlanEntityModel();

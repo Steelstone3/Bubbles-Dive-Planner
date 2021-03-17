@@ -1,9 +1,9 @@
 using DivePlannerMk3.DataAccessLayer.EntityModels;
 using DivePlannerMk3.ViewModels.DiveInfo;
 
-namespace DivePlannerMk3.DataAccessLayer.Converters
+namespace DivePlannerMk3.DataAccessLayer.DataMappers
 {
-    public class DiveInfoEntityModelConverter
+    public class DiveInfoEntityModelDataMapper
     {
 
         //TODO AH Finish off later
