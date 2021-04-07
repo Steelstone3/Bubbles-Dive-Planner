@@ -7,7 +7,7 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
 {
     public class ApplicationEntityModelDataMapper
     {
-        public IEnumerable<IEntityModel> GenerateEntityModels(MainWindowViewModel mainViewModel)
+        public IEnumerable<IEntityModel> ConvertModelsToEntities(MainWindowViewModel mainViewModel)
         {
           return new List<IEntityModel>()
           {
@@ -15,6 +15,17 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
             new DiveInfoEntityModelDataMapper().ModelToEntity(mainViewModel.DiveInfo),
             new DiveResultsEntityModelDataMapper().ModelToEntity(mainViewModel.DiveResults),
             //new DiveHeaderEntityModelDataMapper().ModelToEntity(mainViewModel.DiveHeader),
+          };
+        }
+
+        public IEnumerable<IEntityModel> ConvertEntitiesToModels(IEnumerable<IEntityModel> entityModels)
+        {
+          return new List<IEntityModel>()
+          {
+            /*new DivePlanEntityModelDataMapper().EntityToModel(mainViewModel.DivePlan),
+            new DiveInfoEntityModelDataMapper().EntityToModel(mainViewModel.DiveInfo),
+            new DiveResultsEntityModelDataMapper().EntityToModel(mainViewModel.DiveResults),
+            //new DiveHeaderEntityModelDataMapper().EntityToModel(mainViewModel.DiveHeader),*/
           };
         }
     }

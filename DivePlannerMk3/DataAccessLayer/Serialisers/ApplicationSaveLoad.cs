@@ -8,11 +8,6 @@ namespace DivePlannerMk3.DataAccessLayer.Serialisers
 {
     public class ApplicationSaveLoad
     {
-
-
-        //TODO AH Entity Models parameters
-        public void SaveApplication(List<IEntityModel> entityModels)
-        {
             /*string homePath = (Environment.OSVersion.Platform == PlatformID.Unix ||
                 Environment.OSVersion.Platform == PlatformID.MacOSX)
                 ? Environment.GetEnvironmentVariable("HOME")
@@ -20,6 +15,11 @@ namespace DivePlannerMk3.DataAccessLayer.Serialisers
 
             // File name  
             //string fileName = $"{homePath}{Path.DirectorySeparatorChar}{Path.DirectorySeparatorChar}DivePlan.json";
+
+        //TODO AH Entity Models parameters
+        public void SaveApplication(List<IEntityModel> entityModels)
+        {
+            
             string fileName = $"DivePlan.json";
             try
             {
@@ -47,6 +47,12 @@ namespace DivePlannerMk3.DataAccessLayer.Serialisers
             {
                 Console.Write(ex.Message);
             }
+        }
+
+        public List<IEntityModel> LoadApplication()
+        {
+            //TODO AH Load from the default file location for now
+            return null;
         }
     }
 }
