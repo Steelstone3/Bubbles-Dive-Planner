@@ -93,12 +93,14 @@ namespace DivePlannerMk3.ViewModels
             DiveHeader = new DiveHeaderViewModel();
         }
 
+        //TODO AH this area needs a changable save name investigate Directory property of the SaveDialog
         private void SaveDivePlannerState()
         {
             var saveApplicationState = new SaveApplicationStateController();
             saveApplicationState.SaveApplication(this);
         }
 
+        //TODO AH this area needs work
         private void LoadDivePlannerState()
         {
             var loadApplicationState = new LoadApplicationStateController();

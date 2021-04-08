@@ -14,9 +14,9 @@ namespace DivePlannerMk3.Controllers
              var saveFileDialog = new SaveFileDialog()
             {
                 Directory = string.Empty,
-                Title = "Save Dive Profile",
+                Title = $"Save Dive Profile",
                 
-                InitialFileName = "DivePlan.json",
+                InitialFileName = $"DivePlan.json",
                 
                 Filters = new List<FileDialogFilter>()
                 {
@@ -28,10 +28,11 @@ namespace DivePlannerMk3.Controllers
             if (result != null)
             {
                 var applicationConverter = new ApplicationEntityModelDataMapper();
-                var applicationSaver = new ApplicationSaveLoad();
+                var applicationSerialiser = new ApplicationSerialiser();
 
                 var entityModels = applicationConverter.ConvertModelsToEntities(mainWindowViewModel);
-                applicationSaver.SaveApplication(entityModels.ToList());
+                //TODO AH Grab the save name from the UI somehow
+                applicationSerialiser.SerialiseApplication(entityModels.ToList(), saveFileDialog.InitialFileName);
             }
         }
     }

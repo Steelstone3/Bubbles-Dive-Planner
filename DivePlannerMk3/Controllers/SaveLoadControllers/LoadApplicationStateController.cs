@@ -7,6 +7,7 @@ namespace DivePlannerMk3.Controllers
 {
     public class LoadApplicationStateController
     {
+        //TODO AH complete this so that it works
         public async void LoadApplication()
         {
             var loadFileDialog = new OpenFileDialog()
@@ -23,10 +24,11 @@ namespace DivePlannerMk3.Controllers
             var result = await loadFileDialog.ShowAsync(new Window());
             if (result != null)
             {
-                var applicationLoader = new ApplicationSaveLoad();
+                //TODO AH this is the focus area
+                var applicationLoader = new ApplicationSerialiser();
                 var applicationConverter = new ApplicationEntityModelDataMapper();
 
-                var entityModels = applicationLoader.LoadApplication();
+                var entityModels = applicationLoader.DeserialiseApplication(result[0]);
                 applicationConverter.ConvertEntitiesToModels(entityModels);
             }
         }

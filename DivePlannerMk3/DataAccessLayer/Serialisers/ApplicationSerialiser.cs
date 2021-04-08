@@ -6,21 +6,11 @@ using Newtonsoft.Json;
 
 namespace DivePlannerMk3.DataAccessLayer.Serialisers
 {
-    public class ApplicationSaveLoad
+    public class ApplicationSerialiser
     {
-            /*string homePath = (Environment.OSVersion.Platform == PlatformID.Unix ||
-                Environment.OSVersion.Platform == PlatformID.MacOSX)
-                ? Environment.GetEnvironmentVariable("HOME")
-                : Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");*/
-
-            // File name  
-            //string fileName = $"{homePath}{Path.DirectorySeparatorChar}{Path.DirectorySeparatorChar}DivePlan.json";
-
-        //TODO AH Entity Models parameters
-        public void SaveApplication(List<IEntityModel> entityModels)
+        public void SerialiseApplication(List<IEntityModel> entityModels, string fileName)
         {
-            
-            string fileName = $"DivePlan.json";
+            //string fileName = $"DivePlan.json";
             try
             {
                 using (StreamWriter writer = new StreamWriter(fileName))
@@ -49,9 +39,10 @@ namespace DivePlannerMk3.DataAccessLayer.Serialisers
             }
         }
 
-        public List<IEntityModel> LoadApplication()
+        public List<IEntityModel> DeserialiseApplication(string fileResult)
         {
-            //TODO AH Load from the default file location for now
+            //TODO AH potentially load from the file based on the file result in a given directory that would also need to be known
+            //TODO AH then extract the file to a reader look a tut. up online
             return null;
         }
     }
