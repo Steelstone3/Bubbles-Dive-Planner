@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DivePlannerTests
 {
-    public class DiveBoundariesUiTests
+    public class DiveBoundariesUserInterfaceShould
     {
         private DiveCeilingViewModel _diveCeilingViewModel = new DiveCeilingViewModel();
         private GasMixtureSelectorViewModel _gasMixtureViewModel = new GasMixtureSelectorViewModel();

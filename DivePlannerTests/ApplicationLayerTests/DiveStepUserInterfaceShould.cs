@@ -3,7 +3,7 @@ using DivePlannerMk3.ViewModels.DivePlan;
 
 namespace DivePlannerTests
 {
-    public class DiveStepUiTests
+    public class DiveStepUserInterfaceShould
     {
         // depth, time and limits no -depth/time or depth/time over 1000
 

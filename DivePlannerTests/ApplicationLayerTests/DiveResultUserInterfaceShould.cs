@@ -7,7 +7,7 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class DiveResultsUiTests
+    public class DiveResultsUserInterfaceShould
     {
         private Zhl16Buhlmann _diveModel = new Zhl16Buhlmann();
         private DiveResultsModel _results = new DiveResultsModel();

@@ -6,7 +6,7 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class DiveModelUiTests
+    public class DiveModelUserInterfaceShould
     {
         //TODO Dive model selection + no selection = no execute
         private IDiveProfileService _diveProfileController = new DiveProfileService();
@@ -34,8 +34,8 @@ namespace DivePlannerTests
             }
         }
 
-        [Fact(Skip = "Test needs implementing and a second dive model")]
-        public void CanNotChangeDiveModelOnceDivePlanStartedTest()
+        [Fact(Skip = "Needs implementation")]
+        public void LockTheCurrentDiveModelWhenTheFirstDiveProfileIsRun()
         {
             //Arrange
 

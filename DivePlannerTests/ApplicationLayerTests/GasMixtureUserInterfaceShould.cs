@@ -6,7 +6,7 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class GasMixtureUiTests
+    public class GasMixtureUserInterfaceShould
     {
         //TODO AH validate this view model's ranges
         //TODO AH test for raise property changed event on view model

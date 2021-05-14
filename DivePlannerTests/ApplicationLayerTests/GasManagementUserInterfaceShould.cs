@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DivePlannerTests
 {
-    public class GasManagementUiTests
+    public class GasManagementUserInterfaceShould
     {
         private GasManagementViewModel _gasManagement = new GasManagementViewModel();
 
