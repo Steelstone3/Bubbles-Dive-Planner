@@ -2,6 +2,7 @@
 using DivePlannerMk3.ViewModels.DiveResult;
 using ReactiveUI;
 using DivePlannerMk3.Controllers.ModelConverters;
+using DivePlannerMk3.DataAccessLayer.DataMappers;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {

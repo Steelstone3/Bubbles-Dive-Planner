@@ -1,3 +1,4 @@
+using DivePlannerMk3.Controllers;
 using DivePlannerMk3.DataAccessLayer.EntityModels;
 using DivePlannerMk3.ViewModels.DivePlan;
 
@@ -5,12 +6,24 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
 {
     public class DivePlanEntityModelDataMapper
     {
-        //UI Visibility later
+        //TODO AH potentially could get fancy here and use a strategy pattern
+        //TODO AH Pros pattern driven and clean cons more files may be a bit overkill exposed methods
+        //TODO AH Step 1 IModelToEntityStrategy ModelToEntity()
+        //TODO AH Step 2 Split view models down further where each private method currently would be its own ModelToEntityConversion
+        //TODO AH Step 3 Combine the strategy pattern with the command pattern to call each model to entity conversion in this class' public EntityToModel()
+
+        //TODO AH UI Visibility later
+        private DivePlanViewModel _divePlanViewModel = new DivePlanViewModel(new DiveProfileService());
         private DivePlanEntityModel _divePlanEntityModel = new DivePlanEntityModel();
 
-        public void EntityToModel()
+        public DivePlanViewModel EntityToModel(DivePlanEntityModel divePlanEntityModel)
         {
-            throw new System.NotImplementedException();
+            DiveModelSelectorDataMappingToModel(divePlanEntityModel);
+            DiveStepDataMappingToModel(divePlanEntityModel);
+            GasManagementDataMappingToModel(divePlanEntityModel);
+            GasMixtureDataMappingToModel(divePlanEntityModel);
+
+            return _divePlanViewModel;
         }
 
         public DivePlanEntityModel ModelToEntity(DivePlanViewModel divePlanViewModel)
@@ -73,6 +86,45 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
         #endregion
 
         #region EntityToModel
+
+        private void GasMixtureDataMappingToModel(DivePlanEntityModel divePlanEntityModel)
+        {
+            _divePlanViewModel.GasMixture.NewGasMixture.GasName = divePlanEntityModel.NewGasMixtureGasName;
+            _divePlanViewModel.GasMixture.NewGasMixture.Helium = divePlanEntityModel.NewGasMixtureHelium;
+            _divePlanViewModel.GasMixture.NewGasMixture.Oxygen = divePlanEntityModel.NewGasMixtureOxygen;
+
+            _divePlanViewModel.GasMixture.SelectedGasMixture.GasName = divePlanEntityModel.SelectedGasMixtureGasName;
+            _divePlanViewModel.GasMixture.SelectedGasMixture.Oxygen = divePlanEntityModel.SelectedGasMixtureOxygen;
+            _divePlanViewModel.GasMixture.SelectedGasMixture.Helium = divePlanEntityModel.SelectedGasMixtureHelium;
+
+            for (int i = 0; i < divePlanEntityModel.GasName.Count - 1; i++)
+            {
+                _divePlanViewModel.GasMixture.GasMixtures[i].GasName = divePlanEntityModel.GasName[i];
+                _divePlanViewModel.GasMixture.GasMixtures[i].Oxygen = divePlanEntityModel.Oxygen[i];
+                _divePlanViewModel.GasMixture.GasMixtures[i].Helium = divePlanEntityModel.Helium[i];
+            }
+
+            _divePlanViewModel.GasMixture.MaximumOperatingDepth = divePlanEntityModel.MaximumOperatingDepth;
+        }
+
+        private void GasManagementDataMappingToModel(DivePlanEntityModel divePlanEntityModel)
+        {
+            _divePlanViewModel.GasManagement.GasRemaining = divePlanEntityModel.GasRemaining;
+            _divePlanViewModel.GasManagement.GasUsedForStep = divePlanEntityModel.GasUsedForStep;
+            _divePlanViewModel.GasManagement.InitialCylinderTotalVolume = divePlanEntityModel.InitialCylinderTotalVolume;
+            _divePlanViewModel.GasManagement.SacRate = divePlanEntityModel.SacRate;
+        }
+
+        private void DiveStepDataMappingToModel(DivePlanEntityModel divePlanEntityModel)
+        {
+            _divePlanViewModel.DiveStep.Depth = divePlanEntityModel.Depth;
+            _divePlanViewModel.DiveStep.Time = divePlanEntityModel.Time;
+        }
+
+        private void DiveModelSelectorDataMappingToModel(DivePlanEntityModel divePlanEntityModel)
+        {
+            _divePlanViewModel.DiveModelSelector.SelectedDiveModel = divePlanEntityModel.SelectedDiveModel;
+        }
 
         #endregion
 

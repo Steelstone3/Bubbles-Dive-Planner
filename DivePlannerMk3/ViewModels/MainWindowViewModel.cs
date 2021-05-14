@@ -104,7 +104,7 @@ namespace DivePlannerMk3.ViewModels
         private void LoadDivePlannerState()
         {
             var loadApplicationState = new LoadApplicationStateController();
-            loadApplicationState.LoadApplication();
+            loadApplicationState.LoadApplication(this);
         }
     }
 }

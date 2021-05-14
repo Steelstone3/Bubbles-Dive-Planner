@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using DivePlannerMk3.Contracts.DataAccessContracts;
+using DivePlannerMk3.DataAccessLayer.EntityModels;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DivePlannerMk3.DataAccessLayer.Serialisers
 {
@@ -16,8 +18,9 @@ namespace DivePlannerMk3.DataAccessLayer.Serialisers
                 using (StreamWriter writer = new StreamWriter(fileName))
                 {
                     var jsonFile = string.Empty;
-
-                    foreach(var entityModel in entityModels)
+                    //TODO AH may need to change this to have each entity model hosted in a container
+                    //TODO AH } closing needs to be removed until the true last entity model. Also consider first comment
+                    foreach (var entityModel in entityModels)
                     {
                         jsonFile += JsonConvert.SerializeObject(entityModel, Formatting.Indented);
                     }
@@ -39,11 +42,18 @@ namespace DivePlannerMk3.DataAccessLayer.Serialisers
             }
         }
 
-        public List<IEntityModel> DeserialiseApplication(string fileResult)
+        public IEnumerable<IEntityModel> DeserialiseApplication(string fileResult)
         {
-            //TODO AH potentially load from the file based on the file result in a given directory that would also need to be known
-            //TODO AH then extract the file to a reader look a tut. up online
-            return null;
+            var fileContents = FilePathToFileContents(fileResult);
+
+            //TODO AH Invalid cast
+            yield return (DivePlanEntityModel)JsonConvert.DeserializeObject(fileContents);
+            yield return (DiveInfoEntityModel)JsonConvert.DeserializeObject(fileContents);
+            yield return (DiveResultsEntityModel)JsonConvert.DeserializeObject(fileContents);
+            yield return (DiveHeaderEntityModel)JsonConvert.DeserializeObject(fileContents);         
         }
+
+        //TODO AH Ensure the whole thing can load, catch exceptions
+        private string FilePathToFileContents(string fileResult) => JObject.Parse(File.ReadAllText(fileResult)).ToString();
     }
 }

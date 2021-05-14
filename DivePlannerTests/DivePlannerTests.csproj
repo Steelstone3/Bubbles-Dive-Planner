@@ -13,7 +13,7 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
-<ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DivePlannerMk3\DivePlannerMk3.csproj" />
   </ItemGroup>
   
