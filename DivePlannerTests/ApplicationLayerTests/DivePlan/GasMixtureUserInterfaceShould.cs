@@ -15,7 +15,7 @@ namespace DivePlannerTests
         private GasMixtureSelectorViewModel _gasMixtureViewModel = new GasMixtureSelectorViewModel();
 
         [Fact]
-        public void HasAtLeastOneGasMixtureTest()
+        public void HaveAtLeastOneGasMixture()
         {
             //Arrange
 
@@ -30,7 +30,7 @@ namespace DivePlannerTests
         [InlineData(21, 79, 0, "Air")]
         [InlineData(10, 70, 20, "Heliox")]
         [InlineData(32, 68, 0, "EAN32")]
-        public void GasMixtureCanBeAddedTest(double oxygen, double nitrogen, double helium, string gasName)
+        public void AllowGasMixturesToBeAdded(double oxygen, double nitrogen, double helium, string gasName)
         {
             //Arrange
             var gasMix = new GasMixtureModel()
@@ -50,7 +50,7 @@ namespace DivePlannerTests
 
         //TODO AH change to a view model and check correct nitrogen
         [Fact]
-        public void GasMixtureCanBeSetTest()
+        public void AllowGasMixtureToBeSet()
         {
             //Arrange
             var gasMix = new GasMixtureModel()
@@ -72,15 +72,55 @@ namespace DivePlannerTests
         //TODO AH here put a test relating to raise property changed
 
         [Theory]
+        [InlineData(100, -1, "Negative Helium")]
+        [InlineData(-1, 100, "Negative Oxygen")]
+        public async void NotAllowDiveStepExecutionIfGasMixtureHasNegativeValues(double oxygen, double helium, string gasName)
+        {
+            //Arrange
+            var gasMix = new GasMixtureViewModel()
+            {
+                GasName = gasName,
+                Oxygen = oxygen,
+                Helium = helium,
+            };
+
+            //Act
+            _gasMixtureViewModel.NewGasMixture = gasMix;
+
+            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
+
+            //Assert
+            Assert.False(canExecute);
+        }
+
+        [Theory]
         [InlineData(25, 80, "Loads of Helium")]
         [InlineData(80, 25, "Loads of Oxygen")]
         [InlineData(0, 101, "Helium")]
-        [InlineData(100, -1, "Negative Helium")]
         [InlineData(101, 0, "O2")]
-        [InlineData(1,0,"Oxygen Starved")]
-        [InlineData(4,0,"Oxygen Starved 2")]
-        [InlineData(-1, 100, "Negative Oxygen")]
-        public async void GasMixtureLimitsTest(double oxygen, double helium, string gasName)
+        public async void NotAllowDiveStepExecutionIfGasMixtureIsOver100Percent(double oxygen, double helium, string gasName)
+        {
+            //Arrange
+            var gasMix = new GasMixtureViewModel()
+            {
+                GasName = gasName,
+                Oxygen = oxygen,
+                Helium = helium,
+            };
+
+            //Act
+            _gasMixtureViewModel.NewGasMixture = gasMix;
+
+            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
+
+            //Assert
+            Assert.False(canExecute);
+        }
+
+        [Theory]
+        [InlineData(1, 0, "Oxygen Starved")]
+        [InlineData(4, 0, "Oxygen Starved 2")]
+        public async void NotAllowDiveStepExecutionIfGasMixtureOxygenLevelsAreTooLow(double oxygen, double helium, string gasName)
         {
             //Arrange
             var gasMix = new GasMixtureViewModel()

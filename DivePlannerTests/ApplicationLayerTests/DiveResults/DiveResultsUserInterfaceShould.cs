@@ -49,8 +49,14 @@ namespace DivePlannerTests
             },
         };
 
+        [Fact(Skip="Needs Implementing")]
+        public void PopulateCurrentDiveStepInResults()
+        {
+
+        }
+
         [Fact]
-        private void PopulateDiveResultsModelOutputStage()
+        public void PopulateDiveResultsModelOutputStage()
         {
             //Arrange
             var diveStage = new DiveStageResults(_diveModel.CompartmentCount, _results, _diveProfile);
