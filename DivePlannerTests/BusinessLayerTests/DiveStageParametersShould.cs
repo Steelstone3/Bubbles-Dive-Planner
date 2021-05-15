@@ -6,12 +6,12 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class DiveProfileServiceUsedDiveParametersTests
+    public class DiveStageParametersShould
     {
         [Theory]
         [InlineData("Bob", 50, 10, "Fun Gas", 21, 10)]
         [InlineData("Terry", 30, 20, "Evil Gas", 32, 0)]
-        public void Test(string diveModelName, int depth, int time, string gasMixName, int oxygen, int helium)
+        public void PopulateTheDiveServiceParameters(string diveModelName, int depth, int time, string gasMixName, int oxygen, int helium)
         {
             //Arrange
             //What is used

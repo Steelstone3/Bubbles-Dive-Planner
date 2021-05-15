@@ -7,7 +7,7 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class DiveResultsUiTests
+    public class DiveResultsUserInterfaceShould
     {
         private Zhl16Buhlmann _diveModel = new Zhl16Buhlmann();
         private DiveResultsModel _results = new DiveResultsModel();
@@ -49,8 +49,14 @@ namespace DivePlannerTests
             },
         };
 
+        [Fact(Skip="Needs Implementing")]
+        public void PopulateCurrentDiveStepInResults()
+        {
+
+        }
+
         [Fact]
-        private void PreDiveStageStepInfoOutputTwoDecimalPlacesTest()
+        public void PopulateDiveResultsModelOutputStage()
         {
             //Arrange
             var diveStage = new DiveStageResults(_diveModel.CompartmentCount, _results, _diveProfile);
@@ -66,6 +72,16 @@ namespace DivePlannerTests
                 Assert.Equal(Math.Round(_diveProfile.MaxSurfacePressures[i], 2), _results.DiveProfileStepOutput[i].MaximumSurfacePressureResult);
                 Assert.Equal(Math.Round(_diveProfile.ToleratedAmbientPressures[i], 2), _results.DiveProfileStepOutput[i].ToleratedAmbientPressureResult);
             }
+        }
+
+        [Fact(Skip = "Tests Needs implementing")]
+        public void RaisePropertyChangeWhenDiveResultsModelIsPopulated()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
         }
     }
 }

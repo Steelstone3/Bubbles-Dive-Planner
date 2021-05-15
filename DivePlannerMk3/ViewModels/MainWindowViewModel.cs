@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reactive;
+using Avalonia.Controls;
 using DivePlannerMk3.Controllers;
 using DivePlannerMk3.DataAccessLayer.DataMappers;
 using DivePlannerMk3.DataAccessLayer.Serialisers;
@@ -21,6 +22,7 @@ namespace DivePlannerMk3.ViewModels
             CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
             NewCommand = ReactiveCommand.Create(CreateNewDiveSession);
             SaveCommand = ReactiveCommand.Create(SaveDivePlannerState);
+            OpenCommand = ReactiveCommand.Create(LoadDivePlannerState);
         }
 
         private DiveResultsViewModel _diveResults = new DiveResultsViewModel();
@@ -71,6 +73,11 @@ namespace DivePlannerMk3.ViewModels
             get;
         }
 
+        public ReactiveCommand<Unit, Unit> OpenCommand
+        {
+            get;
+        }
+
         private void RunDiveStep()
         {
             DivePlan.CalculateDiveStep(DiveResults);
@@ -86,25 +93,18 @@ namespace DivePlannerMk3.ViewModels
             DiveHeader = new DiveHeaderViewModel();
         }
 
-        //TODO AH this whole method needs breaking down and moving into a controller once the functionality is in
+        //TODO AH this area needs a changable save name investigate Directory property of the SaveDialog
         private void SaveDivePlannerState()
         {
-            //http://reference.avaloniaui.net/api/Avalonia.Controls/SaveFileDialog/
+            var saveApplicationState = new SaveApplicationStateController();
+            saveApplicationState.SaveApplication(this);
+        }
 
-            /*var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filters.Add(new FileDialogFilter() { Name = "Json", Extensions = { "json" } });
-            saveFileDialog.InitialFileName = "DivePlan";
-            var result = await saveFileDialog.ShowAsync(this);
-            if (result != null)
-            {
-    
-            }*/
-
-            var applicationConverter = new ApplicationEntityModelDataMapper();
-            var applicationSaver = new ApplicationSaveLoad();
-
-            var entityModels = applicationConverter.GenerateEntityModels(this);
-            applicationSaver.SaveApplication(entityModels.ToList());
+        //TODO AH this area needs work
+        private void LoadDivePlannerState()
+        {
+            var loadApplicationState = new LoadApplicationStateController();
+            loadApplicationState.LoadApplication(this);
         }
     }
 }

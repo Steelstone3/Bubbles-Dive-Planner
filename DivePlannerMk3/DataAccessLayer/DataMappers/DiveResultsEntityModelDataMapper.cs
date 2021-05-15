@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using DivePlannerMk3.DataAccessLayer.EntityModels;
+using DivePlannerMk3.Models;
 using DivePlannerMk3.ViewModels.DiveResult;
 
 namespace DivePlannerMk3.DataAccessLayer.DataMappers
@@ -38,8 +40,8 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
 
         private void DiveProfileResultsDataMappingToEntity(DiveResultsViewModel diveResultsViewModel)
         {
-            //TODO AH need to think about how you are handling a list inside of a list
-            //_diveResultsEntityModel.DiveProfileResults = diveResultsViewModel.DiveProfileResults;
+            var diveResults = new List<DiveResultsModel>( diveResultsViewModel.DiveProfileResults );
+            _diveResultsEntityModel.DiveResults.AddRange(diveResults);
         }
 
         #endregion
