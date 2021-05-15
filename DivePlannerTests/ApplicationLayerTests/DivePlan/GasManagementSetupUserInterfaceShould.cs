@@ -140,18 +140,5 @@ namespace DivePlannerTests
             Assert.True(_gasManagement.IsUiVisible);
             Assert.True(_gasManagement.IsUiEnabled);
         }
-
-        [Fact(Skip = "Test needs Implementing")]
-        public void HaveAPostDiveStepVisibiltyState()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-            Assert.True(_gasManagement.IsGasUsageVisible);
-            Assert.False(_gasManagement.IsUiVisible);
-            Assert.False(_gasManagement.IsUiEnabled);
-        }
     }
 }

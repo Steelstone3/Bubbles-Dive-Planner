@@ -15,7 +15,7 @@
     MinHeight="480"
     d:DesignHeight="720"
     d:DesignWidth="1000"
-    Icon="/Assets/diveplanner-logo.ico"
+    Icon="/Assets/dive-planner-logo.ico"
     mc:Ignorable="d">
 
     <Design.DataContext>
