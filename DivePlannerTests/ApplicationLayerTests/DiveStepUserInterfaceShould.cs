@@ -10,21 +10,29 @@ namespace DivePlannerTests
         private DiveStepViewModel _diveStep = new DiveStepViewModel();
 
         [Fact]
-        public void DiveStepModelCanBeSetTest()
+        public void AllowDiveStepModelToBeSet()
         {
             //Act
             _diveStep.Depth = 10;
             _diveStep.Time = 50;
-            //_diveStep.MaximumOperatingDepth = 55;
 
             //Assert
             Assert.Equal(10, _diveStep.Depth);
             Assert.Equal(50, _diveStep.Time);
-            //Assert.Equal(55, _diveStep.MaximumOperatingDepth);
         }
 
         [Fact(Skip = "Depth should not be allowed to exceed max operating depth, time and depth should both have reasonable ranges")]
-        public void DiveStepModelLimitsTest()
+        public void NotAllowDiveStepExecutionIfADepthIsGreaterThanMaximumOperatingDepth()
+        {
+            //Arrange           
+
+            //Act
+
+            //Assert
+        }
+
+        [Fact(Skip = "Depth should not be allowed to exceed max operating depth, time and depth should both have reasonable ranges")]
+        public void NotAllowDiveStepExecutionIfADepthIsOutOfRange()
         {
             //Arrange           
 
@@ -34,7 +42,7 @@ namespace DivePlannerTests
         }
 
         [Fact(Skip = "Depth should not exceed maximum operating depth (maybe +5 for planning purposes)")]
-        public void DiveStepCanExecute()
+        public void NotAllowDiveStepExecutionIfTimeIsOutOfRange()
         {
             //Arrange
 
@@ -44,7 +52,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void DepthRaisePropertyChangedTest()
+        public void RaisePropertyChangedWhenDepthIsSet()
         {
             //Arrange
             string depthEvent = "Not Fired";
@@ -58,7 +66,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void TimeRaisePropertyChangedTest()
+        public void RaisePropertyChangedWhenTimeIsSet()
         {
             //Arrange
             string timeEvent = "Not Fired";

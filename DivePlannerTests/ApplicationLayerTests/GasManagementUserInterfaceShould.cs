@@ -9,7 +9,7 @@ namespace DivePlannerTests
         private GasManagementViewModel _gasManagement = new GasManagementViewModel();
 
         [Fact]
-        public void RaisePropertyChangedCylinderVolumeTests()
+        public void RaisePropertyChangedWhenCylinderVolumeIsSet()
         {
             //Arrange
             var cylinderVolumeEvent = "Not Fired";
@@ -21,7 +21,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void RaisePropertyChangedCylinderPressureTests()
+        public void RaisePropertyChangedWhenCylinderPressureIsSet()
         {
             string cylinderPressureEvent = "Not Fired";
 
@@ -32,7 +32,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void RaisePropertyGasRemainingVolumeTests()
+        public void RaisePropertyChangedWhenGasRemainingVolumeIsSet()
         {
             string gasRemainingEvent = "Not Fired";
 
@@ -43,19 +43,19 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void RaisePropertyGasUsedVolumeTests()
+        public void RaisePropertyChangedWhenGasUsedVolumeIsSet()
         {
             var gasUsedEvents = new List<string>();
 
             //AAA
-            _gasManagement.PropertyChanged += ((sender, e) => gasUsedEvents.Add( e.PropertyName));
+            _gasManagement.PropertyChanged += ((sender, e) => gasUsedEvents.Add(e.PropertyName));
             _gasManagement.GasUsedForStep = 200;
             Assert.Equal(nameof(_gasManagement.GasUsedForStep), gasUsedEvents[0]);
             Assert.Equal(nameof(_gasManagement.GasRemaining), gasUsedEvents[1]);
         }
 
         [Fact]
-        public void RaisePropertyChangedSurfaceAirConsumptionRateTests()
+        public void RaisePropertyChangedWhenSurfaceAirConsumptionRateIsSet()
         {
             string sacRateEvent = "Not Fired";
 
@@ -66,7 +66,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void RaisePropertyChangedInitialGasVolumeTests()
+        public void RaisePropertyChangedWhenInitialGasVolumeIsSet()
         {
             string initialGasEvent = "Not Fired";
 
@@ -80,7 +80,7 @@ namespace DivePlannerTests
         [InlineData(12, 12, 50, 200, 400, 600)]
         [InlineData(1, 12, 200, -800, 1000, 200)]
         [InlineData(15, 30, 300, 4200, 300, 4500)]
-        public void GasManagementModelCanBeSetTest(int cylinderVolume, int sacRate, int cylinderPressure, int gasRemaining, int gasUsedForStep, int initialGasVolume)
+        public void AllowGasManagementModelToBeSet(int cylinderVolume, int sacRate, int cylinderPressure, int gasRemaining, int gasUsedForStep, int initialGasVolume)
         {
             //Arrange
             _gasManagement.CylinderVolume = cylinderVolume;
@@ -98,37 +98,38 @@ namespace DivePlannerTests
             Assert.Equal(gasUsedForStep, _gasManagement.GasUsedForStep);
         }
 
-
-
-        [Theory(Skip = "Composite can execute command needs to be created, Can execute command needs to be created")]
-        [InlineData(0, 11, 49)]
-        [InlineData(16, 31, 301)]
-        public void GasManagementModelLimitsTests(int cylinderVolume, int sacRate, int cylinderPressure)
+        [Theory(Skip = "Cylinder Volume Should Be Between 3 and 30")]
+        [InlineData(2, false)]
+        [InlineData(31, false)]
+        [InlineData(3, true)]
+        [InlineData(30, true)]
+        public void NotAllowDiveStepExecutionIfCylinderVolumeIsOutOfRange(int cylinderVolume, bool expectedResult)
         {
-            //TODO AH may need to look into a composite command for CanExecute using reactiveUI i.e can execute create combined() and https://www.reactiveui.net/docs/handbook/commands/
-            //TODO AH Range Validations for Gas Management View Model and CanExecute for the calculate
-            //TODO AH Consider a combo box of 3, 5, 7, 10, 12, 15, 20, 24, 30
-            //TODO AH Consider a list of gas supplies that you can add and take away from each of which you can assign a gas and supply to and switch out dyamically on the dive with each gas showing remaining and a history of gas usage
 
-            //TODO AH use range attribute on sac rate
+        }
 
-            //TODO AH provide a range between 50 and 300 for Cylinder Pressure
+        [Theory(Skip = "Cylinder Pressure Should Be Between 50 and 300")]
+        [InlineData(49, false)]
+        [InlineData(301, false)]
+        [InlineData(300, true)]
+        [InlineData(50, true)]
+        public void NotAllowDiveStepExecutionIfCylinderPressureIsOutOfRange(int cylinderPressure, bool expectedResult)
+        {
 
-            //Arrange
-            _gasManagement.CylinderPressure = cylinderPressure;
-            _gasManagement.CylinderVolume = cylinderVolume;
-            _gasManagement.SacRate = sacRate;
+        }
 
-            //Act
-            //var canExecute = await = _gasManagementSetup.CanUseGasManagementSetup().FirstAsync();
+        [Theory(Skip = "SAC Rate Should Be Between 5 and 30")]
+        [InlineData(4, false)]
+        [InlineData(31, false)]
+        [InlineData(5, true)]
+        [InlineData(30, true)]
+        public void NotAllowDiveStepExecutionIfSurfaceAirConsumptionRateIsOutOfRange(int surfaceAirComsumptionRate, bool expectedResult)
+        {
 
-            //Assert can calculate command as expected false
-            //Assert
-            //Assert.Equal(false, canExecute);
         }
 
         [Fact]
-        public void GasManagementVisiblityTest()
+        public void HaveADefaultVisibiltyState()
         {
             //Arrange
 
@@ -138,6 +139,19 @@ namespace DivePlannerTests
             Assert.False(_gasManagement.IsGasUsageVisible);
             Assert.True(_gasManagement.IsUiVisible);
             Assert.True(_gasManagement.IsUiEnabled);
+        }
+
+        [Fact(Skip = "Test needs Implementing")]
+        public void HaveAPostDiveStepVisibiltyState()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.True(_gasManagement.IsGasUsageVisible);
+            Assert.False(_gasManagement.IsUiVisible);
+            Assert.False(_gasManagement.IsUiEnabled);
         }
     }
 }

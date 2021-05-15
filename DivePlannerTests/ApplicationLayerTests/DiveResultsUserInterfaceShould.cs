@@ -50,7 +50,7 @@ namespace DivePlannerTests
         };
 
         [Fact]
-        private void PreDiveStageStepInfoOutputTwoDecimalPlacesTest()
+        private void PopulateDiveResultsModelOutputStage()
         {
             //Arrange
             var diveStage = new DiveStageResults(_diveModel.CompartmentCount, _results, _diveProfile);
@@ -66,6 +66,16 @@ namespace DivePlannerTests
                 Assert.Equal(Math.Round(_diveProfile.MaxSurfacePressures[i], 2), _results.DiveProfileStepOutput[i].MaximumSurfacePressureResult);
                 Assert.Equal(Math.Round(_diveProfile.ToleratedAmbientPressures[i], 2), _results.DiveProfileStepOutput[i].ToleratedAmbientPressureResult);
             }
+        }
+
+        [Fact(Skip = "Tests Needs implementing")]
+        public void RaisePropertyChangeWhenDiveResultsModelIsPopulated()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
         }
     }
 }

@@ -2,13 +2,13 @@ using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Controllers;
 using DivePlannerMk3.ViewModels;
 using DivePlannerMk3.ViewModels.DivePlan;
+using Moq;
 using Xunit;
 
 namespace DivePlannerTests
 {
     public class DiveModelUserInterfaceShould
     {
-        //TODO Dive model selection + no selection = no execute
         private IDiveProfileService _diveProfileController = new DiveProfileService();
         private PlanDiveModelSelectorViewModel _diveModelSelectorViewModel;
 
@@ -18,7 +18,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void DiveModelCanBeSelectedTest()
+        public void AllowSelectionOfTheCurrentDiveModel()
         {
             //Arrange
             DiveModelSetup();
@@ -44,9 +44,19 @@ namespace DivePlannerTests
             //Assert
         }
 
+        [Fact(Skip = "Needs implementation")]
+        public void UnlockTheCurrentDiveModelSelectionWhenANewDiveIsStarted()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+        }
+
         //TODO Setup cannot execute in the view model command and test that
         [Fact(Skip = "Test needs implementing - is can execute dive step false when selected dive model or gas mixture is null")]
-        public void DiveModelNotSelectedCanNotExcuteDiveStepTest()
+        public void NotAllowDivesProfilesToBeRunWithoutASelectedDiveModel()
         {
             //Arrange
 

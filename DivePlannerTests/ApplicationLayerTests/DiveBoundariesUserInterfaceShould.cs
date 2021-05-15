@@ -12,7 +12,7 @@ namespace DivePlannerTests
         private GasMixtureSelectorViewModel _gasMixtureViewModel = new GasMixtureSelectorViewModel();
 
         [Fact]
-        public void DiveBoundariesModelCanBeSetTest()
+        public void AllowDiveBoundariesModelToBeSet()
         {
             //Act
             _diveCeilingViewModel.DiveCeiling = 10;
@@ -22,7 +22,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void DiveCeilingRaisePropertyChangedTest()
+        public void RaisePropertyChangedWhenDiveCeilingPropertyIsSet()
         {
             //Arrange
             string diveCeilingEvent = "Not Fired";
@@ -38,7 +38,7 @@ namespace DivePlannerTests
         [Theory]
         [InlineData(4.1, 1.41, 0.99)]
         [InlineData(6.0, 1.6, 1.5)]
-        public void DiveCeilingCalculation(double ceilingExpected, double toleratedAmbientPressure1, double toleratedAmbientPressure2)
+        public void PerformDiveCeilingCalculation(double ceilingExpected, double toleratedAmbientPressure1, double toleratedAmbientPressure2)
         {
             //Arrange
             var diveCeilingController = new DiveCeilingController();
@@ -55,7 +55,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void MaxOperatingDepthRaisePropertyChangedTest()
+        public void RaisePropertyChangedOnMaxOperatingDepthPropertyIsSet()
         {
             //Arrange
             string maxOperatingDepthEvent = "Not Fired";
@@ -69,7 +69,7 @@ namespace DivePlannerTests
         }
 
         [Fact]
-        public void MaxDepthChangesOnGasChangeTest()
+        public void MaximumOperatingDepthUpdatesWhenGasMixtureIsSet()
         {
             //Arrange
             _gasMixtureViewModel = new GasMixtureSelectorViewModel();
@@ -95,7 +95,7 @@ namespace DivePlannerTests
         [Theory]
         [InlineData(21, 56.67)]
         [InlineData(100, 4)]
-        public void MaxOperatingDepthCalculatedCorrectlyTest(double oxygenPercentage, double expectedDepth)
+        public void PerformMaxOperatingDepthCalculation(double oxygenPercentage, double expectedDepth)
         {
             //Arrange
             var _maxOperatingDepthController = new MaxOperatingDepthController();
