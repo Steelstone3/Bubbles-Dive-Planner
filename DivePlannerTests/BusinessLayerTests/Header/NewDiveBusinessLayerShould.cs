@@ -6,10 +6,10 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class NewDiveUserInterfaceShould
+    public class NewDiveBusinessLayerShould
     {
         [Fact(Skip="Needs Implementing")]
-        public void CreateANewDive()
+        public void ResetAllDiveApplicationModels()
         {
 
         }

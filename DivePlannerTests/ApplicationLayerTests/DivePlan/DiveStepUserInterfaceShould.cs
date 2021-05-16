@@ -21,36 +21,6 @@ namespace DivePlannerTests
             Assert.Equal(50, _diveStep.Time);
         }
 
-        [Fact(Skip = "Depth should not be allowed to exceed max operating depth, time and depth should both have reasonable ranges")]
-        public void NotAllowDiveStepExecutionIfADepthIsGreaterThanMaximumOperatingDepth()
-        {
-            //Arrange           
-
-            //Act
-
-            //Assert
-        }
-
-        [Fact(Skip = "Depth should not be allowed to exceed max operating depth, time and depth should both have reasonable ranges")]
-        public void NotAllowDiveStepExecutionIfADepthIsOutOfRange()
-        {
-            //Arrange           
-
-            //Act
-
-            //Assert
-        }
-
-        [Fact(Skip = "Depth should not exceed maximum operating depth (maybe +5 for planning purposes)")]
-        public void NotAllowDiveStepExecutionIfTimeIsOutOfRange()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-        }
-
         [Fact]
         public void RaisePropertyChangedWhenDepthIsSet()
         {

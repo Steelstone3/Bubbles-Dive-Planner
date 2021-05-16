@@ -7,7 +7,7 @@ using Xunit;
 
 namespace DivePlannerTests
 {
-    public class DiveResultsUserInterfaceShould
+    public class CurrentDiveStepUserInterfaceShould
     {
         private Zhl16Buhlmann _diveModel = new Zhl16Buhlmann();
         private DiveResultsModel _results = new DiveResultsModel();
@@ -49,27 +49,14 @@ namespace DivePlannerTests
             },
         };
 
-        [Fact]
-        public void PopulateDiveResultsModelOutputStage()
+        [Fact(Skip="Needs Implementing")]
+        public void PopulateCurrentDiveStepInResults()
         {
-            //Arrange
-            var diveStage = new DiveStageResults(_diveModel.CompartmentCount, _results, _diveProfile);
 
-            //Act
-            for (int i = 0; i < _diveModel.CompartmentCount; i++)
-            {
-                diveStage.RunStage();
-                
-                //Assert
-                Assert.Equal(Math.Round(_diveProfile.CompartmentLoad[i], 2), _results.DiveProfileStepOutput[i].CompartmentLoadResult);
-                Assert.Equal(Math.Round(_diveProfile.TissuePressuresTotal[i], 2), _results.DiveProfileStepOutput[i].TissuePressureResult);
-                Assert.Equal(Math.Round(_diveProfile.MaxSurfacePressures[i], 2), _results.DiveProfileStepOutput[i].MaximumSurfacePressureResult);
-                Assert.Equal(Math.Round(_diveProfile.ToleratedAmbientPressures[i], 2), _results.DiveProfileStepOutput[i].ToleratedAmbientPressureResult);
-            }
         }
 
         [Fact(Skip = "Tests Needs implementing")]
-        public void RaisePropertyChangeWhenDiveResultsModelIsPopulated()
+        public void RaisePropertyChangeWhenCurrentDiveStepInResultsIsPopulated()
         {
             //Arrange
 
