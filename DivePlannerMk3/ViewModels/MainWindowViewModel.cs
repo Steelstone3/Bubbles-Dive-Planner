@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reactive;
-using Avalonia.Controls;
+using System.Reactive.Linq;
 using DivePlannerMk3.Controllers;
-using DivePlannerMk3.DataAccessLayer.DataMappers;
-using DivePlannerMk3.DataAccessLayer.Serialisers;
 using DivePlannerMk3.ViewModels.DiveHeader;
 using DivePlannerMk3.ViewModels.DiveInfo;
 using DivePlannerMk3.ViewModels.DivePlan;
@@ -58,9 +56,22 @@ namespace DivePlannerMk3.ViewModels
             get;
         }
 
+        //Must make observables atomic e.g vm => vm.DivePlan.DiveModelSelector.SelectedDiveModel
         public IObservable<bool> CanExecuteDiveStep
         {
-            get => this.WhenAnyValue(vm => vm.DivePlan.GasMixture.SelectedGasMixture, vm => vm.DivePlan.DiveModelSelector.SelectedDiveModel, (selectedGasMixture, selectedDiveModel) => selectedGasMixture != null && selectedDiveModel != null);
+            get => this.WhenAnyValue(vm => vm.DivePlan.DiveModelSelector.SelectedDiveModel,
+            vm => vm.DivePlan.GasMixture.SelectedGasMixture,
+            vm => vm.DivePlan.GasManagement.CylinderPressure,
+            vm => vm.DivePlan.GasManagement.CylinderVolume,
+            vm => vm.DivePlan.GasManagement.SacRate,
+            vm => vm.DivePlan.DiveStep.Depth,
+            vm => vm.DivePlan.DiveStep.Time,
+            vm => vm.DivePlan.GasMixture.MaximumOperatingDepth,
+            (selectorDiveModel, selectedGasMixture, cylinderPressure, cylinderVolume, sacRate, depth, time, maximumOperatingDepth) =>
+            DivePlan.DiveModelSelector.ValidateSelectedDiveModel(selectorDiveModel)
+            && DivePlan.GasMixture.ValidateGasMixture(selectedGasMixture)
+            && DivePlan.GasManagement.ValidateGasManagement(cylinderVolume, cylinderPressure, sacRate)
+            && DivePlan.DiveStep.ValidateDiveStep(depth, time, maximumOperatingDepth));
         }
 
         public ReactiveCommand<Unit, Unit> NewCommand

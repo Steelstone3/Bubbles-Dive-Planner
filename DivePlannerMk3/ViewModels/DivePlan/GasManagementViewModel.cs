@@ -86,6 +86,13 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
         #endregion
 
+        public bool ValidateGasManagement(int cylinderVolume, int cylinderPressure, int sacRate)
+        {
+            return sacRate <= 30 && sacRate >= 5 &&
+            cylinderPressure <= 300 && cylinderPressure >= 50 &&
+            cylinderVolume <= 30 && cylinderVolume >= 3;
+        }
+
         private void CalculateInitialCylinderVolume()
         {
             InitialCylinderTotalVolume = _gasManagementController.CalculateInitialGasVolume(CylinderVolume, CylinderPressure);

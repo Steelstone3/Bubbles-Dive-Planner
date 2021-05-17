@@ -35,11 +35,9 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             }
         }
 
-        private bool _isReadOnlyUiVisible = false;
-        public bool IsReadOnlyUiVisible
+        public bool ValidateSelectedDiveModel(IDiveModel selectedDiveModel)
         {
-            get => _isReadOnlyUiVisible;
-            set => this.RaiseAndSetIfChanged(ref _isReadOnlyUiVisible, value);
+            return selectedDiveModel != null && _diveProfileController.TheDiveModel != null;
         }
     }
 }

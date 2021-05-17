@@ -22,8 +22,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         private double _maximumOperatingDepth;
         public double MaximumOperatingDepth
         {
-           get => _maximumOperatingDepth;
-           set => this.RaiseAndSetIfChanged(ref _maximumOperatingDepth, value);
+            get => _maximumOperatingDepth;
+            set => this.RaiseAndSetIfChanged(ref _maximumOperatingDepth, value);
         }
 
         public ObservableCollection<IGasMixtureModel> GasMixtures
@@ -40,7 +40,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                 if (_selectedGasMixture != value)
                 {
                     _selectedGasMixture = value;
-                    MaximumOperatingDepth = UpdateMaximumOperatingDepth();
+                    UpdateMaximumOperatingDepth();
                     this.RaisePropertyChanged(nameof(SelectedGasMixture));
                 }
             }
@@ -88,6 +88,22 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             GasMixtures.Add(defaultGasMixture);
         }
 
-        private double UpdateMaximumOperatingDepth() => _maxOperatingDepthController.CalculateMaximumOperatingDepth(_selectedGasMixture.Oxygen);
+        public bool ValidateGasMixture(IGasMixtureModel selectedGasMixture)
+        {
+            return selectedGasMixture != null;
+        }
+
+        private double CalculateMaximumOperatingDepth() => _maxOperatingDepthController.CalculateMaximumOperatingDepth(_selectedGasMixture.Oxygen);
+        private void UpdateMaximumOperatingDepth()
+        {
+            if (_selectedGasMixture == null)
+            {
+                MaximumOperatingDepth = 0;
+            }
+            else
+            {
+                MaximumOperatingDepth = CalculateMaximumOperatingDepth();
+            }
+        }
     }
 }

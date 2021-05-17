@@ -48,5 +48,19 @@ namespace DivePlannerTests
             //Assert
             Assert.Equal(nameof(_diveStep.Time), timeEvent);
         }
+
+        [Theory]
+        [InlineData(50,10,55,true)]
+        [InlineData(60,10,55,false)]
+        [InlineData(-1,10,55,false)]
+        [InlineData(101,10,120,false)]
+        [InlineData(50,0,55,false)]
+        [InlineData(50,101,55,false)]
+        public void ValidateDiveStepParameters(int depth, int time, double maximumOperatingDepth, bool expectedResult)
+        {
+            var result = _diveStep.ValidateDiveStep(depth, time, maximumOperatingDepth);
+
+            Assert.Equal(expectedResult, result);
+        }
     }
 }

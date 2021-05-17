@@ -76,5 +76,20 @@ namespace DivePlannerTests
             Assert.True(_gasManagement.IsUiVisible);
             Assert.True(_gasManagement.IsUiEnabled);
         }
+
+        [Theory]
+        [InlineData(200,12,12,true)]
+        [InlineData(301,12,12,false)]
+        [InlineData(49,12,12,false)]
+        [InlineData(200,31,12,false)]
+        [InlineData(200,2,12,false)]
+        [InlineData(200,12,31,false)]
+        [InlineData(200,12,4,false)]
+        public void ValidateGasManagementSetupParameters(int cylinderPressure, int cylinderVolume, int sacRate, bool expectedResult)
+        {
+            var result = _gasManagement.ValidateGasManagement(cylinderVolume, cylinderPressure, sacRate);
+
+            Assert.Equal(expectedResult, result);
+        }
     }
 }

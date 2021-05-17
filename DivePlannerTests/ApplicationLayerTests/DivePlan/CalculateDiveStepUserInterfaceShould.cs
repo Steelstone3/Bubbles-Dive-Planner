@@ -1,4 +1,7 @@
 using System.Reactive.Linq;
+using DivePlannerMk3.Controllers;
+using DivePlannerMk3.Models;
+using DivePlannerMk3.ViewModels;
 using DivePlannerMk3.ViewModels.DivePlan;
 using Xunit;
 
@@ -6,145 +9,234 @@ namespace DivePlannerTests
 {
     public class CalculateDiveStepUserInterfaceShould
     {
+        private MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
+        private PlanDiveModelSelectorViewModel _diveModelSelectorViewModel;
+        private DiveStepViewModel _diveStepViewModel = new DiveStepViewModel();
+        private GasManagementViewModel _gasManagementViewModel = new GasManagementViewModel();
         private GasMixtureSelectorViewModel _gasMixtureViewModel = new GasMixtureSelectorViewModel();
 
-        //TODO Setup cannot execute in the view model command and test that
-        [Fact(Skip = "Test needs implementing - is can execute dive step false when selected dive model or gas mixture is null")]
-        public void NotAllowDivesProfilesToBeRunWithoutASelectedDiveModel()
+        [Fact]
+        public async void NotAllowDivesProfilesToBeRunWithoutASelectedDiveModel()
         {
-            //Arrange
+            //A
+            EverythingIsOk();
+            SetupDiveModelSelector();
 
-            //Act
+            //A
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
 
-            //Assert
+            //A
+            Assert.False(canExecute);
         }
 
-        [Fact(Skip = "Depth should not be allowed to exceed max operating depth, time and depth should both have reasonable ranges")]
-        public void NotAllowDiveStepExecutionIfADepthIsOutOfRange()
+        [Theory]
+        [InlineData(-1, false)]
+        [InlineData(101, false)]
+        [InlineData(0, true)]
+        [InlineData(55, true)]
+        public async void NotAllowDiveStepExecutionIfADepthIsOutOfRange(int depth, bool expectedResult)
         {
-            //Arrange           
+            EverythingIsOk();
+            _diveStepViewModel.Depth = depth;
 
-            //Act
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
 
-            //Assert
+            Assert.Equal(expectedResult, canExecute);
         }
 
-        [Fact(Skip = "Depth should not exceed maximum operating depth (maybe +5 for planning purposes)")]
-        public void NotAllowDiveStepExecutionIfTimeIsOutOfRange()
+        [Theory]
+        [InlineData(0, false)]
+        [InlineData(101, false)]
+        [InlineData(1, true)]
+        [InlineData(100, true)]
+        public async void NotAllowDiveStepExecutionIfTimeIsOutOfRange(int time, bool expectedResult)
         {
-            //Arrange
+            EverythingIsOk();
+            _diveStepViewModel.Time = time;
 
-            //Act
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
 
-            //Assert
+            Assert.Equal(expectedResult, canExecute);
         }
 
-        [Fact(Skip = "Depth should not be allowed to exceed max operating depth, time and depth should both have reasonable ranges")]
-        public void NotAllowDiveStepExecutionIfADepthIsGreaterThanMaximumOperatingDepth()
+        [Theory]
+        [InlineData(57, false)]
+        [InlineData(70, false)]
+        [InlineData(10, true)]
+        [InlineData(55, true)]
+        public async void NotAllowDiveStepExecutionIfADepthIsGreaterThanMaximumOperatingDepth(int depth, bool expectedResult)
         {
-            //Arrange           
+            EverythingIsOk();
+            _diveStepViewModel.Depth = depth;
 
-            //Act
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
 
-            //Assert
+            Assert.Equal(expectedResult, canExecute);
         }
 
-        [Theory(Skip = "Cylinder Volume Should Be Between 3 and 30")]
+        [Theory]
         [InlineData(2, false)]
         [InlineData(31, false)]
         [InlineData(3, true)]
         [InlineData(30, true)]
-        public void NotAllowDiveStepExecutionIfCylinderVolumeIsOutOfRange(int cylinderVolume, bool expectedResult)
+        public async void NotAllowDiveStepExecutionIfCylinderVolumeIsOutOfRange(int cylinderVolume, bool expectedResult)
         {
+            EverythingIsOk();
+            _gasManagementViewModel.CylinderPressure = 200;
+            _gasManagementViewModel.CylinderVolume = cylinderVolume;
+            _gasManagementViewModel.SacRate = 12;
 
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
+
+            Assert.Equal(expectedResult, canExecute);
         }
 
-        [Theory(Skip = "Cylinder Pressure Should Be Between 50 and 300")]
+        [Theory]
         [InlineData(49, false)]
         [InlineData(301, false)]
         [InlineData(300, true)]
         [InlineData(50, true)]
-        public void NotAllowDiveStepExecutionIfCylinderPressureIsOutOfRange(int cylinderPressure, bool expectedResult)
+        public async void NotAllowDiveStepExecutionIfCylinderPressureIsOutOfRange(int cylinderPressure, bool expectedResult)
         {
+            EverythingIsOk();
+            _gasManagementViewModel.CylinderPressure = cylinderPressure;
+            _gasManagementViewModel.CylinderVolume = 12;
+            _gasManagementViewModel.SacRate = 12;
 
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
+
+            Assert.Equal(expectedResult, canExecute);
         }
 
-        [Theory(Skip = "SAC Rate Should Be Between 5 and 30")]
+        [Theory]
         [InlineData(4, false)]
         [InlineData(31, false)]
         [InlineData(5, true)]
         [InlineData(30, true)]
-        public void NotAllowDiveStepExecutionIfSurfaceAirConsumptionRateIsOutOfRange(int surfaceAirComsumptionRate, bool expectedResult)
+        public async void NotAllowDiveStepExecutionIfSurfaceAirConsumptionRateIsOutOfRange(int surfaceAirComsumptionRate, bool expectedResult)
         {
+            EverythingIsOk();
+            _gasManagementViewModel.CylinderPressure = 200;
+            _gasManagementViewModel.CylinderVolume = 12;
+            _gasManagementViewModel.SacRate = surfaceAirComsumptionRate;
 
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
+
+            Assert.Equal(expectedResult, canExecute);
         }
 
-        [Theory]
-        [InlineData(100, -1, "Negative Helium")]
-        [InlineData(-1, 100, "Negative Oxygen")]
-        public async void NotAllowDiveStepExecutionIfGasMixtureHasNegativeValues(double oxygen, double helium, string gasName)
+        [Fact]
+        public async void NotAllowDiveStepExecutionIfNoGasMixtureIsSelected()
         {
-            //Arrange
-            var gasMix = new GasMixtureViewModel()
-            {
-                GasName = gasName,
-                Oxygen = oxygen,
-                Helium = helium,
-            };
+            //A
+            EverythingIsOk();
+            _gasMixtureViewModel.SelectedGasMixture = null;
 
-            //Act
-            _gasMixtureViewModel.NewGasMixture = gasMix;
+            //A
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
 
-            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
-
-            //Assert
+            //A
             Assert.False(canExecute);
         }
 
-        [Theory]
-        [InlineData(25, 80, "Loads of Helium")]
-        [InlineData(80, 25, "Loads of Oxygen")]
-        [InlineData(0, 101, "Helium")]
-        [InlineData(101, 0, "O2")]
-        public async void NotAllowDiveStepExecutionIfGasMixtureIsOver100Percent(double oxygen, double helium, string gasName)
+        [Fact]
+        public async void AllowDiveStepExecutionWhenAllConditionsMet()
         {
-            //Arrange
-            var gasMix = new GasMixtureViewModel()
-            {
-                GasName = gasName,
-                Oxygen = oxygen,
-                Helium = helium,
-            };
+            //A
+            EverythingIsOk();
 
-            //Act
-            _gasMixtureViewModel.NewGasMixture = gasMix;
+            //A
+            var canExecute = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
 
-            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
-
-            //Assert
-            Assert.False(canExecute);
+            //A
+            Assert.True(canExecute);
         }
 
-        [Theory]
-        [InlineData(1, 0, "Oxygen Starved")]
-        [InlineData(4, 0, "Oxygen Starved 2")]
-        public async void NotAllowDiveStepExecutionIfGasMixtureOxygenLevelsAreTooLow(double oxygen, double helium, string gasName)
+        [Fact]
+        public async void AllowDiveStepExecutionWhenAllConditionsMetHavingPreviouslyNotBeenMet()
         {
-            //Arrange
-            var gasMix = new GasMixtureViewModel()
+            //AA
+            EverythingIsNotOk();
+            var canExecuteNotOk = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
+            
+            //AA
+            EverythingIsOk();
+            var canExecuteOk = await _mainWindowViewModel.CanExecuteDiveStep.FirstAsync();
+
+            //A
+            Assert.False(canExecuteNotOk);
+            Assert.True(canExecuteOk);
+        }
+
+        private void SetupDiveModelSelector()
+        {
+            var diveProfileService = new DiveProfileService();
+            _diveModelSelectorViewModel = new PlanDiveModelSelectorViewModel(diveProfileService);
+            _mainWindowViewModel.DivePlan.DiveModelSelector = _diveModelSelectorViewModel;
+        }
+
+        private void EverythingIsOk()
+        {
+            SetupDiveModelSelector();
+            _diveModelSelectorViewModel.SelectedDiveModel = new Zhl16Buhlmann();
+
+            _gasMixtureViewModel.SelectedGasMixture = new GasMixtureViewModel()
             {
-                GasName = gasName,
-                Oxygen = oxygen,
-                Helium = helium,
+                GasName = "Air",
+                Oxygen = 21,
+                Helium = 0,
             };
 
-            //Act
-            _gasMixtureViewModel.NewGasMixture = gasMix;
+            _gasManagementViewModel = new GasManagementViewModel()
+            {
+                SacRate = 12,
+                CylinderPressure = 200,
+                CylinderVolume = 12,
+            };
 
-            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
+            _diveStepViewModel = new DiveStepViewModel()
+            {
+                Depth = 10,
+                Time = 15,
+            };
 
-            //Assert
-            Assert.False(canExecute);
+            SetupMainViewModel();
+        }
+
+        private void EverythingIsNotOk()
+        {
+            SetupDiveModelSelector();
+            _diveModelSelectorViewModel.SelectedDiveModel = null;
+
+            _gasMixtureViewModel.SelectedGasMixture = new GasMixtureViewModel()
+            {
+                GasName = "Air",
+                Oxygen = 21,
+                Helium = 0,
+            };
+
+            _gasManagementViewModel = new GasManagementViewModel()
+            {
+                SacRate = 0,
+                CylinderPressure = 0,
+                CylinderVolume = 0,
+            };
+
+            _diveStepViewModel = new DiveStepViewModel()
+            {
+                Depth = 0,
+                Time = 0,
+            };
+
+            SetupMainViewModel();
+        }
+
+        private void SetupMainViewModel()
+        {
+            _mainWindowViewModel.DivePlan.DiveModelSelector = _diveModelSelectorViewModel;
+            _mainWindowViewModel.DivePlan.GasMixture = _gasMixtureViewModel;
+            _mainWindowViewModel.DivePlan.GasManagement = _gasManagementViewModel;
+            _mainWindowViewModel.DivePlan.DiveStep = _diveStepViewModel;
         }
     }
 }

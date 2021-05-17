@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Reactive.Linq;
 using DivePlannerMk3.Controllers;
 using DivePlannerMk3.Models;
@@ -70,5 +71,86 @@ namespace DivePlannerTests
         }
 
         //TODO AH here put a test relating to raise property changed
+        [Theory]
+        [InlineData(100, -1, "Negative Helium")]
+        [InlineData(-1, 100, "Negative Oxygen")]
+        public async void NotAllowDiveStepExecutionIfGasMixtureHasNegativeValues(double oxygen, double helium, string gasName)
+        {
+            //Arrange
+            var gasMix = new GasMixtureViewModel()
+            {
+                GasName = gasName,
+                Oxygen = oxygen,
+                Helium = helium,
+            };
+
+            //Act
+            _gasMixtureViewModel.NewGasMixture = gasMix;
+
+            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
+
+            //Assert
+            Assert.False(canExecute);
+        }
+
+        [Theory]
+        [InlineData(25, 80, "Loads of Helium")]
+        [InlineData(80, 25, "Loads of Oxygen")]
+        [InlineData(0, 101, "Helium")]
+        [InlineData(101, 0, "O2")]
+        public async void NotAllowDiveStepExecutionIfGasMixtureIsOver100Percent(double oxygen, double helium, string gasName)
+        {
+            //Arrange
+            var gasMix = new GasMixtureViewModel()
+            {
+                GasName = gasName,
+                Oxygen = oxygen,
+                Helium = helium,
+            };
+
+            //Act
+            _gasMixtureViewModel.NewGasMixture = gasMix;
+
+            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
+
+            //Assert
+            Assert.False(canExecute);
+        }
+
+        [Theory]
+        [InlineData(1, 0, "Oxygen Starved")]
+        [InlineData(4, 0, "Oxygen Starved 2")]
+        public async void NotAllowDiveStepExecutionIfGasMixtureOxygenLevelsAreTooLow(double oxygen, double helium, string gasName)
+        {
+            //Arrange
+            var gasMix = new GasMixtureViewModel()
+            {
+                GasName = gasName,
+                Oxygen = oxygen,
+                Helium = helium,
+            };
+
+            //Act
+            _gasMixtureViewModel.NewGasMixture = gasMix;
+
+            var canExecute = await _gasMixtureViewModel.CanAddGasMixture.FirstAsync();
+
+            //Assert
+            Assert.False(canExecute);
+        }
+
+        [Fact]
+        public void ValidateInValidGasManagementParameters()
+        {
+            var invalidResult = _gasMixtureViewModel.ValidateGasMixture(null);
+            Assert.False(invalidResult);
+        }
+
+        [Fact]
+        public void ValidateValidGasManagementParameters()
+        {
+            var validResult = _gasMixtureViewModel.ValidateGasMixture(_gasMixtureViewModel.GasMixtures.First());
+            Assert.True(validResult);
+        }
     }
 }
