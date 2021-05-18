@@ -67,10 +67,6 @@ namespace DivePlannerTests
         [Fact]
         public void HaveADefaultVisibiltyState()
         {
-            //Arrange
-
-            //Act
-
             //Assert
             Assert.False(_gasManagement.IsGasUsageVisible);
             Assert.True(_gasManagement.IsUiVisible);

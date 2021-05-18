@@ -12,12 +12,12 @@ namespace DivePlannerTests
     public class DiveModelUserInterfaceShould
     {
         private IDiveProfileService _diveProfileController = new DiveProfileService();
-        private PlanDiveModelSelectorViewModel _diveModelSelectorViewModel;
+        private DiveModelSelectorViewModel _diveModelSelectorViewModel;
         private MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
 
         private void DiveModelSetup()
         {
-            _diveModelSelectorViewModel = new PlanDiveModelSelectorViewModel(_diveProfileController);
+            _diveModelSelectorViewModel = new DiveModelSelectorViewModel(_diveProfileController);
         }
 
         [Fact]
@@ -46,6 +46,7 @@ namespace DivePlannerTests
             //Assert
             Assert.True(_diveModelSelectorViewModel.IsUiEnabled);
             Assert.True(_diveModelSelectorViewModel.IsUiVisible);
+            Assert.False(_diveModelSelectorViewModel.IsReadOnlyUiVisible);
         }
 
         [Fact(Skip="This test is not implemented correctly")]
@@ -83,6 +84,7 @@ namespace DivePlannerTests
             //Assert
             Assert.False(divePlan.DiveModelSelector.IsUiEnabled);
             Assert.False(divePlan.DiveModelSelector.IsUiVisible);
+            Assert.True(_diveModelSelectorViewModel.IsReadOnlyUiVisible);
         }
 
         [Fact(Skip="This test is not implemented correctly")]
@@ -100,6 +102,7 @@ namespace DivePlannerTests
             //Assert
             Assert.True(_diveModelSelectorViewModel.IsUiEnabled);
             Assert.True(_diveModelSelectorViewModel.IsUiVisible);
+            Assert.False(_diveModelSelectorViewModel.IsReadOnlyUiVisible);
         }
 
         [Fact]

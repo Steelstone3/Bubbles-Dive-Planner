@@ -5,8 +5,6 @@ namespace DivePlannerTests
 {
     public class DiveStepUserInterfaceShould
     {
-        // depth, time and limits no -depth/time or depth/time over 1000
-
         private DiveStepViewModel _diveStep = new DiveStepViewModel();
 
         [Fact]

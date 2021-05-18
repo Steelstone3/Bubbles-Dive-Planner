@@ -42,8 +42,17 @@ namespace DivePlannerTests
             Assert.Equal(nameof(_gasManagement.GasRemaining), gasRemainingEvent);
         }
 
+        [Fact]
+        public void HasADefaultGasManagementVisibiltyState()
+        {
+            //Assert
+            Assert.False(_gasManagement.IsGasUsageVisible);
+            Assert.True(_gasManagement.IsUiVisible);
+            Assert.True(_gasManagement.IsUiEnabled);
+        }
+
         [Fact(Skip = "Test needs Implementing")]
-        public void HaveAPostDiveStepVisibiltyState()
+        public void HaveAPostGasManagementVisibiltyState()
         {
             //Arrange
 

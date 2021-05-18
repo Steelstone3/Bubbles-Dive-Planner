@@ -18,10 +18,6 @@ namespace DivePlannerTests
         [Fact]
         public void HaveAtLeastOneGasMixture()
         {
-            //Arrange
-
-            //Act
-
             //Assert
             Assert.NotNull(_gasMixtureViewModel.GasMixtures);
             Assert.NotEmpty(_gasMixtureViewModel.GasMixtures);

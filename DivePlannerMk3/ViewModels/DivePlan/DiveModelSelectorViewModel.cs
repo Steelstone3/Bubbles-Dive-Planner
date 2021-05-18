@@ -5,11 +5,11 @@ using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DivePlan
 {
-    public class PlanDiveModelSelectorViewModel : ViewModelBase
+    public class DiveModelSelectorViewModel : ViewModelBase
     {
         private IDiveProfileService _diveProfileController;
 
-        public PlanDiveModelSelectorViewModel(IDiveProfileService diveProfileController)
+        public DiveModelSelectorViewModel(IDiveProfileService diveProfileController)
         {
             IsUiVisible = true;
             _diveProfileController = diveProfileController;
@@ -33,6 +33,13 @@ namespace DivePlannerMk3.ViewModels.DivePlan
                     this.RaisePropertyChanged(nameof(SelectedDiveModel));
                 }
             }
+        }
+        
+        private bool _isReadOnlyUiVisible = false;
+        public bool IsReadOnlyUiVisible
+        {
+            get => _isReadOnlyUiVisible;
+            set => this.RaiseAndSetIfChanged(ref _isReadOnlyUiVisible, value);
         }
 
         public bool ValidateSelectedDiveModel(IDiveModel selectedDiveModel)

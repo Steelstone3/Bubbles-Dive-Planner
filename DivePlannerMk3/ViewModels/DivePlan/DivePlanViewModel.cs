@@ -15,8 +15,8 @@ namespace DivePlannerMk3.ViewModels.DivePlan
             set => this.RaiseAndSetIfChanged(ref _gasMixture, value);
         }
 
-        private PlanDiveModelSelectorViewModel _diveModelSelector;
-        public PlanDiveModelSelectorViewModel DiveModelSelector
+        private DiveModelSelectorViewModel _diveModelSelector;
+        public DiveModelSelectorViewModel DiveModelSelector
         {
             get => _diveModelSelector;
             set => this.RaiseAndSetIfChanged(ref _diveModelSelector, value);
@@ -40,7 +40,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
         public DivePlanViewModel(IDiveProfileService diveProfileService)
         {
             _diveProfileService = diveProfileService;
-            _diveModelSelector = new PlanDiveModelSelectorViewModel(_diveProfileService);
+            _diveModelSelector = new DiveModelSelectorViewModel(_diveProfileService);
         }
 
         public void CalculateDiveStep(DiveResultsViewModel diveResults)
@@ -69,6 +69,7 @@ namespace DivePlannerMk3.ViewModels.DivePlan
 
             DiveModelSelector.IsUiVisible = false;
             DiveModelSelector.IsUiEnabled = false;
+            DiveModelSelector.IsReadOnlyUiVisible = true;
         }
     }
 }

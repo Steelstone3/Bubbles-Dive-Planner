@@ -13,6 +13,8 @@ namespace DivePlannerMk3.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        //TODO AH Test drive and Move NewCommand, SaveCommand, OpenCommand to there own classes under the header folder
+        
         public MainWindowViewModel()
         {
             _divePlan = new DivePlanViewModel(new DiveProfileService());

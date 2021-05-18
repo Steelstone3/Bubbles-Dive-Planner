@@ -6,7 +6,7 @@ using DivePlannerMk3.Contracts;
 
 namespace DivePlannerMk3.ViewModels.DiveResult
 {
-    public class DiveResultsHistoricViewModel : IDiveResultsHistoricModel
+    public class HistoricDiveResultsViewModel : IDiveResultsHistoricModel
     {
         public ObservableCollection<IDiveResultsModel> DiveProfileResults
         {

@@ -23,7 +23,6 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _diveCeilingViewModel, value);
         }
 
-        //private CnsToxicityViewModel _cnsToxicityViewModel = new CnsToxicityViewModel();
         public CnsToxicityViewModel CnsToxicityViewModel
         {
             get; set;

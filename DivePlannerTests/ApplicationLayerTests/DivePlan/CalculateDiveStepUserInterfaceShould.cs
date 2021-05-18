@@ -10,7 +10,7 @@ namespace DivePlannerTests
     public class CalculateDiveStepUserInterfaceShould
     {
         private MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
-        private PlanDiveModelSelectorViewModel _diveModelSelectorViewModel;
+        private DiveModelSelectorViewModel _diveModelSelectorViewModel;
         private DiveStepViewModel _diveStepViewModel = new DiveStepViewModel();
         private GasManagementViewModel _gasManagementViewModel = new GasManagementViewModel();
         private GasMixtureSelectorViewModel _gasMixtureViewModel = new GasMixtureSelectorViewModel();
@@ -171,7 +171,7 @@ namespace DivePlannerTests
         private void SetupDiveModelSelector()
         {
             var diveProfileService = new DiveProfileService();
-            _diveModelSelectorViewModel = new PlanDiveModelSelectorViewModel(diveProfileService);
+            _diveModelSelectorViewModel = new DiveModelSelectorViewModel(diveProfileService);
             _mainWindowViewModel.DivePlan.DiveModelSelector = _diveModelSelectorViewModel;
         }
 
