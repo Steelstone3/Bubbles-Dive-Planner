@@ -17,12 +17,12 @@ namespace DivePlannerMk3.ViewModels
         
         public MainWindowViewModel()
         {
-            _divePlan = new DivePlanViewModel(new DiveProfileService());
+            var diveProfileService = new DiveProfileService();
+            _divePlan = new DivePlanViewModel(diveProfileService);
+            _diveInfo = new DiveInfoViewModel(diveProfileService);
+            _diveHeader.File = new FileViewModel(this);
 
             CalculateDiveStepCommand = ReactiveCommand.Create(RunDiveStep, CanExecuteDiveStep); // create command
-            NewCommand = ReactiveCommand.Create(CreateNewDiveSession);
-            SaveCommand = ReactiveCommand.Create(SaveDivePlannerState);
-            OpenCommand = ReactiveCommand.Create(LoadDivePlannerState);
         }
 
         private DiveResultsViewModel _diveResults = new DiveResultsViewModel();
@@ -39,7 +39,7 @@ namespace DivePlannerMk3.ViewModels
             set => this.RaiseAndSetIfChanged(ref _divePlan, value);
         }
 
-        private DiveInfoViewModel _diveInfo = new DiveInfoViewModel();
+        private DiveInfoViewModel _diveInfo;
         public DiveInfoViewModel DiveInfo
         {
             get => _diveInfo;
@@ -76,48 +76,12 @@ namespace DivePlannerMk3.ViewModels
             && DivePlan.DiveStep.ValidateDiveStep(depth, time, maximumOperatingDepth));
         }
 
-        public ReactiveCommand<Unit, Unit> NewCommand
-        {
-            get;
-        }
-
-        public ReactiveCommand<Unit, Unit> SaveCommand
-        {
-            get;
-        }
-
-        public ReactiveCommand<Unit, Unit> OpenCommand
-        {
-            get;
-        }
-
         private void RunDiveStep()
         {
             DivePlan.CalculateDiveStep(DiveResults);
             DiveResults.DiveParametersResult = DivePlan.UpdateUsedParameters(DiveResults.DiveParametersResult);
-            DiveInfo.CalculateDiveStep(DiveResults.DiveProfileResults.SelectMany(diveModel => diveModel.DiveProfileStepOutput.Select(x => x.ToleratedAmbientPressureResult)));
-        }
-
-        private void CreateNewDiveSession()
-        {
-            DiveResults = new DiveResultsViewModel();
-            DivePlan = new DivePlanViewModel(new DiveProfileService());
-            DiveInfo = new DiveInfoViewModel();
-            DiveHeader = new DiveHeaderViewModel();
-        }
-
-        //TODO AH this area needs a changable save name investigate Directory property of the SaveDialog
-        private void SaveDivePlannerState()
-        {
-            var saveApplicationState = new SaveApplicationStateController();
-            saveApplicationState.SaveApplication(this);
-        }
-
-        //TODO AH this area needs work
-        private void LoadDivePlannerState()
-        {
-            var loadApplicationState = new LoadApplicationStateController();
-            loadApplicationState.LoadApplication(this);
+            //TODO AH Likely this linq statement is passing in all steps refactor to take 
+            DiveInfo.CalculateDiveStep();
         }
     }
 }

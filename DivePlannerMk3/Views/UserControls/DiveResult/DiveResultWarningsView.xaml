@@ -15,23 +15,23 @@
 
         <!--  in its own user control  -->
         <TextBlock
-            Margin="32,4"
+            Margin="16,4"
             FontSize="16"
             FontWeight="DemiBold"
             Text="Warnings" />
-        <StackPanel Margin="32,4" Background="#FFCFCFCF">
+        <StackPanel Margin="16,4" Background="#FFCFCFCF">
 
             <TextBlock Margin="8,0" Text="Here" />
         </StackPanel>
 
         <!--  in its own user control  -->
         <TextBlock
-            Margin="32,4"
+            Margin="16,4"
             FontSize="16"
             FontWeight="DemiBold"
             Text="Key" />
 
-        <StackPanel Margin="32,4" Background="#FFCFCFCF">
+        <StackPanel Margin="16,4" Background="#FFCFCFCF">
             <TextBlock Margin="8,0" Text="C = Compartment" />
             <TextBlock Margin="8,0" Text="TP = Tissue Pressure" />
             <TextBlock Margin="8,0" Text="TAP = Tolerated Ambient Pressure" />

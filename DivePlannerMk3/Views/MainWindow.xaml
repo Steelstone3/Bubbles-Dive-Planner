@@ -11,10 +11,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:DivePlannerMk3.ViewModels;assembly=DivePlannerMk3"
     Title="Bubbles Dive Planner"
-    MinWidth="1080"
+    MinWidth="720"
     MinHeight="480"
     d:DesignHeight="720"
-    d:DesignWidth="1000"
+    d:DesignWidth="1024"
     Icon="/Assets/dive-planner-logo.ico"
     mc:Ignorable="d">
 

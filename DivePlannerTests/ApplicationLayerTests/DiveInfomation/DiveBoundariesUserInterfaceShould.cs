@@ -16,9 +16,11 @@ namespace DivePlannerTests
         {
             //Act
             _diveCeilingViewModel.DiveCeiling = 10;
+            _gasMixtureViewModel.MaximumOperatingDepth = 55;
 
             //Assert
             Assert.Equal(10, _diveCeilingViewModel.DiveCeiling);
+            Assert.Equal(55, _gasMixtureViewModel.MaximumOperatingDepth);
         }
 
         [Fact]
@@ -72,8 +74,6 @@ namespace DivePlannerTests
         public void MaximumOperatingDepthUpdatesWhenGasMixtureIsSet()
         {
             //Arrange
-            _gasMixtureViewModel = new GasMixtureSelectorViewModel();
-
             var newGasMixture = new GasMixtureViewModel()
             {
                 Oxygen = 34,
@@ -90,21 +90,6 @@ namespace DivePlannerTests
             //Assert
             Assert.Contains(nameof(_gasMixtureViewModel.SelectedGasMixture), viewModelEvents);
             Assert.Contains(nameof(_gasMixtureViewModel.MaximumOperatingDepth), viewModelEvents);
-        }
-
-        [Theory]
-        [InlineData(21, 56.67)]
-        [InlineData(100, 4)]
-        public void PerformMaxOperatingDepthCalculation(double oxygenPercentage, double expectedDepth)
-        {
-            //Arrange
-            var _maxOperatingDepthController = new MaxOperatingDepthController();
-
-            //Act
-            _gasMixtureViewModel.MaximumOperatingDepth = _maxOperatingDepthController.CalculateMaximumOperatingDepth(oxygenPercentage);
-
-            //Assert
-            Assert.Equal(expectedDepth, _gasMixtureViewModel.MaximumOperatingDepth);
         }
     }
 }

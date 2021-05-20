@@ -11,12 +11,12 @@
 
     <StackPanel>
         <TextBlock
-            Margin="32,4"
+            Margin="16,4"
             FontSize="16"
             FontWeight="DemiBold"
             Text="Current Dive Step" />
 
-        <Grid Margin="32,4" Background="#FFCFCFCF">
+        <Grid Margin="16,4" Background="#FFCFCFCF">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />

@@ -16,9 +16,9 @@ namespace DivePlannerTests
 
             diveModelSelectorViewModel.SelectedDiveModel = new Zhl16Buhlmann();
 
-            Assert.NotNull(diveModelSelectorViewModel.SelectedDiveModel.AValuesHelium);
-            
             Assert.NotNull(diveModelSelectorViewModel.SelectedDiveModel.DiveModelName);
+            Assert.NotEmpty(diveModelSelectorViewModel.SelectedDiveModel.DiveModelName);
+            
             Assert.Equal(16, diveModelSelectorViewModel.SelectedDiveModel.CompartmentCount);
             
             Assert.NotNull(diveModelSelectorViewModel.SelectedDiveModel.AValuesHelium);

@@ -18,7 +18,9 @@ namespace DivePlannerMk3.ViewModels.DiveInfo
             set => this.RaiseAndSetIfChanged(ref _diveCeiling, value);
         }
 
-//TODO AH Need to hook this in!
+        //TODO AH Need to hook this in better!!!
+        //TODO AH One option is moving calculate up to the main viewmodel and putting in the dive ceiling as a parameter that is updated as a dive step
+        //TODO AH The problem is stemming from the linq statement passed in from the results which has probably all the tolerated ambient pressures in it!
         public void CalculateDiveCeiling(IEnumerable<double> toleratedAmbientPressures)
         {
             var diveCeilingController = new DiveCeilingController();

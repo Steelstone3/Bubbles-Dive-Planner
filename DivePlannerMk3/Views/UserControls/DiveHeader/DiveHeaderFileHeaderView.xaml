@@ -12,9 +12,9 @@
     <controls:Grid>
         <Menu Background="#FFCFCFCF">
             <MenuItem Header="_File">
-                <MenuItem Command="{Binding NewCommand}" Header="_New" HotKey="Ctrl+N" />
-                <MenuItem Command="{Binding OpenCommand}" Header="_Open ..." HotKey="Ctrl+O" />
-                <MenuItem Command="{Binding SaveCommand}" Header="_Save ..." HotKey="Ctrl+S" />
+                <MenuItem Command="{Binding DiveHeader.File.NewCommand}" Header="_New" HotKey="Ctrl+N" />
+                <MenuItem Command="{Binding DiveHeader.File.OpenCommand}" Header="_Open ..." HotKey="Ctrl+O" />
+                <MenuItem Command="{Binding DiveHeader.File.SaveCommand}" Header="_Save ..." HotKey="Ctrl+S" />
                 <Separator />
                 <MenuItem Command="{Binding PrintCommand}" Header="_Print" HotKey="Ctrl+P" />
             </MenuItem>
