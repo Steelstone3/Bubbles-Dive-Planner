@@ -19,7 +19,7 @@
             Margin="16,4"
             Background="#FFCFCFCF"
             MaxHeight="600"
-            Items="{Binding DiveResults.DiveProfileResults}">
+            Items="{Binding DiveApplication.DiveResults.DiveProfileResults}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBox

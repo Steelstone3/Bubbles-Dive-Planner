@@ -14,9 +14,9 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
         {
             return new List<IEntityModel>()
           {
-            new DivePlanEntityModelDataMapper().ModelToEntity(mainViewModel.DivePlan),
-            new DiveInfoEntityModelDataMapper().ModelToEntity(mainViewModel.DiveInfo),
-            new DiveResultsEntityModelDataMapper().ModelToEntity(mainViewModel.DiveResults),
+            new DivePlanEntityModelDataMapper().ModelToEntity(mainViewModel.DiveApplication.DivePlanSetup),
+            new DiveInfoEntityModelDataMapper().ModelToEntity(mainViewModel.DiveApplication.DiveInformation),
+            new DiveResultsEntityModelDataMapper().ModelToEntity(mainViewModel.DiveApplication.DiveResults),
             //new DiveHeaderEntityModelDataMapper().ModelToEntity(mainViewModel.DiveHeader),
           };
         }
@@ -24,7 +24,7 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
         public void ConvertEntitiesToModels(List<IEntityModel> entityModels, MainWindowViewModel mainWindowViewModel)
         {
             //TODO AH each to take specific IEntityModel
-            mainWindowViewModel.DivePlan = new DivePlanEntityModelDataMapper().EntityToModel((DivePlanEntityModel)entityModels[0]);
+            mainWindowViewModel.DiveApplication.DivePlanSetup = new DivePlanEntityModelDataMapper().EntityToModel((DivePlanEntityModel)entityModels[0]);
             //new DiveInfoEntityModelDataMapper().EntityToModel((DiveInfoEntityModel)entityModels[1]),
             //new DiveResultsEntityModelDataMapper().EntityToModel((DiveResultsEntityModel)entityModels[2]),
             //new DiveHeaderEntityModelDataMapper().EntityToModel(entityModels.DiveHeader),

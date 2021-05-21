@@ -1,0 +1,42 @@
+<UserControl
+    x:Class="DivePlannerMk3.Views.UserControls.DivePlan.AddGasMixtureView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <controls:StackPanel>
+
+        <Expander
+            FontSize="16"
+            FontWeight="DemiBold"
+            Margin="0"
+            Background="#FF5D99C6"
+            Header="Add Gas Mixtures ...">
+
+        <controls:StackPanel Margin="4,0" Background="#FFC3FDFF">
+        
+            <TextBlock Margin="4" Text="Gas Name:" FontSize="12" FontWeight="Bold"/>
+            <TextBox Margin="4" FontSize="12" FontWeight="Normal" Text="{Binding DiveApplication.DivePlanSetup.GasMixture.NewGasMixture.GasName}" />
+            <TextBlock Margin="4" Text="Oxygen %:" FontSize="12" FontWeight="Bold"/>
+            <TextBox Margin="4" FontSize="12" FontWeight="Normal" Text="{Binding DiveApplication.DivePlanSetup.GasMixture.NewGasMixture.Oxygen}" />
+            <TextBlock Margin="4" FontSize="12" Text="Helium %:" FontWeight="Bold"/>
+            <TextBox Margin="4" FontSize="12" FontWeight="Normal" Text="{Binding DiveApplication.DivePlanSetup.GasMixture.NewGasMixture.Helium}" />
+            <TextBlock Margin="4" FontSize="12" Text="Nitrogen %:" FontWeight="Bold"/>
+            <TextBlock Margin="4" FontSize="12" FontWeight="Normal" Text="{Binding DiveApplication.DivePlanSetup.GasMixture.NewGasMixture.Nitrogen}" />
+            
+            <Button
+                Margin="4"
+                HorizontalAlignment="Stretch"
+                FontWeight="Bold"
+                FontSize="12"
+                Command="{Binding DiveApplication.DivePlanSetup.GasMixture.AddGasMixtureCommand}"
+                Content="Add Gas Mixture" />
+        </controls:StackPanel>
+        </Expander>
+
+    </controls:StackPanel>
+</UserControl>

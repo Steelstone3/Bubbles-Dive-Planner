@@ -13,10 +13,10 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
         //TODO AH Step 3 Combine the strategy pattern with the command pattern to call each model to entity conversion in this class' public EntityToModel()
 
         //TODO AH UI Visibility later
-        private DivePlanViewModel _divePlanViewModel = new DivePlanViewModel(new DiveProfileService());
+        private DivePlanSetupViewModel _divePlanViewModel = new DivePlanSetupViewModel(new DiveProfileService());
         private DivePlanEntityModel _divePlanEntityModel = new DivePlanEntityModel();
 
-        public DivePlanViewModel EntityToModel(DivePlanEntityModel divePlanEntityModel)
+        public DivePlanSetupViewModel EntityToModel(DivePlanEntityModel divePlanEntityModel)
         {
             DiveModelSelectorDataMappingToModel(divePlanEntityModel);
             DiveStepDataMappingToModel(divePlanEntityModel);
@@ -26,7 +26,7 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
             return _divePlanViewModel;
         }
 
-        public DivePlanEntityModel ModelToEntity(DivePlanViewModel divePlanViewModel)
+        public DivePlanEntityModel ModelToEntity(DivePlanSetupViewModel divePlanViewModel)
         {
             DiveModelSelectorDataMappingToEntity(divePlanViewModel);
             DiveStepDataMappingToEntity(divePlanViewModel);
@@ -38,18 +38,18 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
 
         #region ModelToEntity
 
-        private void DiveModelSelectorDataMappingToEntity(DivePlanViewModel divePlanViewModel)
+        private void DiveModelSelectorDataMappingToEntity(DivePlanSetupViewModel divePlanViewModel)
         {
             _divePlanEntityModel.SelectedDiveModel = divePlanViewModel.DiveModelSelector.SelectedDiveModel;
         }
 
-        private void DiveStepDataMappingToEntity(DivePlanViewModel divePlanViewModel)
+        private void DiveStepDataMappingToEntity(DivePlanSetupViewModel divePlanViewModel)
         {
             _divePlanEntityModel.Depth = divePlanViewModel.DiveStep.Depth;
             _divePlanEntityModel.Time = divePlanViewModel.DiveStep.Time;
         }
 
-        private void GasManagementDataMappingToEntity(DivePlanViewModel divePlanViewModel)
+        private void GasManagementDataMappingToEntity(DivePlanSetupViewModel divePlanViewModel)
         {
             _divePlanEntityModel.CylinderPressure = divePlanViewModel.GasManagement.CylinderPressure;
             _divePlanEntityModel.CylinderVolume = divePlanViewModel.GasManagement.CylinderVolume;
@@ -59,7 +59,7 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
             _divePlanEntityModel.SacRate = divePlanViewModel.GasManagement.SacRate;
         }
 
-        private void GasMixtureDataMappingToEntity(DivePlanViewModel divePlanViewModel)
+        private void GasMixtureDataMappingToEntity(DivePlanSetupViewModel divePlanViewModel)
         {
             _divePlanEntityModel.MaximumOperatingDepth = divePlanViewModel.GasMixture.MaximumOperatingDepth;
 

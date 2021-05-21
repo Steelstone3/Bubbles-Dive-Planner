@@ -3,6 +3,7 @@ using DivePlannerMk3.Models;
 using DivePlannerMk3.Controllers.DiveStages;
 using System.Collections.Generic;
 using DivePlannerMk3.ViewModels.DivePlan;
+using DivePlannerMk3.ViewModels.DiveInformation;
 
 namespace DivePlannerTests
 {
@@ -15,9 +16,9 @@ namespace DivePlannerTests
         private DiveProfile _diveProfile = new DiveProfile();
 
         [Theory]
-        [InlineData("Bob", 50, 10, "Fun Gas", 21, 10)]
-        [InlineData("Terry", 30, 20, "Evil Gas", 32, 0)]
-        public void PopulateTheDiveServiceParameters(string diveModelName, int depth, int time, string gasMixName, int oxygen, int helium)
+        [InlineData("Bob", 50, 10, "Fun Gas", 21, 10, 4.5)]
+        [InlineData("Terry", 30, 20, "Evil Gas", 32, 0, 4.5)]
+        public void PopulateTheDiveServiceParameters(string diveModelName, int depth, int time, string gasMixName, int oxygen, int helium, double diveCeiling)
         {
             //Arrange
             //What is used
@@ -43,9 +44,9 @@ namespace DivePlannerTests
             //Not used in the results view already tested
             var gasManagement = new GasManagementViewModel();
 
-            var diveParametersModel = new DiveParametersOutputModel();
+            var diveParametersModel = new DiveParametersResultModel();
 
-            var diveStage = new PreDiveStageStepInfo(diveParametersModel, diveModel, diveStep, gasMixture, gasManagement);
+            var diveStage = new PostDiveStageStepInfo(diveParametersModel, diveModel, diveStep, gasMixture, gasManagement, new List<double>(){1.1, 1.2, 1.3, 1.45, 1.2});
 
             //Act
             diveStage.RunStage();
@@ -58,6 +59,8 @@ namespace DivePlannerTests
             Assert.Equal(oxygen, diveParametersModel.Oxygen);
             Assert.Equal(helium, diveParametersModel.Helium);
             Assert.NotNull(diveParametersModel.DiveProfileStepHeader);
+            Assert.NotEmpty(diveParametersModel.DiveProfileStepHeader);
+            Assert.Equal(diveCeiling, diveParametersModel.DiveCeiling);
         }
 
         [Theory]

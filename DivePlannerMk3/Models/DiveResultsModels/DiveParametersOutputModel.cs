@@ -2,7 +2,7 @@
 
 namespace DivePlannerMk3.Models
 {
-    public class DiveParametersOutputModel : IDiveParametersOutputModel
+    public class DiveParametersResultModel : IDiveParametersResultModel
     {
         public string DiveProfileStepHeader
         {
@@ -43,7 +43,7 @@ namespace DivePlannerMk3.Models
             get; set;
         }
 
-        public int GasUsedForStep
+        public double DiveCeiling
         {
             get; set;
         }

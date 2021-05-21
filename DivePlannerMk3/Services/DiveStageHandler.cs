@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using DivePlannerMk3.Contracts;
 using DivePlannerMk3.Controllers;
 using DivePlannerMk3.Controllers.DiveStages;
@@ -28,11 +31,11 @@ namespace DivePlannerMk3.Services
             return _outputResults;
         }
 
-        public DiveParametersOutputModel UpdateUsedDiveParameters(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementModel)
+        public DiveParametersResultModel UpdateUsedDiveParameters(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementModel)
         {
-            var diveParameters = new DiveParametersOutputModel();
+            var diveParameters = new DiveParametersResultModel();
 
-            var stepInfo = new PreDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture, gasManagementModel);
+            var stepInfo = new PostDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture, gasManagementModel, GetToleratedAmbientPressures().ToList());
 
             stepInfo.RunStage();
 
@@ -49,9 +52,9 @@ namespace DivePlannerMk3.Services
 
         private void RunStages()
         {
-            foreach (var stage in _preDiveStages)
+            foreach (var preDiveStage in _preDiveStages)
             {
-                stage.RunStage();
+                preDiveStage.RunStage();
             }
 
             //For each compartment run all stages
@@ -83,6 +86,11 @@ namespace DivePlannerMk3.Services
                 new DiveStageCompartmentLoad(_diveModel, _diveProfile),
                 new DiveStageResults(_diveModel.CompartmentCount,_outputResults, _diveProfile)
             };
+        }
+
+        private IEnumerable<double> GetToleratedAmbientPressures()
+        {
+            return _outputResults.DiveProfileStepOutput.Select(diveProfile => diveProfile.ToleratedAmbientPressureResult);
         }
     }
 }

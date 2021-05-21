@@ -1,8 +1,5 @@
 using System.Reactive;
 using DivePlannerMk3.Controllers;
-using DivePlannerMk3.ViewModels.DiveInfo;
-using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.ViewModels.DiveResult;
 using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveHeader

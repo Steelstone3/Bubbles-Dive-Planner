@@ -1,27 +1,11 @@
 using DivePlannerMk3.ViewModels.DiveResult;
-using DivePlannerMk3.Models;
+using DivePlannerMk3.Contracts;
 
 namespace DivePlannerMk3.Controllers.ModelConverters
 {
     public class DiveParametersResultModelConverter
     {
-        public DiveParametersOutputModel ConvertToModel(DiveParametersOutputModel viewModel)
-        {
-            return new DiveParametersOutputModel()
-            {
-                DiveProfileStepHeader = viewModel.DiveProfileStepHeader,
-                DiveModelUsed = viewModel.DiveModelUsed,
-                Depth = viewModel.Depth,
-                Time = viewModel.Time,
-                GasName = viewModel.GasName,
-                Oxygen = viewModel.Oxygen,
-                Helium = viewModel.Helium,
-                Nitrogen = viewModel.Nitrogen,
-            };
-        }
-
-        //TODO AH Could use an interface
-        public DiveParametersResultViewModel ConvertToViewModel(DiveParametersOutputModel model)
+        public DiveParametersResultViewModel ConvertToViewModel(IDiveParametersResultModel model)
         {
             return new DiveParametersResultViewModel
             {
@@ -33,6 +17,7 @@ namespace DivePlannerMk3.Controllers.ModelConverters
                 Oxygen = model.Oxygen,
                 Helium = model.Helium,
                 Nitrogen = model.Nitrogen,
+                DiveCeiling = model.DiveCeiling,
             };
         }
     }

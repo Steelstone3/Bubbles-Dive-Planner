@@ -52,13 +52,13 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Plan" />
-                <diveplanuc:PlanDiveModelSelectorView />
-                <diveplanuc:PlanDiveStepView />
-                <diveplanuc:PlanGasMixtureView />
-                <diveplanuc:PlanAddGasMixtureView />
-                <diveplanuc:PlanGasManagementSetup />
+                <diveplanuc:DiveModelSelectorView />
+                <diveplanuc:DiveStepView />
+                <diveplanuc:GasMixtureView />
+                <diveplanuc:AddGasMixtureView />
+                <diveplanuc:GasManagementSetup />
                 <diveplanuc:GasUsageView />
-                <diveplanuc:PlanCalculateDiveStepView />
+                <diveplanuc:CalculateDiveStepView />
             </StackPanel>
         </ScrollViewer>
 
@@ -85,10 +85,10 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Information" />
-                <diveinfouc:InfoDecompressionProfileView />
-                <diveinfouc:InfoDiveBoundariesView />
-                <diveinfouc:InfoDiveModelReadOnlyView />
-                <diveinfouc:InfoCnsToxicityReadOnlyView />
+                <diveinfouc:DecompressionProfileView />
+                <diveinfouc:DiveBoundariesView />
+                <diveinfouc:DiveModelReadOnlyView />
+                <diveinfouc:CnsToxicityReadOnlyView />
             </StackPanel>
         </ScrollViewer>
 
