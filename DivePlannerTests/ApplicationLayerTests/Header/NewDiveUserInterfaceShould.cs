@@ -8,6 +8,10 @@ namespace DivePlannerTests
 {
     public class NewDiveUserInterfaceShould
     {
+        [Fact(Skip="Needs Implementing")]
+        public void CreateANewDive()
+        {
 
+        }
     }
 }

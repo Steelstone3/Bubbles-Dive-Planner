@@ -8,8 +8,8 @@ namespace DivePlannerMk3.Controllers
     {
         private DiveStageHandler _diveStages;
         private IDiveProfile _diveProfile;
+        
         private IDiveModel _theDiveModel;
-
         public IDiveModel TheDiveModel
         {
             get => _theDiveModel;
@@ -28,15 +28,15 @@ namespace DivePlannerMk3.Controllers
         }
 
         //TODO AH Strategy pattern on deco model stuff
-        public DiveResultsModel RunDiveStep(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture)
+        public DiveResultsModel RunDiveStep(IDiveStepModel diveStep, IGasMixtureModel gasMixture)
         {
             //update internal state
-            _diveStages.UpdateDiveStageHandler(TheDiveModel, _diveProfile, diveStep, selectedGasMixture);
+            _diveStages.UpdateDiveStageHandler(TheDiveModel, _diveProfile, diveStep, gasMixture);
             //run all stages
             return _diveStages.RunDiveStages();
         }
 
-        public DiveParametersOutputModel UpdateParametersUsed(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementSetupModel)
+        public IDiveParametersResultModel UpdateParametersUsed(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementSetupModel)
         {
             return _diveStages.UpdateUsedDiveParameters(diveStep, selectedGasMixture, gasManagementSetupModel);
         }

@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace DivePlannerMk3.ViewModels.DiveResult
 {
-    public class DiveParametersResultViewModel : ViewModelBase, IDiveParametersOutputModel
+    public class DiveParametersResultViewModel : ViewModelBase, IDiveParametersResultModel
     {
         private string _diveProfileStepHeader;
         public string DiveProfileStepHeader
@@ -60,6 +60,13 @@ namespace DivePlannerMk3.ViewModels.DiveResult
         {
             get => _nitrogen;
             set => this.RaiseAndSetIfChanged(ref _nitrogen, value);
+        }
+
+        private double _diveCeiling;
+        public double DiveCeiling 
+        { 
+            get => _diveCeiling;
+            set => this.RaiseAndSetIfChanged(ref _diveCeiling, value);
         }
     }
 }

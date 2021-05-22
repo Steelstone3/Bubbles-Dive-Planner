@@ -1,11 +1,10 @@
 using DivePlannerMk3.DataAccessLayer.EntityModels;
-using DivePlannerMk3.ViewModels.DiveInfo;
+using DivePlannerMk3.ViewModels.DiveInformation;
 
 namespace DivePlannerMk3.DataAccessLayer.DataMappers
 {
     public class DiveInfoEntityModelDataMapper
     {
-
         //TODO AH Finish off later
         //UI Visibility later
         private DiveInfoEntityModel _diveInfoEntityModel = new DiveInfoEntityModel();
@@ -15,35 +14,29 @@ namespace DivePlannerMk3.DataAccessLayer.DataMappers
             throw new System.NotImplementedException();
         }
 
-        public DiveInfoEntityModel ModelToEntity(DiveInfoViewModel diveInfoViewModel)
+        public DiveInfoEntityModel ModelToEntity(DiveInformationViewModel diveInfoViewModel)
         {
             CnsToxicityDataMappingToEntity(diveInfoViewModel);
             DecompressionProfileDataMappingToEntity(diveInfoViewModel);
-            DiveCeilingViewModelDataMappingToEntity(diveInfoViewModel);
 
             return _diveInfoEntityModel;
         }
 
         #region ModelToEntity
 
-        private void CnsToxicityDataMappingToEntity(DiveInfoViewModel diveInfoViewModel)
+        private void CnsToxicityDataMappingToEntity(DiveInformationViewModel diveInfoViewModel)
         {
-            _diveInfoEntityModel.MaximumSingleDiveDuration = diveInfoViewModel.CnsToxicityViewModel.CnsToxicity.MaximumSingleDiveDuration;
-            _diveInfoEntityModel.OxygenPartialPressureConstant = diveInfoViewModel.CnsToxicityViewModel.CnsToxicity.OxygenPartialPressureConstant;
-            _diveInfoEntityModel.Total24HourDuration = diveInfoViewModel.CnsToxicityViewModel.CnsToxicity.Total24HourDuration;
+            _diveInfoEntityModel.MaximumSingleDiveDuration = diveInfoViewModel.CnsToxicity.CnsToxicity.MaximumSingleDiveDuration;
+            _diveInfoEntityModel.OxygenPartialPressureConstant = diveInfoViewModel.CnsToxicity.CnsToxicity.OxygenPartialPressureConstant;
+            _diveInfoEntityModel.Total24HourDuration = diveInfoViewModel.CnsToxicity.CnsToxicity.Total24HourDuration;
         }
 
         //TODO AH This when decompression is implemented in version 2
-        private void DecompressionProfileDataMappingToEntity(DiveInfoViewModel diveInfoViewModel)
+        private void DecompressionProfileDataMappingToEntity(DiveInformationViewModel diveInfoViewModel)
         {
             //diveInfoViewModel.DecompressionProfile
         }
-
-        private void DiveCeilingViewModelDataMappingToEntity(DiveInfoViewModel diveInfoViewModel)
-        {
-            _diveInfoEntityModel.DiveCeiling = diveInfoViewModel.DiveCeilingViewModel.DiveCeiling;
-        }
-
+       
         #endregion
 
         #region EntityToModel

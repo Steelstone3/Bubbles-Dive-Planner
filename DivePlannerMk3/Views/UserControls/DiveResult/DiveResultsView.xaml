@@ -11,15 +11,15 @@
 
     <StackPanel>
         <TextBlock
-            Margin="32,4"
+            Margin="16,4"
             FontSize="16"
             FontWeight="DemiBold"
             Text="Dive Results" />
         <ListBox
-            Margin="32,4"
+            Margin="16,4"
             Background="#FFCFCFCF"
             MaxHeight="600"
-            Items="{Binding DiveResults.DiveProfileResults}">
+            Items="{Binding DiveApplication.DiveResults.DiveProfileResults}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBox
