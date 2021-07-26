@@ -1,5 +1,5 @@
 ﻿using Avalonia;
-using Avalonia.Logging.Serilog;
+using Avalonia.Logging;
 using Avalonia.ReactiveUI;
 
 namespace DivePlannerMk3
@@ -17,6 +17,6 @@ namespace DivePlannerMk3
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .UseReactiveUI()
-                .LogToDebug();
+                .LogToTrace();
     }
 }
