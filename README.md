@@ -6,8 +6,11 @@ The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to pe
 ### Running Bubbles Dive Planner
 
 > cd ~/Bubbles-Dive-Planner/BubblesDivePlanner
+> 
 > dotnet restore
+> 
 > dotnet build
+> 
 > dotnet run
 
 Or set BubblesDivePlanner.csproj as the launch project in your IDE. 
@@ -17,7 +20,9 @@ This application has been tested to run on debain derived Linux, Windows 10 and 
 ### Tests
 
 > cd ~/Bubbles-Dive-Planner/BubblesDivePlannerTests
+> 
 > dotnet restore
+> 
 > dotnet test
 
 Or set the BubblesDivePlannerTests.csproj up in your testing enviroment in your IDE of choice.
