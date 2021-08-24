@@ -1,7 +1,9 @@
 Bubbles Dive Planner
 ====================
 
-The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities. It uses dotnet core 3.1LTS along with Moq, XUnit and Newtonsoft for the backend and Avalonia with ReactiveUI components for the frontend. 
+The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities. Currently supports the Bulhmann dive model with more planned.
+
+It uses dotnet core 3.1LTS along with Moq, XUnit and Newtonsoft for the backend and Avalonia with ReactiveUI components for the frontend. 
 
 ### Running Bubbles Dive Planner
 
