@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DivePlannerMk3.Contracts;
+using BubblesDivePlanner.Contracts.Models.DiveModels;
 
-namespace DivePlannerMk3.Models
+namespace BubblesDivePlanner.Models.DiveModels
 {
     public class DiveModel : IDiveModel
     {

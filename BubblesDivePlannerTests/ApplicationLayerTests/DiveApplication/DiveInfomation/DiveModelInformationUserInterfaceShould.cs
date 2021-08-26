@@ -1,10 +1,10 @@
-using DivePlannerMk3.Controllers;
-using DivePlannerMk3.Models;
-using DivePlannerMk3.ViewModels.DivePlan;
+using BubblesDivePlanner.Models.DiveModels;
+using BubblesDivePlanner.Services;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Moq;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveInfomation
 {
     public class DiveModelInformationUserInterfaceShould
     {

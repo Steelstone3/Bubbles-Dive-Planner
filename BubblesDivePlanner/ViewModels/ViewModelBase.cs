@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace DivePlannerMk3.ViewModels
+namespace BubblesDivePlanner.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {

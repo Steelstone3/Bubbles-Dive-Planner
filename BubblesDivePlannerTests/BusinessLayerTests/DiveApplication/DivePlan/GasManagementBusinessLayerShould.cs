@@ -1,8 +1,8 @@
-using DivePlannerMk3.Controllers;
-using DivePlannerMk3.ViewModels.DivePlan;
+using BubblesDivePlanner.Controllers.Plan;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.BusinessLayerTests.DiveApplication.DivePlan
 {
     public class GasManagementBusinessLayerShould
     {

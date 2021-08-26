@@ -4,9 +4,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using DivePlannerMk3.ViewModels;
+using BubblesDivePlanner.ViewModels;
 
-namespace DivePlannerMk3
+namespace BubblesDivePlanner
 {
     public class ViewLocator : IDataTemplate
     {

@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
-using DivePlannerMk3.Controllers;
-using DivePlannerMk3.Models;
+using BubblesDivePlanner.Commands.DiveStages;
+using BubblesDivePlanner.Models.DiveModels;
+using BubblesDivePlanner.Models.Results;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveResults
 {
     public class DiveResultsUserInterfaceShould
     {

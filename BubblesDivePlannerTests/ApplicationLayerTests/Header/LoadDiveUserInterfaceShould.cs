@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.Header
 {
     public class LoadDiveUserInterfaceShould
     {

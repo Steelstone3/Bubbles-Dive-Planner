@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.BusinessLayerTests.Header
 {
     public class PrintBusinessLayerShould
     {

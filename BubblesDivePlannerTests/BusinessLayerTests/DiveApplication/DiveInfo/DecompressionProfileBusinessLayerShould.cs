@@ -1,4 +1,4 @@
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.BusinessLayerTests.DiveApplication.DiveInfo
 {
     public class DecompressionProfileBusinessLayerShould
     {

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using DivePlannerMk3.ViewModels.DivePlan;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DivePlanSetup
 {
     public class GasManagementUsageUserInterfaceShould
     {

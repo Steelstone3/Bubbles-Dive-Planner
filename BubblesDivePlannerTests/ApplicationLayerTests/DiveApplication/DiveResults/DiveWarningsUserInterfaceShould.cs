@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveResults
 {
     public class DiveWarningsUserInterfaceShould
     {

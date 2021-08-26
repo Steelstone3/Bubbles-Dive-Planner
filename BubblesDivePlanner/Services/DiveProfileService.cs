@@ -1,8 +1,11 @@
-using DivePlannerMk3.Contracts;
-using DivePlannerMk3.Models;
-using DivePlannerMk3.Services;
+using BubblesDivePlanner.Contracts.Models.DiveModels;
+using BubblesDivePlanner.Contracts.Models.Plan;
+using BubblesDivePlanner.Contracts.Models.Results;
+using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Models.DiveModels;
+using BubblesDivePlanner.Models.Results;
 
-namespace DivePlannerMk3.Controllers
+namespace BubblesDivePlanner.Services
 {
     public class DiveProfileService : IDiveProfileService
     {

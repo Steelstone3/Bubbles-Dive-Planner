@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using DivePlannerMk3.Controllers;
-using DivePlannerMk3.ViewModels.DivePlan;
+using BubblesDivePlanner.Controllers.Information;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.BusinessLayerTests.DiveApplication.DiveInfo
 {
     public class DiveBoundariesBusinessLayerShould
     {

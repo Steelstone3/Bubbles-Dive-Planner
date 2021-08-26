@@ -1,10 +1,9 @@
-using Xunit;
-using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.Controllers;
 using System.Collections.Generic;
-using DivePlannerMk3.ViewModels.DiveInformation;
+using BubblesDivePlanner.Controllers.Information;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
+using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveInfomation
 {
     public class DiveBoundariesUserInterfaceShould
     {

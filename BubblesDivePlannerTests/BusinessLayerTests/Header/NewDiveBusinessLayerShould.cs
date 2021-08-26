@@ -1,14 +1,15 @@
-using DivePlannerMk3.Contracts;
-using DivePlannerMk3.ViewModels;
-using DivePlannerMk3.ViewModels.DiveApplication;
-using DivePlannerMk3.ViewModels.DiveHeader;
-using DivePlannerMk3.ViewModels.DiveInformation;
-using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.ViewModels.DiveResult;
+using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Controllers.Header;
+using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.DiveApplication;
+using BubblesDivePlanner.ViewModels.DiveApplication.Information;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
+using BubblesDivePlanner.ViewModels.Header;
+using BubblesDivePlanner.ViewModels.Result;
 using Moq;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.BusinessLayerTests.Header
 {
     public class NewDiveBusinessLayerShould
     {

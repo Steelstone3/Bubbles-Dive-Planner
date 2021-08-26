@@ -1,5 +1,6 @@
 using System.Linq;
-namespace DivePlannerMk3.Models
+
+namespace BubblesDivePlanner.Models.DiveModels
 {
     public class Zhl16Buhlmann : DiveModel
     {

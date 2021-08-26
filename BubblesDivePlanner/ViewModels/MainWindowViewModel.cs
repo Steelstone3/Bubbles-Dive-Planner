@@ -1,9 +1,9 @@
-﻿using DivePlannerMk3.Controllers;
-using DivePlannerMk3.ViewModels.DiveApplication;
-using DivePlannerMk3.ViewModels.DiveHeader;
+﻿using BubblesDivePlanner.Services;
+using BubblesDivePlanner.ViewModels.DiveApplication;
+using BubblesDivePlanner.ViewModels.Header;
 using ReactiveUI;
 
-namespace DivePlannerMk3.ViewModels
+namespace BubblesDivePlanner.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

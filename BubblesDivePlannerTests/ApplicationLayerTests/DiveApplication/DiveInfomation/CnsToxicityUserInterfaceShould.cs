@@ -1,7 +1,7 @@
-using DivePlannerMk3.Models;
+using BubblesDivePlanner.Models.Information;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveInfomation
 {
     public class CnsToxicityUserInterfaceShould
     {

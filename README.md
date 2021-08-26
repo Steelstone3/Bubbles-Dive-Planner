@@ -28,3 +28,9 @@ This application has been tested to run on debain derived Linux, Windows 10 and 
 > dotnet test
 
 Or set the BubblesDivePlannerTests.csproj up in your testing enviroment in your IDE of choice.
+
+### Dependencies
+
+Follow the steps for installing dotnet 3.1 runtime for your given operating system.
+
+> https://dotnet.microsoft.com/download/dotnet/3.1

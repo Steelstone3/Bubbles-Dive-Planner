@@ -11,6 +11,9 @@
       <SubType>Designer</SubType>
     </AvaloniaResource>
     <AvaloniaResource Include="Assets\**" />
+    <Compile Update="Views\UserControls\Header\FileHeaderView.xaml.cs">
+      <DependentUpon>FileHeaderView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.6" />
@@ -23,5 +26,11 @@
     <Resource Include="\Assests\diveplanner-logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Contracts\ViewModels" />
+    <Folder Include="Controllers\DataAccess" />
   </ItemGroup>
 </Project>

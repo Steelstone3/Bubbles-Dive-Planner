@@ -1,13 +1,13 @@
 using System;
 using System.Reactive;
-using DivePlannerMk3.Contracts;
-using DivePlannerMk3.Controllers.ModelConverters;
-using DivePlannerMk3.ViewModels.DiveInformation;
-using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.ViewModels.DiveResult;
+using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Controllers.Converters;
+using BubblesDivePlanner.ViewModels.DiveApplication.Information;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
+using BubblesDivePlanner.ViewModels.Result;
 using ReactiveUI;
 
-namespace DivePlannerMk3.ViewModels.DiveApplication
+namespace BubblesDivePlanner.ViewModels.DiveApplication
 {
     public class DiveApplicationViewModel : ViewModelBase
     {

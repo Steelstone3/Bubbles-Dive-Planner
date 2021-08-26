@@ -1,8 +1,8 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using DivePlannerMk3.ViewModels;
-using DivePlannerMk3.Views;
+using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.Views;
 
 namespace DivePlannerMk3
 {

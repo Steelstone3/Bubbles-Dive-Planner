@@ -1,11 +1,10 @@
 using System.Linq;
 using System.Reactive.Linq;
-using DivePlannerMk3.Controllers;
-using DivePlannerMk3.Models;
-using DivePlannerMk3.ViewModels.DivePlan;
+using BubblesDivePlanner.Models.Plan;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DivePlanSetup
 {
     public class GasMixtureUserInterfaceShould
     {

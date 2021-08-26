@@ -1,12 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using DivePlannerMk3.Contracts;
-using DivePlannerMk3.Controllers;
-using DivePlannerMk3.Controllers.DiveStages;
-using DivePlannerMk3.Models;
+using BubblesDivePlanner.Commands.DiveStages;
+using BubblesDivePlanner.Contracts.Commands;
+using BubblesDivePlanner.Contracts.Models.DiveModels;
+using BubblesDivePlanner.Contracts.Models.Plan;
+using BubblesDivePlanner.Models.Results;
 
-namespace DivePlannerMk3.Services
+namespace BubblesDivePlanner.Services
 {
     public class DiveStageHandler
     {

@@ -1,15 +1,14 @@
 <Window
-    x:Class="DivePlannerMk3.Views.MainWindow"
+    x:Class="BubblesDivePlanner.Views.MainWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:diveheaderuc="clr-namespace:DivePlannerMk3.Views.UserControls.DiveHeader;assembly=BubblesDivePlanner"
-    xmlns:diveinfouc="clr-namespace:DivePlannerMk3.Views.UserControls.DiveInfo;assembly=BubblesDivePlanner"
-    xmlns:diveplanuc="clr-namespace:DivePlannerMk3.Views.UserControls.DivePlan;assembly=BubblesDivePlanner"
-    xmlns:diveresultuc="clr-namespace:DivePlannerMk3.Views.UserControls.DiveResult;assembly=BubblesDivePlanner"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:DivePlannerMk3.ViewModels;assembly=DivePlannerMk3"
+    xmlns:viewModels="clr-namespace:BubblesDivePlanner.ViewModels"
+    xmlns:header="clr-namespace:BubblesDivePlanner.Views.UserControls.Header"
+    xmlns:information="clr-namespace:BubblesDivePlanner.Views.UserControls.Information"
+    xmlns:plan="clr-namespace:BubblesDivePlanner.Views.UserControls.Plan"
+    xmlns:result="clr-namespace:BubblesDivePlanner.Views.UserControls.Result"
     Title="Bubbles Dive Planner"
     MinWidth="720"
     MinHeight="480"
@@ -19,7 +18,7 @@
     mc:Ignorable="d">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel />
+        <viewModels:MainWindowViewModel />
     </Design.DataContext>
 
     <Grid>
@@ -35,7 +34,7 @@
             <ColumnDefinition MinWidth="250" />
         </Grid.ColumnDefinitions>
 
-        <diveheaderuc:DiveHeaderFileHeaderView
+        <header:DiveHeaderFileHeaderView
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3" />
@@ -46,19 +45,18 @@
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF90CAF9">
                 <TextBlock
-                    Grid.Row="0"
                     Margin="4"
                     FontSize="20"
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Plan" />
-                <diveplanuc:DiveModelSelectorView />
-                <diveplanuc:DiveStepView />
-                <diveplanuc:GasMixtureView />
-                <diveplanuc:AddGasMixtureView />
-                <diveplanuc:GasManagementSetup />
-                <diveplanuc:GasUsageView />
-                <diveplanuc:CalculateDiveStepView />
+                <plan:DiveModelSelectorView />
+                <plan:DiveStepView />
+                <plan:GasMixtureView />
+                <plan:AddGasMixtureView />
+                <plan:GasManagementSetup />
+                <plan:GasUsageView />
+                <plan:CalculateDiveStepView />
             </StackPanel>
         </ScrollViewer>
 
@@ -67,9 +65,9 @@
             Grid.Column="1"
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF9E9E9E">
-                <diveresultuc:DiveResultsView />
-                <diveresultuc:DiveParametersResultsView />
-                <diveresultuc:DiveResultWarningsView />
+                <result:DiveResultsView />
+                <result:DiveParametersResultsView />
+                <result:DiveResultWarningsView />
             </StackPanel>
         </ScrollViewer>
 
@@ -79,16 +77,14 @@
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF90CAF9">
                 <TextBlock
-                    Grid.Row="0"
                     Margin="4"
                     FontSize="20"
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Information" />
-                <diveinfouc:DecompressionProfileView />
-                <diveinfouc:DiveBoundariesView />
-                <diveinfouc:DiveModelReadOnlyView />
-                <diveinfouc:CnsToxicityReadOnlyView />
+                <information:DecompressionProfileView />
+                <information:DiveBoundariesView />
+                <information:CnsToxicityReadOnlyView />
             </StackPanel>
         </ScrollViewer>
 

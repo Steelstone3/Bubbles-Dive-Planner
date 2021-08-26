@@ -1,8 +1,6 @@
-using Xunit;
-
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.DataAccessLayerTests
 {
-    public class SaveDiveDataAccessLayerShould
+    public class SaveActionDiveDataAccessLayerShould
     {
        
     }

@@ -1,8 +1,8 @@
 ﻿using Avalonia;
-using Avalonia.Logging;
 using Avalonia.ReactiveUI;
+using DivePlannerMk3;
 
-namespace DivePlannerMk3
+namespace BubblesDivePlanner
 {
     class Program
     {

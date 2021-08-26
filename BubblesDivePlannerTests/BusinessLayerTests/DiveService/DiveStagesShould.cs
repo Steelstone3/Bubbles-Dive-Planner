@@ -1,11 +1,12 @@
-using Xunit;
-using DivePlannerMk3.Models;
-using DivePlannerMk3.Controllers.DiveStages;
 using System.Collections.Generic;
-using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.ViewModels.DiveInformation;
+using BubblesDivePlanner.Commands.DiveStages;
+using BubblesDivePlanner.Models.DiveModels;
+using BubblesDivePlanner.Models.Plan;
+using BubblesDivePlanner.Models.Results;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
+using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.BusinessLayerTests.DiveService
 {
     public class DiveStagesShould
     {

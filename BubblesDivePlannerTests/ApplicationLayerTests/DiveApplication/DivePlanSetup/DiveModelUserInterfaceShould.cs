@@ -1,14 +1,14 @@
-using DivePlannerMk3.Contracts;
-using DivePlannerMk3.Controllers;
-using DivePlannerMk3.Models;
-using DivePlannerMk3.ViewModels;
-using DivePlannerMk3.ViewModels.DiveApplication;
-using DivePlannerMk3.ViewModels.DivePlan;
-using DivePlannerMk3.ViewModels.DiveResult;
+using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Models.DiveModels;
+using BubblesDivePlanner.Services;
+using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.DiveApplication;
+using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
+using BubblesDivePlanner.ViewModels.Result;
 using Moq;
 using Xunit;
 
-namespace DivePlannerTests
+namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DivePlanSetup
 {
     public class DiveModelUserInterfaceShould
     {
