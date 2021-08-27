@@ -3,6 +3,7 @@ using BubblesDivePlanner.Contracts.Commands;
 using BubblesDivePlanner.Contracts.Models.DiveModels;
 using BubblesDivePlanner.Contracts.Models.Plan;
 using BubblesDivePlanner.Contracts.Models.Results;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Controllers.Information;
 using BubblesDivePlanner.Controllers.Plan;
 
@@ -17,13 +18,13 @@ namespace BubblesDivePlanner.Commands.DiveStages
         private IGasManagementModel _gasManagement;
         private List<double> _toleratedAmbientPressures;
 
-        public PostDiveStageStepInfo(IDiveParametersResultModel diveParametersModel, 
-        IDiveModel diveModel, 
-        IDiveStepModel diveStep, 
-        IGasMixtureModel gasMixture, 
-        IGasManagementModel gasManagement, 
-        List<double> toleratedAmbientPressures)
-        {            
+        public PostDiveStageStepInfo(IDiveParametersResultModel diveParametersModel,
+            IDiveModel diveModel,
+            IDiveStepModel diveStep,
+            IGasMixtureModel gasMixture,
+            IGasManagementModel gasManagement,
+            List<double> toleratedAmbientPressures)
+        {
             _diveParametersModel = diveParametersModel;
             _diveModel = diveModel;
             _diveStep = diveStep;
@@ -38,7 +39,8 @@ namespace BubblesDivePlanner.Commands.DiveStages
             PopulateDiveStepParameters();
         }
 
-        private void PopulateHeader() => _diveParametersModel.DiveProfileStepHeader = _diveModel.DiveModelName + "\r\nDepth: " + _diveStep.Depth.ToString() + " Time: " + _diveStep.Time.ToString();
+        private void PopulateHeader() => _diveParametersModel.DiveProfileStepHeader = _diveModel.DiveModelName +
+            "\r\nDepth: " + _diveStep.Depth.ToString() + " Time: " + _diveStep.Time.ToString();
 
         private void PopulateDiveStepParameters()
         {
@@ -54,24 +56,11 @@ namespace BubblesDivePlanner.Commands.DiveStages
             _diveParametersModel.Oxygen = _gasMixture.Oxygen;
             _diveParametersModel.Helium = _gasMixture.Helium;
 
-            _gasManagement.GasUsedForStep = gasManagementController.CalculateGasUsed(_diveStep.Depth, _diveStep.Time, _gasManagement.SacRate);
-            _diveParametersModel.DiveCeiling = new DiveCeilingController().CalculateDiveCeiling(_toleratedAmbientPressures);
+            //TODO AH probably passing down the wrong object here
+            _gasManagement.GasUsedForStep =
+                gasManagementController.CalculateGasUsed(_diveStep.Depth, _diveStep.Time, _gasManagement.SacRate);
+            _diveParametersModel.DiveCeiling =
+                new DiveCeilingController().CalculateDiveCeiling(_toleratedAmbientPressures);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.Plan
+namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
 {
     public class DiveStepViewModelShould
     {

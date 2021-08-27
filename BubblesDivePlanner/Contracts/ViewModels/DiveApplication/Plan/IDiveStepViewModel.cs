@@ -1,11 +1,9 @@
+using BubblesDivePlanner.Contracts.Models.Plan;
+
 namespace BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan
 {
-    public interface IDiveStepViewModel
+    public interface IDiveStepViewModel : IDiveStepModel
     {
-        int Depth { get; set; }
-
-        int Time { get; set; }
-
         bool ValidateDiveStep(int depth, int time, double maximumOperatingDepth);
     }
 }

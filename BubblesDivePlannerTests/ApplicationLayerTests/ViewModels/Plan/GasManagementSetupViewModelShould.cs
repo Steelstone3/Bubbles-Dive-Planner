@@ -11,13 +11,13 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.Plan
         [InlineData(12, 12, 50, 200, 400, 600)]
         [InlineData(1, 12, 200, -800, 1000, 200)]
         [InlineData(15, 30, 300, 4200, 300, 4500)]
-        public void AllowGasManagementModelToBeSet(int cylinderVolume, int sacRate, int cylinderPressure, int gasRemaining, int gasUsedForStep, int initialGasVolume)
+        public void AllowGasManagementModelToBeSet(int cylinderVolume, int sacRate, int cylinderPressure,
+            int gasRemaining, int gasUsedForStep, int initialGasVolume)
         {
             //Arrange
             _gasManagement.CylinderVolume = cylinderVolume;
             _gasManagement.CylinderPressure = cylinderPressure;
             _gasManagement.SacRate = sacRate;
-
             _gasManagement.GasUsedForStep = gasUsedForStep;
 
             //Assert
@@ -73,14 +73,15 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.Plan
         }
 
         [Theory]
-        [InlineData(200,12,12,true)]
-        [InlineData(301,12,12,false)]
-        [InlineData(49,12,12,false)]
-        [InlineData(200,31,12,false)]
-        [InlineData(200,2,12,false)]
-        [InlineData(200,12,31,false)]
-        [InlineData(200,12,4,false)]
-        public void ValidateGasManagementSetupParameters(int cylinderPressure, int cylinderVolume, int sacRate, bool expectedResult)
+        [InlineData(200, 12, 12, true)]
+        [InlineData(301, 12, 12, false)]
+        [InlineData(49, 12, 12, false)]
+        [InlineData(200, 31, 12, false)]
+        [InlineData(200, 2, 12, false)]
+        [InlineData(200, 12, 31, false)]
+        [InlineData(200, 12, 4, false)]
+        public void ValidateGasManagementSetupParameters(int cylinderPressure, int cylinderVolume, int sacRate,
+            bool expectedResult)
         {
             var result = _gasManagement.ValidateGasManagement(cylinderVolume, cylinderPressure, sacRate);
 

@@ -4,11 +4,13 @@ using BubblesDivePlanner.Commands.DiveStages;
 using BubblesDivePlanner.Contracts.Commands;
 using BubblesDivePlanner.Contracts.Models.DiveModels;
 using BubblesDivePlanner.Contracts.Models.Plan;
+using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Models.Results;
 
 namespace BubblesDivePlanner.Services
 {
-    public class DiveStageHandler
+    public class DiveStageHandler : IDiveStageHandler
     {
         private DiveResultsStepOutputModel _outputResultsStepOutput;
         private IDiveStage[] _preDiveStages;
@@ -30,19 +32,22 @@ namespace BubblesDivePlanner.Services
 
             return _outputResultsStepOutput;
         }
-
-        public DiveParametersResultModel UpdateUsedDiveParameters(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementModel)
+        
+        public DiveParametersResultModel UpdateUsedDiveParameters(IDiveStepModel diveStep,
+            IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementModel)
         {
             var diveParameters = new DiveParametersResultModel();
 
-            var stepInfo = new PostDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture, gasManagementModel, GetToleratedAmbientPressures().ToList());
+            var stepInfo = new PostDiveStageStepInfo(diveParameters, _diveModel, diveStep, selectedGasMixture,
+                gasManagementModel, GetToleratedAmbientPressures().ToList());
 
             stepInfo.RunStage();
 
             return diveParameters;
         }
 
-        public void UpdateDiveStageHandler(IDiveModel diveModel, IDiveProfile diveProfile, IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture)
+        public void UpdateDiveStageHandler(IDiveModel diveModel, IDiveProfile diveProfile, IDiveStepModel diveStep,
+            IGasMixtureModel selectedGasMixture)
         {
             _diveModel = diveModel;
             _diveProfile = diveProfile;
@@ -71,7 +76,8 @@ namespace BubblesDivePlanner.Services
         {
             return new IDiveStage[]
             {
-                new PreDiveStageAmbientPressure(_diveProfile, _selectedGasMixture.Oxygen, _selectedGasMixture.Helium, _diveStep.Depth),
+                new PreDiveStageAmbientPressure(_diveProfile, _selectedGasMixture.Oxygen, _selectedGasMixture.Helium,
+                    _diveStep.Depth),
             };
         }
 
@@ -81,16 +87,17 @@ namespace BubblesDivePlanner.Services
             {
                 new DiveStageTissuePressure(_diveModel, _diveProfile, _diveStep.Time),
                 new DiveStageABValues(_diveModel, _diveProfile),
-                new DiveStageToleratedAmbientPressure(_diveModel.CompartmentCount,_diveProfile),
+                new DiveStageToleratedAmbientPressure(_diveModel.CompartmentCount, _diveProfile),
                 new DiveStageMaximumSurfacePressure(_diveModel.CompartmentCount, _diveProfile),
                 new DiveStageCompartmentLoad(_diveModel, _diveProfile),
-                new DiveStageResults(_diveModel.CompartmentCount,_outputResultsStepOutput, _diveProfile)
+                new DiveStageResults(_diveModel.CompartmentCount, _outputResultsStepOutput, _diveProfile)
             };
         }
 
         private IEnumerable<double> GetToleratedAmbientPressures()
         {
-            return _outputResultsStepOutput.DiveProfileStepOutput.Select(diveProfile => diveProfile.ToleratedAmbientPressureResult);
+            return _outputResultsStepOutput.DiveProfileStepOutput.Select(diveProfile =>
+                diveProfile.ToleratedAmbientPressureResult);
         }
     }
 }

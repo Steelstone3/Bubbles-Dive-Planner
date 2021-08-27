@@ -6,16 +6,10 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan
 {
-    public interface IGasMixtureSelectorViewModel
+    public interface IGasMixtureSelectorViewModel : IGasMixtureSelectorModel
     {
-        double MaximumOperatingDepth { get; set; }
-        
-        IGasMixtureModel SelectedGasMixture { get; set; }
-
         ObservableCollection<IGasMixtureModel> GasMixtures { get; }
-        
-        IGasMixtureViewModel NewGasMixture { get; set; }
-        
+
         IObservable<bool> CanAddGasMixture { get; }
 
         ReactiveCommand<Unit, Unit> AddGasMixtureCommand { get; }

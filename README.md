@@ -3,7 +3,7 @@ Bubbles Dive Planner
 
 The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities. Currently supports the Bulhmann dive model with more planned.
 
-It uses dotnet core 3.1LTS along with Moq, XUnit and Newtonsoft for the backend and Avalonia with ReactiveUI components for the frontend. 
+It uses dotnet 5.0 along with Moq, XUnit and Newtonsoft for the backend and Avalonia with ReactiveUI components for the frontend. 
 
 ### Running Bubbles Dive Planner
 
@@ -31,6 +31,6 @@ Or set the BubblesDivePlannerTests.csproj up in your testing enviroment in your 
 
 ### Dependencies
 
-Follow the steps for installing dotnet 3.1 runtime for your given operating system.
+Follow the steps for installing dotnet 5.0 runtime for your given operating system.
 
-> https://dotnet.microsoft.com/download/dotnet/3.1
+> https://dotnet.microsoft.com/download/dotnet/5.0

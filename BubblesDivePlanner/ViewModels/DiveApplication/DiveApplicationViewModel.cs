@@ -5,7 +5,7 @@ using BubblesDivePlanner.Contracts.ViewModels.DiveApplication;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Contracts.ViewModels.Results;
-using BubblesDivePlanner.Controllers.Converters;
+//using BubblesDivePlanner.Controllers.Converters;
 using BubblesDivePlanner.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.ViewModels.Result;
@@ -79,7 +79,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication
         private void CalculateDiveStep()
         {
             DiveResults.DiveProfileResults.Add(_diveProfileService.RunDiveStep(
-                new DiveStepModelConverter().ConvertToModel(DivePlanSetup.DiveStep),
+                DivePlanSetup.DiveStep,
                 DivePlanSetup.GasMixture.SelectedGasMixture));
         }
 
@@ -95,11 +95,10 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication
 
         private IDiveParametersResultViewModel UpdateUsedParameters()
         {
-            return new DiveParametersResultModelConverter().ConvertToViewModel(
-                _diveProfileService.UpdateParametersUsed(
-                    new DiveStepModelConverter().ConvertToModel(DivePlanSetup.DiveStep),
-                    DivePlanSetup.GasMixture.SelectedGasMixture,
-                    new GasManagementModelConverter().ConvertToModel(DivePlanSetup.GasManagement)));
+            return (IDiveParametersResultViewModel)_diveProfileService.UpdateParametersUsed(
+                DivePlanSetup.DiveStep,
+                DivePlanSetup.GasMixture.SelectedGasMixture,
+                DivePlanSetup.GasManagement);
         }
     }
 }

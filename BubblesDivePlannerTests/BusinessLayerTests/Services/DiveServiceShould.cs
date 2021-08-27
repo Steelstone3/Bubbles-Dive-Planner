@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.Commands.DiveStages;
-using BubblesDivePlanner.Controllers.Converters;
 using BubblesDivePlanner.Models.DiveModels;
 using BubblesDivePlanner.Models.Plan;
 using BubblesDivePlanner.Models.Results;
-using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 
 namespace BubblesDivePlannerTests.BusinessLayerTests.Services
@@ -43,12 +41,12 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Services
             };
 
             //Not used in the results view already tested
-            var gasManagement = new GasManagementViewModel();
+            var gasManagement = new GasManagementModel();
 
             var diveParametersModel = new DiveParametersResultModel();
-
+            
             var diveStage = new PostDiveStageStepInfo(diveParametersModel, diveModel, diveStep, gasMixture,
-                new GasManagementModelConverter().ConvertToModel(gasManagement),
+                gasManagement,
                 new List<double>() { 1.1, 1.2, 1.3, 1.45, 1.2 });
 
             //Act

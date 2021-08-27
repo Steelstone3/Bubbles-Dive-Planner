@@ -2,6 +2,7 @@ using BubblesDivePlanner.Contracts.Models.DiveModels;
 using BubblesDivePlanner.Contracts.Models.Plan;
 using BubblesDivePlanner.Contracts.Models.Results;
 using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Models.DiveModels;
 using BubblesDivePlanner.Models.Results;
 
@@ -38,7 +39,7 @@ namespace BubblesDivePlanner.Services
             //run all stages
             return _diveStages.RunDiveStages();
         }
-
+        
         public IDiveParametersResultModel UpdateParametersUsed(IDiveStepModel diveStep, IGasMixtureModel selectedGasMixture, IGasManagementModel gasManagementSetupModel)
         {
             return _diveStages.UpdateUsedDiveParameters(diveStep, selectedGasMixture, gasManagementSetupModel);
