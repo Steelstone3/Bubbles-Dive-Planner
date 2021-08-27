@@ -2,12 +2,10 @@ using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using BubblesDivePlanner.Contracts.Models.Plan;
-using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.Contracts.ViewModels.Plan
+namespace BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan
 {
-    //TODO AH need to do this for the rest
     public interface IGasMixtureSelectorViewModel
     {
         double MaximumOperatingDepth { get; set; }
@@ -16,7 +14,7 @@ namespace BubblesDivePlanner.Contracts.ViewModels.Plan
 
         ObservableCollection<IGasMixtureModel> GasMixtures { get; }
         
-        GasMixtureViewModel NewGasMixture { get; set; }
+        IGasMixtureViewModel NewGasMixture { get; set; }
         
         IObservable<bool> CanAddGasMixture { get; }
 

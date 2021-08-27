@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Reactive;
 using BubblesDivePlanner.Contracts.Models.Plan;
-using BubblesDivePlanner.Contracts.ViewModels.Plan;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Controllers.Information;
 using BubblesDivePlanner.Models.Plan;
 using ReactiveUI;
@@ -32,7 +32,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
             get;
         } = new ObservableCollection<IGasMixtureModel>();
 
-        private IGasMixtureModel _selectedGasMixture = new GasMixtureViewModel();
+        private IGasMixtureModel _selectedGasMixture = new GasMixtureModel();
         public IGasMixtureModel SelectedGasMixture
         {
             get => _selectedGasMixture;
@@ -47,8 +47,8 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
             }
         }
 
-        private GasMixtureViewModel _newGasMixture = new GasMixtureViewModel();
-        public GasMixtureViewModel NewGasMixture
+        private IGasMixtureViewModel _newGasMixture = new GasMixtureViewModel();
+        public IGasMixtureViewModel NewGasMixture
         {
             get => _newGasMixture;
             set
@@ -83,7 +83,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 
         private void AddGasMixture()
         {
-            GasMixtures.Add((GasMixtureViewModel)NewGasMixture.Clone());
+            GasMixtures.Add(NewGasMixture.Clone());
         }
 
         private void SetDefaults()

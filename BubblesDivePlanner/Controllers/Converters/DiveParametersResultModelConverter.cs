@@ -1,11 +1,12 @@
 using BubblesDivePlanner.Contracts.Models.Results;
+using BubblesDivePlanner.Contracts.ViewModels.Results;
 using BubblesDivePlanner.ViewModels.Result;
 
 namespace BubblesDivePlanner.Controllers.Converters
 {
     public class DiveParametersResultModelConverter
     {
-        public DiveParametersResultViewModel ConvertToViewModel(IDiveParametersResultModel model)
+        public IDiveParametersResultViewModel ConvertToViewModel(IDiveParametersResultModel model)
         {
             return new DiveParametersResultViewModel
             {

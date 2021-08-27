@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BubblesDivePlanner.Models.Plan;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 
@@ -36,10 +37,11 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Information
         public void MaximumOperatingDepthUpdatesWhenGasMixtureIsSet()
         {
             //Arrange
-            var newGasMixture = new GasMixtureViewModel()
+            var newGasMixture = new GasMixtureModel()
             {
                 Oxygen = 34,
                 Helium = 0,
+                Nitrogen = 100 - 34,
             };
 
             List<string> viewModelEvents = new List<string>();

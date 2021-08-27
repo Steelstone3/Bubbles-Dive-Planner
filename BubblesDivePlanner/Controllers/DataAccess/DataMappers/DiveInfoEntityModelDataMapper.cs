@@ -1,3 +1,4 @@
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.Entities;
 using BubblesDivePlanner.ViewModels.DiveApplication.Information;
 
@@ -14,7 +15,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
             throw new System.NotImplementedException();
         }
 
-        public DiveInfoEntityModel ModelToEntity(DiveInformationViewModel diveInfoViewModel)
+        public DiveInfoEntityModel ModelToEntity(IDiveInformationViewModel diveInfoViewModel)
         {
             CnsToxicityDataMappingToEntity(diveInfoViewModel);
             DecompressionProfileDataMappingToEntity(diveInfoViewModel);
@@ -24,7 +25,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 
         #region ModelToEntity
 
-        private void CnsToxicityDataMappingToEntity(DiveInformationViewModel diveInfoViewModel)
+        private void CnsToxicityDataMappingToEntity(IDiveInformationViewModel diveInfoViewModel)
         {
             _diveInfoEntityModel.MaximumSingleDiveDuration = diveInfoViewModel.CnsToxicity.CnsToxicity.MaximumSingleDiveDuration;
             _diveInfoEntityModel.OxygenPartialPressureConstant = diveInfoViewModel.CnsToxicity.CnsToxicity.OxygenPartialPressureConstant;
@@ -32,7 +33,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
         }
 
         //TODO AH This when decompression is implemented in version 2
-        private void DecompressionProfileDataMappingToEntity(DiveInformationViewModel diveInfoViewModel)
+        private void DecompressionProfileDataMappingToEntity(IDiveInformationViewModel diveInfoViewModel)
         {
             //diveInfoViewModel.DecompressionProfile
         }

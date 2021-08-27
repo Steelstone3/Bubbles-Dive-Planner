@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using BubblesDivePlanner.Contracts.Models.Results;
+using BubblesDivePlanner.Contracts.ViewModels.Results;
 using BubblesDivePlanner.Entities;
 using BubblesDivePlanner.Models.Results;
 using BubblesDivePlanner.ViewModels.Result;
@@ -7,6 +9,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 {
     public class DiveResultsEntityModelDataMapper
     {
+        //TODO AH Change these to models as it should be view models to models and stuff happens then convert back
         //TODO AH Finish off
         //UI Visibility later
         private DiveResultsEntityModel _diveResultsEntityModel = new DiveResultsEntityModel();
@@ -16,7 +19,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
             throw new System.NotImplementedException();
         }
 
-        public DiveResultsEntityModel ModelToEntity(DiveResultsViewModel diveResultsViewModel)
+        public DiveResultsEntityModel ModelToEntity(IDiveResultsViewModel diveResultsViewModel)
         {
             DiveParametersResultDataMappingToEntity(diveResultsViewModel);
             DiveProfileResultsDataMappingToEntity(diveResultsViewModel);
@@ -26,7 +29,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 
         #region ModelToEntity
 
-        private void DiveParametersResultDataMappingToEntity(DiveResultsViewModel diveResultsViewModel)
+        private void DiveParametersResultDataMappingToEntity(IDiveResultsViewModel diveResultsViewModel)
         {
             _diveResultsEntityModel.DiveProfileStepHeader = diveResultsViewModel.DiveParametersResult.DiveProfileStepHeader;
             _diveResultsEntityModel.DiveModelUsed = diveResultsViewModel.DiveParametersResult.DiveModelUsed;
@@ -37,10 +40,10 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
             _diveResultsEntityModel.Helium = diveResultsViewModel.DiveParametersResult.Helium;
             _diveResultsEntityModel.Nitrogen = diveResultsViewModel.DiveParametersResult.Nitrogen;
         }
-
-        private void DiveProfileResultsDataMappingToEntity(DiveResultsViewModel diveResultsViewModel)
+        
+        private void DiveProfileResultsDataMappingToEntity(IDiveResultsViewModel diveResultsViewModel)
         {
-            var diveResults = new List<DiveResultsStepOutputModel>( diveResultsViewModel.DiveProfileResults );
+            var diveResults = new List<IDiveResultsStepOutputModel>( diveResultsViewModel.DiveProfileResults );
             _diveResultsEntityModel.DiveResults.AddRange(diveResults);
         }
 

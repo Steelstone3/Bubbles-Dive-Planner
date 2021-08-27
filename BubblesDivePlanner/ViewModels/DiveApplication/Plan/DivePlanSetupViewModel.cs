@@ -1,9 +1,10 @@
 ﻿using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 {
-    public class DivePlanSetupViewModel : ViewModelBase
+    public class DivePlanSetupViewModel : ViewModelBase, IDivePlanSetupViewModel
     {
         private IDiveProfileService _diveProfileService;
         
@@ -20,22 +21,22 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
             set => this.RaiseAndSetIfChanged(ref _gasMixture, value);
         }
 
-        private DiveModelSelectorViewModel _diveModelSelector;
-        public DiveModelSelectorViewModel DiveModelSelector
+        private IDiveModelSelectorViewModel _diveModelSelector;
+        public IDiveModelSelectorViewModel DiveModelSelector
         {
             get => _diveModelSelector;
             set => this.RaiseAndSetIfChanged(ref _diveModelSelector, value);
         }
 
-        private DiveStepViewModel _diveStep = new DiveStepViewModel();
-        public DiveStepViewModel DiveStep
+        private IDiveStepViewModel _diveStep = new DiveStepViewModel();
+        public IDiveStepViewModel DiveStep
         {
             get => _diveStep;
             set => this.RaiseAndSetIfChanged(ref _diveStep, value);
         }
 
-        private GasManagementViewModel _gasManagement = new GasManagementViewModel();
-        public GasManagementViewModel GasManagement
+        private IGasManagementViewModel _gasManagement = new GasManagementViewModel();
+        public IGasManagementViewModel GasManagement
         {
             get => _gasManagement;
             set => this.RaiseAndSetIfChanged(ref _gasManagement, value);

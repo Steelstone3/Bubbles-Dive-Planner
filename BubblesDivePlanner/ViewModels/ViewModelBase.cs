@@ -1,8 +1,9 @@
-﻿using ReactiveUI;
+﻿using BubblesDivePlanner.Contracts.ViewModels;
+using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels
 {
-    public class ViewModelBase : ReactiveObject
+    public class ViewModelBase : ReactiveObject, IVisibility
     {
         private bool _isUiVisible = false;
         public bool IsUiVisible
@@ -17,5 +18,7 @@ namespace BubblesDivePlanner.ViewModels
             get => _isUiEnabled;
             set => this.RaiseAndSetIfChanged(ref _isUiEnabled, value);
         }
+
+        public bool IsVisible { get; set; }
     }
 }

@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.Contracts.Models.DiveModels;
 using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Models.DiveModels;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 {
-    public class DiveModelSelectorViewModel : ViewModelBase
+    public class DiveModelSelectorViewModel : ViewModelBase, IDiveModelSelectorViewModel
     {
         private IDiveProfileService _diveProfileController;
 

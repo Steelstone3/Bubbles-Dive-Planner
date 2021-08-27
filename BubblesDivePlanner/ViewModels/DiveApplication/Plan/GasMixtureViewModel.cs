@@ -1,9 +1,11 @@
 ﻿using BubblesDivePlanner.Contracts.Models.Plan;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
+using BubblesDivePlanner.Models.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 {
-    public class GasMixtureViewModel : ViewModelBase, IGasMixtureModel
+    public class GasMixtureViewModel : ViewModelBase, IGasMixtureViewModel
     {
         public GasMixtureViewModel()
         {
@@ -58,12 +60,12 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 
         public IGasMixtureModel Clone()
         {
-            return new GasMixtureViewModel()
+            return new GasMixtureModel()
             {
-                GasName = this.GasName,
-                Oxygen = this.Oxygen,
-                Helium = this.Helium,
-                Nitrogen = this.Nitrogen,
+                GasName = GasName,
+                Oxygen = Oxygen,
+                Helium = Helium,
+                Nitrogen = Nitrogen,
             };
         }
     }

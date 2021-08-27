@@ -1,3 +1,4 @@
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Entities;
 using BubblesDivePlanner.Services;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
@@ -26,7 +27,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
             return _divePlanViewModel;
         }
 
-        public DivePlanEntityModel ModelToEntity(DivePlanSetupViewModel divePlanViewModel)
+        public DivePlanEntityModel ModelToEntity(IDivePlanSetupViewModel divePlanViewModel)
         {
             DiveModelSelectorDataMappingToEntity(divePlanViewModel);
             DiveStepDataMappingToEntity(divePlanViewModel);
@@ -38,18 +39,18 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 
         #region ModelToEntity
 
-        private void DiveModelSelectorDataMappingToEntity(DivePlanSetupViewModel divePlanViewModel)
+        private void DiveModelSelectorDataMappingToEntity(IDivePlanSetupViewModel divePlanViewModel)
         {
             _divePlanEntityModel.SelectedDiveModel = divePlanViewModel.DiveModelSelector.SelectedDiveModel;
         }
 
-        private void DiveStepDataMappingToEntity(DivePlanSetupViewModel divePlanViewModel)
+        private void DiveStepDataMappingToEntity(IDivePlanSetupViewModel divePlanViewModel)
         {
             _divePlanEntityModel.Depth = divePlanViewModel.DiveStep.Depth;
             _divePlanEntityModel.Time = divePlanViewModel.DiveStep.Time;
         }
 
-        private void GasManagementDataMappingToEntity(DivePlanSetupViewModel divePlanViewModel)
+        private void GasManagementDataMappingToEntity(IDivePlanSetupViewModel divePlanViewModel)
         {
             _divePlanEntityModel.CylinderPressure = divePlanViewModel.GasManagement.CylinderPressure;
             _divePlanEntityModel.CylinderVolume = divePlanViewModel.GasManagement.CylinderVolume;
@@ -59,7 +60,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
             _divePlanEntityModel.SacRate = divePlanViewModel.GasManagement.SacRate;
         }
 
-        private void GasMixtureDataMappingToEntity(DivePlanSetupViewModel divePlanViewModel)
+        private void GasMixtureDataMappingToEntity(IDivePlanSetupViewModel divePlanViewModel)
         {
             _divePlanEntityModel.MaximumOperatingDepth = divePlanViewModel.GasMixture.MaximumOperatingDepth;
 

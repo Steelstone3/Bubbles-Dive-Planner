@@ -1,4 +1,6 @@
-﻿using BubblesDivePlanner.Services;
+﻿using BubblesDivePlanner.Contracts.ViewModels.DiveApplication;
+using BubblesDivePlanner.Contracts.ViewModels.Header;
+using BubblesDivePlanner.Services;
 using BubblesDivePlanner.ViewModels.DiveApplication;
 using BubblesDivePlanner.ViewModels.Header;
 using ReactiveUI;
@@ -15,15 +17,15 @@ namespace BubblesDivePlanner.ViewModels
             _diveHeader.File = new FileViewModel(this);
         }
 
-        private DiveApplicationViewModel _diveApplication;
-        public DiveApplicationViewModel DiveApplication
+        private IDiveApplicationViewModel _diveApplication;
+        public IDiveApplicationViewModel DiveApplication
         {
             get => _diveApplication;
             set => this.RaiseAndSetIfChanged(ref _diveApplication, value);
         }
 
-        private DiveHeaderViewModel _diveHeader = new DiveHeaderViewModel();
-        public DiveHeaderViewModel DiveHeader
+        private IDiveHeaderViewModel _diveHeader = new DiveHeaderViewModel();
+        public IDiveHeaderViewModel DiveHeader
         {
             get => _diveHeader;
             set => this.RaiseAndSetIfChanged(ref _diveHeader, value);

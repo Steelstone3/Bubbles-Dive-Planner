@@ -1,9 +1,10 @@
 using BubblesDivePlanner.Contracts.Models.Results;
+using BubblesDivePlanner.Contracts.ViewModels.Results;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Result
 {
-    public class DiveParametersResultViewModel : ViewModelBase, IDiveParametersResultModel
+    public class DiveParametersResultViewModel : ViewModelBase, IDiveParametersResultViewModel
     {
         private string _diveProfileStepHeader;
         public string DiveProfileStepHeader

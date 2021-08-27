@@ -1,12 +1,13 @@
-﻿using BubblesDivePlanner.Contracts.Models.Plan;
+﻿using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Controllers.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 {
-    public class GasManagementViewModel : ViewModelBase, IGasManagementModel
+    public class GasManagementViewModel : ViewModelBase, IGasManagementViewModel
     {
         #region Gas Setup
+
         private GasManagementController _gasManagementController;
 
         public GasManagementViewModel()
@@ -16,6 +17,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
         }
 
         private int _cylinderVolume;
+
         public int CylinderVolume
         {
             get => _cylinderVolume;
@@ -27,17 +29,19 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
         }
 
         private int _cylinderPressure;
+
         public int CylinderPressure
         {
             get => _cylinderPressure;
             set
             {
-                this.RaiseAndSetIfChanged(ref _cylinderPressure,value);
+                this.RaiseAndSetIfChanged(ref _cylinderPressure, value);
                 CalculateInitialCylinderVolume();
             }
         }
 
         private int _sacRate;
+
         public int SacRate
         {
             get => _sacRate;
@@ -45,10 +49,11 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
         }
 
         private int _initialCylinderTotalVolume;
+
         public int InitialCylinderTotalVolume
         {
             get => _initialCylinderTotalVolume;
-            set 
+            set
             {
                 this.RaiseAndSetIfChanged(ref _initialCylinderTotalVolume, value);
                 ResetRemainingCylinderVolume();
@@ -60,6 +65,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
         #region Gas Usage
 
         private bool _isGasUsageVisible = false;
+
         public bool IsGasUsageVisible
         {
             get => _isGasUsageVisible;
@@ -67,6 +73,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
         }
 
         private int _gasUsedForStep;
+
         public int GasUsedForStep
         {
             get => _gasUsedForStep;
@@ -78,6 +85,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
         }
 
         private int _gasRemaining;
+
         public int GasRemaining
         {
             get => _gasRemaining;
@@ -89,13 +97,14 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
         public bool ValidateGasManagement(int cylinderVolume, int cylinderPressure, int sacRate)
         {
             return sacRate <= 30 && sacRate >= 5 &&
-            cylinderPressure <= 300 && cylinderPressure >= 50 &&
-            cylinderVolume <= 30 && cylinderVolume >= 3;
+                   cylinderPressure <= 300 && cylinderPressure >= 50 &&
+                   cylinderVolume <= 30 && cylinderVolume >= 3;
         }
 
         private void CalculateInitialCylinderVolume()
         {
-            InitialCylinderTotalVolume = _gasManagementController.CalculateInitialGasVolume(CylinderVolume, CylinderPressure);
+            InitialCylinderTotalVolume =
+                _gasManagementController.CalculateInitialGasVolume(CylinderVolume, CylinderPressure);
         }
 
         private void CalculateGasRemaining()

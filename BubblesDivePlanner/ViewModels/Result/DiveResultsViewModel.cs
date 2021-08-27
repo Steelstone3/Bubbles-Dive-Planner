@@ -1,18 +1,20 @@
 using System.Collections.ObjectModel;
+using BubblesDivePlanner.Contracts.Models.Results;
+using BubblesDivePlanner.Contracts.ViewModels.Results;
 using BubblesDivePlanner.Models.Results;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Result
 {
-    public class DiveResultsViewModel : ViewModelBase
+    public class DiveResultsViewModel : ViewModelBase, IDiveResultsViewModel
     {
-        public ObservableCollection<DiveResultsStepOutputModel> DiveProfileResults
+        public ObservableCollection<IDiveResultsStepOutputModel> DiveProfileResults
         {
             get;
-        } = new ObservableCollection<DiveResultsStepOutputModel>();
+        } = new ObservableCollection<IDiveResultsStepOutputModel>();
 
-        private DiveParametersResultViewModel _diveParametersResult = new DiveParametersResultViewModel();
-        public DiveParametersResultViewModel DiveParametersResult
+        private IDiveParametersResultViewModel _diveParametersResult = new DiveParametersResultViewModel();
+        public IDiveParametersResultViewModel DiveParametersResult
         {
             get => _diveParametersResult;
             set => this.RaiseAndSetIfChanged(ref _diveParametersResult, value);

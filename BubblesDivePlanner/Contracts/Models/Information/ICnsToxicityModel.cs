@@ -4,19 +4,10 @@ namespace BubblesDivePlanner.Contracts.Models.Information
 {
     public interface ICnsToxicityModel
     {
-        List<double> OxygenPartialPressureConstant
-        {
-            get;
-        }
+        List<double> OxygenPartialPressureConstant { get; }
 
-        List<int> MaximumSingleDiveDuration
-        {
-            get;
-        }
+        List<int> MaximumSingleDiveDuration { get; }
 
-        List<int> Total24HourDuration
-        {
-            get;
-        }
-    } 
+        List<int> Total24HourDuration { get; }
+    }
 }

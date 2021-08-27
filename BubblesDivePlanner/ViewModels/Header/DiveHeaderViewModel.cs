@@ -1,11 +1,12 @@
-﻿using ReactiveUI;
+﻿using BubblesDivePlanner.Contracts.ViewModels.Header;
+using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Header
 {
-    public class DiveHeaderViewModel : ViewModelBase
+    public class DiveHeaderViewModel : ViewModelBase, IDiveHeaderViewModel
     {
-        private FileViewModel _file;
-        public FileViewModel File
+        private IFileViewModel _file;
+        public IFileViewModel File
         {
             get => _file;
             set => this.RaiseAndSetIfChanged(ref _file, value);

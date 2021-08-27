@@ -1,9 +1,10 @@
 using BubblesDivePlanner.Contracts.Models.Plan;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 {
-    public class DiveStepViewModel : ViewModelBase, IDiveStepModel
+    public class DiveStepViewModel : ViewModelBase, IDiveStepViewModel
     {
         private int _depth;
         public int Depth

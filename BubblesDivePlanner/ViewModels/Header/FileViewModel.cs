@@ -1,10 +1,11 @@
 using System.Reactive;
+using BubblesDivePlanner.Contracts.ViewModels.Header;
 using BubblesDivePlanner.Controllers.Header;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Header
 {
-    public class FileViewModel : ViewModelBase
+    public class FileViewModel : ViewModelBase, IFileViewModel
     {
         private MainWindowViewModel _mainWindowViewModel;
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.Commands.DiveStages;
+using BubblesDivePlanner.Controllers.Converters;
 using BubblesDivePlanner.Models.DiveModels;
 using BubblesDivePlanner.Models.Plan;
 using BubblesDivePlanner.Models.Results;
@@ -47,7 +48,8 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Services
             var diveParametersModel = new DiveParametersResultModel();
 
             var diveStage = new PostDiveStageStepInfo(diveParametersModel, diveModel, diveStep, gasMixture,
-                gasManagement, new List<double>() { 1.1, 1.2, 1.3, 1.45, 1.2 });
+                new GasManagementModelConverter().ConvertToModel(gasManagement),
+                new List<double>() { 1.1, 1.2, 1.3, 1.45, 1.2 });
 
             //Act
             diveStage.RunStage();

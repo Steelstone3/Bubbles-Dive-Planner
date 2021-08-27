@@ -1,14 +1,14 @@
 using System.Reactive.Linq;
 using BubblesDivePlanner.Contracts.Services;
-using BubblesDivePlanner.Contracts.ViewModels;
 using BubblesDivePlanner.Models.DiveModels;
+using BubblesDivePlanner.Models.Plan;
 using BubblesDivePlanner.Services;
 using BubblesDivePlanner.ViewModels.DiveApplication;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.Plan
+namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
 {
     //TODO AH Mock up dependencies and trim down this class by using a helper class
     public class CalculateDiveStepViewModelShould
@@ -186,7 +186,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.Plan
             SetupDiveModelSelector();
             _diveModelSelectorViewModel.SelectedDiveModel = new Zhl16Buhlmann();
 
-            _gasMixtureViewModel.SelectedGasMixture = new GasMixtureViewModel()
+            _gasMixtureViewModel.SelectedGasMixture = new GasMixtureModel()
             {
                 GasName = "Air",
                 Oxygen = 21,
@@ -214,11 +214,12 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.Plan
             SetupDiveModelSelector();
             _diveModelSelectorViewModel.SelectedDiveModel = null;
 
-            _gasMixtureViewModel.SelectedGasMixture = new GasMixtureViewModel()
+            _gasMixtureViewModel.SelectedGasMixture = new GasMixtureModel()
             {
                 GasName = "Air",
                 Oxygen = 21,
                 Helium = 0,
+                Nitrogen = 100 - 21,
             };
 
             _gasManagementViewModel = new GasManagementViewModel()

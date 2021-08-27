@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.Contracts.Entities;
+using BubblesDivePlanner.Contracts.Models.Results;
 using BubblesDivePlanner.Models.Results;
 
 namespace BubblesDivePlanner.Entities
@@ -14,6 +15,6 @@ namespace BubblesDivePlanner.Entities
         public double Oxygen { get; set; }
         public double Helium { get; set; }
         public double Nitrogen { get; set; }
-        public List<DiveResultsStepOutputModel> DiveResults { get; set; } = new List<DiveResultsStepOutputModel>();
+        public List<IDiveResultsStepOutputModel> DiveResults { get; set; } = new List<IDiveResultsStepOutputModel>();
     }
 }
