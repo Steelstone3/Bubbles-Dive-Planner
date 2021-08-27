@@ -40,7 +40,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 
         private void DiveProfileResultsDataMappingToEntity(DiveResultsViewModel diveResultsViewModel)
         {
-            var diveResults = new List<DiveResultsModel>( diveResultsViewModel.DiveProfileResults );
+            var diveResults = new List<DiveResultsStepOutputModel>( diveResultsViewModel.DiveProfileResults );
             _diveResultsEntityModel.DiveResults.AddRange(diveResults);
         }
 

@@ -6,10 +6,10 @@ namespace BubblesDivePlanner.ViewModels.Result
 {
     public class DiveResultsViewModel : ViewModelBase
     {
-        public ObservableCollection<DiveResultsModel> DiveProfileResults
+        public ObservableCollection<DiveResultsStepOutputModel> DiveProfileResults
         {
             get;
-        } = new ObservableCollection<DiveResultsModel>();
+        } = new ObservableCollection<DiveResultsStepOutputModel>();
 
         private DiveParametersResultViewModel _diveParametersResult = new DiveParametersResultViewModel();
         public DiveParametersResultViewModel DiveParametersResult

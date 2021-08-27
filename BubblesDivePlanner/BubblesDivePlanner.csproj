@@ -30,7 +30,8 @@
 
   <ItemGroup>
     <Folder Include="Commands" />
-    <Folder Include="Contracts\ViewModels" />
+    <Folder Include="Contracts\ViewModels\Information" />
+    <Folder Include="Contracts\ViewModels\Results" />
     <Folder Include="Controllers\DataAccess" />
   </ItemGroup>
 </Project>

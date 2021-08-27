@@ -11,7 +11,7 @@ namespace BubblesDivePlanner.Contracts.Services
         {
             get; set;
         }
-        DiveResultsModel RunDiveStep(IDiveStepModel diveStep, IGasMixtureModel gasMixture);
+        DiveResultsStepOutputModel RunDiveStep(IDiveStepModel diveStep, IGasMixtureModel gasMixture);
         IDiveParametersResultModel UpdateParametersUsed(IDiveStepModel diveStep, IGasMixtureModel gasMixture, IGasManagementModel gasManagementSetup);
         
         //IEnumerable<DiveProfileResultsListViewModel> RunDecompressionDiveSteps( InfoDecompressionProfileViewModel decompressionDiveSteps, PlanGasMixtureViewModel gasMixture );

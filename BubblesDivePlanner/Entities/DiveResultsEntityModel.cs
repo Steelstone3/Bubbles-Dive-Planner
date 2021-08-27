@@ -14,6 +14,6 @@ namespace BubblesDivePlanner.Entities
         public double Oxygen { get; set; }
         public double Helium { get; set; }
         public double Nitrogen { get; set; }
-        public List<DiveResultsModel> DiveResults { get; set; } = new List<DiveResultsModel>();
+        public List<DiveResultsStepOutputModel> DiveResults { get; set; } = new List<DiveResultsStepOutputModel>();
     }
 }

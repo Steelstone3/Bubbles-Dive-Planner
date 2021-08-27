@@ -7,13 +7,13 @@ namespace BubblesDivePlanner.Commands.DiveStages
     public class DiveStageResults : DiveStage
     {
         private int _compartmentCount;
-        private DiveResultsModel _results;
+        private DiveResultsStepOutputModel _resultsStepOutput;
         private IDiveProfile _diveProfile;
 
-        public DiveStageResults(int compartmentCount, DiveResultsModel results, IDiveProfile diveProfile)
+        public DiveStageResults(int compartmentCount, DiveResultsStepOutputModel resultsStepOutput, IDiveProfile diveProfile)
         {
             _compartmentCount = compartmentCount;
-            _results = results;
+            _resultsStepOutput = resultsStepOutput;
             _diveProfile = diveProfile;
         }
 
@@ -26,7 +26,7 @@ namespace BubblesDivePlanner.Commands.DiveStages
 
         private void PopulateResults()
         {
-            var stepResult = new DiveProfileStepOutputModel();
+            var stepResult = new DiveProfileResultModel();
 
             stepResult.DiveProfileStepHeader = "Dive Step";
             stepResult.Compartment = Compartment + 1;
@@ -35,7 +35,7 @@ namespace BubblesDivePlanner.Commands.DiveStages
             stepResult.MaximumSurfacePressureResult = Math.Round(_diveProfile.MaxSurfacePressures[Compartment], 2);
             stepResult.ToleratedAmbientPressureResult = Math.Round(_diveProfile.ToleratedAmbientPressures[Compartment], 2);
 
-            _results.DiveProfileStepOutput.Add(stepResult);
+            _resultsStepOutput.DiveProfileStepOutput.Add(stepResult);
         }
     }
 }

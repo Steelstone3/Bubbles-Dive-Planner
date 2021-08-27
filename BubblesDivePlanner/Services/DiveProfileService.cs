@@ -31,7 +31,7 @@ namespace BubblesDivePlanner.Services
         }
 
         //TODO AH Strategy pattern on deco model stuff
-        public DiveResultsModel RunDiveStep(IDiveStepModel diveStep, IGasMixtureModel gasMixture)
+        public DiveResultsStepOutputModel RunDiveStep(IDiveStepModel diveStep, IGasMixtureModel gasMixture)
         {
             //update internal state
             _diveStages.UpdateDiveStageHandler(TheDiveModel, _diveProfile, diveStep, gasMixture);

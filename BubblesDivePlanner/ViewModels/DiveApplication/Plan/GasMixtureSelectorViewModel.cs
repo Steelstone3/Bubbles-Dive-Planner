@@ -2,15 +2,16 @@
 using System.Collections.ObjectModel;
 using System.Reactive;
 using BubblesDivePlanner.Contracts.Models.Plan;
+using BubblesDivePlanner.Contracts.ViewModels.Plan;
 using BubblesDivePlanner.Controllers.Information;
 using BubblesDivePlanner.Models.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 {
-    public class GasMixtureSelectorViewModel : ViewModelBase
+    public class GasMixtureSelectorViewModel : ViewModelBase, IGasMixtureSelectorViewModel
     {
-        MaxOperatingDepthController _maxOperatingDepthController;
+        private MaxOperatingDepthController _maxOperatingDepthController;
 
         public GasMixtureSelectorViewModel()
         {
@@ -55,6 +56,11 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
                 _newGasMixture = value;
             }
         }
+        
+        public bool ValidateGasMixture(IGasMixtureModel selectedGasMixture)
+        {
+            return selectedGasMixture != null;
+        }
 
         public IObservable<bool> CanAddGasMixture
         {
@@ -86,11 +92,6 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
             SelectedGasMixture = defaultGasMixture;
 
             GasMixtures.Add(defaultGasMixture);
-        }
-
-        public bool ValidateGasMixture(IGasMixtureModel selectedGasMixture)
-        {
-            return selectedGasMixture != null;
         }
 
         private double CalculateMaximumOperatingDepth() => _maxOperatingDepthController.CalculateMaximumOperatingDepth(_selectedGasMixture.Oxygen);
