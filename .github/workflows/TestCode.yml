@@ -23,7 +23,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 5.0.400
     - name: Install app dependencies
       working-directory: ./BubblesDivePlanner
       run: dotnet restore
