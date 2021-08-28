@@ -5,7 +5,6 @@ using BubblesDivePlanner.Contracts.ViewModels.DiveApplication;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Contracts.ViewModels.Results;
-//using BubblesDivePlanner.Controllers.Converters;
 using BubblesDivePlanner.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.ViewModels.Result;
@@ -95,10 +94,10 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication
 
         private IDiveParametersResultViewModel UpdateUsedParameters()
         {
-            return (IDiveParametersResultViewModel)_diveProfileService.UpdateParametersUsed(
+            return _diveProfileService.UpdateParametersUsed(
                 DivePlanSetup.DiveStep,
                 DivePlanSetup.GasMixture.SelectedGasMixture,
-                DivePlanSetup.GasManagement);
+                DivePlanSetup.GasManagement) as IDiveParametersResultViewModel;
         }
     }
 }

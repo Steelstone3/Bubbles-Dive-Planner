@@ -19,13 +19,14 @@
         </StackPanel>
         <StackPanel>
             <StackPanel Margin="4,0" Background="#FFC3FDFF">
-                <TextBlock Margin="4" Text="Initial Gas Volume (L):" FontWeight="Bold"/>
-                <TextBlock Margin="4" Text="{Binding DiveApplication.DivePlanSetup.GasManagement.InitialCylinderTotalVolume}" />
-                <TextBlock Margin="4" Text="Gas Remaining (L):" FontWeight="Bold"/>
+                <TextBlock Margin="4" Text="Initial Gas Volume (L):" FontWeight="Bold" />
+                <TextBlock Margin="4"
+                           Text="{Binding DiveApplication.DivePlanSetup.GasManagement.InitialCylinderTotalVolume}" />
+                <TextBlock Margin="4" Text="Gas Remaining (L):" FontWeight="Bold" />
                 <TextBlock Margin="4" Text="{Binding DiveApplication.DivePlanSetup.GasManagement.GasRemaining}" />
-                <TextBlock Margin="4" Text="Gas Used (L):" FontWeight="Bold"/>
+                <TextBlock Margin="4" Text="Gas Used (L):" FontWeight="Bold" />
                 <TextBlock Margin="4" Text="{Binding DiveApplication.DivePlanSetup.GasManagement.GasUsedForStep}" />
-                <TextBlock Margin="4" Text="SAC Rate (L/min):" FontWeight="Bold"/>
+                <TextBlock Margin="4" Text="SAC Rate (L/min):" FontWeight="Bold" />
                 <TextBlock Margin="4" Text="{Binding DiveApplication.DivePlanSetup.GasManagement.SacRate}" />
             </StackPanel>
         </StackPanel>

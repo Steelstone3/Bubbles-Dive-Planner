@@ -64,7 +64,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
 
         #region Gas Usage
 
-        private bool _isGasUsageVisible = false;
+        private bool _isGasUsageVisible;
 
         public bool IsGasUsageVisible
         {

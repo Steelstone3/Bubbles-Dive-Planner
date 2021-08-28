@@ -1,6 +1,4 @@
-using BubblesDivePlanner.Contracts.Models.Plan;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
-using BubblesDivePlanner.Models.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
