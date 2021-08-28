@@ -90,10 +90,12 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication
             DivePlanSetup.DiveModelSelector.IsUiVisible = false;
             DivePlanSetup.DiveModelSelector.IsUiEnabled = false;
             DivePlanSetup.DiveModelSelector.IsReadOnlyUiVisible = true;
+            DiveResults.IsUiVisible = true;
         }
 
         private IDiveParametersResultViewModel UpdateUsedParameters()
         {
+            //TODO AH This cast is a little whacky I think it needs to go back to the converter as it is breaking binding from an invalid cast
             return _diveProfileService.UpdateParametersUsed(
                 DivePlanSetup.DiveStep,
                 DivePlanSetup.GasMixture.SelectedGasMixture,

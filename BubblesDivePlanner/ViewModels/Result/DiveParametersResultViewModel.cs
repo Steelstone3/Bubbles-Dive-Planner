@@ -1,4 +1,3 @@
-using BubblesDivePlanner.Contracts.Models.Results;
 using BubblesDivePlanner.Contracts.ViewModels.Results;
 using ReactiveUI;
 

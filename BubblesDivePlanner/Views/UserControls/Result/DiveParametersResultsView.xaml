@@ -16,7 +16,7 @@
             FontWeight="DemiBold"
             Text="Current Dive Step" />
 
-        <Grid Margin="16,4" Background="#FFCFCFCF">
+        <Grid Margin="16,4" Background="#FFCFCFCF" IsVisible="{Binding DiveApplication.DiveResults.IsUiVisible}">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -33,7 +33,7 @@
             <TextBlock
                 Grid.Row="0"
                 Margin="8,0"
-                Text="Dive Model:" FontWeight="Bold"/>
+                Text="Dive Model:" FontWeight="Bold" />
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
@@ -43,7 +43,7 @@
             <TextBlock
                 Grid.Row="1"
                 Margin="8,0"
-                Text="Depth:" FontWeight="Bold"/>
+                Text="Depth:" FontWeight="Bold" />
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="1"
@@ -52,7 +52,7 @@
             <TextBlock
                 Grid.Row="2"
                 Margin="8,0"
-                Text="Time:" FontWeight="Bold"/>
+                Text="Time:" FontWeight="Bold" />
             <TextBlock
                 Grid.Row="2"
                 Grid.Column="1"
@@ -61,7 +61,7 @@
             <TextBlock
                 Grid.Row="3"
                 Margin="8,0"
-                Text="Gas Mixture Name:" FontWeight="Bold"/>
+                Text="Gas Mixture Name:" FontWeight="Bold" />
             <TextBlock
                 Grid.Row="3"
                 Grid.Column="1"

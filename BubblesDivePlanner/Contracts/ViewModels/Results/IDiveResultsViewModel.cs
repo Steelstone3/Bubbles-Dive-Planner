@@ -5,7 +5,7 @@ using BubblesDivePlanner.ViewModels.Result;
 
 namespace BubblesDivePlanner.Contracts.ViewModels.Results
 {
-    public interface IDiveResultsViewModel
+    public interface IDiveResultsViewModel : IVisibility
     {
         ObservableCollection<IDiveResultsStepOutputModel> DiveProfileResults { get; }
 

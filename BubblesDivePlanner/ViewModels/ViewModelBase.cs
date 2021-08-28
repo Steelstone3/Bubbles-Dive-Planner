@@ -5,7 +5,7 @@ namespace BubblesDivePlanner.ViewModels
 {
     public class ViewModelBase : ReactiveObject, IVisibility
     {
-        private bool _isUiVisible = false;
+        private bool _isUiVisible;
         public bool IsUiVisible
         {
             get => _isUiVisible;

@@ -15,11 +15,11 @@
             FontSize="16"
             FontWeight="DemiBold"
             Text="Dive Results" />
-        <ListBox
-            Margin="16,4"
-            Background="#FFCFCFCF"
-            MaxHeight="600"
-            Items="{Binding DiveApplication.DiveResults.DiveProfileResults}">
+        <ListBox IsVisible="{Binding DiveApplication.DiveResults.IsUiVisible}"
+                 Margin="16,4"
+                 Background="#FFCFCFCF"
+                 MaxHeight="600"
+                 Items="{Binding DiveApplication.DiveResults.DiveProfileResults}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBox
@@ -29,23 +29,23 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="2,0" Text="C:" FontWeight="Bold"/>
+                                    <TextBlock Margin="2,0" Text="C:" FontWeight="Bold" />
                                     <TextBlock Margin="4,0" Text="{Binding Compartment}" />
                                     <TextBlock Margin="2,0" Text="|" />
 
-                                    <TextBlock Margin="2,0" Text="TP:" FontWeight="Bold"/>
+                                    <TextBlock Margin="2,0" Text="TP:" FontWeight="Bold" />
                                     <TextBlock Margin="4,0" Text="{Binding TissuePressureResult}" />
                                     <TextBlock Margin="2,0" Text="|" />
 
-                                    <TextBlock Margin="2,0" Text="TAP:" FontWeight="Bold"/>
+                                    <TextBlock Margin="2,0" Text="TAP:" FontWeight="Bold" />
                                     <TextBlock Margin="4,0" Text="{Binding ToleratedAmbientPressureResult}" />
                                     <TextBlock Margin="2,0" Text="|" />
 
-                                    <TextBlock Margin="2,0" Text="MSP:" FontWeight="Bold"/>
+                                    <TextBlock Margin="2,0" Text="MSP:" FontWeight="Bold" />
                                     <TextBlock Margin="4,0" Text="{Binding MaximumSurfacePressureResult}" />
                                     <TextBlock Margin="2,0" Text="|" />
 
-                                    <TextBlock Margin="2,0" Text="CLP:" FontWeight="Bold"/>
+                                    <TextBlock Margin="2,0" Text="CLP:" FontWeight="Bold" />
                                     <TextBlock Margin="4,0" Text="{Binding CompartmentLoadResult}" />
                                     <TextBlock Text="%" />
                                     <TextBlock Margin="2,0" Text="|" />

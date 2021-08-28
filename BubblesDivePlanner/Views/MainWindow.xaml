@@ -67,7 +67,8 @@
             <StackPanel Background="#FF9E9E9E">
                 <result:DiveResultsView />
                 <result:DiveParametersResultsView />
-                <result:DiveResultWarningsView />
+                <result:WarningsView />
+                <result:KeyView />
             </StackPanel>
         </ScrollViewer>
 

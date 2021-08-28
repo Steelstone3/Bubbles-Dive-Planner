@@ -14,6 +14,9 @@
     <Compile Update="Views\UserControls\Header\FileHeaderView.xaml.cs">
       <DependentUpon>FileHeaderView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\UserControls\Result\WarningsView.xaml.cs">
+      <DependentUpon>WarningsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.7" />
