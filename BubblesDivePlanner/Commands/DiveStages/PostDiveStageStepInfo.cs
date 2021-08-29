@@ -40,7 +40,7 @@ namespace BubblesDivePlanner.Commands.DiveStages
         }
 
         private void PopulateHeader() => _diveParametersModel.DiveProfileStepHeader = _diveModel.DiveModelName +
-            "\r\nDepth: " + _diveStep.Depth.ToString() + " Time: " + _diveStep.Time.ToString();
+            "\r\nDepth: " + _diveStep.Depth + " Time: " + _diveStep.Time;
 
         private void PopulateDiveStepParameters()
         {

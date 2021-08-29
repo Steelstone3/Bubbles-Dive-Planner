@@ -5,6 +5,7 @@ using BubblesDivePlanner.Contracts.ViewModels.DiveApplication;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Contracts.ViewModels.Results;
+using BubblesDivePlanner.Controllers.Converters;
 using BubblesDivePlanner.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.ViewModels.Result;
@@ -95,11 +96,11 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication
 
         private IDiveParametersResultViewModel UpdateUsedParameters()
         {
-            //TODO AH This cast is a little whacky I think it needs to go back to the converter as it is breaking binding from an invalid cast
-            return _diveProfileService.UpdateParametersUsed(
-                DivePlanSetup.DiveStep,
-                DivePlanSetup.GasMixture.SelectedGasMixture,
-                DivePlanSetup.GasManagement) as IDiveParametersResultViewModel;
+            return new DiveParametersResultModelConverter().ConvertModelToViewModel(
+                _diveProfileService.UpdateParametersUsed(
+                    DivePlanSetup.DiveStep,
+                    DivePlanSetup.GasMixture.SelectedGasMixture,
+                    DivePlanSetup.GasManagement));
         }
     }
 }
