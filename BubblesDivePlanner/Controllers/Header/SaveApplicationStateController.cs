@@ -1,10 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using Avalonia.Controls;
-using BubblesDivePlanner.Controllers.DataAccess.DataMappers;
-using BubblesDivePlanner.Controllers.DataAccess.Serialisers;
-using BubblesDivePlanner.ViewModels;
-
 namespace BubblesDivePlanner.Controllers.Header
 {
     public class SaveApplicationStateController

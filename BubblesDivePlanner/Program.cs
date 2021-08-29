@@ -1,6 +1,5 @@
 ﻿using Avalonia;
 using Avalonia.ReactiveUI;
-using DivePlannerMk3;
 
 namespace BubblesDivePlanner
 {

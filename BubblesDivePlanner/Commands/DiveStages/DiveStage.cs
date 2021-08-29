@@ -7,7 +7,7 @@ namespace BubblesDivePlanner.Commands.DiveStages
         public int Compartment
         {
             get; set;
-        } = 0;
+        }
 
         public DiveStage()
         {

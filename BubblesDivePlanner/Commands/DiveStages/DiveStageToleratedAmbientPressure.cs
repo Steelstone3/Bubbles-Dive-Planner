@@ -7,7 +7,7 @@ namespace BubblesDivePlanner.Commands.DiveStages
         private int _compartmentCount;
         private IDiveProfile _diveProfile;
 
-        public DiveStageToleratedAmbientPressure(int compartmentCount, IDiveProfile diveProfile) : base()
+        public DiveStageToleratedAmbientPressure(int compartmentCount, IDiveProfile diveProfile)
         {
             _compartmentCount = compartmentCount;
             _diveProfile = diveProfile;

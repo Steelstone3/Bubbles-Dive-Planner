@@ -37,7 +37,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
             }
         }
         
-        private bool _isReadOnlyUiVisible = false;
+        private bool _isReadOnlyUiVisible;
         public bool IsReadOnlyUiVisible
         {
             get => _isReadOnlyUiVisible;

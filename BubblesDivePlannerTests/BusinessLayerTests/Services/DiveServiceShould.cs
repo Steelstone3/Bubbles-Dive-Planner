@@ -10,8 +10,8 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Services
     public class DiveServiceShould
     {
         //Using the buhlmann model for tests
-        private Zhl16Buhlmann _diveModel = new Zhl16Buhlmann();
-        private DiveProfile _diveProfile = new DiveProfile();
+        private Zhl16Buhlmann _diveModel = new();
+        private DiveProfile _diveProfile = new();
 
         [Theory]
         [InlineData("Bob", 50, 10, "Fun Gas", 21, 10, 4.5)]

@@ -1,8 +1,3 @@
-using System.Collections.Generic;
-using BubblesDivePlanner.Contracts.Entities;
-using BubblesDivePlanner.Entities;
-using BubblesDivePlanner.ViewModels;
-
 namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 {
     public class ApplicationEntityModelDataMapper

@@ -1,13 +1,10 @@
-using BubblesDivePlanner.Entities;
-using BubblesDivePlanner.ViewModels.Header;
-
 namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 {
     public class DiveHeaderEntityModelDataMapper
     {
         //TODO AH Finish off
         //UI Visibility later
-        private DiveHeaderEntityModel _diveHeaderEntityModel = new DiveHeaderEntityModel();
+        /*private DiveHeaderEntityModel _diveHeaderEntityModel = new();
 
         public void EntityToModel()
         {
@@ -26,6 +23,6 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
             //_diveResultsEntityModel = diveResultsViewModel;
         }
 
-        #endregion
+        #endregion*/
     }
 }

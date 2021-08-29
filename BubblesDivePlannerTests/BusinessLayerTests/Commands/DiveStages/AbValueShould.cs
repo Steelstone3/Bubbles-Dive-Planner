@@ -54,7 +54,7 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
             _diveProfile.TissuePressuresHelium = new List<double>(mockTissuePressureHelium);
             _diveProfile.TissuePressuresTotal = new List<double>(mockTissuePressureTotal);
 
-            var diveStage = new DiveStageABValues(_diveModel, _diveProfile);
+            var diveStage = new DiveStageAbValues(_diveModel, _diveProfile);
 
             //Act
             for (int i = 0; i < _diveModel.CompartmentCount; i++)

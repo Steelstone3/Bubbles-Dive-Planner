@@ -1,6 +1,5 @@
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.Entities;
-using BubblesDivePlanner.ViewModels.DiveApplication.Information;
 
 namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 {

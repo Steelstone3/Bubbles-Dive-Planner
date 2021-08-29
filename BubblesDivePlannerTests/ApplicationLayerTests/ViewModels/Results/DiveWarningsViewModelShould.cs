@@ -1,5 +1,3 @@
-using Xunit;
-
 namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Results
 {
     public class DiveWarningsViewModelShould

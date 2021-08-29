@@ -1,15 +1,8 @@
-using System.Collections.Generic;
-using BubblesDivePlanner.Contracts.Models.Results;
-using BubblesDivePlanner.Contracts.ViewModels.Results;
-using BubblesDivePlanner.Entities;
-using BubblesDivePlanner.Models.Results;
-using BubblesDivePlanner.ViewModels.Result;
-
 namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 {
     public class DiveResultsEntityModelDataMapper
     {
-        //TODO AH Change these to models as it should be view models to models and stuff happens then convert back
+        /*//TODO AH Change these to models as it should be view models to models and stuff happens then convert back
         //TODO AH Finish off
         //UI Visibility later
         private DiveResultsEntityModel _diveResultsEntityModel = new DiveResultsEntityModel();
@@ -47,6 +40,6 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
             _diveResultsEntityModel.DiveResults.AddRange(diveResults);
         }
 
-        #endregion
+        #endregion*/
     }
 }

@@ -2,12 +2,12 @@ using BubblesDivePlanner.Contracts.Models.DiveModels;
 
 namespace BubblesDivePlanner.Commands.DiveStages
 {
-    public class DiveStageABValues : DiveStage
+    public class DiveStageAbValues : DiveStage
     {
         private IDiveModel _diveModel;
         private IDiveProfile _diveProfile;
 
-        public DiveStageABValues(IDiveModel diveModel, IDiveProfile diveProfile) : base()
+        public DiveStageAbValues(IDiveModel diveModel, IDiveProfile diveProfile)
         {
             _diveModel = diveModel;
             _diveProfile = diveProfile;

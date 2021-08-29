@@ -23,7 +23,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
         {
             return time >= 1 && time <= 100 &&
             depth >= 0 && depth <= 100 &&
-            (double)depth <= maximumOperatingDepth;
+            depth <= maximumOperatingDepth;
         }
     }
 }

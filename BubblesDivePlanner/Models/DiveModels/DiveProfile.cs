@@ -5,11 +5,6 @@ namespace BubblesDivePlanner.Models.DiveModels
 {
     public class DiveProfile : IDiveProfile
     {
-        public DiveProfile()
-        {
-
-        }
-
         public List<double> MaxSurfacePressures
         {
             get; set;

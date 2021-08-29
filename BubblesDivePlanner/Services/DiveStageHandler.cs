@@ -5,7 +5,6 @@ using BubblesDivePlanner.Contracts.Commands;
 using BubblesDivePlanner.Contracts.Models.DiveModels;
 using BubblesDivePlanner.Contracts.Models.Plan;
 using BubblesDivePlanner.Contracts.Services;
-using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Models.Results;
 
 namespace BubblesDivePlanner.Services
@@ -86,7 +85,7 @@ namespace BubblesDivePlanner.Services
             return new IDiveStage[]
             {
                 new DiveStageTissuePressure(_diveModel, _diveProfile, _diveStep.Time),
-                new DiveStageABValues(_diveModel, _diveProfile),
+                new DiveStageAbValues(_diveModel, _diveProfile),
                 new DiveStageToleratedAmbientPressure(_diveModel.CompartmentCount, _diveProfile),
                 new DiveStageMaximumSurfacePressure(_diveModel.CompartmentCount, _diveProfile),
                 new DiveStageCompartmentLoad(_diveModel, _diveProfile),

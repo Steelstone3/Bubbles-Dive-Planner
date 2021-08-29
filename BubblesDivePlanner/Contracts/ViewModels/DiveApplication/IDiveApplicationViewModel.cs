@@ -3,9 +3,6 @@ using System.Reactive;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Contracts.ViewModels.Results;
-using BubblesDivePlanner.ViewModels.DiveApplication.Information;
-using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
-using BubblesDivePlanner.ViewModels.Result;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.Contracts.ViewModels.DiveApplication

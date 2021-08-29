@@ -7,7 +7,7 @@ namespace BubblesDivePlanner.Commands.DiveStages
         private IDiveModel _diveModel;
         private IDiveProfile _diveProfile;
 
-        public DiveStageCompartmentLoad(IDiveModel diveModel, IDiveProfile diveProfile) : base()
+        public DiveStageCompartmentLoad(IDiveModel diveModel, IDiveProfile diveProfile)
         {
             _diveModel = diveModel;
             _diveProfile = diveProfile;

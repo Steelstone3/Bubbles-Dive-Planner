@@ -2,7 +2,6 @@ using BubblesDivePlanner.Contracts.Services;
 using BubblesDivePlanner.Controllers.Header;
 using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.DiveApplication;
-using BubblesDivePlanner.ViewModels.DiveApplication.Information;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.ViewModels.Header;
 using BubblesDivePlanner.ViewModels.Result;
@@ -28,10 +27,6 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Controllers.Header
                             Depth = 50,
                             Time = 10,
                         },
-                    },
-                    DiveInformation = new DiveInformationViewModel()
-                    {
-                    
                     },
                     DiveResults = new DiveResultsViewModel()
                     {

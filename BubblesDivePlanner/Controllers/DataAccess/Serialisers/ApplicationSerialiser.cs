@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using BubblesDivePlanner.Contracts.Entities;
-using BubblesDivePlanner.Entities;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 namespace BubblesDivePlanner.Controllers.DataAccess.Serialisers
 {
     public class ApplicationSerialiser

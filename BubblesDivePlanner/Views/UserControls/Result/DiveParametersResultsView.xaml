@@ -2,7 +2,6 @@
     x:Class="BubblesDivePlanner.Views.UserControls.Result.DiveParametersResultsView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
@@ -31,6 +30,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock
+                Grid.Column="0"
                 Grid.Row="0"
                 Margin="8,0"
                 Text="Dive Model:" FontWeight="Bold" />
@@ -39,8 +39,8 @@
                 Grid.Column="1"
                 Margin="8,0"
                 Text="{Binding DiveApplication.DiveResults.DiveParametersResult.DiveModelUsed}" />
-
             <TextBlock
+                Grid.Column="0"
                 Grid.Row="1"
                 Margin="8,0"
                 Text="Depth:" FontWeight="Bold" />
@@ -49,10 +49,10 @@
                 Grid.Column="1"
                 Margin="8,0"
                 Text="{Binding DiveApplication.DiveResults.DiveParametersResult.Depth}" />
-            <TextBlock
-                Grid.Row="2"
-                Margin="8,0"
-                Text="Time:" FontWeight="Bold" />
+            <TextBlock Grid.Column="0"
+                       Grid.Row="2"
+                       Margin="8,0"
+                       Text="Time:" FontWeight="Bold" />
             <TextBlock
                 Grid.Row="2"
                 Grid.Column="1"

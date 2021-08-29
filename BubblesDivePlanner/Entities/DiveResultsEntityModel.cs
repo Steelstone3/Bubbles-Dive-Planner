@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.Contracts.Entities;
 using BubblesDivePlanner.Contracts.Models.Results;
-using BubblesDivePlanner.Models.Results;
 
 namespace BubblesDivePlanner.Entities
 {

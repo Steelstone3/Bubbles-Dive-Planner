@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using BubblesDivePlanner.Contracts.Models.Results;
 using BubblesDivePlanner.Contracts.ViewModels.Results;
-using BubblesDivePlanner.Models.Results;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Result

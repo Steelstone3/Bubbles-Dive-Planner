@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 

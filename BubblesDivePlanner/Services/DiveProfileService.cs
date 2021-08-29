@@ -2,7 +2,6 @@ using BubblesDivePlanner.Contracts.Models.DiveModels;
 using BubblesDivePlanner.Contracts.Models.Plan;
 using BubblesDivePlanner.Contracts.Models.Results;
 using BubblesDivePlanner.Contracts.Services;
-using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.Models.DiveModels;
 using BubblesDivePlanner.Models.Results;
 

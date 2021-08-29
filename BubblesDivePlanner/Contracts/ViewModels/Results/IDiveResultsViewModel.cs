@@ -1,7 +1,5 @@
 using System.Collections.ObjectModel;
 using BubblesDivePlanner.Contracts.Models.Results;
-using BubblesDivePlanner.Models.Results;
-using BubblesDivePlanner.ViewModels.Result;
 
 namespace BubblesDivePlanner.Contracts.ViewModels.Results
 {

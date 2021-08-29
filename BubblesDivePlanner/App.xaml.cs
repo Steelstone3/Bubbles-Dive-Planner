@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.Views;
 
-namespace DivePlannerMk3
+namespace BubblesDivePlanner
 {
     public class App : Application
     {
