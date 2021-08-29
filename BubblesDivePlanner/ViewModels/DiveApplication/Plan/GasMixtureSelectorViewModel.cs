@@ -47,16 +47,8 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
             }
         }
 
-        private IGasMixtureViewModel _newGasMixture = new GasMixtureViewModel();
-        public IGasMixtureViewModel NewGasMixture
-        {
-            get => _newGasMixture;
-            set
-            {
-                _newGasMixture = value;
-            }
-        }
-        
+        public IGasMixtureViewModel NewGasMixture { get; set; } = new GasMixtureViewModel();
+
         public bool ValidateGasMixture(IGasMixtureModel selectedGasMixture)
         {
             return selectedGasMixture != null;

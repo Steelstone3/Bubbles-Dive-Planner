@@ -5,16 +5,16 @@ using BubblesDivePlanner.Models.DiveModels;
 using BubblesDivePlanner.Models.Results;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveResults
+namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Results
 {
     public class DiveResultsViewModelShould
     {
-        private Zhl16Buhlmann _diveModel = new Zhl16Buhlmann();
-        private DiveResultsStepOutputModel _resultsStepOutput = new DiveResultsStepOutputModel();
+        private Zhl16Buhlmann _diveModel = new();
+        private DiveResultsStepOutputModel _resultsStepOutput = new();
 
         //TODO AH Test to check raise property changed on the results view model
 
-        private DiveProfile _diveProfile = new DiveProfile()
+        private DiveProfile _diveProfile = new()
         {
             TissuePressuresTotal = new List<double>()
             {
@@ -66,12 +66,6 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveResu
                 Assert.Equal(Math.Round(_diveProfile.MaxSurfacePressures[i], 2), _resultsStepOutput.DiveProfileStepOutput[i].MaximumSurfacePressureResult);
                 Assert.Equal(Math.Round(_diveProfile.ToleratedAmbientPressures[i], 2), _resultsStepOutput.DiveProfileStepOutput[i].ToleratedAmbientPressureResult);
             }
-        }
-
-        [Fact(Skip="Test needs implementing")]
-        public void ConvertDiveResultsModelToViewModelOutputStage()
-        {
-
         }
 
         [Fact(Skip = "Tests Needs implementing")]

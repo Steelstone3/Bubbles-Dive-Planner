@@ -38,18 +38,18 @@ namespace BubblesDivePlanner.ViewModels.Header
             _mainWindowViewModel = newApplicationState.NewApplication(_mainWindowViewModel);
         }
 
-        //TODO AH this area needs a changable save name investigate Directory property of the SaveDialog
+        //TODO AH this area needs a changeable save name investigate Directory property of the SaveDialog
         private void SaveDivePlannerState()
         {
-            var saveApplicationState = new SaveApplicationStateController();
-            saveApplicationState.SaveApplication(_mainWindowViewModel);
+            /*var saveApplicationState = new SaveApplicationStateController();
+            saveApplicationState.SaveApplication(_mainWindowViewModel);*/
         }
 
         //TODO AH this area needs work
         private void LoadDivePlannerState()
         {
-            var loadApplicationState = new LoadApplicationStateController();
-            loadApplicationState.LoadApplication(_mainWindowViewModel);
+            /*var loadApplicationState = new LoadApplicationStateController();
+            loadApplicationState.LoadApplication(_mainWindowViewModel);*/
         }
 
     }

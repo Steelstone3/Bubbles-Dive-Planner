@@ -10,7 +10,7 @@ namespace BubblesDivePlanner.Controllers.Header
     public class LoadApplicationStateController
     {
         //TODO AH complete this so that it works
-        public async void LoadApplication(MainWindowViewModel mainWindowViewModel)
+        /*public async void LoadApplication(MainWindowViewModel mainWindowViewModel)
         {
             var loadFileDialog = new OpenFileDialog()
             {
@@ -33,6 +33,6 @@ namespace BubblesDivePlanner.Controllers.Header
                 var entityModels = applicationLoader.DeserialiseApplication(result[0]);
                 applicationConverter.ConvertEntitiesToModels(entityModels.ToList(), mainWindowViewModel);
             }
-        }
+        }*/
     }
 }

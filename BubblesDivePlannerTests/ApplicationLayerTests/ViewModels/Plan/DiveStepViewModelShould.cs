@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
 using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Xunit;
 
@@ -5,48 +7,31 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
 {
     public class DiveStepViewModelShould
     {
-        private DiveStepViewModel _diveStep = new DiveStepViewModel();
-
+        private DiveStepViewModel _diveStep = new();
+        
         [Fact]
-        public void AllowDiveStepModelToBeSet()
-        {
-            //Act
-            _diveStep.Depth = 10;
-            _diveStep.Time = 50;
-
-            //Assert
-            Assert.Equal(10, _diveStep.Depth);
-            Assert.Equal(50, _diveStep.Time);
-        }
-
-        [Fact]
-        public void RaisePropertyChangedWhenDepthIsSet()
+        public void RaisePropertyChangedWhenViewModelPropertiesAreSet()
         {
             //Arrange
-            string depthEvent = "Not Fired";
-            _diveStep.PropertyChanged += ((sender, e) => depthEvent = e.PropertyName);
+           
+            int depth = 50;
+            int time = 10;
+            
+            var viewModelEvents = new List<string>();
+            _diveStep.PropertyChanged += ((sender, e) => viewModelEvents.Add(e.PropertyName));
 
             //Act
-            _diveStep.Depth = 200;
+            _diveStep.Depth = depth;
+            _diveStep.Time = time;
 
             //Assert
-            Assert.Equal(nameof(_diveStep.Depth), depthEvent);
+            Assert.Contains(nameof(_diveStep.Depth), viewModelEvents);
+            Assert.Contains(nameof(_diveStep.Time), viewModelEvents);
+            
+            Assert.Equal(depth, _diveStep.Depth);
+            Assert.Equal(time, _diveStep.Time);
         }
-
-        [Fact]
-        public void RaisePropertyChangedWhenTimeIsSet()
-        {
-            //Arrange
-            string timeEvent = "Not Fired";
-            _diveStep.PropertyChanged += ((sender, e) => timeEvent = e.PropertyName);
-
-            //Act
-            _diveStep.Time = 200;
-
-            //Assert
-            Assert.Equal(nameof(_diveStep.Time), timeEvent);
-        }
-
+        
         [Theory]
         [InlineData(50,10,55,true)]
         [InlineData(60,10,55,false)]

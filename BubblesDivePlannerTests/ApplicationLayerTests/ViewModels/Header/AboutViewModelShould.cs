@@ -4,10 +4,10 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Header
 {
     public class AboutViewModelShould
     {
-        [Fact(Skip = "Test needs implementing")]
+        [Fact(Skip = "needs implementing")]
         public void DisplayADialogWithTheAboutInformation()
         {
-
+            //This needs implementing in code
         }
     }
 }

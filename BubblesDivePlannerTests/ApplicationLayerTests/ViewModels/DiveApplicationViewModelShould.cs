@@ -8,11 +8,32 @@ using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
+namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
 {
-    //TODO AH Mock up dependencies and trim down this class by using a helper class
-    public class CalculateDiveStepViewModelShould
+    public class DiveApplicationViewModelShould
     {
+        [Fact(Skip = "Need to implement")]
+        public void RaisePropertyChangedWhenViewModelPropertiesAreSet()
+        {
+            
+        }
+
+        [Fact(Skip = "This test is not implemented correctly")]
+        public void LockTheCurrentDiveModelWhenTheFirstDiveProfileIsRun()
+        {
+            //_diveApplication.CalculateDiveStepCommand.Execute();
+            
+            //Assert
+            //Assert.False(_diveApplication.DivePlanSetup.DiveModelSelector.IsUiEnabled);
+            //Assert.False(_diveApplication.DivePlanSetup.DiveModelSelector.IsUiVisible);
+            //Assert.True(_diveModelSelectorViewModel.IsReadOnlyUiVisible);
+        }
+        
+        //TODO AH Refactor mock up dependencies and trim down this class by using a helper class
+        //TODO AH do this one last due to the size of it!
+        //TODO AH Migrate these tests to DiveApplicationViewModelShould
+        //TODO AH check visibility and enabled cover in tests
+        
         private DiveApplicationViewModel _diveApplicationViewModel = new DiveApplicationViewModel(new Mock<IDiveProfileService>().Object);
         private DivePlanSetupViewModel _divePlanSetup = new DivePlanSetupViewModel(new Mock<IDiveProfileService>().Object);
         private DiveModelSelectorViewModel _diveModelSelectorViewModel;
@@ -257,5 +278,6 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
             _diveApplicationViewModel.DivePlanSetup.GasManagement = _gasManagementViewModel;
             _diveApplicationViewModel.DivePlanSetup.DiveStep = _diveStepViewModel;
         }
+       
     }
 }

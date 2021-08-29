@@ -7,7 +7,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
 {
     public class ApplicationEntityModelDataMapper
     {
-        public IEnumerable<IEntityModel> ConvertModelsToEntities(MainWindowViewModel mainViewModel)
+        /*public IEnumerable<IEntityModel> ConvertModelsToEntities(MainWindowViewModel mainViewModel)
         {
             return new List<IEntityModel>()
             {
@@ -26,6 +26,6 @@ namespace BubblesDivePlanner.Controllers.DataAccess.DataMappers
                 //new DiveInfoEntityModelDataMapper().EntityToModel((DiveInfoEntityModel)entityModels[1]),
                 //new DiveResultsEntityModelDataMapper().EntityToModel((DiveResultsEntityModel)entityModels[2]),
                 //new DiveHeaderEntityModelDataMapper().EntityToModel(entityModels.DiveHeader),
-        }
+        }*/
     }
 }

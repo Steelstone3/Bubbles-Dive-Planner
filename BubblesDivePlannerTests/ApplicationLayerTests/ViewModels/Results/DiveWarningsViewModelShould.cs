@@ -1,10 +1,10 @@
 using Xunit;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveResults
+namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Results
 {
     public class DiveWarningsViewModelShould
     {
-        [Fact(Skip = "Needs Implementing")]
+        /*[Fact(Skip = "Needs Implementing")]
         public void PopulateDiveWarningsInResults()
         {
 
@@ -18,6 +18,6 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.DiveApplication.DiveResu
             //Act
 
             //Assert
-        }
+        }*/
     }
 }

@@ -9,7 +9,7 @@ namespace BubblesDivePlanner.Controllers.Header
 {
     public class SaveApplicationStateController
     {
-        public async void SaveApplication(MainWindowViewModel mainWindowViewModel)
+        /*public async void SaveApplication(MainWindowViewModel mainWindowViewModel)
         {
              var saveFileDialog = new SaveFileDialog()
             {
@@ -34,6 +34,6 @@ namespace BubblesDivePlanner.Controllers.Header
                 //TODO AH Grab the save name from the UI somehow
                 applicationSerialiser.SerialiseApplication(entityModels.ToList(), saveFileDialog.InitialFileName);
             }
-        }
+        }*/
     }
 }

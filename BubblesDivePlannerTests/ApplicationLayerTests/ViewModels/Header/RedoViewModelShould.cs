@@ -7,7 +7,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Header
         [Fact(Skip="Needs Implementing")]
         public void RedoThePreviousDiveResultsStep()
         {
-
+            //This needs implementing in code
         }
     }
 }

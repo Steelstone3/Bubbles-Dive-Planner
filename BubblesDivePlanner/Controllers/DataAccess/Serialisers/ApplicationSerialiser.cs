@@ -10,7 +10,7 @@ namespace BubblesDivePlanner.Controllers.DataAccess.Serialisers
 {
     public class ApplicationSerialiser
     {
-        public void SerialiseApplication(List<IEntityModel> entityModels, string fileName)
+        /*public void SerialiseApplication(List<IEntityModel> entityModels, string fileName)
         {
             //string fileName = $"DivePlan.json";
             try
@@ -54,6 +54,6 @@ namespace BubblesDivePlanner.Controllers.DataAccess.Serialisers
         }
 
         //TODO AH Ensure the whole thing can load, catch exceptions
-        private string FilePathToFileContents(string fileResult) => JObject.Parse(File.ReadAllText(fileResult)).ToString();
+        private string FilePathToFileContents(string fileResult) => JObject.Parse(File.ReadAllText(fileResult)).ToString();*/
     }
 }

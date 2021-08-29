@@ -7,6 +7,7 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Information
 {
     public class DecompressionProfileViewModel : ViewModelBase, IDecompressionProfileViewModel
     {
+        /*
         //TODO true when deco steps are populated false otherwise behaviour
         //TODO decompression behaviour
         public DecompressionProfileViewModel()
@@ -17,6 +18,6 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Information
         public ObservableCollection<IDiveStepViewModel> DecoDiveSteps
         {
             get;
-        } = new ObservableCollection<IDiveStepViewModel>();
+        } = new ObservableCollection<IDiveStepViewModel>();*/
     }
 }
