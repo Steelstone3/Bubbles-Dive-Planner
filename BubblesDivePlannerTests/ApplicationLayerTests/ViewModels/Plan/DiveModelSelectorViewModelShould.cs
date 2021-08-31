@@ -74,5 +74,16 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
             Assert.True(_diveModelSelectorViewModel.IsUiVisible);
             Assert.False(_diveModelSelectorViewModel.IsReadOnlyUiVisible);
         }
+        
+        [Fact(Skip = "This test is not implemented correctly")]
+        public void LockTheCurrentDiveModelWhenTheFirstDiveProfileIsRun()
+        {
+            //_diveApplication.CalculateDiveStepCommand.Execute();
+            
+            //Assert
+            //Assert.False(_diveApplication.DivePlanSetup.DiveModelSelector.IsUiEnabled);
+            //Assert.False(_diveApplication.DivePlanSetup.DiveModelSelector.IsUiVisible);
+            //Assert.True(_diveModelSelectorViewModel.IsReadOnlyUiVisible);
+        }
     }
 }

@@ -1,5 +1,9 @@
+using System.Collections.Generic;
 using System.Reactive.Linq;
 using BubblesDivePlanner.Contracts.Services;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Information;
+using BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan;
+using BubblesDivePlanner.Contracts.ViewModels.Results;
 using BubblesDivePlanner.Models.DiveModels;
 using BubblesDivePlanner.Models.Plan;
 using BubblesDivePlanner.Services;
@@ -12,34 +16,46 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
 {
     public class DiveApplicationViewModelShould
     {
-        [Fact(Skip = "Need to implement")]
-        public void RaisePropertyChangedWhenViewModelPropertiesAreSet()
-        {
-            
-        }
+        private DiveApplicationViewModel _diveApplicationViewModel;
 
-        [Fact(Skip = "This test is not implemented correctly")]
-        public void LockTheCurrentDiveModelWhenTheFirstDiveProfileIsRun()
+        private DiveProfileService _diveProfileService = new();
+        
+        private DivePlanSetupViewModel _divePlanSetup;
+        private DiveModelSelectorViewModel _diveModelSelectorViewModel;
+        private DiveStepViewModel _diveStepViewModel = new();
+        private GasManagementViewModel _gasManagementViewModel = new();
+        private GasMixtureSelectorViewModel _gasSelectorMixtureViewModel = new();
+        
+        public DiveApplicationViewModelShould()
         {
-            //_diveApplication.CalculateDiveStepCommand.Execute();
-            
-            //Assert
-            //Assert.False(_diveApplication.DivePlanSetup.DiveModelSelector.IsUiEnabled);
-            //Assert.False(_diveApplication.DivePlanSetup.DiveModelSelector.IsUiVisible);
-            //Assert.True(_diveModelSelectorViewModel.IsReadOnlyUiVisible);
+            _diveApplicationViewModel = new(_diveProfileService);
+            _divePlanSetup = new DivePlanSetupViewModel(_diveProfileService);
+            _diveModelSelectorViewModel = new DiveModelSelectorViewModel(_diveProfileService);
         }
         
+        [Fact]
+        public void RaisePropertyChangedWhenViewModelPropertiesAreSet()
+        {
+            var viewModelEvents = new List<string>();
+            _diveApplicationViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
+
+            //Act
+            _diveApplicationViewModel.DivePlanSetup = _divePlanSetup;
+            _diveApplicationViewModel.DiveInformation = new Mock<IDiveInformationViewModel>().Object;
+            _diveApplicationViewModel.DiveResults = new Mock<IDiveResultsViewModel>().Object;
+
+                //Assert
+            Assert.Contains(nameof(_diveApplicationViewModel.DivePlanSetup), viewModelEvents);
+            Assert.Contains(nameof(_diveApplicationViewModel.DiveInformation), viewModelEvents);
+            Assert.Contains(nameof(_diveApplicationViewModel.DiveResults), viewModelEvents);
+        }
+
         //TODO AH Refactor mock up dependencies and trim down this class by using a helper class
         //TODO AH do this one last due to the size of it!
         //TODO AH Migrate these tests to DiveApplicationViewModelShould
         //TODO AH check visibility and enabled cover in tests
         
-        private DiveApplicationViewModel _diveApplicationViewModel = new DiveApplicationViewModel(new Mock<IDiveProfileService>().Object);
-        private DivePlanSetupViewModel _divePlanSetup = new DivePlanSetupViewModel(new Mock<IDiveProfileService>().Object);
-        private DiveModelSelectorViewModel _diveModelSelectorViewModel;
-        private DiveStepViewModel _diveStepViewModel = new DiveStepViewModel();
-        private GasManagementViewModel _gasManagementViewModel = new GasManagementViewModel();
-        private GasMixtureSelectorViewModel _gasMixtureViewModel = new GasMixtureSelectorViewModel();
+      
 
         [Fact]
         public async void NotAllowDivesProfilesToBeRunWithoutASelectedDiveModel()
@@ -156,7 +172,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
         {
             //A
             EverythingIsOk();
-            _gasMixtureViewModel.SelectedGasMixture = null;
+            _gasSelectorMixtureViewModel.SelectedGasMixture = null;
 
             //A
             var canExecute = await _diveApplicationViewModel.CanExecuteDiveStep.FirstAsync();
@@ -196,8 +212,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
 
         private void SetupDiveModelSelector()
         {
-            var diveProfileService = new DiveProfileService();
-            _diveModelSelectorViewModel = new DiveModelSelectorViewModel(diveProfileService);
+            _diveModelSelectorViewModel = new DiveModelSelectorViewModel(_diveProfileService);
             _diveApplicationViewModel.DivePlanSetup = _divePlanSetup;
             _diveApplicationViewModel.DivePlanSetup.DiveModelSelector = _diveModelSelectorViewModel;
         }
@@ -207,7 +222,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
             SetupDiveModelSelector();
             _diveModelSelectorViewModel.SelectedDiveModel = new Zhl16Buhlmann();
 
-            _gasMixtureViewModel.SelectedGasMixture = new GasMixtureModel()
+            _gasSelectorMixtureViewModel.SelectedGasMixture = new GasMixtureModel()
             {
                 GasName = "Air",
                 Oxygen = 21,
@@ -235,7 +250,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
             SetupDiveModelSelector();
             _diveModelSelectorViewModel.SelectedDiveModel = null;
 
-            _gasMixtureViewModel.SelectedGasMixture = new GasMixtureModel()
+            _gasSelectorMixtureViewModel.SelectedGasMixture = new GasMixtureModel()
             {
                 GasName = "Air",
                 Oxygen = 21,
@@ -260,7 +275,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
             {
                 DiveStep = _diveStepViewModel,
                 GasManagement = _gasManagementViewModel,
-                GasMixture = _gasMixtureViewModel,
+                GasMixture = _gasSelectorMixtureViewModel,
             };
 
             _diveApplicationViewModel = new DiveApplicationViewModel(new Mock<IDiveProfileService>().Object)
@@ -274,7 +289,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
         private void SetupMainViewModel()
         {
             _diveApplicationViewModel.DivePlanSetup.DiveModelSelector = _diveModelSelectorViewModel;
-            _diveApplicationViewModel.DivePlanSetup.GasMixture = _gasMixtureViewModel;
+            _diveApplicationViewModel.DivePlanSetup.GasMixture = _gasSelectorMixtureViewModel;
             _diveApplicationViewModel.DivePlanSetup.GasManagement = _gasManagementViewModel;
             _diveApplicationViewModel.DivePlanSetup.DiveStep = _diveStepViewModel;
         }
