@@ -14,8 +14,8 @@ namespace BubblesDivePlanner.ViewModels.DiveApplication.Plan
             _diveModelSelector = new DiveModelSelectorViewModel(_diveProfileService);
         }
 
-        private GasMixtureSelectorViewModel _gasMixture = new GasMixtureSelectorViewModel();
-        public GasMixtureSelectorViewModel GasMixture
+        private IGasMixtureSelectorViewModel _gasMixture = new GasMixtureSelectorViewModel();
+        public IGasMixtureSelectorViewModel GasMixture
         {
             get => _gasMixture;
             set => this.RaiseAndSetIfChanged(ref _gasMixture, value);

@@ -1,10 +1,8 @@
-﻿using BubblesDivePlanner.ViewModels.DiveApplication.Plan;
-
-namespace BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan
+﻿namespace BubblesDivePlanner.Contracts.ViewModels.DiveApplication.Plan
 {
     public interface IDivePlanSetupViewModel
     {
-        GasMixtureSelectorViewModel GasMixture { get; set; }
+        IGasMixtureSelectorViewModel GasMixture { get; set; }
 
         IDiveModelSelectorViewModel DiveModelSelector { get; set; }
 
