@@ -33,6 +33,14 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
         }
 
         [Fact]
+        public void ViewModelPropertiesAreSet()
+        {
+            Assert.NotNull(_diveApplicationViewModel.DivePlanSetup);
+            Assert.NotNull(_diveApplicationViewModel.DiveInformation);
+            Assert.NotNull(_diveApplicationViewModel.DiveResults);
+        }
+        
+        [Fact]
         public void RaisePropertyChangedWhenViewModelPropertiesAreSet()
         {
             var viewModelEvents = new List<string>();
@@ -83,7 +91,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels
         [InlineData(true, 50, 10, true, 55, 12, 200, 31, false)]
         [InlineData(true, 50, 10, true, 55, 12, 200, 5, true)]
         [InlineData(true, 50, 10, true, 55, 12, 200, 30, true)]
-        public async void CanExecuteCalculateDiveStep(bool useDiveModel, int depth, int time,
+        public async void ValidateCanExecuteCalculateDiveStep(bool useDiveModel, int depth, int time,
             bool useSelectedGasMixture, int maxOperatingDepth, int cylinderVolume, int cylinderPressure, int sacRate,
             bool expectedResult)
         {
