@@ -1,7 +1,7 @@
 ﻿using ReactiveUI;
 using BubblesDivePlanner.DiveStep;
 
-namespace BubblesDivePlanner.ViewModels
+namespace BubblesDivePlanner.ApplicationEntry
 {
     public class MainWindowViewModel : ReactiveObject
     {
