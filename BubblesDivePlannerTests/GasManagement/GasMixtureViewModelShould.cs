@@ -63,7 +63,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
             _gasMixtureController.Verify(x => x.CalculateNitrogenMixture(oxygen, 0));
         }
 
-        [Fact (Skip ="need to mock that calculate nitrogen mixture has ran from the controller")]
+        [Fact]
         public void CalculateNitrogenOnHeliumSet()
         {
            //Arrange
