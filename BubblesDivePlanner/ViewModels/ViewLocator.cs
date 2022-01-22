@@ -4,9 +4,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using BubblesDivePlanner.ViewModels;
+using ReactiveUI;
 
-namespace BubblesDivePlanner
+namespace BubblesDivePlanner.ViewModels
 {
     public class ViewLocator : IDataTemplate
     {
@@ -29,7 +29,7 @@ namespace BubblesDivePlanner
 
         public bool Match(object data)
         {
-            return data is ViewModelBase;
+            return data is ReactiveObject;
         }
     }
 }

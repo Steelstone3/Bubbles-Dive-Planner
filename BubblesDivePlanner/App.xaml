@@ -1,6 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:bubblesDivePlanner="clr-namespace:BubblesDivePlanner"
+             xmlns:bubblesDivePlanner="clr-namespace:BubblesDivePlanner.ViewModels"
              x:Class="BubblesDivePlanner.App">
     <Application.DataTemplates>
         <bubblesDivePlanner:ViewLocator/>

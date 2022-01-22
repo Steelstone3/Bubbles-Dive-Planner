@@ -1,11 +1,11 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.UserInterface
+namespace BubblesDivePlanner.DiveStep
 {
-    public class MainWindow : Window
+    public class DiveStepView : UserControl
     {
-        public MainWindow()
+        public DiveStepView()
         {
             InitializeComponent();
         }

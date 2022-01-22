@@ -1,14 +1,11 @@
 <Window
-    x:Class="BubblesDivePlanner.Views.MainWindow"
+    x:Class="BubblesDivePlanner.UserInterface.MainWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="clr-namespace:BubblesDivePlanner.ViewModels"
-    xmlns:header="clr-namespace:BubblesDivePlanner.Views.UserControls.Header"
-    xmlns:information="clr-namespace:BubblesDivePlanner.Views.UserControls.Information"
-    xmlns:plan="clr-namespace:BubblesDivePlanner.Views.UserControls.Plan"
-    xmlns:result="clr-namespace:BubblesDivePlanner.Views.UserControls.Result"
+    xmlns:view_models="clr-namespace:BubblesDivePlanner.ViewModels"
+    xmlns:dive_step="clr-namespace:BubblesDivePlanner.DiveStep"
     Title="Bubbles Dive Planner"
     MinWidth="720"
     MinHeight="480"
@@ -18,10 +15,34 @@
     mc:Ignorable="d">
 
     <Design.DataContext>
-        <viewModels:MainWindowViewModel />
+        <view_models:MainWindowViewModel />
     </Design.DataContext>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="250" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition MinWidth="250" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel Background="#FF90CAF9">
+                <TextBlock
+                    Margin="4"
+                    FontSize="20"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Dive Plan" />
+                <dive_step:DiveStepView />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
