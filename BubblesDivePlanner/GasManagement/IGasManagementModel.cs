@@ -1,10 +1,9 @@
 using System.Collections.ObjectModel;
 using BubblesDivePlanner.GasManagement.Cylinder;
-using DynamicData.Binding;
 
 namespace BubblesDivePlanner.GasManagement
 {
-    public interface IGasManagmentModel
+    public interface IGasManagementModel
     {
         ObservableCollection<ICylinderModel> Cylinders { get; }
     }

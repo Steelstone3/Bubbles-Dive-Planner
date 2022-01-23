@@ -7,7 +7,7 @@ namespace BubblesDivePlannerTests.GasManagement
 {
     public class GasManagementViewModelShould
     {
-        private GasManagementViewModel _gasManagementViewModel;
+        private GasManagementViewModel _gasManagementViewModel = new();
         private Mock<ICylinderModel> cylinderModelDummy = new();
 
         [Fact]

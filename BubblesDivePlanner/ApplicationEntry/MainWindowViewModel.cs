@@ -1,5 +1,6 @@
 ﻿using ReactiveUI;
 using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.GasManagement;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -7,9 +8,22 @@ namespace BubblesDivePlanner.ApplicationEntry
     {
         public MainWindowViewModel()
         {
-           
+            DiveStep = new DiveStepViewModel();
+            GasManagement = new GasManagementViewModel();
         }
 
-        public IDiveStepModel DiveStep {get; set;} = new DiveStepViewModel();
+        private IDiveStepModel _diveStep;
+        public IDiveStepModel DiveStep
+        {
+            get => _diveStep;
+            set => this.RaiseAndSetIfChanged(ref _diveStep, value);
+        }
+
+        private IGasManagementModel _gasManagement;
+        public IGasManagementModel GasManagement
+        {
+            get => _gasManagement;
+            set => this.RaiseAndSetIfChanged(ref _gasManagement, value);
+        }
     }
 }
