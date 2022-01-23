@@ -10,17 +10,12 @@ namespace BubblesDivePlannerTests.GasManagement.Cylinder
     public class CylinderViewModelShould
     {
         private CylinderViewModel _cylinderViewModel;
-        IGasMixtureModel _gasMixtureModel;
-        IGasUsageModel _gasUsageModel;
         int _cylinderVolume = 12;
         int _cylinderPressure = 200;
 
         public CylinderViewModelShould()
         {
             Mock<IGasMixtureController> gasMixtureControllerDummy = new();
-            _gasMixtureModel = new GasMixtureViewModel(gasMixtureControllerDummy.Object);
-            _gasUsageModel = new GasUsageViewModel();
-
             _cylinderViewModel = new CylinderViewModel(gasMixtureControllerDummy.Object);
         }
 
@@ -42,14 +37,16 @@ namespace BubblesDivePlannerTests.GasManagement.Cylinder
         public void RaisePropertyChanged()
         {
             //Arrange
+            Mock<IGasMixtureModel> _gasMixtureModelDummy = new();
+            Mock<IGasUsageModel> _gasUsageModelDummy = new();
             var viewModelEvents = new List<string>();
             _cylinderViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
             _cylinderViewModel.CylinderVolume = _cylinderVolume;
             _cylinderViewModel.CylinderPressure = _cylinderPressure;
-            _cylinderViewModel.GasMixture = _gasMixtureModel;
-            _cylinderViewModel.GasUsage = _gasUsageModel;
+            _cylinderViewModel.GasMixture = _gasMixtureModelDummy.Object;
+            _cylinderViewModel.GasUsage = _gasUsageModelDummy.Object;
 
             //Assert
             Assert.Contains(nameof(_cylinderViewModel.CylinderVolume), viewModelEvents);

@@ -4,7 +4,7 @@ namespace BubblesDivePlanner.GasManagement.GasMixture
 {
     public class GasMixtureViewModel : ReactiveObject, IGasMixtureModel
     {
-        private IGasMixtureController _gasMixtureController = new GasMixtureController();
+        private IGasMixtureController _gasMixtureController;
 
         public GasMixtureViewModel(IGasMixtureController gasMixtureController)
         {

@@ -7,25 +7,19 @@ namespace BubblesDivePlannerTests.DiveStep
     public class DiveStepViewModelShould
     {
         private DiveStepViewModel _diveStep = new();
-        private int depth;
-        private int time;
-
-        public DiveStepViewModelShould()
-        {
-            depth = 50;
-            time = 10;
-        }
+        private int _depth = 50;
+        private int _time = 10;
 
         [Fact]
         public void AllowModelToBeSet()
         {
             //Act
-            _diveStep.Depth = depth;
-            _diveStep.Time = time;
+            _diveStep.Depth = _depth;
+            _diveStep.Time = _time;
 
             //Assert
-            Assert.Equal(depth, _diveStep.Depth);
-            Assert.Equal(time, _diveStep.Time);
+            Assert.Equal(_depth, _diveStep.Depth);
+            Assert.Equal(_time, _diveStep.Time);
         }
 
         [Fact]
@@ -36,8 +30,8 @@ namespace BubblesDivePlannerTests.DiveStep
             _diveStep.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            _diveStep.Depth = depth;
-            _diveStep.Time = time;
+            _diveStep.Depth = _depth;
+            _diveStep.Time = _time;
 
             //Assert
             Assert.Contains(nameof(_diveStep.Depth), viewModelEvents);

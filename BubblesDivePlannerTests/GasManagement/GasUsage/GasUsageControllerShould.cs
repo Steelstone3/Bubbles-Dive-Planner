@@ -9,12 +9,12 @@ namespace BubblesDivePlannerTests.GasManagement.GasUsage
     {
         private IGasUsageController _gasUsageController;
         private IGasUsageModel _gasUsageModel;
-        private Mock<IDiveStepModel> _diveStepModelMock;
+        private Mock<IDiveStepModel> _diveStepModelStub;
 
         public GasUsageControllerShould()
         {
-            _diveStepModelMock = new Mock<IDiveStepModel>();
-            _diveStepModelMock = SetupDiveStepModelMock();
+            _diveStepModelStub = new Mock<IDiveStepModel>();
+            _diveStepModelStub = SetupDiveStepModelStub();
             _gasUsageModel = new GasUsageViewModel()
             {
                 InitialPressurisedCylinderVolume = 2400,
@@ -43,7 +43,7 @@ namespace BubblesDivePlannerTests.GasManagement.GasUsage
         public void UpdateGasUsage()
         {
             //Act
-            var actualGasUsageModel = _gasUsageController.UpdateGasUsage(_diveStepModelMock.Object, _gasUsageModel);
+            var actualGasUsageModel = _gasUsageController.UpdateGasUsage(_diveStepModelStub.Object, _gasUsageModel);
 
             //Assert
             Assert.Equal(2400, actualGasUsageModel.InitialPressurisedCylinderVolume);
@@ -52,12 +52,12 @@ namespace BubblesDivePlannerTests.GasManagement.GasUsage
             Assert.Equal(12, actualGasUsageModel.SurfaceAirConsumptionRate);
         }
 
-        private Mock<IDiveStepModel> SetupDiveStepModelMock()
+        private Mock<IDiveStepModel> SetupDiveStepModelStub()
         {
-            _diveStepModelMock.Setup(x => x.Depth).Returns(50);
-            _diveStepModelMock.Setup(x => x.Time).Returns(10);
+            _diveStepModelStub.Setup(x => x.Depth).Returns(50);
+            _diveStepModelStub.Setup(x => x.Time).Returns(10);
 
-            return _diveStepModelMock;
+            return _diveStepModelStub;
         }
     }
 }

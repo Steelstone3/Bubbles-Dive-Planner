@@ -9,7 +9,6 @@ namespace BubblesDivePlanner.GasManagement.Cylinder
         public CylinderViewModel(IGasMixtureController gasMixtureController)
         {
             GasMixture = new GasMixtureViewModel(gasMixtureController);
-            GasUsage = new GasUsageViewModel();
         }
 
         private int _cylinderVolume;
@@ -33,7 +32,7 @@ namespace BubblesDivePlanner.GasManagement.Cylinder
             set => this.RaiseAndSetIfChanged(ref _gasMixture, value);
         }
 
-        private IGasUsageModel _gasUsage;
+        private IGasUsageModel _gasUsage = new GasUsageViewModel();
         public IGasUsageModel GasUsage
         {
             get => _gasUsage;
