@@ -44,7 +44,7 @@
                     Text="Dive Plan" />
                 <dive_step:DiveStepView />
                 <!-- TODO NEEDS AN ITEMS CONTROL -->
-                <gas_management:GasManagement />
+                <gas_management:GasManagementView />
             </StackPanel>
         </ScrollViewer>
     </Grid>
