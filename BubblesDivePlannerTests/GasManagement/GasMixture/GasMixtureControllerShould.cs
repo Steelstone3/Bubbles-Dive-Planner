@@ -1,14 +1,14 @@
 using BubblesDivePlanner.GasManagement.GasMixture;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
+namespace BubblesDivePlannerTests.GasManagement.GasMixture
 {
     public class GasMixtureControllerShould
     {
         private IGasMixtureController _gasMixtureController = new GasMixtureController();
-        
+
         [Fact]
-        public void AllowModelToBeSet()
+        public void CalculateNitrogenMixture()
         {
             //Arrange
             int oxygen = 21;

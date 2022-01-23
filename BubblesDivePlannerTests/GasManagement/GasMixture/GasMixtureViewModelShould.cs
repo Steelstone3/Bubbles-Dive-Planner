@@ -3,7 +3,7 @@ using Moq;
 using Xunit;
 using BubblesDivePlanner.GasManagement.GasMixture;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
+namespace BubblesDivePlannerTests.GasManagement.GasMixture
 {
     public class GasMixtureViewModelShould
     {
@@ -33,7 +33,8 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
         }
 
         [Fact]
-        public void RaisePropertyChanged() {
+        public void RaisePropertyChanged()
+        {
             //Arrange
             int oxygen = 32;
             int helium = 15;
@@ -66,7 +67,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
         [Fact]
         public void CalculateNitrogenOnHeliumSet()
         {
-           //Arrange
+            //Arrange
             int helium = 10;
             _gasMixtureController.Setup(x => x.CalculateNitrogenMixture(0, helium));
 
@@ -75,7 +76,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
 
             //Assert
             _gasMixtureController.Verify(x => x.CalculateNitrogenMixture(0, helium));
-       
+
         }
     }
 }

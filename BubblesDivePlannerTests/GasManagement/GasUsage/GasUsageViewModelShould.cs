@@ -3,22 +3,22 @@ using Moq;
 using Xunit;
 using BubblesDivePlanner.GasManagement.GasUsage;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
+namespace BubblesDivePlannerTests.GasManagement.GasUsage
 {
     public class GasUsageViewModelShould
     {
         private GasUsageViewModel _gasUsage;
-        private int initialPressurisedCylinderVolume;
-        private int gasRemaining;
-        private int gasUsed;
-        private  int surfaceAirConsumptionRate;
+        private int _initialPressurisedCylinderVolume;
+        private int _gasRemaining;
+        private int _gasUsed;
+        private int _surfaceAirConsumptionRate;
 
         public GasUsageViewModelShould()
         {
-            initialPressurisedCylinderVolume = 2400;
-            gasRemaining = 1680;
-            gasUsed = 720;
-            surfaceAirConsumptionRate = 12;
+            _initialPressurisedCylinderVolume = 2400;
+            _gasRemaining = 1680;
+            _gasUsed = 720;
+            _surfaceAirConsumptionRate = 12;
             _gasUsage = new();
         }
 
@@ -26,16 +26,16 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
         public void AllowModelToBeSet()
         {
             //Act
-            _gasUsage.InitialPressurisedCylinderVolume = initialPressurisedCylinderVolume;
-            _gasUsage.GasUsed = gasUsed;
-            _gasUsage.GasRemaining = gasRemaining;
-            _gasUsage.SurfaceAirConsumptionRate = surfaceAirConsumptionRate;
+            _gasUsage.InitialPressurisedCylinderVolume = _initialPressurisedCylinderVolume;
+            _gasUsage.GasUsed = _gasUsed;
+            _gasUsage.GasRemaining = _gasRemaining;
+            _gasUsage.SurfaceAirConsumptionRate = _surfaceAirConsumptionRate;
 
             //Assert
-            Assert.Equal(initialPressurisedCylinderVolume, _gasUsage.InitialPressurisedCylinderVolume);
-            Assert.Equal(gasRemaining, _gasUsage.GasRemaining);
-            Assert.Equal(gasUsed, _gasUsage.GasUsed);
-            Assert.Equal(surfaceAirConsumptionRate, _gasUsage.SurfaceAirConsumptionRate);
+            Assert.Equal(_initialPressurisedCylinderVolume, _gasUsage.InitialPressurisedCylinderVolume);
+            Assert.Equal(_gasRemaining, _gasUsage.GasRemaining);
+            Assert.Equal(_gasUsed, _gasUsage.GasUsed);
+            Assert.Equal(_surfaceAirConsumptionRate, _gasUsage.SurfaceAirConsumptionRate);
         }
 
         [Fact]
@@ -46,10 +46,10 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
             _gasUsage.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            _gasUsage.InitialPressurisedCylinderVolume = initialPressurisedCylinderVolume;
-            _gasUsage.GasRemaining = gasRemaining;
-            _gasUsage.GasUsed = gasUsed;
-            _gasUsage.SurfaceAirConsumptionRate = surfaceAirConsumptionRate;
+            _gasUsage.InitialPressurisedCylinderVolume = _initialPressurisedCylinderVolume;
+            _gasUsage.GasRemaining = _gasRemaining;
+            _gasUsage.GasUsed = _gasUsed;
+            _gasUsage.SurfaceAirConsumptionRate = _surfaceAirConsumptionRate;
 
             //Assert
             Assert.Contains(nameof(_gasUsage.InitialPressurisedCylinderVolume), viewModelEvents);

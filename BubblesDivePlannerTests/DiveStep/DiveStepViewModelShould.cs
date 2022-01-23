@@ -2,7 +2,7 @@ using BubblesDivePlanner.DiveStep;
 using System.Collections.Generic;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
+namespace BubblesDivePlannerTests.DiveStep
 {
     public class DiveStepViewModelShould
     {
@@ -29,7 +29,8 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
         }
 
         [Fact]
-        public void RaisePropertyChanged() {
+        public void RaisePropertyChanged()
+        {
             //Arrange
             var viewModelEvents = new List<string>();
             _diveStep.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);

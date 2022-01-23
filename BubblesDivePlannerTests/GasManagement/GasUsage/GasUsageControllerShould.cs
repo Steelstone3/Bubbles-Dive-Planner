@@ -3,7 +3,7 @@ using Xunit;
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.GasManagement.GasUsage;
 
-namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
+namespace BubblesDivePlannerTests.GasManagement.GasUsage
 {
     public class GasUsageControllerShould
     {
@@ -15,7 +15,7 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
         {
             _diveStepModelMock = new Mock<IDiveStepModel>();
             _diveStepModelMock = SetupDiveStepModelMock();
-            _gasUsageModel = new GasUsageViewModel() 
+            _gasUsageModel = new GasUsageViewModel()
             {
                 InitialPressurisedCylinderVolume = 2400,
                 GasUsed = 0,
