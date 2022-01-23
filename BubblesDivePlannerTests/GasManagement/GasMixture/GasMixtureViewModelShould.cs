@@ -1,7 +1,7 @@
-using BubblesDivePlanner.GasManagement;
 using System.Collections.Generic;
 using Moq;
 using Xunit;
+using BubblesDivePlanner.GasManagement.GasMixture;
 
 namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
 {

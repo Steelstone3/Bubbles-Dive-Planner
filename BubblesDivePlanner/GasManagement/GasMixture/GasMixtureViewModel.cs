@@ -1,6 +1,6 @@
 using ReactiveUI;
 
-namespace BubblesDivePlanner.GasManagement
+namespace BubblesDivePlanner.GasManagement.GasMixture
 {
     public class GasMixtureViewModel : ReactiveObject, IGasMixtureModel
     {

@@ -1,4 +1,4 @@
-using BubblesDivePlanner.GasManagement;
+using BubblesDivePlanner.GasManagement.GasMixture;
 using Xunit;
 
 namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan

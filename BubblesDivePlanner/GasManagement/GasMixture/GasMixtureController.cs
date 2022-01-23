@@ -1,4 +1,4 @@
-namespace BubblesDivePlanner.GasManagement
+namespace BubblesDivePlanner.GasManagement.GasMixture
 {
     public class GasMixtureController : IGasMixtureController
     {
