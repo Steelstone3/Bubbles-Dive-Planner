@@ -2,6 +2,7 @@ using BubblesDivePlanner.GasManagement.GasMixture;
 using BubblesDivePlanner.GasManagement.GasUsage;
 using BubblesDivePlanner.GasManagement.Cylinder;
 using Xunit;
+using Moq;
 using System.Collections.Generic;
 
 namespace BubblesDivePlannerTests.GasManagement.Cylinder
@@ -16,11 +17,11 @@ namespace BubblesDivePlannerTests.GasManagement.Cylinder
 
         public CylinderViewModelShould()
         {
-            IGasMixtureController gasMixtureController = new GasMixtureController();
-            _gasMixtureModel = new GasMixtureViewModel(gasMixtureController);
+            Mock<IGasMixtureController> gasMixtureControllerDummy = new();
+            _gasMixtureModel = new GasMixtureViewModel(gasMixtureControllerDummy.Object);
             _gasUsageModel = new GasUsageViewModel();
 
-            _cylinderViewModel = new CylinderViewModel(gasMixtureController);
+            _cylinderViewModel = new CylinderViewModel(gasMixtureControllerDummy.Object);
         }
 
         [Fact]
