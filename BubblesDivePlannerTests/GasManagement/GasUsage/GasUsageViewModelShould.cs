@@ -8,7 +8,6 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
     public class GasUsageViewModelShould
     {
         private GasUsageViewModel _gasUsage;
-        private Mock<IGasUsageController> _gasUsageController;
         private int initialPressurisedCylinderVolume;
         private int gasRemaining;
         private int gasUsed;

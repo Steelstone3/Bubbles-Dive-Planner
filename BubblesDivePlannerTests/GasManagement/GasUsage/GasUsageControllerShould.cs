@@ -46,10 +46,10 @@ namespace BubblesDivePlannerTests.ApplicationLayerTests.ViewModels.Plan
             var actualGasUsageModel = _gasUsageController.UpdateGasUsage(_diveStepModelMock.Object, _gasUsageModel);
 
             //Assert
-            Assert.Equal(actualGasUsageModel.InitialPressurisedCylinderVolume, 2400);
-            Assert.Equal(actualGasUsageModel.GasRemaining, 1680);
-            Assert.Equal(actualGasUsageModel.GasUsed, 720);
-            Assert.Equal(actualGasUsageModel.SurfaceAirConsumptionRate, 12);
+            Assert.Equal(2400, actualGasUsageModel.InitialPressurisedCylinderVolume);
+            Assert.Equal(1680, actualGasUsageModel.GasRemaining);
+            Assert.Equal(720, actualGasUsageModel.GasUsed);
+            Assert.Equal(12, actualGasUsageModel.SurfaceAirConsumptionRate);
         }
 
         private Mock<IDiveStepModel> SetupDiveStepModelMock()
