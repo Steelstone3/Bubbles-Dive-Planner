@@ -9,15 +9,9 @@ namespace BubblesDivePlannerTests.GasManagement.Cylinder
 {
     public class CylinderViewModelShould
     {
-        private CylinderViewModel _cylinderViewModel;
+        private CylinderViewModel _cylinderViewModel = new();
         int _cylinderVolume = 12;
         int _cylinderPressure = 200;
-
-        public CylinderViewModelShould()
-        {
-            Mock<IGasMixtureController> gasMixtureControllerDummy = new();
-            _cylinderViewModel = new CylinderViewModel(gasMixtureControllerDummy.Object);
-        }
 
         [Fact]
         public void AllowModelToBeSet()

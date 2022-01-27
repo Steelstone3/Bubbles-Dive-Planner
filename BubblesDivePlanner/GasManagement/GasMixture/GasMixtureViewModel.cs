@@ -4,11 +4,9 @@ namespace BubblesDivePlanner.GasManagement.GasMixture
 {
     public class GasMixtureViewModel : ReactiveObject, IGasMixtureModel
     {
-        private IGasMixtureController _gasMixtureController;
-
-        public GasMixtureViewModel(IGasMixtureController gasMixtureController)
+        public GasMixtureViewModel()
         {
-            _gasMixtureController = gasMixtureController;
+            Nitrogen = new GasMixtureController().CalculateNitrogenMixture(Oxygen, Helium);
         }
 
         private int _oxygen;
@@ -19,7 +17,7 @@ namespace BubblesDivePlanner.GasManagement.GasMixture
             set
             {
                 this.RaiseAndSetIfChanged(ref _oxygen, value);
-                _gasMixtureController.CalculateNitrogenMixture(Oxygen, Helium);
+                Nitrogen = new GasMixtureController().CalculateNitrogenMixture(Oxygen, Helium);
             }
         }
 
@@ -31,10 +29,15 @@ namespace BubblesDivePlanner.GasManagement.GasMixture
             set
             {
                 this.RaiseAndSetIfChanged(ref _helium, value);
-                _gasMixtureController.CalculateNitrogenMixture(Oxygen, Helium);
+                Nitrogen = new GasMixtureController().CalculateNitrogenMixture(Oxygen, Helium);
             }
         }
 
-        public int Nitrogen => _gasMixtureController.CalculateNitrogenMixture(Oxygen, Helium);
+        private int _nitrogen;
+        public int Nitrogen
+        {
+           get => _nitrogen;
+           private set => this.RaiseAndSetIfChanged(ref _nitrogen, value);
+        } 
     }
 }

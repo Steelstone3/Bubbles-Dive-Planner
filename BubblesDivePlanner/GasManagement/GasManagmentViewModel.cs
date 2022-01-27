@@ -7,19 +7,12 @@ namespace BubblesDivePlanner.GasManagement
 {
     public class GasManagementViewModel : ReactiveObject, IGasManagementModel
     {
-        private static IGasMixtureController _gasMixtureController;
-
-        public GasManagementViewModel(IGasMixtureController gasMixtureController)
-        {
-            _gasMixtureController = gasMixtureController;
-        }
-
         public ObservableCollection<ICylinderModel> Cylinders
         {
             get;
         } = new ObservableCollection<ICylinderModel>();
 
-        private ICylinderModel _selectedCylinder = new CylinderViewModel(_gasMixtureController);
+        private ICylinderModel _selectedCylinder = new CylinderViewModel();
         public ICylinderModel SelectedCylinder
         {
             get => _selectedCylinder;

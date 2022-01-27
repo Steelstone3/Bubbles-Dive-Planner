@@ -14,7 +14,7 @@ namespace BubblesDivePlanner.ApplicationEntry
             set => this.RaiseAndSetIfChanged(ref _diveStep, value);
         }
 
-        private IGasManagementModel _gasManagement = new GasManagementViewModel(new GasMixtureController());
+        private IGasManagementModel _gasManagement = new GasManagementViewModel();
         public IGasManagementModel GasManagement
         {
             get => _gasManagement;

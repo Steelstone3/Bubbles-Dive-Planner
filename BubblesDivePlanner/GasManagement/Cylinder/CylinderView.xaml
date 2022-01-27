@@ -15,13 +15,15 @@
                 Margin="4"
                 FontSize="16"
                 FontWeight="DemiBold"                    
-                Text="Cylinder" />
+                Text="Cylinder Setup" />
             </StackPanel>
         <StackPanel Background="#FFC3FDFF">
             <TextBlock Margin="8,4" Text="Cylinder Volume (l):" FontWeight="Bold"/>
             <TextBox Margin="8,4" Text="{Binding GasManagement.SelectedCylinder.CylinderVolume}" />
             <TextBlock Margin="8,4" Text="Cylinder Pressure (BAR):" FontWeight="Bold" />
             <TextBox Margin="8,4" Text="{Binding GasManagement.SelectedCylinder.CylinderPressure}" />
+            <TextBlock Margin="8,4" Text="Surface Air Consumption Rate (l/min):" FontWeight="Bold" />
+            <TextBox Margin="8,4" Text="{Binding GasManagement.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate}" />
             <gas_mixture:GasMixtureView/>
             <gas_usage:GasUsageView/>
         </StackPanel>

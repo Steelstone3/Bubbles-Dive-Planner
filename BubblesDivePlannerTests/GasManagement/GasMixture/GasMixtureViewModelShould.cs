@@ -7,14 +7,7 @@ namespace BubblesDivePlannerTests.GasManagement.GasMixture
 {
     public class GasMixtureViewModelShould
     {
-        private GasMixtureViewModel _gasMixture;
-        private Mock<IGasMixtureController> _gasMixtureControllerMock;
-
-        public GasMixtureViewModelShould()
-        {
-            _gasMixtureControllerMock = new Mock<IGasMixtureController>();
-            _gasMixture = new(_gasMixtureControllerMock.Object);
-        }
+        private GasMixtureViewModel _gasMixture = new();
 
         [Fact]
         public void AllowModelToBeSet()
@@ -48,35 +41,6 @@ namespace BubblesDivePlannerTests.GasManagement.GasMixture
             //Assert
             Assert.Contains(nameof(_gasMixture.Oxygen), viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Helium), viewModelEvents);
-        }
-
-        [Fact]
-        public void CalculateNitrogenOnOxygenSet()
-        {
-            //Arrange
-            int oxygen = 21;
-            _gasMixtureControllerMock.Setup(x => x.CalculateNitrogenMixture(oxygen, 0));
-
-            //Act
-            _gasMixture.Oxygen = oxygen;
-
-            //Assert
-            _gasMixtureControllerMock.Verify(x => x.CalculateNitrogenMixture(oxygen, 0));
-        }
-
-        [Fact]
-        public void CalculateNitrogenOnHeliumSet()
-        {
-            //Arrange
-            int helium = 10;
-            _gasMixtureControllerMock.Setup(x => x.CalculateNitrogenMixture(0, helium));
-
-            //Act
-            _gasMixture.Helium = helium;
-
-            //Assert
-            _gasMixtureControllerMock.Verify(x => x.CalculateNitrogenMixture(0, helium));
-
         }
     }
 }
