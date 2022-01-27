@@ -1,6 +1,7 @@
 ﻿using ReactiveUI;
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.GasManagement;
+using BubblesDivePlanner.GasManagement.GasMixture;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -13,7 +14,7 @@ namespace BubblesDivePlanner.ApplicationEntry
             set => this.RaiseAndSetIfChanged(ref _diveStep, value);
         }
 
-        private IGasManagementModel _gasManagement = new GasManagementViewModel();
+        private IGasManagementModel _gasManagement = new GasManagementViewModel(new GasMixtureController());
         public IGasManagementModel GasManagement
         {
             get => _gasManagement;

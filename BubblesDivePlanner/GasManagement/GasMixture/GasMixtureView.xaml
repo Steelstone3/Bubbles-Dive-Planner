@@ -9,10 +9,10 @@
     mc:Ignorable="d">
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="4" Text="Oxygen (%):" FontWeight="Bold"/>
-            <TextBox Margin="4" Text="" />
+            <TextBox Margin="4" Text="{Binding GasManagement.SelectedCylinder.GasMixture.Oxygen}" />
             <TextBlock Margin="4" Text="Helium (%):" FontWeight="Bold"/>
-            <TextBox Margin="4" Text="" />
+            <TextBox Margin="4" Text="{Binding GasManagement.SelectedCylinder.GasMixture.Helium}" />
             <TextBlock Margin="4" Text="Nitrogen (%):" FontWeight="Bold"/>
-            <TextBlock Margin="4" Text=""/>
+            <TextBlock Margin="4" Text="{Binding GasManagement.SelectedCylinder.GasMixture.Nitrogen}"/>
         </StackPanel>
 </UserControl>

@@ -7,6 +7,7 @@
     xmlns:application_entry="clr-namespace:BubblesDivePlanner.ApplicationEntry"
     xmlns:dive_step="clr-namespace:BubblesDivePlanner.DiveStep"
     xmlns:gas_management="clr-namespace:BubblesDivePlanner.GasManagement"
+    xmlns:header="clr-namespace:BubblesDivePlanner.Header"
     Title="Bubbles Dive Planner"
     MinWidth="720"
     MinHeight="480"
@@ -31,6 +32,11 @@
             <ColumnDefinition MinWidth="250" />
         </Grid.ColumnDefinitions>
 
+        <header:HeaderView
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3" />
+
         <ScrollViewer
             Grid.Row="1"
             Grid.Column="0"
@@ -45,6 +51,35 @@
                 <dive_step:DiveStepView />
                 <!-- TODO NEEDS AN ITEMS CONTROL -->
                 <gas_management:GasManagementView />
+            </StackPanel>
+        </ScrollViewer>
+
+         <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel Background="#FF9E9E9E">
+                <!-- <result:DiveResultsView />
+                <result:DiveParametersResultsView />
+                <result:WarningsView />
+                <result:KeyView /> -->
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="2"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel Background="#FF90CAF9">
+                <TextBlock
+                    Margin="4"
+                    FontSize="20"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Dive Information" />
+                <!-- <information:DecompressionProfileView />
+                <information:DiveBoundariesView />
+                <information:CnsToxicityReadOnlyView /> -->
             </StackPanel>
         </ScrollViewer>
     </Grid>

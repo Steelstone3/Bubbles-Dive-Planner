@@ -7,14 +7,23 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-        <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="4" Text="Initial Pressurised Cylinder Volume (l):" FontWeight="Bold"/>
-            <TextBlock Margin="4" Text="" />
-            <TextBlock Margin="4" Text="Gas Remaining (l):" FontWeight="Bold"/>
-            <TextBlock Margin="4" Text="" />
-            <TextBlock Margin="4" Text="Gas Used (l):" FontWeight="Bold"/>
-            <TextBlock Margin="4" Text="" />
-            <TextBlock Margin="4" Text="Surface Air Consumption (l/min):" FontWeight="Bold"/>
-            <TextBlock Margin="4" Text="" />
+        <StackPanel Background="#FFC3FDFF">
+            <StackPanel Background="#FF5D99C6">
+                <TextBlock
+                    Margin="4"
+                    FontSize="16"
+                    FontWeight="DemiBold"                    
+                    Text="Gas Usage" />
+            </StackPanel>
+            <StackPanel Background="#FFC3FDFF">
+                <TextBlock Margin="8,4" Text="Initial Pressurised Cylinder Volume (l):" FontWeight="Bold"/>
+                <TextBlock Margin="8,4" Text="{Binding GasManagement.SelectedCylinder.GasUsage.InitialPressurisedCylinderVolume}" />
+                <TextBlock Margin="8,4" Text="Gas Remaining (l):" FontWeight="Bold"/>
+                <TextBlock Margin="8,4" Text="{Binding GasManagement.SelectedCylinder.GasUsage.GasRemaining}" />
+                <TextBlock Margin="8,4" Text="Gas Used (l):" FontWeight="Bold"/>
+                <TextBlock Margin="8,4" Text="{Binding GasManagement.SelectedCylinder.GasUsed}" />
+                <TextBlock Margin="8,4" Text="Surface Air Consumption (l/min):" FontWeight="Bold"/>
+                <TextBlock Margin="8,4" Text="{Binding GasManagement.SelectedCylinder.SurfaceAirConsumptionRate}" />
+            </StackPanel>
         </StackPanel>
 </UserControl>
