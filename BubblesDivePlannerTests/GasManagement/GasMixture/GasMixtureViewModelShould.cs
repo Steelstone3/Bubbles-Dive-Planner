@@ -43,9 +43,8 @@ namespace BubblesDivePlannerTests.GasManagement.GasMixture
             //Assert
             Assert.Contains(nameof(_gasMixture.Oxygen), viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Helium), viewModelEvents);
-
-            //Check count is 2
             Assert.Contains(nameof(_gasMixture.Nitrogen), viewModelEvents);
+            Assert.Equal(4, viewModelEvents.Count);
         }
     }
 }
