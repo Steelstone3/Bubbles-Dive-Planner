@@ -15,6 +15,7 @@ namespace BubblesDivePlannerTests.GasManagement.GasMixture
             //Arrange
             int oxygen = 21;
             int helium = 10;
+            int nitrogen = 69;
 
             //Act
             _gasMixture.Oxygen = oxygen;
@@ -23,6 +24,7 @@ namespace BubblesDivePlannerTests.GasManagement.GasMixture
             //Assert
             Assert.Equal(oxygen, _gasMixture.Oxygen);
             Assert.Equal(helium, _gasMixture.Helium);
+            Assert.Equal(nitrogen, _gasMixture.Nitrogen);
         }
 
         [Fact]
@@ -41,6 +43,9 @@ namespace BubblesDivePlannerTests.GasManagement.GasMixture
             //Assert
             Assert.Contains(nameof(_gasMixture.Oxygen), viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Helium), viewModelEvents);
+
+            //Check count is 2
+            Assert.Contains(nameof(_gasMixture.Nitrogen), viewModelEvents);
         }
     }
 }
