@@ -47,6 +47,7 @@ namespace BubblesDivePlannerTests.GasManagement.GasUsage
             Assert.Contains(nameof(_gasUsage.GasRemaining), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.GasUsed), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.SurfaceAirConsumptionRate), viewModelEvents);
+            Assert.Equal(4, viewModelEvents.Count);
         }
     }
 }
