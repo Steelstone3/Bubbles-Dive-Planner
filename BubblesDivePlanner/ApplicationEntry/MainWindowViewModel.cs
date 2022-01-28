@@ -1,8 +1,7 @@
 ﻿using ReactiveUI;
 using BubblesDivePlanner.DiveStep;
-using BubblesDivePlanner.GasManagement;
-using BubblesDivePlanner.GasManagement.GasMixture;
 using BubblesDivePlanner.DiveModels.Selector;
+using BubblesDivePlanner.Cylinders.CylinderSelector;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -22,11 +21,11 @@ namespace BubblesDivePlanner.ApplicationEntry
             set => this.RaiseAndSetIfChanged(ref _diveStep, value);
         }
 
-        private IGasManagementModel _gasManagement = new GasManagementViewModel();
-        public IGasManagementModel GasManagement
+        private ICylinderSelectorModel _cylinderSelector = new CylinderSelectorViewModel();
+        public ICylinderSelectorModel CylinderSelector
         {
-            get => _gasManagement;
-            set => this.RaiseAndSetIfChanged(ref _gasManagement, value);
+            get => _cylinderSelector;
+            set => this.RaiseAndSetIfChanged(ref _cylinderSelector, value);
         }
     }
 }

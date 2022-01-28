@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.ApplicationEntry;
+using BubblesDivePlanner.Cylinders.CylinderSelector;
 using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.DiveStep;
-using BubblesDivePlanner.GasManagement;
 using Moq;
 using Xunit;
 
@@ -18,7 +18,7 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             //Assert
             Assert.NotNull(_mainWindowViewModel.DiveModelSelector);
             Assert.NotNull(_mainWindowViewModel.DiveStep);
-            Assert.NotNull(_mainWindowViewModel.GasManagement);
+            Assert.NotNull(_mainWindowViewModel.CylinderSelector);
         }
 
         [Fact]
@@ -27,19 +27,19 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             //Arrange
             Mock<IDiveModelSelectorModel> diveModelSelectorModelDummy = new();
             Mock<IDiveStepModel> diveStepModelDummy = new();
-            Mock<IGasManagementModel> gasManagementModelDummy = new();
+            Mock<ICylinderSelectorModel> cylinderSelectorModelDummy = new();
             var viewModelEvents = new List<string>();
             _mainWindowViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
             _mainWindowViewModel.DiveModelSelector = diveModelSelectorModelDummy.Object;
             _mainWindowViewModel.DiveStep = diveStepModelDummy.Object;
-            _mainWindowViewModel.GasManagement = gasManagementModelDummy.Object;
+            _mainWindowViewModel.CylinderSelector = cylinderSelectorModelDummy.Object;
 
             //Assert
             Assert.Contains(nameof(_mainWindowViewModel.DiveModelSelector), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.DiveStep), viewModelEvents);
-            Assert.Contains(nameof(_mainWindowViewModel.GasManagement), viewModelEvents);
+            Assert.Contains(nameof(_mainWindowViewModel.CylinderSelector), viewModelEvents);
         }
     }
 }
