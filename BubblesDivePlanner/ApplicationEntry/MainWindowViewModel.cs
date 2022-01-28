@@ -2,11 +2,19 @@
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.GasManagement;
 using BubblesDivePlanner.GasManagement.GasMixture;
+using BubblesDivePlanner.DiveModels.Selector;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
     public class MainWindowViewModel : ReactiveObject
     {
+        private IDiveModelSelectorModel _diveModelSelector = new DiveModelSelectorViewModel();
+        public IDiveModelSelectorModel DiveModelSelector
+        {
+            get => _diveModelSelector;
+            set => this.RaiseAndSetIfChanged(ref _diveModelSelector, value);
+        }
+
         private IDiveStepModel _diveStep = new DiveStepViewModel();
         public IDiveStepModel DiveStep
         {

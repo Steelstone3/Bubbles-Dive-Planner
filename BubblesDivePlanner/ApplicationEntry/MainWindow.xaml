@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:application_entry="clr-namespace:BubblesDivePlanner.ApplicationEntry"
     xmlns:header="clr-namespace:BubblesDivePlanner.Header"
+    xmlns:dive_model_selector="clr-namespace:BubblesDivePlanner.DiveModels.Selector"
     xmlns:dive_step="clr-namespace:BubblesDivePlanner.DiveStep"
     xmlns:gas_management="clr-namespace:BubblesDivePlanner.GasManagement"
     Title="Bubbles Dive Planner"
@@ -48,6 +49,7 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Plan" />
+                <dive_model_selector:DiveModelSelectorView />
                 <dive_step:DiveStepView />
                 <gas_management:GasManagementView />
             </StackPanel>
