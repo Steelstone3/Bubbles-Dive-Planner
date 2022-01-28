@@ -34,8 +34,8 @@ namespace BubblesDivePlannerTests.GasManagement
             _gasManagementViewModel.SelectedCylinder = _cylinderModelDummy.Object;
 
             //Assert
+            Assert.Single(viewModelEvents);
             Assert.Contains(nameof(_gasManagementViewModel.SelectedCylinder), viewModelEvents);
-            Assert.Equal(1, viewModelEvents.Count);
         }
     }
 }

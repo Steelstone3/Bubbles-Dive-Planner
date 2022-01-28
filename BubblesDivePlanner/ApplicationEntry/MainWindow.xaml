@@ -5,11 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:application_entry="clr-namespace:BubblesDivePlanner.ApplicationEntry"
+    xmlns:header="clr-namespace:BubblesDivePlanner.Header"
     xmlns:dive_step="clr-namespace:BubblesDivePlanner.DiveStep"
     xmlns:gas_management="clr-namespace:BubblesDivePlanner.GasManagement"
-    xmlns:header="clr-namespace:BubblesDivePlanner.Header"
     Title="Bubbles Dive Planner"
-    MinWidth="720"
+    MinWidth="1024"
     MinHeight="480"
     d:DesignHeight="720"
     d:DesignWidth="1024"
@@ -49,7 +49,6 @@
                     FontWeight="Bold"
                     Text="Dive Plan" />
                 <dive_step:DiveStepView />
-                <!-- TODO NEEDS AN ITEMS CONTROL -->
                 <gas_management:GasManagementView />
             </StackPanel>
         </ScrollViewer>

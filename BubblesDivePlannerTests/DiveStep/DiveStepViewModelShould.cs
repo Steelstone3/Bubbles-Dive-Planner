@@ -34,9 +34,9 @@ namespace BubblesDivePlannerTests.DiveStep
             _diveStep.Time = _time;
 
             //Assert
+            Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(_diveStep.Depth), viewModelEvents);
             Assert.Contains(nameof(_diveStep.Time), viewModelEvents);
-            Assert.Equal(2, viewModelEvents.Count);
         }
     }
 }

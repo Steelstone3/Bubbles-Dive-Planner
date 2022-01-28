@@ -41,10 +41,10 @@ namespace BubblesDivePlannerTests.GasManagement.GasMixture
             _gasMixture.Helium = helium;
 
             //Assert
+            Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Oxygen), viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Helium), viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Nitrogen), viewModelEvents);
-            Assert.Equal(4, viewModelEvents.Count);
         }
     }
 }

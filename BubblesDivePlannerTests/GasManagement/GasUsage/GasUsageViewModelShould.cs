@@ -43,11 +43,11 @@ namespace BubblesDivePlannerTests.GasManagement.GasUsage
             _gasUsage.SurfaceAirConsumptionRate = _surfaceAirConsumptionRate;
 
             //Assert
+            Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(_gasUsage.InitialPressurisedCylinderVolume), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.GasRemaining), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.GasUsed), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.SurfaceAirConsumptionRate), viewModelEvents);
-            Assert.Equal(4, viewModelEvents.Count);
         }
     }
 }

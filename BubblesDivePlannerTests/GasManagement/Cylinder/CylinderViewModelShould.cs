@@ -43,11 +43,11 @@ namespace BubblesDivePlannerTests.GasManagement.Cylinder
             _cylinderViewModel.GasUsage = _gasUsageModelDummy.Object;
 
             //Assert
+            Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(_cylinderViewModel.CylinderVolume), viewModelEvents);
             Assert.Contains(nameof(_cylinderViewModel.CylinderPressure), viewModelEvents);
             Assert.Contains(nameof(_cylinderViewModel.GasMixture), viewModelEvents);
             Assert.Contains(nameof(_cylinderViewModel.GasUsage), viewModelEvents);
-            Assert.Equal(4, viewModelEvents.Count);
         }
     }
 }
