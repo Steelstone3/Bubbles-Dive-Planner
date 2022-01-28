@@ -6,7 +6,7 @@ using BubblesDivePlanner.Cylinders.CylinderSetup;
 
 namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
 {
-    public class GasManagementViewModelShould
+    public class CylinderSelectorViewModelShould
     {
         private CylinderSelectorViewModel _gasManagementViewModel = new();
         private Mock<ICylinderSetupModel> _cylinderModelDummy = new();

@@ -7,7 +7,7 @@ using BubblesDivePlanner.Cylinders.CylinderSetup;
 
 namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.Cylinder
 {
-    public class CylinderViewModelShould
+    public class CylinderSetupViewModelShould
     {
         private CylinderSetupViewModel _cylinderSetupViewModel = new();
         int _cylinderVolume = 12;
