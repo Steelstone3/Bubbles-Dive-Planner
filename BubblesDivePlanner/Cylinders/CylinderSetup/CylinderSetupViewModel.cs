@@ -6,6 +6,13 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
 {
     public class CylinderSetupViewModel : ReactiveObject, ICylinderSetupModel
     {
+        private string _cylinderName = "Air";
+        public string CylinderName 
+        {
+            get=> _cylinderName;
+            set=> this.RaiseAndSetIfChanged(ref _cylinderName, value);
+        }
+        
         private int _cylinderVolume;
         public int CylinderVolume
         {

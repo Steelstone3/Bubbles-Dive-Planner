@@ -16,8 +16,43 @@
                     Text="Cylinder Selector" />
             </StackPanel>
             <StackPanel>
-            <!-- TODO NEEDS AN ITEMS CONTROL -->
-                <TextBlock Text="Items control of cylinders reference gas mixtures"/>
+                <ListBox
+                    Margin="4"
+                    Items="{Binding CylinderSelector.Cylinders}"
+                    SelectedItem="{Binding CylinderSelector.SelectedCylinder}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="2" Orientation="Horizontal">
+                                <TextBlock Margin="4,0" Text="{Binding CylinderName}" FontWeight="Bold"/>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="4,0" Text="Volume:"/>
+                                    <TextBlock Margin="4,0" Text="{Binding CylinderVolume}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="4,0" Text="Pressure:"/>
+                                    <TextBlock Margin="4,0" Text="{Binding CylinderPressure}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="4,0" Text="O2:"/>
+                                    <TextBlock Margin="4,0" Text="{Binding GasMixture.Oxygen}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="4,0" Text="N:" />
+                                    <TextBlock Margin="4,0" Text="{Binding GasMixture.Nitrogen}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="4,0" Text="He:" />
+                                    <TextBlock Margin="4,0" Text="{Binding GasMixture.Helium}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
         </StackPanel>
 </UserControl>

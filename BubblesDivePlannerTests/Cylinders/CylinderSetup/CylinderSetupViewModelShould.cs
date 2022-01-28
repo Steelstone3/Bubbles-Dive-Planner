@@ -10,17 +10,20 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.Cylinder
     public class CylinderSetupViewModelShould
     {
         private CylinderSetupViewModel _cylinderSetupViewModel = new();
-        int _cylinderVolume = 12;
-        int _cylinderPressure = 200;
+        private int _cylinderVolume = 12;
+        private int _cylinderPressure = 200;
+        private string _cylinderName = "EAN32";
 
         [Fact]
         public void AllowModelToBeSet()
         {
             //Act
+            _cylinderSetupViewModel.CylinderName = _cylinderName;
             _cylinderSetupViewModel.CylinderVolume = _cylinderVolume;
             _cylinderSetupViewModel.CylinderPressure = _cylinderPressure;
 
             //Assert
+            Assert.Equal(_cylinderName, _cylinderSetupViewModel.CylinderName);
             Assert.Equal(_cylinderVolume, _cylinderSetupViewModel.CylinderVolume);
             Assert.Equal(_cylinderPressure, _cylinderSetupViewModel.CylinderPressure);
             Assert.NotNull(_cylinderSetupViewModel.GasUsage);
@@ -37,6 +40,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.Cylinder
             _cylinderSetupViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
+            _cylinderSetupViewModel.CylinderName = _cylinderName;
             _cylinderSetupViewModel.CylinderVolume = _cylinderVolume;
             _cylinderSetupViewModel.CylinderPressure = _cylinderPressure;
             _cylinderSetupViewModel.GasMixture = _gasMixtureModelDummy.Object;
@@ -44,6 +48,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.Cylinder
 
             //Assert
             Assert.NotEmpty(viewModelEvents);
+            Assert.Contains(nameof(_cylinderSetupViewModel.CylinderName), viewModelEvents);
             Assert.Contains(nameof(_cylinderSetupViewModel.CylinderVolume), viewModelEvents);
             Assert.Contains(nameof(_cylinderSetupViewModel.CylinderPressure), viewModelEvents);
             Assert.Contains(nameof(_cylinderSetupViewModel.GasMixture), viewModelEvents);
