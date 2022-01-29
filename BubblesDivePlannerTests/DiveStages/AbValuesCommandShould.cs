@@ -5,11 +5,11 @@ using Xunit;
 
 namespace BubblesDivePlannerTests.DiveStages
 {
-    public class AbValuesCommandShould {
+    public class AbValuesCommandShould
+    {
         private IDiveModel _diveModel = new Zhl16BuhlmannModel();
 
         [Theory]
-        //Default a, b values of the bulhmann model expected
         [InlineData(
             new double[16] { 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79 },
             new double[16] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
@@ -33,14 +33,11 @@ namespace BubblesDivePlannerTests.DiveStages
             IDiveStageCommand diveStage = new AbValuesCommand(_diveModel);
 
             //Act
-            for (int i = 0; i < _diveModel.CompartmentCount; i++)
-            {
-                diveStage.RunDiveStage();
+            diveStage.RunDiveStage();
 
-                //Assert
-                Assert.Equal(aValueResult[i], _diveModel.DiveProfile.AValues[i], 4);
-                Assert.Equal(bValueResult[i], _diveModel.DiveProfile.BValues[i], 4);
-            }
+            //Assert
+            Assert.Equal(aValueResult, _diveModel.DiveProfile.AValues);
+            Assert.Equal(bValueResult, _diveModel.DiveProfile.BValues);
         }
     }
 }
