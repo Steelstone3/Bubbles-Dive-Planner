@@ -7,7 +7,7 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
     {
         private IDiveStageRunner _diveStageRunner = new DiveStageRunner();
 
-        [Fact]
+        [Fact (Skip = "Needs implementing")]
         public void RunDiveStages()
         {
 

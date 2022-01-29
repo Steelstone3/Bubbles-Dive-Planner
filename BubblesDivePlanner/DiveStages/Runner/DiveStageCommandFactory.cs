@@ -25,8 +25,8 @@ namespace BubblesDivePlanner.DiveStages.Runner
                 new TissuePressureCommand(_diveModel, _diveStepModel),
                 new AbValuesCommand(_diveModel),
                 new ToleratedAmbientPressureCommand(_diveModel),
-                //new MaximumSurfacePressureCommand(_diveModel),
-                //new CompartmentLoadCommand(_diveModel),
+                new MaximumSurfacePressureCommand(_diveModel),
+                new CompartmentLoadCommand(_diveModel),
                 //new PublishResultsCommand(_diveModel)
             };
         }
