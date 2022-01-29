@@ -54,6 +54,7 @@
                 <dive_step:DiveStepView />
                 <cylinder_setup:CylinderSetupView />
                 <cylinder_selector:CylinderSelectorView />
+                <dive_step:CalculateDiveStepView />
             </StackPanel>
         </ScrollViewer>
 

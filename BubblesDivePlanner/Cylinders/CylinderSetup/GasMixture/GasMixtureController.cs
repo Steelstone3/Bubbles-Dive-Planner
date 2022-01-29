@@ -2,7 +2,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
 {
     public class GasMixtureController : IGasMixtureController
     {
-        public int CalculateNitrogenMixture(int oxygen, int helium)
+        public double CalculateNitrogenMixture(double oxygen, double helium)
         {
             return 100 - oxygen - helium;
         }

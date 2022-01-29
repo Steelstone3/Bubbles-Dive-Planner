@@ -2,11 +2,18 @@
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.Cylinders.CylinderSelector;
+using System;
+using System.Reactive;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
     public class MainWindowViewModel : ReactiveObject
     {
+        public MainWindowViewModel()
+        {
+           CalculateDiveStepCommand = ReactiveCommand.Create(CalculateDiveStep);
+        }
+
         private IDiveModelSelectorModel _diveModelSelector = new DiveModelSelectorViewModel();
         public IDiveModelSelectorModel DiveModelSelector
         {
@@ -26,6 +33,14 @@ namespace BubblesDivePlanner.ApplicationEntry
         {
             get => _cylinderSelector;
             set => this.RaiseAndSetIfChanged(ref _cylinderSelector, value);
+        }
+
+        public ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
+
+        private void CalculateDiveStep()
+        {
+            //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
+            //Then return the result into a result view model (which will need better naming than the original)
         }
     }
 }

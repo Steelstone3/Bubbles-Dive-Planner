@@ -9,8 +9,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
             Nitrogen = new GasMixtureController().CalculateNitrogenMixture(Oxygen, Helium);
         }
 
-        private int _oxygen;
-        public int Oxygen
+        private double _oxygen;
+        public double Oxygen
         {
             get => _oxygen;
 
@@ -21,8 +21,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
             }
         }
 
-        private int _helium;
-        public int Helium
+        private double _helium;
+        public double Helium
         {
             get => _helium;
 
@@ -33,8 +33,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
             }
         }
 
-        private int _nitrogen;
-        public int Nitrogen
+        private double _nitrogen;
+        public double Nitrogen
         {
             get => _nitrogen;
             private set => this.RaiseAndSetIfChanged(ref _nitrogen, value);

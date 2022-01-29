@@ -17,37 +17,54 @@
             </StackPanel>
             <StackPanel>
                 <ListBox
-                    Margin="4"
+                    Margin="8,4"
                     Items="{Binding CylinderSelector.Cylinders}"
                     SelectedItem="{Binding CylinderSelector.SelectedCylinder}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="2" Orientation="Horizontal">
-                                <TextBlock Margin="4,0" Text="{Binding CylinderName}" FontWeight="Bold"/>
+                                <TextBlock Margin="4,0" 
+                                    Text="{Binding CylinderName}" 
+                                    FontWeight="Bold"/>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="4,0" Text="Volume:"/>
-                                    <TextBlock Margin="4,0" Text="{Binding CylinderVolume}" />
+                                    <TextBlock Margin="4,0" 
+                                        Text="Volume:" 
+                                        FontWeight="Bold"/>
+                                    <TextBlock Margin="4,0" 
+                                        Text="{Binding CylinderVolume}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="4,0" Text="Pressure:"/>
-                                    <TextBlock Margin="4,0" Text="{Binding CylinderPressure}" />
+                                    <TextBlock Margin="4,0" 
+                                        Text="Pressure:"
+                                        FontWeight="Bold"/>
+                                    <TextBlock Margin="4,0" 
+                                        Text="{Binding CylinderPressure}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="4,0" Text="O2:"/>
-                                    <TextBlock Margin="4,0" Text="{Binding GasMixture.Oxygen}" />
+                                    <TextBlock Margin="4,0" 
+                                        Text="O2:"
+                                        FontWeight="Bold"/>
+                                    <TextBlock Margin="4,0" 
+                                        Text="{Binding GasMixture.Oxygen}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="4,0" Text="N:" />
-                                    <TextBlock Margin="4,0" Text="{Binding GasMixture.Nitrogen}" />
+                                    <TextBlock Margin="4,0" 
+                                        Text="N:" 
+                                        FontWeight="Bold"/>
+                                    <TextBlock Margin="4,0" 
+                                        Text="{Binding GasMixture.Nitrogen}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="4,0" Text="He:" />
-                                    <TextBlock Margin="4,0" Text="{Binding GasMixture.Helium}" />
+                                    <TextBlock Margin="4,0" 
+                                        Text="He:" 
+                                        FontWeight="Bold"/>
+                                    <TextBlock Margin="4,0" 
+                                        Text="{Binding GasMixture.Helium}" />
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
