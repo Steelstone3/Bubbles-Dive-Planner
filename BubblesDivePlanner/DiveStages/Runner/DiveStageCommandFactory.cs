@@ -24,10 +24,10 @@ namespace BubblesDivePlanner.DiveStages.Runner
                 new AmbientPressureCommand(_diveModel.DiveProfile, _selectedCylinderModel.GasMixture, _diveStepModel),
                 new TissuePressureCommand(_diveModel, _diveStepModel),
                 new AbValuesCommand(_diveModel),
-                //new ToleratedAmbientPressureCommand(_diveModel.DiveProfile),
-                //new MaximumSurfacePressureCommand(_diveModel.DiveProfile),
-                //new CompartmentLoadCommand(_diveModel.DiveProfile),
-                //new PublishResultsCommand(_diveModel.DiveProfile)
+                new ToleratedAmbientPressureCommand(_diveModel),
+                //new MaximumSurfacePressureCommand(_diveModel),
+                //new CompartmentLoadCommand(_diveModel),
+                //new PublishResultsCommand(_diveModel)
             };
         }
     }
