@@ -27,6 +27,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
 
         public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
 
+        //TODO AH put here CanAddCylinder validation to ensure that the cylinders being added are correct
+
         private void AddCylinder()
         {
             Cylinders.Add(new CylinderPrototype().Clone(SelectedCylinder));

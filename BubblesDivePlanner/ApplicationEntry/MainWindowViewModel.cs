@@ -37,6 +37,8 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         public ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
 
+        //TODO AH Put here a check for CanExecuteDiveStep isDiveModel == Null isSelectedCylinder == Null and DiveStep.Depth is between 0 and 100 with Time being between 0 and 60
+
         private void CalculateDiveStep()
         {
             //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
