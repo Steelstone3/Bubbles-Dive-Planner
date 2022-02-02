@@ -24,6 +24,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
             Assert.Equal(oxygen, _gasMixture.Oxygen);
             Assert.Equal(helium, _gasMixture.Helium);
             Assert.Equal(nitrogen, _gasMixture.Nitrogen);
+            Assert.True(_gasMixture.IsVisible);
         }
 
         [Fact]
@@ -38,12 +39,14 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
             //Act
             _gasMixture.Oxygen = oxygen;
             _gasMixture.Helium = helium;
+            _gasMixture.IsVisible = false;
 
             //Assert
             Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Oxygen), viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Helium), viewModelEvents);
             Assert.Contains(nameof(_gasMixture.Nitrogen), viewModelEvents);
+            Assert.Contains(nameof(_gasMixture.IsVisible), viewModelEvents);
         }
     }
 }

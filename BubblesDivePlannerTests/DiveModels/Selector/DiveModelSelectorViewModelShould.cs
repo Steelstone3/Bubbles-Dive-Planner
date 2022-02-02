@@ -20,6 +20,7 @@ namespace BubblesDivePlannerTests.DiveModels.Selector
             //Assert
             Assert.NotNull(_diveModelSelectorViewModel.SelectedDiveModel);
             Assert.NotEmpty(_diveModelSelectorViewModel.DiveModels);
+            Assert.True(_diveModelSelectorViewModel.IsVisible);
         }
 
         [Fact]
@@ -31,10 +32,12 @@ namespace BubblesDivePlannerTests.DiveModels.Selector
 
             //Act
             _diveModelSelectorViewModel.SelectedDiveModel = _diveModelDummy.Object;
+            _diveModelSelectorViewModel.IsVisible = false;
 
             //Assert
             Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(_diveModelSelectorViewModel.SelectedDiveModel), viewModelEvents);
+            Assert.Contains(nameof(_diveModelSelectorViewModel.IsVisible), viewModelEvents);
         }
     }
 }

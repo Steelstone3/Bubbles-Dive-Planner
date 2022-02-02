@@ -27,6 +27,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
             Assert.Equal(_gasRemaining, _gasUsage.GasRemaining);
             Assert.Equal(_gasUsed, _gasUsage.GasUsed);
             Assert.Equal(_surfaceAirConsumptionRate, _gasUsage.SurfaceAirConsumptionRate);
+            Assert.False(_gasUsage.IsVisible);
         }
 
         [Fact]
@@ -41,6 +42,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
             _gasUsage.GasRemaining = _gasRemaining;
             _gasUsage.GasUsed = _gasUsed;
             _gasUsage.SurfaceAirConsumptionRate = _surfaceAirConsumptionRate;
+            _gasUsage.IsVisible = true;
 
             //Assert
             Assert.NotEmpty(viewModelEvents);
@@ -48,6 +50,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
             Assert.Contains(nameof(_gasUsage.GasRemaining), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.GasUsed), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.SurfaceAirConsumptionRate), viewModelEvents);
+            Assert.Contains(nameof(_gasUsage.IsVisible), viewModelEvents);
         }
     }
 }

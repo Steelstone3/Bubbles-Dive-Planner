@@ -26,6 +26,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.Cylinder
             Assert.Equal(_cylinderName, _cylinderSetupViewModel.CylinderName);
             Assert.Equal(_cylinderVolume, _cylinderSetupViewModel.CylinderVolume);
             Assert.Equal(_cylinderPressure, _cylinderSetupViewModel.CylinderPressure);
+            Assert.True(_cylinderSetupViewModel.IsVisible);
             Assert.NotNull(_cylinderSetupViewModel.GasUsage);
             Assert.NotNull(_cylinderSetupViewModel.GasMixture);
         }
@@ -43,6 +44,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.Cylinder
             _cylinderSetupViewModel.CylinderName = _cylinderName;
             _cylinderSetupViewModel.CylinderVolume = _cylinderVolume;
             _cylinderSetupViewModel.CylinderPressure = _cylinderPressure;
+            _cylinderSetupViewModel.IsVisible = false;
             _cylinderSetupViewModel.GasMixture = _gasMixtureModelDummy.Object;
             _cylinderSetupViewModel.GasUsage = _gasUsageModelDummy.Object;
 
@@ -51,6 +53,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.Cylinder
             Assert.Contains(nameof(_cylinderSetupViewModel.CylinderName), viewModelEvents);
             Assert.Contains(nameof(_cylinderSetupViewModel.CylinderVolume), viewModelEvents);
             Assert.Contains(nameof(_cylinderSetupViewModel.CylinderPressure), viewModelEvents);
+            Assert.Contains(nameof(_cylinderSetupViewModel.IsVisible), viewModelEvents);
             Assert.Contains(nameof(_cylinderSetupViewModel.GasMixture), viewModelEvents);
             Assert.Contains(nameof(_cylinderSetupViewModel.GasUsage), viewModelEvents);
         }
