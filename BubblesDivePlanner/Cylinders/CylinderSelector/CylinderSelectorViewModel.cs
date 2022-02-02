@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
@@ -10,7 +11,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
     {
         public CylinderSelectorViewModel()
         {
-            AddCylinderCommand = ReactiveCommand.Create(AddCylinder);
+            AddCylinderCommand = ReactiveCommand.Create(AddCylinder, CanAddCylinder);
         }
 
         public ObservableCollection<ICylinderSetupModel> Cylinders
@@ -27,19 +28,28 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
 
         public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
 
-        //TODO AH Check that cylinder is valid may need another cylinder for the one being created?
-        // public IObservable<bool> CanAddCylinder
-        // {
-        //     TODO AH change the view models here
-        //     get => this.WhenAnyValue(vm => vm.DiveModelSelector.SelectedDiveModel,
-        //         vm => vm.CylinderSelector.SelectedCylinder,
-        //         vm => vm.DiveStep.Depth,
-        //         vm => vm.DiveStep.Time,
-        //         (selectorDiveModel, selectorCylinder, depth, time) =>
-        //             DiveModelSelector.ValidateSelectedDiveModel(selectorDiveModel)
-        //             && CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
-        //             && DiveStep.ValidateDiveStep(depth, time));
-        // }
+        public IObservable<bool> CanAddCylinder
+        {
+            get => this.WhenAnyValue(vm => vm.SelectedCylinder.CylinderName,
+                vm => vm.SelectedCylinder.CylinderVolume,
+                vm => vm.SelectedCylinder.CylinderPressure,
+                vm => vm.SelectedCylinder.GasMixture.Oxygen,
+                vm => vm.SelectedCylinder.GasMixture.Helium,
+                vm => vm.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate,
+
+                (cylinderName, cylinderVolume, cylinderPressure, oxygen, helium, surfaceAirConsumptionRate) =>
+                    ValidateCylinderSetup(cylinderName, cylinderVolume, cylinderPressure, oxygen, helium, surfaceAirConsumptionRate));
+        }
+
+        public bool ValidateSelectedCylinder(ICylinderSetupModel selectedCylinder)
+        {
+            return ValidateCylinderSetup(selectedCylinder.CylinderName, selectedCylinder.CylinderVolume, selectedCylinder.CylinderPressure, selectedCylinder.GasMixture.Oxygen, selectedCylinder.GasMixture.Helium, selectedCylinder.GasUsage.SurfaceAirConsumptionRate);
+        }
+
+        private bool ValidateCylinderSetup(string cylinderName, int cylinderVolume, int cylinderPressure, double oxygen, double helium, int surfaceAirConsumptionRate)
+        {
+            return !string.IsNullOrWhiteSpace(cylinderName) && cylinderVolume <= 30 && cylinderVolume >= 3 && cylinderPressure <= 300 && cylinderPressure >= 150 && oxygen <= 100 - helium && oxygen >= 5 && helium <= 100 - oxygen && helium >= 0 && surfaceAirConsumptionRate <= 30 && surfaceAirConsumptionRate >= 5;
+        }
 
         private void AddCylinder()
         {

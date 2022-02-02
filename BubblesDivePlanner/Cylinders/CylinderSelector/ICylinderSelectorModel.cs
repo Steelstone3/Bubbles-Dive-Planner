@@ -11,5 +11,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
         ObservableCollection<ICylinderSetupModel> Cylinders { get; }
         ICylinderSetupModel SelectedCylinder { get; set; }
         ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
+
+        bool ValidateSelectedCylinder(ICylinderSetupModel selectorCylinder);
     }
 }

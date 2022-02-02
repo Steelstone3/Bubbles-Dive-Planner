@@ -3,6 +3,8 @@ using Moq;
 using Xunit;
 using BubblesDivePlanner.Cylinders.CylinderSelector;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
+using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
+using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 
 namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
 {
@@ -34,7 +36,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
             Assert.Contains(nameof(_cylinderSelectorViewModel.SelectedCylinder), viewModelEvents);
         }
 
-        [Fact (Skip = "Unexplained failing test")]
+        [Fact(Skip = "Unexplained failing test")]
         public void AddCylinders()
         {
             //Arrange
@@ -45,6 +47,72 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
 
             //Assert
             Assert.NotEmpty(_cylinderSelectorViewModel.Cylinders);
+        }
+
+        [Fact(Skip = "Need to work out how to get this type of test working")]
+        public void AddCylinder()
+        {
+            //Arrange
+            //Stubs of requirements
+
+            //Act
+            // _mainWindowViewModel.CalculateDiveStepCommand.Execute();
+
+            //Assert
+            //TODO AH something results populated
+        }
+
+        [Fact(Skip = "Need to work out how to get this type of test working")]
+        public void CanAddCylinder()
+        {
+            //Arrange
+            //Stubs of requirements
+
+            //Act
+            // _mainWindowViewModel.CalculateDiveStepCommand.Execute();
+
+            //Assert
+            //TODO AH something results populated
+        }
+
+        [Fact]
+        public void ValidateModelAtTheBoundsInvalid()
+        {
+            //Arrange
+            ICylinderSetupModel _cylinderViewModel = new CylinderSetupViewModel();
+
+            //Act
+            var isValid = _cylinderSelectorViewModel.ValidateSelectedCylinder(_cylinderViewModel);
+
+            //Assert
+            Assert.Equal(false, isValid);
+        }
+
+        [Fact]
+        public void ValidateModelAtTheBoundsValid()
+        {
+            //Arrange
+            ICylinderSetupModel _cylinderViewModel = new CylinderSetupViewModel()
+            {
+                CylinderName = "Air",
+                CylinderVolume = 12,
+                CylinderPressure = 200,
+                GasMixture = new GasMixtureViewModel()
+                {
+                    Oxygen = 21,
+                    Helium = 0,
+                },
+                GasUsage = new GasUsageViewModel()
+                {
+                    SurfaceAirConsumptionRate = 12,
+                }
+            };
+
+            //Act
+            var isValid = _cylinderSelectorViewModel.ValidateSelectedCylinder(_cylinderViewModel);
+
+            //Assert
+            Assert.Equal(true, isValid);
         }
     }
 }

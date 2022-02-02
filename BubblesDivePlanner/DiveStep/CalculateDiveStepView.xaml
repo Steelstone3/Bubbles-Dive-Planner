@@ -21,6 +21,7 @@
                 HorizontalAlignment="Stretch"
                 Command="{Binding CalculateDiveStepCommand}" HotKey="Enter"
                 FontWeight="Bold"
+                IsEnabled="{Binding CanCalculateDiveStep}"
                 Content="Calculate Dive Profile" />
         </StackPanel>
     </StackPanel>

@@ -23,5 +23,10 @@ namespace BubblesDivePlanner.DiveModels.Selector
             get => _isVisible;
             set => this.RaiseAndSetIfChanged(ref _isVisible, value);
         }
+
+        public bool ValidateSelectedDiveModel(IDiveModel selectorDiveModel)
+        {
+            return selectorDiveModel != null;
+        }
     }
 }

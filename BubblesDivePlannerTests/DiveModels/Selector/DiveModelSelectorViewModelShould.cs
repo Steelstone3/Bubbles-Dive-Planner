@@ -39,5 +39,25 @@ namespace BubblesDivePlannerTests.DiveModels.Selector
             Assert.Contains(nameof(_diveModelSelectorViewModel.SelectedDiveModel), viewModelEvents);
             Assert.Contains(nameof(_diveModelSelectorViewModel.IsVisible), viewModelEvents);
         }
+
+        [Fact]
+        public void ValidateModelAtTheBoundsInvalid() 
+        {
+            //Act
+            var isValid = _diveModelSelectorViewModel.ValidateSelectedDiveModel(null);
+            
+            //Assert
+            Assert.Equal(false, isValid);
+        }
+
+        [Fact]
+        public void ValidateModelAtTheBoundsValid() 
+        {
+            //Act
+            var isValid = _diveModelSelectorViewModel.ValidateSelectedDiveModel(_diveModelDummy.Object);
+            
+            //Assert
+            Assert.Equal(true, isValid);
+        }
     }
 }

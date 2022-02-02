@@ -38,5 +38,23 @@ namespace BubblesDivePlannerTests.DiveStep
             Assert.Contains(nameof(_diveStep.Depth), viewModelEvents);
             Assert.Contains(nameof(_diveStep.Time), viewModelEvents);
         }
+
+        [Theory]
+        [InlineData(0, 1, true)]
+        [InlineData(-1, 0, false)]
+        [InlineData(100, 60, true)]
+        [InlineData(101, 61, false)]
+        public void ValidateModelAtTheBounds(int depth, int time, bool expectedValidity) 
+        {
+            //Arrange
+            _diveStep.Depth = depth;
+            _diveStep.Time = time;
+
+            //Act
+            var isValid = _diveStep.ValidateDiveStep(_diveStep);
+            
+            //Assert
+            Assert.Equal(expectedValidity, isValid);
+        }
     }
 }
