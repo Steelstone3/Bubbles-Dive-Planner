@@ -4,10 +4,11 @@ using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.Cylinders.CylinderSelector;
 using System;
 using System.Reactive;
+using BubblesDivePlanner.Visibility;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
-    public class MainWindowViewModel : ReactiveObject
+    public class MainWindowViewModel : ReactiveObject, IMainWindowModel
     {
         public MainWindowViewModel()
         {
@@ -37,10 +38,21 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         public ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
 
-        //TODO AH Put here a check for CanExecuteDiveStep isDiveModel == Null isSelectedCylinder == Null and DiveStep.Depth is between 0 and 100 with Time being between 0 and 60
+        // public IObservable<bool> CanExecuteDiveStep
+        // {
+        //     get => this.WhenAnyValue(vm => vm.DiveModelSelector.SelectedDiveModel,
+        //         vm => vm.CylinderSelector.SelectedCylinder,
+        //         vm => vm.DiveStep.Depth,
+        //         vm => vm.DiveStep.Time,
+        //         (selectorDiveModel, selectorCylinder, depth, time) =>
+        //             DiveModelSelector.ValidateSelectedDiveModel(selectorDiveModel)
+        //             && CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
+        //             && DiveStep.ValidateDiveStep(depth, time));
+        // }
 
         private void CalculateDiveStep()
         {
+            new VisibilityController().Hide(this);
             //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
             //Then return the result into a result view model (which will need better naming than the original)
         }

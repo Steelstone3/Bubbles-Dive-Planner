@@ -27,7 +27,19 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
 
         public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
 
-        //TODO AH put here CanAddCylinder validation to ensure that the cylinders being added are correct
+        //TODO AH Check that cylinder is valid may need another cylinder for the one being created?
+        // public IObservable<bool> CanAddCylinder
+        // {
+        //     TODO AH change the view models here
+        //     get => this.WhenAnyValue(vm => vm.DiveModelSelector.SelectedDiveModel,
+        //         vm => vm.CylinderSelector.SelectedCylinder,
+        //         vm => vm.DiveStep.Depth,
+        //         vm => vm.DiveStep.Time,
+        //         (selectorDiveModel, selectorCylinder, depth, time) =>
+        //             DiveModelSelector.ValidateSelectedDiveModel(selectorDiveModel)
+        //             && CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
+        //             && DiveStep.ValidateDiveStep(depth, time));
+        // }
 
         private void AddCylinder()
         {

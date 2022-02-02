@@ -31,5 +31,12 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
             get => _surfaceAirConsumptionRate;
             set => this.RaiseAndSetIfChanged(ref _surfaceAirConsumptionRate, value);
         }
+
+        private bool _isVisible = false;
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => this.RaiseAndSetIfChanged(ref _isVisible, value);
+        }
     }
 }

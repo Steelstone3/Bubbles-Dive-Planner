@@ -1,6 +1,8 @@
+using BubblesDivePlanner.Visibility;
+
 namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
 {
-    public interface IGasUsageModel
+    public interface IGasUsageModel : IVisibility
     {
         int InitialPressurisedCylinderVolume { get; set; }
         int GasUsed { get; set; }

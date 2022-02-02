@@ -39,5 +39,12 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
             get => _nitrogen;
             private set => this.RaiseAndSetIfChanged(ref _nitrogen, value);
         }
+
+        private bool _isVisible = true;
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => this.RaiseAndSetIfChanged(ref _isVisible, value);
+        }
     }
 }

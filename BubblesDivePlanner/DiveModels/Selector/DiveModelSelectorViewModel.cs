@@ -16,5 +16,12 @@ namespace BubblesDivePlanner.DiveModels.Selector
             get => _selectedDiveModel;
             set => this.RaiseAndSetIfChanged(ref _selectedDiveModel, value);
         }
+
+        private bool _isVisible = true;
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => this.RaiseAndSetIfChanged(ref _isVisible, value);
+        }
     }
 }

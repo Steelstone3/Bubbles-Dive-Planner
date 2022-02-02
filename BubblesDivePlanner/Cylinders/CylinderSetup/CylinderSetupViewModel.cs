@@ -48,5 +48,12 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
             get => _gasUsage;
             set => this.RaiseAndSetIfChanged(ref _gasUsage, value);
         }
+
+        private bool _isVisible = true;
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => this.RaiseAndSetIfChanged(ref _isVisible, value);
+        }
     }
 }
