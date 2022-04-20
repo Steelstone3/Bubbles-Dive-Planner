@@ -85,7 +85,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
             var isValid = _cylinderSelectorViewModel.ValidateSelectedCylinder(_cylinderViewModel);
 
             //Assert
-            Assert.Equal(false, isValid);
+            Assert.False(isValid);
         }
 
         [Fact]
@@ -112,7 +112,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
             var isValid = _cylinderSelectorViewModel.ValidateSelectedCylinder(_cylinderViewModel);
 
             //Assert
-            Assert.Equal(true, isValid);
+            Assert.True(isValid);
         }
     }
 }

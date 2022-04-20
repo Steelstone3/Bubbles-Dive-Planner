@@ -47,7 +47,7 @@ namespace BubblesDivePlannerTests.DiveModels.Selector
             var isValid = _diveModelSelectorViewModel.ValidateSelectedDiveModel(null);
             
             //Assert
-            Assert.Equal(false, isValid);
+            Assert.False(isValid);
         }
 
         [Fact]
@@ -57,7 +57,7 @@ namespace BubblesDivePlannerTests.DiveModels.Selector
             var isValid = _diveModelSelectorViewModel.ValidateSelectedDiveModel(_diveModelDummy.Object);
             
             //Assert
-            Assert.Equal(true, isValid);
+            Assert.True(isValid);
         }
     }
 }

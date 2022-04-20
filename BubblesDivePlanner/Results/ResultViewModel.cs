@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using BubblesDivePlanner.DiveModels.DiveProfile;
 using BubblesDivePlanner.DiveStep;
-using System.Reactive;
+using ReactiveUI;
 
 namespace BubblesDivePlanner.Results
 {
@@ -14,8 +13,8 @@ namespace BubblesDivePlanner.Results
             set => this.RaiseAndSetIfChanged(ref _diveStepModel, value);
         }
 
-        private IDiveStepModel _diveProfileModel;
-        public IDiveStepModel DiveProfileModel
+        private IDiveProfileModel _diveProfileModel;
+        public IDiveProfileModel DiveProfileModel
         {
             get => _diveProfileModel;
             set => this.RaiseAndSetIfChanged(ref _diveProfileModel, value);
