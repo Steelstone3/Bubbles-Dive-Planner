@@ -5,5 +5,6 @@ namespace BubblesDivePlanner.DiveStep
         int Depth { get; set; }
         int Time { get; set; }
         bool ValidateDiveStep(IDiveStepModel diveStep);
+        IDiveStepModel DeepClone();
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.Results;
@@ -24,9 +23,7 @@ namespace BubblesDivePlanner.DiveStages
             AssignDiveProfile();
         }
 
-
-        //TODO AH Passed by value through a prototype clone?
-        private void AssignDiveStep() => _resultModel.DiveStepModel = _diveStepModel;
-        private void AssignDiveProfile() => _resultModel.DiveProfileModel = _diveModel.DiveProfile;
+        private void AssignDiveStep() => _resultModel.DiveStepModel = _diveStepModel.DeepClone();
+        private void AssignDiveProfile() => _resultModel.DiveProfileModel = _diveModel.DiveProfile.DeepClone();
     }
 }

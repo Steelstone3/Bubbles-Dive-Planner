@@ -1,3 +1,4 @@
+using System;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DiveStep
@@ -26,6 +27,14 @@ namespace BubblesDivePlanner.DiveStep
         private bool ValidateDiveStep(int depth, int time)
         {
             return depth <= 100 && depth >= 0 && time <= 60 && time >= 1;
+        }
+
+        public IDiveStepModel DeepClone()
+        {
+            return new DiveStepViewModel(){
+                Depth = this.Depth,
+                Time = this.Time,
+            };
         }
     }
 }

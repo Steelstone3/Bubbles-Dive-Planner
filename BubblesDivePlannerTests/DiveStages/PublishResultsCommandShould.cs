@@ -37,6 +37,7 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
             Mock<IDiveStepModel> diveStepModelStub = new();
             diveStepModelStub.Setup(x => x.Depth).Returns(50);
             diveStepModelStub.Setup(x => x.Time).Returns(10);
+            diveStepModelStub.Setup(x => x.DeepClone()).Returns(diveStepModelStub.Object);
 
             return diveStepModelStub;
         }
@@ -57,7 +58,7 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
             diveProfileModelStub.Setup(x => x.TissuePressuresHelium).Returns(diveProfileStubList);
             diveProfileModelStub.Setup(x => x.TissuePressuresTotal).Returns(diveProfileStubList);
             diveProfileModelStub.Setup(x => x.CompartmentLoad).Returns(diveProfileStubList);
-
+            diveProfileModelStub.Setup(x => x.DeepClone()).Returns(diveProfileModelStub.Object);
             return diveProfileModelStub;
         }
     }

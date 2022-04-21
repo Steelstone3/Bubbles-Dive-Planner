@@ -56,5 +56,19 @@ namespace BubblesDivePlannerTests.DiveStep
             //Assert
             Assert.Equal(expectedValidity, isValid);
         }
+
+        [Fact]
+        public void Clone()
+        {
+            //Arrange
+            _diveStep.Depth = _depth;
+            _diveStep.Time = _time;
+
+            //Act
+            var newDiveStep = _diveStep.DeepClone();
+
+            //Assert
+            Assert.NotSame(_diveStep, newDiveStep);
+        }
     }
 }

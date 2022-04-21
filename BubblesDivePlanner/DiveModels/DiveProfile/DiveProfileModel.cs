@@ -15,5 +15,23 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
         public double PressureOxygen { get; set; } = 0.0;
         public double PressureHelium { get; set; } = 0.0;
         public double PressureNitrogen { get; set; } = 0.0;
+
+        public IDiveProfileModel DeepClone()
+        {
+            return new DiveProfileModel()
+            {
+                MaxSurfacePressures = this.MaxSurfacePressures,
+                TissuePressuresNitrogen = this.TissuePressuresNitrogen,
+                TissuePressuresHelium = this.TissuePressuresHelium,
+                TissuePressuresTotal = this.TissuePressuresTotal,
+                ToleratedAmbientPressures = this.ToleratedAmbientPressures,
+                AValues = this.AValues,
+                BValues = this.BValues,
+                CompartmentLoad = this.CompartmentLoad,
+                PressureOxygen = this.PressureOxygen,
+                PressureHelium = this.PressureHelium,
+                PressureNitrogen = this.PressureNitrogen,
+            };
+        }
     }
 }
