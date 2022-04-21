@@ -5,6 +5,8 @@ using BubblesDivePlanner.Cylinders.CylinderSelector;
 using System;
 using System.Reactive;
 using BubblesDivePlanner.Visibility;
+using BubblesDivePlanner.Results;
+using BubblesDivePlanner.DiveStages.Runner;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -12,7 +14,7 @@ namespace BubblesDivePlanner.ApplicationEntry
     {
         public MainWindowViewModel()
         {
-           CalculateDiveStepCommand = ReactiveCommand.Create(CalculateDiveStep, CanCalculateDiveStep);
+            CalculateDiveStepCommand = ReactiveCommand.Create(CalculateDiveStep, CanCalculateDiveStep);
         }
 
         private IDiveModelSelectorModel _diveModelSelector = new DiveModelSelectorViewModel();
@@ -36,6 +38,13 @@ namespace BubblesDivePlanner.ApplicationEntry
             set => this.RaiseAndSetIfChanged(ref _cylinderSelector, value);
         }
 
+        private IResultModel _resultModel = new ResultViewModel();
+        public IResultModel ResultModel
+        {
+            get => _resultModel;
+            set => this.RaiseAndSetIfChanged(ref _resultModel, value);
+        }
+
         public ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
 
         public IObservable<bool> CanCalculateDiveStep
@@ -52,6 +61,8 @@ namespace BubblesDivePlanner.ApplicationEntry
         private void CalculateDiveStep()
         {
             new VisibilityController().Hide(this);
+            ResultModel = new DiveStageRunner(ResultModel, new DiveStageCommandFactory(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder, ResultModel)).RunDiveStages();
+            
             //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
             //Then return the result into a result view model (which will need better naming than the original)
         }

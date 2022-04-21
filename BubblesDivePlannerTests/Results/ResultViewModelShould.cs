@@ -43,5 +43,15 @@ namespace BubblesDivePlannerTests.Results
             Assert.Contains(nameof(_resultViewModel.DiveStepModel), viewModelEvents);
             Assert.Contains(nameof(_resultViewModel.DiveProfileModel), viewModelEvents);
         }
+
+        [Fact]
+        public void AllowResultsHistoryToBeAdded()
+        {
+            //Act
+            _resultViewModel.Results.Add(_resultViewModel);
+
+            //Assert
+            Assert.NotEmpty(_resultViewModel.Results);
+        }
     }
 }

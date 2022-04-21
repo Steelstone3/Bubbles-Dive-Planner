@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using BubblesDivePlanner.DiveModels.DiveProfile;
 using BubblesDivePlanner.DiveStep;
 using ReactiveUI;
@@ -19,5 +20,10 @@ namespace BubblesDivePlanner.Results
             get => _diveProfileModel;
             set => this.RaiseAndSetIfChanged(ref _diveProfileModel, value);
         }
+
+        public ObservableCollection<IResultModel> Results
+        {
+            get;
+        } = new ObservableCollection<IResultModel>();
     }
 }
