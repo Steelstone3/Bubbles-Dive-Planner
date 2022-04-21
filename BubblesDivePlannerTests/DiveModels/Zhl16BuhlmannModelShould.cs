@@ -5,7 +5,7 @@ namespace BubblesDivePlannerTests.DiveModels
 {
     public class Zhl16BuhlmannModelShould
     {
-        private IDiveModel diveModel = new Zhl16BuhlmannModel();
+        private IDiveModel _diveModel = new Zhl16BuhlmannModel();
 
         [Fact]
         public void AllowModelToBeRead()
@@ -19,15 +19,15 @@ namespace BubblesDivePlannerTests.DiveModels
             double[] bValuesHelium = { 0.4245, 0.5747, 0.6527, 0.7223, 0.7582, 0.7957, 0.8279, 0.8553, 0.8757, 0.8903, 0.8997, 0.9073, 0.9122, 0.9171, 0.9217, 0.9267 };
 
             //Assert
-            Assert.Equal("Zhl16-B Model", diveModel.DiveModelName);
-            Assert.Equal(16, diveModel.CompartmentCount);
-            Assert.Equal(nitrogenHalfTime, diveModel.NitrogenHalfTime);
-            Assert.Equal(heliumHalfTime, diveModel.HeliumHalfTime);
-            Assert.Equal(aValuesNitrogen, diveModel.AValuesNitrogen);
-            Assert.Equal(bValuesNitrogen, diveModel.BValuesNitrogen);
-            Assert.Equal(aValuesHelium, diveModel.AValuesHelium);
-            Assert.Equal(bValuesHelium, diveModel.BValuesHelium);
-            Assert.NotNull(diveModel.DiveProfile);
+            Assert.Equal("Zhl16-B Model", _diveModel.DiveModelName);
+            Assert.Equal(16, _diveModel.CompartmentCount);
+            Assert.Equal(nitrogenHalfTime, _diveModel.NitrogenHalfTime);
+            Assert.Equal(heliumHalfTime, _diveModel.HeliumHalfTime);
+            Assert.Equal(aValuesNitrogen, _diveModel.AValuesNitrogen);
+            Assert.Equal(bValuesNitrogen, _diveModel.BValuesNitrogen);
+            Assert.Equal(aValuesHelium, _diveModel.AValuesHelium);
+            Assert.Equal(bValuesHelium, _diveModel.BValuesHelium);
+            Assert.NotNull(_diveModel.DiveProfile);
         }
     }
 }

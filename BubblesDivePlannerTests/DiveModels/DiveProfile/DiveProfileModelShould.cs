@@ -5,7 +5,7 @@ namespace BubblesDivePlannerTests.DiveModels
 {
     public class DiveProfileModelShould
     {
-        private IDiveProfileModel diveProfileModel = new DiveProfileModel();
+        private IDiveProfileModel _diveProfileModel = new DiveProfileModel();
 
         [Fact]
         public void AllowModelToBeSet()
@@ -15,30 +15,40 @@ namespace BubblesDivePlannerTests.DiveModels
             double expectedValue = 10;
 
             //Act
-            diveProfileModel.MaxSurfacePressures = expectedArray;
-            diveProfileModel.TissuePressuresNitrogen = expectedArray;
-            diveProfileModel.TissuePressuresHelium = expectedArray;
-            diveProfileModel.TissuePressuresTotal = expectedArray;
-            diveProfileModel.ToleratedAmbientPressures = expectedArray;
-            diveProfileModel.AValues = expectedArray;
-            diveProfileModel.BValues = expectedArray;
-            diveProfileModel.CompartmentLoad = expectedArray;
-            diveProfileModel.PressureOxygen = expectedValue;
-            diveProfileModel.PressureHelium = expectedValue;
-            diveProfileModel.PressureNitrogen = expectedValue;
+            _diveProfileModel.MaxSurfacePressures = expectedArray;
+            _diveProfileModel.TissuePressuresNitrogen = expectedArray;
+            _diveProfileModel.TissuePressuresHelium = expectedArray;
+            _diveProfileModel.TissuePressuresTotal = expectedArray;
+            _diveProfileModel.ToleratedAmbientPressures = expectedArray;
+            _diveProfileModel.AValues = expectedArray;
+            _diveProfileModel.BValues = expectedArray;
+            _diveProfileModel.CompartmentLoad = expectedArray;
+            _diveProfileModel.PressureOxygen = expectedValue;
+            _diveProfileModel.PressureHelium = expectedValue;
+            _diveProfileModel.PressureNitrogen = expectedValue;
 
             //Assert
-            Assert.NotEmpty(diveProfileModel.MaxSurfacePressures);
-            Assert.NotEmpty(diveProfileModel.TissuePressuresNitrogen);
-            Assert.NotEmpty(diveProfileModel.TissuePressuresHelium);
-            Assert.NotEmpty(diveProfileModel.TissuePressuresTotal);
-            Assert.NotEmpty(diveProfileModel.ToleratedAmbientPressures);
-            Assert.NotEmpty(diveProfileModel.AValues);
-            Assert.NotEmpty(diveProfileModel.BValues);
-            Assert.NotEmpty(diveProfileModel.CompartmentLoad);
-            Assert.Equal(expectedValue, diveProfileModel.PressureOxygen);
-            Assert.Equal(expectedValue, diveProfileModel.PressureNitrogen);
-            Assert.Equal(expectedValue, diveProfileModel.PressureHelium);
+            Assert.NotEmpty(_diveProfileModel.MaxSurfacePressures);
+            Assert.NotEmpty(_diveProfileModel.TissuePressuresNitrogen);
+            Assert.NotEmpty(_diveProfileModel.TissuePressuresHelium);
+            Assert.NotEmpty(_diveProfileModel.TissuePressuresTotal);
+            Assert.NotEmpty(_diveProfileModel.ToleratedAmbientPressures);
+            Assert.NotEmpty(_diveProfileModel.AValues);
+            Assert.NotEmpty(_diveProfileModel.BValues);
+            Assert.NotEmpty(_diveProfileModel.CompartmentLoad);
+            Assert.Equal(expectedValue, _diveProfileModel.PressureOxygen);
+            Assert.Equal(expectedValue, _diveProfileModel.PressureNitrogen);
+            Assert.Equal(expectedValue, _diveProfileModel.PressureHelium);
+        }
+
+        [Fact]
+        public void Clone()
+        {
+            //Act
+            var newDiveProfileModel = _diveProfileModel.DeepClone();
+
+            //Assert
+            Assert.NotSame(_diveProfileModel, newDiveProfileModel);
         }
     }
 }
