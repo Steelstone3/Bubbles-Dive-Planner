@@ -61,7 +61,7 @@ namespace BubblesDivePlanner.ApplicationEntry
         private void CalculateDiveStep()
         {
             new VisibilityController().Hide(this);
-            ResultModel = new DiveStageRunner(ResultModel, new DiveStageCommandFactory(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder, ResultModel)).RunDiveStages();
+            ResultModel = new DiveStageRunner().RunDiveStages(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder, ResultModel);
             
             //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
             //Then return the result into a result view model (which will need better naming than the original)

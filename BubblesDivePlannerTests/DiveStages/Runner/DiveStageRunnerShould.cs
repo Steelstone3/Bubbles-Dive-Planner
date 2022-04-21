@@ -13,6 +13,7 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
     public class DiveStageRunnerShould
     {
         //TODO AH need to check the results make sense
+        
         [Fact]
         public void RunDiveStages()
         {
@@ -21,11 +22,10 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
             IDiveStepModel diveStepModel = new DiveStepViewModel();
             ICylinderSetupModel selectedCylinder = new CylinderSetupViewModel();
             IResultModel resultModel = new ResultViewModel();
-            var diveStageCommandFactory = new DiveStageCommandFactory(diveModel, diveStepModel, selectedCylinder, resultModel);
-            IDiveStageRunner diveStageRunner = new DiveStageRunner(resultModel, diveStageCommandFactory);
+            IDiveStageRunner diveStageRunner = new DiveStageRunner();
 
             //Act
-            var results = diveStageRunner.RunDiveStages();
+            var results = diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder, resultModel);
 
             //Assert
             Assert.NotNull(results);

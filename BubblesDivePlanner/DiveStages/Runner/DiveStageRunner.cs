@@ -1,27 +1,23 @@
+using BubblesDivePlanner.Cylinders.CylinderSetup;
+using BubblesDivePlanner.DiveModels;
+using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.Results;
 
 namespace BubblesDivePlanner.DiveStages.Runner
 {
     public class DiveStageRunner : IDiveStageRunner
     {
-        private IResultModel _resultModel;
-        private DiveStageCommandFactory _diveStageCommandFactory;
-
-        public DiveStageRunner(IResultModel resultModel, DiveStageCommandFactory diveStageCommandFactory)
+        public IResultModel RunDiveStages(IDiveModel diveModel, IDiveStepModel diveStepModel, ICylinderSetupModel selectedCylinder, IResultModel resultModel)
         {
-            _resultModel = resultModel;
-            _diveStageCommandFactory = diveStageCommandFactory;
-        }
+            var diveStageCommandFactory = new DiveStageCommandFactory(diveModel, diveStepModel, selectedCylinder, resultModel);
+            var stages = diveStageCommandFactory.CreateDiveStages();
 
-        public IResultModel RunDiveStages()
-        {
-            var stages = _diveStageCommandFactory.CreateDiveStages();
-
-            foreach(var stage in stages) {
+            foreach (var stage in stages)
+            {
                 stage.RunDiveStage();
             }
 
-            return _resultModel;
+            return resultModel;
         }
     }
 }
