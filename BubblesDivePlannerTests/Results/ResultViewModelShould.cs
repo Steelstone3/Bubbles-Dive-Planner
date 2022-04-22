@@ -19,39 +19,30 @@ namespace BubblesDivePlannerTests.Results
             Mock<IDiveProfileModel> diveProfileModelDummy = new();
 
             //Act
-           _resultViewModel.DiveProfileModel = diveProfileModelDummy.Object;
-           _resultViewModel.DiveStepModel = diveStepModelDummy.Object;
+            _resultViewModel.DiveProfileModel = diveProfileModelDummy.Object;
+            _resultViewModel.DiveStepModel = diveStepModelDummy.Object;
 
             //Assert
             Assert.Equal(diveStepModelDummy.Object, _resultViewModel.DiveStepModel);
             Assert.Equal(diveProfileModelDummy.Object, _resultViewModel.DiveProfileModel);
+            Assert.NotNull(_resultViewModel.ResultsHistoryModel);
         }
-        
+
         [Fact]
         public void RaisePropertyChanged()
         {
             //Arrange
             var viewModelEvents = new List<string>();
             _resultViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
-        
+
             //Act
             _resultViewModel.DiveStepModel = new DiveStepViewModel();
             _resultViewModel.DiveProfileModel = new DiveProfileModel();
-        
+
             //Assert
             Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(_resultViewModel.DiveStepModel), viewModelEvents);
             Assert.Contains(nameof(_resultViewModel.DiveProfileModel), viewModelEvents);
-        }
-
-        [Fact]
-        public void AllowResultsHistoryToBeAdded()
-        {
-            //Act
-            _resultViewModel.Results.Add(_resultViewModel);
-
-            //Assert
-            Assert.NotEmpty(_resultViewModel.Results);
         }
     }
 }
