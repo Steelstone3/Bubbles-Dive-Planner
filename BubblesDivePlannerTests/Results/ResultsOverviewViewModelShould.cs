@@ -17,6 +17,7 @@ namespace BubblesDivePlannerTests.Results
 
             //Assert
             Assert.NotEmpty(_resultsHistoryViewModel.Results);
+            Assert.NotNull(_resultsHistoryViewModel.LatestResult);
         }
 
         [Fact]
