@@ -7,6 +7,5 @@ namespace BubblesDivePlanner.Results
     {
         IDiveStepModel DiveStepModel { get; set; }
         IDiveProfileModel DiveProfileModel { get; set; }
-        IResultsHistoryModel ResultsHistoryModel { get; }
     }
 }

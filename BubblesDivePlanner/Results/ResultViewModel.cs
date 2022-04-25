@@ -19,7 +19,5 @@ namespace BubblesDivePlanner.Results
             get => _diveProfileModel;
             set => this.RaiseAndSetIfChanged(ref _diveProfileModel, value);
         }
-
-        public IResultsHistoryModel ResultsHistoryModel { get; } = new ResultsHistoryViewModel();
     }
 }

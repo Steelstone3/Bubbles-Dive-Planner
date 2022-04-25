@@ -18,5 +18,17 @@ namespace BubblesDivePlannerTests.Results
             //Assert
             Assert.NotEmpty(_resultsHistoryViewModel.Results);
         }
+
+        [Fact]
+        public void GetLastResult() {
+            //Arrange
+            Mock<IResultModel> secondResultModelDummy = new();
+            _resultsHistoryViewModel.Results.Add(_resultModelDummy.Object);
+            _resultsHistoryViewModel.Results.Add(secondResultModelDummy.Object);
+
+            //Assert
+            Assert.NotNull(_resultsHistoryViewModel.LatestResult);
+            Assert.Same(secondResultModelDummy.Object, _resultsHistoryViewModel.LatestResult);
+        }
     }
 }

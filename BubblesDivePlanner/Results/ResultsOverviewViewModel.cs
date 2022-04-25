@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace BubblesDivePlanner.Results
 {
@@ -8,5 +9,7 @@ namespace BubblesDivePlanner.Results
         {
             get;
         } = new ObservableCollection<IResultModel>();
+
+        public IResultModel LatestResult => Results.Last();
     }
 }

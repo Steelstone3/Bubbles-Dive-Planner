@@ -25,7 +25,6 @@ namespace BubblesDivePlannerTests.Results
             //Assert
             Assert.Equal(diveStepModelDummy.Object, _resultViewModel.DiveStepModel);
             Assert.Equal(diveProfileModelDummy.Object, _resultViewModel.DiveProfileModel);
-            Assert.NotNull(_resultViewModel.ResultsHistoryModel);
         }
 
         [Fact]
