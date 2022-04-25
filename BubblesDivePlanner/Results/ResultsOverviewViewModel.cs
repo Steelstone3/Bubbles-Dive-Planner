@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BubblesDivePlanner.Results
 {
-    public class ResultsHistoryViewModel : IResultsHistoryModel
+    public class ResultsOverviewViewModel : IResultsOverviewModel
     {
         public ObservableCollection<IResultModel> Results
         {

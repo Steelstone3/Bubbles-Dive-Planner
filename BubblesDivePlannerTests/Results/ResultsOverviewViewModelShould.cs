@@ -6,7 +6,7 @@ namespace BubblesDivePlannerTests.Results
 {
     public class ResultsHistoryViewModelShould
     {
-        private ResultsHistoryViewModel _resultsHistoryViewModel = new();
+        private ResultsOverviewViewModel _resultsHistoryViewModel = new();
         private Mock<IResultModel> _resultModelDummy = new();
 
         [Fact]

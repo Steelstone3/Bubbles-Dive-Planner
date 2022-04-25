@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 
 namespace BubblesDivePlanner.Results
 {
-    public interface IResultsHistoryModel
+    public interface IResultsOverviewModel
     {
         ObservableCollection<IResultModel> Results { get; }
         IResultModel LatestResult { get; }

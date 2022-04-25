@@ -11,6 +11,6 @@ namespace BubblesDivePlanner.DiveStages.Runner
         //Has an additional setup for decompression step size
 
         //SimulateDecompression() //Returns a collection of dive steps with a deep clone of the dive profile (using a fresh cloned dive profile each time)
-        IResultModel RunDiveStages(IDiveModel diveModel, IDiveStepModel diveStepModel, ICylinderSetupModel selectedCylinder, IResultModel resultModel);
+        IResultModel RunDiveStages(IDiveModel diveModel, IDiveStepModel diveStepModel, ICylinderSetupModel selectedCylinder);
     }
 }

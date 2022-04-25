@@ -21,11 +21,10 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
             IDiveModel diveModel = new Zhl16BuhlmannModel();
             IDiveStepModel diveStepModel = new DiveStepViewModel();
             ICylinderSetupModel selectedCylinder = new CylinderSetupViewModel();
-            IResultModel resultModel = new ResultViewModel();
             IDiveStageRunner diveStageRunner = new DiveStageRunner();
 
             //Act
-            var results = diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder, resultModel);
+            var results = diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
 
             //Assert
             Assert.NotNull(results);

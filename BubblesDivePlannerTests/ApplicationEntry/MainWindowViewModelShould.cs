@@ -20,7 +20,7 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             Assert.NotNull(_mainWindowViewModel.DiveModelSelector);
             Assert.NotNull(_mainWindowViewModel.DiveStep);
             Assert.NotNull(_mainWindowViewModel.CylinderSelector);
-            Assert.NotNull(_mainWindowViewModel.ResultModel);
+            Assert.NotNull(_mainWindowViewModel.ResultsOverviewModel);
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             Mock<IDiveModelSelectorModel> diveModelSelectorModelDummy = new();
             Mock<IDiveStepModel> diveStepModelDummy = new();
             Mock<ICylinderSelectorModel> cylinderSelectorModelDummy = new();
-            Mock<IResultModel> resultModelDummy = new();
+            Mock<IResultsOverviewModel> resultsOverviewModelDummy = new();
             var viewModelEvents = new List<string>();
             _mainWindowViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
@@ -38,13 +38,13 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             _mainWindowViewModel.DiveModelSelector = diveModelSelectorModelDummy.Object;
             _mainWindowViewModel.DiveStep = diveStepModelDummy.Object;
             _mainWindowViewModel.CylinderSelector = cylinderSelectorModelDummy.Object;
-            _mainWindowViewModel.ResultModel = resultModelDummy.Object;
+            _mainWindowViewModel.ResultsOverviewModel = resultsOverviewModelDummy.Object;
 
             //Assert
             Assert.Contains(nameof(_mainWindowViewModel.DiveModelSelector), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.DiveStep), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.CylinderSelector), viewModelEvents);
-            Assert.Contains(nameof(_mainWindowViewModel.ResultModel), viewModelEvents);
+            Assert.Contains(nameof(_mainWindowViewModel.ResultsOverviewModel), viewModelEvents);
         }
 
         [Fact(Skip = "Need to work out how to get this type of test working")]

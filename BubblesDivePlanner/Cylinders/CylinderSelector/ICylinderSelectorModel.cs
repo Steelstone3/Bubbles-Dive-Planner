@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Reactive;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.Visibility;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.Cylinders.CylinderSelector
@@ -11,7 +10,6 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
         ObservableCollection<ICylinderSetupModel> Cylinders { get; }
         ICylinderSetupModel SelectedCylinder { get; set; }
         ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
-
         bool ValidateSelectedCylinder(ICylinderSetupModel selectorCylinder);
     }
 }

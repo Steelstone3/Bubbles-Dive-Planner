@@ -38,11 +38,11 @@ namespace BubblesDivePlanner.ApplicationEntry
             set => this.RaiseAndSetIfChanged(ref _cylinderSelector, value);
         }
 
-        private IResultModel _resultModel = new ResultViewModel();
-        public IResultModel ResultModel
+        private IResultsOverviewModel _resultsOverviewModel = new ResultsOverviewViewModel();
+        public IResultsOverviewModel ResultsOverviewModel
         {
-            get => _resultModel;
-            set => this.RaiseAndSetIfChanged(ref _resultModel, value);
+            get => _resultsOverviewModel;
+            set => this.RaiseAndSetIfChanged(ref _resultsOverviewModel, value);
         }
 
         public ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
@@ -61,8 +61,10 @@ namespace BubblesDivePlanner.ApplicationEntry
         private void CalculateDiveStep()
         {
             new VisibilityController().Hide(this);
-            ResultModel = new DiveStageRunner().RunDiveStages(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder, ResultModel);
-            
+            var lastestResult = new DiveStageRunner().RunDiveStages(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder);
+            lastestResult.DiveStepModel = DiveStep;
+
+            ResultsOverviewModel.Results.Add(lastestResult);
             //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
             //Then return the result into a result view model (which will need better naming than the original)
         }
