@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Moq;
 using Xunit;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 

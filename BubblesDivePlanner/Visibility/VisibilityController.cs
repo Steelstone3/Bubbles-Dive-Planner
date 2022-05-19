@@ -1,4 +1,3 @@
-using System;
 using BubblesDivePlanner.ApplicationEntry;
 
 namespace BubblesDivePlanner.Visibility

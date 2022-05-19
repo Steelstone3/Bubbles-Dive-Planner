@@ -1,10 +1,6 @@
 using Xunit;
 using BubblesDivePlanner.DiveStages.Runner;
-using Moq;
-using System.Collections.Generic;
-using BubblesDivePlanner.DiveStages;
 using BubblesDivePlanner.DiveModels;
-using BubblesDivePlanner.Results;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.DiveStep;
 

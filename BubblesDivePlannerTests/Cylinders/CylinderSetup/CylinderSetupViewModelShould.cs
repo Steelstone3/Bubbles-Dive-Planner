@@ -5,7 +5,7 @@ using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 
-namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.Cylinder
+namespace BubblesDivePlannerTests.Cylinders.CylinderSetup
 {
     public class CylinderSetupViewModelShould
     {

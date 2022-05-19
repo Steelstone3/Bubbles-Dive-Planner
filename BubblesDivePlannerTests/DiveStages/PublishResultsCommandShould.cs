@@ -7,7 +7,7 @@ using BubblesDivePlanner.Results;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
+namespace BubblesDivePlannerTests.DiveStages
 {
     public class PublishResultsCommandShould
     {
@@ -21,7 +21,7 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
             var diveProfileModelStub = SetupDiveProfileModelStub();
             _diveModel.DiveProfile = diveProfileModelStub.Object;
             var diveStepModelStub = SetupDiveStepModelStub();
-            
+
             var diveStage = new PublishResultsCommand(_diveModel, diveStepModelStub.Object, _resultViewModel);
 
             //Act

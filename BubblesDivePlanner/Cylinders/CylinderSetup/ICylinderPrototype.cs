@@ -1,6 +1,4 @@
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-
-namespace BubblesDivePlannerTests.Cylinders.CylinderSetup
+namespace BubblesDivePlanner.Cylinders.CylinderSetup
 {
     public interface ICylinderPrototype
     {

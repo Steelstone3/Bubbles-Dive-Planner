@@ -1,7 +1,7 @@
 using Xunit;
 using BubblesDivePlanner.DiveModels.DiveProfile;
 
-namespace BubblesDivePlannerTests.DiveModels
+namespace BubblesDivePlannerTests.DiveModels.DiveProfile
 {
     public class DiveProfileModelShould
     {

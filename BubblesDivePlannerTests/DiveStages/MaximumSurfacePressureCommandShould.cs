@@ -3,7 +3,7 @@ using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveStages;
 using Xunit;
 
-namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
+namespace BubblesDivePlannerTests.DiveStages
 {
     public class MaximumSurfacePressureCommandShould
     {

@@ -5,7 +5,7 @@ using BubblesDivePlanner.DiveStep;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
+namespace BubblesDivePlannerTests.DiveStages
 {
     public class AmbientPressureShould
     {
@@ -35,7 +35,8 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
             Assert.Equal(resultNitrogen, _diveModel.DiveProfile.PressureNitrogen, 2);
         }
 
-        private IMock<IGasMixtureModel> SetupGasMixtureStub(double oxygenPercentage, double nitrogenPercentage, double heliumPercentage) {
+        private IMock<IGasMixtureModel> SetupGasMixtureStub(double oxygenPercentage, double nitrogenPercentage, double heliumPercentage)
+        {
             var gasMixtureModelStub = new Mock<IGasMixtureModel>();
 
             gasMixtureModelStub.Setup(x => x.Oxygen).Returns(oxygenPercentage);
@@ -45,7 +46,8 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
             return gasMixtureModelStub;
         }
 
-        private IMock<IDiveStepModel> SetupDiveStepStub(int depth) {
+        private IMock<IDiveStepModel> SetupDiveStepStub(int depth)
+        {
             var diveStepModelStub = new Mock<IDiveStepModel>();
 
             diveStepModelStub.Setup(x => x.Depth).Returns(depth);

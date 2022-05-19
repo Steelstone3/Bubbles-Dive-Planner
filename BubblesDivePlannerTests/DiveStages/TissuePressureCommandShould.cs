@@ -6,7 +6,7 @@ using BubblesDivePlanner.DiveStep;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
+namespace BubblesDivePlannerTests.DiveStages
 {
     public class TissuePressureShould
     {
@@ -45,7 +45,7 @@ namespace BubblesDivePlannerTests.BusinessLayerTests.Commands.DiveStages
             diveProfileModel.TissuePressuresNitrogen = new List<double>(tissuePressuresNitrogen);
             diveProfileModel.TissuePressuresHelium = new List<double>(tissuePressuresHelium);
             diveProfileModel.TissuePressuresTotal = new List<double>(tissuePressuresTotal);
-            
+
             return diveProfileModel;
         }
 

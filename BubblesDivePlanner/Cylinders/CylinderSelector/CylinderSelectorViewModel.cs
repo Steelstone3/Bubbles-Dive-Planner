@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlannerTests.Cylinders.CylinderSetup;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.Cylinders.CylinderSelector
