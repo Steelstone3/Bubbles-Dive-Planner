@@ -15,11 +15,64 @@
             FontWeight="DemiBold"
             Text="Dive Results" />
         
+        <TextBlock Text="Depth (m):"/>
         <TextBlock
-            Text="{Binding ResultsOverviewModel.LastResult.DiveStepModel.Depth}" />
+            Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Depth}" />
 
+        <TextBlock Text="Time (min):"/>
         <TextBlock
-            Text="{Binding ResultsOverviewModel.LastResult.DiveStepModel.Time}" />
+            Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Time}" />
 
+        <TextBlock Text="Cylinder"/>
+        <TextBlock Text="Name:"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderName}" />
+        
+        <TextBlock Text="Volume (L):"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderVolume}" />
+
+        <TextBlock Text="Pressure (Bar):"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderPressure}" />
+
+        <TextBlock Text="Gas Mixture"/>
+        <TextBlock Text="Oxygen:"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Oxygen}" />
+        
+        <TextBlock Text="Helium:"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Helium}" />
+
+        <TextBlock Text="Nitrogen:"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Nitrogen}" />
+
+        <TextBlock Text="Cylinder Gas Usage"/>
+        <TextBlock Text="Initial Pressurised Volume:"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.InitialPressurisedCylinderVolume}" />
+
+        <TextBlock Text="Remaining:"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasRemaining}" />
+
+        <TextBlock Text="Used:"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasUsed}" />
+
+        <TextBlock Text="Surface Air Consumption Rate:"/>
+        <TextBlock
+            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.SurfaceAirConsumptionRate}" />
+
+        <!-- <Grid>
+            <DataGrid Name="Dive Result" Items="{Binding ResultsOverviewModel}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Forename"  Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Surname" Binding="{Binding LastName}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid> -->
     </StackPanel>
 </UserControl>

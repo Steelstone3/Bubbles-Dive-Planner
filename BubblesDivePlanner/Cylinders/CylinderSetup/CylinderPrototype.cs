@@ -1,8 +1,8 @@
-using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
+using BubblesDivePlannerTests.Cylinders.CylinderSetup;
 
-namespace BubblesDivePlannerTests.Cylinders.CylinderSetup
+namespace BubblesDivePlanner.Cylinders.CylinderSetup
 {
     public class CylinderPrototype : ICylinderPrototype
     {

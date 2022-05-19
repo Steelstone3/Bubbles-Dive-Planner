@@ -1,3 +1,4 @@
+using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.DiveModels.DiveProfile;
 using BubblesDivePlanner.DiveStep;
 using ReactiveUI;
@@ -18,6 +19,13 @@ namespace BubblesDivePlanner.Results
         {
             get => _diveProfileModel;
             set => this.RaiseAndSetIfChanged(ref _diveProfileModel, value);
+        }
+
+        private ICylinderSetupModel _cylinderSetupModel;
+        public ICylinderSetupModel CylinderSetupModel 
+        {
+            get=> _cylinderSetupModel;
+            set=> this.RaiseAndSetIfChanged(ref _cylinderSetupModel, value);
         }
     }
 }

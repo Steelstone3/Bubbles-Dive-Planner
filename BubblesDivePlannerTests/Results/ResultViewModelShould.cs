@@ -4,6 +4,7 @@ using BubblesDivePlanner.Results;
 using Moq;
 using Xunit;
 using System.Collections.Generic;
+using BubblesDivePlanner.Cylinders.CylinderSetup;
 
 namespace BubblesDivePlannerTests.Results
 {
@@ -16,15 +17,18 @@ namespace BubblesDivePlannerTests.Results
         {
             //Arrange
             Mock<IDiveStepModel> diveStepModelDummy = new();
+            Mock<ICylinderSetupModel> cylinderSetupModelDummy = new();
             Mock<IDiveProfileModel> diveProfileModelDummy = new();
 
             //Act
             _resultViewModel.DiveProfileModel = diveProfileModelDummy.Object;
             _resultViewModel.DiveStepModel = diveStepModelDummy.Object;
+            _resultViewModel.CylinderSetupModel = cylinderSetupModelDummy.Object;
 
             //Assert
             Assert.Equal(diveStepModelDummy.Object, _resultViewModel.DiveStepModel);
             Assert.Equal(diveProfileModelDummy.Object, _resultViewModel.DiveProfileModel);
+            Assert.Equal(cylinderSetupModelDummy.Object, _resultViewModel.CylinderSetupModel);
         }
 
         [Fact]
@@ -36,11 +40,13 @@ namespace BubblesDivePlannerTests.Results
 
             //Act
             _resultViewModel.DiveStepModel = new DiveStepViewModel();
+            _resultViewModel.CylinderSetupModel = new CylinderSetupViewModel();
             _resultViewModel.DiveProfileModel = new DiveProfileModel();
 
             //Assert
             Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(_resultViewModel.DiveStepModel), viewModelEvents);
+            Assert.Contains(nameof(_resultViewModel.CylinderSetupModel), viewModelEvents);
             Assert.Contains(nameof(_resultViewModel.DiveProfileModel), viewModelEvents);
         }
     }
