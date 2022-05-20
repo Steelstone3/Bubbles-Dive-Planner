@@ -1,8 +1,9 @@
 using System.Collections.ObjectModel;
+using BubblesDivePlanner.Visibility;
 
 namespace BubblesDivePlanner.Results
 {
-    public interface IResultsOverviewModel
+    public interface IResultsOverviewModel : IVisibility
     {
         ObservableCollection<IResultModel> Results { get; }
 

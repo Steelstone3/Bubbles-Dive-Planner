@@ -20,5 +20,12 @@ namespace BubblesDivePlanner.Results
                 this.RaiseAndSetIfChanged(ref _latestResult, value);
             }
         }
+
+        private bool _isVisible = true;
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => this.RaiseAndSetIfChanged(ref _isVisible, value);
+        }
     }
 }

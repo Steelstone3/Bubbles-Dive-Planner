@@ -41,7 +41,7 @@ namespace BubblesDivePlannerTests.Results
             //Act
             _resultViewModel.DiveStepModel = new DiveStepViewModel();
             _resultViewModel.CylinderSetupModel = new CylinderSetupViewModel();
-            _resultViewModel.DiveProfileModel = new DiveProfileModel();
+            _resultViewModel.DiveProfileModel = new DiveProfileViewModel();
 
             //Assert
             Assert.NotEmpty(viewModelEvents);

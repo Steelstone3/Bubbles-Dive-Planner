@@ -4,7 +4,7 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
     {
         public IDiveProfileModel CreateDiveProfile(int compartmentSize)
         {
-            IDiveProfileModel diveProfileModel = new DiveProfileModel();
+            IDiveProfileModel diveProfileModel = new DiveProfileViewModel();
 
             for (int i = 0; i < compartmentSize; i++)
             {
