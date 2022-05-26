@@ -1,0 +1,89 @@
+<UserControl
+    x:Class="BubblesDivePlanner.Results.DiveParametersUsedView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+<StackPanel>
+    <TextBlock
+        Margin="8,4"
+        FontSize="16"
+        FontWeight="DemiBold"
+        Text="Dive Parameters Used" />
+
+    <StackPanel Background="#FFC3FDFF" Margin="8">
+        
+        <TextBlock Text="Dive Step" FontWeight="Bold" Margin="8,4" />
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Depth (m):"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Depth}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Time (min):"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Time}" />
+        </StackPanel>
+
+        <TextBlock Text="Cylinder" FontWeight="Bold" Margin="8,4"/>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Name:"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderName}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Volume (L):"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderVolume}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Pressure (Bar):"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderPressure}" />
+        </StackPanel>
+
+        <TextBlock Text="Gas Mixture" FontWeight="Bold" Margin="8,4"/>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Oxygen:"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Oxygen}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Helium:"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Helium}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Nitrogen:"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Nitrogen}" />
+        </StackPanel>
+
+        <TextBlock Text="Cylinder Gas Usage" FontWeight="Bold" Margin="8,4"/>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Initial Pressurised Volume:"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.InitialPressurisedCylinderVolume}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Remaining:"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasRemaining}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Used:"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasUsed}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="32,2">
+            <TextBlock Text="Surface Air Consumption Rate:"/>
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.SurfaceAirConsumptionRate}" />
+        </StackPanel>
+    </StackPanel>
+    </StackPanel>
+</UserControl>

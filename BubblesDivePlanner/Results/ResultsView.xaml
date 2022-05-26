@@ -4,90 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dive_results="clr-namespace:BubblesDivePlanner.Results"
+
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <StackPanel>
-        <TextBlock
-            Margin="16,4"
-            FontSize="16"
-            FontWeight="DemiBold"
-            Text="Dive Results" />
-        
-        <!-- TODO put in a new dive parameter results view -->
-        <TextBlock Text="Depth (m):"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Depth}" />
-
-        <TextBlock Text="Time (min):"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Time}" />
-
-        <TextBlock Text="Cylinder"/>
-        <TextBlock Text="Name:"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderName}" />
-        
-        <TextBlock Text="Volume (L):"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderVolume}" />
-
-        <TextBlock Text="Pressure (Bar):"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderPressure}" />
-
-        <TextBlock Text="Gas Mixture"/>
-        <TextBlock Text="Oxygen:"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Oxygen}" />
-        
-        <TextBlock Text="Helium:"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Helium}" />
-
-        <TextBlock Text="Nitrogen:"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Nitrogen}" />
-
-        <TextBlock Text="Cylinder Gas Usage"/>
-        <TextBlock Text="Initial Pressurised Volume:"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.InitialPressurisedCylinderVolume}" />
-
-        <TextBlock Text="Remaining:"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasRemaining}" />
-
-        <TextBlock Text="Used:"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasUsed}" />
-
-        <TextBlock Text="Surface Air Consumption Rate:"/>
-        <TextBlock
-            Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.SurfaceAirConsumptionRate}" />
-
-        <!-- TODO Move to a user control -->
-        <Grid  Margin="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="0" Text="TP" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="1" Text="TAP" FontWeight="Bold"/>
-                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="MSP" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="3" Text="CLP" FontWeight="Bold"/>
-        
-                <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal}"/>
-                <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.ToleratedAmbientPressures}"/>
-                <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="2" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.MaxSurfacePressures}"/>
-                <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="3" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.CompartmentLoad}"/>
-        </Grid>
+    <StackPanel>       
+        <dive_results:DiveTableResultView/>
+        <dive_results:DiveParametersUsedView/>
     </StackPanel>
 </UserControl>
