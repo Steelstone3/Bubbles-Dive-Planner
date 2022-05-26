@@ -15,6 +15,7 @@
             FontWeight="DemiBold"
             Text="Dive Results" />
         
+        <!-- TODO put in a new dive parameter results view -->
         <TextBlock Text="Depth (m):"/>
         <TextBlock
             Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Depth}" />
@@ -66,55 +67,27 @@
         <TextBlock
             Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.SurfaceAirConsumptionRate}" />
 
-        <ListBox 
-            Margin="16,4"
-            Background="#FFCFCFCF"
-            MaxHeight="600"
-            Items="{Binding ResultsOverviewModel.Results}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ListBox
-                        Margin="0,4"
-                        Background="#FFCFCFCF"
-                        Items="{Binding DiveProfileModel}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <!-- <TextBlock Margin="2,0" Text="C:" FontWeight="Bold" />
-                                    <TextBlock Margin="4,0" Text="{Binding Compartment}" />
-                                    <TextBlock Margin="2,0" Text="|" /> -->
-
-                                    <TextBlock Margin="2,0" Text="TP:" FontWeight="Bold" />
-                                    <TextBlock Margin="4,0" Text="{Binding TissuePressuresTotal}" />
-                                    <TextBlock Margin="2,0" Text="|" />
-
-                                    <TextBlock Margin="2,0" Text="TAP:" FontWeight="Bold" />
-                                    <TextBlock Margin="4,0" Text="{Binding ToleratedAmbientPressures}" />
-                                    <TextBlock Margin="2,0" Text="|" />
-
-                                    <TextBlock Margin="2,0" Text="MSP:" FontWeight="Bold" />
-                                    <TextBlock Margin="4,0" Text="{Binding MaxSurfacePressures}" />
-                                    <TextBlock Margin="2,0" Text="|" />
-
-                                    <TextBlock Margin="2,0" Text="CLP:" FontWeight="Bold" />
-                                    <TextBlock Margin="4,0" Text="{Binding CompartmentLoad}" />
-                                    <TextBlock Text="%" />
-                                    <TextBlock Margin="2,0" Text="|" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-        <!-- <Grid>
-            <DataGrid Name="Dive Result" Items="{Binding ResultsOverviewModel}" AutoGenerateColumns="False" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Forename"  Binding="{Binding FirstName}"/>
-                    <DataGridTextColumn Header="Surname" Binding="{Binding LastName}" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid> -->
+        <!-- TODO Move to a user control -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+                <TextBlock Background="Gray" Grid.Row="0" Grid.Column="0" Text="TP" FontWeight="Bold" Margin="2,0"/>
+                <TextBlock Background="Blue" Grid.Row="0" Grid.Column="1" Text="TAP" FontWeight="Bold" Margin="2,0"/>
+                <TextBlock Background="Gray" Grid.Row="0" Grid.Column="2" Text="MSP" FontWeight="Bold" Margin="2,0"/>
+                <TextBlock Background="Blue" Grid.Row="0" Grid.Column="3" Text="CLP" FontWeight="Bold" Margin="2,0"/>
+        
+                <ItemsControl Background="Gray" Grid.Row="1" Grid.Column="0" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal}"/>
+                <ItemsControl Background="Blue" Grid.Row="1" Grid.Column="1" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.ToleratedAmbientPressures}"/>
+                <ItemsControl Background="Gray" Grid.Row="1" Grid.Column="2" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.MaxSurfacePressures}"/>
+                <ItemsControl Background="Blue" Grid.Row="1" Grid.Column="3" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.CompartmentLoad}"/>
+        </Grid>
     </StackPanel>
 </UserControl>
