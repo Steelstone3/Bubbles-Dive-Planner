@@ -68,7 +68,7 @@
             Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.SurfaceAirConsumptionRate}" />
 
         <!-- TODO Move to a user control -->
-        <Grid>
+        <Grid  Margin="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -79,15 +79,15 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-                <TextBlock Background="Gray" Grid.Row="0" Grid.Column="0" Text="TP" FontWeight="Bold" Margin="2,0"/>
-                <TextBlock Background="Blue" Grid.Row="0" Grid.Column="1" Text="TAP" FontWeight="Bold" Margin="2,0"/>
-                <TextBlock Background="Gray" Grid.Row="0" Grid.Column="2" Text="MSP" FontWeight="Bold" Margin="2,0"/>
-                <TextBlock Background="Blue" Grid.Row="0" Grid.Column="3" Text="CLP" FontWeight="Bold" Margin="2,0"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="0" Text="TP" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="1" Text="TAP" FontWeight="Bold"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="MSP" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="3" Text="CLP" FontWeight="Bold"/>
         
-                <ItemsControl Background="Gray" Grid.Row="1" Grid.Column="0" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal}"/>
-                <ItemsControl Background="Blue" Grid.Row="1" Grid.Column="1" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.ToleratedAmbientPressures}"/>
-                <ItemsControl Background="Gray" Grid.Row="1" Grid.Column="2" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.MaxSurfacePressures}"/>
-                <ItemsControl Background="Blue" Grid.Row="1" Grid.Column="3" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.CompartmentLoad}"/>
+                <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal}"/>
+                <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.ToleratedAmbientPressures}"/>
+                <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="2" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.MaxSurfacePressures}"/>
+                <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="3" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.CompartmentLoad}"/>
         </Grid>
     </StackPanel>
 </UserControl>
