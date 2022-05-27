@@ -10,8 +10,7 @@ namespace BubblesDivePlannerTests.DiveStages
     public class CompartmentLoadCommandShould
     {
         private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
-        private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
-
+        
         [Fact]
         public void RunCompartmentLoadStage()
         {

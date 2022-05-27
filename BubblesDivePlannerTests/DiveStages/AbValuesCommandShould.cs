@@ -10,7 +10,6 @@ namespace BubblesDivePlannerTests.DiveStages
     public class AbValuesCommandShould
     {
         private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
-        private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
 
         [Fact]
         public void RunAbValuesStage()

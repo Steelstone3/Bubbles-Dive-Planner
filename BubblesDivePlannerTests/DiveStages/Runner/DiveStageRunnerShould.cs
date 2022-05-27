@@ -10,7 +10,6 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
     {
         private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
         private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
-        private List<double> compartmentLoad = new List<double> { 124.9, 121.46, 110.01, 99.51, 88.78, 82.71, 76.8, 71.87, 68.05, 66.46, 65.63, 65.15, 65.57, 65.05, 65.29, 65.65 };
 
         [Fact]
         public void RunDiveStages()

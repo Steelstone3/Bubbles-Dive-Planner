@@ -36,45 +36,6 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
             Assert.Contains(nameof(_cylinderSelectorViewModel.SelectedCylinder), viewModelEvents);
         }
 
-        [Fact(Skip = "Unexplained failing test")]
-        public void AddCylinders()
-        {
-            //Arrange
-            _cylinderSelectorViewModel.SelectedCylinder = _cylinderModelDummy.Object;
-
-            //Act
-            _cylinderSelectorViewModel.AddCylinderCommand.Execute();
-
-            //Assert
-            Assert.NotEmpty(_cylinderSelectorViewModel.Cylinders);
-        }
-
-        [Fact(Skip = "Need to work out how to get this type of test working")]
-        public void AddCylinder()
-        {
-            //Arrange
-            //Stubs of requirements
-
-            //Act
-            // _mainWindowViewModel.CalculateDiveStepCommand.Execute();
-
-            //Assert
-            //TODO AH something results populated
-        }
-
-        [Fact(Skip = "Need to work out how to get this type of test working")]
-        public void CanAddCylinder()
-        {
-            //Arrange
-            //Stubs of requirements
-
-            //Act
-            // _mainWindowViewModel.CalculateDiveStepCommand.Execute();
-
-            //Assert
-            //TODO AH something results populated
-        }
-
         [Fact]
         public void ValidateModelAtTheBoundsInvalid()
         {

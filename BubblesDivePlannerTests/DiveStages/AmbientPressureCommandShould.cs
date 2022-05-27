@@ -8,8 +8,7 @@ namespace BubblesDivePlannerTests.DiveStages
     public class AmbientPressureShould
     {
         private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
-        private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
-
+        
         [Fact]
         public void RunAmbientPressurePreStage()
         {

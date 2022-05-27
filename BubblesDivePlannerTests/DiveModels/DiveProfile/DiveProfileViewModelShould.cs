@@ -1,6 +1,6 @@
 using Xunit;
-using BubblesDivePlanner.DiveModels.DiveProfile;
 using System.Collections.Generic;
+using BubblesDivePlannerTests.TestFixtures;
 
 namespace BubblesDivePlannerTests.DiveModels.DiveProfile
 {
@@ -8,94 +8,98 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
     {
         private readonly double[] expectedArray = { 3.0, 6.0 };
         private readonly double expectedValue = 10;
-
-        private DiveProfileViewModel _diveProfileViewModel = new DiveProfileViewModel();
+        private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
 
         [Fact]
         public void AllowModelToBeSet()
         {
+            //Arrange
+            var diveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
+
             //Act
-            _diveProfileViewModel.MaxSurfacePressures = expectedArray;
-            _diveProfileViewModel.TissuePressuresNitrogen = expectedArray;
-            _diveProfileViewModel.TissuePressuresHelium = expectedArray;
-            _diveProfileViewModel.TissuePressuresTotal = expectedArray;
-            _diveProfileViewModel.ToleratedAmbientPressures = expectedArray;
-            _diveProfileViewModel.AValues = expectedArray;
-            _diveProfileViewModel.BValues = expectedArray;
-            _diveProfileViewModel.CompartmentLoad = expectedArray;
-            _diveProfileViewModel.PressureOxygen = expectedValue;
-            _diveProfileViewModel.PressureHelium = expectedValue;
-            _diveProfileViewModel.PressureNitrogen = expectedValue;
+            diveProfile.MaxSurfacePressures = expectedArray;
+            diveProfile.TissuePressuresNitrogen = expectedArray;
+            diveProfile.TissuePressuresHelium = expectedArray;
+            diveProfile.TissuePressuresTotal = expectedArray;
+            diveProfile.ToleratedAmbientPressures = expectedArray;
+            diveProfile.AValues = expectedArray;
+            diveProfile.BValues = expectedArray;
+            diveProfile.CompartmentLoad = expectedArray;
+            diveProfile.PressureOxygen = expectedValue;
+            diveProfile.PressureHelium = expectedValue;
+            diveProfile.PressureNitrogen = expectedValue;
 
             //Assert
-            Assert.NotEmpty(_diveProfileViewModel.MaxSurfacePressures);
-            Assert.NotEmpty(_diveProfileViewModel.TissuePressuresNitrogen);
-            Assert.NotEmpty(_diveProfileViewModel.TissuePressuresHelium);
-            Assert.NotEmpty(_diveProfileViewModel.TissuePressuresTotal);
-            Assert.NotEmpty(_diveProfileViewModel.ToleratedAmbientPressures);
-            Assert.NotEmpty(_diveProfileViewModel.AValues);
-            Assert.NotEmpty(_diveProfileViewModel.BValues);
-            Assert.NotEmpty(_diveProfileViewModel.CompartmentLoad);
-            Assert.Equal(expectedValue, _diveProfileViewModel.PressureOxygen);
-            Assert.Equal(expectedValue, _diveProfileViewModel.PressureNitrogen);
-            Assert.Equal(expectedValue, _diveProfileViewModel.PressureHelium);
+            Assert.NotEmpty(diveProfile.MaxSurfacePressures);
+            Assert.NotEmpty(diveProfile.TissuePressuresNitrogen);
+            Assert.NotEmpty(diveProfile.TissuePressuresHelium);
+            Assert.NotEmpty(diveProfile.TissuePressuresTotal);
+            Assert.NotEmpty(diveProfile.ToleratedAmbientPressures);
+            Assert.NotEmpty(diveProfile.AValues);
+            Assert.NotEmpty(diveProfile.BValues);
+            Assert.NotEmpty(diveProfile.CompartmentLoad);
+            Assert.Equal(expectedValue, diveProfile.PressureOxygen);
+            Assert.Equal(expectedValue, diveProfile.PressureNitrogen);
+            Assert.Equal(expectedValue, diveProfile.PressureHelium);
         }
 
         [Fact]
         public void RaisePropertyChanged()
         {
             //Arrange
+            var diveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
             var viewModelEvents = new List<string>();
-            _diveProfileViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
+            diveProfile.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            _diveProfileViewModel.MaxSurfacePressures = expectedArray;
-            _diveProfileViewModel.TissuePressuresNitrogen = expectedArray;
-            _diveProfileViewModel.TissuePressuresHelium = expectedArray;
-            _diveProfileViewModel.TissuePressuresTotal = expectedArray;
-            _diveProfileViewModel.ToleratedAmbientPressures = expectedArray;
-            _diveProfileViewModel.AValues = expectedArray;
-            _diveProfileViewModel.BValues = expectedArray;
-            _diveProfileViewModel.CompartmentLoad = expectedArray;
-            _diveProfileViewModel.PressureOxygen = expectedValue;
-            _diveProfileViewModel.PressureHelium = expectedValue;
-            _diveProfileViewModel.PressureNitrogen = expectedValue;
+            diveProfile.MaxSurfacePressures = expectedArray;
+            diveProfile.TissuePressuresNitrogen = expectedArray;
+            diveProfile.TissuePressuresHelium = expectedArray;
+            diveProfile.TissuePressuresTotal = expectedArray;
+            diveProfile.ToleratedAmbientPressures = expectedArray;
+            diveProfile.AValues = expectedArray;
+            diveProfile.BValues = expectedArray;
+            diveProfile.CompartmentLoad = expectedArray;
+            diveProfile.PressureOxygen = expectedValue;
+            diveProfile.PressureHelium = expectedValue;
+            diveProfile.PressureNitrogen = expectedValue;
 
 
             //Assert
             Assert.NotEmpty(viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.MaxSurfacePressures), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.TissuePressuresNitrogen), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.TissuePressuresHelium), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.TissuePressuresHelium), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.ToleratedAmbientPressures), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.AValues), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.BValues), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.CompartmentLoad), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.PressureOxygen), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.PressureHelium), viewModelEvents);
-            Assert.Contains(nameof(_diveProfileViewModel.PressureNitrogen), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.MaxSurfacePressures), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.TissuePressuresNitrogen), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.TissuePressuresHelium), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.TissuePressuresHelium), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.ToleratedAmbientPressures), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.AValues), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.BValues), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.CompartmentLoad), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.PressureOxygen), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.PressureHelium), viewModelEvents);
+            Assert.Contains(nameof(diveProfile.PressureNitrogen), viewModelEvents);
         }
 
         [Fact]
         public void Clone()
         {
             //Act
-            var newDiveProfileModel = _diveProfileViewModel.DeepClone();
+            var diveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
+            var newDiveProfileModel = diveProfile.DeepClone();
 
             //Assert
-            Assert.NotSame(_diveProfileViewModel, newDiveProfileModel);
-            Assert.NotSame(_diveProfileViewModel.PressureOxygen, newDiveProfileModel.PressureOxygen);
-            Assert.NotSame(_diveProfileViewModel.PressureNitrogen, newDiveProfileModel.PressureNitrogen);
-            Assert.NotSame(_diveProfileViewModel.PressureHelium, newDiveProfileModel.PressureHelium);
-            Assert.NotSame(_diveProfileViewModel.AValues, newDiveProfileModel.AValues);
-            Assert.NotSame(_diveProfileViewModel.BValues, newDiveProfileModel.BValues);
-            Assert.NotSame(_diveProfileViewModel.TissuePressuresNitrogen, newDiveProfileModel.TissuePressuresNitrogen);
-            Assert.NotSame(_diveProfileViewModel.TissuePressuresHelium, newDiveProfileModel.TissuePressuresHelium);
-            Assert.NotSame(_diveProfileViewModel.TissuePressuresTotal, newDiveProfileModel.TissuePressuresTotal);
-            Assert.NotSame(_diveProfileViewModel.ToleratedAmbientPressures, newDiveProfileModel.ToleratedAmbientPressures);
-            Assert.NotSame(_diveProfileViewModel.CompartmentLoad, newDiveProfileModel.CompartmentLoad);
-            Assert.NotSame(_diveProfileViewModel.MaxSurfacePressures, newDiveProfileModel.MaxSurfacePressures);
+            Assert.NotSame(diveProfile, newDiveProfileModel);
+            Assert.Equal(diveProfile.PressureOxygen, newDiveProfileModel.PressureOxygen);
+            Assert.Equal(diveProfile.PressureNitrogen, newDiveProfileModel.PressureNitrogen);
+            Assert.Equal(diveProfile.PressureHelium, newDiveProfileModel.PressureHelium);
+            Assert.NotSame(diveProfile.AValues, newDiveProfileModel.AValues);
+            Assert.NotSame(diveProfile.BValues, newDiveProfileModel.BValues);
+            Assert.NotSame(diveProfile.TissuePressuresNitrogen, newDiveProfileModel.TissuePressuresNitrogen);
+            Assert.NotSame(diveProfile.TissuePressuresHelium, newDiveProfileModel.TissuePressuresHelium);
+            Assert.NotSame(diveProfile.TissuePressuresTotal, newDiveProfileModel.TissuePressuresTotal);
+            Assert.NotSame(diveProfile.ToleratedAmbientPressures, newDiveProfileModel.ToleratedAmbientPressures);
+            Assert.NotSame(diveProfile.CompartmentLoad, newDiveProfileModel.CompartmentLoad);
+            Assert.NotSame(diveProfile.MaxSurfacePressures, newDiveProfileModel.MaxSurfacePressures);
         }
     }
 }

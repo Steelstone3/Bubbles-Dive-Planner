@@ -1,0 +1,40 @@
+using BubblesDivePlannerTests.Asserters;
+using BubblesDivePlannerTests.TestFixtures;
+using Xunit;
+
+namespace BubblesDivePlannerTests.Acceptance
+{
+    public class DivePlannerShould
+    {
+         private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
+        private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
+
+
+        [Fact(Skip = "Unexplained failing test")]
+        public void AddCylinder()
+        {
+            //Arrange
+            var selectedCylinder = diveStagesTextFixture.GetSelectedCylinder;
+
+            //Act
+            // _cylinderSelectorViewModel.AddCylinderCommand.Execute();
+
+            //Assert
+            // Assert.NotEmpty(_cylinderSelectorViewModel.Cylinders);
+        }
+
+        [Fact(Skip = "Need to work out how to get this type of test working")]
+        public void CanAddCylinder()
+        {
+            //Arrange
+            //Stubs of requirements
+
+            //Act
+            // _mainWindowViewModel.CalculateDiveStepCommand.Execute();
+
+            //Assert
+            //TODO AH something results populated
+        }
+
+    }
+}
