@@ -6,7 +6,7 @@ namespace BubblesDivePlannerTests.Acceptance
 {
     public class DivePlannerShould
     {
-         private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
+        private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
         private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
 
 
@@ -25,6 +25,32 @@ namespace BubblesDivePlannerTests.Acceptance
 
         [Fact(Skip = "Need to work out how to get this type of test working")]
         public void CanAddCylinder()
+        {
+            //Arrange
+            //Stubs of requirements
+
+            //Act
+            // _mainWindowViewModel.CalculateDiveStepCommand.Execute();
+
+            //Assert
+            //TODO AH something results populated
+        }
+
+        [Fact(Skip = "Need to work out how to get this type of test working")]
+        public void CalculateDiveStep()
+        {
+            //Arrange
+            //Stubs of requirements
+
+            //Act
+            // _mainWindowViewModel.CalculateDiveStepCommand.Execute();
+
+            //Assert
+            //TODO AH something results populated
+        }
+
+        [Fact(Skip = "Need to work out how to get this type of test working")]
+        public void CanCalculateDiveStep()
         {
             //Arrange
             //Stubs of requirements

@@ -46,31 +46,5 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             Assert.Contains(nameof(_mainWindowViewModel.CylinderSelector), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.ResultsOverviewModel), viewModelEvents);
         }
-
-        [Fact(Skip = "Need to work out how to get this type of test working")]
-        public void CalculateDiveStep()
-        {
-            //Arrange
-            //Stubs of requirements
-
-            //Act
-            _mainWindowViewModel.CalculateDiveStepCommand.Execute();
-
-            //Assert
-            //TODO AH something results populated
-        }
-
-        [Fact(Skip = "Need to work out how to get this type of test working")]
-        public void CanCalculateDiveStep()
-        {
-            //Arrange
-            //Stubs of requirements
-
-            //Act
-            _mainWindowViewModel.CalculateDiveStepCommand.Execute();
-
-            //Assert
-            //TODO AH something results populated
-        }
     }
 }
