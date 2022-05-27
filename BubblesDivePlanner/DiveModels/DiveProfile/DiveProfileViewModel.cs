@@ -86,14 +86,14 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
         {
             return new DiveProfileViewModel()
             {
-                MaxSurfacePressures = this.MaxSurfacePressures,
-                TissuePressuresNitrogen = this.TissuePressuresNitrogen,
-                TissuePressuresHelium = this.TissuePressuresHelium,
-                TissuePressuresTotal = this.TissuePressuresTotal,
-                ToleratedAmbientPressures = this.ToleratedAmbientPressures,
-                AValues = this.AValues,
-                BValues = this.BValues,
-                CompartmentLoad = this.CompartmentLoad,
+                MaxSurfacePressures = new List<double>(this.MaxSurfacePressures),
+                TissuePressuresNitrogen = new List<double>(this.TissuePressuresNitrogen),
+                TissuePressuresHelium = new List<double>(this.TissuePressuresHelium),
+                TissuePressuresTotal = new List<double>(this.TissuePressuresTotal),
+                ToleratedAmbientPressures = new List<double>(this.ToleratedAmbientPressures),
+                AValues = new List<double>(this.AValues),
+                BValues = new List<double>(this.BValues),
+                CompartmentLoad = new List<double>(this.CompartmentLoad),
                 PressureOxygen = this.PressureOxygen,
                 PressureHelium = this.PressureHelium,
                 PressureNitrogen = this.PressureNitrogen,

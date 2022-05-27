@@ -17,8 +17,7 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
             var diveModelDummy = new Mock<IDiveModel>();
             var diveStepModelDummy = new Mock<IDiveStepModel>();
             var selectedCylinderModelDummy = new Mock<ICylinderSetupModel>();
-            var resultModelDummy = new Mock<IResultModel>();
-            IDiveStageCommandFactory diveStageCommandFactory = new DiveStageCommandFactory(diveModelDummy.Object, diveStepModelDummy.Object, selectedCylinderModelDummy.Object, resultModelDummy.Object);
+            IDiveStageCommandFactory diveStageCommandFactory = new DiveStageCommandFactory(diveModelDummy.Object, diveStepModelDummy.Object, selectedCylinderModelDummy.Object);
 
             //Assert
             var actualDiveStages = diveStageCommandFactory.CreateDiveStages();

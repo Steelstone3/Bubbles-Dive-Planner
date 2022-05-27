@@ -7,18 +7,16 @@ namespace BubblesDivePlanner.DiveStages.Runner
 {
     public class DiveStageRunner : IDiveStageRunner
     {
-        public IResultModel RunDiveStages(IDiveModel diveModel, IDiveStepModel diveStepModel, ICylinderSetupModel selectedCylinder)
+        public void RunDiveStages(IDiveModel diveModel, IDiveStepModel diveStepModel, ICylinderSetupModel selectedCylinder)
         {
             var resultModel = new ResultViewModel();
-            var diveStageCommandFactory = new DiveStageCommandFactory(diveModel, diveStepModel, selectedCylinder, resultModel);
+            var diveStageCommandFactory = new DiveStageCommandFactory(diveModel, diveStepModel, selectedCylinder);
             var stages = diveStageCommandFactory.CreateDiveStages();
 
             foreach (var stage in stages)
             {
                 stage.RunDiveStage();
             }
-
-            return resultModel;
         }
     }
 }

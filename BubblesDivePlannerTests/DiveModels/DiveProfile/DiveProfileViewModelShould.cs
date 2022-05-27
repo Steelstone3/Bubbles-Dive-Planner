@@ -85,6 +85,17 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
 
             //Assert
             Assert.NotSame(_diveProfileViewModel, newDiveProfileModel);
+            Assert.NotSame(_diveProfileViewModel.PressureOxygen, newDiveProfileModel.PressureOxygen);
+            Assert.NotSame(_diveProfileViewModel.PressureNitrogen, newDiveProfileModel.PressureNitrogen);
+            Assert.NotSame(_diveProfileViewModel.PressureHelium, newDiveProfileModel.PressureHelium);
+            Assert.NotSame(_diveProfileViewModel.AValues, newDiveProfileModel.AValues);
+            Assert.NotSame(_diveProfileViewModel.BValues, newDiveProfileModel.BValues);
+            Assert.NotSame(_diveProfileViewModel.TissuePressuresNitrogen, newDiveProfileModel.TissuePressuresNitrogen);
+            Assert.NotSame(_diveProfileViewModel.TissuePressuresHelium, newDiveProfileModel.TissuePressuresHelium);
+            Assert.NotSame(_diveProfileViewModel.TissuePressuresTotal, newDiveProfileModel.TissuePressuresTotal);
+            Assert.NotSame(_diveProfileViewModel.ToleratedAmbientPressures, newDiveProfileModel.ToleratedAmbientPressures);
+            Assert.NotSame(_diveProfileViewModel.CompartmentLoad, newDiveProfileModel.CompartmentLoad);
+            Assert.NotSame(_diveProfileViewModel.MaxSurfacePressures, newDiveProfileModel.MaxSurfacePressures);
         }
     }
 }

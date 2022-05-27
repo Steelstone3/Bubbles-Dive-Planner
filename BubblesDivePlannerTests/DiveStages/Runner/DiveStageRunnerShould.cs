@@ -1,13 +1,6 @@
 using Xunit;
 using BubblesDivePlanner.DiveStages.Runner;
-using BubblesDivePlanner.DiveModels;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.DiveStep;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using System.Collections.Generic;
-using System;
-using BubblesDivePlanner.Results;
 using BubblesDivePlannerTests.TestFixtures;
 using BubblesDivePlannerTests.Asserters;
 
@@ -30,12 +23,12 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
             IDiveStageRunner diveStageRunner = new DiveStageRunner();
 
             //Act
-            var results = diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
+            diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
 
             //Assert
-            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, results.DiveStepModel);
-            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, results.CylinderSetupModel);
-            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromFirstRun, results.DiveProfileModel);
+            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
+            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
+            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromFirstRun, diveModel.DiveProfile);
         }
 
         [Fact(Skip = "Need to implement second result in test fixture")]
@@ -48,20 +41,20 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
             IDiveStageRunner diveStageRunner = new DiveStageRunner();
 
             //Act
-            var results = diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
+            diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
             
             //Assert
-            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, results.DiveStepModel);
-            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, results.CylinderSetupModel);
-            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromFirstRun, results.DiveProfileModel);
+            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
+            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
+            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromFirstRun, diveModel.DiveProfile);
 
             //Act
-            results = diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
+            diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
             
             //Assert
-            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, results.DiveStepModel);
-            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, results.CylinderSetupModel);
-            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromSecondRun, results.DiveProfileModel);
+            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
+            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
+            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromSecondRun, diveModel.DiveProfile);
         }
 
     }
