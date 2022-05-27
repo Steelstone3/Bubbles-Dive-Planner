@@ -1,36 +1,33 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveStages;
+using BubblesDivePlannerTests.Asserters;
+using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
 namespace BubblesDivePlannerTests.DiveStages
 {
     public class CompartmentLoadCommandShould
     {
-        private IDiveModel _diveModel = new Zhl16BuhlmannModel();
+        private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
+        private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
 
-        [Theory]
-        [InlineData(new double[16] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 },
-            new double[16] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 },
-            new double[16] { 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0 })]
-        public void RunCompartmentLoadStage(double[] tissuePressuresTotal, double[] maxSurfacePressure,
-            double[] compartmentLoadResult)
+        [Fact]
+        public void RunCompartmentLoadStage()
         {
             //Arrange
-            SetupDiveStage(tissuePressuresTotal, maxSurfacePressure);
-            var diveStage = new CompartmentLoadCommand(_diveModel);
+            var expectedDiveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
+            var diveModel = diveStagesTextFixture.GetDiveModel;
+            diveModel.DiveProfile.TissuePressuresTotal = expectedDiveProfile.TissuePressuresTotal;
+            diveModel.DiveProfile.MaxSurfacePressures = expectedDiveProfile.MaxSurfacePressures;
+
+            var diveStage = new CompartmentLoadCommand(diveModel);
 
             //Act
             diveStage.RunDiveStage();
 
             //Assert
-            Assert.Equal(compartmentLoadResult, _diveModel.DiveProfile.CompartmentLoad);
-        }
-
-        private void SetupDiveStage(double[] tissuePressuresTotal, double[] maxSurfacePressure)
-        {
-            _diveModel.DiveProfile.TissuePressuresTotal = new List<double>(tissuePressuresTotal);
-            _diveModel.DiveProfile.MaxSurfacePressures = new List<double>(maxSurfacePressure);
+            Assert.Equal(expectedDiveProfile.CompartmentLoad, diveModel.DiveProfile.CompartmentLoad);
         }
     }
 }

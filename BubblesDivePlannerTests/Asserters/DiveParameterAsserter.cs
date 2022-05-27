@@ -1,3 +1,4 @@
+using System;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.DiveModels.DiveProfile;
 using BubblesDivePlanner.DiveStep;
@@ -7,13 +8,13 @@ namespace BubblesDivePlannerTests.Asserters
 {
     public class DiveParameterAsserter
     {
-        public void AssertDiveStepValuesEquality(DiveStepViewModel expectedDiveStepViewModel, DiveStepViewModel actualDiveStepViewModel)
+        public void AssertDiveStepValuesEquality(IDiveStepModel expectedDiveStepViewModel, IDiveStepModel actualDiveStepViewModel)
         {
             Assert.Equal(expectedDiveStepViewModel.Depth, actualDiveStepViewModel.Depth);
             Assert.Equal(expectedDiveStepViewModel.Time, actualDiveStepViewModel.Time);
         }
 
-        public void AssertSelectedCylinderValuesEquality(CylinderSetupViewModel expectedSelectedCylinderViewModel, CylinderSetupViewModel actualSelectedCylinderViewModel)
+        public void AssertSelectedCylinderValuesEquality(ICylinderSetupModel expectedSelectedCylinderViewModel, ICylinderSetupModel actualSelectedCylinderViewModel)
         {
             Assert.NotNull(actualSelectedCylinderViewModel);
             Assert.Equal(expectedSelectedCylinderViewModel.CylinderName, actualSelectedCylinderViewModel.CylinderName);
@@ -30,7 +31,7 @@ namespace BubblesDivePlannerTests.Asserters
             Assert.Equal(expectedSelectedCylinderViewModel.GasUsage.GasUsed, actualSelectedCylinderViewModel.GasUsage.GasUsed);
         }
 
-          public void AssertDiveProfileValuesEquality(DiveProfileViewModel expectedDiveStepViewModel, DiveProfileViewModel actualDiveStepViewModel)
+        public void AssertDiveProfileValuesEquality(IDiveProfileModel expectedDiveStepViewModel, IDiveProfileModel actualDiveStepViewModel)
         {
             Assert.NotNull(actualDiveStepViewModel);
             Assert.Equal(expectedDiveStepViewModel.PressureOxygen, actualDiveStepViewModel.PressureOxygen);
