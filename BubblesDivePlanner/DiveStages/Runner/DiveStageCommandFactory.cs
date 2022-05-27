@@ -30,7 +30,7 @@ namespace BubblesDivePlanner.DiveStages.Runner
                 new ToleratedAmbientPressureCommand(_diveModel),
                 new MaximumSurfacePressureCommand(_diveModel),
                 new CompartmentLoadCommand(_diveModel),
-                new PublishResultsCommand(_diveModel, _diveStepModel, _resultModel)
+                new PublishResultsCommand(_diveModel.DiveProfile, _diveStepModel, _selectedCylinderModel, _resultModel)
             };
         }
     }

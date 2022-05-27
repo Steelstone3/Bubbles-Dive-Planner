@@ -66,6 +66,8 @@ namespace BubblesDivePlanner.ApplicationEntry
             ResultsOverviewModel.LatestResult.DiveStepModel = DiveStep.DeepClone();
             ResultsOverviewModel.LatestResult.CylinderSetupModel = new CylinderPrototype().Clone(CylinderSelector.SelectedCylinder);
             
+            DiveModelSelector.SelectedDiveModel.DiveProfile = ResultsOverviewModel.LatestResult.DiveProfileModel;
+
             //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
             //Then return the result into a result view model (which will need better naming than the original)
         }
