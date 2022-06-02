@@ -38,18 +38,18 @@ namespace BubblesDivePlannerTests.TestFixtures
         };
 
         //TODO in progress need to put in the expected results here
-        public DiveProfileViewModel GetDiveProfileResult => new DiveProfileViewModel() {
+        public DiveProfileViewModel GetDiveProfileResult => new DiveProfileViewModel(16) {
             PressureOxygen = 0,
             PressureNitrogen = 0,
             PressureHelium = 0,
-            AValues = new List<double> {},
-            BValues = new List<double> {},
-            MaxSurfacePressures = new List<double> {},
-            TissuePressuresNitrogen = new List<double> {},
-            TissuePressuresHelium = new List<double> {},
-            TissuePressuresTotal = new List<double> {},
-            ToleratedAmbientPressures = new List<double> {},
-            CompartmentLoad = new List<double> {}
+            AValues = new double[] {},
+            BValues = new double[] {},
+            MaxSurfacePressures = new double[] {},
+            TissuePressuresNitrogen = new double[] {},
+            TissuePressuresHelium = new double[] {},
+            TissuePressuresTotal = new double[] {},
+            ToleratedAmbientPressures = new double[] {},
+            CompartmentLoad = new double[] {}
         };
     }
 }

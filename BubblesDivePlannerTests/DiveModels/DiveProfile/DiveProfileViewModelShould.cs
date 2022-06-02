@@ -1,6 +1,7 @@
 using Xunit;
 using System.Collections.Generic;
 using BubblesDivePlannerTests.TestFixtures;
+using BubblesDivePlanner.DiveModels.DiveProfile;
 
 namespace BubblesDivePlannerTests.DiveModels.DiveProfile
 {
@@ -9,6 +10,26 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
         private readonly double[] expectedArray = { 3.0, 6.0 };
         private readonly double expectedValue = 10;
         private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
+
+        [Fact]
+        public void ConstructsModel() 
+        {
+            //Arrange
+            var diveProfile = new DiveProfileViewModel(16);
+
+            //Assert
+            Assert.NotEmpty(diveProfile.MaxSurfacePressures);
+            Assert.NotEmpty(diveProfile.TissuePressuresNitrogen);
+            Assert.NotEmpty(diveProfile.TissuePressuresHelium);
+            Assert.NotEmpty(diveProfile.TissuePressuresTotal);
+            Assert.NotEmpty(diveProfile.ToleratedAmbientPressures);
+            Assert.NotEmpty(diveProfile.AValues);
+            Assert.NotEmpty(diveProfile.BValues);
+            Assert.NotEmpty(diveProfile.CompartmentLoad);
+            Assert.Equal(0, diveProfile.PressureOxygen);
+            Assert.Equal(0, diveProfile.PressureNitrogen);
+            Assert.Equal(0, diveProfile.PressureHelium);
+        }
 
         [Fact]
         public void AllowModelToBeSet()

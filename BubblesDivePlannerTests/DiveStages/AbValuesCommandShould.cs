@@ -20,9 +20,9 @@ namespace BubblesDivePlannerTests.DiveStages
             var tissuePressureHelium = expectedDiveProfile.TissuePressuresHelium;
             var tissuePressureTotal = expectedDiveProfile.TissuePressuresTotal;
             var diveModel = diveStagesTextFixture.GetDiveModel;
-            diveModel.DiveProfile.TissuePressuresNitrogen = new List<double>(tissuePressureNitrogen);
-            diveModel.DiveProfile.TissuePressuresHelium = new List<double>(tissuePressureHelium);
-            diveModel.DiveProfile.TissuePressuresTotal = new List<double>(tissuePressureTotal);
+            diveModel.DiveProfile.TissuePressuresNitrogen = diveStagesTextFixture.DiveProfile.TissuePressuresNitrogen;
+            diveModel.DiveProfile.TissuePressuresHelium = diveStagesTextFixture.DiveProfile.TissuePressuresHelium;
+            diveModel.DiveProfile.TissuePressuresTotal = diveStagesTextFixture.DiveProfile.TissuePressuresTotal;
 
             IDiveStageCommand diveStage = new AbValuesCommand(diveModel);
 

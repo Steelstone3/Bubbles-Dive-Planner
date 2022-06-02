@@ -7,12 +7,12 @@ namespace BubblesDivePlanner.DiveModels
     {
         string DiveModelName { get; }
         int CompartmentCount { get; }
-        IList<double> NitrogenHalfTime { get; }
-        IList<double> HeliumHalfTime { get; }
-        IList<double> AValuesNitrogen { get; }
-        IList<double> BValuesNitrogen { get; }
-        IList<double> AValuesHelium { get; }
-        IList<double> BValuesHelium { get; }
+        double[] NitrogenHalfTime { get; }
+        double[] HeliumHalfTime { get; }
+        double[] AValuesNitrogen { get; }
+        double[] BValuesNitrogen { get; }
+        double[] AValuesHelium { get; }
+        double[] BValuesHelium { get; }
         IDiveProfileModel DiveProfile { get; set; }
     }
 }

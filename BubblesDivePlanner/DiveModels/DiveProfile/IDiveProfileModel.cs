@@ -4,14 +4,14 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
 {
     public interface IDiveProfileModel
     {
-        IList<double> MaxSurfacePressures { get; set; }
-        IList<double> CompartmentLoad { get; set; }
-        IList<double> TissuePressuresNitrogen { get; set; }
-        IList<double> TissuePressuresHelium { get; set; }
-        IList<double> TissuePressuresTotal { get; set; }
-        IList<double> ToleratedAmbientPressures { get; set; }
-        IList<double> AValues { get; set; }
-        IList<double> BValues { get; set; }
+        double[] MaxSurfacePressures { get; set; }
+        double[] CompartmentLoad { get; set; }
+        double[] TissuePressuresNitrogen { get; set; }
+        double[] TissuePressuresHelium { get; set; }
+        double[] TissuePressuresTotal { get; set; }
+        double[] ToleratedAmbientPressures { get; set; }
+        double[] AValues { get; set; }
+        double[] BValues { get; set; }
         double PressureOxygen { get; set; }
         double PressureHelium { get; set; }
         double PressureNitrogen { get; set; }

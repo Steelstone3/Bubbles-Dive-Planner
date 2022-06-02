@@ -1,61 +1,69 @@
-using System.Collections.Generic;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DiveModels.DiveProfile
 {
     public class DiveProfileViewModel : ReactiveObject, IDiveProfileModel
     {
-        private IList<double> _maxSurfacePressures = new List<double>();
-        public IList<double> MaxSurfacePressures
+        private readonly int _compartmentCount;
+
+        public DiveProfileViewModel(int compartmentCount)
+        {
+            _compartmentCount = compartmentCount;
+            ConstructDiveProfile();
+            InitialiseDiveProfile();
+        }
+
+        private double[] _maxSurfacePressures;
+        public double[] MaxSurfacePressures
         {
             get => _maxSurfacePressures;
             set => this.RaiseAndSetIfChanged(ref _maxSurfacePressures, value);
         }
 
-        private IList<double> _tissuePressuresNitrogen = new List<double>();
-        public IList<double> TissuePressuresNitrogen
+        private double[] _tissuePressuresNitrogen;
+        public double[] TissuePressuresNitrogen
         {
             get => _tissuePressuresNitrogen;
             set => this.RaiseAndSetIfChanged(ref _tissuePressuresNitrogen, value);
         }
 
-        private IList<double> _tissuePressuresHelium = new List<double>();
-        public IList<double> TissuePressuresHelium
+        private double[] _tissuePressuresHelium;
+        public double[] TissuePressuresHelium
         {
             get => _tissuePressuresHelium;
             set => this.RaiseAndSetIfChanged(ref _tissuePressuresHelium, value);
         }
 
-        private IList<double> _tissuePressuresTotal = new List<double>();
-        public IList<double> TissuePressuresTotal
+        private double[] _tissuePressuresTotal;
+        public double[] TissuePressuresTotal
         {
             get => _tissuePressuresTotal;
             set => this.RaiseAndSetIfChanged(ref _tissuePressuresTotal, value);
         }
 
-        private IList<double> _toleratedAmbientPressures = new List<double>();
-        public IList<double> ToleratedAmbientPressures
+        private double[] _toleratedAmbientPressures;
+        public double[] ToleratedAmbientPressures
         {
             get => _toleratedAmbientPressures;
             set => this.RaiseAndSetIfChanged(ref _toleratedAmbientPressures, value);
         }
 
-        private IList<double> _aValues = new List<double>();
-        public IList<double> AValues
+        private double[] _aValues;
+        public double[] AValues
         {
             get => _aValues;
             set => this.RaiseAndSetIfChanged(ref _aValues, value);
         }
 
-        public IList<double> _bValues = new List<double>();
-        public IList<double> BValues
+        public double[] _bValues;
+        public double[] BValues
         {
             get => _bValues;
             set => this.RaiseAndSetIfChanged(ref _bValues, value);
         }
 
-        public IList<double> _compartmentLoad = new List<double>();
-        public IList<double> CompartmentLoad
+        public double[] _compartmentLoad;
+        public double[] CompartmentLoad
         {
             get => _compartmentLoad;
             set => this.RaiseAndSetIfChanged(ref _compartmentLoad, value);
@@ -84,20 +92,50 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
 
         public IDiveProfileModel DeepClone()
         {
-            return new DiveProfileViewModel()
+            var deepCloneDiveProfile = new DiveProfileViewModel(_compartmentCount)
             {
-                MaxSurfacePressures = new List<double>(this.MaxSurfacePressures),
-                TissuePressuresNitrogen = new List<double>(this.TissuePressuresNitrogen),
-                TissuePressuresHelium = new List<double>(this.TissuePressuresHelium),
-                TissuePressuresTotal = new List<double>(this.TissuePressuresTotal),
-                ToleratedAmbientPressures = new List<double>(this.ToleratedAmbientPressures),
-                AValues = new List<double>(this.AValues),
-                BValues = new List<double>(this.BValues),
-                CompartmentLoad = new List<double>(this.CompartmentLoad),
                 PressureOxygen = this.PressureOxygen,
                 PressureHelium = this.PressureHelium,
                 PressureNitrogen = this.PressureNitrogen,
             };
+
+            MaxSurfacePressures.CopyTo(deepCloneDiveProfile.MaxSurfacePressures, 0);
+            TissuePressuresNitrogen.CopyTo(deepCloneDiveProfile.TissuePressuresNitrogen, 0);
+            TissuePressuresHelium.CopyTo(deepCloneDiveProfile.TissuePressuresHelium, 0);
+            TissuePressuresTotal.CopyTo(deepCloneDiveProfile.TissuePressuresTotal, 0);
+            ToleratedAmbientPressures.CopyTo(deepCloneDiveProfile.ToleratedAmbientPressures, 0);
+            AValues.CopyTo(deepCloneDiveProfile.AValues, 0);
+            BValues.CopyTo(deepCloneDiveProfile.BValues, 0);
+            CompartmentLoad.CopyTo(deepCloneDiveProfile.CompartmentLoad, 0);
+
+            return deepCloneDiveProfile;
+        }
+
+        private void ConstructDiveProfile()
+        {
+            _maxSurfacePressures = new double[_compartmentCount];
+            _tissuePressuresNitrogen = new double[_compartmentCount];
+            _tissuePressuresHelium = new double[_compartmentCount];
+            _tissuePressuresTotal = new double[_compartmentCount];
+            _toleratedAmbientPressures = new double[_compartmentCount];
+            _aValues = new double[_compartmentCount];
+            _bValues = new double[_compartmentCount];
+            _compartmentLoad = new double[_compartmentCount];
+        }
+
+        private void InitialiseDiveProfile()
+        {
+            for (int compartment = 0; compartment < _compartmentCount; compartment++)
+            {
+                _maxSurfacePressures[compartment] = 0;
+                _toleratedAmbientPressures[compartment] = 0;
+                _compartmentLoad[compartment] = 0;
+                _tissuePressuresNitrogen[compartment] = 0.79;
+                _tissuePressuresHelium[compartment] = 0;
+                _tissuePressuresTotal[compartment] = 0.79;
+                _aValues[compartment] = 0;
+                _bValues[compartment] = 0;
+            }
         }
     }
 }
