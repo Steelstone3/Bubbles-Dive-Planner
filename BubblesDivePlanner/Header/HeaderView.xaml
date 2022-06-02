@@ -10,7 +10,7 @@
     <Grid>
         <Menu Background="#FFCFCFCF">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" HotKey="Ctrl+N" />
+                <MenuItem Header="_New" HotKey="Ctrl+N" Command="{Binding HeaderModel.FileModel.NewModel.CreateNewDivePlannerInstanceCommand}"/>
                 <MenuItem Header="_Open ..." HotKey="Ctrl+O" />
                 <MenuItem Header="_Save ..." HotKey="Ctrl+S" />
                 <Separator />

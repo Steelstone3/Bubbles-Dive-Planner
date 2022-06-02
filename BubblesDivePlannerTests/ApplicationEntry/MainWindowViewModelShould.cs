@@ -17,6 +17,7 @@ namespace BubblesDivePlannerTests.ApplicationEntry
         public void AllowModelToBeSet()
         {
             //Assert
+            Assert.NotNull(_mainWindowViewModel.HeaderModel);
             Assert.NotNull(_mainWindowViewModel.DiveModelSelector);
             Assert.NotNull(_mainWindowViewModel.DiveStep);
             Assert.NotNull(_mainWindowViewModel.CylinderSelector);

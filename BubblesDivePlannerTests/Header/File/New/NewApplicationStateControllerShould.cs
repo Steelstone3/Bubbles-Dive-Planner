@@ -1,6 +1,5 @@
 using BubblesDivePlanner.Header.File.New;
 using BubblesDivePlanner.ApplicationEntry;
-using Moq;
 using Xunit;
 
 namespace BubblesDivePlannerTests.Header.File.New
@@ -13,13 +12,17 @@ namespace BubblesDivePlannerTests.Header.File.New
         public void CreateNewDivePlannerInstance() 
         {
             //Arrange
-            var divePlannerDummy = new Mock<IMainWindowModel>();
+            var oldDivePlannerInstance = new MainWindowViewModel();
 
             //Act
-            var divePlanner = _newController.CreateNewApplicationInstance();
+            var newDivePlannerInstance = _newController.CreateNewApplicationInstance();
 
             //Assert
-            Assert.NotSame(divePlannerDummy.Object, divePlanner);
+            Assert.NotSame(oldDivePlannerInstance, newDivePlannerInstance);
+            Assert.NotSame(oldDivePlannerInstance.DiveModelSelector, newDivePlannerInstance.DiveModelSelector);
+            Assert.NotSame(oldDivePlannerInstance.DiveStep, newDivePlannerInstance.DiveStep);
+            Assert.NotSame(oldDivePlannerInstance.CylinderSelector, newDivePlannerInstance.CylinderSelector);
+            Assert.NotSame(oldDivePlannerInstance.ResultsOverviewModel, newDivePlannerInstance.ResultsOverviewModel);
         }
     }
 }

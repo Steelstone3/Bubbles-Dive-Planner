@@ -8,6 +8,7 @@ using System.Reactive;
 using BubblesDivePlanner.Visibility;
 using BubblesDivePlanner.Results;
 using BubblesDivePlanner.DiveStages.Runner;
+using BubblesDivePlanner.Header;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -16,7 +17,10 @@ namespace BubblesDivePlanner.ApplicationEntry
         public MainWindowViewModel()
         {
             CalculateDiveStepCommand = ReactiveCommand.Create(CalculateDiveStep, CanCalculateDiveStep);
+            HeaderModel = new HeaderViewModel(this);
         }
+
+        public IHeaderModel HeaderModel { get; }
 
         private IDiveModelSelectorModel _diveModelSelector = new DiveModelSelectorViewModel();
         public IDiveModelSelectorModel DiveModelSelector
@@ -58,6 +62,7 @@ namespace BubblesDivePlanner.ApplicationEntry
                     && CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
                     && DiveStep.ValidateDiveStep(diveStep));
         }
+        
 
         private void CalculateDiveStep()
         {
