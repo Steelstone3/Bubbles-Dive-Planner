@@ -18,7 +18,7 @@ namespace BubblesDivePlanner.Header.File.New
 
         private void CreateNewDivePlannerInstance()
         {
-            _mainWindowModel = new NewApplicationStateController().CreateNewApplicationInstance();
+            new NewApplicationStateController().CreateNewApplicationInstance(_mainWindowModel);
         }
     }
 }

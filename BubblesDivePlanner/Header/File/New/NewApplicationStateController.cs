@@ -8,15 +8,12 @@ namespace BubblesDivePlanner.Header.File.New
 {
     public class NewApplicationStateController
     {
-        public IMainWindowModel CreateNewApplicationInstance()
+        public void CreateNewApplicationInstance(IMainWindowModel mainWindowModel)
         {
-            return new MainWindowViewModel();
-            // {
-            //     DiveModelSelector = new DiveModelSelectorViewModel(),
-            //     DiveStep = new DiveStepViewModel(),
-            //     CylinderSelector = new CylinderSelectorViewModel(),
-            //     ResultsOverviewModel = new ResultsOverviewViewModel(),
-            // };
+            mainWindowModel.DiveModelSelector = new DiveModelSelectorViewModel();
+            mainWindowModel.DiveStep = new DiveStepViewModel();
+            mainWindowModel.CylinderSelector = new CylinderSelectorViewModel();
+            mainWindowModel.ResultsOverviewModel = new ResultsOverviewViewModel();
         }
     }
 }

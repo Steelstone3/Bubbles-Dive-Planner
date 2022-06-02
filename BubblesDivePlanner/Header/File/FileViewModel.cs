@@ -12,7 +12,7 @@ namespace BubblesDivePlanner.Header.File
             _mainWindowModel = mainWindowModel;
             NewModel = new NewViewModel(_mainWindowModel);
         }
-        
-        public INewModel NewModel {get;}
+
+        public INewModel NewModel { get; }
     }
 }

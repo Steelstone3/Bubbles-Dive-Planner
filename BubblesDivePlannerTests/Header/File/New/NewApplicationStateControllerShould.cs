@@ -1,28 +1,33 @@
 using BubblesDivePlanner.Header.File.New;
 using BubblesDivePlanner.ApplicationEntry;
 using Xunit;
+using BubblesDivePlannerTests.TestFixtures;
 
 namespace BubblesDivePlannerTests.Header.File.New
 {
     public class NewApplicationStateControllerShould
     {
-        private NewApplicationStateController _newController = new NewApplicationStateController();
+        private DiveStagesTextFixture _diveStagesTextFixture = new DiveStagesTextFixture();
 
         [Fact]
-        public void CreateNewDivePlannerInstance() 
+        public void CreateNewDivePlannerInstance()
         {
             //Arrange
-            var oldDivePlannerInstance = new MainWindowViewModel();
+            NewApplicationStateController newController = new NewApplicationStateController();
+            var divePlannerInstance = new MainWindowViewModel();
+            var diveModelSelector = divePlannerInstance.DiveModelSelector;
+            var diveStep = divePlannerInstance.DiveStep;
+            var cylinderSelector = divePlannerInstance.CylinderSelector;
+            var resultsOverview = divePlannerInstance.ResultsOverviewModel;
 
             //Act
-            var newDivePlannerInstance = _newController.CreateNewApplicationInstance();
+            newController.CreateNewApplicationInstance(divePlannerInstance);
 
             //Assert
-            Assert.NotSame(oldDivePlannerInstance, newDivePlannerInstance);
-            Assert.NotSame(oldDivePlannerInstance.DiveModelSelector, newDivePlannerInstance.DiveModelSelector);
-            Assert.NotSame(oldDivePlannerInstance.DiveStep, newDivePlannerInstance.DiveStep);
-            Assert.NotSame(oldDivePlannerInstance.CylinderSelector, newDivePlannerInstance.CylinderSelector);
-            Assert.NotSame(oldDivePlannerInstance.ResultsOverviewModel, newDivePlannerInstance.ResultsOverviewModel);
+            Assert.NotSame(diveModelSelector, divePlannerInstance.DiveModelSelector);
+            Assert.NotSame(diveStep, divePlannerInstance.DiveStep);
+            Assert.NotSame(cylinderSelector, divePlannerInstance.CylinderSelector);
+            Assert.NotSame(resultsOverview, divePlannerInstance.ResultsOverviewModel);
         }
     }
 }
