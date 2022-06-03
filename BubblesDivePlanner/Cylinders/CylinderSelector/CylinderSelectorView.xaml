@@ -18,7 +18,7 @@
             <StackPanel>
                 <ListBox
                     Margin="8,4"
-                    Items="{Binding CylinderSelector.Cylinders}"
+                    Items="{Binding CylinderSelector.Cylinders}" IsVisible="{Binding !!CylinderSelector.Cylinders.Count}"
                     SelectedItem="{Binding CylinderSelector.SelectedCylinder}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
