@@ -27,18 +27,18 @@ namespace BubblesDivePlanner.DiveStages
 
         private void CalculateTissuePressureNitrogen(int compartment)
         {
-            _diveModel.DiveProfile.TissuePressuresNitrogen[compartment] = _diveModel.DiveProfile.TissuePressuresNitrogen[compartment] + 
-                                                                        ((_diveModel.DiveProfile.PressureNitrogen - 
-                                                                        _diveModel.DiveProfile.TissuePressuresNitrogen[compartment]) * 
-                                                                        (1.0f - Math.Pow(2.0f, -(_diveStepModel.Time / _diveModel.NitrogenHalfTime[compartment]))));
+            _diveModel.DiveProfile.TissuePressuresNitrogen[compartment] = Math.Round(_diveModel.DiveProfile.TissuePressuresNitrogen[compartment] +
+                                                                        ((_diveModel.DiveProfile.PressureNitrogen -
+                                                                        _diveModel.DiveProfile.TissuePressuresNitrogen[compartment]) *
+                                                                        (1.0f - Math.Pow(2.0f, -(_diveStepModel.Time / _diveModel.NitrogenHalfTime[compartment])))), 4);
         }
 
         private void CalculateTissuePressureHelium(int compartment)
         {
-            _diveModel.DiveProfile.TissuePressuresHelium[compartment] = _diveModel.DiveProfile.TissuePressuresHelium[compartment] + 
-                                                                        ((_diveModel.DiveProfile.PressureHelium - 
+            _diveModel.DiveProfile.TissuePressuresHelium[compartment] = Math.Round(_diveModel.DiveProfile.TissuePressuresHelium[compartment] +
+                                                                        ((_diveModel.DiveProfile.PressureHelium -
                                                                         _diveModel.DiveProfile.TissuePressuresHelium[compartment]) *
-                                                                        (1.0f - Math.Pow(2.0f, - (_diveStepModel.Time / _diveModel.HeliumHalfTime[compartment]))));
+                                                                        (1.0f - Math.Pow(2.0f, -(_diveStepModel.Time / _diveModel.HeliumHalfTime[compartment])))), 4);
         }
 
         private void CalculateTotalTissuesPressure(int compartment)
