@@ -9,6 +9,7 @@ using BubblesDivePlanner.Visibility;
 using BubblesDivePlanner.Results;
 using BubblesDivePlanner.DiveStages.Runner;
 using BubblesDivePlanner.Header;
+using BubblesDivePlanner.CentralNervousSystemToxicity;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -43,6 +44,11 @@ namespace BubblesDivePlanner.ApplicationEntry
             set => this.RaiseAndSetIfChanged(ref _cylinderSelector, value);
         }
 
+        public ICentralNervousSystemToxicityModel CentralNervousSystemToxicity
+        {
+            get;
+        } = new CentralNervousSystemToxicityViewModel();
+
         private IResultsOverviewModel _resultsOverviewModel = new ResultsOverviewViewModel();
         public IResultsOverviewModel ResultsOverviewModel
         {
@@ -62,7 +68,7 @@ namespace BubblesDivePlanner.ApplicationEntry
                     && CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
                     && DiveStep.ValidateDiveStep(diveStep));
         }
-        
+
 
         private void CalculateDiveStep()
         {
@@ -71,7 +77,7 @@ namespace BubblesDivePlanner.ApplicationEntry
             ResultsOverviewModel.LatestResult.DiveProfileModel = DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
             ResultsOverviewModel.LatestResult.DiveStepModel = DiveStep.DeepClone();
             ResultsOverviewModel.LatestResult.CylinderSetupModel = new CylinderPrototype().Clone(CylinderSelector.SelectedCylinder);
-            
+
             //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
             //Then return the result into a result view model (which will need better naming than the original)
         }
