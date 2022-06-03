@@ -11,21 +11,24 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
         private readonly double expectedValue = 10;
         private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
 
-        [Fact]
-        public void ConstructsModel() 
+        [Theory]
+        [InlineData(16)]
+        [InlineData(12)]
+        [InlineData(8)]
+        public void ConstructsModel(int compartmentSize) 
         {
             //Arrange
-            var diveProfile = new DiveProfileViewModel(16);
+            var diveProfile = new DiveProfileViewModel(compartmentSize);
 
             //Assert
-            Assert.NotEmpty(diveProfile.MaxSurfacePressures);
-            Assert.NotEmpty(diveProfile.TissuePressuresNitrogen);
-            Assert.NotEmpty(diveProfile.TissuePressuresHelium);
-            Assert.NotEmpty(diveProfile.TissuePressuresTotal);
-            Assert.NotEmpty(diveProfile.ToleratedAmbientPressures);
-            Assert.NotEmpty(diveProfile.AValues);
-            Assert.NotEmpty(diveProfile.BValues);
-            Assert.NotEmpty(diveProfile.CompartmentLoad);
+            Assert.Equal(compartmentSize, diveProfile.MaxSurfacePressures.Length);
+            Assert.Equal(compartmentSize, diveProfile.TissuePressuresNitrogen.Length);
+            Assert.Equal(compartmentSize, diveProfile.TissuePressuresHelium.Length);
+            Assert.Equal(compartmentSize, diveProfile.TissuePressuresTotal.Length);
+            Assert.Equal(compartmentSize, diveProfile.ToleratedAmbientPressures.Length);
+            Assert.Equal(compartmentSize, diveProfile.AValues.Length);
+            Assert.Equal(compartmentSize, diveProfile.BValues.Length);
+            Assert.Equal(compartmentSize, diveProfile.CompartmentLoad.Length);
             Assert.Equal(0, diveProfile.PressureOxygen);
             Assert.Equal(0, diveProfile.PressureNitrogen);
             Assert.Equal(0, diveProfile.PressureHelium);
