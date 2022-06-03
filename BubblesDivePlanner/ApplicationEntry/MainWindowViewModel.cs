@@ -69,7 +69,6 @@ namespace BubblesDivePlanner.ApplicationEntry
                     && DiveStep.ValidateDiveStep(diveStep));
         }
 
-
         private void CalculateDiveStep()
         {
             new VisibilityController().UpdateVisibilty(this);
@@ -77,9 +76,6 @@ namespace BubblesDivePlanner.ApplicationEntry
             ResultsOverviewModel.LatestResult.DiveProfileModel = DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
             ResultsOverviewModel.LatestResult.DiveStepModel = DiveStep.DeepClone();
             ResultsOverviewModel.LatestResult.CylinderSetupModel = new CylinderPrototype().Clone(CylinderSelector.SelectedCylinder);
-
-            //TODO AH Put in here the calculation new DiveStageCommandFactory (withing) → DiveStageRunner.RunDiveStages
-            //Then return the result into a result view model (which will need better naming than the original)
         }
     }
 }
