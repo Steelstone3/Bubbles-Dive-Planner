@@ -30,7 +30,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
         [InlineData(12, 200, 2400)]
         [InlineData(10, 200, 2000)]
         [InlineData(12, 100, 1200)]
-        public void CalculateInitialPressurisedCylinderVolume(int cylinderVolume, int clyinderPressure, int expectedInitialPressurisedCylinderVolume)
+        public void CalculateInitialPressurisedCylinderVolume(byte cylinderVolume, ushort clyinderPressure, ushort expectedInitialPressurisedCylinderVolume)
         {
             //Act
             int actualInitialPressurisedCylinderVolume = _gasUsageController.CalculateInitialPressurisedCylinderVolume(cylinderVolume, clyinderPressure);

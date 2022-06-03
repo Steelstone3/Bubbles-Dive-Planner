@@ -4,9 +4,9 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
 {
     public interface IGasUsageModel : IVisibility
     {
-        int InitialPressurisedCylinderVolume { get; set; }
-        int GasUsed { get; set; }
-        int GasRemaining { get; set; }
-        int SurfaceAirConsumptionRate { get; set; }
+        ushort InitialPressurisedCylinderVolume { get; set; }
+        ushort GasUsed { get; set; }
+        ushort GasRemaining { get; set; }
+        byte SurfaceAirConsumptionRate { get; set; }
     }
 }

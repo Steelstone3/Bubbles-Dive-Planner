@@ -13,8 +13,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
             set=> this.RaiseAndSetIfChanged(ref _cylinderName, value);
         }
         
-        private int _cylinderVolume;
-        public int CylinderVolume
+        private byte _cylinderVolume;
+        public byte CylinderVolume
         {
             get => _cylinderVolume;
             set
@@ -24,8 +24,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
             }
         }
 
-        private int _cylinderPressure;
-        public int CylinderPressure
+        private ushort _cylinderPressure;
+        public ushort CylinderPressure
         {
             get => _cylinderPressure;
             set

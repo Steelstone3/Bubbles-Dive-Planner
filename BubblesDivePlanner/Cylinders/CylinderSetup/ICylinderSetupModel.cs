@@ -7,8 +7,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
     public interface ICylinderSetupModel : IVisibility
     {
         string CylinderName { get; set; }
-        int CylinderVolume { get; set; }
-        int CylinderPressure { get; set; }
+        byte CylinderVolume { get; set; }
+        ushort CylinderPressure { get; set; }
         IGasMixtureModel GasMixture { get; set; }
         IGasUsageModel GasUsage { get; set; }
     }

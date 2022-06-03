@@ -4,29 +4,29 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
 {
     public class GasUsageViewModel : ReactiveObject, IGasUsageModel
     {
-        private int _initialPressurisedCylinderVolume;
-        public int InitialPressurisedCylinderVolume
+        private ushort _initialPressurisedCylinderVolume;
+        public ushort InitialPressurisedCylinderVolume
         {
             get => _initialPressurisedCylinderVolume;
             set => this.RaiseAndSetIfChanged(ref _initialPressurisedCylinderVolume, value);
         }
 
-        private int _gasRemaining;
-        public int GasRemaining
+        private ushort _gasRemaining;
+        public ushort GasRemaining
         {
             get => _gasRemaining;
             set => this.RaiseAndSetIfChanged(ref _gasRemaining, value);
         }
 
-        private int _gasUsed;
-        public int GasUsed
+        private ushort _gasUsed;
+        public ushort GasUsed
         {
             get => _gasUsed;
             set => this.RaiseAndSetIfChanged(ref _gasUsed, value);
         }
 
-        private int _surfaceAirConsumptionRate;
-        public int SurfaceAirConsumptionRate
+        private byte _surfaceAirConsumptionRate;
+        public byte SurfaceAirConsumptionRate
         {
             get => _surfaceAirConsumptionRate;
             set => this.RaiseAndSetIfChanged(ref _surfaceAirConsumptionRate, value);

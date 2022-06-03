@@ -4,7 +4,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
 {
     public interface IGasUsageController
     {
-        int CalculateInitialPressurisedCylinderVolume(int cylinderVolume, int cylinderPressure);
+        ushort CalculateInitialPressurisedCylinderVolume(byte cylinderVolume, ushort cylinderPressure);
         IGasUsageModel UpdateGasUsage(IDiveStepModel diveStepModel, IGasUsageModel gasUsage);
     }
 }

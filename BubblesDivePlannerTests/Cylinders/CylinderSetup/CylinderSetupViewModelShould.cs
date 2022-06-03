@@ -10,8 +10,8 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup
     public class CylinderSetupViewModelShould
     {
         private CylinderSetupViewModel _cylinderSetupViewModel = new();
-        private int _cylinderVolume = 12;
-        private int _cylinderPressure = 200;
+        private byte _cylinderVolume = 12;
+        private ushort _cylinderPressure = 200;
         private string _cylinderName = "EAN32";
 
         [Fact]
