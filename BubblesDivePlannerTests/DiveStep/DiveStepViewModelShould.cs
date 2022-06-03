@@ -7,8 +7,8 @@ namespace BubblesDivePlannerTests.DiveStep
     public class DiveStepViewModelShould
     {
         private DiveStepViewModel _diveStep = new();
-        private int _depth = 50;
-        private int _time = 10;
+        private byte _depth = 50;
+        private byte _time = 10;
 
         [Fact]
         public void AllowModelToBeSet()
@@ -41,10 +41,10 @@ namespace BubblesDivePlannerTests.DiveStep
 
         [Theory]
         [InlineData(0, 1, true)]
-        [InlineData(-1, 0, false)]
         [InlineData(100, 60, true)]
         [InlineData(101, 61, false)]
-        public void ValidateModelAtTheBounds(int depth, int time, bool expectedValidity) 
+        [InlineData(255, 255, false)]
+        public void ValidateModelAtTheBounds(byte depth, byte time, bool expectedValidity) 
         {
             //Arrange
             _diveStep.Depth = depth;

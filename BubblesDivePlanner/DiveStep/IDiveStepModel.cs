@@ -2,8 +2,8 @@ namespace BubblesDivePlanner.DiveStep
 {
     public interface IDiveStepModel
     {
-        int Depth { get; set; }
-        int Time { get; set; }
+        byte Depth { get; set; }
+        byte Time { get; set; }
         bool ValidateDiveStep(IDiveStepModel diveStep);
         IDiveStepModel DeepClone();
     }

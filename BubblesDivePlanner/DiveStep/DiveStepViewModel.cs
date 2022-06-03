@@ -5,15 +5,15 @@ namespace BubblesDivePlanner.DiveStep
 {
     public class DiveStepViewModel : ReactiveObject, IDiveStepModel
     {
-        private int _depth;
-        public int Depth
+        private byte _depth;
+        public byte Depth
         {
             get => _depth;
             set => this.RaiseAndSetIfChanged(ref _depth, value);
         }
 
-        private int _time;
-        public int Time
+        private byte _time;
+        public byte Time
         {
             get => _time;
             set => this.RaiseAndSetIfChanged(ref _time, value);
