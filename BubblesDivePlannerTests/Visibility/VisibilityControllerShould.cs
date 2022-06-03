@@ -14,7 +14,7 @@ namespace BubblesDivePlannerTests.Visibility
             var visibilityController = new VisibilityController();
 
             //Act
-            visibilityController.Hide(mainWindowViewModel);
+            visibilityController.UpdateVisibilty(mainWindowViewModel);
 
             //Assert
             Assert.True(mainWindowViewModel.CylinderSelector.SelectedCylinder.GasUsage.IsVisible);

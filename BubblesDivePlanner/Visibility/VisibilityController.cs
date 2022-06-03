@@ -4,9 +4,10 @@ namespace BubblesDivePlanner.Visibility
 {
     public class VisibilityController
     {
-        public void Hide(IMainWindowModel mainWindowViewModel)
+        public void UpdateVisibilty(IMainWindowModel mainWindowViewModel)
         {
             mainWindowViewModel.CylinderSelector.SelectedCylinder.GasUsage.IsVisible = true;
+            mainWindowViewModel.ResultsOverviewModel.IsVisible = true;
 
             mainWindowViewModel.DiveModelSelector.IsVisible = false;
             mainWindowViewModel.CylinderSelector.SelectedCylinder.IsVisible = false;
