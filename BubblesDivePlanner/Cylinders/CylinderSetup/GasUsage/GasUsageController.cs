@@ -11,7 +11,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
 
         public ushort CalculateRemainingPressurisedCylinderVolume(ushort gasRemaining, ushort gasUsed)
         {
-            return (ushort)(gasRemaining - gasUsed);
+            return gasRemaining > gasUsed ? (ushort)(gasRemaining - gasUsed) : (ushort)0;
         }
 
         public ushort CalculateGasUsed(IDiveStepModel diveStepModel, byte surfaceAirConsumptionRate)

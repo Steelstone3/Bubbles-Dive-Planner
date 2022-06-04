@@ -43,5 +43,15 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
             //Assert
             Assert.Equal(1680, gasRemaining);
         }
+
+        [Fact]
+        public void OverflowGasRemainingToZero()
+        {
+            //Act
+            var gasRemaining = _gasUsageController.CalculateRemainingPressurisedCylinderVolume(diveStagesTestFixture.GetSelectedCylinder.GasUsage.GasRemaining, 3000);
+
+            //Assert
+            Assert.Equal(0, gasRemaining);
+        }
     }
 }

@@ -10,6 +10,7 @@ using BubblesDivePlanner.Results;
 using BubblesDivePlanner.DiveStages.Runner;
 using BubblesDivePlanner.Header;
 using BubblesDivePlanner.CentralNervousSystemToxicity;
+using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -75,6 +76,8 @@ namespace BubblesDivePlanner.ApplicationEntry
             new DiveStageRunner().RunDiveStages(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder);
             ResultsOverviewModel.LatestResult.DiveProfileModel = DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
             ResultsOverviewModel.LatestResult.DiveStepModel = DiveStep.DeepClone();
+            CylinderSelector.SelectedCylinder.GasUsage.GasUsed = new GasUsageController().CalculateGasUsed(DiveStep, CylinderSelector.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate);
+            CylinderSelector.SelectedCylinder.GasUsage.UpdateGasRemaining();
             ResultsOverviewModel.LatestResult.CylinderSetupModel = new CylinderPrototype().Clone(CylinderSelector.SelectedCylinder);
         }
     }

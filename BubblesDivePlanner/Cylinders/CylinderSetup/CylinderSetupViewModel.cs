@@ -39,7 +39,11 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
         public ushort InitialPressurisedCylinderVolume
         {
             get => _initialPressurisedCylinderVolume;
-            set => this.RaiseAndSetIfChanged(ref _initialPressurisedCylinderVolume, value);
+            set 
+            {
+                this.RaiseAndSetIfChanged(ref _initialPressurisedCylinderVolume, value);
+                GasUsage.GasRemaining = _initialPressurisedCylinderVolume;
+            }
         }
 
         private IGasMixtureModel _gasMixture = new GasMixtureViewModel();

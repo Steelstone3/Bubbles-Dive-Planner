@@ -7,6 +7,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
     public class GasUsageViewModelShould
     {
         private GasUsageViewModel _gasUsage = new();
+        private ushort _gasRemainingPreUsage = 2400;
         private ushort _gasRemaining = 1680;
         private ushort _gasUsed = 720;
         private byte _surfaceAirConsumptionRate = 12;
@@ -45,6 +46,34 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
             Assert.Contains(nameof(_gasUsage.GasUsed), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.SurfaceAirConsumptionRate), viewModelEvents);
             Assert.Contains(nameof(_gasUsage.IsVisible), viewModelEvents);
+        }
+
+        [Fact]
+        public void UpdateGasRemaining()
+        {
+            //Assert
+            _gasUsage.GasRemaining = _gasRemainingPreUsage;
+            _gasUsage.GasUsed = _gasUsed;
+
+            //Act
+            _gasUsage.UpdateGasRemaining();
+
+            //Assert
+            Assert.Equal(_gasRemaining, _gasUsage.GasRemaining);
+        }
+
+        [Fact]
+        public void HaveZeroMinimumValueForGasRemaining()
+        {
+            //Assert
+            _gasUsage.GasRemaining = _gasRemaining;
+            _gasUsage.GasUsed = 2400;
+
+            //Act
+            _gasUsage.UpdateGasRemaining();
+
+            //Assert
+            Assert.Equal(0, _gasUsage.GasRemaining);
         }
     }
 }

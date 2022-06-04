@@ -31,5 +31,10 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
             get => _isVisible;
             set => this.RaiseAndSetIfChanged(ref _isVisible, value);
         }
+
+        public void UpdateGasRemaining()
+        {
+            GasRemaining = new GasUsageController().CalculateRemainingPressurisedCylinderVolume(_gasRemaining, _gasUsed);
+        }
     }
 }
