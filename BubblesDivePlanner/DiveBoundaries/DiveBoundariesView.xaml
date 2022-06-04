@@ -22,7 +22,7 @@
                         FontWeight="Bold"/>
                     <TextBlock Margin="0,4,8,4"
                         Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.MaximumOperatingDepth}" />
-                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 </UserControl>

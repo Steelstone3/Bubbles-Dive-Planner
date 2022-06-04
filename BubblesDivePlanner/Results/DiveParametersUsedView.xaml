@@ -37,12 +37,12 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Volume (L): "/>
+            <TextBlock Text="Volume (l): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderVolume}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Pressure (Bar): "/>
+            <TextBlock Text="Pressure (bar): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderPressure}" />
         </StackPanel>
 
@@ -66,22 +66,22 @@
         <TextBlock Text="Cylinder Gas Usage" FontWeight="Bold" Margin="8,4"/>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Initial Pressurised Volume (L): "/>
+            <TextBlock Text="Initial Pressurised Volume (l): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.InitialPressurisedCylinderVolume}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Remaining (L): "/>
+            <TextBlock Text="Remaining (l): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasRemaining}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Used (L): "/>
+            <TextBlock Text="Used (l): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasUsed}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Surface Air Consumption Rate (L/min): "/>
+            <TextBlock Text="Surface Air Consumption Rate (l/min): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.SurfaceAirConsumptionRate}" />
         </StackPanel>
     </StackPanel>
