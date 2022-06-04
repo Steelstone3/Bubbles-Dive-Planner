@@ -20,13 +20,13 @@ namespace BubblesDivePlannerTests.Asserters
             Assert.Equal(expectedSelectedCylinderViewModel.CylinderName, actualSelectedCylinderViewModel.CylinderName);
             Assert.Equal(expectedSelectedCylinderViewModel.CylinderPressure, actualSelectedCylinderViewModel.CylinderPressure);
             Assert.Equal(expectedSelectedCylinderViewModel.CylinderVolume, actualSelectedCylinderViewModel.CylinderVolume);
+            Assert.Equal(expectedSelectedCylinderViewModel.InitialPressurisedCylinderVolume, actualSelectedCylinderViewModel.InitialPressurisedCylinderVolume);
             Assert.NotNull(actualSelectedCylinderViewModel.GasMixture);
             Assert.Equal(expectedSelectedCylinderViewModel.GasMixture.Helium, actualSelectedCylinderViewModel.GasMixture.Helium);
             Assert.Equal(expectedSelectedCylinderViewModel.GasMixture.Oxygen, actualSelectedCylinderViewModel.GasMixture.Oxygen);
             Assert.Equal(expectedSelectedCylinderViewModel.GasMixture.Nitrogen, actualSelectedCylinderViewModel.GasMixture.Nitrogen);
             Assert.NotNull(actualSelectedCylinderViewModel.GasUsage);
             Assert.Equal(expectedSelectedCylinderViewModel.GasUsage.SurfaceAirConsumptionRate, actualSelectedCylinderViewModel.GasUsage.SurfaceAirConsumptionRate);
-            Assert.Equal(expectedSelectedCylinderViewModel.GasUsage.InitialPressurisedCylinderVolume, actualSelectedCylinderViewModel.GasUsage.InitialPressurisedCylinderVolume);
             Assert.Equal(expectedSelectedCylinderViewModel.GasUsage.GasRemaining, actualSelectedCylinderViewModel.GasUsage.GasRemaining);
             Assert.Equal(expectedSelectedCylinderViewModel.GasUsage.GasUsed, actualSelectedCylinderViewModel.GasUsage.GasUsed);
         }

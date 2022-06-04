@@ -23,6 +23,7 @@ namespace BubblesDivePlannerTests.TestFixtures
             CylinderName = "Heliox",
             CylinderPressure = 200,
             CylinderVolume = 24,
+            InitialPressurisedCylinderVolume = 2400,
             GasMixture = new GasMixtureViewModel()
             {
                 Oxygen = 10,
@@ -32,24 +33,24 @@ namespace BubblesDivePlannerTests.TestFixtures
             {
                 GasRemaining = 1680,
                 GasUsed = 720,
-                InitialPressurisedCylinderVolume = 2400,
                 SurfaceAirConsumptionRate = 12
             }
         };
 
         //TODO in progress need to put in the expected results here
-        public DiveProfileViewModel GetDiveProfileResult => new DiveProfileViewModel(16) {
+        public DiveProfileViewModel GetDiveProfileResult => new DiveProfileViewModel(16)
+        {
             PressureOxygen = 0,
             PressureNitrogen = 0,
             PressureHelium = 0,
-            AValues = new double[] {},
-            BValues = new double[] {},
-            MaxSurfacePressures = new double[] {},
-            TissuePressuresNitrogen = new double[] {},
-            TissuePressuresHelium = new double[] {},
-            TissuePressuresTotal = new double[] {},
-            ToleratedAmbientPressures = new double[] {},
-            CompartmentLoad = new double[] {}
+            AValues = new double[] { },
+            BValues = new double[] { },
+            MaxSurfacePressures = new double[] { },
+            TissuePressuresNitrogen = new double[] { },
+            TissuePressuresHelium = new double[] { },
+            TissuePressuresTotal = new double[] { },
+            ToleratedAmbientPressures = new double[] { },
+            CompartmentLoad = new double[] { }
         };
     }
 }

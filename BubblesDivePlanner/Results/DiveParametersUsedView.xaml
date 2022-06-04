@@ -67,7 +67,7 @@
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
             <TextBlock Text="Initial Pressurised Volume (l): "/>
-            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.InitialPressurisedCylinderVolume}" />
+            <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.InitialPressurisedCylinderVolume}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">

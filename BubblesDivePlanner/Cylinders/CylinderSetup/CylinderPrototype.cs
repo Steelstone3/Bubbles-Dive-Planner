@@ -12,6 +12,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
                 CylinderName = cylinderSetupModel.CylinderName.Clone() as string,
                 CylinderVolume = cylinderSetupModel.CylinderVolume,
                 CylinderPressure = cylinderSetupModel.CylinderPressure,
+                InitialPressurisedCylinderVolume = cylinderSetupModel.InitialPressurisedCylinderVolume,
                 GasMixture = CloneGasMixture(cylinderSetupModel),
                 GasUsage = CloneGasUsage(cylinderSetupModel),
             };
@@ -30,7 +31,6 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
         {
             return new GasUsageViewModel()
             {
-                InitialPressurisedCylinderVolume = cylinderSetupModel.GasUsage.InitialPressurisedCylinderVolume,
                 GasRemaining = cylinderSetupModel.GasUsage.GasRemaining,
                 GasUsed = cylinderSetupModel.GasUsage.GasUsed,
                 SurfaceAirConsumptionRate = cylinderSetupModel.GasUsage.SurfaceAirConsumptionRate,

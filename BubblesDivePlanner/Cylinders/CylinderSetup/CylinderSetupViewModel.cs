@@ -20,7 +20,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
             set
             {
                 this.RaiseAndSetIfChanged(ref _cylinderVolume, value);
-                GasUsage.InitialPressurisedCylinderVolume = new GasUsageController().CalculateInitialPressurisedCylinderVolume(CylinderVolume, CylinderPressure);
+                InitialPressurisedCylinderVolume = new GasUsageController().CalculateInitialPressurisedCylinderVolume(CylinderVolume, CylinderPressure);
             }
         }
 
@@ -31,8 +31,15 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
             set
             {
                 this.RaiseAndSetIfChanged(ref _cylinderPressure, value);
-                GasUsage.InitialPressurisedCylinderVolume = new GasUsageController().CalculateInitialPressurisedCylinderVolume(CylinderVolume, CylinderPressure);
+                InitialPressurisedCylinderVolume = new GasUsageController().CalculateInitialPressurisedCylinderVolume(CylinderVolume, CylinderPressure);
             }
+        }
+
+        private ushort _initialPressurisedCylinderVolume;
+        public ushort InitialPressurisedCylinderVolume
+        {
+            get => _initialPressurisedCylinderVolume;
+            set => this.RaiseAndSetIfChanged(ref _initialPressurisedCylinderVolume, value);
         }
 
         private IGasMixtureModel _gasMixture = new GasMixtureViewModel();

@@ -25,6 +25,7 @@ namespace BubblesDivePlannerTests.TestFixtures
             CylinderName = "Air",
             CylinderPressure = 200,
             CylinderVolume = 12,
+            InitialPressurisedCylinderVolume = 2400,
             GasMixture = new GasMixtureViewModel()
             {
                 Oxygen = 21,
@@ -34,7 +35,6 @@ namespace BubblesDivePlannerTests.TestFixtures
             {
                 GasRemaining = 2400,
                 GasUsed = 720,
-                InitialPressurisedCylinderVolume = 2400,
                 SurfaceAirConsumptionRate = 12
             }
         };
