@@ -1,3 +1,5 @@
+using System.Linq;
+using BubblesDivePlanner.DiveBoundaries;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DiveModels.DiveProfile
@@ -89,6 +91,8 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
             get => _pressureNitrogen;
             set => this.RaiseAndSetIfChanged(ref _pressureNitrogen, value);
         }
+
+        public double DiveCeiling => ToleratedAmbientPressures.Max() <= 0 ? 0 : new DiveCeilingController().CalculateDiveCeiling(ToleratedAmbientPressures);
 
         public IDiveProfileModel DeepClone()
         {

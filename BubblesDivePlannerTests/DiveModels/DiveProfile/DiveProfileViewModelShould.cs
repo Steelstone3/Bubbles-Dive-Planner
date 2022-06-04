@@ -34,6 +34,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
             Assert.Equal(0, diveProfile.PressureOxygen);
             Assert.Equal(0, diveProfile.PressureNitrogen);
             Assert.Equal(0, diveProfile.PressureHelium);
+            Assert.Equal(0, diveProfile.DiveCeiling);
         }
 
         [Fact]
@@ -77,6 +78,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
             Assert.Equal(expectedValue, diveProfile.PressureOxygen);
             Assert.Equal(expectedValue, diveProfile.PressureNitrogen);
             Assert.Equal(expectedValue, diveProfile.PressureHelium);
+            Assert.Equal(50, diveProfile.DiveCeiling);
         }
 
         [Fact]
@@ -99,7 +101,6 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
             diveProfile.PressureOxygen = expectedValue;
             diveProfile.PressureHelium = expectedValue;
             diveProfile.PressureNitrogen = expectedValue;
-
 
             //Assert
             Assert.NotEmpty(viewModelEvents);
@@ -128,6 +129,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
             Assert.Equal(diveProfile.PressureOxygen, newDiveProfileModel.PressureOxygen);
             Assert.Equal(diveProfile.PressureNitrogen, newDiveProfileModel.PressureNitrogen);
             Assert.Equal(diveProfile.PressureHelium, newDiveProfileModel.PressureHelium);
+            Assert.Equal(diveProfile.DiveCeiling, newDiveProfileModel.DiveCeiling);
             Assert.NotSame(diveProfile.AValues, newDiveProfileModel.AValues);
             Assert.NotSame(diveProfile.BValues, newDiveProfileModel.BValues);
             Assert.NotSame(diveProfile.TissuePressuresNitrogen, newDiveProfileModel.TissuePressuresNitrogen);

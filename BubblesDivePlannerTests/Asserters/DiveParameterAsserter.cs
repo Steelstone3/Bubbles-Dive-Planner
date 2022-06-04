@@ -37,6 +37,7 @@ namespace BubblesDivePlannerTests.Asserters
             Assert.Equal(expectedDiveStepViewModel.PressureOxygen, actualDiveStepViewModel.PressureOxygen);
             Assert.Equal(expectedDiveStepViewModel.PressureNitrogen, actualDiveStepViewModel.PressureNitrogen);
             Assert.Equal(expectedDiveStepViewModel.PressureHelium, actualDiveStepViewModel.PressureHelium);
+            Assert.Equal(expectedDiveStepViewModel.DiveCeiling, actualDiveStepViewModel.DiveCeiling);
             Assert.Equal(expectedDiveStepViewModel.AValues, actualDiveStepViewModel.AValues);
             Assert.Equal(expectedDiveStepViewModel.BValues, actualDiveStepViewModel.BValues);
             Assert.Equal(expectedDiveStepViewModel.MaxSurfacePressures, actualDiveStepViewModel.MaxSurfacePressures);

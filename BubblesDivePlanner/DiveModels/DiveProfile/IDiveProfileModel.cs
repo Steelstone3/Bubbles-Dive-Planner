@@ -15,6 +15,7 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
         double PressureOxygen { get; set; }
         double PressureHelium { get; set; }
         double PressureNitrogen { get; set; }
+        double DiveCeiling { get; }
         IDiveProfileModel DeepClone();
     }
 }
