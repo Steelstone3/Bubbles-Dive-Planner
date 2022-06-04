@@ -32,7 +32,7 @@ namespace BubblesDivePlannerTests.TestFixtures
             },
             GasUsage = new GasUsageViewModel()
             {
-                GasRemaining = 1680,
+                GasRemaining = 2400,
                 GasUsed = 720,
                 InitialPressurisedCylinderVolume = 2400,
                 SurfaceAirConsumptionRate = 12

@@ -9,26 +9,12 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
             return (ushort)(cylinderPressure * cylinderVolume);
         }
 
-        public IGasUsageModel UpdateGasUsage(IDiveStepModel diveStepModel, IGasUsageModel gasUsage)
-        {
-            var gasUsed = CalculateGasUsed(diveStepModel, gasUsage.SurfaceAirConsumptionRate);
-            var gasRemaining = CalculateRemainingPressurisedCylinderVolume(gasUsage.GasRemaining, gasUsed);
-
-            return new GasUsageViewModel()
-            {
-                GasUsed = gasUsed,
-                GasRemaining = gasRemaining,
-                InitialPressurisedCylinderVolume = gasUsage.InitialPressurisedCylinderVolume,
-                SurfaceAirConsumptionRate = gasUsage.SurfaceAirConsumptionRate,
-            };
-        }
-
-        private ushort CalculateRemainingPressurisedCylinderVolume(ushort gasRemaining, ushort gasUsed)
+        public ushort CalculateRemainingPressurisedCylinderVolume(ushort gasRemaining, ushort gasUsed)
         {
             return (ushort)(gasRemaining - gasUsed);
         }
 
-        private ushort CalculateGasUsed(IDiveStepModel diveStepModel, byte surfaceAirConsumptionRate)
+        public ushort CalculateGasUsed(IDiveStepModel diveStepModel, byte surfaceAirConsumptionRate)
         {
             return (ushort)((diveStepModel.Depth / 10 + 1) * diveStepModel.Time * surfaceAirConsumptionRate);
         }

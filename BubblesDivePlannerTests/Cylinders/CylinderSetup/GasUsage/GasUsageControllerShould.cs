@@ -2,29 +2,14 @@ using Moq;
 using Xunit;
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
+using BubblesDivePlannerTests.TestFixtures;
 
 namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
 {
     public class GasUsageControllerShould
     {
-        private IGasUsageController _gasUsageController;
-        private IGasUsageModel _gasUsageModel;
-        private Mock<IDiveStepModel> _diveStepModelStub;
-
-        public GasUsageControllerShould()
-        {
-            _diveStepModelStub = new Mock<IDiveStepModel>();
-            _diveStepModelStub = SetupDiveStepModelStub();
-            _gasUsageModel = new GasUsageViewModel()
-            {
-                InitialPressurisedCylinderVolume = 2400,
-                GasUsed = 0,
-                GasRemaining = 2400,
-                SurfaceAirConsumptionRate = 12,
-            };
-
-            _gasUsageController = new GasUsageController();
-        }
+        private DiveStagesTextFixture diveStagesTestFixture = new();
+        private IGasUsageController _gasUsageController = new GasUsageController();
 
         [Theory]
         [InlineData(12, 200, 2400)]
@@ -40,24 +25,23 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
         }
 
         [Fact]
-        public void UpdateGasUsage()
+        public void CalculateGasUsed()
         {
             //Act
-            var actualGasUsageModel = _gasUsageController.UpdateGasUsage(_diveStepModelStub.Object, _gasUsageModel);
+            var gasUsed = _gasUsageController.CalculateGasUsed(diveStagesTestFixture.GetDiveStep, diveStagesTestFixture.GetSelectedCylinder.GasUsage.SurfaceAirConsumptionRate);
 
             //Assert
-            Assert.Equal(2400, actualGasUsageModel.InitialPressurisedCylinderVolume);
-            Assert.Equal(1680, actualGasUsageModel.GasRemaining);
-            Assert.Equal(720, actualGasUsageModel.GasUsed);
-            Assert.Equal(12, actualGasUsageModel.SurfaceAirConsumptionRate);
+            Assert.Equal(720, gasUsed);
         }
 
-        private Mock<IDiveStepModel> SetupDiveStepModelStub()
+        [Fact]
+        public void CalculateGasRemaining()
         {
-            _diveStepModelStub.Setup(x => x.Depth).Returns(50);
-            _diveStepModelStub.Setup(x => x.Time).Returns(10);
+            //Act
+            var gasRemaining = _gasUsageController.CalculateRemainingPressurisedCylinderVolume(diveStagesTestFixture.GetSelectedCylinder.GasUsage.GasRemaining, diveStagesTestFixture.GetSelectedCylinder.GasUsage.GasUsed);
 
-            return _diveStepModelStub;
+            //Assert
+            Assert.Equal(1680, gasRemaining);
         }
     }
 }
