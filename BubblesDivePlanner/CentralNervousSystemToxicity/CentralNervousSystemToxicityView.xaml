@@ -8,7 +8,8 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     
-    <StackPanel Background="#FFC3FDFF">
+    <StackPanel>
+    <!-- Background="#FFC3FDFF" -->
         <StackPanel Background="#FF5D99C6">
             <TextBlock
                 Margin="4"
@@ -16,7 +17,7 @@
                 FontWeight="DemiBold"
                 Text="CNS Toxicity" />
         </StackPanel>
-        <StackPanel Background="#FFC3FDFF">
+        <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <Grid Margin="8,4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

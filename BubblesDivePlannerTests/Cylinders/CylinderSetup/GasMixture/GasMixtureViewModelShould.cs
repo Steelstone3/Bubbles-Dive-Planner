@@ -15,6 +15,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
             int oxygen = 21;
             int helium = 10;
             int nitrogen = 69;
+            double maximumOperatingDepth = 56.67;
 
             //Act
             _gasMixture.Oxygen = oxygen;
@@ -24,6 +25,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
             Assert.Equal(oxygen, _gasMixture.Oxygen);
             Assert.Equal(helium, _gasMixture.Helium);
             Assert.Equal(nitrogen, _gasMixture.Nitrogen);
+            Assert.Equal(maximumOperatingDepth, _gasMixture.MaximumOperatingDepth);
             Assert.True(_gasMixture.IsVisible);
         }
 

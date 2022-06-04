@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
@@ -39,6 +40,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
             get => _nitrogen;
             private set => this.RaiseAndSetIfChanged(ref _nitrogen, value);
         }
+
+        public double MaximumOperatingDepth => Oxygen != 0 ? new MaximumOperatingDepthController().CalculateMaximumOperatingDepth(Oxygen) : 0;
 
         private bool _isVisible = true;
         public bool IsVisible
