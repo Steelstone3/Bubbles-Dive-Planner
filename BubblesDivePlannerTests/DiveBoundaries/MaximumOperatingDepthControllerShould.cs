@@ -1,17 +1,18 @@
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
+using BubblesDivePlanner.DiveBoundaries;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
+namespace BubblesDivePlannerTests.DiveBoundaries
 {
-    public class MaximumOperatingDepthControllerShould {
+    public class MaximumOperatingDepthControllerShould
+    {
         private MaximumOperatingDepthController _maximumOperatingDepthController = new();
-        
+
         [InlineData(21, 56.67)]
         [InlineData(32, 33.75)]
         [InlineData(50, 18)]
         [InlineData(100, 4)]
         [Theory]
-        public void CalculateMaximumOperatingDepth(int oxygenPercentage, double expectedMaximumOperatingDepth) 
+        public void CalculateMaximumOperatingDepth(int oxygenPercentage, double expectedMaximumOperatingDepth)
         {
             //Act
             var maximumOperatingDepth = _maximumOperatingDepthController.CalculateMaximumOperatingDepth(oxygenPercentage);
