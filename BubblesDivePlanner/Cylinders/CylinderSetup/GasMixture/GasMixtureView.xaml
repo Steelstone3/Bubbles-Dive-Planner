@@ -12,7 +12,9 @@
             <TextBox Margin="4" Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Oxygen}" />
             <TextBlock Margin="4" Text="Helium (%):" FontWeight="Bold"/>
             <TextBox Margin="4" Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Helium}" />
-            <TextBlock Margin="4" Text="Nitrogen (%):" FontWeight="Bold"/>
-            <TextBlock Margin="4" Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Nitrogen}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="4,4,0,4" Text="Nitrogen (%): " FontWeight="Bold"/>
+                <TextBlock Margin="0,4,4,4" Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Nitrogen}"/>
+            </StackPanel>
         </StackPanel>
 </UserControl>

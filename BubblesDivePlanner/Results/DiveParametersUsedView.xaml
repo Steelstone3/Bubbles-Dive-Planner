@@ -20,68 +20,68 @@
         <TextBlock Text="Dive Step" FontWeight="Bold" Margin="8,4" />
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Depth (m):"/>
+            <TextBlock Text="Depth (m): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Depth}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Time (min):"/>
+            <TextBlock Text="Time (min): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.DiveStepModel.Time}" />
         </StackPanel>
 
         <TextBlock Text="Cylinder" FontWeight="Bold" Margin="8,4"/>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Name:"/>
+            <TextBlock Text="Name: "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderName}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Volume (L):"/>
+            <TextBlock Text="Volume (L): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderVolume}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Pressure (Bar):"/>
+            <TextBlock Text="Pressure (Bar): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.CylinderPressure}" />
         </StackPanel>
 
         <TextBlock Text="Gas Mixture" FontWeight="Bold" Margin="8,4"/>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Oxygen (%):"/>
+            <TextBlock Text="Oxygen (%): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Oxygen}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Helium (%):"/>
+            <TextBlock Text="Helium (%): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Helium}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Nitrogen (%):"/>
+            <TextBlock Text="Nitrogen (%): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasMixture.Nitrogen}" />
         </StackPanel>
 
         <TextBlock Text="Cylinder Gas Usage" FontWeight="Bold" Margin="8,4"/>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Initial Pressurised Volume (L):"/>
+            <TextBlock Text="Initial Pressurised Volume (L): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.InitialPressurisedCylinderVolume}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Remaining (L):"/>
+            <TextBlock Text="Remaining (L): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasRemaining}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Used (L):"/>
+            <TextBlock Text="Used (L): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.GasUsed}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="32,2">
-            <TextBlock Text="Surface Air Consumption Rate (L/min):"/>
+            <TextBlock Text="Surface Air Consumption Rate (L/min): "/>
             <TextBlock Text="{Binding ResultsOverviewModel.LatestResult.CylinderSetupModel.GasUsage.SurfaceAirConsumptionRate}" />
         </StackPanel>
     </StackPanel>
