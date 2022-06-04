@@ -6,12 +6,19 @@ namespace BubblesDivePlanner.Visibility
     {
         public void UpdateVisibilty(IMainWindowModel mainWindowViewModel)
         {
-            mainWindowViewModel.CylinderSelector.SelectedCylinder.GasUsage.IsVisible = true;
-            mainWindowViewModel.ResultsOverviewModel.IsVisible = true;
-
             mainWindowViewModel.DiveModelSelector.IsVisible = false;
-            mainWindowViewModel.CylinderSelector.SelectedCylinder.IsVisible = false;
-            mainWindowViewModel.CylinderSelector.SelectedCylinder.GasMixture.IsVisible = false;
+
+            UpdateCylinderVisibilty(mainWindowViewModel);
+            mainWindowViewModel.ResultsOverviewModel.IsVisible = true;
+        }
+
+        private void UpdateCylinderVisibilty(IMainWindowModel mainWindowViewModel) {
+            foreach(var cylinder in mainWindowViewModel.CylinderSelector.Cylinders)
+            {
+                cylinder.GasMixture.IsVisible = false;
+                cylinder.IsVisible = false;
+                cylinder.GasUsage.IsVisible = true;
+            }
         }
     }
 }
