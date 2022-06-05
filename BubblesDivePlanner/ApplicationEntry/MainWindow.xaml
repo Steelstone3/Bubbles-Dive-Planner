@@ -12,6 +12,7 @@
     xmlns:cylinder_selector="clr-namespace:BubblesDivePlanner.Cylinders.CylinderSelector"
     xmlns:cns="clr-namespace:BubblesDivePlanner.CentralNervousSystemToxicity"
     xmlns:dive_boundaries="clr-namespace:BubblesDivePlanner.DiveBoundaries"
+    xmlns:decompression="clr-namespace:BubblesDivePlanner.DecompressionProfile"
     xmlns:results="clr-namespace:BubblesDivePlanner.Results"
     Title="Bubbles Dive Planner"
     MinWidth="540"
@@ -81,7 +82,7 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Information" />
-                <!-- <information:DecompressionProfileView /> -->
+                <decompression:DecompressionProfileView />
                 <dive_boundaries:DiveBoundariesView/>
                 <cns:CentralNervousSystemToxicityView />
             </StackPanel>

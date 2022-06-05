@@ -6,9 +6,9 @@ using BubblesDivePlanner.DiveStages;
 using BubblesDivePlanner.DiveStages.Runner;
 using BubblesDivePlanner.DiveStep;
 
-namespace BubblesDivePlanner.Decompression
+namespace BubblesDivePlanner.DecompressionProfile
 {
-    public class DecompressionController
+    public class DecompressionProfileController
     {
         public Queue<IDiveStepModel> CollateDecompressionDiveSteps(IDiveModel diveModel, ICylinderSetupModel selectedCylinder)
         {

@@ -63,6 +63,32 @@ namespace BubblesDivePlannerTests.Acceptance
         }
 
         [Fact(Skip = "Need to work out how to get this type of test working")]
+        public void CalculateDecompression()
+        {
+            //Arrange
+            //Stubs of requirements
+
+            //Act
+            //newViewModel.CreateNewDivePlannerInstanceCommand.Execute();
+
+            //Assert
+            //TODO AH something results populated
+        }
+
+        [Fact(Skip = "Need to work out how to get this type of test working")]
+        public void CanCalculateDecompression()
+        {
+            //Arrange
+            //Stubs of requirements
+
+            //Act
+            //newViewModel.CreateNewDivePlannerInstanceCommand.Execute();
+
+            //Assert
+            //TODO AH something results populated
+        }
+
+        [Fact(Skip = "Need to work out how to get this type of test working")]
         public void CreateNewDivePlannerInstance()
         {
             //Arrange

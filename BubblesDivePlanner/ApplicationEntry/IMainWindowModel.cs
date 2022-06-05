@@ -1,6 +1,8 @@
 using System;
 using System.Reactive;
+using BubblesDivePlanner.CentralNervousSystemToxicity;
 using BubblesDivePlanner.Cylinders.CylinderSelector;
+using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.Header;
@@ -16,6 +18,8 @@ namespace BubblesDivePlanner.ApplicationEntry
         IDiveStepModel DiveStep { get; set; }
         ICylinderSelectorModel CylinderSelector { get; set; }
         IResultsOverviewModel ResultsOverviewModel { get; set; }
+        ICentralNervousSystemToxicityModel CentralNervousSystemToxicity { get; }
+        IDecompressionProfileModel DecompressionProfile { get; }
         ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
         IObservable<bool> CanCalculateDiveStep { get; }
     }

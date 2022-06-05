@@ -11,6 +11,7 @@ using BubblesDivePlanner.DiveStages.Runner;
 using BubblesDivePlanner.Header;
 using BubblesDivePlanner.CentralNervousSystemToxicity;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
+using BubblesDivePlanner.DecompressionProfile;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -49,6 +50,11 @@ namespace BubblesDivePlanner.ApplicationEntry
         {
             get;
         } = new CentralNervousSystemToxicityViewModel();
+
+        public IDecompressionProfileModel DecompressionProfile
+        {
+            get;
+        } = new DecompressionProfileViewModel();
 
         private IResultsOverviewModel _resultsOverviewModel = new ResultsOverviewViewModel();
         public IResultsOverviewModel ResultsOverviewModel

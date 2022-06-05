@@ -1,13 +1,13 @@
-using BubblesDivePlanner.Decompression;
+using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Decompression
+namespace BubblesDivePlannerTests.DecompressionProfile
 {
     public class DecompressionControllerShould
     {
         private DivePlannerApplicationTestFixture divePlannerApplicationTestFixture = new();
-        private DecompressionController _decompressionController = new();
+        private DecompressionProfileController _decompressionController = new();
 
         [Fact]
         public void FindNearestDepthToDiveCeilingFromFirstRun()
