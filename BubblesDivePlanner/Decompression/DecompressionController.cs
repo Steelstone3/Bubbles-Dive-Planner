@@ -10,12 +10,19 @@ namespace BubblesDivePlanner.Decompression
 {
     public class DecompressionController
     {
-        public Queue<IDiveStepModel> CollateDecompressionDiveSteps()
+        public Queue<IDiveStepModel> CollateDecompressionDiveSteps(IDiveModel diveModel, ICylinderSetupModel selectedCylinder)
         {
-            return null;
+            Queue<IDiveStepModel> diveStepModelQueue = new();
+
+            while(diveModel.DiveProfile.DiveCeiling > 0)
+            {
+                diveStepModelQueue.Enqueue(CalculateDiveStepAtStepInterval(diveModel,selectedCylinder));
+            }
+
+            return diveStepModelQueue;
         }
 
-        public IDiveStepModel CalculateDiveStepAtStepInterval(IDiveModel diveModel, ICylinderSetupModel selectedCylinder)
+        private IDiveStepModel CalculateDiveStepAtStepInterval(IDiveModel diveModel, ICylinderSetupModel selectedCylinder)
         {
             double diveCeiling = diveModel.DiveProfile.DiveCeiling;
 
@@ -31,9 +38,9 @@ namespace BubblesDivePlanner.Decompression
             return new DiveStepViewModel() { Depth = diveStepModel.Depth, Time = time };
         }
 
-        private const int stepInterval = 3;
-        public byte FindNearestDepthToDiveCeiling(double diveCeiling)
+        private byte FindNearestDepthToDiveCeiling(double diveCeiling)
         {
+            const int stepInterval = 3;
             return diveCeiling > 0 ? (byte)(Math.Ceiling(diveCeiling / stepInterval) * stepInterval) : (byte)0;
         }
 
@@ -54,7 +61,7 @@ namespace BubblesDivePlanner.Decompression
 
         private byte RunSimulatedDiveStages(IDiveStageCommand[] diveStages, IDiveModel diveModel, IDiveStepModel diveStepModel)
         {
-            byte time = 0;
+            byte time = 1;
 
             while (diveStepModel.Depth == FindNearestDepthToDiveCeiling(diveModel.DiveProfile.DiveCeiling))
             {
