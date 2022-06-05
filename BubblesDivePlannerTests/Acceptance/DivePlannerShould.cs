@@ -63,7 +63,7 @@ namespace BubblesDivePlannerTests.Acceptance
         }
 
         [Fact(Skip = "Need to work out how to get this type of test working")]
-        public void CalculateDecompression()
+        public void CalculateDecompressionProfile()
         {
             //Arrange
             //Stubs of requirements
@@ -76,7 +76,7 @@ namespace BubblesDivePlannerTests.Acceptance
         }
 
         [Fact(Skip = "Need to work out how to get this type of test working")]
-        public void CanCalculateDecompression()
+        public void CanCalculateDecompressionProfile()
         {
             //Arrange
             //Stubs of requirements
