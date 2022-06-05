@@ -6,7 +6,7 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class MaximumSurfacePressureCommandShould
     {
-        private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
+        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
         
         [Fact]
         public void RunMaximumSurfacePressureStage()

@@ -7,7 +7,7 @@ namespace BubblesDivePlannerTests.Header.File.New
 {
     public class NewApplicationStateControllerShould
     {
-        private DiveStagesTextFixture _diveStagesTextFixture = new DiveStagesTextFixture();
+        private DivePlannerApplicationTestFixture _diveStagesTextFixture = new DivePlannerApplicationTestFixture();
 
         [Fact]
         public void CreateNewDivePlannerInstance()

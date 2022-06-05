@@ -8,7 +8,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
 {
     public class GasUsageControllerShould
     {
-        private DiveStagesTextFixture diveStagesTestFixture = new();
+        private DivePlannerApplicationTestFixture diveStagesTestFixture = new();
         private IGasUsageController _gasUsageController = new GasUsageController();
 
         [Theory]

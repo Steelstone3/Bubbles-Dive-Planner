@@ -8,7 +8,7 @@ using BubblesDivePlanner.DiveStep;
 
 namespace BubblesDivePlannerTests.TestFixtures
 {
-    public class DiveStagesTextFixture
+    public class DivePlannerApplicationTestFixture
     {
         private const int COMPARTMENT_SIZE = 16;
 

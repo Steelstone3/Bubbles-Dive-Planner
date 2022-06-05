@@ -8,7 +8,7 @@ using BubblesDivePlanner.DiveStep;
 
 namespace BubblesDivePlannerTests.TestFixtures
 {
-    public class HelioxDiveStagesTextFixture
+    public class HelioxDivePlannerApplicationTestFixture
     {
         public Zhl16BuhlmannModel GetDiveModel => new Zhl16BuhlmannModel();
 

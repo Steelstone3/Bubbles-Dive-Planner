@@ -6,7 +6,7 @@ namespace BubblesDivePlannerTests.DiveBoundaries
 {
     public class DiveCeilingControllerShould
     {
-        private DiveStagesTextFixture _diveStagesTestFixtures = new();
+        private DivePlannerApplicationTestFixture _diveStagesTestFixtures = new();
         private DiveCeilingController _diveCeilingController = new();
 
         [Fact]

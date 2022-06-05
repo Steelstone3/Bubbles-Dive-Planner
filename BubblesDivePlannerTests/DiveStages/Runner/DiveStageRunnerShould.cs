@@ -8,7 +8,7 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
 {
     public class DiveStageRunnerShould
     {
-        private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
+        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
         private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
 
         [Fact]

@@ -10,7 +10,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
     {
         private readonly double[] expectedArray = { 3.0, 6.0 };
         private readonly double expectedValue = 10;
-        private DiveStagesTextFixture diveStagesTextFixture = new();
+        private DivePlannerApplicationTestFixture diveStagesTextFixture = new();
         private DiveParameterAsserter diveParameterAsserter = new();
         
         [Theory]

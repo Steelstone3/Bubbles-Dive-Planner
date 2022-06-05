@@ -6,7 +6,7 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class TissuePressureShould
     {
-        private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
+        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
 
         [Fact]
         public void RunTissuePressureStage()

@@ -9,7 +9,7 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class CompartmentLoadCommandShould
     {
-        private DiveStagesTextFixture diveStagesTextFixture = new DiveStagesTextFixture();
+        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
         
         [Fact]
         public void RunCompartmentLoadStage()
