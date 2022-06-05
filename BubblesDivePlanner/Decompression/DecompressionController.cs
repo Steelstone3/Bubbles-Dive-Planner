@@ -61,7 +61,7 @@ namespace BubblesDivePlanner.Decompression
 
         private byte RunSimulatedDiveStages(IDiveStageCommand[] diveStages, IDiveModel diveModel, IDiveStepModel diveStepModel)
         {
-            byte time = 1;
+            byte time = 0;
 
             while (diveStepModel.Depth == FindNearestDepthToDiveCeiling(diveModel.DiveProfile.DiveCeiling))
             {

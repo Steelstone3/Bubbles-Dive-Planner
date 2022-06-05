@@ -49,9 +49,9 @@ namespace BubblesDivePlannerTests.Decompression
             var diveSteps = diveStepQueue.ToArray();
             Assert.Equal(2, diveSteps.Length);
             Assert.Equal(6, diveSteps[0].Depth);
-            Assert.Equal(2, diveSteps[0].Time);
+            Assert.Equal(1, diveSteps[0].Time);
             Assert.Equal(3, diveSteps[1].Depth);
-            Assert.Equal(4, diveSteps[1].Time);
+            Assert.Equal(3, diveSteps[1].Time);
         }
 
         [Fact(Skip = "Second run needs implementing in the test fixture")]
