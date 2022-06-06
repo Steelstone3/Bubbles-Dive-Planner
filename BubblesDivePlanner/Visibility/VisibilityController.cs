@@ -10,7 +10,6 @@ namespace BubblesDivePlanner.Visibility
 
             UpdateCylinderVisibilty(mainWindowViewModel);
             mainWindowViewModel.ResultsOverviewModel.IsVisible = true;
-            // mainWindowViewModel.DecompressionProfile.IsVisible = true;
         }
 
         private void UpdateCylinderVisibilty(IMainWindowModel mainWindowViewModel) {

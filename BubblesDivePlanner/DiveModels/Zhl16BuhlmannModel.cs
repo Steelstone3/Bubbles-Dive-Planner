@@ -19,5 +19,13 @@ namespace BubblesDivePlanner.DiveModels
         public double[] AValuesHelium => new double[] { 1.7424, 1.3830, 1.1919, 1.0458, 0.9220, 0.8205, 0.7305, 0.6502, 0.5950, 0.5545, 0.5333, 0.5189, 0.5181, 0.5176, 0.5172, 0.5119 };
         public double[] BValuesHelium => new double[] { 0.4245, 0.5747, 0.6527, 0.7223, 0.7582, 0.7957, 0.8279, 0.8553, 0.8757, 0.8903, 0.8997, 0.9073, 0.9122, 0.9171, 0.9217, 0.9267 };
         public IDiveProfileModel DiveProfile { get; set; }
+
+        public IDiveModel DeepClone()
+        {
+            return new Zhl16BuhlmannModel()
+            {
+                DiveProfile = DiveProfile.DeepClone()
+            };
+        }
     }
 }

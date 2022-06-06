@@ -9,19 +9,13 @@ namespace BubblesDivePlanner.DecompressionProfile
 {
     public class DecompressionProfileViewModel : ReactiveObject, IDecompressionProfileModel
     {
-        private IDiveModel _diveModel;
-        private ICylinderSetupModel _selectedCylinder;
-
-        public DecompressionProfileViewModel(IDiveModel diveModel, ICylinderSetupModel selectedCylinder)
+        private IList<IDiveStepModel> _decompressionDiveSteps = new List<IDiveStepModel>();
+        public IList<IDiveStepModel> DecompressionDiveSteps
         {
-            var diveProfile = diveModel.DiveProfile.DeepClone();
-            diveModel.DiveProfile = diveProfile;
-            _diveModel = diveModel;
-            _selectedCylinder = new CylinderPrototype().DeepClone(selectedCylinder);
+            get => _decompressionDiveSteps;
+            set => this.RaiseAndSetIfChanged(ref _decompressionDiveSteps, value);
         }
 
-        public Queue<IDiveStepModel> DecompressionDiveSteps => new DecompressionProfileController().CollateDecompressionDiveSteps(_diveModel, _selectedCylinder);
-        
         // private bool _isVisible = false;
         // public bool IsVisible
         // {

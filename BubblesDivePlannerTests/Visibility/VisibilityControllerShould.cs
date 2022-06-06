@@ -32,7 +32,6 @@ namespace BubblesDivePlannerTests.Visibility
             }
 
             Assert.False(mainWindowViewModel.DiveModelSelector.IsVisible);            
-            // Assert.True(mainWindowViewModel.DecompressionProfile.IsVisible);            
         }
     }
 }

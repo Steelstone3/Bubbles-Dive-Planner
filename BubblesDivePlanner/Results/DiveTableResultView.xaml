@@ -26,10 +26,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="0" Text="TP" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="1" Text="TAP" FontWeight="Bold"/>
-                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="MSP" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="3" Text="CLP" FontWeight="Bold"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="0" Text="TP" FontWeight="Bold" IsVisible="{Binding !!ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal.Count}"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="1" Text="TAP" FontWeight="Bold" IsVisible="{Binding !!ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal.Count}"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="MSP" FontWeight="Bold" IsVisible="{Binding !!ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal.Count}"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="3" Text="CLP" FontWeight="Bold" IsVisible="{Binding !!ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal.Count}"/>
         
                 <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal}" IsVisible="{Binding !!ResultsOverviewModel.LatestResult.DiveProfileModel.TissuePressuresTotal.Count}"/>
                 <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" Items="{Binding ResultsOverviewModel.LatestResult.DiveProfileModel.ToleratedAmbientPressures}" IsVisible="{Binding !!ResultsOverviewModel.LatestResult.DiveProfileModel.ToleratedAmbientPressures.Count}"/>

@@ -14,5 +14,6 @@ namespace BubblesDivePlanner.DiveModels
         double[] AValuesHelium { get; }
         double[] BValuesHelium { get; }
         IDiveProfileModel DiveProfile { get; set; }
+        IDiveModel DeepClone();
     }
 }

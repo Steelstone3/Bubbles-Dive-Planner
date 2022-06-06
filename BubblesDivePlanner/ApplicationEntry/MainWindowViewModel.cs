@@ -12,6 +12,7 @@ using BubblesDivePlanner.Header;
 using BubblesDivePlanner.CentralNervousSystemToxicity;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.DecompressionProfile;
+using System.Collections.Generic;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -51,7 +52,12 @@ namespace BubblesDivePlanner.ApplicationEntry
             get;
         } = new CentralNervousSystemToxicityViewModel();
 
-        public IDecompressionProfileModel DecompressionProfile => new DecompressionProfileViewModel(DiveModelSelector.SelectedDiveModel, CylinderSelector.SelectedCylinder);
+        private IDecompressionProfileModel _decompressionProfile = new DecompressionProfileViewModel();
+        public IDecompressionProfileModel DecompressionProfile
+        {
+            get => _decompressionProfile;
+            set => this.RaiseAndSetIfChanged(ref _decompressionProfile, value);
+        }
 
         private IResultsOverviewModel _resultsOverviewModel = new ResultsOverviewViewModel();
         public IResultsOverviewModel ResultsOverviewModel
@@ -82,6 +88,7 @@ namespace BubblesDivePlanner.ApplicationEntry
             CylinderSelector.SelectedCylinder.GasUsage.GasUsed = new GasUsageController().CalculateGasUsed(DiveStep, CylinderSelector.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate);
             CylinderSelector.SelectedCylinder.GasUsage.UpdateGasRemaining();
             ResultsOverviewModel.LatestResult.CylinderSetupModel = new CylinderPrototype().DeepClone(CylinderSelector.SelectedCylinder);
+            DecompressionProfile.DecompressionDiveSteps = new List<IDiveStepModel>(new DecompressionProfileController().CollateDecompressionDiveSteps(DiveModelSelector.SelectedDiveModel.DeepClone(), CylinderSelector.SelectedCylinder).ToArray());
         }
     }
 }

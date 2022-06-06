@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using BubblesDivePlanner.DecompressionProfile;
+using BubblesDivePlanner.DiveStep;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
@@ -6,27 +8,28 @@ namespace BubblesDivePlannerTests.DecompressionProfile
 {
     public class DecompressionViewModelShould
     {
-        private DivePlannerApplicationTestFixture _divePlannerApplicationTestFixture = new();
+        private DecompressionProfileViewModel _decompressionProfileViewModel = new();
 
         [Fact]
-        public void SimulateDecompressionProfile()
+        public void AllowModelToBeSet()
         {
-            var diveProfile = _divePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
-            var diveModel = _divePlannerApplicationTestFixture.GetDiveModel;
-            diveModel.DiveProfile = diveProfile;
-            DecompressionProfileViewModel decompressionProfileViewModel = new(diveModel, _divePlannerApplicationTestFixture.GetSelectedCylinder);
+            //Assert
+            Assert.NotNull(_decompressionProfileViewModel.DecompressionDiveSteps);
+        }
+
+        [Fact]
+        public void RaisePropertyChanged()
+        {
+            //Arrange
+            var diveSteps = new List<IDiveStepModel>();
+            var viewModelEvents = new List<string>();
+            _decompressionProfileViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            var diveStepQueue = decompressionProfileViewModel.DecompressionDiveSteps;
+            _decompressionProfileViewModel.DecompressionDiveSteps = diveSteps;
 
-            //Arrange
-            Assert.NotNull(diveStepQueue);
-            Assert.NotEmpty(diveStepQueue);
-            var diveSteps = diveStepQueue.ToArray();
-            Assert.Equal(6, diveSteps[0].Depth);
-            Assert.Equal(1, diveSteps[0].Time);
-            Assert.Equal(3, diveSteps[1].Depth);
-            Assert.Equal(3, diveSteps[1].Time);
+            //Assert
+            Assert.Contains(nameof(_decompressionProfileViewModel.DecompressionDiveSteps), viewModelEvents);
         }
     }
 }
