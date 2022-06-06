@@ -21,7 +21,7 @@ namespace BubblesDivePlanner.ApplicationEntry
         public MainWindowViewModel()
         {
             CalculateDiveStepCommand = ReactiveCommand.Create(CalculateDiveStep, CanCalculateDiveStep);
-            CalculateDecompressionProfileCommand = ReactiveCommand.Create(CalculateDecompressionProfile); //CanCalculateDecompressionProfile
+            CalculateDecompressionProfileCommand = ReactiveCommand.Create(CalculateDecompressionProfile);
             HeaderModel = new HeaderViewModel(this);
         }
 

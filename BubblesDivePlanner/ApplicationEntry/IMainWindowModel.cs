@@ -19,7 +19,7 @@ namespace BubblesDivePlanner.ApplicationEntry
         ICylinderSelectorModel CylinderSelector { get; set; }
         IResultsOverviewModel ResultsOverviewModel { get; set; }
         ICentralNervousSystemToxicityModel CentralNervousSystemToxicity { get; }
-        IDecompressionProfileModel DecompressionProfile { get; }
+        IDecompressionProfileModel DecompressionProfile { get; set; }
         ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
         IObservable<bool> CanCalculateDiveStep { get; }
     }

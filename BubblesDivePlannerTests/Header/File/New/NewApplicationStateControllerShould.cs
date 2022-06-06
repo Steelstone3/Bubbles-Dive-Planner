@@ -18,6 +18,7 @@ namespace BubblesDivePlannerTests.Header.File.New
             var diveModelSelector = divePlannerInstance.DiveModelSelector;
             var diveStep = divePlannerInstance.DiveStep;
             var cylinderSelector = divePlannerInstance.CylinderSelector;
+            var decompressionProfile = divePlannerInstance.DecompressionProfile;
             var resultsOverview = divePlannerInstance.ResultsOverviewModel;
 
             //Act
@@ -27,6 +28,7 @@ namespace BubblesDivePlannerTests.Header.File.New
             Assert.NotSame(diveModelSelector, divePlannerInstance.DiveModelSelector);
             Assert.NotSame(diveStep, divePlannerInstance.DiveStep);
             Assert.NotSame(cylinderSelector, divePlannerInstance.CylinderSelector);
+            Assert.NotSame(decompressionProfile, divePlannerInstance.DecompressionProfile);
             Assert.NotSame(resultsOverview, divePlannerInstance.ResultsOverviewModel);
         }
     }
