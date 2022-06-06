@@ -15,12 +15,5 @@ namespace BubblesDivePlanner.DecompressionProfile
             get => _decompressionDiveSteps;
             set => this.RaiseAndSetIfChanged(ref _decompressionDiveSteps, value);
         }
-
-        // private bool _isVisible = false;
-        // public bool IsVisible
-        // {
-        //     get => _isVisible;
-        //     set => this.RaiseAndSetIfChanged(ref _isVisible, value);
-        // }
     }
 }
