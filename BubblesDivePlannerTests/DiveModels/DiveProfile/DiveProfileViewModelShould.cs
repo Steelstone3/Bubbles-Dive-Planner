@@ -44,7 +44,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
             var diveProfile = new DiveProfileViewModel(16);
 
             //Assert
-            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.DiveProfile ,diveProfile);
+            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfile ,diveProfile);
         }
 
         [Fact]

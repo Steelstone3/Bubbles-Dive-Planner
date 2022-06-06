@@ -52,7 +52,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
 
         private void AddCylinder()
         {
-            Cylinders.Add(new CylinderPrototype().Clone(SelectedCylinder));
+            Cylinders.Add(new CylinderPrototype().DeepClone(SelectedCylinder));
         }
     }
 }

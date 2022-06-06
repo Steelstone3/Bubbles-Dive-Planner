@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
@@ -39,7 +38,7 @@ namespace BubblesDivePlannerTests.TestFixtures
             }
         };
 
-        public DiveProfileViewModel DiveProfile => new DiveProfileViewModel(COMPARTMENT_SIZE)
+        public DiveProfileViewModel GetDiveProfile => new DiveProfileViewModel(COMPARTMENT_SIZE)
         {
             PressureOxygen = 0,
             PressureNitrogen = 0,

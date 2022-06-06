@@ -5,7 +5,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
 {
     public class CylinderPrototype : ICylinderPrototype
     {
-        public ICylinderSetupModel Clone(ICylinderSetupModel cylinderSetupModel)
+        public ICylinderSetupModel DeepClone(ICylinderSetupModel cylinderSetupModel)
         {
             return new CylinderSetupViewModel()
             {

@@ -13,7 +13,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup
             ICylinderPrototype cylinderPrototype = new CylinderPrototype();
 
             //Act
-            var clonedCylinderSetup = cylinderPrototype.Clone(cylinderSetup);
+            var clonedCylinderSetup = cylinderPrototype.DeepClone(cylinderSetup);
 
             //Assert
             Assert.NotSame(cylinderSetup, clonedCylinderSetup);
