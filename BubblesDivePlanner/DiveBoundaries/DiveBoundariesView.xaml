@@ -7,7 +7,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-        <StackPanel>
+        <StackPanel IsVisible="{Binding !!CylinderSelector.Cylinders.Count}">
             <StackPanel Background="#FF5D99C6">
                 <TextBlock
                     Margin="4"
