@@ -9,8 +9,7 @@
     mc:Ignorable="d">
     
     <StackPanel>
-    <!-- Background="#FFC3FDFF" -->
-        <StackPanel Background="#FF5D99C6">
+        <StackPanel Margin="4,0" Background="#FF5D99C6">
             <TextBlock
                 Margin="4"
                 FontSize="16"
