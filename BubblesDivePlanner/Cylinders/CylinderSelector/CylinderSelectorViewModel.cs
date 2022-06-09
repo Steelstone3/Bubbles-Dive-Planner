@@ -8,6 +8,8 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
 {
     public class CylinderSelectorViewModel : ReactiveObject, ICylinderSelectorModel
     {
+        public event EventHandler SelectedCylinderChanged;
+
         public CylinderSelectorViewModel()
         {
             AddCylinderCommand = ReactiveCommand.Create(AddCylinder, CanAddCylinder);
@@ -22,7 +24,11 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
         public ICylinderSetupModel SelectedCylinder
         {
             get => _selectedCylinder;
-            set => this.RaiseAndSetIfChanged(ref _selectedCylinder, value);
+            set 
+            {
+                this.RaiseAndSetIfChanged(ref _selectedCylinder, value);
+                SelectedCylinderChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }

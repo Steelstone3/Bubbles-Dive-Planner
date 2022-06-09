@@ -23,6 +23,7 @@ namespace BubblesDivePlanner.ApplicationEntry
             CalculateDiveStepCommand = ReactiveCommand.Create(CalculateDiveStep, CanCalculateDiveStep);
             CalculateDecompressionProfileCommand = ReactiveCommand.Create(CalculateDecompressionProfile);
             HeaderModel = new HeaderViewModel(this);
+            CylinderSelector.SelectedCylinderChanged += (sender, e) => RecalculateDecompressionSteps();
         }
 
         public IHeaderModel HeaderModel { get; }
@@ -87,8 +88,10 @@ namespace BubblesDivePlanner.ApplicationEntry
             new DiveStageRunner().RunDiveStages(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder);
             CalculateGasUsage();
             AssignResults();
-            DecompressionProfile.DecompressionDiveSteps = new List<IDiveStepModel>(new DecompressionProfileController().CollateDecompressionDiveSteps(DiveModelSelector.SelectedDiveModel.DeepClone(), CylinderSelector.SelectedCylinder).ToArray());
+            RecalculateDecompressionSteps();
         }
+
+        private void RecalculateDecompressionSteps() => DecompressionProfile.DecompressionDiveSteps = new List<IDiveStepModel>(new DecompressionProfileController().CollateDecompressionDiveSteps(DiveModelSelector.SelectedDiveModel.DeepClone(), CylinderSelector.SelectedCylinder).ToArray());
 
         private void CalculateDecompressionProfile()
         {
@@ -101,7 +104,7 @@ namespace BubblesDivePlanner.ApplicationEntry
                     CalculateGasUsage();
                     AssignResults();
                 }
-                
+
                 DecompressionProfile.DecompressionDiveSteps = new List<IDiveStepModel>();
             }
         }
@@ -116,7 +119,7 @@ namespace BubblesDivePlanner.ApplicationEntry
         {
             ResultsOverviewModel.LatestResult.DiveProfileModel = DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
             ResultsOverviewModel.LatestResult.DiveStepModel = DiveStep.DeepClone();
-            
+
             ResultsOverviewModel.LatestResult.CylinderSetupModel = new CylinderPrototype().DeepClone(CylinderSelector.SelectedCylinder);
         }
     }

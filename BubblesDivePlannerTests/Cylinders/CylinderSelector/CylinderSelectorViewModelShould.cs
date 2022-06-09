@@ -75,5 +75,20 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
             //Assert
             Assert.True(isValid);
         }
+
+        [Fact]
+        public void RaiseSelectedCylinderChangedEvent() {
+            //Arrange
+            string eventFired = "event fired";
+            var viewModelEvents = new List<string>();
+            var selectedCylinder = new Mock<ICylinderSetupModel>();
+            _cylinderSelectorViewModel.SelectedCylinderChanged += (sender, e) => viewModelEvents.Add(eventFired);
+
+            //Act
+            _cylinderSelectorViewModel.SelectedCylinder = selectedCylinder.Object;
+
+            //Assert
+            Assert.Contains(eventFired, viewModelEvents);
+        }
     }
 }
