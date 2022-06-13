@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlanner.Cylinders.CylinderSelector;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
@@ -23,36 +24,34 @@ namespace BubblesDivePlannerTests.DecompressionProfile
         }
 
         [Fact]
-        public void RaisePropertyChanged()
+        public void RaiseCollectionChanged()
         {
             //Arrange
-            var diveSteps = new List<IDiveStepModel>();
-            var viewModelEvents = new List<string>();
-            _decompressionProfileViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
+            var diveStepDummy = new Mock<IDiveStepModel>();
+            var viewModelEvents = new List<NotifyCollectionChangedAction>();
+            _decompressionProfileViewModel.DecompressionDiveSteps.CollectionChanged += (sender, e) => viewModelEvents.Add(e.Action);
 
             //Act
-            _decompressionProfileViewModel.DecompressionDiveSteps = diveSteps;
+            _decompressionProfileViewModel.DecompressionDiveSteps.Add(diveStepDummy.Object);
 
             //Assert
-            Assert.Contains(nameof(_decompressionProfileViewModel.DecompressionDiveSteps), viewModelEvents);
+            Assert.Contains(NotifyCollectionChangedAction.Add, viewModelEvents);
+            Assert.Contains(diveStepDummy.Object, _decompressionProfileViewModel.DecompressionDiveSteps);
         }
 
         [Fact]
         public void RecalculateDecompressionStepsOnSelectedCylinder()
         {
             //Arrange
-            var viewModelEvents = new List<string>();
             MainWindowViewModel mainWindowViewModel = new();
             mainWindowViewModel.DiveModelSelector.SelectedDiveModel = _divePlannerApplicationTestFixture.GetDiveModel;
             mainWindowViewModel.DiveModelSelector.SelectedDiveModel.DiveProfile = _divePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
             mainWindowViewModel.DecompressionProfile = _decompressionProfileViewModel;
-            _decompressionProfileViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
             mainWindowViewModel.CylinderSelector.SelectedCylinder = _divePlannerApplicationTestFixture.GetSelectedCylinder;
 
             //Assert
-            Assert.Contains(nameof(_decompressionProfileViewModel.DecompressionDiveSteps), viewModelEvents);
             Assert.NotEmpty(mainWindowViewModel.DecompressionProfile.DecompressionDiveSteps);
         }
     }

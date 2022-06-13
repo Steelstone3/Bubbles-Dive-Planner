@@ -91,7 +91,16 @@ namespace BubblesDivePlanner.ApplicationEntry
             RecalculateDecompressionSteps();
         }
 
-        private void RecalculateDecompressionSteps() => DecompressionProfile.DecompressionDiveSteps = new List<IDiveStepModel>(new DecompressionProfileController().CollateDecompressionDiveSteps(DiveModelSelector.SelectedDiveModel.DeepClone(), CylinderSelector.SelectedCylinder).ToArray());
+        private void RecalculateDecompressionSteps()
+        {
+            DecompressionProfile.DecompressionDiveSteps.Clear();
+            var diveSteps = new DecompressionProfileController().CollateDecompressionDiveSteps(DiveModelSelector.SelectedDiveModel.DeepClone(), CylinderSelector.SelectedCylinder).ToArray();
+
+            foreach (var diveStep in diveSteps)
+            {
+                DecompressionProfile.DecompressionDiveSteps.Add(diveStep);
+            }
+        }
 
         private void CalculateDecompressionProfile()
         {
@@ -105,7 +114,7 @@ namespace BubblesDivePlanner.ApplicationEntry
                     AssignResults();
                 }
 
-                DecompressionProfile.DecompressionDiveSteps = new List<IDiveStepModel>();
+                DecompressionProfile.DecompressionDiveSteps.Clear();
             }
         }
 
