@@ -11,7 +11,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
-    public interface IMainWindowModel
+    public interface IMainWindowModel : IEventSubscriber
     {
         IHeaderModel HeaderModel { get; }
         IDiveModelSelectorModel DiveModelSelector { get; set; }

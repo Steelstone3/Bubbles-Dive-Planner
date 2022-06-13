@@ -12,7 +12,6 @@ using BubblesDivePlanner.Header;
 using BubblesDivePlanner.CentralNervousSystemToxicity;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.DecompressionProfile;
-using System.Collections.Generic;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -23,6 +22,11 @@ namespace BubblesDivePlanner.ApplicationEntry
             CalculateDiveStepCommand = ReactiveCommand.Create(CalculateDiveStep, CanCalculateDiveStep);
             CalculateDecompressionProfileCommand = ReactiveCommand.Create(CalculateDecompressionProfile);
             HeaderModel = new HeaderViewModel(this);
+            SubscribeEvents();
+        }
+
+        public void SubscribeEvents()
+        {
             CylinderSelector.SelectedCylinderChanged += (sender, e) => RecalculateDecompressionSteps();
         }
 

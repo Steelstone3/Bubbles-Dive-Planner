@@ -16,6 +16,7 @@ namespace BubblesDivePlanner.Header.File.New
             mainWindowModel.CylinderSelector = new CylinderSelectorViewModel();
             mainWindowModel.DecompressionProfile = new DecompressionProfileViewModel();
             mainWindowModel.ResultsOverviewModel = new ResultsOverviewViewModel();
+            mainWindowModel.SubscribeEvents();
         }
     }
 }
