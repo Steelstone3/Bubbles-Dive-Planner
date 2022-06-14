@@ -2,15 +2,11 @@
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.Cylinders.CylinderSelector;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
 using System;
 using System.Reactive;
-using BubblesDivePlanner.Visibility;
 using BubblesDivePlanner.Results;
-using BubblesDivePlanner.DiveStages.Runner;
 using BubblesDivePlanner.Header;
 using BubblesDivePlanner.CentralNervousSystemToxicity;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.DecompressionProfile;
 
 namespace BubblesDivePlanner.ApplicationEntry
@@ -88,52 +84,17 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         private void CalculateDiveStep()
         {
-            new VisibilityController().UpdateVisibilty(this);
-            new DiveStageRunner().RunDiveStages(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder);
-            CalculateGasUsage();
-            AssignResults();
-            RecalculateDecompressionSteps();
+           new DivePlannerService().CalculateDiveStep(this);
         }
 
         private void RecalculateDecompressionSteps()
         {
-            DecompressionProfile.DecompressionDiveSteps.Clear();
-            var diveSteps = new DecompressionProfileController().CollateDecompressionDiveSteps(DiveModelSelector.SelectedDiveModel.DeepClone(), CylinderSelector.SelectedCylinder).ToArray();
-
-            foreach (var diveStep in diveSteps)
-            {
-                DecompressionProfile.DecompressionDiveSteps.Add(diveStep);
-            }
+           new DivePlannerService().RecalculateDecompressionSteps(this);
         }
 
         private void CalculateDecompressionProfile()
         {
-            if (DecompressionProfile.DecompressionDiveSteps.Count > 0)
-            {
-                foreach (var diveStep in DecompressionProfile.DecompressionDiveSteps)
-                {
-                    DiveStep = diveStep;
-                    new DiveStageRunner().RunDiveStages(DiveModelSelector.SelectedDiveModel, DiveStep, CylinderSelector.SelectedCylinder);
-                    CalculateGasUsage();
-                    AssignResults();
-                }
-
-                DecompressionProfile.DecompressionDiveSteps.Clear();
-            }
-        }
-
-        private void CalculateGasUsage()
-        {
-            CylinderSelector.SelectedCylinder.GasUsage.GasUsed = new GasUsageController().CalculateGasUsed(DiveStep, CylinderSelector.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate);
-            CylinderSelector.SelectedCylinder.GasUsage.UpdateGasRemaining();
-        }
-
-        private void AssignResults()
-        {
-            ResultsOverviewModel.LatestResult.DiveProfileModel = DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
-            ResultsOverviewModel.LatestResult.DiveStepModel = DiveStep.DeepClone();
-
-            ResultsOverviewModel.LatestResult.CylinderSetupModel = new CylinderPrototype().DeepClone(CylinderSelector.SelectedCylinder);
+           new DivePlannerService().CalculateDecompressionProfile(this);
         }
     }
 }
