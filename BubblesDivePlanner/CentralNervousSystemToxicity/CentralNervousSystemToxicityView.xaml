@@ -31,9 +31,9 @@
                     <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="1" Text="Per Dive" FontWeight="Bold"/>
                     <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="Per Day" FontWeight="Bold"/>
         
-                    <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" Items="{Binding CentralNervousSystemToxicity.OxygenPartialPressureConstant}" />
-                    <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" Items="{Binding CentralNervousSystemToxicity.MaximumSingleDiveDuration}" />
-                    <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="2" Items="{Binding CentralNervousSystemToxicity.TotalDailyDuration}" />
+                    <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" Items="{Binding DiveInformation.CentralNervousSystemToxicity.OxygenPartialPressureConstant}" />
+                    <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" Items="{Binding DiveInformation.CentralNervousSystemToxicity.MaximumSingleDiveDuration}" />
+                    <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="2" Items="{Binding DiveInformation.CentralNervousSystemToxicity.TotalDailyDuration}" />
             </Grid>
         </StackPanel>
     </StackPanel>

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlanner.Cylinders.CylinderSelector;
-using BubblesDivePlanner.DecompressionProfile;
+using BubblesDivePlanner.DiveInformation;
 using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.Results;
@@ -18,12 +18,12 @@ namespace BubblesDivePlannerTests.ApplicationEntry
         public void AllowModelToBeSet()
         {
             //Assert
-            Assert.NotNull(_mainWindowViewModel.DecompressionProfile);
+            Assert.NotNull(_mainWindowViewModel.DiveInformation);
             Assert.NotNull(_mainWindowViewModel.HeaderModel);
             Assert.NotNull(_mainWindowViewModel.DiveModelSelector);
             Assert.NotNull(_mainWindowViewModel.DiveStep);
             Assert.NotNull(_mainWindowViewModel.CylinderSelector);
-            Assert.NotNull(_mainWindowViewModel.CentralNervousSystemToxicity);
+            Assert.NotNull(_mainWindowViewModel.DiveInformation);
             Assert.NotNull(_mainWindowViewModel.ResultsOverviewModel);
         }
 
@@ -35,7 +35,7 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             Mock<IDiveStepModel> diveStepModelDummy = new();
             Mock<ICylinderSelectorModel> cylinderSelectorModelDummy = new();
             Mock<IResultsOverviewModel> resultsOverviewModelDummy = new();
-            Mock<IDecompressionProfileModel> decompressionProfileModelDummy = new();
+            Mock<IDiveInformationModel> diveInformationModelDummy = new();
             var viewModelEvents = new List<string>();
             _mainWindowViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
@@ -43,14 +43,14 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             _mainWindowViewModel.DiveModelSelector = diveModelSelectorModelDummy.Object;
             _mainWindowViewModel.DiveStep = diveStepModelDummy.Object;
             _mainWindowViewModel.CylinderSelector = cylinderSelectorModelDummy.Object;
-            _mainWindowViewModel.DecompressionProfile = decompressionProfileModelDummy.Object;
+            _mainWindowViewModel.DiveInformation = diveInformationModelDummy.Object;
             _mainWindowViewModel.ResultsOverviewModel = resultsOverviewModelDummy.Object;
 
             //Assert
             Assert.Contains(nameof(_mainWindowViewModel.DiveModelSelector), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.DiveStep), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.CylinderSelector), viewModelEvents);
-            Assert.Contains(nameof(_mainWindowViewModel.DecompressionProfile), viewModelEvents);
+            Assert.Contains(nameof(_mainWindowViewModel.DiveInformation), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.ResultsOverviewModel), viewModelEvents);
         }
     }

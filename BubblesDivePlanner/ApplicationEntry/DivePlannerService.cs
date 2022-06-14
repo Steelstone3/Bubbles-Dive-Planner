@@ -19,20 +19,20 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         public void RecalculateDecompressionSteps(MainWindowViewModel vm)
         {
-            vm.DecompressionProfile.DecompressionDiveSteps.Clear();
+            vm.DiveInformation.DecompressionProfile.DecompressionDiveSteps.Clear();
             var diveSteps = new DecompressionProfileController().CollateDecompressionDiveSteps(vm.DiveModelSelector.SelectedDiveModel.DeepClone(), vm.CylinderSelector.SelectedCylinder).ToArray();
 
             foreach (var diveStep in diveSteps)
             {
-                vm.DecompressionProfile.DecompressionDiveSteps.Add(diveStep);
+                vm.DiveInformation.DecompressionProfile.DecompressionDiveSteps.Add(diveStep);
             }
         }
 
         public void CalculateDecompressionProfile(MainWindowViewModel vm)
         {
-            if (vm.DecompressionProfile.DecompressionDiveSteps.Count > 0)
+            if (vm.DiveInformation.DecompressionProfile.DecompressionDiveSteps.Count > 0)
             {
-                foreach (var diveStep in vm.DecompressionProfile.DecompressionDiveSteps)
+                foreach (var diveStep in vm.DiveInformation.DecompressionProfile.DecompressionDiveSteps)
                 {
                     vm.DiveStep = diveStep;
                     new DiveStageRunner().RunDiveStages(vm.DiveModelSelector.SelectedDiveModel, vm.DiveStep, vm.CylinderSelector.SelectedCylinder);
@@ -40,7 +40,7 @@ namespace BubblesDivePlanner.ApplicationEntry
                     AssignResults(vm);
                 }
 
-                vm.DecompressionProfile.DecompressionDiveSteps.Clear();
+                vm.DiveInformation.DecompressionProfile.DecompressionDiveSteps.Clear();
             }
         }
 

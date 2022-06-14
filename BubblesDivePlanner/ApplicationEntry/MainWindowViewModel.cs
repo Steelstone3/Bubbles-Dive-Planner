@@ -1,13 +1,14 @@
-﻿using ReactiveUI;
-using BubblesDivePlanner.DiveStep;
-using BubblesDivePlanner.DiveModels.Selector;
-using BubblesDivePlanner.Cylinders.CylinderSelector;
-using System;
+﻿using System;
 using System.Reactive;
-using BubblesDivePlanner.Results;
-using BubblesDivePlanner.Header;
 using BubblesDivePlanner.CentralNervousSystemToxicity;
+using BubblesDivePlanner.Cylinders.CylinderSelector;
 using BubblesDivePlanner.DecompressionProfile;
+using BubblesDivePlanner.DiveInformation;
+using BubblesDivePlanner.DiveModels.Selector;
+using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.Header;
+using BubblesDivePlanner.Results;
+using ReactiveUI;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
@@ -49,16 +50,11 @@ namespace BubblesDivePlanner.ApplicationEntry
             set => this.RaiseAndSetIfChanged(ref _cylinderSelector, value);
         }
 
-        public ICentralNervousSystemToxicityModel CentralNervousSystemToxicity
+        private IDiveInformationModel _diveInformation = new DiveInformationViewModel();
+        public IDiveInformationModel DiveInformation
         {
-            get;
-        } = new CentralNervousSystemToxicityViewModel();
-
-        private IDecompressionProfileModel _decompressionProfile = new DecompressionProfileViewModel();
-        public IDecompressionProfileModel DecompressionProfile
-        {
-            get => _decompressionProfile;
-            set => this.RaiseAndSetIfChanged(ref _decompressionProfile, value);
+            get => _diveInformation;
+            set => this.RaiseAndSetIfChanged(ref _diveInformation, value);
         }
 
         private IResultsOverviewModel _resultsOverviewModel = new ResultsOverviewViewModel();
@@ -84,17 +80,17 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         private void CalculateDiveStep()
         {
-           new DivePlannerService().CalculateDiveStep(this);
+            new DivePlannerService().CalculateDiveStep(this);
         }
 
         private void RecalculateDecompressionSteps()
         {
-           new DivePlannerService().RecalculateDecompressionSteps(this);
+            new DivePlannerService().RecalculateDecompressionSteps(this);
         }
 
         private void CalculateDecompressionProfile()
         {
-           new DivePlannerService().CalculateDecompressionProfile(this);
+            new DivePlannerService().CalculateDecompressionProfile(this);
         }
     }
 }

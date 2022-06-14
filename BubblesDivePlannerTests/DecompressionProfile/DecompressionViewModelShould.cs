@@ -46,13 +46,13 @@ namespace BubblesDivePlannerTests.DecompressionProfile
             MainWindowViewModel mainWindowViewModel = new();
             mainWindowViewModel.DiveModelSelector.SelectedDiveModel = _divePlannerApplicationTestFixture.GetDiveModel;
             mainWindowViewModel.DiveModelSelector.SelectedDiveModel.DiveProfile = _divePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
-            mainWindowViewModel.DecompressionProfile = _decompressionProfileViewModel;
+            mainWindowViewModel.DiveInformation.DecompressionProfile = _decompressionProfileViewModel;
 
             //Act
             mainWindowViewModel.CylinderSelector.SelectedCylinder = _divePlannerApplicationTestFixture.GetSelectedCylinder;
 
             //Assert
-            Assert.NotEmpty(mainWindowViewModel.DecompressionProfile.DecompressionDiveSteps);
+            Assert.NotEmpty(mainWindowViewModel.DiveInformation.DecompressionProfile.DecompressionDiveSteps);
         }
     }
 }
