@@ -8,17 +8,20 @@ using BubblesDivePlanner.DiveStep;
 
 namespace BubblesDivePlannerTests.TestFixtures
 {
-    public class HelioxDivePlannerApplicationTestFixture
+    public static class HelioxDivePlannerApplicationTestFixture
     {
-        public Zhl16BuhlmannModel GetDiveModel => new Zhl16BuhlmannModel();
+        public static Zhl16BuhlmannModel GetDiveModel => new Zhl16BuhlmannModel();
 
-        public DiveStepViewModel GetDiveStep => new DiveStepViewModel()
+        public static DiveStepViewModel GetDiveStep()
         {
-            Depth = 100,
-            Time = 20
-        };
+            return new DiveStepViewModel()
+            {
+                Depth = 100,
+                Time = 20
+            };
+        }
 
-        public CylinderSetupViewModel GetSelectedCylinder => new CylinderSetupViewModel()
+        public static CylinderSetupViewModel GetSelectedCylinder => new CylinderSetupViewModel()
         {
             CylinderName = "Heliox",
             CylinderPressure = 200,
@@ -38,19 +41,19 @@ namespace BubblesDivePlannerTests.TestFixtures
         };
 
         //TODO in progress need to put in the expected results here
-        public DiveProfileViewModel GetDiveProfileResult => new DiveProfileViewModel(16)
+        public static DiveProfileViewModel GetDiveProfileResult => new DiveProfileViewModel(16)
         {
             PressureOxygen = 0,
             PressureNitrogen = 0,
             PressureHelium = 0,
-            AValues = new double[] { },
-            BValues = new double[] { },
-            MaxSurfacePressures = new double[] { },
-            TissuePressuresNitrogen = new double[] { },
-            TissuePressuresHelium = new double[] { },
-            TissuePressuresTotal = new double[] { },
-            ToleratedAmbientPressures = new double[] { },
-            CompartmentLoad = new double[] { }
+            // AValues = new double[] { },
+            // BValues = new double[] { },
+            // MaxSurfacePressures = new double[] { },
+            // TissuePressuresNitrogen = new double[] { },
+            // TissuePressuresHelium = new double[] { },
+            // TissuePressuresTotal = new double[] { },
+            // ToleratedAmbientPressures = new double[] { },
+            // CompartmentLoad = new double[] { }
         };
     }
 }

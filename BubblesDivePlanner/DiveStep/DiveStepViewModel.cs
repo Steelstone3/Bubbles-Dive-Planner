@@ -24,7 +24,7 @@ namespace BubblesDivePlanner.DiveStep
             return ValidateDiveStep(diveStep.Depth, diveStep.Time);
         }
 
-        private bool ValidateDiveStep(int depth, int time)
+        private static bool ValidateDiveStep(int depth, int time)
         {
             return depth <= 100 && depth >= 0 && time <= 60 && time >= 1;
         }

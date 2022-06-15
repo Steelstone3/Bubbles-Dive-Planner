@@ -18,10 +18,8 @@ namespace BubblesDivePlannerTests.Visibility
             mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders.Add(_diveStagesTextFixture.GetSelectedCylinder);
             mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders.Add(_diveStagesTextFixture.GetSelectedCylinder);
 
-            var visibilityController = new VisibilityController();
-
             //Act
-            visibilityController.UpdateVisibilty(mainWindowViewModel);
+            VisibilityController.UpdateVisibilty(mainWindowViewModel);
 
             //Assert
             foreach (var cylinder in mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders)

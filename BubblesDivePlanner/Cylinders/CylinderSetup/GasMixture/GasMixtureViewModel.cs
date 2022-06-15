@@ -41,7 +41,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
             private set => this.RaiseAndSetIfChanged(ref _nitrogen, value);
         }
 
-        public double MaximumOperatingDepth => Oxygen != 0 ? new MaximumOperatingDepthController().CalculateMaximumOperatingDepth(Oxygen) : 0;
+        public double MaximumOperatingDepth => Oxygen != 0 ? MaximumOperatingDepthController.CalculateMaximumOperatingDepth(Oxygen) : 0;
 
         private bool _isVisible = true;
         public bool IsVisible

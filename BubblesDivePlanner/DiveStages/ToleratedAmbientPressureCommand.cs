@@ -5,7 +5,7 @@ namespace BubblesDivePlanner.DiveStages
 {
     public class ToleratedAmbientPressureCommand : IDiveStageCommand
     {
-        private IDiveModel _diveModel;
+        private readonly IDiveModel _diveModel;
 
         public ToleratedAmbientPressureCommand(IDiveModel diveModel)
         {

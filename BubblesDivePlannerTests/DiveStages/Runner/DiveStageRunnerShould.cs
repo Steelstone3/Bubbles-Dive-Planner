@@ -8,16 +8,13 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
 {
     public class DiveStageRunnerShould
     {
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
-        private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
-
         [Fact]
         public void RunDiveStages()
         {
             //Arrange
-            var diveModel = diveStagesTextFixture.GetDiveModel;
-            var diveStepModel = diveStagesTextFixture.GetDiveStep;
-            var selectedCylinder = diveStagesTextFixture.GetSelectedCylinder;
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            var diveStepModel = DivePlannerApplicationTestFixture.GetDiveStep;
+            var selectedCylinder = DivePlannerApplicationTestFixture.GetSelectedCylinder;
 
             IDiveStageRunner diveStageRunner = new DiveStageRunner();
 
@@ -25,35 +22,35 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
             diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
 
             //Assert
-            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
-            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
-            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromFirstRun, diveModel.DiveProfile);
+            DiveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
+            DiveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
+            DiveParameterAsserter.AssertDiveProfileValuesEquality(DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun, diveModel.DiveProfile);
         }
 
         [Fact(Skip = "Need to implement second result in test fixture")]
         public void RunDiveStagesMoreThanOnce()
         {
             //Arrange
-            var diveModel = diveStagesTextFixture.GetDiveModel;
-            var diveStepModel = diveStagesTextFixture.GetDiveStep;
-            var selectedCylinder = diveStagesTextFixture.GetSelectedCylinder;
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            var diveStepModel = DivePlannerApplicationTestFixture.GetDiveStep;
+            var selectedCylinder = DivePlannerApplicationTestFixture.GetSelectedCylinder;
             IDiveStageRunner diveStageRunner = new DiveStageRunner();
 
             //Act
             diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
-            
+
             //Assert
-            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
-            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
-            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromFirstRun, diveModel.DiveProfile);
+            DiveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
+            DiveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
+            DiveParameterAsserter.AssertDiveProfileValuesEquality(DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun, diveModel.DiveProfile);
 
             //Act
             diveStageRunner.RunDiveStages(diveModel, diveStepModel, selectedCylinder);
-            
+
             //Assert
-            diveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
-            diveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
-            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfileResultFromSecondRun, diveModel.DiveProfile);
+            DiveParameterAsserter.AssertDiveStepValuesEquality(diveStepModel, diveStepModel);
+            DiveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
+            DiveParameterAsserter.AssertDiveProfileValuesEquality(DivePlannerApplicationTestFixture.GetDiveProfileResultFromSecondRun, diveModel.DiveProfile);
         }
 
     }

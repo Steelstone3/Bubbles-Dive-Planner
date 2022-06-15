@@ -2,9 +2,9 @@ using BubblesDivePlanner.ApplicationEntry;
 
 namespace BubblesDivePlanner.Visibility
 {
-    public class VisibilityController
+    public static class VisibilityController
     {
-        public void UpdateVisibilty(IMainWindowModel mainWindowViewModel)
+        public static void UpdateVisibilty(IMainWindowModel mainWindowViewModel)
         {
             mainWindowViewModel.DivePlanner.DiveModelSelector.IsVisible = false;
 
@@ -12,7 +12,7 @@ namespace BubblesDivePlanner.Visibility
             mainWindowViewModel.ResultsOverview.IsVisible = true;
         }
 
-        private void UpdateCylinderVisibilty(IMainWindowModel mainWindowViewModel) {
+        private static void UpdateCylinderVisibilty(IMainWindowModel mainWindowViewModel) {
             foreach(var cylinder in mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders)
             {
                 cylinder.GasMixture.IsVisible = false;

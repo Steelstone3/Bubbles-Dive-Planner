@@ -6,8 +6,8 @@ namespace BubblesDivePlanner.DiveStages
 {
     public class TissuePressureCommand : IDiveStageCommand
     {
-        private IDiveModel _diveModel;
-        private IDiveStepModel _diveStepModel;
+        private readonly IDiveModel _diveModel;
+        private readonly IDiveStepModel _diveStepModel;
 
         public TissuePressureCommand(IDiveModel diveModel, IDiveStepModel diveStepModel)
         {

@@ -10,8 +10,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
     {
         private readonly double[] expectedArray = { 3.0, 6.0 };
         private readonly double expectedValue = 10;
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new();
-        private DiveParameterAsserter diveParameterAsserter = new();
+        private readonly DivePlannerApplicationTestFixture diveStagesTextFixture = new();
         
         [Theory]
         [InlineData(16)]
@@ -44,7 +43,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
             var diveProfile = new DiveProfileViewModel(16);
 
             //Assert
-            diveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfile ,diveProfile);
+            DiveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfile ,diveProfile);
         }
 
         [Fact]

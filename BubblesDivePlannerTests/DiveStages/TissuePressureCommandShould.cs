@@ -6,15 +6,13 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class TissuePressureShould
     {
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
-
         [Fact]
         public void RunTissuePressureStage()
         {
             //Arrange
-            var diveModel = diveStagesTextFixture.GetDiveModel;
-            diveModel.DiveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
-            var diveStep = diveStagesTextFixture.GetDiveStep;
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            var diveStep = DivePlannerApplicationTestFixture.GetDiveStep;
             var expectedTissuePressureNitrogen = diveModel.DiveProfile.TissuePressuresNitrogen;
             var expectedTissuePressureHelium = diveModel.DiveProfile.TissuePressuresHelium;
             var expectedTissuePressureTotal = diveModel.DiveProfile.TissuePressuresTotal;

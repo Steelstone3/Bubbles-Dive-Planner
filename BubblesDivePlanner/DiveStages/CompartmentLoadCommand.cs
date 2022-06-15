@@ -5,7 +5,7 @@ namespace BubblesDivePlanner.DiveStages
 {
     public class CompartmentLoadCommand : IDiveStageCommand
     {
-        private IDiveModel _diveModel;
+        private readonly IDiveModel _diveModel;
 
         public CompartmentLoadCommand(IDiveModel diveModel)
         {

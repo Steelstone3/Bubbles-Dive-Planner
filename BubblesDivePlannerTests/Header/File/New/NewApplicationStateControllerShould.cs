@@ -8,9 +8,6 @@ namespace BubblesDivePlannerTests.Header.File.New
 {
     public class NewApplicationStateControllerShould
     {
-        private DivePlannerApplicationTestFixture _diveStagesTextFixture = new();
-        private NewApplicationStateController _newController = new();
-
         [Fact]
         public void CreateNewDivePlannerInstance()
         {
@@ -21,7 +18,7 @@ namespace BubblesDivePlannerTests.Header.File.New
             var resultsOverview = divePlannerInstance.ResultsOverview;
 
             //Act
-            _newController.CreateNewApplicationInstance(divePlannerInstance);
+            NewApplicationStateController.CreateNewApplicationInstance(divePlannerInstance);
 
             //Assert
             Assert.NotSame(divePlanner, divePlannerInstance.DivePlanner);
@@ -37,7 +34,7 @@ namespace BubblesDivePlannerTests.Header.File.New
             divePlannerInstanceMock.Setup(vm => vm.SubscribeEvents());
 
             //Act
-            _newController.CreateNewApplicationInstance(divePlannerInstanceMock.Object);
+            NewApplicationStateController.CreateNewApplicationInstance(divePlannerInstanceMock.Object);
             
             //Assert
             divePlannerInstanceMock.Verify(vm => vm.SubscribeEvents());

@@ -6,15 +6,13 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class ToleratedAmbientPressureShould
     {
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
-      
         [Fact]
         public void RunToleratedAmbientPressureStage()
         {
             //Arrange
-            var diveModel = diveStagesTextFixture.GetDiveModel;
-            diveModel.DiveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
-            var toleratedAmbientPressuresResult = diveStagesTextFixture.GetDiveProfileResultFromFirstRun.ToleratedAmbientPressures;
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            var toleratedAmbientPressuresResult = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun.ToleratedAmbientPressures;
             
             var diveStage = new ToleratedAmbientPressureCommand(diveModel);
 

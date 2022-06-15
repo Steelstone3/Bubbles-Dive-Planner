@@ -92,7 +92,7 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
             set => this.RaiseAndSetIfChanged(ref _pressureNitrogen, value);
         }
 
-        public double DiveCeiling => ToleratedAmbientPressures.Max() <= 0 ? 0 : new DiveCeilingController().CalculateDiveCeiling(ToleratedAmbientPressures);
+        public double DiveCeiling => ToleratedAmbientPressures.Max() <= 0 ? 0 : DiveCeilingController.CalculateDiveCeiling(ToleratedAmbientPressures);
 
         public IDiveProfileModel DeepClone()
         {

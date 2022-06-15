@@ -8,8 +8,8 @@ namespace BubblesDivePlannerTests.DiveModels.Selector
 {
     public class DiveModelSelectorViewModelShould
     {
-        private DiveModelSelectorViewModel _diveModelSelectorViewModel = new();
-        private Mock<IDiveModel> _diveModelDummy = new();
+        private readonly DiveModelSelectorViewModel _diveModelSelectorViewModel = new();
+        private readonly Mock<IDiveModel> _diveModelDummy = new();
 
         [Fact]
         public void AllowModelToBeSet()

@@ -5,9 +5,9 @@ using BubblesDivePlanner.Results;
 
 namespace BubblesDivePlanner.Header.File.New
 {
-    public class NewApplicationStateController
+    public static class NewApplicationStateController
     {
-        public void CreateNewApplicationInstance(IMainWindowModel mainWindowModel)
+        public static void CreateNewApplicationInstance(IMainWindowModel mainWindowModel)
         {
             mainWindowModel.DivePlanner = new DivePlannerViewModel();
             mainWindowModel.DiveInformation = new DiveInformationViewModel();

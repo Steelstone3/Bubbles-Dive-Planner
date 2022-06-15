@@ -6,7 +6,7 @@ namespace BubblesDivePlanner.Header.File.New
 {
     public class NewViewModel : INewModel
     {
-        private IMainWindowModel _mainWindowModel;
+        private readonly IMainWindowModel _mainWindowModel;
 
         public NewViewModel(IMainWindowModel mainWindowModel)
         {
@@ -18,7 +18,7 @@ namespace BubblesDivePlanner.Header.File.New
 
         private void CreateNewDivePlannerInstance()
         {
-            new NewApplicationStateController().CreateNewApplicationInstance(_mainWindowModel);
+            NewApplicationStateController.CreateNewApplicationInstance(_mainWindowModel);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         public IHeaderModel HeaderModel { get; }
 
-        private DivePlannerViewModel _divePlanner = new DivePlannerViewModel();
+        private DivePlannerViewModel _divePlanner = new();
         public DivePlannerViewModel DivePlanner
         {
             get => _divePlanner;
@@ -62,17 +62,17 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         private void CalculateDiveStep()
         {
-            new DivePlannerService().CalculateDiveStep(this);
+            DivePlannerService.CalculateDiveStep(this);
         }
 
         private void RecalculateDecompressionSteps()
         {
-            new DivePlannerService().RecalculateDecompressionSteps(this);
+            DivePlannerService.RecalculateDecompressionSteps(this);
         }
 
         private void CalculateDecompressionProfile()
         {
-            new DivePlannerService().CalculateDecompressionProfile(this);
+            DivePlannerService.CalculateDecompressionProfile(this);
         }
     }
 }

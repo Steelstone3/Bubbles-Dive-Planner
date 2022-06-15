@@ -5,7 +5,7 @@ namespace BubblesDivePlanner.DiveStages
 {
     public class AbValuesCommand : IDiveStageCommand
     {
-        private IDiveModel _diveModel;
+        private readonly IDiveModel _diveModel;
 
         public AbValuesCommand(IDiveModel diveModel) {
             _diveModel = diveModel;

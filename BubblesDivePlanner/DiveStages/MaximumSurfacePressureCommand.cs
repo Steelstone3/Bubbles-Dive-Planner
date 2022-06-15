@@ -5,7 +5,7 @@ namespace BubblesDivePlanner.DiveStages
 {
     public class MaximumSurfacePressureCommand : IDiveStageCommand
     {
-        private IDiveModel _diveModel;
+        private readonly IDiveModel _diveModel;
 
         public MaximumSurfacePressureCommand(IDiveModel diveModel)
         {

@@ -10,15 +10,14 @@ namespace BubblesDivePlannerTests.DiveInformation
 {
     public class DivePlannerViewModelShould
     {
-        private DivePlannerApplicationTestFixture _divePlannerApplicationTestFixture = new();
-        private DivePlannerViewModel _divePlannerViewModel = new();
+        private readonly DivePlannerViewModel _divePlannerViewModel = new();
 
         [Fact]
         public void AllowModelToBeSet()
         {
             //Act
-            _divePlannerViewModel.DiveModelSelector.SelectedDiveModel = _divePlannerApplicationTestFixture.GetDiveModel;
-            _divePlannerViewModel.CylinderSelector.SelectedCylinder = _divePlannerApplicationTestFixture.GetSelectedCylinder;
+            _divePlannerViewModel.DiveModelSelector.SelectedDiveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            _divePlannerViewModel.CylinderSelector.SelectedCylinder = DivePlannerApplicationTestFixture.GetSelectedCylinder;
 
             //Assert
             Assert.NotNull(_divePlannerViewModel.DiveModelSelector);

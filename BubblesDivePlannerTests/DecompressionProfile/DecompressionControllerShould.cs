@@ -6,16 +6,13 @@ namespace BubblesDivePlannerTests.DecompressionProfile
 {
     public class DecompressionControllerShould
     {
-        private DivePlannerApplicationTestFixture divePlannerApplicationTestFixture = new();
-        private DecompressionProfileController _decompressionController = new();
-
         [Fact]
         public void FindNearestDepthToDiveCeilingFromFirstRun()
         {
             //Act
-            var diveModel = divePlannerApplicationTestFixture.GetDiveModel;
-            diveModel.DiveProfile = divePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
-            var diveStepQueue = _decompressionController.CollateDecompressionDiveSteps(diveModel, divePlannerApplicationTestFixture.GetSelectedCylinder);
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            var diveStepQueue = DecompressionProfileController.CollateDecompressionDiveSteps(diveModel, DivePlannerApplicationTestFixture.GetSelectedCylinder);
 
             //Assert
             var diveSteps = diveStepQueue.ToArray();
@@ -27,9 +24,9 @@ namespace BubblesDivePlannerTests.DecompressionProfile
         public void FindNearestDepthToDiveCeilingFromSecondRun()
         {
             //Act
-            var diveModel = divePlannerApplicationTestFixture.GetDiveModel;
-            diveModel.DiveProfile = divePlannerApplicationTestFixture.GetDiveProfileResultFromSecondRun;
-            var diveStepQueue = _decompressionController.CollateDecompressionDiveSteps(diveModel, divePlannerApplicationTestFixture.GetSelectedCylinder);
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromSecondRun;
+            var diveStepQueue = DecompressionProfileController.CollateDecompressionDiveSteps(diveModel, DivePlannerApplicationTestFixture.GetSelectedCylinder);
 
             //Assert
             var diveSteps = diveStepQueue.ToArray();
@@ -41,9 +38,9 @@ namespace BubblesDivePlannerTests.DecompressionProfile
         public void CollateDecompressionDiveStepsFromFirstRun()
         {
             //Act
-            var diveModel = divePlannerApplicationTestFixture.GetDiveModel;
-            diveModel.DiveProfile = divePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
-            var diveStepQueue = _decompressionController.CollateDecompressionDiveSteps(diveModel, divePlannerApplicationTestFixture.GetSelectedCylinder);
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            var diveStepQueue = DecompressionProfileController.CollateDecompressionDiveSteps(diveModel, DivePlannerApplicationTestFixture.GetSelectedCylinder);
 
             //Assert
             var diveSteps = diveStepQueue.ToArray();
@@ -58,9 +55,9 @@ namespace BubblesDivePlannerTests.DecompressionProfile
         public void CollateDecompressionDiveStepsFromSecondRun()
         {
             //Act
-            var diveModel = divePlannerApplicationTestFixture.GetDiveModel;
-            diveModel.DiveProfile = divePlannerApplicationTestFixture.GetDiveProfileResultFromSecondRun;
-            var diveStepQueue = _decompressionController.CollateDecompressionDiveSteps(diveModel, divePlannerApplicationTestFixture.GetSelectedCylinder);
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromSecondRun;
+            var diveStepQueue = DecompressionProfileController.CollateDecompressionDiveSteps(diveModel, DivePlannerApplicationTestFixture.GetSelectedCylinder);
 
             //Assert
             var diveSteps = diveStepQueue.ToArray();
@@ -73,7 +70,7 @@ namespace BubblesDivePlannerTests.DecompressionProfile
         public void ReturnEmptyQueueWhenDiveCeilingIsZero()
         {
             //Act
-            var diveStepQueue = _decompressionController.CollateDecompressionDiveSteps(divePlannerApplicationTestFixture.GetDiveModel, divePlannerApplicationTestFixture.GetSelectedCylinder);
+            var diveStepQueue = DecompressionProfileController.CollateDecompressionDiveSteps(DivePlannerApplicationTestFixture.GetDiveModel, DivePlannerApplicationTestFixture.GetSelectedCylinder);
 
             //Assert
             Assert.Empty(diveStepQueue);

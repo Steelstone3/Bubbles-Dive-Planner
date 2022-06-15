@@ -6,15 +6,11 @@ namespace BubblesDivePlannerTests.Acceptance
 {
     public class DivePlannerShould
     {
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
-        private DiveParameterAsserter diveParameterAsserter = new DiveParameterAsserter();
-
-
         [Fact(Skip = "Unexplained failing test")]
         public void AddCylinder()
         {
             //Arrange
-            var selectedCylinder = diveStagesTextFixture.GetSelectedCylinder;
+            // var selectedCylinder = DivePlannerApplicationTestFixture.GetSelectedCylinder;
 
             //Act
             // _cylinderSelectorViewModel.AddCylinderCommand.Execute();

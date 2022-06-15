@@ -6,14 +6,12 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class MaximumSurfacePressureCommandShould
     {
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
-        
         [Fact]
         public void RunMaximumSurfacePressureStage()
         {
             //Arrange
-            var diveModel = diveStagesTextFixture.GetDiveModel;
-            diveModel.DiveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
             var aValues = diveModel.DiveProfile.AValues;
             var bValues = diveModel.DiveProfile.BValues;
             diveModel.DiveProfile.AValues = aValues;

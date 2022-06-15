@@ -10,8 +10,8 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
 {
     public class CylinderSelectorViewModelShould
     {
-        private CylinderSelectorViewModel _cylinderSelectorViewModel = new();
-        private Mock<ICylinderSetupModel> _cylinderModelDummy = new();
+        private readonly CylinderSelectorViewModel _cylinderSelectorViewModel = new();
+        private readonly Mock<ICylinderSetupModel> _cylinderModelDummy = new();
 
         [Fact]
         public void AllowModelToBeSet()

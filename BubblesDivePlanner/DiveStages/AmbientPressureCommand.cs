@@ -6,9 +6,9 @@ namespace BubblesDivePlanner.DiveStages
 {
     public class AmbientPressureCommand : IDiveStageCommand
     {
-        private IDiveProfileModel _diveProfileModel;
-        private IGasMixtureModel _gasMixtureModel;
-        private IDiveStepModel _diveStepModel;
+        private readonly IDiveProfileModel _diveProfileModel;
+        private readonly IGasMixtureModel _gasMixtureModel;
+        private readonly IDiveStepModel _diveStepModel;
 
         public AmbientPressureCommand(IDiveProfileModel diveProfile, IGasMixtureModel gasMixtureModel, IDiveStepModel diveStepModel)
         {

@@ -5,8 +5,6 @@ namespace BubblesDivePlannerTests.DiveBoundaries
 {
     public class MaximumOperatingDepthControllerShould
     {
-        private MaximumOperatingDepthController _maximumOperatingDepthController = new();
-
         [InlineData(21, 56.67)]
         [InlineData(32, 33.75)]
         [InlineData(50, 18)]
@@ -15,7 +13,7 @@ namespace BubblesDivePlannerTests.DiveBoundaries
         public void CalculateMaximumOperatingDepth(int oxygenPercentage, double expectedMaximumOperatingDepth)
         {
             //Act
-            var maximumOperatingDepth = _maximumOperatingDepthController.CalculateMaximumOperatingDepth(oxygenPercentage);
+            var maximumOperatingDepth = MaximumOperatingDepthController.CalculateMaximumOperatingDepth(oxygenPercentage);
 
             //Assert
             Assert.Equal(expectedMaximumOperatingDepth, maximumOperatingDepth);

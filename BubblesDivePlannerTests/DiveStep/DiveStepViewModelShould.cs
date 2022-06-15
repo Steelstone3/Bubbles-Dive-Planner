@@ -6,9 +6,9 @@ namespace BubblesDivePlannerTests.DiveStep
 {
     public class DiveStepViewModelShould
     {
-        private DiveStepViewModel _diveStep = new();
-        private byte _depth = 50;
-        private byte _time = 10;
+        private readonly DiveStepViewModel _diveStep = new();
+        private readonly byte _depth = 50;
+        private readonly byte _time = 10;
 
         [Fact]
         public void AllowModelToBeSet()

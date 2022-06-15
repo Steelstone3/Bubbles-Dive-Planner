@@ -6,9 +6,9 @@ namespace BubblesDivePlanner.DiveStages.Runner
 {
     public class DiveStageCommandFactory : IDiveStageCommandFactory
     {
-        private IDiveModel _diveModel;
-        private IDiveStepModel _diveStepModel;
-        private ICylinderSetupModel _selectedCylinderModel;
+        private readonly IDiveModel _diveModel;
+        private readonly IDiveStepModel _diveStepModel;
+        private readonly ICylinderSetupModel _selectedCylinderModel;
 
         public DiveStageCommandFactory(IDiveModel diveModel, IDiveStepModel diveStepModel, ICylinderSetupModel selectedCylinder)
         {

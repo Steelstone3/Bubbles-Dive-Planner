@@ -9,7 +9,7 @@ namespace BubblesDivePlanner.DiveStages.Runner
     {
         public void RunDiveStages(IDiveModel diveModel, IDiveStepModel diveStepModel, ICylinderSetupModel selectedCylinder)
         {
-            var resultModel = new ResultViewModel();
+            // var resultModel = new ResultViewModel();
             var diveStageCommandFactory = new DiveStageCommandFactory(diveModel, diveStepModel, selectedCylinder);
             var stages = diveStageCommandFactory.CreateDiveStages();
 

@@ -51,7 +51,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
             return ValidateCylinderSetup(selectedCylinder.CylinderName, selectedCylinder.CylinderVolume, selectedCylinder.CylinderPressure, selectedCylinder.GasMixture.Oxygen, selectedCylinder.GasMixture.Helium, selectedCylinder.GasUsage.SurfaceAirConsumptionRate);
         }
 
-        private bool ValidateCylinderSetup(string cylinderName, int cylinderVolume, int cylinderPressure, double oxygen, double helium, int surfaceAirConsumptionRate)
+        private static bool ValidateCylinderSetup(string cylinderName, int cylinderVolume, int cylinderPressure, double oxygen, double helium, int surfaceAirConsumptionRate)
         {
             return !string.IsNullOrWhiteSpace(cylinderName) && cylinderVolume <= 30 && cylinderVolume >= 3 && cylinderPressure <= 300 && cylinderPressure >= 150 && oxygen <= 100 - helium && oxygen >= 5 && helium <= 100 - oxygen && helium >= 0 && surfaceAirConsumptionRate <= 30 && surfaceAirConsumptionRate >= 5;
         }

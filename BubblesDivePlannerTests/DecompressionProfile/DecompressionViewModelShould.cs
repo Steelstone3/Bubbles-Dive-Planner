@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using BubblesDivePlanner.ApplicationEntry;
-using BubblesDivePlanner.Cylinders.CylinderSelector;
 using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlannerTests.TestFixtures;
@@ -12,8 +11,8 @@ namespace BubblesDivePlannerTests.DecompressionProfile
 {
     public class DecompressionViewModelShould
     {
-        private DivePlannerApplicationTestFixture _divePlannerApplicationTestFixture = new();
-        private DecompressionProfileViewModel _decompressionProfileViewModel = new();
+        private readonly DivePlannerApplicationTestFixture _divePlannerApplicationTestFixture = new();
+        private readonly DecompressionProfileViewModel _decompressionProfileViewModel = new();
 
         [Fact]
         public void AllowModelToBeSet()

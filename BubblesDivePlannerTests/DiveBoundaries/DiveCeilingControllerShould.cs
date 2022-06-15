@@ -6,8 +6,7 @@ namespace BubblesDivePlannerTests.DiveBoundaries
 {
     public class DiveCeilingControllerShould
     {
-        private DivePlannerApplicationTestFixture _diveStagesTestFixtures = new();
-        private DiveCeilingController _diveCeilingController = new();
+        private readonly DivePlannerApplicationTestFixture _diveStagesTestFixtures = new();
 
         [Fact]
         public void CalculateDiveCeiling()
@@ -16,7 +15,7 @@ namespace BubblesDivePlannerTests.DiveBoundaries
             var toleratedAmbientPressures = _diveStagesTestFixtures.GetDiveProfileResultFromFirstRun.ToleratedAmbientPressures;
 
             //Act
-            double diveCeiling = _diveCeilingController.CalculateDiveCeiling(toleratedAmbientPressures);
+            double diveCeiling = DiveCeilingController.CalculateDiveCeiling(toleratedAmbientPressures);
 
             //Assert
             Assert.Equal(4.07, diveCeiling);

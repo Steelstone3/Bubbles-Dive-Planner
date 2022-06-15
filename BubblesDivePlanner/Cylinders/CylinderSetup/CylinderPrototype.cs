@@ -18,7 +18,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
             };
         }
 
-        private IGasMixtureModel CloneGasMixture(ICylinderSetupModel cylinderSetupModel)
+        private static IGasMixtureModel CloneGasMixture(ICylinderSetupModel cylinderSetupModel)
         {
             return new GasMixtureViewModel()
             {
@@ -27,7 +27,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
             };
         }
 
-        private IGasUsageModel CloneGasUsage(ICylinderSetupModel cylinderSetupModel)
+        private static IGasUsageModel CloneGasUsage(ICylinderSetupModel cylinderSetupModel)
         {
             return new GasUsageViewModel()
             {

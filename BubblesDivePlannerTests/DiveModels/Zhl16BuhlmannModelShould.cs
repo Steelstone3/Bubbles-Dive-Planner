@@ -5,7 +5,7 @@ namespace BubblesDivePlannerTests.DiveModels
 {
     public class Zhl16BuhlmannModelShould
     {
-        private IDiveModel _diveModel = new Zhl16BuhlmannModel();
+        private readonly IDiveModel _diveModel = new Zhl16BuhlmannModel();
 
         [Fact]
         public void AllowModelToBeRead()

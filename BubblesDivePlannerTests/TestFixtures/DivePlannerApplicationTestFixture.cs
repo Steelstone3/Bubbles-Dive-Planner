@@ -8,19 +8,19 @@ using BubblesDivePlanner.DiveStep;
 
 namespace BubblesDivePlannerTests.TestFixtures
 {
-    public class DivePlannerApplicationTestFixture
+    public static class DivePlannerApplicationTestFixture
     {
         private const int COMPARTMENT_SIZE = 16;
 
-        public Zhl16BuhlmannModel GetDiveModel => new Zhl16BuhlmannModel();
+        public static Zhl16BuhlmannModel GetDiveModel => new();
 
-        public DiveStepViewModel GetDiveStep => new DiveStepViewModel()
+        public static DiveStepViewModel GetDiveStep => new()
         {
             Depth = 50,
             Time = 10
         };
 
-        public CylinderSetupViewModel GetSelectedCylinder => new CylinderSetupViewModel()
+        public static CylinderSetupViewModel GetSelectedCylinder => new()
         {
             CylinderName = "Air",
             CylinderPressure = 200,
@@ -39,7 +39,7 @@ namespace BubblesDivePlannerTests.TestFixtures
             }
         };
 
-        public DiveProfileViewModel GetDiveProfile => new DiveProfileViewModel(COMPARTMENT_SIZE)
+        public static DiveProfileViewModel GetDiveProfile => new(COMPARTMENT_SIZE)
         {
             PressureOxygen = 0,
             PressureNitrogen = 0,
@@ -54,7 +54,7 @@ namespace BubblesDivePlannerTests.TestFixtures
             CompartmentLoad = new double[COMPARTMENT_SIZE] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         };
 
-        public DiveProfileViewModel GetDiveProfileResultFromFirstRun => new DiveProfileViewModel(16)
+        public static DiveProfileViewModel GetDiveProfileResultFromFirstRun => new(16)
         {
             PressureOxygen = 1.26,
             PressureNitrogen = 4.74,
@@ -70,19 +70,19 @@ namespace BubblesDivePlannerTests.TestFixtures
         };
 
         //TODO in progress need to put in the expected results here
-        public DiveProfileViewModel GetDiveProfileResultFromSecondRun => new DiveProfileViewModel(COMPARTMENT_SIZE)
+        public static DiveProfileViewModel GetDiveProfileResultFromSecondRun => new(COMPARTMENT_SIZE)
         {
             PressureOxygen = 1.26,
             PressureNitrogen = 4.74,
             PressureHelium = 0,
-            AValues = new double[] { },
-            BValues = new double[] { },
-            MaxSurfacePressures = new double[] { },
-            TissuePressuresNitrogen = new double[] { },
-            TissuePressuresHelium = new double[] { },
-            TissuePressuresTotal = new double[] { },
-            ToleratedAmbientPressures = new double[] { },
-            CompartmentLoad = new double[] { }
+            // AValues = new double[] { },
+            // BValues = new double[] { },
+            // MaxSurfacePressures = new double[] { },
+            // TissuePressuresNitrogen = new double[] { },
+            // TissuePressuresHelium = new double[] { },
+            // TissuePressuresTotal = new double[] { },
+            // ToleratedAmbientPressures = new double[] { },
+            // CompartmentLoad = new double[] { }
         };
     }
 }

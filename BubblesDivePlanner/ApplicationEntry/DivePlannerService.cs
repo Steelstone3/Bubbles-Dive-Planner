@@ -8,19 +8,19 @@ namespace BubblesDivePlanner.ApplicationEntry
 {
     public class DivePlannerService
     {
-        public void CalculateDiveStep(MainWindowViewModel vm)
+        public static void CalculateDiveStep(MainWindowViewModel vm)
         {
-            new VisibilityController().UpdateVisibilty(vm);
+            VisibilityController.UpdateVisibilty(vm);
             new DiveStageRunner().RunDiveStages(vm.DivePlanner.DiveModelSelector.SelectedDiveModel, vm.DivePlanner.DiveStep, vm.DivePlanner.CylinderSelector.SelectedCylinder);
             CalculateGasUsage(vm);
             AssignResults(vm);
             RecalculateDecompressionSteps(vm);
         }
 
-        public void RecalculateDecompressionSteps(MainWindowViewModel vm)
+        public static void RecalculateDecompressionSteps(MainWindowViewModel vm)
         {
             vm.DiveInformation.DecompressionProfile.DecompressionDiveSteps.Clear();
-            var diveSteps = new DecompressionProfileController().CollateDecompressionDiveSteps(vm.DivePlanner.DiveModelSelector.SelectedDiveModel.DeepClone(), vm.DivePlanner.CylinderSelector.SelectedCylinder).ToArray();
+            var diveSteps = DecompressionProfileController.CollateDecompressionDiveSteps(vm.DivePlanner.DiveModelSelector.SelectedDiveModel.DeepClone(), vm.DivePlanner.CylinderSelector.SelectedCylinder).ToArray();
 
             foreach (var diveStep in diveSteps)
             {
@@ -28,7 +28,7 @@ namespace BubblesDivePlanner.ApplicationEntry
             }
         }
 
-        public void CalculateDecompressionProfile(MainWindowViewModel vm)
+        public static void CalculateDecompressionProfile(MainWindowViewModel vm)
         {
             if (vm.DiveInformation.DecompressionProfile.DecompressionDiveSteps.Count > 0)
             {
@@ -44,13 +44,13 @@ namespace BubblesDivePlanner.ApplicationEntry
             }
         }
 
-        private void CalculateGasUsage(MainWindowViewModel vm)
+        private static void CalculateGasUsage(MainWindowViewModel vm)
         {
             vm.DivePlanner.CylinderSelector.SelectedCylinder.GasUsage.GasUsed = new GasUsageController().CalculateGasUsed(vm.DivePlanner.DiveStep, vm.DivePlanner.CylinderSelector.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate);
             vm.DivePlanner.CylinderSelector.SelectedCylinder.GasUsage.UpdateGasRemaining();
         }
 
-        private void AssignResults(MainWindowViewModel vm)
+        private static void AssignResults(MainWindowViewModel vm)
         {
             vm.ResultsOverview.LatestResult.DiveProfileModel = vm.DivePlanner.DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
             vm.ResultsOverview.LatestResult.DiveStepModel = vm.DivePlanner.DiveStep.DeepClone();

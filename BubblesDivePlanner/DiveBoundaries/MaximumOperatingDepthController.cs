@@ -2,9 +2,9 @@ using System;
 
 namespace BubblesDivePlanner.DiveBoundaries
 {
-    public class MaximumOperatingDepthController
+    public static class MaximumOperatingDepthController
     {
-        public double CalculateMaximumOperatingDepth(double oxygenPercentage)
+        public static double CalculateMaximumOperatingDepth(double oxygenPercentage)
         {
             const double toleratedPartialPressure = 1.4;
             double oxygenPartialPressure = oxygenPercentage / 100;

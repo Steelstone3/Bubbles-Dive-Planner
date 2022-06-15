@@ -10,7 +10,7 @@ namespace BubblesDivePlanner.ApplicationEntry
 {
     public class ViewLocator : IDataTemplate
     {
-        public bool SupportsRecycling => false;
+        public static bool SupportsRecycling => false;
 
         public IControl Build(object data)
         {
