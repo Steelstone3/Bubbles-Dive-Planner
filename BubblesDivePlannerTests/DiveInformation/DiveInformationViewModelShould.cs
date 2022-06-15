@@ -8,7 +8,7 @@ namespace BubblesDivePlannerTests.DiveInformation
 {
     public class DiveInformationViewModelShould
     {
-        DiveInformationViewModel _diveInformationViewModel = new();
+        private DiveInformationViewModel _diveInformationViewModel = new();
 
         [Fact]
         public void AllowModelToBeSet()

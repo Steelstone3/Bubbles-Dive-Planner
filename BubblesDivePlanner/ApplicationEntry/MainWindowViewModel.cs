@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Reactive;
-using BubblesDivePlanner.CentralNervousSystemToxicity;
-using BubblesDivePlanner.Cylinders.CylinderSelector;
-using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.DiveInformation;
-using BubblesDivePlanner.DiveModels.Selector;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.DivePlanner;
 using BubblesDivePlanner.Header;
 using BubblesDivePlanner.Results;
 using ReactiveUI;
@@ -24,30 +20,16 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         public void SubscribeEvents()
         {
-            CylinderSelector.SelectedCylinderChanged += (sender, e) => RecalculateDecompressionSteps();
+            DivePlanner.CylinderSelector.SelectedCylinderChanged += (sender, e) => RecalculateDecompressionSteps();
         }
 
         public IHeaderModel HeaderModel { get; }
 
-        private IDiveModelSelectorModel _diveModelSelector = new DiveModelSelectorViewModel();
-        public IDiveModelSelectorModel DiveModelSelector
+        private DivePlannerViewModel _divePlanner = new DivePlannerViewModel();
+        public DivePlannerViewModel DivePlanner
         {
-            get => _diveModelSelector;
-            set => this.RaiseAndSetIfChanged(ref _diveModelSelector, value);
-        }
-
-        private IDiveStepModel _diveStep = new DiveStepViewModel();
-        public IDiveStepModel DiveStep
-        {
-            get => _diveStep;
-            set => this.RaiseAndSetIfChanged(ref _diveStep, value);
-        }
-
-        private ICylinderSelectorModel _cylinderSelector = new CylinderSelectorViewModel();
-        public ICylinderSelectorModel CylinderSelector
-        {
-            get => _cylinderSelector;
-            set => this.RaiseAndSetIfChanged(ref _cylinderSelector, value);
+            get => _divePlanner;
+            set => this.RaiseAndSetIfChanged(ref _divePlanner, value);
         }
 
         private IDiveInformationModel _diveInformation = new DiveInformationViewModel();
@@ -58,7 +40,7 @@ namespace BubblesDivePlanner.ApplicationEntry
         }
 
         private IResultsOverviewModel _resultsOverviewModel = new ResultsOverviewViewModel();
-        public IResultsOverviewModel ResultsOverviewModel
+        public IResultsOverviewModel ResultsOverview
         {
             get => _resultsOverviewModel;
             set => this.RaiseAndSetIfChanged(ref _resultsOverviewModel, value);
@@ -67,13 +49,13 @@ namespace BubblesDivePlanner.ApplicationEntry
         public ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
         public IObservable<bool> CanCalculateDiveStep
         {
-            get => this.WhenAnyValue(vm => vm.DiveModelSelector.SelectedDiveModel,
-                vm => vm.CylinderSelector.SelectedCylinder,
-                vm => vm.DiveStep,
+            get => this.WhenAnyValue(vm => vm.DivePlanner.DiveModelSelector.SelectedDiveModel,
+                vm => vm.DivePlanner.CylinderSelector.SelectedCylinder,
+                vm => vm.DivePlanner.DiveStep,
                 (selectorDiveModel, selectorCylinder, diveStep) =>
-                    DiveModelSelector.ValidateSelectedDiveModel(selectorDiveModel)
-                    && CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
-                    && DiveStep.ValidateDiveStep(diveStep));
+                    DivePlanner.DiveModelSelector.ValidateSelectedDiveModel(selectorDiveModel)
+                    && DivePlanner.CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
+                    && DivePlanner.DiveStep.ValidateDiveStep(diveStep));
         }
 
         public ReactiveCommand<Unit, Unit> CalculateDecompressionProfileCommand { get; }

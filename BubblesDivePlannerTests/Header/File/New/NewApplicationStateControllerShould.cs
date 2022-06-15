@@ -16,21 +16,17 @@ namespace BubblesDivePlannerTests.Header.File.New
         {
             //Arrange
             var divePlannerInstance = new MainWindowViewModel();
-            var diveModelSelector = divePlannerInstance.DiveModelSelector;
-            var diveStep = divePlannerInstance.DiveStep;
-            var cylinderSelector = divePlannerInstance.CylinderSelector;
+            var divePlanner = divePlannerInstance.DivePlanner;
             var diveInformation = divePlannerInstance.DiveInformation;
-            var resultsOverview = divePlannerInstance.ResultsOverviewModel;
+            var resultsOverview = divePlannerInstance.ResultsOverview;
 
             //Act
             _newController.CreateNewApplicationInstance(divePlannerInstance);
 
             //Assert
-            Assert.NotSame(diveModelSelector, divePlannerInstance.DiveModelSelector);
-            Assert.NotSame(diveStep, divePlannerInstance.DiveStep);
-            Assert.NotSame(cylinderSelector, divePlannerInstance.CylinderSelector);
+            Assert.NotSame(divePlanner, divePlannerInstance.DivePlanner);
             Assert.NotSame(diveInformation, divePlannerInstance.DiveInformation);
-            Assert.NotSame(resultsOverview, divePlannerInstance.ResultsOverviewModel);
+            Assert.NotSame(resultsOverview, divePlannerInstance.ResultsOverview);
         }
 
         [Fact]

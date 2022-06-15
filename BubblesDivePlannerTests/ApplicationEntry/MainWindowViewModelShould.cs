@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.ApplicationEntry;
-using BubblesDivePlanner.Cylinders.CylinderSelector;
 using BubblesDivePlanner.DiveInformation;
-using BubblesDivePlanner.DiveModels.Selector;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.DivePlanner;
 using BubblesDivePlanner.Results;
 using Moq;
 using Xunit;
@@ -20,38 +18,30 @@ namespace BubblesDivePlannerTests.ApplicationEntry
             //Assert
             Assert.NotNull(_mainWindowViewModel.DiveInformation);
             Assert.NotNull(_mainWindowViewModel.HeaderModel);
-            Assert.NotNull(_mainWindowViewModel.DiveModelSelector);
-            Assert.NotNull(_mainWindowViewModel.DiveStep);
-            Assert.NotNull(_mainWindowViewModel.CylinderSelector);
+            Assert.NotNull(_mainWindowViewModel.DivePlanner);
             Assert.NotNull(_mainWindowViewModel.DiveInformation);
-            Assert.NotNull(_mainWindowViewModel.ResultsOverviewModel);
+            Assert.NotNull(_mainWindowViewModel.ResultsOverview);
         }
 
         [Fact]
         public void RaisePropertyChanged()
         {
             //Arrange
-            Mock<IDiveModelSelectorModel> diveModelSelectorModelDummy = new();
-            Mock<IDiveStepModel> diveStepModelDummy = new();
-            Mock<ICylinderSelectorModel> cylinderSelectorModelDummy = new();
+            DivePlannerViewModel divePlannerModelDummy = new();
             Mock<IResultsOverviewModel> resultsOverviewModelDummy = new();
             Mock<IDiveInformationModel> diveInformationModelDummy = new();
             var viewModelEvents = new List<string>();
             _mainWindowViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            _mainWindowViewModel.DiveModelSelector = diveModelSelectorModelDummy.Object;
-            _mainWindowViewModel.DiveStep = diveStepModelDummy.Object;
-            _mainWindowViewModel.CylinderSelector = cylinderSelectorModelDummy.Object;
+            _mainWindowViewModel.DivePlanner = divePlannerModelDummy;
             _mainWindowViewModel.DiveInformation = diveInformationModelDummy.Object;
-            _mainWindowViewModel.ResultsOverviewModel = resultsOverviewModelDummy.Object;
+            _mainWindowViewModel.ResultsOverview = resultsOverviewModelDummy.Object;
 
             //Assert
-            Assert.Contains(nameof(_mainWindowViewModel.DiveModelSelector), viewModelEvents);
-            Assert.Contains(nameof(_mainWindowViewModel.DiveStep), viewModelEvents);
-            Assert.Contains(nameof(_mainWindowViewModel.CylinderSelector), viewModelEvents);
+            Assert.Contains(nameof(_mainWindowViewModel.DivePlanner), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.DiveInformation), viewModelEvents);
-            Assert.Contains(nameof(_mainWindowViewModel.ResultsOverviewModel), viewModelEvents);
+            Assert.Contains(nameof(_mainWindowViewModel.ResultsOverview), viewModelEvents);
         }
     }
 }

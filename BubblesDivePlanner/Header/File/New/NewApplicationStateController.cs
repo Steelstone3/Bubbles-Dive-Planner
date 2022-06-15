@@ -1,9 +1,6 @@
 using BubblesDivePlanner.ApplicationEntry;
-using BubblesDivePlanner.Cylinders.CylinderSelector;
-using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.DiveInformation;
-using BubblesDivePlanner.DiveModels.Selector;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.DivePlanner;
 using BubblesDivePlanner.Results;
 
 namespace BubblesDivePlanner.Header.File.New
@@ -12,11 +9,9 @@ namespace BubblesDivePlanner.Header.File.New
     {
         public void CreateNewApplicationInstance(IMainWindowModel mainWindowModel)
         {
-            mainWindowModel.DiveModelSelector = new DiveModelSelectorViewModel();
-            mainWindowModel.DiveStep = new DiveStepViewModel();
-            mainWindowModel.CylinderSelector = new CylinderSelectorViewModel();
+            mainWindowModel.DivePlanner = new DivePlannerViewModel();
             mainWindowModel.DiveInformation = new DiveInformationViewModel();
-            mainWindowModel.ResultsOverviewModel = new ResultsOverviewViewModel();
+            mainWindowModel.ResultsOverview = new ResultsOverviewViewModel();
             mainWindowModel.SubscribeEvents();
         }
     }

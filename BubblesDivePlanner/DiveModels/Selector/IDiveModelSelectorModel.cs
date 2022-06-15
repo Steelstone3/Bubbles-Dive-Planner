@@ -7,7 +7,6 @@ namespace BubblesDivePlanner.DiveModels.Selector
     {
         IList<IDiveModel> DiveModels { get; }
         IDiveModel SelectedDiveModel { get; set; }
-
         bool ValidateSelectedDiveModel(IDiveModel selectorDiveModel);
     }
 }
