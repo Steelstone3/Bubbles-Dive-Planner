@@ -7,7 +7,7 @@ namespace BubblesDivePlannerTests.Visibility
 {
     public class VisibilityControllerShould
     {
-        DivePlannerApplicationTestFixture _diveStagesTextFixture = new();
+        readonly DivePlannerApplicationTestFixture _diveStagesTextFixture = new();
 
         [Fact]
         public void HideViews()

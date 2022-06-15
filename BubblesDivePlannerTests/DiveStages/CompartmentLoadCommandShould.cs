@@ -9,14 +9,12 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class CompartmentLoadCommandShould
     {
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
-        
         [Fact]
         public void RunCompartmentLoadStage()
         {
             //Arrange
-            var expectedDiveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
-            var diveModel = diveStagesTextFixture.GetDiveModel;
+            var expectedDiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
             diveModel.DiveProfile.TissuePressuresTotal = expectedDiveProfile.TissuePressuresTotal;
             diveModel.DiveProfile.MaxSurfacePressures = expectedDiveProfile.MaxSurfacePressures;
 

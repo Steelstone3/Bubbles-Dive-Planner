@@ -9,20 +9,15 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class AbValuesCommandShould
     {
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
-
         [Fact]
         public void RunAbValuesStage()
         {
             //Arrange
-            var expectedDiveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
-            var tissuePressureNitrogen = expectedDiveProfile.TissuePressuresNitrogen;;
-            var tissuePressureHelium = expectedDiveProfile.TissuePressuresHelium;
-            var tissuePressureTotal = expectedDiveProfile.TissuePressuresTotal;
-            var diveModel = diveStagesTextFixture.GetDiveModel;
-            diveModel.DiveProfile.TissuePressuresNitrogen = diveStagesTextFixture.GetDiveProfile.TissuePressuresNitrogen;
-            diveModel.DiveProfile.TissuePressuresHelium = diveStagesTextFixture.GetDiveProfile.TissuePressuresHelium;
-            diveModel.DiveProfile.TissuePressuresTotal = diveStagesTextFixture.GetDiveProfile.TissuePressuresTotal;
+            var expectedDiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile.TissuePressuresNitrogen = DivePlannerApplicationTestFixture.GetDiveProfile.TissuePressuresNitrogen;
+            diveModel.DiveProfile.TissuePressuresHelium = DivePlannerApplicationTestFixture.GetDiveProfile.TissuePressuresHelium;
+            diveModel.DiveProfile.TissuePressuresTotal = DivePlannerApplicationTestFixture.GetDiveProfile.TissuePressuresTotal;
 
             IDiveStageCommand diveStage = new AbValuesCommand(diveModel);
 

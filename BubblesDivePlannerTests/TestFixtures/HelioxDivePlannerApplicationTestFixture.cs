@@ -10,7 +10,7 @@ namespace BubblesDivePlannerTests.TestFixtures
 {
     public static class HelioxDivePlannerApplicationTestFixture
     {
-        public static Zhl16BuhlmannModel GetDiveModel => new Zhl16BuhlmannModel();
+        public static Zhl16BuhlmannModel GetDiveModel => new();
 
         public static DiveStepViewModel GetDiveStep()
         {
@@ -21,7 +21,7 @@ namespace BubblesDivePlannerTests.TestFixtures
             };
         }
 
-        public static CylinderSetupViewModel GetSelectedCylinder => new CylinderSetupViewModel()
+        public static CylinderSetupViewModel GetSelectedCylinder => new()
         {
             CylinderName = "Heliox",
             CylinderPressure = 200,
@@ -41,7 +41,7 @@ namespace BubblesDivePlannerTests.TestFixtures
         };
 
         //TODO in progress need to put in the expected results here
-        public static DiveProfileViewModel GetDiveProfileResult => new DiveProfileViewModel(16)
+        public static DiveProfileViewModel GetDiveProfileResult => new(16)
         {
             PressureOxygen = 0,
             PressureNitrogen = 0,

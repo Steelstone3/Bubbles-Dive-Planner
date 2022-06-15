@@ -10,7 +10,7 @@ namespace BubblesDivePlannerTests.Results
 {
     public class ResultViewModelShould
     {
-        private ResultViewModel _resultViewModel = new();
+        private readonly ResultViewModel _resultViewModel = new();
 
         [Fact]
         public void AllowModelToBeSet()

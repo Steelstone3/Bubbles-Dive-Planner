@@ -6,11 +6,11 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
 {
     public class GasUsageViewModelShould
     {
-        private GasUsageViewModel _gasUsage = new();
-        private ushort _gasRemainingPreUsage = 2400;
-        private ushort _gasRemaining = 1680;
-        private ushort _gasUsed = 720;
-        private byte _surfaceAirConsumptionRate = 12;
+        private readonly GasUsageViewModel _gasUsage = new();
+        private readonly ushort _gasRemainingPreUsage = 2400;
+        private readonly ushort _gasRemaining = 1680;
+        private readonly ushort _gasUsed = 720;
+        private readonly byte _surfaceAirConsumptionRate = 12;
 
         [Fact]
         public void AllowModelToBeSet()

@@ -10,7 +10,7 @@ namespace BubblesDivePlannerTests.ApplicationEntry
 {
     public class MainWindowViewModelShould
     {
-        private MainWindowViewModel _mainWindowViewModel = new();
+        private readonly MainWindowViewModel _mainWindowViewModel = new();
 
         [Fact]
         public void AllowModelToBeSet()

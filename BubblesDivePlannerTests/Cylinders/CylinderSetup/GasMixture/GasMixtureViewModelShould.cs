@@ -6,7 +6,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
 {
     public class GasMixtureViewModelShould
     {
-        private GasMixtureViewModel _gasMixture = new();
+        private readonly GasMixtureViewModel _gasMixture = new();
 
         [Fact]
         public void AllowModelToBeSet()

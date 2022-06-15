@@ -5,7 +5,7 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
 {
     public class GasMixtureControllerShould
     {
-        private IGasMixtureController _gasMixtureController = new GasMixtureController();
+        private readonly IGasMixtureController _gasMixtureController = new GasMixtureController();
 
         [Fact]
         public void CalculateNitrogenMixture()

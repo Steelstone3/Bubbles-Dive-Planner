@@ -8,8 +8,8 @@ namespace BubblesDivePlannerTests.Results
 {
     public class ResultsHistoryViewModelShould
     {
-        private ResultsOverviewViewModel _resultsHistoryViewModel = new();
-        private Mock<IResultModel> _resultModelDummy = new();
+        private readonly ResultsOverviewViewModel _resultsHistoryViewModel = new();
+        private readonly Mock<IResultModel> _resultModelDummy = new();
 
         [Fact]
         public void AllowModelToBeSet()

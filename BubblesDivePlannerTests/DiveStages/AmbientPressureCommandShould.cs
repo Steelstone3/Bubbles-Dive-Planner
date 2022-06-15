@@ -7,16 +7,14 @@ namespace BubblesDivePlannerTests.DiveStages
 {
     public class AmbientPressureShould
     {
-        private DivePlannerApplicationTestFixture diveStagesTextFixture = new DivePlannerApplicationTestFixture();
-        
         [Fact]
         public void RunAmbientPressurePreStage()
         {
             //Arrange
-            var expectedDiveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
-            var diveProfile = diveStagesTextFixture.GetDiveModel.DiveProfile;
-            var gasMixtureModel = diveStagesTextFixture.GetSelectedCylinder.GasMixture;
-            var diveStepModel = diveStagesTextFixture.GetDiveStep;
+            var expectedDiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            var diveProfile = DivePlannerApplicationTestFixture.GetDiveModel.DiveProfile;
+            var gasMixtureModel = DivePlannerApplicationTestFixture.GetSelectedCylinder.GasMixture;
+            var diveStepModel = DivePlannerApplicationTestFixture.GetDiveStep;
             
             IDiveStageCommand diveStage = new AmbientPressureCommand(diveProfile, gasMixtureModel, diveStepModel);
 
