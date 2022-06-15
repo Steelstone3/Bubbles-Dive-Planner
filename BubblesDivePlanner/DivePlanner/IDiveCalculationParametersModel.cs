@@ -9,6 +9,5 @@ namespace BubblesDivePlanner.DiveCalculationParameters
         IDiveStepModel DiveStep { get; set; }
         IDiveModel DiveModel { get; }
         ICylinderSetupModel SelectedCylinder { get; }
-        IDiveCalculationParametersModel DeepClone();
     }
 }

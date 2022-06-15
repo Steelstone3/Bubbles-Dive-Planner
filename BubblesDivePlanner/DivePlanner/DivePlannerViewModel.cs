@@ -34,10 +34,5 @@ namespace BubblesDivePlanner.DivePlanner
         public IDiveModel DiveModel => DiveModelSelector.SelectedDiveModel;
 
         public ICylinderSetupModel SelectedCylinder => CylinderSelector.SelectedCylinder;
-
-        public IDiveCalculationParametersModel DeepClone()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
