@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveStages;
-using BubblesDivePlannerTests.Asserters;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 

@@ -1,4 +1,3 @@
-using System;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.DiveModels.DiveProfile;
 using BubblesDivePlanner.DiveStep;

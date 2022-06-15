@@ -11,7 +11,6 @@ namespace BubblesDivePlannerTests.DecompressionProfile
 {
     public class DecompressionViewModelShould
     {
-        private readonly DivePlannerApplicationTestFixture _divePlannerApplicationTestFixture = new();
         private readonly DecompressionProfileViewModel _decompressionProfileViewModel = new();
 
         [Fact]
@@ -42,12 +41,12 @@ namespace BubblesDivePlannerTests.DecompressionProfile
         {
             //Arrange
             MainWindowViewModel mainWindowViewModel = new();
-            mainWindowViewModel.DivePlanner.DiveModelSelector.SelectedDiveModel = _divePlannerApplicationTestFixture.GetDiveModel;
-            mainWindowViewModel.DivePlanner.DiveModelSelector.SelectedDiveModel.DiveProfile = _divePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            mainWindowViewModel.DivePlanner.DiveModelSelector.SelectedDiveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            mainWindowViewModel.DivePlanner.DiveModelSelector.SelectedDiveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
             mainWindowViewModel.DiveInformation.DecompressionProfile = _decompressionProfileViewModel;
 
             //Act
-            mainWindowViewModel.DivePlanner.CylinderSelector.SelectedCylinder = _divePlannerApplicationTestFixture.GetSelectedCylinder;
+            mainWindowViewModel.DivePlanner.CylinderSelector.SelectedCylinder = DivePlannerApplicationTestFixture.GetSelectedCylinder;
 
             //Assert
             Assert.NotEmpty(mainWindowViewModel.DiveInformation.DecompressionProfile.DecompressionDiveSteps);

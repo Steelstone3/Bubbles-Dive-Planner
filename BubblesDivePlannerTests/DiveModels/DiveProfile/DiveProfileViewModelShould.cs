@@ -10,8 +10,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
     {
         private readonly double[] expectedArray = { 3.0, 6.0 };
         private readonly double expectedValue = 10;
-        private readonly DivePlannerApplicationTestFixture diveStagesTextFixture = new();
-        
+
         [Theory]
         [InlineData(16)]
         [InlineData(12)]
@@ -43,14 +42,14 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
             var diveProfile = new DiveProfileViewModel(16);
 
             //Assert
-            DiveParameterAsserter.AssertDiveProfileValuesEquality(diveStagesTextFixture.GetDiveProfile ,diveProfile);
+            DiveParameterAsserter.AssertDiveProfileValuesEquality(DivePlannerApplicationTestFixture.GetDiveProfile ,diveProfile);
         }
 
         [Fact]
         public void AllowModelToBeSet()
         {
             //Arrange
-            var diveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
+            var diveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
 
             //Act
             diveProfile.MaxSurfacePressures = expectedArray;
@@ -84,7 +83,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
         public void RaisePropertyChanged()
         {
             //Arrange
-            var diveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
+            var diveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
             var viewModelEvents = new List<string>();
             diveProfile.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
@@ -120,7 +119,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
         public void Clone()
         {
             //Act
-            var diveProfile = diveStagesTextFixture.GetDiveProfileResultFromFirstRun;
+            var diveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
             var newDiveProfileModel = diveProfile.DeepClone();
 
             //Assert

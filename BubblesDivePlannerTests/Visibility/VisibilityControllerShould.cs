@@ -7,16 +7,14 @@ namespace BubblesDivePlannerTests.Visibility
 {
     public class VisibilityControllerShould
     {
-        readonly DivePlannerApplicationTestFixture _diveStagesTextFixture = new();
-
         [Fact]
         public void HideViews()
         {
             //Arrange
             IMainWindowModel mainWindowViewModel = new MainWindowViewModel();
-            mainWindowViewModel.DivePlanner.DiveModelSelector.SelectedDiveModel = _diveStagesTextFixture.GetDiveModel;
-            mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders.Add(_diveStagesTextFixture.GetSelectedCylinder);
-            mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders.Add(_diveStagesTextFixture.GetSelectedCylinder);
+            mainWindowViewModel.DivePlanner.DiveModelSelector.SelectedDiveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders.Add(DivePlannerApplicationTestFixture.GetSelectedCylinder);
+            mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders.Add(DivePlannerApplicationTestFixture.GetSelectedCylinder);
 
             //Act
             VisibilityController.UpdateVisibilty(mainWindowViewModel);
