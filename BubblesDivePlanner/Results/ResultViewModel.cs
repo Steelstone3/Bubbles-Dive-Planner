@@ -7,25 +7,25 @@ namespace BubblesDivePlanner.Results
 {
     public class ResultViewModel : ReactiveObject, IResultModel
     {
-        private IDiveStepModel _diveStepModel;
+        private IDiveStepModel _diveStep;
         public IDiveStepModel DiveStep
         {
-            get => _diveStepModel;
-            set => this.RaiseAndSetIfChanged(ref _diveStepModel, value);
+            get => _diveStep;
+            set => this.RaiseAndSetIfChanged(ref _diveStep, value);
         }
 
-        private IDiveProfileModel _diveProfileModel;
+        private IDiveProfileModel _diveProfile;
         public IDiveProfileModel DiveProfile
         {
-            get => _diveProfileModel;
-            set => this.RaiseAndSetIfChanged(ref _diveProfileModel, value);
+            get => _diveProfile;
+            set => this.RaiseAndSetIfChanged(ref _diveProfile, value);
         }
 
-        private ICylinderSetupModel _cylinderSetupModel;
+        private ICylinderSetupModel _selectedCylinder;
         public ICylinderSetupModel SelectedCylinder 
         {
-            get=> _cylinderSetupModel;
-            set=> this.RaiseAndSetIfChanged(ref _cylinderSetupModel, value);
+            get=> _selectedCylinder;
+            set=> this.RaiseAndSetIfChanged(ref _selectedCylinder, value);
         }
     }
 }
