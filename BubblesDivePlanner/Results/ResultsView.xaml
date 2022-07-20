@@ -23,6 +23,11 @@
                         FontWeight="DemiBold"
                         Text="Latest Dive Result Table" />
                     <dive_results:DiveTableResultView/>
+                    <TextBlock
+                        Margin="8,4"
+                        FontSize="16"
+                        FontWeight="DemiBold"
+                        Text="Dive Parameters Used" />
                     <dive_results:DiveParametersUsedView/>
                 </StackPanel>
             </TabItem>
@@ -38,7 +43,7 @@
             Foreground="Black"
             FontWeight="DemiBold"
             VerticalContentAlignment="Center">
-                <!-- <dive_results:HistoricDiveTableResultView/> -->
+                <dive_results:HistoricDiveParametersUsedView/>
             </TabItem>
         </TabControl>
     </StackPanel>
