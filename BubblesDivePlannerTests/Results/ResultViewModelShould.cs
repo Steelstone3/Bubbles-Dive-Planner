@@ -21,14 +21,14 @@ namespace BubblesDivePlannerTests.Results
             Mock<IDiveProfileModel> diveProfileModelDummy = new();
 
             //Act
-            _resultViewModel.DiveProfileModel = diveProfileModelDummy.Object;
-            _resultViewModel.DiveStepModel = diveStepModelDummy.Object;
-            _resultViewModel.CylinderSetupModel = cylinderSetupModelDummy.Object;
+            _resultViewModel.DiveProfile = diveProfileModelDummy.Object;
+            _resultViewModel.DiveStep = diveStepModelDummy.Object;
+            _resultViewModel.SelectedCylinder = cylinderSetupModelDummy.Object;
 
             //Assert
-            Assert.Equal(diveStepModelDummy.Object, _resultViewModel.DiveStepModel);
-            Assert.Equal(diveProfileModelDummy.Object, _resultViewModel.DiveProfileModel);
-            Assert.Equal(cylinderSetupModelDummy.Object, _resultViewModel.CylinderSetupModel);
+            Assert.Equal(diveStepModelDummy.Object, _resultViewModel.DiveStep);
+            Assert.Equal(diveProfileModelDummy.Object, _resultViewModel.DiveProfile);
+            Assert.Equal(cylinderSetupModelDummy.Object, _resultViewModel.SelectedCylinder);
         }
 
         [Fact]
@@ -39,15 +39,15 @@ namespace BubblesDivePlannerTests.Results
             _resultViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            _resultViewModel.DiveStepModel = new DiveStepViewModel();
-            _resultViewModel.CylinderSetupModel = new CylinderSetupViewModel();
-            _resultViewModel.DiveProfileModel = new DiveProfileViewModel(16);
+            _resultViewModel.DiveStep = new DiveStepViewModel();
+            _resultViewModel.SelectedCylinder = new CylinderSetupViewModel();
+            _resultViewModel.DiveProfile = new DiveProfileViewModel(16);
 
             //Assert
             Assert.NotEmpty(viewModelEvents);
-            Assert.Contains(nameof(_resultViewModel.DiveStepModel), viewModelEvents);
-            Assert.Contains(nameof(_resultViewModel.CylinderSetupModel), viewModelEvents);
-            Assert.Contains(nameof(_resultViewModel.DiveProfileModel), viewModelEvents);
+            Assert.Contains(nameof(_resultViewModel.DiveStep), viewModelEvents);
+            Assert.Contains(nameof(_resultViewModel.SelectedCylinder), viewModelEvents);
+            Assert.Contains(nameof(_resultViewModel.DiveProfile), viewModelEvents);
         }
     }
 }

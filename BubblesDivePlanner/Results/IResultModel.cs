@@ -6,8 +6,8 @@ namespace BubblesDivePlanner.Results
 {
     public interface IResultModel
     {
-        IDiveStepModel DiveStepModel { get; set; }
-        IDiveProfileModel DiveProfileModel { get; set; }
-        ICylinderSetupModel CylinderSetupModel { get; set; }
+        IDiveStepModel DiveStep { get; set; }
+        IDiveProfileModel DiveProfile { get; set; }
+        ICylinderSetupModel SelectedCylinder { get; set; }
     }
 }

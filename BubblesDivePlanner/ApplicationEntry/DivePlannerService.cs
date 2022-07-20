@@ -52,10 +52,10 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         private static void AssignResults(MainWindowViewModel vm)
         {
-            vm.ResultsOverview.LatestResult.DiveProfileModel = vm.DivePlanner.DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
-            vm.ResultsOverview.LatestResult.DiveStepModel = vm.DivePlanner.DiveStep.DeepClone();
+            vm.ResultsOverview.LatestResult.DiveProfile = vm.DivePlanner.DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
+            vm.ResultsOverview.LatestResult.DiveStep = vm.DivePlanner.DiveStep.DeepClone();
 
-            vm.ResultsOverview.LatestResult.CylinderSetupModel = new CylinderPrototype().DeepClone(vm.DivePlanner.CylinderSelector.SelectedCylinder);
+            vm.ResultsOverview.LatestResult.SelectedCylinder = new CylinderPrototype().DeepClone(vm.DivePlanner.CylinderSelector.SelectedCylinder);
         }
     }
 }
