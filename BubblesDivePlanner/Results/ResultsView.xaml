@@ -10,8 +10,33 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <StackPanel>       
-        <dive_results:DiveTableResultView/>
-        <dive_results:DiveParametersUsedView/>
+    <StackPanel>
+        <TabControl>
+            <TabItem Header="Latest Dive Result Summary" 
+            FontSize="12"
+            Foreground="Black"
+            FontWeight="DemiBold"
+            VerticalContentAlignment="Center">
+                <StackPanel>
+                <dive_results:DiveTableResultView/>
+                <dive_results:DiveParametersUsedView/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Historic Dive Results"
+            FontSize="12"
+            Foreground="Black"
+            FontWeight="DemiBold"
+            VerticalContentAlignment="Center">
+                <!-- <dive_results:HistoricDiveTableResultView/> -->
+            </TabItem>
+            <TabItem Header="Historic Dive Parameters Used"
+            FontSize="12"
+            Foreground="Black"
+            FontWeight="DemiBold"
+            VerticalContentAlignment="Center">
+                <!-- <dive_results:HistoricDiveTableResultView/> -->
+            </TabItem>
+        </TabControl>
     </StackPanel>
 </UserControl>
+

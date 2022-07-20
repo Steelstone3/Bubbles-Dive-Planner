@@ -13,7 +13,7 @@
             Margin="8,4"
             FontSize="16"
             FontWeight="DemiBold"
-            Text="Dive Results Table" />
+            Text="Latest Dive Result Table" />
 
         <Grid  Margin="8">
             <Grid.ColumnDefinitions>
