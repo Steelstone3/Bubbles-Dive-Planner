@@ -25,8 +25,8 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         public IHeaderModel HeaderModel { get; }
 
-        private DivePlannerViewModel _divePlanner = new();
-        public DivePlannerViewModel DivePlanner
+        private DiveCalculationParametersViewModel _divePlanner = new();
+        public DiveCalculationParametersViewModel DivePlanner
         {
             get => _divePlanner;
             set => this.RaiseAndSetIfChanged(ref _divePlanner, value);

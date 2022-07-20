@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using BubblesDivePlanner.Cylinders.CylinderSelector;
 using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.DivePlanner;
+using BubblesDivePlanner.DiveStep;
 using BubblesDivePlannerTests.TestFixtures;
 using Moq;
 using Xunit;
 
 namespace BubblesDivePlannerTests.DiveInformation
 {
-    public class DivePlannerViewModelShould
+    public class DiveCalculationParametersViewModelShould
     {
-        private readonly DivePlannerViewModel _divePlannerViewModel = new();
+        private readonly DiveCalculationParametersViewModel _divePlannerViewModel = new();
 
         [Fact]
         public void AllowModelToBeSet()
@@ -33,16 +34,19 @@ namespace BubblesDivePlannerTests.DiveInformation
             //Arrange
             Mock<IDiveModelSelectorModel> diveModelSelectorModelDummy = new();
             Mock<ICylinderSelectorModel> cylinderSelectorModelDummy = new();
+            Mock<IDiveStepModel> diveStepDummy = new();
             var viewModelEvents = new List<string>();
             _divePlannerViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
             _divePlannerViewModel.DiveModelSelector = diveModelSelectorModelDummy.Object;
             _divePlannerViewModel.CylinderSelector = cylinderSelectorModelDummy.Object;
+            _divePlannerViewModel.DiveStep = diveStepDummy.Object;
 
             //Assert
             Assert.Contains(nameof(_divePlannerViewModel.DiveModelSelector), viewModelEvents);
             Assert.Contains(nameof(_divePlannerViewModel.CylinderSelector), viewModelEvents);
+            Assert.Contains(nameof(_divePlannerViewModel.DiveStep), viewModelEvents);
         }
     }
 }

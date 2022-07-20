@@ -9,7 +9,7 @@ namespace BubblesDivePlanner.Header.File.New
     {
         public static void CreateNewApplicationInstance(IMainWindowModel mainWindowModel)
         {
-            mainWindowModel.DivePlanner = new DivePlannerViewModel();
+            mainWindowModel.DivePlanner = new DiveCalculationParametersViewModel();
             mainWindowModel.DiveInformation = new DiveInformationViewModel();
             mainWindowModel.ResultsOverview = new ResultsOverviewViewModel();
             mainWindowModel.SubscribeEvents();
