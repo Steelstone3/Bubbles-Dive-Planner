@@ -5,13 +5,47 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:dive_results="clr-namespace:BubblesDivePlanner.Results"
-
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <StackPanel>       
-        <dive_results:DiveTableResultView/>
-        <dive_results:DiveParametersUsedView/>
+    <StackPanel>
+        <TabControl>
+            <TabItem Header="Latest Dive Result Summary" 
+            FontSize="12"
+            Foreground="Black"
+            FontWeight="DemiBold"
+            VerticalContentAlignment="Center">
+                <StackPanel IsVisible="{Binding ResultsOverview.IsVisible}">
+                    <TextBlock
+                        Margin="8,4"
+                        FontSize="16"
+                        FontWeight="DemiBold"
+                        Text="Latest Dive Result Table" />
+                    <dive_results:DiveTableResultView/>
+                    <TextBlock
+                        Margin="8,4"
+                        FontSize="16"
+                        FontWeight="DemiBold"
+                        Text="Dive Parameters Used" />
+                    <dive_results:DiveParametersUsedView/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Historic Dive Results"
+            FontSize="12"
+            Foreground="Black"
+            FontWeight="DemiBold"
+            VerticalContentAlignment="Center">
+                <dive_results:HistoricDiveTableResultView/>
+            </TabItem>
+            <TabItem Header="Historic Dive Parameters Used"
+            FontSize="12"
+            Foreground="Black"
+            FontWeight="DemiBold"
+            VerticalContentAlignment="Center">
+                <dive_results:HistoricDiveParametersUsedView/>
+            </TabItem>
+        </TabControl>
     </StackPanel>
 </UserControl>
+

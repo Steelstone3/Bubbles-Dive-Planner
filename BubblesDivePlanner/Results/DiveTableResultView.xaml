@@ -9,13 +9,7 @@
     mc:Ignorable="d">
 
     <StackPanel IsVisible="{Binding ResultsOverview.IsVisible}">
-        <TextBlock
-            Margin="8,4"
-            FontSize="16"
-            FontWeight="DemiBold"
-            Text="Dive Results Table" />
-
-        <Grid  Margin="8">
+        <Grid Margin="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
