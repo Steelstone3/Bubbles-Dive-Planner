@@ -8,6 +8,7 @@ namespace BubblesDivePlanner.DiveModels.Selector
         public IList<IDiveModel> DiveModels => new List<IDiveModel>
         {
             new Zhl16BuhlmannModel(),
+            new UsnRevision6Model(),
         };
 
         private IDiveModel _selectedDiveModel;
