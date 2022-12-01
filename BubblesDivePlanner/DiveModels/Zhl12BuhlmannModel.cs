@@ -11,7 +11,7 @@ namespace BubblesDivePlanner.DiveModels
             DiveProfile = new DiveProfileViewModel(CompartmentCount);
         }
 
-        public string DiveModelName => "Zhl16-B Model";
+        public string DiveModelName => "Zhl12 Model";
         public int CompartmentCount => COMPARTMENT_COUNT;
         public double[] NitrogenHalfTime => new double[COMPARTMENT_COUNT] { 2.65, 7.94, 12.2, 18.5, 26.5, 37.0, 53.0, 79.0, 114.0, 146.0, 185.0, 238.0, 304.0, 397.0, 503.0, 635.0 };
         public double[] HeliumHalfTime => new double[COMPARTMENT_COUNT] { 1.0, 3.0, 4.6, 7.0, 10.0, 14.0, 20.0, 30.0, 43.0, 55.0, 70.0, 90.0, 115.0, 150.0, 190.0, 240.0 };

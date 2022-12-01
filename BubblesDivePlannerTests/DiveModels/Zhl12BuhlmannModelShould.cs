@@ -21,8 +21,8 @@ namespace BubblesDivePlannerTests.DiveModels
             double[] bValuesHelium = new double[COMPARTMENT_COUNT] { 0.82, 0.825, 0.835, 0.845, 0.86, 0.87, 0.89, 0.89, 0.926, 0.926, 0.926, 0.926, 0.926, 0.926, 0.926, 0.926 };
 
             //Assert
-            Assert.Equal("Zhl16-B Model", _diveModel.DiveModelName);
-            Assert.Equal(16, _diveModel.CompartmentCount);
+            Assert.Equal("Zhl12 Model", _diveModel.DiveModelName);
+            Assert.Equal(COMPARTMENT_COUNT, _diveModel.CompartmentCount);
             Assert.Equal(nitrogenHalfTime, _diveModel.NitrogenHalfTime);
             Assert.Equal(heliumHalfTime, _diveModel.HeliumHalfTime);
             Assert.Equal(aValuesNitrogen, _diveModel.AValuesNitrogen);

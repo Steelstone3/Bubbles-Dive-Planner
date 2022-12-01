@@ -21,7 +21,7 @@ namespace BubblesDivePlannerTests.DiveModels
 
             //Assert
             Assert.Equal("Zhl16-B Model", _diveModel.DiveModelName);
-            Assert.Equal(16, _diveModel.CompartmentCount);
+            Assert.Equal(COMPARTMENT_COUNT, _diveModel.CompartmentCount);
             Assert.Equal(nitrogenHalfTime, _diveModel.NitrogenHalfTime);
             Assert.Equal(heliumHalfTime, _diveModel.HeliumHalfTime);
             Assert.Equal(aValuesNitrogen, _diveModel.AValuesNitrogen);
