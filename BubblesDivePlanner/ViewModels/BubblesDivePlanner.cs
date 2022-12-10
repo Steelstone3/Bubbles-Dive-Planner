@@ -3,8 +3,8 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels
 {
-    public class BubblesDivePlannerViewModel : ReactiveObject, IBubblesDivePlannerModel
+    public class BubblesDivePlanner : ReactiveObject, IBubblesDivePlanner
     {
-
+        
     }
 }

@@ -1,6 +1,6 @@
 namespace BubblesDivePlanner.Models
 {
-    public interface IBubblesDivePlannerModel
+    public interface IBubblesDivePlanner
     {
 
     }
