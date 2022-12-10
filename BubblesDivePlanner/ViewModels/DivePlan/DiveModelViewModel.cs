@@ -3,7 +3,7 @@ using BubblesDivePlanner.Models.DiveModels;
 using BubblesDivePlanner.Models.DiveModels.Types;
 using ReactiveUI;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlanner.ViewModels.DivePlan
 {
     public class DiveModelViewModel : ReactiveObject
     {

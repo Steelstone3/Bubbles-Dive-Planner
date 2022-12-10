@@ -1,9 +1,10 @@
 using BubblesDivePlanner.Models;
+using BubblesDivePlanner.ViewModels.DivePlan;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.DivePlan
 {
     public class DiveStepViewModelShould
     {

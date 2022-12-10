@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using BubblesDivePlanner.Models.Cylinders;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.ViewModels
+namespace BubblesDivePlanner.ViewModels.DivePlan
 {
     public class CylinderViewModel : ReactiveObject
     {

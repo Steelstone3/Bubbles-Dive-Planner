@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.Models.Cylinders;
-using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.DivePlan;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.DivePlan
 {
     public class CylinderViewModelShould
     {

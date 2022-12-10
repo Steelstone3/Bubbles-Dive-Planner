@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.Models;
-using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.DivePlan;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.DivePlan
 {
-    public class BubblesDivePlannerShould
+    public class DivePlanViewModelShould
     {
         private readonly DivePlanViewModel divePlanViewModel = new();
         private readonly Mock<IDivePlan> divePlan = new();

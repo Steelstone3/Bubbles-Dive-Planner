@@ -1,6 +1,7 @@
+using BubblesDivePlanner.ViewModels.DivePlan;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.DivePlan
 {
     public class DiveModelViewModelShould
     {
@@ -9,7 +10,7 @@ namespace BubblesDivePlannerTests.ViewModels
         {
             // Given
             DiveModelViewModel diveModelViewModel = new();
-        
+
             // Then
             Assert.NotEmpty(diveModelViewModel.DiveModels);
         }
