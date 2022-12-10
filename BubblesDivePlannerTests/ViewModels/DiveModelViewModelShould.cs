@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using BubblesDivePlanner.Models.DiveModels;
-using BubblesDivePlanner.Models.DiveModels.Types;
 using Xunit;
 
 namespace BubblesDivePlannerTests.ViewModels

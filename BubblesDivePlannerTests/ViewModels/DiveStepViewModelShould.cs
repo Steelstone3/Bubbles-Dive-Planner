@@ -1,4 +1,5 @@
 using BubblesDivePlanner.Models;
+using Moq;
 using System.Collections.Generic;
 using Xunit;
 
@@ -7,7 +8,7 @@ namespace BubblesDivePlannerTests.ViewModels
     public class DiveStepViewModelShould
     {
         private readonly DiveStepViewModel diveStepViewModel = new();
-        private readonly IDiveStep diveStep = new DiveStep(50, 10);
+        private readonly Mock<IDiveStep> diveStep = new();
 
         [Fact]
         public void Initialise()
@@ -19,14 +20,14 @@ namespace BubblesDivePlannerTests.ViewModels
         [Fact]
         public void RaisePropertyChanged()
         {
-            //Arrange
+            // Given
             var viewModelEvents = new List<string>();
             diveStepViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
-            //Act
-            diveStepViewModel.DiveStep = diveStep;
+            // When
+            diveStepViewModel.DiveStep = diveStep.Object;
 
-            //Assert
+            // Then
             Assert.NotEmpty(viewModelEvents);
             Assert.Contains(nameof(diveStepViewModel.DiveStep), viewModelEvents);
         }
@@ -34,14 +35,14 @@ namespace BubblesDivePlannerTests.ViewModels
         // [Fact]
         // public void Clone()
         // {
-        //     //Arrange
+        //     // Given
         //     diveStepViewModel.Depth = _depth;
         //     diveStepViewModel.Time = _time;
 
-        //     //Act
+        //     // When
         //     var newDiveStep = diveStepViewModel.DeepClone();
 
-        //     //Assert
+        //     // Then
         //     Assert.NotSame(diveStepViewModel, newDiveStep);
         // }
     }

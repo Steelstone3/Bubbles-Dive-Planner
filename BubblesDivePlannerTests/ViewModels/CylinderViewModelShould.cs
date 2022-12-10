@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.Models.Cylinders;
 using BubblesDivePlanner.ViewModels;
+using Moq;
 using Xunit;
 
 namespace BubblesDivePlannerTests.ViewModels
@@ -8,7 +9,7 @@ namespace BubblesDivePlannerTests.ViewModels
     public class CylinderViewModelShould
     {
         private readonly CylinderViewModel cylinderViewModel = new();
-        private readonly ICylinder cylinder = new Cylinder("", 0, 0, 0, new GasMixture(0, 0), 0, 0);
+        private readonly Mock<ICylinder> cylinder = new();
 
         [Fact]
         public void Initialise()
@@ -26,7 +27,7 @@ namespace BubblesDivePlannerTests.ViewModels
             cylinderViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             // When
-            cylinderViewModel.SelectedCylinder = cylinder;
+            cylinderViewModel.SelectedCylinder = cylinder.Object;
 
             // Then
             Assert.NotEmpty(viewModelEvents);
