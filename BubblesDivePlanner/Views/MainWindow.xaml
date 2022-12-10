@@ -1,0 +1,73 @@
+<Window
+    x:Class="BubblesDivePlanner.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view_models="clr-namespace:BubblesDivePlanner.ViewModels"
+    Title="Bubbles Dive Planner"
+    MinWidth="540"
+    MinHeight="480"
+    d:DesignHeight="720"
+    d:DesignWidth="1024"
+    Icon="/Assets/dive-planner-logo.ico"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <view_models:BubblesDivePlannerViewModel />
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="250" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition MinWidth="250" />
+        </Grid.ColumnDefinitions>
+
+        <!-- <header:HeaderView
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3" /> -->
+
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel Background="#FF90CAF9">
+                <TextBlock
+                    Margin="4"
+                    FontSize="20"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Dive Plan" />
+            </StackPanel>
+        </ScrollViewer>
+
+         <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel Background="#FF9E9E9E">
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="2"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel Background="#FF90CAF9">
+                <TextBlock
+                    Margin="4"
+                    FontSize="20"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Dive Information" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
