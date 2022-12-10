@@ -5,7 +5,7 @@ namespace BubblesDivePlannerTests.ViewModels
     public class DiveModelViewModelShould
     {
         [Fact]
-        public void ContainsDiveModels()
+        public void Initialise()
         {
             // Given
             DiveModelViewModel diveModelViewModel = new();

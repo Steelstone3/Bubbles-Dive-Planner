@@ -12,6 +12,13 @@ namespace BubblesDivePlannerTests.ViewModels
         private readonly Mock<IDivePlan> divePlan = new();
 
         [Fact]
+        public void Initialise()
+        {
+            // Then
+            Assert.NotNull(divePlanViewModel.DivePlan);
+        }
+
+        [Fact]
         public void RaisePropertyChanged()
         {
             // Given
