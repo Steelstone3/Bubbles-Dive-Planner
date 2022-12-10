@@ -11,7 +11,7 @@ namespace BubblesDivePlanner.ViewModels
             get;
         } = new ObservableCollection<ICylinder>();
 
-        private ICylinder selectedCylinder = new Cylinder("", 0, 0, 0, new GasMixture(0, 0), 0, 0);
+        private ICylinder selectedCylinder;
         public ICylinder SelectedCylinder
         {
             get => selectedCylinder;
