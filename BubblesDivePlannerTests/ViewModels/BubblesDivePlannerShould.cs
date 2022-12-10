@@ -5,7 +5,7 @@ namespace BubblesDivePlannerTests.ViewModels
     public class BubblesDivePlannerShould
     {
         [Fact]
-        public void ContainsDivePlan()
+        public void RaisePropertyChanged()
         {
             // Given
             
