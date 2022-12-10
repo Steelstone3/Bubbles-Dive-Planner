@@ -22,6 +22,7 @@ namespace BubblesDivePlannerTests.ViewModels
 
             // Then
             Assert.NotEmpty(viewModelEvents);
+            Assert.NotNull(cylinderViewModel.Cylinders);
             Assert.Contains(nameof(cylinderViewModel.SelectedCylinder), viewModelEvents);
         }
     }
