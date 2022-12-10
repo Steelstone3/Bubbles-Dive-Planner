@@ -11,6 +11,14 @@ namespace BubblesDivePlannerTests.ViewModels
         private readonly ICylinder cylinder = new Cylinder("", 0, 0, 0, new GasMixture(0, 0), 0, 0);
 
         [Fact]
+        public void Initialise()
+        {
+            // Then
+            Assert.NotNull(cylinderViewModel.Cylinders);
+            Assert.Null(cylinderViewModel.SelectedCylinder);
+        }
+
+        [Fact]
         public void RaisePropertyChanged()
         {
             // Given

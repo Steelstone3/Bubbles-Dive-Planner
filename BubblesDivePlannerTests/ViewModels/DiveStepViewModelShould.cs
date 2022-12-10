@@ -10,6 +10,13 @@ namespace BubblesDivePlannerTests.ViewModels
         private readonly IDiveStep diveStep = new DiveStep(50, 10);
 
         [Fact]
+        public void Initialise()
+        {
+            // Then
+            Assert.NotNull(diveStepViewModel.DiveStep);
+        }
+
+        [Fact]
         public void RaisePropertyChanged()
         {
             //Arrange
