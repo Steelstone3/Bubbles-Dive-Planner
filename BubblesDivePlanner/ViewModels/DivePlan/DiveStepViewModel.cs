@@ -3,13 +3,20 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DivePlan
 {
-    public class DiveStepViewModel : ReactiveObject
+    public class DiveStepViewModel : ReactiveObject, IDiveStep
     {
-        private IDiveStep diveStep = new DiveStep(0, 0);
-        public IDiveStep DiveStep
+        private byte depth = 0;
+        public byte Depth
         {
-            get => diveStep;
-            set => this.RaiseAndSetIfChanged(ref diveStep, value);
+            get => depth;
+            set => this.RaiseAndSetIfChanged(ref depth, value);
+        }
+
+        private byte time = 0;
+        public byte Time
+        {
+            get => depth;
+            set => this.RaiseAndSetIfChanged(ref time, value);
         }
     }
 }

@@ -9,14 +9,6 @@ namespace BubblesDivePlannerTests.ViewModels.DivePlan
     public class DiveStepViewModelShould
     {
         private readonly DiveStepViewModel diveStepViewModel = new();
-        private readonly Mock<IDiveStep> diveStep = new();
-
-        [Fact]
-        public void Initialise()
-        {
-            // Then
-            Assert.NotNull(diveStepViewModel.DiveStep);
-        }
 
         [Fact]
         public void RaisePropertyChanged()
@@ -26,11 +18,13 @@ namespace BubblesDivePlannerTests.ViewModels.DivePlan
             diveStepViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             // When
-            diveStepViewModel.DiveStep = diveStep.Object;
+            diveStepViewModel.Depth = TestFixture.FixtureDiveStep.Depth;
+            diveStepViewModel.Time = TestFixture.FixtureDiveStep.Time;
 
             // Then
             Assert.NotEmpty(viewModelEvents);
-            Assert.Contains(nameof(diveStepViewModel.DiveStep), viewModelEvents);
+            Assert.Contains(nameof(diveStepViewModel.Depth), viewModelEvents);
+            Assert.Contains(nameof(diveStepViewModel.Time), viewModelEvents);
         }
 
         // [Fact]
