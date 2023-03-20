@@ -1,3 +1,5 @@
+using BubblesDivePlanner.Controllers.Interfaces;
+
 namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
 {
     public class GasMixtureController : IGasMixtureController

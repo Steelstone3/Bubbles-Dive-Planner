@@ -1,8 +1,11 @@
+using BubblesDivePlanner.Commands;
+using BubblesDivePlanner.Commands.Interfaces;
+using BubblesDivePlanner.Controllers.Interfaces;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveStep;
 
-namespace BubblesDivePlanner.DiveStages.Runner
+namespace BubblesDivePlanner.Controllers
 {
     public class DiveStageCommandFactory : IDiveStageCommandFactory
     {

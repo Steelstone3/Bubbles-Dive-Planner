@@ -1,3 +1,4 @@
+using BubblesDivePlanner.Controllers.Interfaces;
 using BubblesDivePlanner.DiveStep;
 
 namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage

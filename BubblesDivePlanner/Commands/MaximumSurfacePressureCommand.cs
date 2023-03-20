@@ -1,7 +1,8 @@
 using System;
+using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.DiveModels;
 
-namespace BubblesDivePlanner.DiveStages
+namespace BubblesDivePlanner.Commands
 {
     public class MaximumSurfacePressureCommand : IDiveStageCommand
     {
@@ -22,7 +23,7 @@ namespace BubblesDivePlanner.DiveStages
 
         private void CalculateMaximumSurfacePressure(int compartment)
         {
-            _diveModel.DiveProfile.MaxSurfacePressures[compartment] = Math.Round((1.0f / _diveModel.DiveProfile.BValues[compartment]) + _diveModel.DiveProfile.AValues[compartment], 4);
+            _diveModel.DiveProfile.MaxSurfacePressures[compartment] = Math.Round(1.0f / _diveModel.DiveProfile.BValues[compartment] + _diveModel.DiveProfile.AValues[compartment], 4);
         }
     }
 }

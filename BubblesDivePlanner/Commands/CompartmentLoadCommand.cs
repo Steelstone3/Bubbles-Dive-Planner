@@ -1,7 +1,8 @@
 using System;
+using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.DiveModels;
 
-namespace BubblesDivePlanner.DiveStages
+namespace BubblesDivePlanner.Commands
 {
     public class CompartmentLoadCommand : IDiveStageCommand
     {

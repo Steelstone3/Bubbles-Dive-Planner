@@ -1,8 +1,8 @@
-using BubblesDivePlanner.DiveBoundaries;
+using BubblesDivePlanner.Controllers;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveBoundaries
+namespace BubblesDivePlannerTests.Controllers
 {
     public class DiveCeilingControllerShould
     {

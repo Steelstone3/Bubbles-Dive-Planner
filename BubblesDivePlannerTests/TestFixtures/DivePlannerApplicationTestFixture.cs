@@ -3,7 +3,6 @@ using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveModels.DiveProfile;
-using BubblesDivePlanner.DivePlanner;
 using BubblesDivePlanner.DiveStep;
 
 namespace BubblesDivePlannerTests.TestFixtures

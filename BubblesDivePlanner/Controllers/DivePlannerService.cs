@@ -1,11 +1,11 @@
+using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.DiveStages.Runner;
 using BubblesDivePlanner.DiveStep;
-using BubblesDivePlanner.Visibility;
 
-namespace BubblesDivePlanner.ApplicationEntry
+namespace BubblesDivePlanner.Controllers
 {
     public static class DivePlannerService
     {

@@ -1,4 +1,6 @@
-namespace BubblesDivePlanner.Cylinders.CylinderSetup
+using BubblesDivePlanner.Cylinders.CylinderSetup;
+
+namespace BubblesDivePlanner.Controllers.Interfaces
 {
     public interface ICylinderPrototype
     {

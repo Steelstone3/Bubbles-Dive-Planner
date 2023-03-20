@@ -1,9 +1,8 @@
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveStep;
-using BubblesDivePlanner.Results;
 
-namespace BubblesDivePlanner.DiveStages.Runner
+namespace BubblesDivePlanner.Controllers.Interfaces
 {
     public interface IDiveStageRunner
     {

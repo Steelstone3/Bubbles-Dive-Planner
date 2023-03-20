@@ -1,4 +1,4 @@
-using BubblesDivePlanner.DiveBoundaries;
+using BubblesDivePlanner.Controllers;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture

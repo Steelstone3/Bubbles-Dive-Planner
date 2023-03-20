@@ -1,7 +1,7 @@
-using BubblesDivePlanner.DiveBoundaries;
+using BubblesDivePlanner.Controllers;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveBoundaries
+namespace BubblesDivePlannerTests.Controllers
 {
     public class MaximumOperatingDepthControllerShould
     {

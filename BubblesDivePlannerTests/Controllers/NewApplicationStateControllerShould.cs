@@ -1,10 +1,9 @@
-using BubblesDivePlanner.Header.File.New;
 using BubblesDivePlanner.ApplicationEntry;
 using Xunit;
-using BubblesDivePlannerTests.TestFixtures;
 using Moq;
+using BubblesDivePlanner.Controllers;
 
-namespace BubblesDivePlannerTests.Header.File.New
+namespace BubblesDivePlannerTests.Controllers
 {
     public class NewApplicationStateControllerShould
     {

@@ -1,6 +1,6 @@
 using BubblesDivePlanner.DiveStep;
 
-namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
+namespace BubblesDivePlanner.Controllers.Interfaces
 {
     public interface IGasUsageController
     {

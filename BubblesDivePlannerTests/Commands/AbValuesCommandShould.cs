@@ -1,11 +1,9 @@
-using BubblesDivePlanner.DiveModels;
-using BubblesDivePlanner.DiveStages;
-using BubblesDivePlannerTests.Asserters;
+using BubblesDivePlanner.Commands;
+using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlannerTests.TestFixtures;
-using System.Collections.Generic;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveStages
+namespace BubblesDivePlannerTests.Commands
 {
     public class AbValuesCommandShould
     {

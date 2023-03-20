@@ -2,7 +2,7 @@ using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DecompressionProfile
+namespace BubblesDivePlannerTests.Controllers
 {
     public class DecompressionControllerShould
     {

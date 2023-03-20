@@ -1,8 +1,9 @@
-using BubblesDivePlanner.DiveStages;
+using BubblesDivePlanner.Commands;
+using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveStages
+namespace BubblesDivePlannerTests.Commands
 {
     public class AmbientPressureShould
     {

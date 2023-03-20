@@ -1,9 +1,9 @@
 using Xunit;
-using BubblesDivePlanner.Visibility;
 using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlannerTests.TestFixtures;
+using BubblesDivePlanner.Controllers;
 
-namespace BubblesDivePlannerTests.Visibility
+namespace BubblesDivePlannerTests.Controllers
 {
     public class VisibilityControllerShould
     {

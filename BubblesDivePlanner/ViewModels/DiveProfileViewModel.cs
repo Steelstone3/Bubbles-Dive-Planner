@@ -1,5 +1,5 @@
 using System.Linq;
-using BubblesDivePlanner.DiveBoundaries;
+using BubblesDivePlanner.Controllers;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DiveModels.DiveProfile

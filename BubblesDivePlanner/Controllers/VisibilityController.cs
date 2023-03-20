@@ -1,6 +1,6 @@
 using BubblesDivePlanner.ApplicationEntry;
 
-namespace BubblesDivePlanner.Visibility
+namespace BubblesDivePlanner.Controllers
 {
     public static class VisibilityController
     {

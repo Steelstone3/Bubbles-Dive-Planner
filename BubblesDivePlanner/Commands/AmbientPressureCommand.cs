@@ -1,8 +1,9 @@
+using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
 using BubblesDivePlanner.DiveModels.DiveProfile;
 using BubblesDivePlanner.DiveStep;
 
-namespace BubblesDivePlanner.DiveStages
+namespace BubblesDivePlanner.Commands
 {
     public class AmbientPressureCommand : IDiveStageCommand
     {
@@ -25,7 +26,7 @@ namespace BubblesDivePlanner.DiveStages
 
         private double CalculateAmbientPressure()
         {
-            return 1.0 + (_diveStepModel.Depth / 10.0);
+            return 1.0 + _diveStepModel.Depth / 10.0;
         }
 
         private void CalculateAdjustedGasPressures(double pressureAmbient)

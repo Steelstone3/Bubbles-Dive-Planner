@@ -1,4 +1,4 @@
-namespace BubblesDivePlanner.DiveStages
+namespace BubblesDivePlanner.Commands.Interfaces
 {
     public interface IDiveStageCommand
     {

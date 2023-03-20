@@ -1,8 +1,8 @@
-using BubblesDivePlanner.DiveStages;
+using BubblesDivePlanner.Commands;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveStages
+namespace BubblesDivePlannerTests.Commands
 {
     public class TissuePressureShould
     {

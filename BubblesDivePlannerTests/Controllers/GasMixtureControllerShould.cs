@@ -1,7 +1,8 @@
+using BubblesDivePlanner.Controllers.Interfaces;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
+namespace BubblesDivePlannerTests.Controllers
 {
     public class GasMixtureControllerShould
     {

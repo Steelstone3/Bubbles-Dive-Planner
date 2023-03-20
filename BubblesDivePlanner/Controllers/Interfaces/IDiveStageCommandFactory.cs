@@ -1,4 +1,6 @@
-namespace BubblesDivePlanner.DiveStages.Runner
+using BubblesDivePlanner.Commands.Interfaces;
+
+namespace BubblesDivePlanner.Controllers.Interfaces
 {
     public interface IDiveStageCommandFactory
     {

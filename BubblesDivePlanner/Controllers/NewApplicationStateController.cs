@@ -3,7 +3,7 @@ using BubblesDivePlanner.DiveInformation;
 using BubblesDivePlanner.DivePlanner;
 using BubblesDivePlanner.Results;
 
-namespace BubblesDivePlanner.Header.File.New
+namespace BubblesDivePlanner.Controllers
 {
     public static class NewApplicationStateController
     {

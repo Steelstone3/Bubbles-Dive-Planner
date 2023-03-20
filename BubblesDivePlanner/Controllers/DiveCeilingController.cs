@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace BubblesDivePlanner.DiveBoundaries
+namespace BubblesDivePlanner.Controllers
 {
     public static class DiveCeilingController
     {
