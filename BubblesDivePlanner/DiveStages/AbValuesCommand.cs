@@ -7,7 +7,8 @@ namespace BubblesDivePlanner.DiveStages
     {
         private readonly IDiveModel _diveModel;
 
-        public AbValuesCommand(IDiveModel diveModel) {
+        public AbValuesCommand(IDiveModel diveModel)
+        {
             _diveModel = diveModel;
         }
 
@@ -22,12 +23,12 @@ namespace BubblesDivePlanner.DiveStages
 
         private void CalculateAValues(int compartment)
         {
-            _diveModel.DiveProfile.AValues[compartment] = Math.Round(((_diveModel.AValuesNitrogen[compartment] * _diveModel.DiveProfile.TissuePressuresNitrogen[compartment] + _diveModel.AValuesHelium[compartment] * _diveModel.DiveProfile.TissuePressuresHelium[compartment]) / _diveModel.DiveProfile.TissuePressuresTotal[compartment]), 4);
+            _diveModel.DiveProfile.AValues[compartment] = Math.Round(((_diveModel.AValuesNitrogen[compartment] * _diveModel.DiveProfile.TissuePressuresNitrogen[compartment]) + (_diveModel.AValuesHelium[compartment] * _diveModel.DiveProfile.TissuePressuresHelium[compartment])) / _diveModel.DiveProfile.TissuePressuresTotal[compartment], 4);
         }
 
         private void CalculateBValues(int compartment)
         {
-            _diveModel.DiveProfile.BValues[compartment] = Math.Round(((_diveModel.BValuesNitrogen[compartment] * _diveModel.DiveProfile.TissuePressuresNitrogen[compartment] + _diveModel.BValuesHelium[compartment] * _diveModel.DiveProfile.TissuePressuresHelium[compartment]) / _diveModel.DiveProfile.TissuePressuresTotal[compartment]), 4);
+            _diveModel.DiveProfile.BValues[compartment] = Math.Round(((_diveModel.BValuesNitrogen[compartment] * _diveModel.DiveProfile.TissuePressuresNitrogen[compartment]) + (_diveModel.BValuesHelium[compartment] * _diveModel.DiveProfile.TissuePressuresHelium[compartment])) / _diveModel.DiveProfile.TissuePressuresTotal[compartment], 4);
         }
     }
 }

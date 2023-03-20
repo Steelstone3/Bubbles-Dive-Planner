@@ -13,7 +13,7 @@ namespace BubblesDivePlannerTests.DiveStages
             var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
             diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
             var toleratedAmbientPressuresResult = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun.ToleratedAmbientPressures;
-            
+
             var diveStage = new ToleratedAmbientPressureCommand(diveModel);
 
             //Act

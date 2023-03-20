@@ -41,21 +41,21 @@ namespace BubblesDivePlannerTests.DiveModels.Selector
         }
 
         [Fact]
-        public void ValidateModelAtTheBoundsInvalid() 
+        public void ValidateModelAtTheBoundsInvalid()
         {
             //Act
             var isValid = _diveModelSelectorViewModel.ValidateSelectedDiveModel(null);
-            
+
             //Assert
             Assert.False(isValid);
         }
 
         [Fact]
-        public void ValidateModelAtTheBoundsValid() 
+        public void ValidateModelAtTheBoundsValid()
         {
             //Act
             var isValid = _diveModelSelectorViewModel.ValidateSelectedDiveModel(_diveModelDummy.Object);
-            
+
             //Assert
             Assert.True(isValid);
         }

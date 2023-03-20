@@ -4,6 +4,6 @@ namespace BubblesDivePlanner.Header
 {
     public interface IFileModel
     {
-        INewModel NewModel {get;}
+        INewModel NewModel { get; }
     }
 }

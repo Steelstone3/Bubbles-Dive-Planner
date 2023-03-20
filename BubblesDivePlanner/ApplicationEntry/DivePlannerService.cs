@@ -6,7 +6,7 @@ using BubblesDivePlanner.Visibility;
 
 namespace BubblesDivePlanner.ApplicationEntry
 {
-    public class DivePlannerService
+    public static class DivePlannerService
     {
         public static void CalculateDiveStep(MainWindowViewModel vm)
         {

@@ -11,7 +11,7 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
     public class DiveStageCommandFactoryShould
     {
         [Fact]
-        public void CreateDiveStages() 
+        public void CreateDiveStages()
         {
             //Arrange
             var diveModelDummy = new Mock<IDiveModel>();

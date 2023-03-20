@@ -27,7 +27,7 @@ namespace BubblesDivePlannerTests.Visibility
                 Assert.False(cylinder.IsVisible);
             }
 
-            Assert.False(mainWindowViewModel.DivePlanner.DiveModelSelector.IsVisible);            
+            Assert.False(mainWindowViewModel.DivePlanner.DiveModelSelector.IsVisible);
         }
     }
 }

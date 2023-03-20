@@ -18,6 +18,5 @@ namespace BubblesDivePlannerTests.DiveBoundaries
             //Assert
             Assert.Equal(expectedMaximumOperatingDepth, maximumOperatingDepth);
         }
-
     }
 }

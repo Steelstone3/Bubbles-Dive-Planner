@@ -77,9 +77,10 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSelector
         }
 
         [Fact]
-        public void RaiseSelectedCylinderChangedEvent() {
+        public void RaiseSelectedCylinderChangedEvent()
+        {
             //Arrange
-            string eventFired = "event fired";
+            const string eventFired = "event fired";
             var viewModelEvents = new List<string>();
             var selectedCylinder = new Mock<ICylinderSetupModel>();
             _cylinderSelectorViewModel.SelectedCylinderChanged += (sender, e) => viewModelEvents.Add(eventFired);

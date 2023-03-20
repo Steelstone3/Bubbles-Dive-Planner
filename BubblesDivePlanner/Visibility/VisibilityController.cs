@@ -12,8 +12,9 @@ namespace BubblesDivePlanner.Visibility
             mainWindowViewModel.ResultsOverview.IsVisible = true;
         }
 
-        private static void UpdateCylinderVisibilty(IMainWindowModel mainWindowViewModel) {
-            foreach(var cylinder in mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders)
+        private static void UpdateCylinderVisibilty(IMainWindowModel mainWindowViewModel)
+        {
+            foreach (var cylinder in mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders)
             {
                 cylinder.GasMixture.IsVisible = false;
                 cylinder.IsVisible = false;

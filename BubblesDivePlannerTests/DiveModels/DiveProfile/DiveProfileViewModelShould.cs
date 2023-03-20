@@ -15,7 +15,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
         [InlineData(16)]
         [InlineData(12)]
         [InlineData(8)]
-        public void ConstructModelWithCorrectCollectionSizes(int compartmentSize) 
+        public void ConstructModelWithCorrectCollectionSizes(int compartmentSize)
         {
             //Arrange
             var diveProfile = new DiveProfileViewModel(compartmentSize);
@@ -42,7 +42,7 @@ namespace BubblesDivePlannerTests.DiveModels.DiveProfile
             var diveProfile = new DiveProfileViewModel(16);
 
             //Assert
-            DiveParameterAsserter.AssertDiveProfileValuesEquality(DivePlannerApplicationTestFixture.GetDiveProfile ,diveProfile);
+            DiveParameterAsserter.AssertDiveProfileValuesEquality(DivePlannerApplicationTestFixture.GetDiveProfile, diveProfile);
         }
 
         [Fact]

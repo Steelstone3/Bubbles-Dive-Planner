@@ -12,10 +12,10 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
         public void AllowModelToBeSet()
         {
             //Arrange
-            int oxygen = 21;
-            int helium = 10;
-            int nitrogen = 69;
-            double maximumOperatingDepth = 56.67;
+            const int oxygen = 21;
+            const int helium = 10;
+            const int nitrogen = 69;
+            const double maximumOperatingDepth = 56.67;
 
             //Act
             _gasMixture.Oxygen = oxygen;
@@ -33,9 +33,9 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
         public void RaisePropertyChanged()
         {
             //Arrange
-            int oxygen = 32;
-            int helium = 15;
-            var viewModelEvents = new List<string>();
+            const int oxygen = 32;
+            const int helium = 15;
+            List<string> viewModelEvents = new();
             _gasMixture.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act

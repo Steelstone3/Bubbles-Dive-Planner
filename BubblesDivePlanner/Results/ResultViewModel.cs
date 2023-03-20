@@ -22,10 +22,10 @@ namespace BubblesDivePlanner.Results
         }
 
         private ICylinderSetupModel _selectedCylinder;
-        public ICylinderSetupModel SelectedCylinder 
+        public ICylinderSetupModel SelectedCylinder
         {
-            get=> _selectedCylinder;
-            set=> this.RaiseAndSetIfChanged(ref _selectedCylinder, value);
+            get => _selectedCylinder;
+            set => this.RaiseAndSetIfChanged(ref _selectedCylinder, value);
         }
     }
 }

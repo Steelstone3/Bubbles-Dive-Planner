@@ -7,12 +7,12 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
     public class CylinderSetupViewModel : ReactiveObject, ICylinderSetupModel
     {
         private string _cylinderName = "Air";
-        public string CylinderName 
+        public string CylinderName
         {
-            get=> _cylinderName;
-            set=> this.RaiseAndSetIfChanged(ref _cylinderName, value);
+            get => _cylinderName;
+            set => this.RaiseAndSetIfChanged(ref _cylinderName, value);
         }
-        
+
         private byte _cylinderVolume;
         public byte CylinderVolume
         {
@@ -39,7 +39,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup
         public ushort InitialPressurisedCylinderVolume
         {
             get => _initialPressurisedCylinderVolume;
-            set 
+            set
             {
                 this.RaiseAndSetIfChanged(ref _initialPressurisedCylinderVolume, value);
                 GasUsage.GasRemaining = _initialPressurisedCylinderVolume;

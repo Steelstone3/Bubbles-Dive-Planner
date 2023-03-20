@@ -14,7 +14,7 @@ namespace BubblesDivePlannerTests.DiveStages
             var diveProfile = DivePlannerApplicationTestFixture.GetDiveModel.DiveProfile;
             var gasMixtureModel = DivePlannerApplicationTestFixture.GetSelectedCylinder.GasMixture;
             var diveStepModel = DivePlannerApplicationTestFixture.GetDiveStep;
-            
+
             IDiveStageCommand diveStage = new AmbientPressureCommand(diveProfile, gasMixtureModel, diveStepModel);
 
             //Act

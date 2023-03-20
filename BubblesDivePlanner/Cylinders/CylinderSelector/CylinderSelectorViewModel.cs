@@ -24,7 +24,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSelector
         public ICylinderSetupModel SelectedCylinder
         {
             get => _selectedCylinder;
-            set 
+            set
             {
                 this.RaiseAndSetIfChanged(ref _selectedCylinder, value);
                 SelectedCylinderChanged?.Invoke(this, EventArgs.Empty);

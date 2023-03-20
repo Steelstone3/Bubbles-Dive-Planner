@@ -3,10 +3,10 @@ using Xunit;
 
 namespace BubblesDivePlannerTests.Cylinders.CylinderSetup
 {
-    public class CylinderPrototypeShould 
+    public class CylinderPrototypeShould
     {
         [Fact]
-        public void CreateCloneCylinder() 
+        public void CreateCloneCylinder()
         {
             //Arrange 
             ICylinderSetupModel cylinderSetup = new CylinderSetupViewModel();

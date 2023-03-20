@@ -11,9 +11,9 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasMixture
         public void CalculateNitrogenMixture()
         {
             //Arrange
-            int oxygen = 21;
-            int helium = 10;
-            int expectedNitrogen = 69;
+            const int oxygen = 21;
+            const int helium = 10;
+            const int expectedNitrogen = 69;
 
             //Act
             var actualNitrogen = _gasMixtureController.CalculateNitrogenMixture(oxygen, helium);

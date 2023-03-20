@@ -35,7 +35,7 @@ namespace BubblesDivePlannerTests.Header.File.New
 
             //Act
             NewApplicationStateController.CreateNewApplicationInstance(divePlannerInstanceMock.Object);
-            
+
             //Assert
             divePlannerInstanceMock.Verify(vm => vm.SubscribeEvents());
         }

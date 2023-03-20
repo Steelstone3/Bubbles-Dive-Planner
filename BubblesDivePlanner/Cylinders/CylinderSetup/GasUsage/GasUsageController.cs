@@ -16,7 +16,7 @@ namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
 
         public ushort CalculateGasUsed(IDiveStepModel diveStepModel, byte surfaceAirConsumptionRate)
         {
-            return (ushort)((diveStepModel.Depth / 10 + 1) * diveStepModel.Time * surfaceAirConsumptionRate);
+            return (ushort)(((diveStepModel.Depth / 10) + 1) * diveStepModel.Time * surfaceAirConsumptionRate);
         }
     }
 }

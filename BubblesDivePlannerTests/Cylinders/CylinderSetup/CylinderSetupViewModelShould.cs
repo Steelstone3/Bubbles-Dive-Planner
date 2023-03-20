@@ -24,7 +24,6 @@ namespace BubblesDivePlannerTests.Cylinders.CylinderSetup
             _cylinderSetupViewModel.CylinderPressure = _cylinderPressure;
             _cylinderSetupViewModel.InitialPressurisedCylinderVolume = _initialPressurisedCylinderVolume;
 
-
             //Assert
             Assert.Equal(_cylinderName, _cylinderSetupViewModel.CylinderName);
             Assert.Equal(_cylinderVolume, _cylinderSetupViewModel.CylinderVolume);

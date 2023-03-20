@@ -15,7 +15,7 @@ namespace BubblesDivePlanner.DiveStages
         public void RunDiveStage()
         {
             for (int compartment = 0; compartment < _diveModel.CompartmentCount; compartment++)
-            {                
+            {
                 CalculateMaximumSurfacePressure(compartment);
             }
         }

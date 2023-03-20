@@ -14,9 +14,9 @@ namespace BubblesDivePlanner.DecompressionProfile
         {
             Queue<IDiveStepModel> diveStepModelQueue = new();
 
-            while(diveModel.DiveProfile.DiveCeiling > 0)
+            while (diveModel.DiveProfile.DiveCeiling > 0)
             {
-                diveStepModelQueue.Enqueue(CalculateDiveStepAtStepInterval(diveModel,selectedCylinder));
+                diveStepModelQueue.Enqueue(CalculateDiveStepAtStepInterval(diveModel, selectedCylinder));
             }
 
             return diveStepModelQueue;

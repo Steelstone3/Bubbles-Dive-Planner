@@ -44,7 +44,7 @@ namespace BubblesDivePlannerTests.DiveStep
         [InlineData(100, 60, true)]
         [InlineData(101, 61, false)]
         [InlineData(255, 255, false)]
-        public void ValidateModelAtTheBounds(byte depth, byte time, bool expectedValidity) 
+        public void ValidateModelAtTheBounds(byte depth, byte time, bool expectedValidity)
         {
             //Arrange
             _diveStep.Depth = depth;
@@ -52,7 +52,7 @@ namespace BubblesDivePlannerTests.DiveStep
 
             //Act
             var isValid = _diveStep.ValidateDiveStep(_diveStep);
-            
+
             //Assert
             Assert.Equal(expectedValidity, isValid);
         }

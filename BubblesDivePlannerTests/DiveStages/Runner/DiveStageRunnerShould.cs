@@ -51,6 +51,5 @@ namespace BubblesDivePlannerTests.DiveStages.Runner
             DiveParameterAsserter.AssertSelectedCylinderValuesEquality(selectedCylinder, selectedCylinder);
             DiveParameterAsserter.AssertDiveProfileValuesEquality(DivePlannerApplicationTestFixture.GetDiveProfileResultFromSecondRun, diveModel.DiveProfile);
         }
-
     }
 }

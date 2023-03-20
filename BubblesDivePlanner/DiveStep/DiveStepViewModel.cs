@@ -31,7 +31,8 @@ namespace BubblesDivePlanner.DiveStep
 
         public IDiveStepModel DeepClone()
         {
-            return new DiveStepViewModel(){
+            return new DiveStepViewModel()
+            {
                 Depth = this.Depth,
                 Time = this.Time,
             };
