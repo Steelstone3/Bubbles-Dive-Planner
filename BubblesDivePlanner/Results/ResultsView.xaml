@@ -31,7 +31,7 @@
                     <dive_results:DiveParametersUsedView/>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Historic Dive Results"
+            <!-- <TabItem Header="Historic Dive Results"
             FontSize="12"
             Foreground="Black"
             FontWeight="DemiBold"
@@ -44,7 +44,7 @@
             FontWeight="DemiBold"
             VerticalContentAlignment="Center">
                 <dive_results:HistoricDiveParametersUsedView/>
-            </TabItem>
+            </TabItem> -->
         </TabControl>
     </StackPanel>
 </UserControl>
