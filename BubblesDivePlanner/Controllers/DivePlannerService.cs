@@ -2,6 +2,7 @@ using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.DiveStages.Runner;
+using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.Visibility;
 
 namespace BubblesDivePlanner.ApplicationEntry
@@ -20,7 +21,7 @@ namespace BubblesDivePlanner.ApplicationEntry
         public static void RecalculateDecompressionSteps(MainWindowViewModel vm)
         {
             vm.DiveInformation.DecompressionProfile.DecompressionDiveSteps.Clear();
-            var diveSteps = DecompressionProfileController.CollateDecompressionDiveSteps(vm.DivePlanner.DiveModelSelector.SelectedDiveModel.DeepClone(), vm.DivePlanner.CylinderSelector.SelectedCylinder).ToArray();
+            IDiveStepModel[] diveSteps = DecompressionProfileController.CollateDecompressionDiveSteps(vm.DivePlanner.DiveModelSelector.SelectedDiveModel.DeepClone(), vm.DivePlanner.CylinderSelector.SelectedCylinder).ToArray();
 
             foreach (var diveStep in diveSteps)
             {
