@@ -1,8 +1,6 @@
 using BubblesDivePlanner.ApplicationEntry;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
-using BubblesDivePlanner.DecompressionProfile;
-using BubblesDivePlanner.DiveStages.Runner;
+using BubblesDivePlanner.Controllers.Cylinders;
+using BubblesDivePlanner.Controllers.DiveStages;
 using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Controllers

@@ -1,6 +1,6 @@
 using System;
 
-namespace BubblesDivePlanner.Controllers
+namespace BubblesDivePlanner.Controllers.DiveBoundaries
 {
     public static class MaximumOperatingDepthController
     {

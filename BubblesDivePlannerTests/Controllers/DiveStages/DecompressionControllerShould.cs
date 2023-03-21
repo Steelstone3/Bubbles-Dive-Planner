@@ -1,8 +1,8 @@
-using BubblesDivePlanner.DecompressionProfile;
+using BubblesDivePlanner.Controllers.DiveStages;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Controllers
+namespace BubblesDivePlannerTests.Controllers.DiveStages
 {
     public class DecompressionControllerShould
     {

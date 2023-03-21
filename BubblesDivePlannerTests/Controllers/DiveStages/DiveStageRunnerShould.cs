@@ -1,10 +1,10 @@
 using Xunit;
-using BubblesDivePlanner.DiveStages.Runner;
 using BubblesDivePlannerTests.TestFixtures;
 using BubblesDivePlannerTests.Asserters;
 using BubblesDivePlanner.Controllers.Interfaces;
+using BubblesDivePlanner.Controllers.DiveStages;
 
-namespace BubblesDivePlannerTests.Controllers
+namespace BubblesDivePlannerTests.Controllers.DiveStages
 {
     public class DiveStageRunnerShould
     {

@@ -1,5 +1,5 @@
 using System.Linq;
-using BubblesDivePlanner.Controllers;
+using BubblesDivePlanner.Controllers.DiveBoundaries;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 

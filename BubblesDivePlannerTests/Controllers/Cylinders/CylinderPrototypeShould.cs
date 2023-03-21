@@ -1,9 +1,10 @@
+using BubblesDivePlanner.Controllers.Cylinders;
 using BubblesDivePlanner.Controllers.Interfaces;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.ViewModels.Models;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Controllers
+namespace BubblesDivePlannerTests.Controllers.Cylinders
 {
     public class CylinderPrototypeShould
     {

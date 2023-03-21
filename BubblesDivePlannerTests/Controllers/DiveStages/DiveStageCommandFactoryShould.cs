@@ -1,10 +1,10 @@
-using BubblesDivePlanner.Controllers;
+using BubblesDivePlanner.Controllers.DiveStages;
 using BubblesDivePlanner.Controllers.Interfaces;
 using BubblesDivePlanner.ViewModels.Models;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Controllers
+namespace BubblesDivePlannerTests.Controllers.DiveStages
 {
     public class DiveStageCommandFactoryShould
     {

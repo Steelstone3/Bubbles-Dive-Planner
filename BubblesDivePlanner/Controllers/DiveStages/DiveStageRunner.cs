@@ -1,8 +1,7 @@
-using BubblesDivePlanner.Controllers;
 using BubblesDivePlanner.Controllers.Interfaces;
 using BubblesDivePlanner.ViewModels.Models;
 
-namespace BubblesDivePlanner.DiveStages.Runner
+namespace BubblesDivePlanner.Controllers.DiveStages
 {
     public class DiveStageRunner : IDiveStageRunner
     {

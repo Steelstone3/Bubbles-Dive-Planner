@@ -1,9 +1,9 @@
+using BubblesDivePlanner.Controllers.Cylinders;
 using BubblesDivePlanner.Controllers.Interfaces;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Controllers
+namespace BubblesDivePlannerTests.Controllers.Cylinders
 {
     public class GasUsageControllerShould
     {

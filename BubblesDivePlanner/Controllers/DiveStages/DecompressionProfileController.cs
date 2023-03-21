@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using BubblesDivePlanner.Commands.Interfaces;
-using BubblesDivePlanner.Controllers;
 using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.ViewModels.Models;
 
-namespace BubblesDivePlanner.DecompressionProfile
+namespace BubblesDivePlanner.Controllers.DiveStages
 {
     public static class DecompressionProfileController
     {

@@ -1,4 +1,5 @@
-using BubblesDivePlanner.Controllers;
+using BubblesDivePlanner.Controllers.Cylinders;
+using BubblesDivePlanner.Controllers.DiveBoundaries;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 

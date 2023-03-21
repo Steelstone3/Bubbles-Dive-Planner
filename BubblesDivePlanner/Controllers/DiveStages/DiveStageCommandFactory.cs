@@ -3,7 +3,7 @@ using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.Controllers.Interfaces;
 using BubblesDivePlanner.ViewModels.Models;
 
-namespace BubblesDivePlanner.Controllers
+namespace BubblesDivePlanner.Controllers.DiveStages
 {
     public class DiveStageCommandFactory : IDiveStageCommandFactory
     {
