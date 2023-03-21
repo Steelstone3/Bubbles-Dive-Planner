@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.Results
+namespace BubblesDivePlanner.Views
 {
     public class HistoricDiveParametersUsedView : UserControl
     {

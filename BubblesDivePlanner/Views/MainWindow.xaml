@@ -1,19 +1,11 @@
 <Window
-    x:Class="BubblesDivePlanner.ApplicationEntry.MainWindow"
+    x:Class="BubblesDivePlanner.Views.MainWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:application_entry="clr-namespace:BubblesDivePlanner.ApplicationEntry"
-    xmlns:header="clr-namespace:BubblesDivePlanner.Header"
-    xmlns:dive_model_selector="clr-namespace:BubblesDivePlanner.DiveModels.Selector"
-    xmlns:dive_step="clr-namespace:BubblesDivePlanner.DiveStep"
-    xmlns:cylinder_setup="clr-namespace:BubblesDivePlanner.Cylinders.CylinderSetup"
-    xmlns:cylinder_selector="clr-namespace:BubblesDivePlanner.Cylinders.CylinderSelector"
-    xmlns:cns="clr-namespace:BubblesDivePlanner.CentralNervousSystemToxicity"
-    xmlns:dive_boundaries="clr-namespace:BubblesDivePlanner.DiveBoundaries"
-    xmlns:decompression="clr-namespace:BubblesDivePlanner.DecompressionProfile"
-    xmlns:results="clr-namespace:BubblesDivePlanner.Results"
+    xmlns:view_models="clr-namespace:BubblesDivePlanner.ViewModels"
+    xmlns:views="clr-namespace:BubblesDivePlanner.Views"
     Title="Bubbles Dive Planner"
     MinWidth="540"
     MinHeight="480"
@@ -23,7 +15,7 @@
     mc:Ignorable="d">
 
     <Design.DataContext>
-        <application_entry:MainWindowViewModel />
+        <view_models:MainWindowViewModel />
     </Design.DataContext>
 
     <Grid>
@@ -38,7 +30,7 @@
             <ColumnDefinition MinWidth="250" />
         </Grid.ColumnDefinitions>
 
-        <header:HeaderView
+        <views:HeaderView
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3" />
@@ -54,11 +46,11 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Plan" />
-                <dive_model_selector:DiveModelSelectorView />
-                <dive_step:DiveStepView />
-                <cylinder_setup:CylinderSetupView />
-                <cylinder_selector:CylinderSelectorView />
-                <dive_step:CalculateDiveStepView />
+                <views:DiveModelSelectorView />
+                <views:DiveStepView />
+                <views:CylinderSetupView />
+                <views:CylinderSelectorView />
+                <views:CalculateDiveStepView />
             </StackPanel>
         </ScrollViewer>
 
@@ -67,7 +59,7 @@
             Grid.Column="1"
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF9E9E9E">
-                <results:ResultsView />
+                <views:ResultsView />
             </StackPanel>
         </ScrollViewer>
 
@@ -82,9 +74,9 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Information" />
-                <decompression:DecompressionProfileView />
-                <dive_boundaries:DiveBoundariesView/>
-                <cns:CentralNervousSystemToxicityView />
+                <views:DecompressionProfileView />
+                <views:DiveBoundariesView/>
+                <views:CentralNervousSystemToxicityView />
             </StackPanel>
         </ScrollViewer>
     </Grid>

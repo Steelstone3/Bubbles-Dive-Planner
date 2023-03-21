@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.DiveStep
+namespace BubblesDivePlanner.Views
 {
     public class CalculateDiveStepView : UserControl
     {

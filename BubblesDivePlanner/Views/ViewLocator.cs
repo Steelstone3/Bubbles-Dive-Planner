@@ -6,7 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.ApplicationEntry
+namespace BubblesDivePlanner.Views
 {
     public class ViewLocator : IDataTemplate
     {

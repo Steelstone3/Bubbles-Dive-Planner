@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.CentralNervousSystemToxicity
+namespace BubblesDivePlanner.Views
 {
     public class CentralNervousSystemToxicityView : UserControl
     {

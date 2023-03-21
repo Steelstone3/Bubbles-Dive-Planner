@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.DiveModels.Selector
+namespace BubblesDivePlanner.Views
 {
     public class DiveModelSelectorView : UserControl
     {

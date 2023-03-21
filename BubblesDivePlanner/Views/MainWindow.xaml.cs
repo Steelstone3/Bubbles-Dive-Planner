@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.ApplicationEntry
+namespace BubblesDivePlanner.Views
 {
     public class MainWindow : Window
     {

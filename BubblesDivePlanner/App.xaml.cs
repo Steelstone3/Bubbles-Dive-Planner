@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using BubblesDivePlanner.ApplicationEntry;
+using BubblesDivePlanner.Views;
 
 namespace BubblesDivePlanner
 {

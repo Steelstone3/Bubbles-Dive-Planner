@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.DecompressionProfile
+namespace BubblesDivePlanner.Views
 {
     public class DecompressionProfileView : UserControl
     {

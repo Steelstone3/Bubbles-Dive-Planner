@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
+namespace BubblesDivePlanner.Views
 {
     public class GasUsageView : UserControl
     {

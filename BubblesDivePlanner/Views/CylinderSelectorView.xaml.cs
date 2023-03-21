@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.Cylinders.CylinderSelector
+namespace BubblesDivePlanner.Views
 {
     public class CylinderSelectorView : UserControl
     {
