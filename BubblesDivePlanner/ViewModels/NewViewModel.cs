@@ -1,6 +1,7 @@
 using System.Reactive;
 using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlanner.Controllers;
+using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.Header.File.New

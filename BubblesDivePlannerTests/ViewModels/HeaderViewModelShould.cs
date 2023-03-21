@@ -3,7 +3,7 @@ using BubblesDivePlanner.Header;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Header
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class HeaderViewModelShould
     {

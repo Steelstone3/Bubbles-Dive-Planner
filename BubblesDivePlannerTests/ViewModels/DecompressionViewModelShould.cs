@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlanner.DecompressionProfile;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 using BubblesDivePlannerTests.TestFixtures;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DecompressionProfile
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class DecompressionViewModelShould
     {

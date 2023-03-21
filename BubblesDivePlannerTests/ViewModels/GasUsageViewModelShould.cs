@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Xunit;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 
-namespace BubblesDivePlannerTests.Cylinders.CylinderSetup.GasUsage
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class GasUsageViewModelShould
     {

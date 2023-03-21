@@ -4,7 +4,7 @@ using BubblesDivePlanner.Results;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Results
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class ResultsHistoryViewModelShould
     {

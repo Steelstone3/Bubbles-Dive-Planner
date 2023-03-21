@@ -1,6 +1,7 @@
 using BubblesDivePlanner.Controllers.Interfaces;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Cylinders.CylinderSetup
 {

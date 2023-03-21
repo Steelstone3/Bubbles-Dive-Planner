@@ -1,5 +1,6 @@
 using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlanner.Header.File.New;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Header.File
 {

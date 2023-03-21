@@ -5,8 +5,9 @@ using Moq;
 using Xunit;
 using System.Collections.Generic;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
+using BubblesDivePlanner.ViewModels.Models;
 
-namespace BubblesDivePlannerTests.Results
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class ResultViewModelShould
     {

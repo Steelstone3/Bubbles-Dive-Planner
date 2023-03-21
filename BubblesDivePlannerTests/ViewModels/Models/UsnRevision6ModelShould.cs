@@ -1,7 +1,8 @@
 using BubblesDivePlanner.DiveModels;
+using BubblesDivePlanner.ViewModels.Models;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveModels
+namespace BubblesDivePlannerTests.ViewModels.Models
 {
     public class UsnRevision6ModelShould
     {

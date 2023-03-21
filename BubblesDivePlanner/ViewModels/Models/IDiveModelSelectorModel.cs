@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using BubblesDivePlanner.Visibility;
 
-namespace BubblesDivePlanner.DiveModels.Selector
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface IDiveModelSelectorModel : IVisibility
     {

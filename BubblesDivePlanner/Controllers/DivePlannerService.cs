@@ -3,7 +3,7 @@ using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.DiveStages.Runner;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Controllers
 {

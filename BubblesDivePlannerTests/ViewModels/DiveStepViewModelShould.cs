@@ -2,7 +2,7 @@ using BubblesDivePlanner.DiveStep;
 using System.Collections.Generic;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveStep
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class DiveStepViewModelShould
     {

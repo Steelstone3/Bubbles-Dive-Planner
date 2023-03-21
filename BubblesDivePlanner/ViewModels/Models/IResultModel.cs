@@ -1,6 +1,4 @@
-using BubblesDivePlanner.DiveModels.DiveProfile;
-using BubblesDivePlanner.DiveStep;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Results
 {

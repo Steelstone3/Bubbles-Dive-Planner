@@ -1,9 +1,7 @@
 using BubblesDivePlanner.Commands;
 using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.Controllers.Interfaces;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.DiveModels;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Controllers
 {

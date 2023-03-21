@@ -1,5 +1,4 @@
-using BubblesDivePlanner.Cylinders.CylinderSelector;
-using BubblesDivePlanner.DiveModels.Selector;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.DiveCalculationParameters
 {

@@ -1,4 +1,4 @@
-using BubblesDivePlanner.Cylinders.CylinderSetup;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Controllers.Interfaces
 {

@@ -1,8 +1,4 @@
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.DiveModels;
-using BubblesDivePlanner.DiveStep;
-
-namespace BubblesDivePlanner.DiveCalculationParameters
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface IDiveCalculationParametersModel
     {

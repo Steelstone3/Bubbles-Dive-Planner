@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
-using BubblesDivePlanner.Visibility;
+using BubblesDivePlanner.Results;
 
-namespace BubblesDivePlanner.Results
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface IResultsOverviewModel : IVisibility
     {

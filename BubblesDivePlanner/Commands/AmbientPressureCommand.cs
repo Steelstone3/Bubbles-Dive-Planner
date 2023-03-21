@@ -1,7 +1,5 @@
 using BubblesDivePlanner.Commands.Interfaces;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
-using BubblesDivePlanner.DiveModels.DiveProfile;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Commands
 {

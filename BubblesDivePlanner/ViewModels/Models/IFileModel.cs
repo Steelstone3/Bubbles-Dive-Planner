@@ -1,6 +1,4 @@
-using BubblesDivePlanner.Header.File.New;
-
-namespace BubblesDivePlanner.Header
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface IFileModel
     {

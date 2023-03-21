@@ -1,4 +1,6 @@
-namespace BubblesDivePlanner.CentralNervousSystemToxicity
+using BubblesDivePlanner.ViewModels.Models;
+
+namespace BubblesDivePlanner.ViewModels
 {
     public class CentralNervousSystemToxicityViewModel : ICentralNervousSystemToxicityModel
     {

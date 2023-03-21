@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.DiveInformation;
+using BubblesDivePlanner.ViewModels.Models;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveInformation
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class DiveInformationViewModelShould
     {

@@ -1,6 +1,4 @@
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.DiveModels.DiveProfile;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 using Xunit;
 
 namespace BubblesDivePlannerTests.Asserters

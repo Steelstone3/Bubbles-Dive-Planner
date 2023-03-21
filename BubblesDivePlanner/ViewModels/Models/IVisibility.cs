@@ -1,4 +1,4 @@
-namespace BubblesDivePlanner.Visibility
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface IVisibility
     {

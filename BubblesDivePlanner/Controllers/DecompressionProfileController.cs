@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.Controllers;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.DecompressionProfile
 {

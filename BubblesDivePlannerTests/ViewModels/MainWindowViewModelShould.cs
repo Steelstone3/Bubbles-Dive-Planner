@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlanner.DiveInformation;
 using BubblesDivePlanner.DivePlanner;
-using BubblesDivePlanner.Results;
+using BubblesDivePlanner.ViewModels.Models;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ApplicationEntry
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class MainWindowViewModelShould
     {

@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace BubblesDivePlanner.DiveModels.DiveProfile
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface IDiveProfileModel
     {

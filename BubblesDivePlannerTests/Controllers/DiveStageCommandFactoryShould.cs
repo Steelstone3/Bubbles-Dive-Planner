@@ -1,8 +1,6 @@
 using BubblesDivePlanner.Controllers;
 using BubblesDivePlanner.Controllers.Interfaces;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.DiveModels;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 using Moq;
 using Xunit;
 

@@ -1,11 +1,10 @@
 using Xunit;
 using Moq;
 using System.Collections.Generic;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
+using BubblesDivePlanner.ViewModels.Models;
 
-namespace BubblesDivePlannerTests.Cylinders.CylinderSetup
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class CylinderSetupViewModelShould
     {

@@ -1,13 +1,11 @@
 using System.Collections.Generic;
-using BubblesDivePlanner.Cylinders.CylinderSelector;
-using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.DivePlanner;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 using BubblesDivePlannerTests.TestFixtures;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.DiveInformation
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class DiveCalculationParametersViewModelShould
     {

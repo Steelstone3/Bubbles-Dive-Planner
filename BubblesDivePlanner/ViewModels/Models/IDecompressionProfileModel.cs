@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
-using BubblesDivePlanner.DiveStep;
 
-namespace BubblesDivePlanner.DecompressionProfile
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface IDecompressionProfileModel
     {

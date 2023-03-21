@@ -1,5 +1,6 @@
 using System.Linq;
 using BubblesDivePlanner.Controllers;
+using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DiveModels.DiveProfile

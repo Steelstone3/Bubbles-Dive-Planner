@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage

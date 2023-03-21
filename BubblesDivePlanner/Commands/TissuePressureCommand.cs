@@ -1,7 +1,6 @@
 using System;
 using BubblesDivePlanner.Commands.Interfaces;
-using BubblesDivePlanner.DiveModels;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Commands
 {

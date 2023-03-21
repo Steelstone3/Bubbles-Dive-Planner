@@ -1,4 +1,4 @@
-namespace BubblesDivePlanner.ApplicationEntry
+namespace BubblesDivePlanner.Events
 {
     public interface IEventSubscriber
     {

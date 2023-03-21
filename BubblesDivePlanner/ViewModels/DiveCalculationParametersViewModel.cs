@@ -1,9 +1,8 @@
 using BubblesDivePlanner.Cylinders.CylinderSelector;
 using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.DiveCalculationParameters;
-using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveModels.Selector;
 using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DivePlanner

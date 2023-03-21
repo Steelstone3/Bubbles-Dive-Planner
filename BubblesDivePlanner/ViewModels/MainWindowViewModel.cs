@@ -5,6 +5,7 @@ using BubblesDivePlanner.DiveInformation;
 using BubblesDivePlanner.DivePlanner;
 using BubblesDivePlanner.Header;
 using BubblesDivePlanner.Results;
+using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ApplicationEntry

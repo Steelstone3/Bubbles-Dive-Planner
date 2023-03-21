@@ -1,7 +1,7 @@
-using BubblesDivePlanner.CentralNervousSystemToxicity;
+using BubblesDivePlanner.ViewModels;
 using Xunit;
 
-namespace BubblesDivePlannerTests.CentralNervousSystemToxicity
+namespace BubblesDivePlannerTests.ViewModels
 {
     public class CentralNervousSystemToxicityViewModelShould
     {

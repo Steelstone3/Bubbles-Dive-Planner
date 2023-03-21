@@ -1,5 +1,6 @@
-using BubblesDivePlanner.CentralNervousSystemToxicity;
 using BubblesDivePlanner.DecompressionProfile;
+using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DiveInformation

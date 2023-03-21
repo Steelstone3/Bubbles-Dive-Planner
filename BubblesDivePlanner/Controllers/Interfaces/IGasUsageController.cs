@@ -1,4 +1,4 @@
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Controllers.Interfaces
 {

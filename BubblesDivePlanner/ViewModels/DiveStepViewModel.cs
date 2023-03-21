@@ -1,4 +1,5 @@
 using System;
+using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DiveStep

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.DiveModels.Selector

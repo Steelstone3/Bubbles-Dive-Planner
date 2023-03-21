@@ -1,5 +1,5 @@
 using BubblesDivePlanner.Controllers.Interfaces;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage
 {

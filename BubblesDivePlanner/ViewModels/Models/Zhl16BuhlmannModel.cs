@@ -1,4 +1,5 @@
 using BubblesDivePlanner.DiveModels.DiveProfile;
+using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.DiveModels
 {

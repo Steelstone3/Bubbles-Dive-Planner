@@ -1,8 +1,4 @@
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
-using BubblesDivePlanner.Visibility;
-
-namespace BubblesDivePlanner.Cylinders.CylinderSetup
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface ICylinderSetupModel : IVisibility
     {

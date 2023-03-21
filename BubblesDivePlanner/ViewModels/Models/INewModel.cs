@@ -1,7 +1,7 @@
 using System.Reactive;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.Header.File.New
+namespace BubblesDivePlanner.ViewModels.Models
 {
     public interface INewModel
     {
