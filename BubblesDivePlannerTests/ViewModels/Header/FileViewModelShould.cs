@@ -1,21 +1,21 @@
 using BubblesDivePlanner.ApplicationEntry;
-using BubblesDivePlanner.Header;
+using BubblesDivePlanner.ViewModels.Header;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.Header
 {
-    public class HeaderViewModelShould
+    public class FileViewModelShould
     {
         [Fact]
         public void AllowModelToBeSet()
         {
             //Arrange
             Mock<IMainWindowModel> mainWindowModelDummy = new();
-            HeaderViewModel headerViewModel = new(mainWindowModelDummy.Object);
+            FileViewModel fileViewModel = new(mainWindowModelDummy.Object);
 
             //Assert
-            Assert.NotNull(headerViewModel.FileModel);
+            Assert.NotNull(fileViewModel.NewModel);
         }
     }
 }

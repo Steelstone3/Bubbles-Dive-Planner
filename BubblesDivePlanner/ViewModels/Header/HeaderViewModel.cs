@@ -1,8 +1,8 @@
 using BubblesDivePlanner.ApplicationEntry;
-using BubblesDivePlanner.Header.File;
+using BubblesDivePlanner.Header;
 using BubblesDivePlanner.ViewModels.Models;
 
-namespace BubblesDivePlanner.Header
+namespace BubblesDivePlanner.ViewModels.Header
 {
     public class HeaderViewModel : IHeaderModel
     {

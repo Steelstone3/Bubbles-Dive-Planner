@@ -1,8 +1,7 @@
 using BubblesDivePlanner.ApplicationEntry;
-using BubblesDivePlanner.Header.File.New;
 using BubblesDivePlanner.ViewModels.Models;
 
-namespace BubblesDivePlanner.Header.File
+namespace BubblesDivePlanner.ViewModels.Header
 {
     public class FileViewModel : IFileModel
     {

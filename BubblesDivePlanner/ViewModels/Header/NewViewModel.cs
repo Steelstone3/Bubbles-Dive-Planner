@@ -4,7 +4,7 @@ using BubblesDivePlanner.Controllers;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.Header.File.New
+namespace BubblesDivePlanner.ViewModels.Header
 {
     public class NewViewModel : INewModel
     {
