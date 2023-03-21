@@ -1,7 +1,7 @@
 using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.DiveModels.DiveProfile;
-using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.ViewModels.Cylinders;
+using BubblesDivePlanner.ViewModels.DiveStages;
 
 namespace BubblesDivePlannerTests.TestFixtures
 {

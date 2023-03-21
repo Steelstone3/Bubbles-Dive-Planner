@@ -1,8 +1,7 @@
-using System;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.DiveStep
+namespace BubblesDivePlanner.ViewModels.DiveStages
 {
     public class DiveStepViewModel : ReactiveObject, IDiveStepModel
     {
@@ -34,8 +33,8 @@ namespace BubblesDivePlanner.DiveStep
         {
             return new DiveStepViewModel()
             {
-                Depth = this.Depth,
-                Time = this.Time,
+                Depth = Depth,
+                Time = Time,
             };
         }
     }

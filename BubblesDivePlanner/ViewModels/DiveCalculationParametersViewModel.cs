@@ -1,5 +1,5 @@
 using BubblesDivePlanner.Controllers.Cylinders;
-using BubblesDivePlanner.DiveStep;
+using BubblesDivePlanner.ViewModels.DiveStages;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 

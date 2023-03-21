@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.DecompressionProfile
+namespace BubblesDivePlanner.ViewModels.DiveStages
 {
     public class DecompressionProfileViewModel : ReactiveObject, IDecompressionProfileModel
     {

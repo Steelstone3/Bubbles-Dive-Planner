@@ -1,11 +1,11 @@
 using BubblesDivePlanner.DiveModels.DiveProfile;
-using BubblesDivePlanner.DiveStep;
 using BubblesDivePlanner.Results;
 using Moq;
 using Xunit;
 using System.Collections.Generic;
 using BubblesDivePlanner.ViewModels.Models;
 using BubblesDivePlanner.ViewModels.Cylinders;
+using BubblesDivePlanner.ViewModels.DiveStages;
 
 namespace BubblesDivePlannerTests.ViewModels
 {

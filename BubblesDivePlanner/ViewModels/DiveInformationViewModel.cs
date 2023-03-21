@@ -1,5 +1,5 @@
-using BubblesDivePlanner.DecompressionProfile;
 using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.DiveStages;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
