@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Xunit;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
+using BubblesDivePlanner.ViewModels.Cylinders;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.Cylinders
 {
     public class GasMixtureViewModelShould
     {

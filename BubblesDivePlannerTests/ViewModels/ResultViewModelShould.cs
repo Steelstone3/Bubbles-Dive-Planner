@@ -4,8 +4,8 @@ using BubblesDivePlanner.Results;
 using Moq;
 using Xunit;
 using System.Collections.Generic;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.ViewModels.Models;
+using BubblesDivePlanner.ViewModels.Cylinders;
 
 namespace BubblesDivePlannerTests.ViewModels
 {

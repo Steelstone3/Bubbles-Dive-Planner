@@ -2,11 +2,10 @@ using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using BubblesDivePlanner.Controllers.Cylinders;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.Cylinders.CylinderSelector
+namespace BubblesDivePlanner.ViewModels.Cylinders
 {
     public class CylinderSelectorViewModel : ReactiveObject, ICylinderSelectorModel
     {

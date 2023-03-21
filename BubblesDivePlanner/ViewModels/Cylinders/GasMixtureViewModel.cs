@@ -3,7 +3,7 @@ using BubblesDivePlanner.Controllers.DiveBoundaries;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture
+namespace BubblesDivePlanner.ViewModels.Cylinders
 {
     public class GasMixtureViewModel : ReactiveObject, IGasMixtureModel
     {

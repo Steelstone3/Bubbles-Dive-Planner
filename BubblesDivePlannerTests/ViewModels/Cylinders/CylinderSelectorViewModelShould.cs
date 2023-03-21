@@ -1,13 +1,10 @@
 using System.Collections.Generic;
 using Moq;
 using Xunit;
-using BubblesDivePlanner.Cylinders.CylinderSelector;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasMixture;
-using BubblesDivePlanner.Cylinders.CylinderSetup.GasUsage;
 using BubblesDivePlanner.ViewModels.Models;
+using BubblesDivePlanner.ViewModels.Cylinders;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.Cylinders
 {
     public class CylinderSelectorViewModelShould
     {

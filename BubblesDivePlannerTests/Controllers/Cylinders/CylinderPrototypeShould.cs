@@ -1,6 +1,6 @@
 using BubblesDivePlanner.Controllers.Cylinders;
 using BubblesDivePlanner.Controllers.Interfaces;
-using BubblesDivePlanner.Cylinders.CylinderSetup;
+using BubblesDivePlanner.ViewModels.Cylinders;
 using BubblesDivePlanner.ViewModels.Models;
 using Xunit;
 
