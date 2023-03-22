@@ -1,10 +1,10 @@
 using Xunit;
 using System.Collections.Generic;
 using BubblesDivePlannerTests.TestFixtures;
-using BubblesDivePlanner.DiveModels.DiveProfile;
 using BubblesDivePlannerTests.Asserters;
+using BubblesDivePlanner.ViewModels.DiveStages;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.DivePlans
 {
     public class DiveProfileViewModelShould
     {

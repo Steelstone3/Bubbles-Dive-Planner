@@ -1,4 +1,4 @@
-using BubblesDivePlanner.DiveModels.DiveProfile;
+using BubblesDivePlanner.ViewModels.DiveStages;
 using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.DiveModels

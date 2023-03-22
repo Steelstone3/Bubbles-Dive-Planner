@@ -3,7 +3,7 @@ using BubblesDivePlanner.ViewModels.DiveStages;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.DivePlanner
+namespace BubblesDivePlanner.ViewModels.DivePlans
 {
     public class DiveCalculationParametersViewModel : DivePlannerSelectorViewModel, IDiveCalculationParametersModel
     {

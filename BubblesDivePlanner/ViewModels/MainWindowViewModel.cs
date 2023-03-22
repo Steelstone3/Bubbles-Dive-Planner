@@ -2,9 +2,9 @@
 using System.Reactive;
 using BubblesDivePlanner.Controllers;
 using BubblesDivePlanner.DiveInformation;
-using BubblesDivePlanner.DivePlanner;
 using BubblesDivePlanner.Header;
-using BubblesDivePlanner.Results;
+using BubblesDivePlanner.ViewModels.DiveInformation;
+using BubblesDivePlanner.ViewModels.DivePlans;
 using BubblesDivePlanner.ViewModels.Header;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;

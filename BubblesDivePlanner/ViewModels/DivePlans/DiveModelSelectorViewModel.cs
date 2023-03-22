@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.DiveModels.Selector
+namespace BubblesDivePlanner.ViewModels.DivePlans
 {
     public class DiveModelSelectorViewModel : ReactiveObject, IDiveModelSelectorModel
     {

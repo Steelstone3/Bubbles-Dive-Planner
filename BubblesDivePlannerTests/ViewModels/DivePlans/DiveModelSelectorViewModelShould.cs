@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using BubblesDivePlanner.DiveModels.Selector;
+using BubblesDivePlanner.ViewModels.DivePlans;
 using BubblesDivePlanner.ViewModels.Models;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.DivePlans
 {
     public class DiveModelSelectorViewModelShould
     {

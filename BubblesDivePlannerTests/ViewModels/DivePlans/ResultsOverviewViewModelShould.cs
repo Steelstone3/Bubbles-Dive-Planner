@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using BubblesDivePlanner.Results;
+using BubblesDivePlanner.ViewModels.DivePlans;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.DivePlans
 {
     public class ResultsHistoryViewModelShould
     {

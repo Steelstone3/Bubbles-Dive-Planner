@@ -3,7 +3,7 @@ using BubblesDivePlanner.Controllers.DiveBoundaries;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.DiveModels.DiveProfile
+namespace BubblesDivePlanner.ViewModels.DiveStages
 {
     public class DiveProfileViewModel : ReactiveObject, IDiveProfileModel
     {
@@ -99,9 +99,9 @@ namespace BubblesDivePlanner.DiveModels.DiveProfile
         {
             var deepCloneDiveProfile = new DiveProfileViewModel(_compartmentCount)
             {
-                PressureOxygen = this.PressureOxygen,
-                PressureHelium = this.PressureHelium,
-                PressureNitrogen = this.PressureNitrogen,
+                PressureOxygen = PressureOxygen,
+                PressureHelium = PressureHelium,
+                PressureNitrogen = PressureNitrogen,
             };
 
             MaxSurfacePressures.CopyTo(deepCloneDiveProfile.MaxSurfacePressures, 0);

@@ -1,13 +1,12 @@
-using BubblesDivePlanner.DiveModels.DiveProfile;
-using BubblesDivePlanner.Results;
 using Moq;
 using Xunit;
 using System.Collections.Generic;
 using BubblesDivePlanner.ViewModels.Models;
 using BubblesDivePlanner.ViewModels.Cylinders;
 using BubblesDivePlanner.ViewModels.DiveStages;
+using BubblesDivePlanner.ViewModels.DivePlans;
 
-namespace BubblesDivePlannerTests.ViewModels
+namespace BubblesDivePlannerTests.ViewModels.DivePlans
 {
     public class ResultViewModelShould
     {

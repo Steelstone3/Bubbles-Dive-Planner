@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BubblesDivePlanner.ApplicationEntry;
 using BubblesDivePlanner.DiveInformation;
-using BubblesDivePlanner.DivePlanner;
+using BubblesDivePlanner.ViewModels.DivePlans;
 using BubblesDivePlanner.ViewModels.Models;
 using Moq;
 using Xunit;

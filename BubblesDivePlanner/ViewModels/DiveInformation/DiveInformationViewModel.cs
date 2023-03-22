@@ -1,9 +1,9 @@
-using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.DiveInformation;
 using BubblesDivePlanner.ViewModels.DiveStages;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.DiveInformation
+namespace BubblesDivePlanner.ViewModels.DiveInformation
 {
     public class DiveInformationViewModel : ReactiveObject, IDiveInformationModel
     {

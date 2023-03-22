@@ -1,5 +1,4 @@
 using BubblesDivePlanner.DiveModels;
-using BubblesDivePlanner.DiveModels.DiveProfile;
 using BubblesDivePlanner.ViewModels.Cylinders;
 using BubblesDivePlanner.ViewModels.DiveStages;
 

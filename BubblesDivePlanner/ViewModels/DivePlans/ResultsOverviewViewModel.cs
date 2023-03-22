@@ -1,11 +1,13 @@
 using System.Collections.ObjectModel;
+using BubblesDivePlanner.Results;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.Results
+namespace BubblesDivePlanner.ViewModels.DivePlans
 {
     public class ResultsOverviewViewModel : ReactiveObject, IResultsOverviewModel
     {
+        //TODO AH Change to IDivePlanModel and DivePlanViewModel
         public ObservableCollection<IResultModel> Results
         {
             get;

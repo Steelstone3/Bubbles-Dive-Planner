@@ -1,6 +1,6 @@
 using BubblesDivePlanner.ViewModels.Models;
 
-namespace BubblesDivePlanner.ViewModels
+namespace BubblesDivePlanner.ViewModels.DiveInformation
 {
     public class CentralNervousSystemToxicityViewModel : ICentralNervousSystemToxicityModel
     {

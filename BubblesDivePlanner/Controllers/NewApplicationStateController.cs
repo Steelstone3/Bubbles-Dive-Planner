@@ -1,7 +1,6 @@
 using BubblesDivePlanner.ApplicationEntry;
-using BubblesDivePlanner.DiveInformation;
-using BubblesDivePlanner.DivePlanner;
-using BubblesDivePlanner.Results;
+using BubblesDivePlanner.ViewModels.DiveInformation;
+using BubblesDivePlanner.ViewModels.DivePlans;
 
 namespace BubblesDivePlanner.Controllers
 {

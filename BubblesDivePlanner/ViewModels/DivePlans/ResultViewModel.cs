@@ -1,8 +1,10 @@
+using BubblesDivePlanner.Results;
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.Results
+namespace BubblesDivePlanner.ViewModels.DivePlans
 {
+    //TODO AH This file will become redundant with DivePlannerViewModel
     public class ResultViewModel : ReactiveObject, IResultModel
     {
         private IDiveStepModel _diveStep;
