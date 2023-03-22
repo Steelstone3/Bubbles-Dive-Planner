@@ -51,6 +51,8 @@ namespace BubblesDivePlannerTests.Controllers.DiveStages
             Assert.Equal(3, diveSteps[1].Time);
 
             #endregion
+
+            // TODO AH Calculate decompression
         }
     }
 }
