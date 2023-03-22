@@ -50,11 +50,11 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Plan" />
-                <views:DiveModelSelectorView />
-                <views:DiveStepView />
-                <views:CylinderSetupView />
-                <views:CylinderSelectorView />
-                <views:CalculateDiveStepView />
+                <plan:DiveModelSelectorView />
+                <plan:DiveStepView />
+                <plan:CylinderSetupView />
+                <plan:CylinderSelectorView />
+                <plan:CalculateDiveStepView />
             </StackPanel>
         </ScrollViewer>
 
