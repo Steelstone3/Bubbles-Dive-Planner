@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view_models="clr-namespace:BubblesDivePlanner.ViewModels"
-    xmlns:views="clr-namespace:BubblesDivePlanner.Views"
     xmlns:header="clr-namespace:BubblesDivePlanner.Views.Header"
     xmlns:plan="clr-namespace:BubblesDivePlanner.Views.Plan"
     xmlns:information="clr-namespace:BubblesDivePlanner.Views.Information"
