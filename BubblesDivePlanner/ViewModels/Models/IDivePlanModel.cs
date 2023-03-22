@@ -1,8 +1,8 @@
 namespace BubblesDivePlanner.ViewModels.Models
 {
-    public interface IDiveCalculationParametersModel
+    public interface IDivePlanModel
     {
-        IDiveStepModel DiveStep { get; set; }
+        IDiveStepModel DiveStep { get; }
         IDiveModel DiveModel { get; }
         ICylinderSetupModel SelectedCylinder { get; }
     }
