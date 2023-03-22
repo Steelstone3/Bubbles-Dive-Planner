@@ -78,9 +78,9 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Information" />
-                <views:DecompressionProfileView />
-                <views:DiveBoundariesView/>
-                <views:CentralNervousSystemToxicityView />
+                <information:DecompressionProfileView />
+                <information:DiveBoundariesView/>
+                <information:CentralNervousSystemToxicityView />
             </StackPanel>
         </ScrollViewer>
     </Grid>
