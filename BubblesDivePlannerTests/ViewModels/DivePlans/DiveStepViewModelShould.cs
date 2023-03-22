@@ -1,8 +1,8 @@
-using BubblesDivePlanner.ViewModels.DiveStages;
+using BubblesDivePlanner.ViewModels.DivePlans;
 using System.Collections.Generic;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels.DiveStages
+namespace BubblesDivePlannerTests.ViewModels.DivePlans
 {
     public class DiveStepViewModelShould
     {

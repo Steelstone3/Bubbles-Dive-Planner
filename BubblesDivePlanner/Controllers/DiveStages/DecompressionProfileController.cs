@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BubblesDivePlanner.Commands.Interfaces;
-using BubblesDivePlanner.ViewModels.DiveStages;
+using BubblesDivePlanner.ViewModels.DivePlans;
 using BubblesDivePlanner.ViewModels.Models;
 
 namespace BubblesDivePlanner.Controllers.DiveStages

@@ -1,7 +1,7 @@
 using BubblesDivePlanner.ViewModels.Models;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.ViewModels.DiveStages
+namespace BubblesDivePlanner.ViewModels.DivePlans
 {
     public class DiveStepViewModel : ReactiveObject, IDiveStepModel
     {

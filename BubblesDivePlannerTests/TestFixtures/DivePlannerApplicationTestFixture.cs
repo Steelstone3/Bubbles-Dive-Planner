@@ -1,5 +1,6 @@
 using BubblesDivePlanner.DiveModels;
 using BubblesDivePlanner.ViewModels.Cylinders;
+using BubblesDivePlanner.ViewModels.DivePlans;
 using BubblesDivePlanner.ViewModels.DiveStages;
 
 namespace BubblesDivePlannerTests.TestFixtures

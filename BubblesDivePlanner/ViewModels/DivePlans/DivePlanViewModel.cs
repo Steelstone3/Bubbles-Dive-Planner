@@ -6,7 +6,7 @@ using ReactiveUI;
 namespace BubblesDivePlanner.ViewModels.DivePlans
 {
     //TODO AH Rename to DivePlanViewModel and reuse for dive results (deep clone)
-    public class DiveCalculationParametersViewModel : DivePlannerSelectorViewModel, IDiveCalculationParametersModel
+    public class DivePlanViewModel : DivePlanSelectorViewModel, IDiveCalculationParametersModel
     {
         private IDiveStepModel _diveStep = new DiveStepViewModel();
         public IDiveStepModel DiveStep

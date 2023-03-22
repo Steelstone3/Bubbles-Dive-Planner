@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DivePlans
 {
-    public class DivePlannerSelectorViewModel : ReactiveObject, IDiveParameterSelectorModel
+    public class DivePlanSelectorViewModel : ReactiveObject, IDivePlanSelectorModel
     {
         private IDiveModelSelectorModel _diveModelSelector = new DiveModelSelectorViewModel();
         public IDiveModelSelectorModel DiveModelSelector

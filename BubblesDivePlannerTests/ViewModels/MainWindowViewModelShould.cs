@@ -27,7 +27,7 @@ namespace BubblesDivePlannerTests.ViewModels
         public void RaisePropertyChanged()
         {
             //Arrange
-            DiveCalculationParametersViewModel divePlannerModelDummy = new();
+            DivePlanViewModel divePlannerModelDummy = new();
             Mock<IResultsOverviewModel> resultsOverviewModelDummy = new();
             Mock<IDiveInformationModel> diveInformationModelDummy = new();
             var viewModelEvents = new List<string>();
