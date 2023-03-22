@@ -6,6 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view_models="clr-namespace:BubblesDivePlanner.ViewModels"
     xmlns:views="clr-namespace:BubblesDivePlanner.Views"
+    xmlns:header="clr-namespace:BubblesDivePlanner.Views.Header"
+    xmlns:plan="clr-namespace:BubblesDivePlanner.Views.Plan"
+    xmlns:information="clr-namespace:BubblesDivePlanner.Views.Information"
+    xmlns:results="clr-namespace:BubblesDivePlanner.Views.Results"
     Title="Bubbles Dive Planner"
     MinWidth="540"
     MinHeight="480"
@@ -30,7 +34,7 @@
             <ColumnDefinition MinWidth="250" />
         </Grid.ColumnDefinitions>
 
-        <views:HeaderView
+        <header:HeaderView
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3" />
