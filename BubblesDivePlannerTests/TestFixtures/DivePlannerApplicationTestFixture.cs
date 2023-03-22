@@ -65,20 +65,19 @@ namespace BubblesDivePlannerTests.TestFixtures
             CompartmentLoad = new double[COMPARTMENT_SIZE] { 124.89, 121.46, 110.01, 99.51, 88.77, 82.71, 76.8, 71.87, 68.05, 66.46, 65.62, 65.15, 65.57, 65.05, 65.29, 65.66 }
         };
 
-        //TODO in progress need to put in the expected results here
         public static DiveProfileViewModel GetDiveProfileResultFromSecondRun => new(COMPARTMENT_SIZE)
         {
             PressureOxygen = 1.26,
             PressureNitrogen = 4.74,
             PressureHelium = 0,
-            // AValues = new double[] { },
-            // BValues = new double[] { },
-            // MaxSurfacePressures = new double[] { },
-            // TissuePressuresNitrogen = new double[] { },
-            // TissuePressuresHelium = new double[] { },
-            // TissuePressuresTotal = new double[] { },
-            // ToleratedAmbientPressures = new double[] { },
-            // CompartmentLoad = new double[] { }
+            AValues = new double[16] { 1.2559, 1, 0.8618, 0.7562, 0.6667, 0.56, 0.4947, 0.45, 0.4187, 0.3798, 0.3497, 0.3223, 0.285, 0.2737, 0.2523, 0.2327 },
+            BValues = new double[16] { 0.505, 0.6514, 0.7222, 0.7825, 0.8126, 0.8434, 0.8693, 0.891, 0.9092, 0.9222, 0.9319, 0.9403, 0.9477, 0.9544, 0.9602, 0.9653 },
+            MaxSurfacePressures = new double[16] { 3.2361, 2.5352, 2.2465, 2.0342, 1.8973, 1.7457, 1.6451, 1.5723, 1.5186, 1.4642, 1.4228, 1.3858, 1.3402, 1.3215, 1.2937, 1.2686 },
+            TissuePressuresNitrogen = new double[16] { 4.6166, 4.0417, 3.437, 2.8729, 2.3762, 1.9896, 1.68, 1.4408, 1.2618, 1.1478, 1.0722, 1.0126, 0.9656, 0.928, 0.8984, 0.8753 },
+            TissuePressuresHelium = new double[16] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            TissuePressuresTotal = new double[16] { 4.6166, 4.0417, 3.437, 2.8729, 2.3762, 1.9896, 1.68, 1.4408, 1.2618, 1.1478, 1.0722, 1.0126, 0.9656, 0.928, 0.8984, 0.8753 },
+            ToleratedAmbientPressures = new double[16] { 1.6972, 1.9814, 1.8598, 1.6563, 1.3891, 1.2057, 1.0304, 0.8828, 0.7665, 0.7082, 0.6733, 0.6491, 0.645, 0.6245, 0.6204, 0.6203 },
+            CompartmentLoad = new double[16] { 142.66, 159.42, 152.99, 141.23, 125.24, 113.97, 102.12, 91.64, 83.09, 78.39, 75.36, 73.07, 72.05, 70.22, 69.44, 69 }
         };
     }
 }

@@ -27,8 +27,8 @@ namespace BubblesDivePlannerTests.Controllers.DiveStages
             DiveParameterAsserter.AssertDiveProfileValuesEquality(DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun, diveModel.DiveProfile);
         }
 
-        [Fact(Skip = "Need to implement second result in test fixture")]
-        public void RunDiveStagesMoreThanOnce()
+        [Fact]
+        public void RunDiveStagesAcceptanceTest()
         {
             //Arrange
             var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
