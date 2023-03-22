@@ -68,14 +68,14 @@ namespace BubblesDivePlanner.ApplicationEntry
             DivePlannerService.CalculateDiveStep(this);
         }
 
-        private void RecalculateDecompressionSteps()
-        {
-            DivePlannerService.RecalculateDecompressionSteps(this);
-        }
-
         private void CalculateDecompressionProfile()
         {
             DivePlannerService.CalculateDecompressionProfile(this);
+        }
+
+        private void RecalculateDecompressionSteps()
+        {
+            DivePlannerService.RecalculateDecompressionSteps(this);
         }
     }
 }
