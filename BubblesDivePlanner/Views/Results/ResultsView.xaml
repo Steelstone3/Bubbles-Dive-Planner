@@ -1,10 +1,10 @@
 <UserControl
-    x:Class="BubblesDivePlanner.Views.ResultsView"
+    x:Class="BubblesDivePlanner.Views.Results.ResultsView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="clr-namespace:BubblesDivePlanner.Views"
+    xmlns:results="clr-namespace:BubblesDivePlanner.Views.Results"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -22,13 +22,13 @@
                         FontSize="16"
                         FontWeight="DemiBold"
                         Text="Latest Dive Result Table" />
-                    <views:DiveTableResultView/>
+                    <results:DiveTableResultView/>
                     <TextBlock
                         Margin="8,4"
                         FontSize="16"
                         FontWeight="DemiBold"
                         Text="Dive Parameters Used" />
-                    <views:DiveParametersUsedView/>
+                    <results:DiveParametersUsedView/>
                 </StackPanel>
             </TabItem>
             <!-- <TabItem Header="Historic Dive Results"
@@ -36,14 +36,14 @@
             Foreground="Black"
             FontWeight="DemiBold"
             VerticalContentAlignment="Center">
-                <views:HistoricDiveTableResultView/>
+                <results:HistoricDiveTableResultView/>
             </TabItem>
             <TabItem Header="Historic Dive Parameters Used"
             FontSize="12"
             Foreground="Black"
             FontWeight="DemiBold"
             VerticalContentAlignment="Center">
-                <views:HistoricDiveParametersUsedView/>
+                <results:HistoricDiveParametersUsedView/>
             </TabItem> -->
         </TabControl>
     </StackPanel>
