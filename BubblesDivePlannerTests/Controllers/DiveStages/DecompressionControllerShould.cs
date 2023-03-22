@@ -38,6 +38,23 @@ namespace BubblesDivePlannerTests.Controllers.DiveStages
         }
 
         [Fact]
+        public void CollateDecompressionDiveStepsFromSecondRun()
+        {
+            //Act
+            var diveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            diveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromSecondRun;
+            var diveStepQueue = DecompressionProfileController.CollateDecompressionDiveSteps(diveModel, DivePlannerApplicationTestFixture.GetSelectedCylinder);
+
+            //Assert
+            var diveSteps = diveStepQueue.ToArray();
+            Assert.Equal(4, diveSteps.Length);
+            Assert.Equal(12, diveSteps[0].Depth);
+            Assert.Equal(1, diveSteps[0].Time);
+            Assert.Equal(9, diveSteps[1].Depth);
+            Assert.Equal(3, diveSteps[1].Time);
+        }
+
+        [Fact]
         public void ReturnEmptyQueueWhenDiveCeilingIsZero()
         {
             //Act
