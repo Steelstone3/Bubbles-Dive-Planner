@@ -4,7 +4,7 @@ using BubblesDivePlannerTests.TestFixtures;
 using BubblesDivePlannerTests.Asserters;
 using BubblesDivePlanner.ViewModels.DiveStages;
 
-namespace BubblesDivePlannerTests.ViewModels.DivePlans
+namespace BubblesDivePlannerTests.ViewModels.DiveStages
 {
     public class DiveProfileViewModelShould
     {
