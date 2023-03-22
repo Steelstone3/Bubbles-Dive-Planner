@@ -12,7 +12,7 @@ namespace BubblesDivePlanner.ApplicationEntry
     public interface IMainWindowModel : IEventSubscriber
     {
         IHeaderModel HeaderModel { get; }
-        DivePlanViewModel DivePlanner { get; set; }
+        DivePlanViewModel DivePlan { get; set; }
         IDiveInformationModel DiveInformation { get; set; }
         IResultsOverviewModel ResultsOverview { get; set; }
         ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }

@@ -30,7 +30,7 @@
                         Text="M.O.D: " 
                         FontWeight="Bold"/>
                     <TextBlock Margin="0,4,8,4"
-                        Text="{Binding DivePlanner.CylinderSelector.SelectedCylinder.GasMixture.MaximumOperatingDepth}" />
+                        Text="{Binding DivePlan.CylinderSelector.SelectedCylinder.GasMixture.MaximumOperatingDepth}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

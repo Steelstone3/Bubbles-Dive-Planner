@@ -23,16 +23,16 @@ namespace BubblesDivePlanner.ApplicationEntry
 
         public void SubscribeEvents()
         {
-            DivePlanner.CylinderSelector.SelectedCylinderChanged += (sender, e) => RecalculateDecompressionSteps();
+            DivePlan.CylinderSelector.SelectedCylinderChanged += (sender, e) => RecalculateDecompressionSteps();
         }
 
         public IHeaderModel HeaderModel { get; }
 
-        private DivePlanViewModel _divePlanner = new();
-        public DivePlanViewModel DivePlanner
+        private DivePlanViewModel _divePlan = new();
+        public DivePlanViewModel DivePlan
         {
-            get => _divePlanner;
-            set => this.RaiseAndSetIfChanged(ref _divePlanner, value);
+            get => _divePlan;
+            set => this.RaiseAndSetIfChanged(ref _divePlan, value);
         }
 
         private IDiveInformationModel _diveInformation = new DiveInformationViewModel();
@@ -52,13 +52,13 @@ namespace BubblesDivePlanner.ApplicationEntry
         public ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
         public IObservable<bool> CanCalculateDiveStep
         {
-            get => this.WhenAnyValue(vm => vm.DivePlanner.DiveModelSelector.SelectedDiveModel,
-                vm => vm.DivePlanner.CylinderSelector.SelectedCylinder,
-                vm => vm.DivePlanner.DiveStep,
+            get => this.WhenAnyValue(vm => vm.DivePlan.DiveModelSelector.SelectedDiveModel,
+                vm => vm.DivePlan.CylinderSelector.SelectedCylinder,
+                vm => vm.DivePlan.DiveStep,
                 (selectorDiveModel, selectorCylinder, diveStep) =>
-                    DivePlanner.DiveModelSelector.ValidateSelectedDiveModel(selectorDiveModel)
-                    && DivePlanner.CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
-                    && DivePlanner.DiveStep.ValidateDiveStep(diveStep));
+                    DivePlan.DiveModelSelector.ValidateSelectedDiveModel(selectorDiveModel)
+                    && DivePlan.CylinderSelector.ValidateSelectedCylinder(selectorCylinder)
+                    && DivePlan.DiveStep.ValidateDiveStep(diveStep));
         }
 
         public ReactiveCommand<Unit, Unit> CalculateDecompressionProfileCommand { get; }

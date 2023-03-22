@@ -41,12 +41,12 @@ namespace BubblesDivePlannerTests.ViewModels.DiveStages
         {
             //Arrange
             MainWindowViewModel mainWindowViewModel = new();
-            mainWindowViewModel.DivePlanner.DiveModelSelector.SelectedDiveModel = DivePlannerApplicationTestFixture.GetDiveModel;
-            mainWindowViewModel.DivePlanner.DiveModelSelector.SelectedDiveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
+            mainWindowViewModel.DivePlan.DiveModelSelector.SelectedDiveModel = DivePlannerApplicationTestFixture.GetDiveModel;
+            mainWindowViewModel.DivePlan.DiveModelSelector.SelectedDiveModel.DiveProfile = DivePlannerApplicationTestFixture.GetDiveProfileResultFromFirstRun;
             mainWindowViewModel.DiveInformation.DecompressionProfile = _decompressionProfileViewModel;
 
             //Act
-            mainWindowViewModel.DivePlanner.CylinderSelector.SelectedCylinder = DivePlannerApplicationTestFixture.GetSelectedCylinder;
+            mainWindowViewModel.DivePlan.CylinderSelector.SelectedCylinder = DivePlannerApplicationTestFixture.GetSelectedCylinder;
 
             //Assert
             Assert.NotEmpty(mainWindowViewModel.DiveInformation.DecompressionProfile.DecompressionDiveSteps);

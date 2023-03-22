@@ -8,7 +8,7 @@ namespace BubblesDivePlanner.Controllers
     {
         public static void CreateNewApplicationInstance(IMainWindowModel mainWindowModel)
         {
-            mainWindowModel.DivePlanner = new DivePlanViewModel();
+            mainWindowModel.DivePlan = new DivePlanViewModel();
             mainWindowModel.DiveInformation = new DiveInformationViewModel();
             mainWindowModel.ResultsOverview = new ResultsOverviewViewModel();
             mainWindowModel.SubscribeEvents();

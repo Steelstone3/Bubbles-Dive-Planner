@@ -20,9 +20,9 @@
             <ComboBox
                 Margin="8,4"
                 Background="#FFFFFFFF"
-                Items="{Binding DivePlanner.DiveModelSelector.DiveModels}"
+                Items="{Binding DivePlan.DiveModelSelector.DiveModels}"
                 SelectedIndex="0"
-                SelectedItem="{Binding DivePlanner.DiveModelSelector.SelectedDiveModel}">
+                SelectedItem="{Binding DivePlan.DiveModelSelector.SelectedDiveModel}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

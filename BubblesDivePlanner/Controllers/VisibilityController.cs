@@ -6,7 +6,7 @@ namespace BubblesDivePlanner.Controllers
     {
         public static void UpdateVisibilty(IMainWindowModel mainWindowViewModel)
         {
-            mainWindowViewModel.DivePlanner.DiveModelSelector.IsVisible = false;
+            mainWindowViewModel.DivePlan.DiveModelSelector.IsVisible = false;
 
             UpdateCylinderVisibilty(mainWindowViewModel);
             mainWindowViewModel.ResultsOverview.IsVisible = true;
@@ -14,7 +14,7 @@ namespace BubblesDivePlanner.Controllers
 
         private static void UpdateCylinderVisibilty(IMainWindowModel mainWindowViewModel)
         {
-            foreach (var cylinder in mainWindowViewModel.DivePlanner.CylinderSelector.Cylinders)
+            foreach (var cylinder in mainWindowViewModel.DivePlan.CylinderSelector.Cylinders)
             {
                 cylinder.GasMixture.IsVisible = false;
                 cylinder.IsVisible = false;
