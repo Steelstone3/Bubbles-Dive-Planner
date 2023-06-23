@@ -9,7 +9,7 @@ namespace BubblesDivePlanner.Controllers
             mainWindowViewModel.DivePlan.DiveModelSelector.IsVisible = false;
 
             UpdateCylinderVisibilty(mainWindowViewModel);
-            mainWindowViewModel.ResultsOverview.IsVisible = true;
+            mainWindowViewModel.Results.IsVisible = true;
         }
 
         private static void UpdateCylinderVisibilty(IMainWindowModel mainWindowViewModel)

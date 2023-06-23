@@ -10,7 +10,7 @@ namespace BubblesDivePlanner.Controllers
         {
             mainWindowModel.DivePlan = new DivePlanViewModel();
             mainWindowModel.DiveInformation = new DiveInformationViewModel();
-            mainWindowModel.ResultsOverview = new ResultsOverviewViewModel();
+            mainWindowModel.Results = new ResultsViewModel();
             mainWindowModel.SubscribeEvents();
         }
     }

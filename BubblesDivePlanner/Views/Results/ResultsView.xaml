@@ -16,7 +16,7 @@
             Foreground="Black"
             FontWeight="DemiBold"
             VerticalContentAlignment="Center">
-                <StackPanel IsVisible="{Binding ResultsOverview.IsVisible}">
+                <StackPanel IsVisible="{Binding Results.IsVisible}">
                     <TextBlock
                         Margin="8,4"
                         FontSize="16"
@@ -48,4 +48,3 @@
         </TabControl>
     </StackPanel>
 </UserControl>
-

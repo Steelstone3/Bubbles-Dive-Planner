@@ -51,10 +51,10 @@ namespace BubblesDivePlanner.Controllers
 
         private static void AssignResults(MainWindowViewModel vm)
         {
-            vm.ResultsOverview.LatestResult.DiveProfile = vm.DivePlan.DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
-            vm.ResultsOverview.LatestResult.DiveStep = vm.DivePlan.DiveStep.DeepClone();
+            vm.Results.LatestResult.DiveProfile = vm.DivePlan.DiveModelSelector.SelectedDiveModel.DiveProfile.DeepClone();
+            vm.Results.LatestResult.DiveStep = vm.DivePlan.DiveStep.DeepClone();
 
-            vm.ResultsOverview.LatestResult.SelectedCylinder = new CylinderPrototype().DeepClone(vm.DivePlan.CylinderSelector.SelectedCylinder);
+            vm.Results.LatestResult.SelectedCylinder = new CylinderPrototype().DeepClone(vm.DivePlan.CylinderSelector.SelectedCylinder);
         }
     }
 }

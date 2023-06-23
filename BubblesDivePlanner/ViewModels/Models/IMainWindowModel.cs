@@ -14,7 +14,7 @@ namespace BubblesDivePlanner.ApplicationEntry
         IHeaderModel HeaderModel { get; }
         DivePlanViewModel DivePlan { get; set; }
         IDiveInformationModel DiveInformation { get; set; }
-        IResultsOverviewModel ResultsOverview { get; set; }
+        IResultsModel Results { get; set; }
         ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }
         IObservable<bool> CanCalculateDiveStep { get; }
     }

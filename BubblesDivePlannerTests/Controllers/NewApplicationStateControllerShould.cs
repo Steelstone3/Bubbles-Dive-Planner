@@ -14,7 +14,7 @@ namespace BubblesDivePlannerTests.Controllers
             var divePlannerInstance = new MainWindowViewModel();
             var divePlanner = divePlannerInstance.DivePlan;
             var diveInformation = divePlannerInstance.DiveInformation;
-            var resultsOverview = divePlannerInstance.ResultsOverview;
+            var resultsOverview = divePlannerInstance.Results;
 
             //Act
             NewApplicationStateController.CreateNewApplicationInstance(divePlannerInstance);
@@ -22,7 +22,7 @@ namespace BubblesDivePlannerTests.Controllers
             //Assert
             Assert.NotSame(divePlanner, divePlannerInstance.DivePlan);
             Assert.NotSame(diveInformation, divePlannerInstance.DiveInformation);
-            Assert.NotSame(resultsOverview, divePlannerInstance.ResultsOverview);
+            Assert.NotSame(resultsOverview, divePlannerInstance.Results);
         }
 
         [Fact]

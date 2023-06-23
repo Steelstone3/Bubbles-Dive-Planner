@@ -3,7 +3,7 @@ using BubblesDivePlanner.Results;
 
 namespace BubblesDivePlanner.ViewModels.Models
 {
-    public interface IResultsOverviewModel : IVisibility
+    public interface IResultsModel : IVisibility
     {
         ObservableCollection<IResultModel> Results { get; }
 

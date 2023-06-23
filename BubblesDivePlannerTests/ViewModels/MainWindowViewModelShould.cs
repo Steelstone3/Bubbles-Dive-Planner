@@ -20,7 +20,7 @@ namespace BubblesDivePlannerTests.ViewModels
             Assert.NotNull(_mainWindowViewModel.HeaderModel);
             Assert.NotNull(_mainWindowViewModel.DivePlan);
             Assert.NotNull(_mainWindowViewModel.DiveInformation);
-            Assert.NotNull(_mainWindowViewModel.ResultsOverview);
+            Assert.NotNull(_mainWindowViewModel.Results);
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace BubblesDivePlannerTests.ViewModels
         {
             //Arrange
             DivePlanViewModel divePlannerModelDummy = new();
-            Mock<IResultsOverviewModel> resultsOverviewModelDummy = new();
+            Mock<IResultsModel> resultsOverviewModelDummy = new();
             Mock<IDiveInformationModel> diveInformationModelDummy = new();
             var viewModelEvents = new List<string>();
             _mainWindowViewModel.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
@@ -36,12 +36,12 @@ namespace BubblesDivePlannerTests.ViewModels
             //Act
             _mainWindowViewModel.DivePlan = divePlannerModelDummy;
             _mainWindowViewModel.DiveInformation = diveInformationModelDummy.Object;
-            _mainWindowViewModel.ResultsOverview = resultsOverviewModelDummy.Object;
+            _mainWindowViewModel.Results = resultsOverviewModelDummy.Object;
 
             //Assert
             Assert.Contains(nameof(_mainWindowViewModel.DivePlan), viewModelEvents);
             Assert.Contains(nameof(_mainWindowViewModel.DiveInformation), viewModelEvents);
-            Assert.Contains(nameof(_mainWindowViewModel.ResultsOverview), viewModelEvents);
+            Assert.Contains(nameof(_mainWindowViewModel.Results), viewModelEvents);
         }
     }
 }

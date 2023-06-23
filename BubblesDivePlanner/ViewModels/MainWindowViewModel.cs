@@ -42,11 +42,11 @@ namespace BubblesDivePlanner.ApplicationEntry
             set => this.RaiseAndSetIfChanged(ref _diveInformation, value);
         }
 
-        private IResultsOverviewModel _resultsOverviewModel = new ResultsOverviewViewModel();
-        public IResultsOverviewModel ResultsOverview
+        private IResultsModel _resultsModel = new ResultsViewModel();
+        public IResultsModel Results
         {
-            get => _resultsOverviewModel;
-            set => this.RaiseAndSetIfChanged(ref _resultsOverviewModel, value);
+            get => _resultsModel;
+            set => this.RaiseAndSetIfChanged(ref _resultsModel, value);
         }
 
         public ReactiveCommand<Unit, Unit> CalculateDiveStepCommand { get; }

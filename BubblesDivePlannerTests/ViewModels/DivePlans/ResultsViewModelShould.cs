@@ -7,9 +7,9 @@ using Xunit;
 
 namespace BubblesDivePlannerTests.ViewModels.DivePlans
 {
-    public class ResultsHistoryViewModelShould
+    public class ResultsViewModelShould
     {
-        private readonly ResultsOverviewViewModel _resultsHistoryViewModel = new();
+        private readonly ResultsViewModel _resultsHistoryViewModel = new();
         private readonly Mock<IResultModel> _resultModelDummy = new();
 
         [Fact]

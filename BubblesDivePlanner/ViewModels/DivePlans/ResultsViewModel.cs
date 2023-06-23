@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.DivePlans
 {
-    public class ResultsOverviewViewModel : ReactiveObject, IResultsOverviewModel
+    public class ResultsViewModel : ReactiveObject, IResultsModel
     {
         //TODO AH Change to IDivePlanModel and DivePlanViewModel
         public ObservableCollection<IResultModel> Results
