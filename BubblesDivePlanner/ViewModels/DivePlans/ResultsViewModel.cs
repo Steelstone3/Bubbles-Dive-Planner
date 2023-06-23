@@ -7,7 +7,6 @@ namespace BubblesDivePlanner.ViewModels.DivePlans
 {
     public class ResultsViewModel : ReactiveObject, IResultsModel
     {
-        //TODO AH Change to IDivePlanModel and DivePlanViewModel
         public ObservableCollection<IResultModel> Results
         {
             get;
