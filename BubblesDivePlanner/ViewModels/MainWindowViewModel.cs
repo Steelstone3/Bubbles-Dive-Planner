@@ -14,7 +14,6 @@ namespace BubblesDivePlanner.ViewModels
             DiveInformation = diveInformation;
         }
 
-        public static string Greeting => "Welcome to Avalonia!";
         public IHeaderModel Header { get; set; }
         public IDivePlanModel DivePlan { get; set; }
         public IDiveInformationModel DiveInformation { get; set; }

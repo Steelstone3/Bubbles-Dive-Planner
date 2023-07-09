@@ -1,6 +1,6 @@
 using BubblesDivePlanner.ViewModels.Models.DivePlan;
 
-namespace BubblesDivePlanner.ViewModels.DivePlan
+namespace BubblesDivePlanner.ViewModels.Plan
 {
     public class DivePlanViewModel : IDivePlanModel
     {

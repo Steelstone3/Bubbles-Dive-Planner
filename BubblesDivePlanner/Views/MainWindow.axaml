@@ -9,6 +9,6 @@
         Icon="/Assets/dive-planner-logo.ico"
         Title="Bubbles Dive Planner">
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <!-- <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
+    
 </Window>
