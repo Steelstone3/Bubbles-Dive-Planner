@@ -7,13 +7,13 @@
         x:Class="BubblesDivePlanner.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="BubblesDivePlanner">
+        Title="Bubbles Dive Planner">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <!-- <Design.DataContext>
+        This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)
         <vm:MainWindowViewModel/>
-    </Design.DataContext>
+    </Design.DataContext> -->
 
     <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
