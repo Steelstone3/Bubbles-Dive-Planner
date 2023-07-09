@@ -2,5 +2,5 @@
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public string Greeting => "Welcome to Avalonia!";
+    public static string Greeting => "Welcome to Avalonia!";
 }
