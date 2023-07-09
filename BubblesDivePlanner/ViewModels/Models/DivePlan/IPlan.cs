@@ -1,6 +1,6 @@
 namespace BubblesDivePlanner.ViewModels.Models.DivePlan
 {
-    public interface IDivePlanModel
+    public interface IPlan
     {
     }
 }

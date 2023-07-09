@@ -4,10 +4,10 @@ using BubblesDivePlanner.ViewModels.Models.Header;
 
 namespace BubblesDivePlanner.ViewModels.Models
 {
-    public interface IMainWindowViewModel
+    public interface IMainWindow
     {
-        IHeaderModel Header { get; set; }
-        IDivePlanModel Plan { get; set; }
-        IDiveInformationModel Information { get; set; }
+        IHeader Header { get; set; }
+        IPlan Plan { get; set; }
+        IInformation Information { get; set; }
     }
 }

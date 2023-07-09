@@ -8,7 +8,7 @@
     xmlns:information="clr-namespace:BubblesDivePlanner.Views.Information"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
     x:Class="BubblesDivePlanner.Views.MainWindow"
-    x:DataType="vm:MainWindowViewModel"
+    x:DataType="vm:MainWindow"
     Icon="/Assets/dive-planner-logo.ico"
     Title="Bubbles Dive Planner">
     <!-- xmlns:results="clr-namespace:BubblesDivePlanner.Views.Results" -->

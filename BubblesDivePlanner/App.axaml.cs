@@ -20,13 +20,13 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
+            desktop.MainWindow = new Views.MainWindow
             {
-                DataContext = new MainWindowViewModel
+                DataContext = new ViewModels.MainWindow
                 (
-                    new HeaderViewModel(),
-                    new DivePlanViewModel(),
-                    new DiveInformationViewModel()
+                    new Header(),
+                    new Plan(),
+                    new Information()
                 ),
             };
         }

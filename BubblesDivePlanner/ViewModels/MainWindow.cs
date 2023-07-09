@@ -6,31 +6,31 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
+    public class MainWindow : ViewModelBase, IMainWindow
     {
-        public MainWindowViewModel(IHeaderModel header, IDivePlanModel divePlan, IDiveInformationModel diveInformation)
+        public MainWindow(IHeader header, IPlan divePlan, IInformation diveInformation)
         {
             Header = header;
             Plan = divePlan;
             Information = diveInformation;
         }
 
-        private IHeaderModel header;
-        public IHeaderModel Header
+        private IHeader header;
+        public IHeader Header
         {
             get => header;
             set => this.RaiseAndSetIfChanged(ref header, value);
         }
 
-        private IDivePlanModel plan;
-        public IDivePlanModel Plan
+        private IPlan plan;
+        public IPlan Plan
         {
             get => plan;
             set => this.RaiseAndSetIfChanged(ref plan, value);
         }
 
-        private IDiveInformationModel information;
-        public IDiveInformationModel Information
+        private IInformation information;
+        public IInformation Information
         {
             get => information;
             set => this.RaiseAndSetIfChanged(ref information, value);
