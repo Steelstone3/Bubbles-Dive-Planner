@@ -13,7 +13,7 @@
     Title="Bubbles Dive Planner">
     <!-- xmlns:results="clr-namespace:BubblesDivePlanner.Views.Results" -->
 
-     <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -36,6 +36,7 @@
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF90CAF9">
                 <TextBlock
+                    Foreground="Black"
                     Margin="4"
                     FontSize="20"
                     FontStyle="Italic"
@@ -49,7 +50,7 @@
             </StackPanel>
         </ScrollViewer>
 
-         <ScrollViewer
+        <ScrollViewer
             Grid.Row="1"
             Grid.Column="1"
             VerticalScrollBarVisibility="Auto">
@@ -64,6 +65,7 @@
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF90CAF9">
                 <TextBlock
+                    Foreground="Black"
                     Margin="4"
                     FontSize="20"
                     FontStyle="Italic"

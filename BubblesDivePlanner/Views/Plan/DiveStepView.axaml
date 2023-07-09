@@ -10,16 +10,18 @@
     <StackPanel>
         <StackPanel Margin="4,0" Background="#FF5D99C6">
             <TextBlock
+                Foreground="Black"
                 Margin="4"
                 FontSize="16"
                 FontWeight="DemiBold"
                 Text="Dive Step" />
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <TextBlock Margin="8,4" Text="Depth (m):" FontWeight="Bold"/>
-            <!-- <TextBox Margin="8,4" Text="{Binding DivePlan.DiveStep.Depth}" /> -->
-            <TextBlock Margin="8,4" Text="Time (min):" FontWeight="Bold"/>
-            <!-- <TextBox Margin="8,4" Text="{Binding DivePlan.DiveStep.Time}" /> -->
+            <TextBlock Foreground="Black" Margin="8,4" Text="Depth (m):" FontWeight="Bold" />
+            <!-- <TextBox Foreground="Black" Margin="8,4" Text="{Binding DivePlan.DiveStep.Depth}"
+            /> -->
+            <TextBlock Foreground="Black" Margin="8,4" Text="Time (min):" FontWeight="Bold" />
+            <!-- <TextBox Foreground="Black" Margin="8,4" Text="{Binding DivePlan.DiveStep.Time}" /> -->
         </StackPanel>
     </StackPanel>
 </UserControl>
