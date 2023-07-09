@@ -1,6 +1,7 @@
-﻿namespace BubblesDivePlanner.ViewModels;
-
-public class MainWindowViewModel : ViewModelBase
+﻿namespace BubblesDivePlanner.ViewModels
 {
-    public static string Greeting => "Welcome to Avalonia!";
+    public class MainWindowViewModel : ViewModelBase
+    {
+        public static string Greeting => "Welcome to Avalonia!";
+    }
 }
