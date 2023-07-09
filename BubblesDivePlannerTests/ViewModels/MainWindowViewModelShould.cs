@@ -26,8 +26,30 @@ namespace BubblesDivePlannerTests.ViewModels
         {
             // Then
             Assert.NotNull(mainWindowViewModel.Header);
-            Assert.NotNull(mainWindowViewModel.DivePlan);
-            Assert.NotNull(mainWindowViewModel.DiveInformation);
+            Assert.NotNull(mainWindowViewModel.Plan);
+            Assert.NotNull(mainWindowViewModel.Information);
+        }
+
+        [Fact]
+        public void RaisePropertyChanged()
+        {
+            //Arrange
+            MainWindowViewModel mainWindow = (MainWindowViewModel)mainWindowViewModel;
+            Mock<IDivePlanModel> plan = new();
+            Mock<IDiveInformationModel> information = new();
+            Mock<IHeaderModel> header = new();
+            List<string> viewModelEvents = new();
+            mainWindow.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
+
+            //Act
+            mainWindow.Header = header.Object;
+            mainWindow.Plan = plan.Object;
+            mainWindow.Information = information.Object;
+
+            //Assert
+            Assert.Contains(nameof(mainWindow.Header), viewModelEvents);
+            Assert.Contains(nameof(mainWindow.Plan), viewModelEvents);
+            Assert.Contains(nameof(mainWindow.Information), viewModelEvents);
         }
     }
 }
