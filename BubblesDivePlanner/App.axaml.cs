@@ -2,6 +2,9 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.DiveInformation;
+using BubblesDivePlanner.ViewModels.DivePlan;
+using BubblesDivePlanner.ViewModels.Header;
 using BubblesDivePlanner.Views;
 
 namespace BubblesDivePlanner;
@@ -19,7 +22,12 @@ public class App : Application
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(),
+                DataContext = new MainWindowViewModel
+                (
+                    new HeaderViewModel(),
+                    new DivePlanViewModel(),
+                    new DiveInformationViewModel()
+                ),
             };
         }
 

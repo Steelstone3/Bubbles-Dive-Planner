@@ -22,10 +22,10 @@ namespace BubblesDivePlannerTests.Views
         public void Build()
         {
             // Given
-            MainWindowViewModel mainWindowViewModel = new();
+            ViewModelBase viewModelBase = new();
 
             // When
-            Control control = viewLocator.Build(mainWindowViewModel);
+            Control control = viewLocator.Build(viewModelBase);
 
             // Then
             Assert.NotNull(control);
