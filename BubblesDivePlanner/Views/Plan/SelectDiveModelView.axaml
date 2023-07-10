@@ -22,6 +22,7 @@
             <!-- ↓ Items="{Binding DivePlan.DiveModelSelector.DiveModels}" -->
             <!-- ↓ SelectedItem="{Binding DivePlan.DiveModelSelector.SelectedDiveModel}"> -->
             <ComboBox
+                PlaceholderText="Select Dive Model"
                 Margin="8,4"
                 Background="#FFFFFFFF"
                 HorizontalAlignment="Stretch"
