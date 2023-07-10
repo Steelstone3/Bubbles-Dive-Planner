@@ -15,10 +15,10 @@ namespace BubblesDivePlannerTests.ViewModels
         public MainWindowShould()
         {
             Mock<IHeader> header = new();
-            Mock<IPlanner> plan = new();
+            Mock<IPlanner> planner = new();
             Mock<IInformation> information = new();
 
-            mainWindow = new MainWindow(header.Object, plan.Object, information.Object);
+            mainWindow = new MainWindow(header.Object, planner.Object, information.Object);
         }
 
         [Fact]
@@ -26,7 +26,7 @@ namespace BubblesDivePlannerTests.ViewModels
         {
             // Then
             Assert.NotNull(mainWindow.Header);
-            Assert.NotNull(mainWindow.Plan);
+            Assert.NotNull(mainWindow.Planner);
             Assert.NotNull(mainWindow.Information);
         }
 
@@ -35,7 +35,7 @@ namespace BubblesDivePlannerTests.ViewModels
         {
             //Arrange
             MainWindow mainWindowVM = (MainWindow)mainWindow;
-            Mock<IPlanner> plan = new();
+            Mock<IPlanner> planner = new();
             Mock<IInformation> information = new();
             Mock<IHeader> header = new();
             List<string> viewModelEvents = new();
@@ -43,12 +43,12 @@ namespace BubblesDivePlannerTests.ViewModels
 
             //Act
             mainWindowVM.Header = header.Object;
-            mainWindowVM.Plan = plan.Object;
+            mainWindowVM.Planner = planner.Object;
             mainWindowVM.Information = information.Object;
 
             //Assert
             Assert.Contains(nameof(mainWindowVM.Header), viewModelEvents);
-            Assert.Contains(nameof(mainWindowVM.Plan), viewModelEvents);
+            Assert.Contains(nameof(mainWindowVM.Planner), viewModelEvents);
             Assert.Contains(nameof(mainWindowVM.Information), viewModelEvents);
         }
     }

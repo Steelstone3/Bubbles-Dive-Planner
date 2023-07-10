@@ -7,7 +7,7 @@ namespace BubblesDivePlanner.ViewModels.Models
     public interface IMainWindow
     {
         IHeader Header { get; set; }
-        IPlanner Plan { get; set; }
+        IPlanner Planner { get; set; }
         IInformation Information { get; set; }
     }
 }
