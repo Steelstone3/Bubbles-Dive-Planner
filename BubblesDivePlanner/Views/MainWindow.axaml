@@ -43,9 +43,9 @@
                     Text="Dive Plan" />
                 <plan:SelectDiveModel />
                 <plan:DiveStepView />
-                <!-- <plan:CylinderSetupView /> -->
-                <!-- <plan:CylinderSelectorView /> -->
-                <!-- <plan:CalculateDiveStepView /> -->
+                <plan:CylinderView />
+                <plan:SelectCylinderView />
+                <plan:CalculateDivePlanView />
             </StackPanel>
         </ScrollViewer>
 
