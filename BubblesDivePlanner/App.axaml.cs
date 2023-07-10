@@ -25,7 +25,7 @@ public class App : Application
                 DataContext = new ViewModels.MainWindow
                 (
                     new Header(),
-                    new Plan(),
+                    new Planner(),
                     new Information()
                 ),
             };

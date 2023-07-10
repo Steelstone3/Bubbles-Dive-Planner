@@ -8,7 +8,7 @@ namespace BubblesDivePlanner.ViewModels
 {
     public class MainWindow : ViewModelBase, IMainWindow
     {
-        public MainWindow(IHeader header, IPlan divePlan, IInformation diveInformation)
+        public MainWindow(IHeader header, IPlanner divePlan, IInformation diveInformation)
         {
             Header = header;
             Plan = divePlan;
@@ -22,8 +22,8 @@ namespace BubblesDivePlanner.ViewModels
             set => this.RaiseAndSetIfChanged(ref header, value);
         }
 
-        private IPlan plan;
-        public IPlan Plan
+        private IPlanner plan;
+        public IPlanner Plan
         {
             get => plan;
             set => this.RaiseAndSetIfChanged(ref plan, value);

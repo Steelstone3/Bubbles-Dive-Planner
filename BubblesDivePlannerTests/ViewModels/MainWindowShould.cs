@@ -15,7 +15,7 @@ namespace BubblesDivePlannerTests.ViewModels
         public MainWindowShould()
         {
             Mock<IHeader> header = new();
-            Mock<IPlan> plan = new();
+            Mock<IPlanner> plan = new();
             Mock<IInformation> information = new();
 
             mainWindow = new MainWindow(header.Object, plan.Object, information.Object);
@@ -35,7 +35,7 @@ namespace BubblesDivePlannerTests.ViewModels
         {
             //Arrange
             MainWindow mainWindowVM = (MainWindow)mainWindow;
-            Mock<IPlan> plan = new();
+            Mock<IPlanner> plan = new();
             Mock<IInformation> information = new();
             Mock<IHeader> header = new();
             List<string> viewModelEvents = new();
