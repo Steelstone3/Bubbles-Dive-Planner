@@ -7,6 +7,6 @@ namespace BubblesDivePlanner.ViewModels.Models.Plan
         float Oxygen { get; set; }
         float Helium { get; set; }
         float Nitrogen { get; }
-        float MaximumOperatingDepth { get; set; }
+        float MaximumOperatingDepth { get; }
     }
 }

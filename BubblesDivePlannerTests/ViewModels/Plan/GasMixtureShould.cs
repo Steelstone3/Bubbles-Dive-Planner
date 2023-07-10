@@ -18,31 +18,21 @@ namespace name
             Assert.Equal(0f, gasMixture.MaximumOperatingDepth);
         }
 
-        // [Fact]
-        // public void RaisePropertyChanged()
-        // {
-        //     //Arrange
-        //     Cylinder cylinderVM = (Cylinder)cylinder;
-        //     Mock<IGasMixture> gasMixture = new();
-        //     Mock<IGasUsage> gasUsage = new();
-        //     List<string> viewModelEvents = new();
-        //     cylinderVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
+        [Fact]
+        public void RaisePropertyChanged()
+        {
+            //Arrange
+            GasMixture gasMixtureVM = (GasMixture)gasMixture;
+            List<string> viewModelEvents = new();
+            gasMixtureVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
 
-        //     //Act
-        //     cylinderVM.Name = "EAN32";
-        //     cylinderVM.InitialPressurisedVolume = 2400;
-        //     cylinderVM.Volume = 12;
-        //     cylinderVM.Pressure = 200;
-        //     cylinderVM.GasMixture = gasMixture.Object;
-        //     cylinderVM.GasUsage = gasUsage.Object;
+            //Act
+            gasMixtureVM.Oxygen = 21f;
+            gasMixtureVM.Helium = 10f;
 
-        //     //Assert
-        //     Assert.Contains(nameof(cylinderVM.Name), viewModelEvents);
-        //     Assert.Contains(nameof(cylinderVM.InitialPressurisedVolume), viewModelEvents);
-        //     Assert.Contains(nameof(cylinderVM.Volume), viewModelEvents);
-        //     Assert.Contains(nameof(cylinderVM.Pressure), viewModelEvents);
-        //     Assert.Contains(nameof(cylinderVM.GasMixture), viewModelEvents);
-        //     Assert.Contains(nameof(cylinderVM.GasUsage), viewModelEvents);
-        // }
+            //Assert
+            Assert.Contains(nameof(gasMixtureVM.Oxygen), viewModelEvents);
+            Assert.Contains(nameof(gasMixtureVM.Helium), viewModelEvents);
+        }
     }
 }

@@ -55,6 +55,7 @@ namespace BubblesDivePlanner.ViewModels.Plan
             set => this.RaiseAndSetIfChanged(ref gasUsage, value);
         }
 
+        // TODO AH Move to a controller
         private ushort CalculatePressurisedVolume() => (ushort)(Volume * Pressure);
     }
 }
