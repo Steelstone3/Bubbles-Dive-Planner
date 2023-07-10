@@ -36,7 +36,7 @@ namespace BubblesDivePlanner.ViewModels.Plan
             private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
         }
 
-        private float maximumOperatingDepth = 0;
+        private float maximumOperatingDepth;
         public float MaximumOperatingDepth
         {
             get => maximumOperatingDepth;
