@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Models.Plan;
 using BubblesDivePlanner.ViewModels.Models.Plans;
 using BubblesDivePlanner.ViewModels.Plan;
@@ -14,6 +15,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
         public void Construct()
         {
             // Then
+            Assert.NotNull(planner.CylinderSelection);
             Assert.NotNull(planner.DiveStep);
             Assert.NotNull(planner.Cylinder);
         }
@@ -25,15 +27,19 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             Planner plannerVM = (Planner)planner;
             Mock<IDiveStep> diveStep = new();
             Mock<ICylinder> cylinder = new();
+            Mock<ICylinderSelection> cylinderSelection = new();
             List<string> viewModelEvents = new();
             plannerVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
+            plannerVM.CylinderSelection = cylinderSelection.Object;
             plannerVM.DiveStep = diveStep.Object;
             plannerVM.Cylinder = cylinder.Object;
 
             //Assert
+            Assert.Contains(nameof(plannerVM.CylinderSelection), viewModelEvents);
             Assert.Contains(nameof(plannerVM.DiveStep), viewModelEvents);
+            Assert.Contains(nameof(plannerVM.Cylinder), viewModelEvents);
         }
     }
 }
