@@ -18,6 +18,22 @@
                 Text="Select Dive Model" />
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
+            <TextBlock Margin="8,4" Text="Dive Model:" FontWeight="Bold" />
+            <!-- ↓ Items="{Binding DivePlan.DiveModelSelector.DiveModels}" -->
+            <!-- ↓ SelectedItem="{Binding DivePlan.DiveModelSelector.SelectedDiveModel}"> -->
+            <ComboBox
+                Margin="8,4"
+                Background="#FFFFFFFF"
+                HorizontalAlignment="Stretch"
+                SelectedIndex="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <!-- ↓ <TextBlock Text="{Binding DiveModelName}" /> -->
+                        <StackPanel Orientation="Horizontal">
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
     </StackPanel>
 </UserControl>
