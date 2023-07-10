@@ -17,7 +17,63 @@
                 FontWeight="DemiBold"
                 Text="Select Cylinder" />
         </StackPanel>
+
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
+            <!-- ↓ Items="{Binding DivePlan.CylinderSelector.Cylinders}"
+                ↓ IsVisible="{Binding !!DivePlan.CylinderSelector.Cylinders.Count}"
+                ↓ SelectedItem="{Binding DivePlan.CylinderSelector.SelectedCylinder}"> -->
+            <ListBox
+                Margin="8,4">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="2" Orientation="Horizontal">
+                            <!-- ↓ Text="{Binding Name}" -->
+                            <TextBlock Margin="4,0"
+                                FontWeight="Bold" />
+
+                            <!-- ↓ Text="{Binding Volume}" /> -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="4,0"
+                                    Text="Volume:"
+                                    FontWeight="Bold" />
+                                <TextBlock Margin="4,0" />
+                            </StackPanel>
+
+                            <!-- ↓ Text="{Binding Pressure}" /> -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="4,0"
+                                    Text="Pressure:"
+                                    FontWeight="Bold" />
+                                <TextBlock Margin="4,0" />
+                            </StackPanel>
+
+                            <!-- ↓ Text="{Binding GasMixture.Oxygen}" /> -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="4,0"
+                                    Text="O2:"
+                                    FontWeight="Bold" />
+                                <TextBlock Margin="4,0" />
+                            </StackPanel>
+
+                            <!-- ↓ Text="{Binding GasMixture.Nitrogen}" /> -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="4,0"
+                                    Text="N:"
+                                    FontWeight="Bold" />
+                                <TextBlock Margin="4,0" />
+                            </StackPanel>
+
+                            <!-- ↓ Text="{Binding GasMixture.Helium}" /> -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="4,0"
+                                    Text="He:"
+                                    FontWeight="Bold" />
+                                <TextBlock Margin="4,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </StackPanel>
 </UserControl>
