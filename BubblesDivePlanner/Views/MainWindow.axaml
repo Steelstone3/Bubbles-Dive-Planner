@@ -25,10 +25,10 @@
             <ColumnDefinition MinWidth="250" />
         </Grid.ColumnDefinitions>
 
-        <!-- <header:HeaderView
+        <header:HeaderView
             Grid.Row="0"
             Grid.Column="0"
-            Grid.ColumnSpan="3" /> -->
+            Grid.ColumnSpan="3" />
 
         <ScrollViewer
             Grid.Row="1"
