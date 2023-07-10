@@ -13,8 +13,6 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
         public void Construct()
         {
             // Then
-            // Assert.Null(planner.SelectedDiveModel);
-            // Assert.Null(planner.SelectedCylinder);
             Assert.NotNull(planner.DiveStep);
         }
 
@@ -23,20 +21,14 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
         {
             //Arrange
             Planner plannerVM = (Planner)planner;
-            Mock<IDiveModel> diveModel = new();
             Mock<IDiveStep> diveStep = new();
-            Mock<ICylinder> cylinder = new();
             List<string> viewModelEvents = new();
             plannerVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            // plannerVM.SelectedDiveModel = diveModel.Object;
-            // plannerVM.SelectedCylinder = cylinder.Object;
             plannerVM.DiveStep = diveStep.Object;
 
             //Assert
-            // Assert.Contains(nameof(plannerVM.SelectedDiveModel), viewModelEvents);
-            // Assert.Contains(nameof(plannerVM.SelectedCylinder), viewModelEvents);
             Assert.Contains(nameof(plannerVM.DiveStep), viewModelEvents);
         }
     }
