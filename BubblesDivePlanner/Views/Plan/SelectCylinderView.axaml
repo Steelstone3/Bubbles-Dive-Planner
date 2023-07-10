@@ -17,7 +17,6 @@
                 FontWeight="DemiBold"
                 Text="Select Cylinder" />
         </StackPanel>
-
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <!-- ↓ Items="{Binding DivePlan.CylinderSelector.Cylinders}"
                 ↓ IsVisible="{Binding !!DivePlan.CylinderSelector.Cylinders.Count}"
