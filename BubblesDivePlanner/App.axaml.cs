@@ -1,11 +1,9 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using BubblesDivePlanner.ViewModels;
-using BubblesDivePlanner.ViewModels.Information;
+using BubblesDivePlanner.ViewModels.Informations;
+using BubblesDivePlanner.ViewModels.Headers;
 using BubblesDivePlanner.ViewModels.Plan;
-using BubblesDivePlanner.ViewModels.Header;
-using BubblesDivePlanner.Views;
 
 namespace BubblesDivePlanner;
 
@@ -26,7 +24,7 @@ public class App : Application
                 (
                     new Header(),
                     new Planner(),
-                    new Information()
+                    new DiveInformation()
                 ),
             };
         }

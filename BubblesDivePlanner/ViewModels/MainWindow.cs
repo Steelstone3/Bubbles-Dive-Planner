@@ -1,14 +1,14 @@
 ﻿using BubblesDivePlanner.ViewModels.Models;
-using BubblesDivePlanner.ViewModels.Models.DiveInformation;
-using BubblesDivePlanner.ViewModels.Models.DivePlan;
-using BubblesDivePlanner.ViewModels.Models.Header;
+using BubblesDivePlanner.ViewModels.Models.Headers;
+using BubblesDivePlanner.ViewModels.Models.Informations;
+using BubblesDivePlanner.ViewModels.Models.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels
 {
     public class MainWindow : ViewModelBase, IMainWindow
     {
-        public MainWindow(IHeader header, IPlanner divePlan, IInformation diveInformation)
+        public MainWindow(IHeader header, IPlanner divePlan, IDiveInformation diveInformation)
         {
             Header = header;
             Planner = divePlan;
@@ -29,8 +29,8 @@ namespace BubblesDivePlanner.ViewModels
             set => this.RaiseAndSetIfChanged(ref planner, value);
         }
 
-        private IInformation information;
-        public IInformation Information
+        private IDiveInformation information;
+        public IDiveInformation Information
         {
             get => information;
             set => this.RaiseAndSetIfChanged(ref information, value);

@@ -1,8 +1,8 @@
 using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Models;
-using BubblesDivePlanner.ViewModels.Models.DiveInformation;
-using BubblesDivePlanner.ViewModels.Models.DivePlan;
-using BubblesDivePlanner.ViewModels.Models.Header;
+using BubblesDivePlanner.ViewModels.Models.Headers;
+using BubblesDivePlanner.ViewModels.Models.Informations;
+using BubblesDivePlanner.ViewModels.Models.Plan;
 using Moq;
 using Xunit;
 
@@ -16,7 +16,7 @@ namespace BubblesDivePlannerTests.ViewModels
         {
             Mock<IHeader> header = new();
             Mock<IPlanner> planner = new();
-            Mock<IInformation> information = new();
+            Mock<IDiveInformation> information = new();
 
             mainWindow = new MainWindow(header.Object, planner.Object, information.Object);
         }
@@ -36,7 +36,7 @@ namespace BubblesDivePlannerTests.ViewModels
             //Arrange
             MainWindow mainWindowVM = (MainWindow)mainWindow;
             Mock<IPlanner> planner = new();
-            Mock<IInformation> information = new();
+            Mock<IDiveInformation> information = new();
             Mock<IHeader> header = new();
             List<string> viewModelEvents = new();
             mainWindowVM.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);

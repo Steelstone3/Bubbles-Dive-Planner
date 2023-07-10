@@ -1,4 +1,6 @@
-namespace BubblesDivePlanner.ViewModels.Models.DivePlan
+using BubblesDivePlanner.ViewModels.Models.Plans;
+
+namespace BubblesDivePlanner.ViewModels.Models.Plan
 {
     public interface IPlanner
     {

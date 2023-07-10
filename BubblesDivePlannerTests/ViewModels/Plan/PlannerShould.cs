@@ -1,4 +1,5 @@
-using BubblesDivePlanner.ViewModels.Models.DivePlan;
+using BubblesDivePlanner.ViewModels.Models.Plan;
+using BubblesDivePlanner.ViewModels.Models.Plans;
 using BubblesDivePlanner.ViewModels.Plan;
 using Moq;
 using Xunit;
