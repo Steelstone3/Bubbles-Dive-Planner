@@ -16,7 +16,7 @@ namespace BubblesDivePlanner.ViewModels.Plan
         public ushort InitialPressurisedVolume
         {
             get => initialPressurisedVolume;
-            set => this.RaiseAndSetIfChanged(ref initialPressurisedVolume, value);
+            private set => this.RaiseAndSetIfChanged(ref initialPressurisedVolume, value);
         }
 
         private ushort volume;

@@ -5,7 +5,7 @@ namespace BubblesDivePlanner.ViewModels.Models.Plan
         string Name { get; set; }
         ushort Volume { get; set; }
         ushort Pressure { get; set; }
-        ushort InitialPressurisedVolume { get; set; }
+        ushort InitialPressurisedVolume { get; }
         IGasMixture GasMixture { get; set; }
         IGasUsage GasUsage { get; set; }
     }
