@@ -19,7 +19,7 @@ namespace name
         }
 
         [Fact]
-        public void RaisePropertyChanged()
+        public void RaisePropertyChangedOxygen()
         {
             //Arrange
             GasMixture gasMixtureVM = (GasMixture)gasMixture;
@@ -28,11 +28,27 @@ namespace name
 
             //Act
             gasMixtureVM.Oxygen = 21f;
-            gasMixtureVM.Helium = 10f;
 
             //Assert
             Assert.Contains(nameof(gasMixtureVM.Oxygen), viewModelEvents);
+            Assert.Contains(nameof(gasMixtureVM.Nitrogen), viewModelEvents);
+            Assert.Contains(nameof(gasMixtureVM.MaximumOperatingDepth), viewModelEvents);
+        }
+
+        [Fact]
+        public void RaisePropertyChangedHelium()
+        {
+            //Arrange
+            GasMixture gasMixtureVM = (GasMixture)gasMixture;
+            List<string> viewModelEvents = new();
+            gasMixtureVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
+
+            //Act
+            gasMixtureVM.Helium = 10f;
+
+            //Assert
             Assert.Contains(nameof(gasMixtureVM.Helium), viewModelEvents);
+            Assert.Contains(nameof(gasMixtureVM.Nitrogen), viewModelEvents);
         }
     }
 }

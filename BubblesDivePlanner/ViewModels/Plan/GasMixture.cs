@@ -10,29 +10,50 @@ namespace BubblesDivePlanner.ViewModels.Plan
         public float Oxygen
         {
             get => oxygen;
-            set => this.RaiseAndSetIfChanged(ref oxygen, value);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref oxygen, value);
+                MaximumOperatingDepth = CalculateMaximumOperatingDepth(Oxygen);
+                Nitrogen = CalculateNitrogen();
+            }
         }
 
         private float helium;
         public float Helium
         {
             get => helium;
-            set => this.RaiseAndSetIfChanged(ref helium, value);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref helium, value);
+                Nitrogen = CalculateNitrogen();
+            }
         }
 
+        private float nitrogen = 100;
         public float Nitrogen
         {
-            get => 100 - Oxygen - Helium;
+            get => nitrogen;
+            private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
         }
 
+        private float maximumOperatingDepth = 0;
         public float MaximumOperatingDepth
         {
-            get => Oxygen == 0 ? 0 : CalculateMaximumOperatingDepth(Oxygen);
+            get => maximumOperatingDepth;
+            private set => this.RaiseAndSetIfChanged(ref maximumOperatingDepth, value);
         }
+
+        // TODO AH Move to a controller
+        private float CalculateNitrogen() => 100 - Oxygen - Helium;
 
         // TODO AH Move to a controller
         private static float CalculateMaximumOperatingDepth(double oxygenPercentage)
         {
+            if (oxygenPercentage == 0)
+            {
+                return 0f;
+            }
+
             const double toleratedPartialPressure = 1.4;
             double oxygenPartialPressure = oxygenPercentage / 100;
             double toleratedPressure = toleratedPartialPressure / oxygenPartialPressure;
