@@ -1,5 +1,5 @@
 using System;
-using BubblesDivePlanner.ViewModels.Models.Plan;
+using BubblesDivePlanner.ViewModels.Model.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan

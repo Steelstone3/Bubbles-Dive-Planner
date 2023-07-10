@@ -1,4 +1,4 @@
-namespace BubblesDivePlanner.ViewModels.Models.Plan
+namespace BubblesDivePlanner.ViewModels.Model.Plan
 {
     public interface ICylinder
     {

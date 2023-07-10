@@ -1,8 +1,8 @@
-using BubblesDivePlanner.ViewModels.Models.Headers;
-using BubblesDivePlanner.ViewModels.Models.Informations;
-using BubblesDivePlanner.ViewModels.Models.Plan;
+using BubblesDivePlanner.ViewModels.Model.Headers;
+using BubblesDivePlanner.ViewModels.Model.Information;
+using BubblesDivePlanner.ViewModels.Model.Plan;
 
-namespace BubblesDivePlanner.ViewModels.Models
+namespace BubblesDivePlanner.ViewModels.Model
 {
     public interface IMainWindow
     {

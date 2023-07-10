@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace BubblesDivePlanner.ViewModels.Models.Plan
+namespace BubblesDivePlanner.ViewModels.Model.Plan
 {
     public interface IGasMixture
     {

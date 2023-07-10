@@ -1,4 +1,4 @@
-using BubblesDivePlanner.ViewModels.Models.Headers;
+using BubblesDivePlanner.ViewModels.Model.Headers;
 
 namespace BubblesDivePlanner.ViewModels.Headers
 {

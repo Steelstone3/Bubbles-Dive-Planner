@@ -1,4 +1,4 @@
-using BubblesDivePlanner.ViewModels.Models.Informations;
+using BubblesDivePlanner.ViewModels.Model.Information;
 
 namespace BubblesDivePlanner.ViewModels.Informations
 {

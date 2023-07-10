@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.Views.Header
+namespace BubblesDivePlanner.Views.Headers
 {
     public partial class HeaderView : UserControl
     {

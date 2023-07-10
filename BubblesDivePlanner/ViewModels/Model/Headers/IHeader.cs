@@ -1,4 +1,4 @@
-namespace BubblesDivePlanner.ViewModels.Models.Headers
+namespace BubblesDivePlanner.ViewModels.Model.Headers
 {
     public interface IHeader
     {

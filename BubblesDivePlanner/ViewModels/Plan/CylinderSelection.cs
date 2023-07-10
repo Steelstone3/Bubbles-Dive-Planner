@@ -1,6 +1,5 @@
 using System.Collections.ObjectModel;
 using BubblesDivePlanner.ViewModels.Model.Plan;
-using BubblesDivePlanner.ViewModels.Models.Plan;
 
 namespace BubblesDivePlanner.ViewModels.Plan
 {

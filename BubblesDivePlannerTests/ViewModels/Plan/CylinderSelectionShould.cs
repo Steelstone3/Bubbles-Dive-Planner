@@ -1,6 +1,5 @@
 using System.Collections.Specialized;
 using BubblesDivePlanner.ViewModels.Model.Plan;
-using BubblesDivePlanner.ViewModels.Models.Plan;
 using BubblesDivePlanner.ViewModels.Plan;
 using Moq;
 using Xunit;

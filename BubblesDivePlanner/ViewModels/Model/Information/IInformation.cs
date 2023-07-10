@@ -1,4 +1,4 @@
-namespace BubblesDivePlanner.ViewModels.Models.Informations
+namespace BubblesDivePlanner.ViewModels.Model.Information
 {
     public interface IDiveInformation
     {

@@ -1,4 +1,4 @@
-namespace BubblesDivePlanner.ViewModels.Models.Plans
+namespace BubblesDivePlanner.ViewModels.Model.Plan
 {
     public interface IDiveStep
     {
