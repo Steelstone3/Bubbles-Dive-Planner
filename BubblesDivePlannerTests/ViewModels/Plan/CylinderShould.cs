@@ -7,25 +7,25 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
 {
     public class CylinderShould
     {
-        private readonly ICylinder planner = new Cylinder();
+        private readonly ICylinder cylinder = new Cylinder();
 
         [Fact]
         public void Construct()
         {
             // Then
-            Assert.NotNull(planner.Name);
-            Assert.Equal(0u, planner.InitialPressurisedVolume);
-            Assert.Equal(0u, planner.Volume);
-            Assert.Equal(0u, planner.Pressure);
-            Assert.NotNull(planner.GasMixture);
-            Assert.NotNull(planner.GasUsage);
+            Assert.NotNull(cylinder.Name);
+            Assert.Equal(0u, cylinder.InitialPressurisedVolume);
+            Assert.Equal(0u, cylinder.Volume);
+            Assert.Equal(0u, cylinder.Pressure);
+            Assert.NotNull(cylinder.GasMixture);
+            Assert.NotNull(cylinder.GasUsage);
         }
 
         [Fact]
         public void RaisePropertyChanged()
         {
             //Arrange
-            Cylinder cylinderVM = (Cylinder)planner;
+            Cylinder cylinderVM = (Cylinder)cylinder;
             Mock<IGasMixture> gasMixture = new();
             Mock<IGasUsage> gasUsage = new();
             List<string> viewModelEvents = new();

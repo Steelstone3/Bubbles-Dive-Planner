@@ -30,20 +30,20 @@
             <TextBox Watermark="Enter Cylinder Pressure" Margin="8,4"
                 Text="{Binding Planner.Cylinder.Pressure}" />
             <TextBlock Margin="8,4" Text="S.A.C Rate (l/min):" FontWeight="Bold" />
-                <!-- ↓ Text="{Binding Planner.Cylinder.GasUsage.SurfaceAirConsumptionRate}" /> -->
-            <TextBox Watermark="Enter Surface Air Consumption Rate" Margin="8,4"/>
+            <!-- ↓ Text="{Binding Planner.Cylinder.GasUsage.SurfaceAirConsumptionRate}" /> -->
+            <TextBox Watermark="Enter Surface Air Consumption Rate" Margin="8,4" />
         </StackPanel>
         <!-- ↓ IsVisible="{Binding
         DivePlan.CylinderSelector.SelectedCylinder.GasMixture.IsVisible}"> -->
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="4" Text="Oxygen (%):" FontWeight="Bold" />
             <!-- ↓ Text="{Binding DivePlan.CylinderSelector.SelectedCylinder.GasMixture.Oxygen}" /> -->
-            <TextBox Watermark="Enter Oxygen Percentage" Margin="4" />
+            <TextBox Watermark="Enter Oxygen Percentage" Margin="8,4" />
             <TextBlock Margin="4" Text="Helium (%):" FontWeight="Bold" />
             <!-- ↓ Text="{Binding DivePlan.CylinderSelector.SelectedCylinder.GasMixture.Helium}" /> -->
-            <TextBox Watermark="Enter Helium Percentage" Margin="4" />
+            <TextBox Watermark="Enter Helium Percentage" Margin="8,4" />
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="4,4,0,4" Text="Nitrogen (%): " FontWeight="Bold" />
+                <TextBlock Margin="4,4,0,4" Text="Nitrogen (%):" FontWeight="Bold" />
                 <!-- ↓ Text="{Binding
                 DivePlan.CylinderSelector.SelectedCylinder.GasMixture.Nitrogen}" /> -->
                 <TextBlock Margin="0,4,4,4" />
