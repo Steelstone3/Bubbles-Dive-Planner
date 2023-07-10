@@ -7,32 +7,34 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
 {
     public class GasUsageShould
     {
-        private readonly IGasUsage gasMixture = new GasUsage();
+        private readonly IGasUsage gasUsage = new GasUsage();
 
         [Fact]
         public void Construct()
         {
             // Then
-            Assert.Equal(0u, gasMixture.GasRemaining);
-            Assert.Equal(0u, gasMixture.GasUsed);
-            Assert.Equal(0u, gasMixture.SurfaceAirConsumptionRate);
+            Assert.Equal(0u, gasUsage.GasRemaining);
+            Assert.Equal(0u, gasUsage.GasUsed);
+            Assert.Equal(0u, gasUsage.SurfaceAirConsumptionRate);
         }
 
-        // [Fact]
-        // public void RaisePropertyChangedOxygen()
-        // {
-        //     //Arrange
-        //     GasMixture gasMixtureVM = (GasMixture)gasMixture;
-        //     List<string> viewModelEvents = new();
-        //     gasMixtureVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
+        [Fact]
+        public void RaisePropertyChanged()
+        {
+            //Arrange
+            GasUsage gasUsageVM = (GasUsage)gasUsage;
+            List<string> viewModelEvents = new();
+            gasUsageVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
 
-        //     //Act
-        //     gasMixtureVM.Oxygen = 21f;
+            //Act
+            gasUsageVM.GasRemaining = 2000;
+            gasUsageVM.GasUsed = 400;
+            gasUsageVM.SurfaceAirConsumptionRate = 12;
 
-        //     //Assert
-        //     Assert.Contains(nameof(gasMixtureVM.Oxygen), viewModelEvents);
-        //     Assert.Contains(nameof(gasMixtureVM.Nitrogen), viewModelEvents);
-        //     Assert.Contains(nameof(gasMixtureVM.MaximumOperatingDepth), viewModelEvents);
-        // }
+            //Assert
+            Assert.Contains(nameof(gasUsageVM.GasRemaining), viewModelEvents);
+            Assert.Contains(nameof(gasUsageVM.GasUsed), viewModelEvents);
+            Assert.Contains(nameof(gasUsageVM.SurfaceAirConsumptionRate), viewModelEvents);
+        }
     }
 }

@@ -63,6 +63,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             Assert.Contains(nameof(cylinderVM.Volume), viewModelEvents);
             Assert.Contains(nameof(cylinderVM.Pressure), viewModelEvents);
             Assert.Contains(nameof(cylinderVM.InitialPressurisedVolume), viewModelEvents);
+            // Assert.Contains(nameof(cylinderVM.GasUsage.GasRemaining), viewModelEvents);
         }
     }
 }
