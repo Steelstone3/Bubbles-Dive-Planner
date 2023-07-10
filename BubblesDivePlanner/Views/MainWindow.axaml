@@ -41,7 +41,7 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Plan" />
-                <!-- <plan:DiveModelSelectorView /> -->
+                <plan:SelectDiveModel />
                 <plan:DiveStepView />
                 <!-- <plan:CylinderSetupView /> -->
                 <!-- <plan:CylinderSelectorView /> -->
