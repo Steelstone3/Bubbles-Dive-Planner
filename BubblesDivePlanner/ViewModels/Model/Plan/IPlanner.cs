@@ -9,5 +9,6 @@ namespace BubblesDivePlanner.ViewModels.Models.Plan
         // Cylinders
         // Cylinder
         IDiveStep DiveStep { get; set; }
+        ICylinder Cylinder { get; set; }
     }
 }
