@@ -7,7 +7,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <StackPanel IsVisible="{Binding DiveModelSelector.IsVisible}">
+    <StackPanel IsVisible="{Binding DivePlan.DiveModelSelector.IsVisible}">
         <StackPanel Margin="4,0" Background="#FF5D99C6">
             <TextBlock
                 Margin="4"
