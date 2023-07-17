@@ -11,6 +11,13 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
         private readonly IDiveModelSelection diveModelSelection = new DiveModelSelection();
 
         [Fact]
+        public void Construct()
+        {
+            // Then
+            Assert.NotEmpty(diveModelSelection.DiveModels);
+        }
+
+        [Fact]
         public void RaiseCollectionChanged()
         {
             // Given
