@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
-using BubblesDivePlanner.ViewModels.Model.Plan;
+using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 
-namespace BubblesDivePlanner.ViewModels.Plan
+namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
     public class CylinderSelection : ICylinderSelection
     {

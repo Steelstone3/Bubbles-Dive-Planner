@@ -1,4 +1,5 @@
 using BubblesDivePlanner.ViewModels.Model.Plan;
+using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Plan;
 using Moq;
 using Xunit;

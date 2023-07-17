@@ -1,9 +1,8 @@
-using System;
-using BubblesDivePlanner.ViewModels.Model.Plan;
-using BubblesDivePlanner.ViewModels.Plan;
+using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
+using BubblesDivePlanner.ViewModels.Plan.Cylinders;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels.Plan
+namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
 {
     public class GasUsageShould
     {

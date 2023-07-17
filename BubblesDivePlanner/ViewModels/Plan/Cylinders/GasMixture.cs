@@ -1,8 +1,8 @@
 using System;
-using BubblesDivePlanner.ViewModels.Model.Plan;
+using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.ViewModels.Plan
+namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
     public class GasMixture : ReactiveObject, IGasMixture
     {
@@ -57,7 +57,7 @@ namespace BubblesDivePlanner.ViewModels.Plan
             const double toleratedPartialPressure = 1.4;
             double oxygenPartialPressure = oxygenPercentage / 100;
             double toleratedPressure = toleratedPartialPressure / oxygenPartialPressure;
-            return (float)Math.Round((toleratedPressure * 10) - 10, 2);
+            return (float)Math.Round(toleratedPressure * 10 - 10, 2);
         }
     }
 }

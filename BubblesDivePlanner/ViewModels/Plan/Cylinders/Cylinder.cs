@@ -1,7 +1,7 @@
-using BubblesDivePlanner.ViewModels.Model.Plan;
+using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using ReactiveUI;
 
-namespace BubblesDivePlanner.ViewModels.Plan
+namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
     public class Cylinder : ReactiveObject, ICylinder
     {

@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace BubblesDivePlanner.ViewModels.Model.Plan
+namespace BubblesDivePlanner.ViewModels.Model.Plan.Cylinders
 {
     public interface ICylinderSelection
     {
