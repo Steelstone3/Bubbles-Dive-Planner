@@ -1,14 +1,12 @@
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
+using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan.DiveModels
 {
-    public class DiveProfile : IDiveProfile
+    public class DiveProfile : ReactiveObject, IDiveProfile
     {
-        private readonly int compartments;
-
         public DiveProfile(int compartments)
         {
-            this.compartments = compartments;
             MaxSurfacePressures = new double[compartments];
             NitrogenTissuePressures = new double[compartments];
             HeliumTissuePressures = new double[compartments];
@@ -17,30 +15,89 @@ namespace BubblesDivePlanner.ViewModels.Plan.DiveModels
             AValues = new double[compartments];
             BValues = new double[compartments];
             CompartmentLoads = new double[compartments];
+
+            for (int i = 0; i < compartments; i++)
+            {
+                NitrogenTissuePressures[i] = 0.79;
+                TotalTissuePressures[i] = 0.79;
+            }
         }
 
-        public double[] MaxSurfacePressures { get; }
+        public double[] maxSurfacePressures;
+        public double[] MaxSurfacePressures
+        {
+            get => maxSurfacePressures;
+            set => this.RaiseAndSetIfChanged(ref maxSurfacePressures, value);
+        }
 
-        public double[] NitrogenTissuePressures { get; }
+        public double[] nitrogenTissuePressures;
+        public double[] NitrogenTissuePressures
+        {
+            get => nitrogenTissuePressures;
+            set => this.RaiseAndSetIfChanged(ref nitrogenTissuePressures, value);
+        }
 
-        public double[] HeliumTissuePressures { get; }
+        public double[] heliumTissuePressures;
+        public double[] HeliumTissuePressures
+        {
+            get => heliumTissuePressures;
+            set => this.RaiseAndSetIfChanged(ref heliumTissuePressures, value);
+        }
 
-        public double[] TotalTissuePressures { get; }
+        public double[] totalTissuePressures;
+        public double[] TotalTissuePressures
+        {
+            get => totalTissuePressures;
+            set => this.RaiseAndSetIfChanged(ref totalTissuePressures, value);
+        }
 
-        public double[] ToleratedAmbientPressures { get; }
+        public double[] toleratedAmbientPressures;
+        public double[] ToleratedAmbientPressures
+        {
+            get => toleratedAmbientPressures;
+            set => this.RaiseAndSetIfChanged(ref toleratedAmbientPressures, value);
+        }
 
-        public double[] AValues { get; }
+        public double[] aValues;
+        public double[] AValues
+        {
+            get => aValues;
+            set => this.RaiseAndSetIfChanged(ref aValues, value);
+        }
 
-        public double[] BValues { get; }
+        public double[] bValues;
+        public double[] BValues
+        {
+            get => bValues;
+            set => this.RaiseAndSetIfChanged(ref bValues, value);
+        }
 
-        public double[] CompartmentLoads { get; }
+        public double[] compartmentLoads;
+        public double[] CompartmentLoads
+        {
+            get => compartmentLoads;
+            set => this.RaiseAndSetIfChanged(ref compartmentLoads, value);
+        }
 
-        public double OxygenAtPressure { get; }
+        public double oxygenAtPressure;
+        public double OxygenAtPressure
+        {
+            get => oxygenAtPressure;
+            set => this.RaiseAndSetIfChanged(ref oxygenAtPressure, value);
+        }
 
-        public double NitrogenAtPressure { get; }
+        public double nitrogenAtPressure;
+        public double NitrogenAtPressure
+        {
+            get => nitrogenAtPressure;
+            set => this.RaiseAndSetIfChanged(ref nitrogenAtPressure, value);
+        }
 
-        public double HeliumAtPressure { get; }
-
-        
+        public double heliumAtPressure;
+        public double HeliumAtPressure
+        {
+            get => heliumAtPressure;
+            set => this.RaiseAndSetIfChanged(ref heliumAtPressure, value);
+        }
     }
 }
