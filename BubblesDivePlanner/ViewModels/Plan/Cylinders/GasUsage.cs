@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
-    public class GasUsage : ReactiveObject, IGasUsage
+    public class GasUsage : ViewModelBase, IGasUsage
     {
         private ushort gasRemaining;
         public ushort GasRemaining

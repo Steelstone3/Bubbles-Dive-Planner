@@ -29,6 +29,7 @@ namespace BubblesDivePlanner.ViewModels
             set => this.RaiseAndSetIfChanged(ref planner, value);
         }
 
+        // TODO move dive information within dive planner
         private IDiveInformation information;
         public IDiveInformation Information
         {

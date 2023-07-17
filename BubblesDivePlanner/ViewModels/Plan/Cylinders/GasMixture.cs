@@ -4,7 +4,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
-    public class GasMixture : ReactiveObject, IGasMixture
+    public class GasMixture : ViewModelBase, IGasMixture
     {
         private float oxygen;
         public float Oxygen

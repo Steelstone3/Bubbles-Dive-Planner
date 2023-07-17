@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan.DiveModels
 {
-    public class DiveProfile : ReactiveObject, IDiveProfile
+    public class DiveProfile : ViewModelBase, IDiveProfile
     {
         public DiveProfile(int compartments)
         {

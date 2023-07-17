@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
-    public class Cylinder : ReactiveObject, ICylinder
+    public class Cylinder : ViewModelBase, ICylinder
     {
         private string name = string.Empty;
         public string Name

@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan
 {
-    public class DiveStep : ReactiveObject, IDiveStep
+    public class DiveStep : ViewModelBase, IDiveStep
     {
         private byte depth;
         public byte Depth
