@@ -1,12 +1,10 @@
-using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
-using BubblesDivePlanner.ViewModels.Plan;
 using BubblesDivePlanner.ViewModels.Plan.Cylinders;
 using ReactiveUI;
 
-namespace BubblesDivePlannerTests.ViewModels.Plan
+namespace BubblesDivePlanner.ViewModels.Plan
 {
     public class DiveStage : ViewModelBase, IDiveStage
     {

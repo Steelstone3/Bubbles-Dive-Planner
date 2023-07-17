@@ -1,8 +1,7 @@
-using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
 
-namespace BubblesDivePlannerTests.ViewModels.Plan
+namespace BubblesDivePlanner.ViewModels.Model.Plan
 {
     public interface IDiveStage
     {

@@ -19,10 +19,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             Assert.NotNull(planner.DiveModelSelection);
             Assert.NotNull(planner.CylinderSelection);
             Assert.NotNull(planner.Information);
-            Assert.Null(planner.DiveModel);
-            Assert.NotNull(planner.DiveStep);
-            // TODO may change to null set from the selector...
-            Assert.NotNull(planner.Cylinder);
+            Assert.NotNull(planner.DiveStage);
         }
 
         [Fact]
@@ -33,9 +30,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             Mock<IDiveModelSelection> diveModelSelection = new();
             Mock<ICylinderSelection> cylinderSelection = new();
             Mock<IDiveInformation> diveInformation = new();
-            Mock<IDiveModel> diveModel = new();
-            Mock<IDiveStep> diveStep = new();
-            Mock<ICylinder> cylinder = new();
+            Mock<IDiveStage> diveModel = new();
             List<string> viewModelEvents = new();
             plannerVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
 
@@ -43,17 +38,13 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             plannerVM.DiveModelSelection = diveModelSelection.Object;
             plannerVM.CylinderSelection = cylinderSelection.Object;
             plannerVM.Information = diveInformation.Object;
-            plannerVM.DiveModel = diveModel.Object;
-            plannerVM.DiveStep = diveStep.Object;
-            plannerVM.Cylinder = cylinder.Object;
+            plannerVM.DiveStage = diveModel.Object;
 
             //Assert
             Assert.Contains(nameof(plannerVM.DiveModelSelection), viewModelEvents);
             Assert.Contains(nameof(plannerVM.CylinderSelection), viewModelEvents);
             Assert.Contains(nameof(plannerVM.Information), viewModelEvents);
-            Assert.Contains(nameof(plannerVM.DiveModel), viewModelEvents);
-            Assert.Contains(nameof(plannerVM.DiveStep), viewModelEvents);
-            Assert.Contains(nameof(plannerVM.Cylinder), viewModelEvents);
+            Assert.Contains(nameof(plannerVM.DiveStage), viewModelEvents);
         }
     }
 }

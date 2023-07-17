@@ -21,7 +21,7 @@
             <TextBlock Margin="8,4" Text="Dive Model:" FontWeight="Bold" />
             <ComboBox
                 ItemsSource="{Binding Planner.DiveModelSelection.DiveModels}"
-                SelectedItem="{Binding Planner.DiveModel}"
+                SelectedItem="{Binding Planner.DiveStage.DiveModel}"
                 PlaceholderText="Select Dive Model"
                 Margin="8,4"
                 Background="#FFFFFFFF"

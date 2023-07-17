@@ -19,9 +19,9 @@
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="8,4" Text="Depth (m):" FontWeight="Bold" />
-            <TextBox Watermark="Enter Depth" Margin="8,4" Text="{Binding Planner.DiveStep.Depth}" />
+            <TextBox Watermark="Enter Depth" Margin="8,4" Text="{Binding Planner.DiveStage.DiveStep.Depth}" />
             <TextBlock Margin="8,4" Text="Time (min):" FontWeight="Bold" />
-            <TextBox Watermark="Enter Time" Margin="8,4" Text="{Binding Planner.DiveStep.Time}" />
+            <TextBox Watermark="Enter Time" Margin="8,4" Text="{Binding Planner.DiveStage.DiveStep.Time}" />
         </StackPanel>
     </StackPanel>
 </UserControl>
