@@ -1,5 +1,6 @@
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
+using BubblesDivePlanner.ViewModels.Model.Plan.Information;
 
 namespace BubblesDivePlanner.ViewModels.Model.Plan
 {
@@ -9,6 +10,7 @@ namespace BubblesDivePlanner.ViewModels.Model.Plan
 
         IDiveModelSelection DiveModelSelection { get; set; }
         ICylinderSelection CylinderSelection { get; set; }
+        IDiveInformation Information { get; set; }
 
         // TODO combine these three to make it easy to serialise
         IDiveModel DiveModel { get; set; }

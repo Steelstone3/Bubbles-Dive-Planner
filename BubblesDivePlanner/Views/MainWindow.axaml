@@ -5,7 +5,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:header="clr-namespace:BubblesDivePlanner.Views.Headers"
     xmlns:plan="clr-namespace:BubblesDivePlanner.Views.Plan"
-    xmlns:information="clr-namespace:BubblesDivePlanner.Views.Information"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
     x:Class="BubblesDivePlanner.Views.MainWindow"
     x:DataType="vm:MainWindow"
@@ -70,9 +69,9 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Information" />
-                <!-- <information:DecompressionProfileView /> -->
-                <!-- <information:DiveBoundariesView/> -->
-                <!-- <information:CentralNervousSystemToxicityView /> -->
+                <!-- <plan:DecompressionProfileView /> -->
+                <!-- <plan:DiveBoundariesView/> -->
+                <!-- <plan:CentralNervousSystemToxicityView /> -->
             </StackPanel>
         </ScrollViewer>
     </Grid>

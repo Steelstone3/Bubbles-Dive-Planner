@@ -1,8 +1,8 @@
 using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model;
 using BubblesDivePlanner.ViewModels.Model.Headers;
-using BubblesDivePlanner.ViewModels.Model.Information;
 using BubblesDivePlanner.ViewModels.Model.Plan;
+using BubblesDivePlanner.ViewModels.Model.Plan.Information;
 using Moq;
 using Xunit;
 
@@ -10,16 +10,7 @@ namespace BubblesDivePlannerTests.ViewModels
 {
     public class MainWindowShould
     {
-        private readonly IMainWindow mainWindow;
-
-        public MainWindowShould()
-        {
-            Mock<IHeader> header = new();
-            Mock<IPlanner> planner = new();
-            Mock<IDiveInformation> information = new();
-
-            mainWindow = new MainWindow(header.Object, planner.Object, information.Object);
-        }
+        private readonly IMainWindow mainWindow = new MainWindow();
 
         [Fact]
         public void Construct()
@@ -27,7 +18,6 @@ namespace BubblesDivePlannerTests.ViewModels
             // Then
             Assert.NotNull(mainWindow.Header);
             Assert.NotNull(mainWindow.Planner);
-            Assert.NotNull(mainWindow.Information);
         }
 
         [Fact]
@@ -44,12 +34,10 @@ namespace BubblesDivePlannerTests.ViewModels
             //Act
             mainWindowVM.Header = header.Object;
             mainWindowVM.Planner = planner.Object;
-            mainWindowVM.Information = information.Object;
 
             //Assert
             Assert.Contains(nameof(mainWindowVM.Header), viewModelEvents);
             Assert.Contains(nameof(mainWindowVM.Planner), viewModelEvents);
-            Assert.Contains(nameof(mainWindowVM.Information), viewModelEvents);
         }
     }
 }

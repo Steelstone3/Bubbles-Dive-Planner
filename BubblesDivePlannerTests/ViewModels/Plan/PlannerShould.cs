@@ -1,6 +1,7 @@
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
+using BubblesDivePlanner.ViewModels.Model.Plan.Information;
 using BubblesDivePlanner.ViewModels.Plan;
 using Moq;
 using Xunit;
@@ -17,6 +18,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             // Then
             Assert.NotNull(planner.DiveModelSelection);
             Assert.NotNull(planner.CylinderSelection);
+            Assert.NotNull(planner.Information);
             Assert.Null(planner.DiveModel);
             Assert.NotNull(planner.DiveStep);
             // TODO may change to null set from the selector...
@@ -30,6 +32,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             Planner plannerVM = (Planner)planner;
             Mock<IDiveModelSelection> diveModelSelection = new();
             Mock<ICylinderSelection> cylinderSelection = new();
+            Mock<IDiveInformation> diveInformation = new();
             Mock<IDiveModel> diveModel = new();
             Mock<IDiveStep> diveStep = new();
             Mock<ICylinder> cylinder = new();
@@ -39,6 +42,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             //Act
             plannerVM.DiveModelSelection = diveModelSelection.Object;
             plannerVM.CylinderSelection = cylinderSelection.Object;
+            plannerVM.Information = diveInformation.Object;
             plannerVM.DiveModel = diveModel.Object;
             plannerVM.DiveStep = diveStep.Object;
             plannerVM.Cylinder = cylinder.Object;
@@ -46,6 +50,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             //Assert
             Assert.Contains(nameof(plannerVM.DiveModelSelection), viewModelEvents);
             Assert.Contains(nameof(plannerVM.CylinderSelection), viewModelEvents);
+            Assert.Contains(nameof(plannerVM.Information), viewModelEvents);
             Assert.Contains(nameof(plannerVM.DiveModel), viewModelEvents);
             Assert.Contains(nameof(plannerVM.DiveStep), viewModelEvents);
             Assert.Contains(nameof(plannerVM.Cylinder), viewModelEvents);
