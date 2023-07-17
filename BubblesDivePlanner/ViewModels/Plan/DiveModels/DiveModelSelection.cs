@@ -5,12 +5,6 @@ namespace BubblesDivePlanner.ViewModels.Plan.DiveModels
 {
     public class DiveModelSelection : IDiveModelSelection
     {
-        public ObservableCollection<IDiveModel> DiveModels
-        {
-            get;
-        } = new ObservableCollection<IDiveModel>()
-        {
-            new Zhl16bBuhlmann(),
-        };
+        public ObservableCollection<IDiveModel> DiveModels => new() { new Zhl16bBuhlmann(), };
     }
 }
