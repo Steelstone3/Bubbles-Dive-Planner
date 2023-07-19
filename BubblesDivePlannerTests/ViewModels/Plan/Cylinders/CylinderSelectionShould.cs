@@ -1,7 +1,9 @@
 using System.Collections.Specialized;
+using System.Reactive;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Plan.Cylinders;
 using Moq;
+using ReactiveUI;
 using Xunit;
 
 namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
@@ -43,6 +45,20 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
             // Then
             Assert.Contains(NotifyCollectionChangedAction.Add, viewModelEvents);
             Assert.Contains(cylinder.Object, cylinderSelectionVM.Cylinders);
+        }
+
+        [Fact]
+        public void AddCylinder()
+        {
+            // Given
+            CylinderSelection cylinderSelection = new();
+            ReactiveCommand<Unit, Unit> addCylinderCommand = ReactiveCommand.Create(cylinderSelection.AddCylinder);
+
+            // When
+            addCylinderCommand.Execute().Subscribe();
+
+            // Then
+            Assert.NotEmpty(cylinderSelection.Cylinders);
         }
     }
 }

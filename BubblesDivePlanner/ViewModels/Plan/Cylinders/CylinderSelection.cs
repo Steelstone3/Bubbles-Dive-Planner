@@ -26,7 +26,7 @@ namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 
         public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
 
-        private void AddCylinder()
+        public void AddCylinder()
         {
             Cylinders.Add(SelectedCylinder);
         }
