@@ -4,7 +4,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:header="clr-namespace:BubblesDivePlanner.Views.Headers"
-    xmlns:plan="clr-namespace:BubblesDivePlanner.Views.Plan"
+    xmlns:setup="clr-namespace:BubblesDivePlanner.Views.Planner.Setup"
+    xmlns:stage="clr-namespace:BubblesDivePlanner.Views.Planner.Stage"
+    xmlns:cylinders="clr-namespace:BubblesDivePlanner.Views.Planner.Cylinders"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
     x:Class="BubblesDivePlanner.Views.MainWindow"
     x:DataType="vm:MainWindow"
@@ -40,12 +42,12 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Plan" />
-                <plan:SelectDiveModel />
-                <plan:DiveStepView />
-                <plan:CylinderView />
-                <plan:CylinderUsageView />
-                <plan:SelectCylinderView />
-                <plan:CalculateDivePlanView />
+                <setup:SelectDiveModel />
+                <stage:DiveStepView />
+                <cylinders:CylinderView />
+                <cylinders:CylinderUsageView />
+                <setup:SelectCylinderView />
+                <stage:CalculateDivePlanView />
             </StackPanel>
         </ScrollViewer>
 

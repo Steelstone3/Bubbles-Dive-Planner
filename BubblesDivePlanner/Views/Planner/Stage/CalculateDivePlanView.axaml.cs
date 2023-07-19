@@ -1,11 +1,11 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.Views.Plan
+namespace BubblesDivePlanner.Views.Planner.Stage
 {
-    public partial class CylinderUsageView : UserControl
+    public partial class CalculateDivePlanView : UserControl
     {
-        public CylinderUsageView()
+        public CalculateDivePlanView()
         {
             InitializeComponent();
         }
