@@ -3,6 +3,7 @@ using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Information;
+using BubblesDivePlanner.ViewModels.Model.Planner.Setup;
 using BubblesDivePlanner.ViewModels.Planner.Cylinders;
 using BubblesDivePlanner.ViewModels.Planner.Plan;
 using Moq;
@@ -19,8 +20,7 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
         {
             // Then
             Assert.IsAssignableFrom<ViewModelBase>(planner);
-            Assert.NotNull(planner.DiveModelSelection);
-            Assert.NotNull(planner.CylinderSelection);
+            Assert.NotNull(planner.DiveSetup);
             Assert.NotNull(planner.Information);
             Assert.NotNull(planner.DiveStage);
         }
@@ -30,22 +30,19 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
         {
             //Arrange
             DivePlanner plannerVM = (DivePlanner)planner;
-            Mock<IDiveModelSelection> diveModelSelection = new();
-            Mock<ICylinderSelectionVM> cylinderSelection = new();
+            Mock<IDiveSetup> diveSetup = new();
             Mock<IDiveInformation> diveInformation = new();
             Mock<IDiveStage> diveModel = new();
             List<string> viewModelEvents = new();
             plannerVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            plannerVM.DiveModelSelection = diveModelSelection.Object;
-            plannerVM.CylinderSelection = cylinderSelection.Object;
+            plannerVM.DiveSetup = diveSetup.Object;
             plannerVM.Information = diveInformation.Object;
             plannerVM.DiveStage = diveModel.Object;
 
             //Assert
-            Assert.Contains(nameof(plannerVM.DiveModelSelection), viewModelEvents);
-            Assert.Contains(nameof(plannerVM.CylinderSelection), viewModelEvents);
+            Assert.Contains(nameof(plannerVM.DiveSetup), viewModelEvents);
             Assert.Contains(nameof(plannerVM.Information), viewModelEvents);
             Assert.Contains(nameof(plannerVM.DiveStage), viewModelEvents);
         }

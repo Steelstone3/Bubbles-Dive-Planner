@@ -20,7 +20,7 @@
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="8,4" Text="Dive Model:" FontWeight="Bold" />
             <ComboBox
-                ItemsSource="{Binding Planner.DiveModelSelection.DiveModels}"
+                ItemsSource="{Binding Planner.DiveSetup.DiveModelSelection.DiveModels}"
                 SelectedItem="{Binding Planner.DiveStage.DiveModel}"
                 PlaceholderText="Select Dive Model"
                 Margin="8,4"
