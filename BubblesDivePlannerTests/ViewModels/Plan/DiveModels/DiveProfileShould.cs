@@ -16,6 +16,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
             IDiveProfile diveProfile = new DiveProfile(1);
 
             // Then
+            Assert.IsAssignableFrom<ViewModelBase>(diveProfile);
             Assert.Equal(defaultValue, diveProfile.MaxSurfacePressures[0]);
             Assert.Equal(defaultPressurisedValue, diveProfile.NitrogenTissuePressures[0]);
             Assert.Equal(defaultValue, diveProfile.HeliumTissuePressures[0]);
@@ -27,16 +28,6 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
             Assert.Equal(defaultValue, diveProfile.OxygenAtPressure);
             Assert.Equal(defaultValue, diveProfile.NitrogenAtPressure);
             Assert.Equal(defaultValue, diveProfile.HeliumAtPressure);
-        }
-
-        [Fact]
-        public void BeAViewModelBase()
-        {
-            // Given
-            IDiveProfile diveProfile = new DiveProfile(1);
-
-            // Then
-            Assert.IsAssignableFrom<ViewModelBase>(diveProfile);
         }
 
         [Theory]

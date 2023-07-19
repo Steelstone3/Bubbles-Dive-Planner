@@ -16,16 +16,10 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
         public void Construct()
         {
             // Then
+            Assert.IsAssignableFrom<ViewModelBase>(diveStage);
             Assert.Null(diveStage.DiveModel);
             Assert.NotNull(diveStage.DiveStep);
             Assert.Null(diveStage.Cylinder);
-        }
-
-        [Fact]
-        public void BeAViewModelBase()
-        {
-            // Then
-            Assert.IsAssignableFrom<ViewModelBase>(diveStage);
         }
 
         [Fact]

@@ -13,14 +13,8 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
         public void Construct()
         {
             // Then
-            Assert.NotEmpty(diveModelSelection.DiveModels);
-        }
-
-        [Fact]
-        public void BeAViewModelBase()
-        {
-            // Then
             Assert.IsAssignableFrom<ViewModelBase>(diveModelSelection);
+            Assert.NotEmpty(diveModelSelection.DiveModels);
         }
     }
 }

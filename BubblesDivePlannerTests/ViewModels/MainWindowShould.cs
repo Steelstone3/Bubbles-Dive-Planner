@@ -16,15 +16,9 @@ namespace BubblesDivePlannerTests.ViewModels
         public void Construct()
         {
             // Then
+            Assert.IsAssignableFrom<ViewModelBase>(mainWindow);
             Assert.NotNull(mainWindow.Header);
             Assert.NotNull(mainWindow.Planner);
-        }
-
-        [Fact]
-        public void BeAViewModelBase()
-        {
-            // Then
-            Assert.IsAssignableFrom<ViewModelBase>(mainWindow);
         }
 
         [Fact]
