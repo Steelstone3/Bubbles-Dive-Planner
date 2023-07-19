@@ -1,8 +1,8 @@
 ﻿using BubblesDivePlanner.ViewModels.Headers;
 using BubblesDivePlanner.ViewModels.Model;
 using BubblesDivePlanner.ViewModels.Model.Headers;
-using BubblesDivePlanner.ViewModels.Model.Plan;
-using BubblesDivePlanner.ViewModels.Plan;
+using BubblesDivePlanner.ViewModels.Model.Planner.Plan;
+using BubblesDivePlanner.ViewModels.Planner.Plan;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels
@@ -16,8 +16,8 @@ namespace BubblesDivePlanner.ViewModels
             set => this.RaiseAndSetIfChanged(ref header, value);
         }
 
-        private IPlanner planner = new Planner();
-        public IPlanner Planner
+        private IDivePlanner planner = new DivePlanner();
+        public IDivePlanner Planner
         {
             get => planner;
             set => this.RaiseAndSetIfChanged(ref planner, value);

@@ -1,8 +1,6 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using BubblesDivePlanner.ViewModels.Headers;
-using BubblesDivePlanner.ViewModels.Plan;
 
 namespace BubblesDivePlanner;
 

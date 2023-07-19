@@ -1,8 +1,8 @@
 using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model;
 using BubblesDivePlanner.ViewModels.Model.Headers;
-using BubblesDivePlanner.ViewModels.Model.Plan;
-using BubblesDivePlanner.ViewModels.Model.Plan.Information;
+using BubblesDivePlanner.ViewModels.Model.Planner.Plan;
+using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Information;
 using Moq;
 using Xunit;
 
@@ -26,7 +26,7 @@ namespace BubblesDivePlannerTests.ViewModels
         {
             //Arrange
             MainWindow mainWindowVM = (MainWindow)mainWindow;
-            Mock<IPlanner> planner = new();
+            Mock<IDivePlanner> planner = new();
             Mock<IDiveInformation> information = new();
             Mock<IHeader> header = new();
             List<string> viewModelEvents = new();

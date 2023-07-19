@@ -1,6 +1,5 @@
-using System;
-using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
-using BubblesDivePlanner.ViewModels.Plan.Cylinders;
+using BubblesDivePlanner.ViewModels.Model.Planner.Cylinders;
+using BubblesDivePlanner.ViewModels.Planner.Cylinders;
 
 namespace BubblesDivePlanner.Controllers.Prototypes
 {
