@@ -13,11 +13,18 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
         public void Construct()
         {
             // Then
-            Assert.IsAssignableFrom<ViewModelBase>(gasMixture);
             Assert.Equal(0f, gasMixture.Oxygen);
             Assert.Equal(0f, gasMixture.Helium);
             Assert.Equal(100f, gasMixture.Nitrogen);
             Assert.Equal(0f, gasMixture.MaximumOperatingDepth);
+        }
+
+        [Fact]
+        public void DeriveFrom()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(gasMixture);
+            Assert.IsAssignableFrom<IGasMixture>(gasMixture);
         }
 
         [Fact]

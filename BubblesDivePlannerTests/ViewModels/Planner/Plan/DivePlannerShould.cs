@@ -14,22 +14,21 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
         private readonly IDivePlanner planner = new DivePlanner();
 
         [Fact]
+        public void Construct()
+        {
+            // Then
+            Assert.NotNull(planner.DiveSetup);
+            Assert.NotNull(planner.Information);
+            Assert.NotNull(planner.DiveStage);
+        }
+
+        [Fact]
         public void DeriveFrom()
         {
             // Then
             Assert.IsAssignableFrom<ViewModelBase>(planner);
             Assert.IsAssignableFrom<IDivePlanner>(planner);
             Assert.IsAssignableFrom<IDivePlannerVM>(planner);
-        }
-
-        [Fact]
-        public void Construct()
-        {
-            // Then
-            Assert.IsAssignableFrom<ViewModelBase>(planner);
-            Assert.NotNull(planner.DiveSetup);
-            Assert.NotNull(planner.Information);
-            Assert.NotNull(planner.DiveStage);
         }
 
         [Fact]

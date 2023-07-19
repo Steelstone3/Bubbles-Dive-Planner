@@ -16,9 +16,16 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Setup
         public void Construct()
         {
             // Then
-            Assert.IsAssignableFrom<ViewModelBase>(diveSetup);
             Assert.NotNull(diveSetup.DiveModelSelection);
             Assert.NotNull(diveSetup.CylinderSelection);
+        }
+
+        [Fact]
+        public void DeriveFrom()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(diveSetup);
+            Assert.IsAssignableFrom<IDiveSetup>(diveSetup);
         }
 
         [Fact]

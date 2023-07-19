@@ -30,6 +30,17 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
             Assert.Equal(defaultValue, diveProfile.HeliumAtPressure);
         }
 
+        [Fact]
+        public void DeriveFrom()
+        {
+            // Given
+            IDiveProfile diveProfile = new DiveProfile(1);
+
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(diveProfile);
+            Assert.IsAssignableFrom<IDiveProfile>(diveProfile);
+        }
+
         [Theory]
         [InlineData(16)]
         [InlineData(12)]

@@ -31,5 +31,12 @@ namespace BubblesDivePlannerTests.ViewModels.Models
             Assert.Equal(bValuesHelium, diveModel.BValuesHelium);
             Assert.NotNull(diveModel.DiveProfile);
         }
+
+        [Fact]
+        public void DeriveFrom()
+        {
+            // Then
+            Assert.IsAssignableFrom<IDiveModel>(diveModel);
+        }
     }
 }

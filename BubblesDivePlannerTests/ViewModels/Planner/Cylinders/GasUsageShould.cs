@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Planner.Cylinders;
 using BubblesDivePlanner.ViewModels.Planner.Cylinders;
 using Xunit;
@@ -15,6 +16,14 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
             Assert.Equal(0u, gasUsage.GasRemaining);
             Assert.Equal(0u, gasUsage.GasUsed);
             Assert.Equal(0u, gasUsage.SurfaceAirConsumptionRate);
+        }
+
+        [Fact]
+        public void DeriveFrom()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(gasUsage);
+            Assert.IsAssignableFrom<IGasUsage>(gasUsage);
         }
 
         [Fact]

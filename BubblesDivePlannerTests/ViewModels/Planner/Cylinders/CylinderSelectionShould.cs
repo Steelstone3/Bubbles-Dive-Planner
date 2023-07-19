@@ -14,7 +14,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
         private readonly ICylinderSelection cylinderSelection = new CylinderSelection();
 
         [Fact]
-        public void BeAViewModelBase()
+        public void DeriveFrom()
         {
             // Then
             Assert.IsAssignableFrom<ViewModelBase>(cylinderSelection);

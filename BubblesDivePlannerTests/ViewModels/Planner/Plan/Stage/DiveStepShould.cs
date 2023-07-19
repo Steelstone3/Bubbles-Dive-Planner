@@ -13,9 +13,16 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Stage
         public void Construct()
         {
             // Then
-            Assert.IsAssignableFrom<ViewModelBase>(diveStep);
             Assert.Equal(0, diveStep.Depth);
             Assert.Equal(0, diveStep.Time);
+        }
+
+        [Fact]
+        public void DeriveFrom()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(diveStep);
+            Assert.IsAssignableFrom<IDiveStep>(diveStep);
         }
 
         [Fact]
