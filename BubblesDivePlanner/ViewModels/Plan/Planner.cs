@@ -10,6 +10,7 @@ namespace BubblesDivePlanner.ViewModels.Plan
 {
     public class Planner : ViewModelBase, IPlanner
     {
+        // TODO Combine into a dive setup?
         public IDiveModelSelection diveModelSelection = new DiveModelSelection();
         public IDiveModelSelection DiveModelSelection
         {
@@ -24,6 +25,7 @@ namespace BubblesDivePlanner.ViewModels.Plan
             set => this.RaiseAndSetIfChanged(ref cylinderSelection, value);
         }
 
+        // TODO combine into a dive application?
         private IDiveInformation information = new DiveInformation();
         public IDiveInformation Information
         {

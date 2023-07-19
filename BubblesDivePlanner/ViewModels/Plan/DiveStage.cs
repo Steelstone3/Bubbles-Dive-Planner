@@ -1,7 +1,6 @@
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
-using BubblesDivePlanner.ViewModels.Plan.Cylinders;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan

@@ -1,4 +1,3 @@
-using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.Information;
 using BubblesDivePlanner.ViewModels.Plan.Cylinders;
