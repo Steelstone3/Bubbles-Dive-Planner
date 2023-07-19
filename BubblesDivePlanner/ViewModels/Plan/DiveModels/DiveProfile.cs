@@ -7,94 +7,94 @@ namespace BubblesDivePlanner.ViewModels.Plan.DiveModels
     {
         public DiveProfile(int compartments)
         {
-            MaxSurfacePressures = new double[compartments];
-            NitrogenTissuePressures = new double[compartments];
-            HeliumTissuePressures = new double[compartments];
-            TotalTissuePressures = new double[compartments];
-            ToleratedAmbientPressures = new double[compartments];
-            AValues = new double[compartments];
-            BValues = new double[compartments];
-            CompartmentLoads = new double[compartments];
+            MaxSurfacePressures = new float[compartments];
+            NitrogenTissuePressures = new float[compartments];
+            HeliumTissuePressures = new float[compartments];
+            TotalTissuePressures = new float[compartments];
+            ToleratedAmbientPressures = new float[compartments];
+            AValues = new float[compartments];
+            BValues = new float[compartments];
+            CompartmentLoads = new float[compartments];
 
             for (int i = 0; i < compartments; i++)
             {
-                NitrogenTissuePressures[i] = 0.79;
-                TotalTissuePressures[i] = 0.79;
+                NitrogenTissuePressures[i] = 0.79f;
+                TotalTissuePressures[i] = 0.79f;
             }
         }
 
-        public double[] maxSurfacePressures;
-        public double[] MaxSurfacePressures
+        public float[] maxSurfacePressures;
+        public float[] MaxSurfacePressures
         {
             get => maxSurfacePressures;
             set => this.RaiseAndSetIfChanged(ref maxSurfacePressures, value);
         }
 
-        public double[] nitrogenTissuePressures;
-        public double[] NitrogenTissuePressures
+        public float[] nitrogenTissuePressures;
+        public float[] NitrogenTissuePressures
         {
             get => nitrogenTissuePressures;
             set => this.RaiseAndSetIfChanged(ref nitrogenTissuePressures, value);
         }
 
-        public double[] heliumTissuePressures;
-        public double[] HeliumTissuePressures
+        public float[] heliumTissuePressures;
+        public float[] HeliumTissuePressures
         {
             get => heliumTissuePressures;
             set => this.RaiseAndSetIfChanged(ref heliumTissuePressures, value);
         }
 
-        public double[] totalTissuePressures;
-        public double[] TotalTissuePressures
+        public float[] totalTissuePressures;
+        public float[] TotalTissuePressures
         {
             get => totalTissuePressures;
             set => this.RaiseAndSetIfChanged(ref totalTissuePressures, value);
         }
 
-        public double[] toleratedAmbientPressures;
-        public double[] ToleratedAmbientPressures
+        public float[] toleratedAmbientPressures;
+        public float[] ToleratedAmbientPressures
         {
             get => toleratedAmbientPressures;
             set => this.RaiseAndSetIfChanged(ref toleratedAmbientPressures, value);
         }
 
-        public double[] aValues;
-        public double[] AValues
+        public float[] aValues;
+        public float[] AValues
         {
             get => aValues;
             set => this.RaiseAndSetIfChanged(ref aValues, value);
         }
 
-        public double[] bValues;
-        public double[] BValues
+        public float[] bValues;
+        public float[] BValues
         {
             get => bValues;
             set => this.RaiseAndSetIfChanged(ref bValues, value);
         }
 
-        public double[] compartmentLoads;
-        public double[] CompartmentLoads
+        public float[] compartmentLoads;
+        public float[] CompartmentLoads
         {
             get => compartmentLoads;
             set => this.RaiseAndSetIfChanged(ref compartmentLoads, value);
         }
 
-        public double oxygenAtPressure;
-        public double OxygenAtPressure
+        public float oxygenAtPressure;
+        public float OxygenAtPressure
         {
             get => oxygenAtPressure;
             set => this.RaiseAndSetIfChanged(ref oxygenAtPressure, value);
         }
 
-        public double nitrogenAtPressure;
-        public double NitrogenAtPressure
+        public float nitrogenAtPressure;
+        public float NitrogenAtPressure
         {
             get => nitrogenAtPressure;
             set => this.RaiseAndSetIfChanged(ref nitrogenAtPressure, value);
         }
 
-        public double heliumAtPressure;
-        public double HeliumAtPressure
+        public float heliumAtPressure;
+        public float HeliumAtPressure
         {
             get => heliumAtPressure;
             set => this.RaiseAndSetIfChanged(ref heliumAtPressure, value);

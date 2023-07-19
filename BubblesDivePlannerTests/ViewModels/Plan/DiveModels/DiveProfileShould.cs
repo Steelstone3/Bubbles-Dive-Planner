@@ -11,8 +11,8 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
         public void Construct()
         {
             // Given
-            const double defaultValue = 0.0;
-            const double defaultPressurisedValue = 0.79;
+            const float defaultValue = 0.0f;
+            const float defaultPressurisedValue = 0.79f;
             IDiveProfile diveProfile = new DiveProfile(1);
 
             // Then
@@ -66,8 +66,8 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
         public void RaisePropertyChanged()
         {
             //Arrange
-            double[] defaultArrayValue = new double[] { 3.0, 6.0 };
-            const double defaultValue = 10.0;
+            float[] defaultArrayValue = new float[] { 3.0f, 6.0f };
+            const float defaultValue = 10.0f;
             DiveProfile diveProfile = new(16);
             var viewModelEvents = new List<string>();
             diveProfile.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
