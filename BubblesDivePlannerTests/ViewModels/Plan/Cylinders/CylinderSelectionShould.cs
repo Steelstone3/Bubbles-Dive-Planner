@@ -14,8 +14,8 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
         public void RaiseCollectionChanged()
         {
             // Given
-            Mock<ICylinder> cylinder = new();
             CylinderSelection cylinderSelectionVM = (CylinderSelection)cylinderSelection;
+            Mock<ICylinder> cylinder = new();
             List<NotifyCollectionChangedAction> viewModelEvents = new();
             cylinderSelectionVM.Cylinders.CollectionChanged += (sender, e) => viewModelEvents.Add(e.Action);
 
