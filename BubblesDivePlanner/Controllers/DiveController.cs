@@ -27,12 +27,12 @@ namespace BubblesDivePlanner.Controllers
 
             return new IDiveStageCommand[]
             {
-                new AmbientPressureCommand(diveProfile, gasMixture, diveStep),
-                new TissuePressureCommand(diveModel, diveStep),
-                new ABValuesCommand(diveModel),
-                new ToleratedAmbientPressureCommand(diveModel),
-                new MaximumSurfacePressureCommand(diveModel),
-                new CompartmentLoadCommand(diveModel),
+                new AmbientPressure(diveProfile, gasMixture, diveStep),
+                new TissuePressure(diveModel, diveStep),
+                new ABValues(diveModel),
+                new ToleratedAmbientPressure(diveModel),
+                new MaximumSurfacePressure(diveModel),
+                new CompartmentLoad(diveModel),
             };
         }
     }

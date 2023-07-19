@@ -1,13 +1,12 @@
 using BubblesDivePlanner.Commands;
 using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
-using BubblesDivePlanner.ViewModels.Planner.DiveModels;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Commands
+namespace BubblesDivePlannerTests.Controllers.Commands.DiveStages
 {
-    public class ABValuesCommandShould
+    public class ABValuesShould
     {
         [Fact]
         public void RunAbValuesStage()
@@ -18,7 +17,7 @@ namespace BubblesDivePlannerTests.Commands
             diveModel.DiveProfile.NitrogenTissuePressures = PlannerTestFixture.GetDiveProfile.NitrogenTissuePressures;
             diveModel.DiveProfile.HeliumTissuePressures = PlannerTestFixture.GetDiveProfile.HeliumTissuePressures;
             diveModel.DiveProfile.TotalTissuePressures = PlannerTestFixture.GetDiveProfile.TotalTissuePressures;
-            IDiveStageCommand diveStage = new ABValuesCommand(diveModel);
+            IDiveStageCommand diveStage = new ABValues(diveModel);
 
             //Act
             diveStage.RunDiveStage();

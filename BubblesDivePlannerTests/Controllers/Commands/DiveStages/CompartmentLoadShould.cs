@@ -1,13 +1,12 @@
 using BubblesDivePlanner.Commands;
 using BubblesDivePlanner.Commands.Interfaces;
-using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Commands
+namespace BubblesDivePlannerTests.Controllers.Commands.DiveStages
 {
-    public class CompartmentLoadCommandShould
+    public class CompartmentLoadShould
     {
         [Fact]
         public void RunCompartmentLoadStage()
@@ -17,7 +16,7 @@ namespace BubblesDivePlannerTests.Commands
             IDiveModel diveModel = PlannerTestFixture.GetDiveModel;
             diveModel.DiveProfile.TotalTissuePressures = expectedDiveProfile.TotalTissuePressures;
             diveModel.DiveProfile.MaxSurfacePressures = expectedDiveProfile.MaxSurfacePressures;
-            IDiveStageCommand diveStage = new CompartmentLoadCommand(diveModel);
+            IDiveStageCommand diveStage = new CompartmentLoad(diveModel);
 
             //Act
             diveStage.RunDiveStage();

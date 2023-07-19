@@ -4,11 +4,11 @@ using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
 
 namespace BubblesDivePlanner.Commands
 {
-    public class ABValuesCommand : IDiveStageCommand
+    public class ABValues : IDiveStageCommand
     {
         private readonly IDiveModel diveModel;
 
-        public ABValuesCommand(IDiveModel diveModel)
+        public ABValues(IDiveModel diveModel)
         {
             this.diveModel = diveModel;
         }

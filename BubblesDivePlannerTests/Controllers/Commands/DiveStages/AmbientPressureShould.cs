@@ -3,11 +3,10 @@ using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.ViewModels.Model.Planner.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Stage;
-using BubblesDivePlanner.ViewModels.Planner.DiveModels;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Commands
+namespace BubblesDivePlannerTests.Controllers.Commands.DiveStages
 {
     public class AmbientPressureShould
     {
@@ -19,7 +18,7 @@ namespace BubblesDivePlannerTests.Commands
             IDiveProfile diveProfile = PlannerTestFixture.GetDiveModel.DiveProfile;
             IGasMixture gasMixtureModel = PlannerTestFixture.GetCylinder.GasMixture;
             IDiveStep diveStepModel = PlannerTestFixture.GetDiveStep;
-            IDiveStageCommand diveStage = new AmbientPressureCommand(diveProfile, gasMixtureModel, diveStepModel);
+            IDiveStageCommand diveStage = new AmbientPressure(diveProfile, gasMixtureModel, diveStepModel);
 
             //Act
             diveStage.RunDiveStage();

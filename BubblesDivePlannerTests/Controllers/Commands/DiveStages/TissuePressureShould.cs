@@ -5,7 +5,7 @@ using BubblesDivePlanner.ViewModels.Planner.DiveModels;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Commands
+namespace BubblesDivePlannerTests.Controllers.Commands.DiveStages
 {
     public class TissuePressureShould
     {
@@ -18,7 +18,7 @@ namespace BubblesDivePlannerTests.Commands
             float expectedTissuePressureNitrogen = diveModel.DiveProfile.NitrogenAtPressure;
             float expectedTissuePressureHelium = diveModel.DiveProfile.HeliumAtPressure;
             float[] expectedTissuePressureTotal = diveModel.DiveProfile.TotalTissuePressures;
-            IDiveStageCommand diveStage = new TissuePressureCommand(diveModel, diveStep);
+            IDiveStageCommand diveStage = new TissuePressure(diveModel, diveStep);
 
             //Act
             diveStage.RunDiveStage();

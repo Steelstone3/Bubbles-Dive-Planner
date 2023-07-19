@@ -4,11 +4,11 @@ using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
 
 namespace BubblesDivePlanner.Commands
 {
-    public class MaximumSurfacePressureCommand : IDiveStageCommand
+    public class CompartmentLoad : IDiveStageCommand
     {
         private readonly IDiveModel diveModel;
 
-        public MaximumSurfacePressureCommand(IDiveModel diveModel)
+        public CompartmentLoad(IDiveModel diveModel)
         {
             this.diveModel = diveModel;
         }
@@ -17,13 +17,13 @@ namespace BubblesDivePlanner.Commands
         {
             for (int compartment = 0; compartment < diveModel.Compartments; compartment++)
             {
-                CalculateMaximumSurfacePressure(compartment);
+                CalculateCompartmentLoad(compartment);
             }
         }
 
-        private void CalculateMaximumSurfacePressure(int compartment)
+        private void CalculateCompartmentLoad(int compartment)
         {
-            diveModel.DiveProfile.MaxSurfacePressures[compartment] = (float)Math.Round((1.0f / diveModel.DiveProfile.BValues[compartment]) + diveModel.DiveProfile.AValues[compartment], 4);
+            diveModel.DiveProfile.CompartmentLoads[compartment] = (float)Math.Round(diveModel.DiveProfile.TotalTissuePressures[compartment] / diveModel.DiveProfile.MaxSurfacePressures[compartment] * 100, 2);
         }
     }
 }

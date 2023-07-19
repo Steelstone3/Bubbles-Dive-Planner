@@ -1,11 +1,10 @@
 using BubblesDivePlanner.Commands;
 using BubblesDivePlanner.Commands.Interfaces;
 using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
-using BubblesDivePlanner.ViewModels.Planner.DiveModels;
 using BubblesDivePlannerTests.TestFixtures;
 using Xunit;
 
-namespace BubblesDivePlannerTests.Commands
+namespace BubblesDivePlannerTests.Controllers.Commands.DiveStages
 {
     public class ToleratedAmbientPressureShould
     {
@@ -18,7 +17,7 @@ namespace BubblesDivePlannerTests.Commands
             diveModel.DiveProfile.AValues = PlannerTestFixture.GetDiveProfile.AValues;
             diveModel.DiveProfile.BValues = PlannerTestFixture.GetDiveProfile.BValues;
             float[] toleratedAmbientPressuresResult = PlannerTestFixture.GetDiveProfile.ToleratedAmbientPressures;
-            IDiveStageCommand diveStage = new ToleratedAmbientPressureCommand(diveModel);
+            IDiveStageCommand diveStage = new ToleratedAmbientPressure(diveModel);
 
             //Act
             diveStage.RunDiveStage();
