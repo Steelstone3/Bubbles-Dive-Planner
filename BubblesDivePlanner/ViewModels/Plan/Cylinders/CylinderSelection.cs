@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Reactive;
+using BubblesDivePlanner.Controllers.Prototypes;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using ReactiveUI;
 
@@ -28,7 +29,7 @@ namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 
         public void AddCylinder()
         {
-            Cylinders.Add(new Cylinder(Cylinder));
+            Cylinders.Add(CylinderPrototype.DeepClone(Cylinder));
         }
     }
 }

@@ -57,7 +57,7 @@ namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
             const double toleratedPartialPressure = 1.4;
             double oxygenPartialPressure = oxygenPercentage / 100;
             double toleratedPressure = toleratedPartialPressure / oxygenPartialPressure;
-            return (float)Math.Round(toleratedPressure * 10 - 10, 2);
+            return (float)Math.Round((toleratedPressure * 10) - 10, 2);
         }
     }
 }

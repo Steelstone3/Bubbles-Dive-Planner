@@ -64,23 +64,5 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
             Assert.Contains(nameof(cylinderVM.Pressure), viewModelEvents);
             Assert.Contains(nameof(cylinderVM.InitialPressurisedVolume), viewModelEvents);
         }
-
-        [Fact]
-        public void DeepClone()
-        {
-            // Given
-            Mock<IGasMixture> gasMixture = new();
-            Mock<IGasUsage> gasUsage = new();
-            cylinder.Name = "EAN32";
-            cylinder.Volume = 12;
-            cylinder.Pressure = 200;
-            cylinder.GasMixture = gasMixture.Object;
-            cylinder.GasUsage = gasUsage.Object;
-            var deepClone = new Cylinder(cylinder);
-
-            // Then
-            Assert.NotSame(cylinder, deepClone);
-            Assert.Equivalent(cylinder,deepClone);
-        }
     }
 }

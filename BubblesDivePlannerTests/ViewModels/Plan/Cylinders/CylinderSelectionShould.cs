@@ -61,6 +61,8 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
             // Then
             Assert.NotEmpty(cylinderSelection.Cylinders);
             Assert.NotSame(cylinderSelection.Cylinders[0], cylinderSelection.Cylinders[1]);
+            Assert.NotSame(cylinderSelection.Cylinders[0].GasMixture, cylinderSelection.Cylinders[1].GasMixture);
+            Assert.NotSame(cylinderSelection.Cylinders[0].GasUsage, cylinderSelection.Cylinders[1].GasUsage);
         }
     }
 }
