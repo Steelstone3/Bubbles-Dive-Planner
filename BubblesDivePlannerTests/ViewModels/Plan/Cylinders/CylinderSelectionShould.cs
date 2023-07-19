@@ -11,6 +11,24 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
         private readonly ICylinderSelection cylinderSelection = new CylinderSelection();
 
         [Fact]
+        public void RaisePropertyChanged()
+        {
+            //Arrange
+            CylinderSelection cylinderSelectionVM = (CylinderSelection)cylinderSelection;
+            Mock<ICylinder> cylinder = new();
+            Mock<IGasMixture> gasMixture = new();
+            Mock<IGasUsage> gasUsage = new();
+            List<string> viewModelEvents = new();
+            cylinderSelectionVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
+
+            //Act
+            cylinderSelectionVM.SelectedCylinder = cylinder.Object;
+
+            //Assert
+            Assert.Contains(nameof(cylinderSelectionVM.SelectedCylinder), viewModelEvents);
+        }
+
+        [Fact]
         public void RaiseCollectionChanged()
         {
             // Given

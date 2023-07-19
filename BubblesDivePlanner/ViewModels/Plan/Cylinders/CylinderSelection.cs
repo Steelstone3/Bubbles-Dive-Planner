@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
+using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
@@ -9,5 +10,12 @@ namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
         {
             get;
         } = new ObservableCollection<ICylinder>();
+
+        private ICylinder selectedCylinder = new Cylinder();
+        public ICylinder SelectedCylinder
+        {
+            get => selectedCylinder;
+            set => this.RaiseAndSetIfChanged(ref selectedCylinder, value);
+        }
     }
 }
