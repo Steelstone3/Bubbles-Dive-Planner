@@ -33,8 +33,6 @@ namespace BubblesDivePlanner.Controllers
                 new ToleratedAmbientPressureCommand(diveModel),
                 new MaximumSurfacePressureCommand(diveModel),
                 new CompartmentLoadCommand(diveModel),
-                // new DiveCeilingCommand(diveProfile),
-                // new GasManagementCommand(selectedCylinder, diveStep)
             };
         }
     }

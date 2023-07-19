@@ -18,6 +18,8 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
         {
             // Then
             Assert.IsAssignableFrom<ViewModelBase>(cylinderSelection);
+            Assert.IsAssignableFrom<ICylinderSelectionVM>(cylinderSelection);
+            Assert.IsAssignableFrom<ICylinderSelection>(cylinderSelection);
         }
 
         [Fact]
