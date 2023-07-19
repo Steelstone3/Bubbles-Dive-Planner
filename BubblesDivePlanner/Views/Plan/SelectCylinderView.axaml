@@ -18,56 +18,56 @@
                 Text="Select Cylinder" />
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <!-- ↓ Items="{Binding DivePlan.CylinderSelector.Cylinders}"
-                ↓ IsVisible="{Binding !!DivePlan.CylinderSelector.Cylinders.Count}"
-                ↓ SelectedItem="{Binding DivePlan.CylinderSelector.SelectedCylinder}"> -->
             <ListBox
+                ItemsSource="{Binding Planner.CylinderSelection.Cylinders}"
+                IsVisible="{Binding !!Planner.CylinderSelection.Cylinders.Count}"
+                SelectedItem="{Binding Planner.CylinderSelection.Cylinder}"
                 Margin="8,4">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="2" Orientation="Horizontal">
-                            <!-- ↓ Text="{Binding Name}" -->
                             <TextBlock Margin="4,0"
+                                Text="{Binding Name}"
                                 FontWeight="Bold" />
 
-                            <!-- ↓ Text="{Binding Volume}" /> -->
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="4,0"
                                     Text="Volume:"
                                     FontWeight="Bold" />
-                                <TextBlock Margin="4,0" />
+                                <TextBlock Margin="4,0"
+                                    Text="{Binding Volume}" />
                             </StackPanel>
 
-                            <!-- ↓ Text="{Binding Pressure}" /> -->
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="4,0"
                                     Text="Pressure:"
                                     FontWeight="Bold" />
-                                <TextBlock Margin="4,0" />
+                                <TextBlock Margin="4,0"
+                                    Text="{Binding Pressure}" />
                             </StackPanel>
 
-                            <!-- ↓ Text="{Binding GasMixture.Oxygen}" /> -->
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="4,0"
                                     Text="O2:"
                                     FontWeight="Bold" />
-                                <TextBlock Margin="4,0" />
+                                <TextBlock Margin="4,0"
+                                    Text="{Binding GasMixture.Oxygen}" />
                             </StackPanel>
 
-                            <!-- ↓ Text="{Binding GasMixture.Nitrogen}" /> -->
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="4,0"
                                     Text="N:"
                                     FontWeight="Bold" />
-                                <TextBlock Margin="4,0" />
+                                <TextBlock Margin="4,0"
+                                    Text="{Binding GasMixture.Nitrogen}" />
                             </StackPanel>
 
-                            <!-- ↓ Text="{Binding GasMixture.Helium}" /> -->
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="4,0"
                                     Text="He:"
                                     FontWeight="Bold" />
-                                <TextBlock Margin="4,0" />
+                                <TextBlock Margin="4,0"
+                                    Text="{Binding GasMixture.Helium}" />
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

@@ -22,36 +22,37 @@
             <StackPanel Margin="4,0" Background="#FFC3FDFF" />
             <TextBlock Margin="8,4" Text="Name:" FontWeight="Bold" />
             <TextBox Watermark="Enter Cylinder Name" Margin="8,4"
-                Text="{Binding Planner.DiveStage.Cylinder.Name}" />
+                Text="{Binding Planner.CylinderSelection.Cylinder.Name}" />
             <TextBlock Margin="8,4" Text="Volume (l):" FontWeight="Bold" />
             <TextBox Watermark="Enter Cylinder Volume" Margin="8,4"
-                Text="{Binding Planner.DiveStage.Cylinder.Volume}" />
+                Text="{Binding Planner.CylinderSelection.Cylinder.Volume}" />
             <TextBlock Margin="8,4" Text="Pressure (BAR):" FontWeight="Bold" />
             <TextBox Watermark="Enter Cylinder Pressure" Margin="8,4"
-                Text="{Binding Planner.DiveStage.Cylinder.Pressure}" />
+                Text="{Binding Planner.CylinderSelection.Cylinder.Pressure}" />
             <TextBlock Margin="8,4" Text="S.A.C Rate (l/min):" FontWeight="Bold" />
             <TextBox Watermark="Enter Surface Air Consumption Rate" Margin="8,4"
-                Text="{Binding Planner.DiveStage.Cylinder.GasUsage.SurfaceAirConsumptionRate}" />
+                Text="{Binding Planner.CylinderSelection.Cylinder.GasUsage.SurfaceAirConsumptionRate}" />
         </StackPanel>
         <!-- ↓ IsVisible="{Binding
         DivePlan.CylinderSelector.SelectedCylinder.GasMixture.IsVisible}"> -->
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="4" Text="Oxygen (%):" FontWeight="Bold" />
             <TextBox Watermark="Enter Oxygen Percentage" Margin="8,4"
-                Text="{Binding Planner.DiveStage.Cylinder.GasMixture.Oxygen}" />
+                Text="{Binding Planner.CylinderSelection.Cylinder.GasMixture.Oxygen}" />
             <TextBlock Margin="4" Text="Helium (%):" FontWeight="Bold" />
             <TextBox Watermark="Enter Helium Percentage" Margin="8,4"
-                Text="{Binding Planner.DiveStage.Cylinder.GasMixture.Helium}" />
+                Text="{Binding Planner.CylinderSelection.Cylinder.GasMixture.Helium}" />
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="4,4,0,4" Text="Nitrogen (%):" FontWeight="Bold" />
-                <TextBlock Margin="0,4,4,4" Text="{Binding Planner.DiveStage.Cylinder.GasMixture.Nitrogen}" />
+                <TextBlock Margin="0,4,4,4"
+                    Text="{Binding Planner.CylinderSelection.Cylinder.GasMixture.Nitrogen}" />
             </StackPanel>
         </StackPanel>
         <!-- ↓ IsVisible="{Binding DivePlan.CylinderSelector.SelectedCylinder.IsVisible}"> -->
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
-            <!-- ↓ Command="{Binding DivePlan.CylinderSelector.AddCylinderCommand}" -->
             <Button
                 Margin="8,4"
+                Command="{Binding Planner.CylinderSelection.AddCylinderCommand}"
                 HorizontalAlignment="Stretch"
                 FontWeight="Bold"
                 FontSize="12"

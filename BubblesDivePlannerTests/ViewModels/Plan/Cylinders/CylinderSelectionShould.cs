@@ -24,10 +24,10 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
             cylinderSelectionVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
 
             //Act
-            cylinderSelectionVM.SelectedCylinder = cylinder.Object;
+            cylinderSelectionVM.Cylinder = cylinder.Object;
 
             //Assert
-            Assert.Contains(nameof(cylinderSelectionVM.SelectedCylinder), viewModelEvents);
+            Assert.Contains(nameof(cylinderSelectionVM.Cylinder), viewModelEvents);
         }
 
         [Fact]

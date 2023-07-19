@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
-    public class CylinderSelection : ViewModelBase, ICylinderSelection
+    public class CylinderSelection : ViewModelBase, ICylinderSelectionVM
     {
         public CylinderSelection()
         {
@@ -17,18 +17,18 @@ namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
             get;
         } = new ObservableCollection<ICylinder>();
 
-        private ICylinder selectedCylinder = new Cylinder();
-        public ICylinder SelectedCylinder
+        private ICylinder cylinder = new Cylinder();
+        public ICylinder Cylinder
         {
-            get => selectedCylinder;
-            set => this.RaiseAndSetIfChanged(ref selectedCylinder, value);
+            get => cylinder;
+            set => this.RaiseAndSetIfChanged(ref cylinder, value);
         }
 
         public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
 
         public void AddCylinder()
         {
-            Cylinders.Add(SelectedCylinder);
+            Cylinders.Add(Cylinder);
         }
     }
 }

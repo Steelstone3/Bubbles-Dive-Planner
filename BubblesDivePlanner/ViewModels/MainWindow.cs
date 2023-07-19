@@ -2,7 +2,6 @@
 using BubblesDivePlanner.ViewModels.Model;
 using BubblesDivePlanner.ViewModels.Model.Headers;
 using BubblesDivePlanner.ViewModels.Model.Plan;
-using BubblesDivePlanner.ViewModels.Model.Plan.Information;
 using BubblesDivePlanner.ViewModels.Plan;
 using ReactiveUI;
 

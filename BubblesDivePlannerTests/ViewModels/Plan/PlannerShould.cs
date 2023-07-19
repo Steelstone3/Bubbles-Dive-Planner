@@ -1,8 +1,8 @@
 using BubblesDivePlanner.ViewModels.Model.Plan;
-using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.Information;
 using BubblesDivePlanner.ViewModels.Plan;
+using BubblesDivePlanner.ViewModels.Plan.Cylinders;
 using Moq;
 using Xunit;
 
@@ -28,7 +28,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             //Arrange
             Planner plannerVM = (Planner)planner;
             Mock<IDiveModelSelection> diveModelSelection = new();
-            Mock<ICylinderSelection> cylinderSelection = new();
+            Mock<ICylinderSelectionVM> cylinderSelection = new();
             Mock<IDiveInformation> diveInformation = new();
             Mock<IDiveStage> diveModel = new();
             List<string> viewModelEvents = new();

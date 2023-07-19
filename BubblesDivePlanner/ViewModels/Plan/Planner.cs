@@ -1,5 +1,4 @@
 using BubblesDivePlanner.ViewModels.Model.Plan;
-using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.Information;
 using BubblesDivePlanner.ViewModels.Plan.Cylinders;
@@ -18,8 +17,8 @@ namespace BubblesDivePlanner.ViewModels.Plan
             set => this.RaiseAndSetIfChanged(ref diveModelSelection, value);
         }
 
-        private ICylinderSelection cylinderSelection = new CylinderSelection();
-        public ICylinderSelection CylinderSelection
+        private ICylinderSelectionVM cylinderSelection = new CylinderSelection();
+        public ICylinderSelectionVM CylinderSelection
         {
             get => cylinderSelection;
             set => this.RaiseAndSetIfChanged(ref cylinderSelection, value);
