@@ -17,8 +17,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             // Then
             Assert.Null(planner.DiveModel);
             Assert.NotNull(planner.DiveStep);
-            // TODO may change to null set from the selector...
-            Assert.NotNull(planner.Cylinder);
+            Assert.Null(planner.Cylinder);
         }
 
         [Fact]

@@ -28,7 +28,7 @@ namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 
         public void AddCylinder()
         {
-            Cylinders.Add(Cylinder);
+            Cylinders.Add(new Cylinder(Cylinder));
         }
     }
 }

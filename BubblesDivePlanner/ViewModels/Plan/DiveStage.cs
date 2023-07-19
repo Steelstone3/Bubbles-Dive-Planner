@@ -22,7 +22,7 @@ namespace BubblesDivePlanner.ViewModels.Plan
             set => this.RaiseAndSetIfChanged(ref diveStep, value);
         }
 
-        private ICylinder cylinder = new Cylinder();
+        private ICylinder cylinder;
         public ICylinder Cylinder
         {
             get => cylinder;

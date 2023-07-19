@@ -5,6 +5,17 @@ namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
     public class Cylinder : ViewModelBase, ICylinder
     {
+        public Cylinder() { }
+
+        public Cylinder(ICylinder cylinder)
+        {
+            Name = cylinder.Name;
+            Volume = cylinder.Volume;
+            Pressure = cylinder.Pressure;
+            GasMixture = cylinder.GasMixture;
+            GasUsage = cylinder.GasUsage;
+        }
+
         private string name = string.Empty;
         public string Name
         {
