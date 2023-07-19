@@ -35,5 +35,15 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
             Assert.Contains(nameof(gasUsageVM.GasUsed), viewModelEvents);
             Assert.Contains(nameof(gasUsageVM.SurfaceAirConsumptionRate), viewModelEvents);
         }
+
+        [Fact]
+        public void IsVisible()
+        {
+            // Given
+            GasUsage gasUsage = new();
+
+            // Then
+            Assert.False(gasUsage.IsVisible);
+        }
     }
 }

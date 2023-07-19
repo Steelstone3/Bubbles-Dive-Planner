@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.Information;
@@ -20,6 +21,13 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             Assert.NotNull(planner.CylinderSelection);
             Assert.NotNull(planner.Information);
             Assert.NotNull(planner.DiveStage);
+        }
+
+        [Fact]
+        public void BeAViewModelBase()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(planner);
         }
 
         [Fact]

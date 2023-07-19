@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
 using BubblesDivePlanner.ViewModels.Plan.DiveModels;
 using Xunit;
@@ -28,6 +29,16 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
             Assert.Equal(defaultValue, diveProfile.HeliumAtPressure);
         }
 
+        [Fact]
+        public void BeAViewModelBase()
+        {
+            // Given
+            IDiveProfile diveProfile = new DiveProfile(1);
+
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(diveProfile);
+        }
+
         [Theory]
         [InlineData(16)]
         [InlineData(12)]
@@ -55,7 +66,7 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
         public void RaisePropertyChanged()
         {
             //Arrange
-            double[] defaultArrayValue = new double[] {3.0, 6.0};
+            double[] defaultArrayValue = new double[] { 3.0, 6.0 };
             const double defaultValue = 10.0;
             DiveProfile diveProfile = new(16);
             var viewModelEvents = new List<string>();

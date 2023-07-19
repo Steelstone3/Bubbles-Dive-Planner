@@ -1,4 +1,5 @@
 using BubblesDivePlanner.ViewModels;
+using ReactiveUI;
 using Xunit;
 
 namespace BubblesDivePlannerTests.ViewModels
@@ -6,6 +7,13 @@ namespace BubblesDivePlannerTests.ViewModels
     public class ViewModelBaseShould
     {
         private readonly ViewModelBase viewModelBase = new();
+
+        [Fact]
+        public void BeAReactiveObject()
+        {
+            // Then
+            Assert.IsAssignableFrom<ReactiveObject>(viewModelBase);
+        }
 
         [Fact]
         public void IsVisible()

@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Plan;
 using Xunit;
@@ -14,6 +15,13 @@ namespace BubblesDivePlannerTests.ViewModels.Plan
             // Then
             Assert.Equal(0, diveStep.Depth);
             Assert.Equal(0, diveStep.Time);
+        }
+
+        [Fact]
+        public void BeAViewModelBase()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(diveStep);
         }
 
         [Fact]

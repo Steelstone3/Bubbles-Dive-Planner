@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Plan.Cylinders;
 using Moq;
@@ -19,6 +20,13 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
             Assert.Equal(0u, cylinder.Pressure);
             Assert.NotNull(cylinder.GasMixture);
             Assert.NotNull(cylinder.GasUsage);
+        }
+
+        [Fact]
+        public void BeAViewModelBase()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(cylinder);
         }
 
         [Fact]

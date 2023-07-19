@@ -4,11 +4,11 @@ namespace BubblesDivePlanner.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {
-        private bool _isVisible = true;
+        private bool isVisible = true;
         public bool IsVisible
         {
-            get => _isVisible;
-            set => this.RaiseAndSetIfChanged(ref _isVisible, value);
+            get => isVisible;
+            set => this.RaiseAndSetIfChanged(ref isVisible, value);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Specialized;
 using System.Reactive;
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Plan.Cylinders;
 using Moq;
@@ -11,6 +12,13 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
     public class CylindersShould
     {
         private readonly ICylinderSelection cylinderSelection = new CylinderSelection();
+
+        [Fact]
+        public void BeAViewModelBase()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(cylinderSelection);
+        }
 
         [Fact]
         public void RaisePropertyChanged()

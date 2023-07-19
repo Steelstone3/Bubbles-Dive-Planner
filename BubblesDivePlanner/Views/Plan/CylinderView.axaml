@@ -17,6 +17,8 @@
                 FontWeight="DemiBold"
                 Text="Setup Cylinder" />
         </StackPanel>
+
+        <!-- TODO Combine into one large stack panel -->
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <!-- ↓ IsVisible="{Binding DivePlan.CylinderSelector.SelectedCylinder.IsVisible}"> -->
             <StackPanel Margin="4,0" Background="#FFC3FDFF" />
@@ -33,8 +35,7 @@
             <TextBox Watermark="Enter Surface Air Consumption Rate" Margin="8,4"
                 Text="{Binding Planner.CylinderSelection.Cylinder.GasUsage.SurfaceAirConsumptionRate}" />
         </StackPanel>
-        <!-- ↓ IsVisible="{Binding
-        DivePlan.CylinderSelector.SelectedCylinder.GasMixture.IsVisible}"> -->
+
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="4" Text="Oxygen (%):" FontWeight="Bold" />
             <TextBox Watermark="Enter Oxygen Percentage" Margin="8,4"
@@ -48,7 +49,7 @@
                     Text="{Binding Planner.CylinderSelection.Cylinder.GasMixture.Nitrogen}" />
             </StackPanel>
         </StackPanel>
-        <!-- ↓ IsVisible="{Binding DivePlan.CylinderSelector.SelectedCylinder.IsVisible}"> -->
+
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <Button
                 Margin="8,4"

@@ -5,6 +5,11 @@ namespace BubblesDivePlanner.ViewModels.Plan.Cylinders
 {
     public class GasUsage : ViewModelBase, IGasUsage
     {
+        public GasUsage()
+        {
+            IsVisible = false;
+        }
+
         private ushort gasRemaining;
         public ushort GasRemaining
         {

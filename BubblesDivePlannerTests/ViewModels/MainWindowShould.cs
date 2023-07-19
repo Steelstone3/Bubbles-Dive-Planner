@@ -21,6 +21,13 @@ namespace BubblesDivePlannerTests.ViewModels
         }
 
         [Fact]
+        public void BeAViewModelBase()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(mainWindow);
+        }
+
+        [Fact]
         public void RaisePropertyChanged()
         {
             //Arrange

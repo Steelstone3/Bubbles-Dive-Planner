@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.DiveModels;
 using BubblesDivePlanner.ViewModels.Plan.DiveModels;
 using Xunit;
@@ -13,6 +14,13 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
         {
             // Then
             Assert.NotEmpty(diveModelSelection.DiveModels);
+        }
+
+        [Fact]
+        public void BeAViewModelBase()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(diveModelSelection);
         }
     }
 }

@@ -1,3 +1,4 @@
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan.Cylinders;
 using BubblesDivePlanner.ViewModels.Plan.Cylinders;
 using Xunit;
@@ -16,6 +17,13 @@ namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
             Assert.Equal(0f, gasMixture.Helium);
             Assert.Equal(100f, gasMixture.Nitrogen);
             Assert.Equal(0f, gasMixture.MaximumOperatingDepth);
+        }
+
+        [Fact]
+        public void BeAViewModelBase()
+        {
+            // Then
+            Assert.IsAssignableFrom<ViewModelBase>(gasMixture);
         }
 
         [Fact]
