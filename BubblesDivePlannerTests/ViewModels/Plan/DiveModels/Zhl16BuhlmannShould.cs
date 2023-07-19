@@ -12,12 +12,12 @@ namespace BubblesDivePlannerTests.ViewModels.Models
         {
             // Given
             const byte COMPARTMENTS = 16;
-            double[] nitrogenHalfTime = new double[COMPARTMENTS] { 4.0, 8.0, 12.5, 18.5, 27.0, 38.3, 54.3, 77.0, 109.0, 146.0, 187.0, 239.0, 305.0, 390.0, 498.0, 635.0 };
-            double[] heliumHalfTime = new double[COMPARTMENTS] { 1.51, 3.02, 4.72, 6.99, 10.21, 14.48, 20.53, 29.11, 41.20, 55.19, 70.69, 90.34, 115.29, 147.42, 188.24, 240.03 };
-            double[] aValuesNitrogen = new double[COMPARTMENTS] { 1.2559, 1.0000, 0.8618, 0.7562, 0.6667, 0.5600, 0.4947, 0.4500, 0.4187, 0.3798, 0.3497, 0.3223, 0.2850, 0.2737, 0.2523, 0.2327 };
-            double[] bValuesNitrogen = new double[COMPARTMENTS] { 0.5050, 0.6514, 0.7222, 0.7825, 0.8126, 0.8434, 0.8693, 0.8910, 0.9092, 0.9222, 0.9319, 0.9403, 0.9477, 0.9544, 0.9602, 0.9653 };
-            double[] aValuesHelium = new double[COMPARTMENTS] { 1.7424, 1.3830, 1.1919, 1.0458, 0.9220, 0.8205, 0.7305, 0.6502, 0.5950, 0.5545, 0.5333, 0.5189, 0.5181, 0.5176, 0.5172, 0.5119 };
-            double[] bValuesHelium = new double[COMPARTMENTS] { 0.4245, 0.5747, 0.6527, 0.7223, 0.7582, 0.7957, 0.8279, 0.8553, 0.8757, 0.8903, 0.8997, 0.9073, 0.9122, 0.9171, 0.9217, 0.9267 };
+            float[] nitrogenHalfTime = new float[COMPARTMENTS] { 4.0f, 8.0f, 12.5f, 18.5f, 27.0f, 38.3f, 54.3f, 77.0f, 109.0f, 146.0f, 187.0f, 239.0f, 305.0f, 390.0f, 498.0f, 635.0f };
+            float[] heliumHalfTime = new float[COMPARTMENTS] { 1.51f, 3.02f, 4.72f, 6.99f, 10.21f, 14.48f, 20.53f, 29.11f, 41.20f, 55.19f, 70.69f, 90.34f, 115.29f, 147.42f, 188.24f, 240.03f };
+            float[] aValuesNitrogen = new float[COMPARTMENTS] { 1.2559f, 1.0000f, 0.8618f, 0.7562f, 0.6667f, 0.5600f, 0.4947f, 0.4500f, 0.4187f, 0.3798f, 0.3497f, 0.3223f, 0.2850f, 0.2737f, 0.2523f, 0.2327f };
+            float[] bValuesNitrogen = new float[COMPARTMENTS] { 0.5050f, 0.6514f, 0.7222f, 0.7825f, 0.8126f, 0.8434f, 0.8693f, 0.8910f, 0.9092f, 0.9222f, 0.9319f, 0.9403f, 0.9477f, 0.9544f, 0.9602f, 0.9653f };
+            float[] aValuesHelium = new float[COMPARTMENTS] { 1.7424f, 1.3830f, 1.1919f, 1.0458f, 0.9220f, 0.8205f, 0.7305f, 0.6502f, 0.5950f, 0.5545f, 0.5333f, 0.5189f, 0.5181f, 0.5176f, 0.5172f, 0.5119f };
+            float[] bValuesHelium = new float[COMPARTMENTS] { 0.4245f, 0.5747f, 0.6527f, 0.7223f, 0.7582f, 0.7957f, 0.8279f, 0.8553f, 0.8757f, 0.8903f, 0.8997f, 0.9073f, 0.9122f, 0.9171f, 0.9217f, 0.9267f };
 
             // Then
             Assert.Equal("Zhl16-B Model", diveModel.Name);
