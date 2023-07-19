@@ -1,10 +1,14 @@
+using System.Reactive;
 using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Information;
 using BubblesDivePlanner.ViewModels.Model.Planner.Setup;
 using BubblesDivePlanner.ViewModels.Planner.Plan;
+using BubblesDivePlanner.ViewModels.Planner.Plan.Stage;
+using BubblesDivePlannerTests.TestFixtures;
 using Moq;
+using ReactiveUI;
 using Xunit;
 
 namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
@@ -51,6 +55,41 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
             Assert.Contains(nameof(plannerVM.DiveSetup), viewModelEvents);
             Assert.Contains(nameof(plannerVM.Information), viewModelEvents);
             Assert.Contains(nameof(plannerVM.DiveStage), viewModelEvents);
+        }
+
+        [Fact]
+        public void CalculateDiveProfile()
+        {
+            // Given
+            IDiveStage expectedDiveStage = new DiveStage
+            {
+                DiveModel = PlannerTestFixture.GetDiveModel,
+                DiveStep = PlannerTestFixture.GetDiveStep,
+                Cylinder = PlannerTestFixture.GetCylinder
+            };
+            expectedDiveStage.DiveModel.DiveProfile.NitrogenTissuePressures = PlannerTestFixture.GetDiveProfileResult.NitrogenTissuePressures;
+            expectedDiveStage.DiveModel.DiveProfile.HeliumTissuePressures = PlannerTestFixture.GetDiveProfileResult.HeliumTissuePressures;
+            expectedDiveStage.DiveModel.DiveProfile.TotalTissuePressures = PlannerTestFixture.GetDiveProfileResult.TotalTissuePressures;
+            expectedDiveStage.DiveModel.DiveProfile.AValues = PlannerTestFixture.GetDiveProfileResult.AValues;
+            expectedDiveStage.DiveModel.DiveProfile.BValues = PlannerTestFixture.GetDiveProfileResult.BValues;
+            expectedDiveStage.DiveModel.DiveProfile.MaxSurfacePressures = PlannerTestFixture.GetDiveProfileResult.MaxSurfacePressures;
+            expectedDiveStage.DiveModel.DiveProfile.ToleratedAmbientPressures = PlannerTestFixture.GetDiveProfileResult.ToleratedAmbientPressures;
+            expectedDiveStage.DiveModel.DiveProfile.CompartmentLoads = PlannerTestFixture.GetDiveProfileResult.CompartmentLoads;
+            expectedDiveStage.DiveModel.DiveProfile.OxygenAtPressure = PlannerTestFixture.GetDiveProfileResult.OxygenAtPressure;
+            expectedDiveStage.DiveModel.DiveProfile.HeliumAtPressure = PlannerTestFixture.GetDiveProfileResult.HeliumAtPressure;
+            expectedDiveStage.DiveModel.DiveProfile.NitrogenAtPressure = PlannerTestFixture.GetDiveProfileResult.NitrogenAtPressure;
+            DivePlanner plannerVM = (DivePlanner)planner;
+            plannerVM.DiveSetup.CylinderSelection.Cylinder = PlannerTestFixture.GetCylinder;
+            // TODO may need to do this via a selectable dive model like cylinder selection...
+            plannerVM.DiveStage.DiveModel = PlannerTestFixture.GetDiveModel;
+            plannerVM.DiveStage.DiveStep = PlannerTestFixture.GetDiveStep;
+            ReactiveCommand<Unit, Unit> calculateDiveProfileCommand = ReactiveCommand.Create(plannerVM.CalculateDiveProfile);
+
+            // When
+            calculateDiveProfileCommand.Execute().Subscribe();
+
+            // Then
+            Assert.Equivalent(expectedDiveStage, plannerVM.DiveStage);
         }
     }
 }

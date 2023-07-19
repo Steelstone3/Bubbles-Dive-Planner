@@ -1,3 +1,6 @@
+using System;
+using System.Reactive;
+using BubblesDivePlanner.Controllers;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Information;
 using BubblesDivePlanner.ViewModels.Model.Planner.Setup;
@@ -10,6 +13,11 @@ namespace BubblesDivePlanner.ViewModels.Planner.Plan
 {
     public class DivePlanner : ViewModelBase, IDivePlannerVM
     {
+        public DivePlanner()
+        {
+            CalculateDiveProfileCommand = ReactiveCommand.Create(CalculateDiveProfile);
+        }
+
         public IDiveSetup diveSetup = new DiveSetup();
         public IDiveSetup DiveSetup
         {
@@ -30,6 +38,17 @@ namespace BubblesDivePlanner.ViewModels.Planner.Plan
         {
             get => diveStage;
             set => this.RaiseAndSetIfChanged(ref diveStage, value);
+        }
+
+        // TODO Results as a wrapped observable of IDiveStage with latest results
+
+        public ReactiveCommand<Unit, Unit> CalculateDiveProfileCommand { get; }
+
+        public void CalculateDiveProfile()
+        {
+            DiveStage.Cylinder = DiveSetup.CylinderSelection.Cylinder;
+
+            DiveController.Run(DiveStage);
         }
     }
 }
