@@ -25,9 +25,9 @@ namespace BubblesDivePlannerTests.Commands
             diveStage.RunDiveStage();
 
             //Assert
-            Assert.Equal(expectedDiveProfile.OxygenAtPressure, diveProfile.OxygenAtPressure, 4);
-            Assert.Equal(expectedDiveProfile.HeliumAtPressure, diveProfile.HeliumAtPressure, 4);
-            Assert.Equal(expectedDiveProfile.NitrogenAtPressure, diveProfile.NitrogenAtPressure, 4);
+            Assert.Equal(expectedDiveProfile.OxygenAtPressure, diveProfile.OxygenAtPressure);
+            Assert.Equal(expectedDiveProfile.HeliumAtPressure, diveProfile.HeliumAtPressure);
+            Assert.Equal(expectedDiveProfile.NitrogenAtPressure, diveProfile.NitrogenAtPressure);
         }
     }
 }
