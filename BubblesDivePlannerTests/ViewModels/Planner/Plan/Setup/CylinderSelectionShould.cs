@@ -7,7 +7,7 @@ using Moq;
 using ReactiveUI;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels.Plan.Cylinders
+namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Setup
 {
     public class CylindersShould
     {

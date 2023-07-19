@@ -3,6 +3,7 @@ using System.Reactive;
 using BubblesDivePlanner.Controllers;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Information;
+using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Result;
 using BubblesDivePlanner.ViewModels.Model.Planner.Setup;
 using BubblesDivePlanner.ViewModels.Planner.Plan.Information;
 using BubblesDivePlanner.ViewModels.Planner.Plan.Setup;
@@ -40,7 +41,12 @@ namespace BubblesDivePlanner.ViewModels.Planner.Plan
             set => this.RaiseAndSetIfChanged(ref diveStage, value);
         }
 
-        // TODO Results as a wrapped observable of IDiveStage with latest results
+        public IResults results = new Results();
+        public IResults Results
+        {
+            get => results;
+            set => this.RaiseAndSetIfChanged(ref results, value);
+        }
 
         public ReactiveCommand<Unit, Unit> CalculateDiveProfileCommand { get; }
 

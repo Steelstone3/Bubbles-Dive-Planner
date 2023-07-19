@@ -6,7 +6,7 @@ using BubblesDivePlanner.ViewModels.Planner.Plan.Setup;
 using Moq;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels.Planner.Setup
+namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Setup
 {
     public class DiveSetupShould
     {

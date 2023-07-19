@@ -3,6 +3,7 @@ using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Information;
+using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Result;
 using BubblesDivePlanner.ViewModels.Model.Planner.Setup;
 using BubblesDivePlanner.ViewModels.Planner.Plan;
 using BubblesDivePlanner.ViewModels.Planner.Plan.Stage;
@@ -24,6 +25,7 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
             Assert.NotNull(planner.DiveSetup);
             Assert.NotNull(planner.Information);
             Assert.NotNull(planner.DiveStage);
+            Assert.NotNull(planner.Results);
         }
 
         [Fact]
@@ -43,6 +45,7 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
             Mock<IDiveSetup> diveSetup = new();
             Mock<IDiveInformation> diveInformation = new();
             Mock<IDiveStage> diveModel = new();
+            Mock<IResults> results = new();
             List<string> viewModelEvents = new();
             plannerVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
 
@@ -50,11 +53,13 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
             plannerVM.DiveSetup = diveSetup.Object;
             plannerVM.Information = diveInformation.Object;
             plannerVM.DiveStage = diveModel.Object;
+            plannerVM.Results = results.Object;
 
             //Assert
             Assert.Contains(nameof(plannerVM.DiveSetup), viewModelEvents);
             Assert.Contains(nameof(plannerVM.Information), viewModelEvents);
             Assert.Contains(nameof(plannerVM.DiveStage), viewModelEvents);
+            Assert.Contains(nameof(plannerVM.Results), viewModelEvents);
         }
 
         [Fact]

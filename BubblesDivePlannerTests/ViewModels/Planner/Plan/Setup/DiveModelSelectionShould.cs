@@ -3,7 +3,7 @@ using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
 using BubblesDivePlanner.ViewModels.Planner.DiveModels;
 using Xunit;
 
-namespace BubblesDivePlannerTests.ViewModels.Plan.DiveModels
+namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Setup
 {
     public class DiveModelSelectionShould
     {
