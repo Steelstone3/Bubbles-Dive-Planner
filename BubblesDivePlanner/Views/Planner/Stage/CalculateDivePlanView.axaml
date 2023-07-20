@@ -17,10 +17,10 @@
                 FontWeight="DemiBold"
                 Text="Calculate Dive Plan" />
         </StackPanel>
-        <!-- ↓ Command="{Binding CalculateDivePlanCommand}" HotKey="Enter" -->
         <!-- ↓ IsEnabled="{Binding CanCalculateDivePlan}" -->
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <Button
+                Command="{Binding Planner.CalculateDiveProfileCommand}" HotKey="Enter"
                 Margin="8,4"
                 HorizontalAlignment="Stretch"
                 FontWeight="Bold"
