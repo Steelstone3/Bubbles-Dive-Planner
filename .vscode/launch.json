@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/BubblesDivePlannerTests/bin/Debug/net6.0/BubblesDivePlannerTests.dll",
+            "program": "${workspaceFolder}/BubblesDivePlanner/bin/Debug/net7.0/BubblesDivePlanner.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/BubblesDivePlannerTests",
+            "cwd": "${workspaceFolder}/BubblesDivePlanner",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
