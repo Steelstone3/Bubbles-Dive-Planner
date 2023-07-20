@@ -22,31 +22,39 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <!-- ↓ IsVisible="{Binding
+            !!Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures.Length}" /> -->
             <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="0" Text="TP"
-                FontWeight="Bold"
-                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures.Length}" />
+                FontWeight="Bold" />
+            <!-- ↓ IsVisible="{Binding
+            !!Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures.Length}" /> -->
             <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="1" Text="TAP"
-                FontWeight="Bold"
-                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures.Length}" />
+                FontWeight="Bold" />
+            <!-- ↓ IsVisible="{Binding
+            !!Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures.Length}" /> -->
             <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="MSP"
-                FontWeight="Bold"
-                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures.Length}" />
+                FontWeight="Bold" />
+            <!-- ↓ IsVisible="{Binding
+            !!Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads.Length}" /> -->
             <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="3" Text="CLP"
-                FontWeight="Bold"
-                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads.Length}" />
+                FontWeight="Bold" />
 
+            <!-- ↓ IsVisible="{Binding
+            !!Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures.Length}" /> -->
             <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0"
-                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures}"
-                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures.Length}" />
+                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures}" />
+            <!-- ↓ IsVisible="{Binding
+            !!Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures.Length}" /> -->
             <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1"
-                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures}"
-                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures.Length}" />
+                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures}" />
+            <!-- ↓ IsVisible="{Binding
+            !!Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures.Length}" /> -->
             <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="2"
-                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures}"
-                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures.Length}" />
+                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures}" />
+            <!-- ↓ IsVisible="{Binding
+            !!Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads.Length}" /> -->
             <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="3"
-                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads}"
-                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads.Length}" />
+                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads}" />
         </Grid>
     </StackPanel>
 </UserControl>
