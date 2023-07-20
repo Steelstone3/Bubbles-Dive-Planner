@@ -1,4 +1,5 @@
 using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.Model;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Cylinders;
 using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
@@ -28,6 +29,7 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Stage
             // Then
             Assert.IsAssignableFrom<ViewModelBase>(diveStage);
             Assert.IsAssignableFrom<IDiveStage>(diveStage);
+            Assert.IsAssignableFrom<IVisibility>(diveStage);
         }
 
         [Fact]

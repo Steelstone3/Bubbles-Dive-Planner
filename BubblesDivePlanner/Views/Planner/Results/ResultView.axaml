@@ -1,0 +1,53 @@
+<UserControl
+    x:Class="BubblesDivePlanner.Views.Planner.Results.ResultView"
+    x:DataType="vm:MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:BubblesDivePlanner.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+
+    <StackPanel IsVisible="{Binding Planner.Results.Result.IsVisible}">
+        <Grid Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="0" Text="TP"
+                FontWeight="Bold"
+                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures.Length}" />
+            <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="1" Text="TAP"
+                FontWeight="Bold"
+                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures.Length}" />
+            <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="MSP"
+                FontWeight="Bold"
+                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures.Length}" />
+            <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="3" Text="CLP"
+                FontWeight="Bold"
+                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads.Length}" />
+
+            <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0"
+                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures}"
+                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.TotalTissuePressures.Length}" />
+            <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1"
+                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures}"
+                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.ToleratedAmbientPressures.Length}" />
+            <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="2"
+                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures}"
+                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.MaxSurfacePressures.Length}" />
+            <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="3"
+                ItemsSource="{Binding Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads}"
+                IsVisible="{Binding !!Planner.Results.Result.DiveModel.DiveProfile.CompartmentLoads.Length}" />
+        </Grid>
+    </StackPanel>
+</UserControl>

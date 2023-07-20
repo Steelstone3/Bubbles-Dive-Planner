@@ -4,7 +4,7 @@ using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Stage;
 
 namespace BubblesDivePlanner.ViewModels.Model.Plan
 {
-    public interface IDiveStage
+    public interface IDiveStage : IVisibility
     {
         IDiveModel DiveModel { get; set; }
         IDiveStep DiveStep { get; set; }

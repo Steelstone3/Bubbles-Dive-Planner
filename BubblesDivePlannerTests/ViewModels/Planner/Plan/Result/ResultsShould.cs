@@ -1,5 +1,6 @@
 using System.Collections.Specialized;
 using BubblesDivePlanner.ViewModels;
+using BubblesDivePlanner.ViewModels.Model;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Result;
 using BubblesDivePlanner.ViewModels.Planner.Plan;
