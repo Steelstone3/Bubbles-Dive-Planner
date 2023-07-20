@@ -55,6 +55,9 @@ namespace BubblesDivePlanner.ViewModels.Planner.Plan
             DiveStage.Cylinder = DiveSetup.CylinderSelection.Cylinder;
 
             DiveController.Run(DiveStage);
+
+            Results.Result = DiveStage;
+            Results.HistoricResults.Add(DiveStage);
         }
     }
 }

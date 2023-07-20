@@ -94,7 +94,10 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan
             calculateDiveProfileCommand.Execute().Subscribe();
 
             // Then
-            Assert.Equivalent(expectedDiveStage, plannerVM.DiveStage);
+            Assert.Equivalent(expectedDiveStage, plannerVM.Results.Result);
+            Assert.NotEmpty(plannerVM.Results.HistoricResults);
+            // Assert.NotSame(plannerVM.DiveStage, plannerVM.Results.Result);
+            // Assert.NotSame(plannerVM.DiveStage, plannerVM.Results.HistoricResults[0]);
         }
     }
 }
