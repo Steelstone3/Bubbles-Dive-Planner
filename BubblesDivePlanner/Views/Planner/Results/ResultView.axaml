@@ -10,7 +10,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-
     <StackPanel IsVisible="{Binding Planner.Results.Result.IsVisible}">
         <Grid Margin="8">
             <Grid.ColumnDefinitions>
