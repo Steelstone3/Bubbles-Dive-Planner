@@ -1,5 +1,7 @@
+using BubblesDivePlanner.ViewModels;
 using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
 using BubblesDivePlanner.ViewModels.Planner.DiveModels;
+using Moq;
 using Xunit;
 
 namespace BubblesDivePlannerTests.ViewModels.Models
@@ -33,10 +35,27 @@ namespace BubblesDivePlannerTests.ViewModels.Models
         }
 
         [Fact]
+        public void RaisePropertyChanged()
+        {
+            //Arrange
+            Mock<IDiveProfile> diveProfile = new();
+            Zhl16bBuhlmann diveModelVM = (Zhl16bBuhlmann)diveModel;
+            List<string> viewModelEvents = new();
+            diveModelVM.PropertyChanged += (_, e) => viewModelEvents.Add(e.PropertyName);
+
+            //Act
+            diveModelVM.DiveProfile = diveProfile.Object;
+
+            //Assert
+            Assert.Contains(nameof(diveModelVM.DiveProfile), viewModelEvents);
+        }
+
+        [Fact]
         public void DeriveFrom()
         {
             // Then
             Assert.IsAssignableFrom<IDiveModel>(diveModel);
+            Assert.IsAssignableFrom<ViewModelBase>(diveModel);
         }
     }
 }

@@ -10,6 +10,6 @@ namespace BubblesDivePlanner.ViewModels.Model.Planner.DiveModels
         float[] BValuesNitrogen { get; }
         float[] AValuesHelium { get; }
         float[] BValuesHelium { get; }
-        IDiveProfile DiveProfile { get; }
+        IDiveProfile DiveProfile { get; set; }
     }
 }

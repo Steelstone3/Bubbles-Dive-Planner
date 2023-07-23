@@ -13,7 +13,11 @@ namespace BubblesDivePlanner.ViewModels.Planner.Plan
         public IDiveStage Result
         {
             get => result;
-            set => this.RaiseAndSetIfChanged(ref result, value);
+            set
+            {
+                result = value;
+                this.RaisePropertyChanged(nameof(Result));
+            }
         }
     }
 }

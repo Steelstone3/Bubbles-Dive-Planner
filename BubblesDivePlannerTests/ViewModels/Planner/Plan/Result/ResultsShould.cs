@@ -29,7 +29,7 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Result
             Assert.IsAssignableFrom<IResults>(results);
         }
 
-         [Fact]
+        [Fact]
         public void RaisePropertyChanged()
         {
             //Arrange
@@ -40,9 +40,11 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Result
 
             //Act
             resultsVM.Result = diveStage.Object;
+            resultsVM.Result = diveStage.Object;
 
             //Assert
             Assert.Contains(nameof(resultsVM.Result), viewModelEvents);
+            Assert.Equal(2, viewModelEvents.Count);
         }
 
         [Fact]

@@ -1,4 +1,3 @@
-using System;
 using System.Reactive;
 using BubblesDivePlanner.Controllers;
 using BubblesDivePlanner.ViewModels.Model.Plan;

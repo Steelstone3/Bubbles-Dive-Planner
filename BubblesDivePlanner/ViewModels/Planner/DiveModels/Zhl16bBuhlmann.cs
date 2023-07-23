@@ -1,8 +1,9 @@
 using BubblesDivePlanner.ViewModels.Model.Planner.DiveModels;
+using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Planner.DiveModels;
 
-public class Zhl16bBuhlmann : IDiveModel
+public class Zhl16bBuhlmann : ViewModelBase, IDiveModel
 {
     public Zhl16bBuhlmann()
     {
@@ -26,5 +27,11 @@ public class Zhl16bBuhlmann : IDiveModel
     public float[] BValuesNitrogen { get; }
     public float[] AValuesHelium { get; }
     public float[] BValuesHelium { get; }
-    public IDiveProfile DiveProfile { get; }
+
+    private IDiveProfile diveProfile;
+    public IDiveProfile DiveProfile
+    {
+        get => diveProfile;
+        set => this.RaiseAndSetIfChanged(ref diveProfile, value);
+    }
 }
