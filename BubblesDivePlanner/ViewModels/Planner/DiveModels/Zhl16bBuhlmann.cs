@@ -32,6 +32,10 @@ public class Zhl16bBuhlmann : ViewModelBase, IDiveModel
     public IDiveProfile DiveProfile
     {
         get => diveProfile;
-        set => this.RaiseAndSetIfChanged(ref diveProfile, value);
+        set
+        {
+            diveProfile = value;
+            this.RaisePropertyChanged(nameof(DiveProfile));
+        }
     }
 }

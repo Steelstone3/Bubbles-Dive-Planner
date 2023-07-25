@@ -12,7 +12,11 @@ namespace BubblesDivePlanner.ViewModels.Planner.Plan.Stage
         public IDiveModel DiveModel
         {
             get => diveModel;
-            set => this.RaiseAndSetIfChanged(ref diveModel, value);
+            set
+            {
+                diveModel = value;
+                this.RaisePropertyChanged(nameof(DiveModel));
+            }
         }
 
         private IDiveStep diveStep = new DiveStep();

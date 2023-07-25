@@ -45,8 +45,10 @@ namespace BubblesDivePlannerTests.ViewModels.Models
 
             //Act
             diveModelVM.DiveProfile = diveProfile.Object;
+            diveModelVM.DiveProfile = diveProfile.Object;
 
             //Assert
+            Assert.Equal(2, viewModelEvents.Count);
             Assert.Contains(nameof(diveModelVM.DiveProfile), viewModelEvents);
         }
 

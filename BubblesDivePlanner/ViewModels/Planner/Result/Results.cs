@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Result;
+using BubblesDivePlanner.ViewModels.Planner.Plan.Stage;
 using ReactiveUI;
 
 namespace BubblesDivePlanner.ViewModels.Planner.Plan
@@ -9,7 +10,7 @@ namespace BubblesDivePlanner.ViewModels.Planner.Plan
     {
         public ObservableCollection<IDiveStage> HistoricResults { get; } = new ObservableCollection<IDiveStage>();
 
-        private IDiveStage result;
+        private IDiveStage result = new DiveStage();
         public IDiveStage Result
         {
             get => result;

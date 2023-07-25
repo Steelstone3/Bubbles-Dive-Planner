@@ -45,10 +45,12 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Stage
 
             //Act
             diveStageVM.DiveModel = diveModel.Object;
+            diveStageVM.DiveModel = diveModel.Object;
             diveStageVM.DiveStep = diveStep.Object;
             diveStageVM.Cylinder = cylinder.Object;
 
             //Assert
+            Assert.Equal(4, viewModelEvents.Count);
             Assert.Contains(nameof(diveStageVM.DiveModel), viewModelEvents);
             Assert.Contains(nameof(diveStageVM.DiveStep), viewModelEvents);
             Assert.Contains(nameof(diveStageVM.Cylinder), viewModelEvents);

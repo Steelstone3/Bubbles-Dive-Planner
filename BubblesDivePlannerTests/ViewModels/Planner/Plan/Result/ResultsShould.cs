@@ -17,7 +17,7 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Result
         public void Construct()
         {
             // Then
-            Assert.Null(results.Result);
+            Assert.NotNull(results.Result);
             Assert.Empty(results.HistoricResults);
         }
 
@@ -43,8 +43,8 @@ namespace BubblesDivePlannerTests.ViewModels.Planner.Plan.Result
             resultsVM.Result = diveStage.Object;
 
             //Assert
-            Assert.Contains(nameof(resultsVM.Result), viewModelEvents);
             Assert.Equal(2, viewModelEvents.Count);
+            Assert.Contains(nameof(resultsVM.Result), viewModelEvents);
         }
 
         [Fact]
