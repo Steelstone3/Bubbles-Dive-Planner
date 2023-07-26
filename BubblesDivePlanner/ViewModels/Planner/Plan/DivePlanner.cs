@@ -1,5 +1,6 @@
 using System.Reactive;
 using BubblesDivePlanner.Controllers;
+using BubblesDivePlanner.Controllers.Prototypes;
 using BubblesDivePlanner.ViewModels.Model.Plan;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Information;
 using BubblesDivePlanner.ViewModels.Model.Planner.Plan.Result;
@@ -56,6 +57,7 @@ namespace BubblesDivePlanner.ViewModels.Planner.Plan
             DiveController.Run(DiveStage);
 
             Results.Result = DiveStage;
+            Results.Result.DiveModel.DiveProfile = DiveProfilePrototype.DeepClone(DiveStage.DiveModel.DiveProfile);
             Results.HistoricResults.Add(DiveStage);
         }
     }
