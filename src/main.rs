@@ -42,7 +42,7 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.depth += 1;
             }
             Message::DepthChanged(depth) => {
-                self.dive_stage.dive_step.depth = depth.parse::<u32>();
+                self.dive_stage.dive_step.depth = depth.parse::<u32>().unwrap();
             }
             Message::TimeChanged(time) => {
                 self.dive_stage.dive_step.time = time.parse::<u32>().unwrap();
