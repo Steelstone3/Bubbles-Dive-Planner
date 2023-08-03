@@ -1,10 +1,11 @@
 use iced::widget::{button, column, text};
 use iced::{Alignment, Element, Sandbox, Settings};
 
+mod views;
+mod view_models;
+mod models;
 mod commands;
 mod controllers;
-mod models;
-mod views;
 
 pub fn main() -> iced::Result {
     Counter::run(Settings::default())
