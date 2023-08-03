@@ -16,11 +16,11 @@ struct DivePlanner {
     dive_stage: DiveStage,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 enum Message {
     CalculateDivePlan,
-    DepthChanged(u32),
-    TimeChanged(u32),
+    DepthChanged(String),
+    TimeChanged(String),
 }
 
 impl Sandbox for DivePlanner {
@@ -42,18 +42,30 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.depth += 1;
             }
             Message::DepthChanged(depth) => {
-                self.dive_stage.dive_step.depth = depth;
+                match depth.parse::<u32>() {
+                    Ok() =>
+                }
             }
             Message::TimeChanged(time) => {
-                self.dive_stage.dive_step.time = time;
+                self.dive_stage.dive_step.time = time.parse::<u32>().unwrap();
             }
         }
     }
 
     fn view(&self) -> Element<Message> {
+        // fn text_input(
+        //     value: &str,
+        //     is_secure: bool,
+        //     is_showing_icon: bool,
+        // ) -> Column<'a, StepMessage> {
+        //     let mut text_input = text_input("Type something to continue...", value)
+        //         .on_input(StepMessage::InputChanged)
+        //         .padding(10)
+        //         .size(30);
+
         column![
             text("Depth").size(24),
-            text_input("", ""),
+            text_input("", "").on_input(Self::Message::DepthChanged),
             text("Time").size(24),
             text_input("", ""),
             button("Calculate").on_press(Self::Message::CalculateDivePlan),
