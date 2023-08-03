@@ -79,7 +79,7 @@ mod dive_profile_should {
     }
 
     #[test]
-    fn has_maximum_surface_pressures() {
+    fn have_maximum_surface_pressures() {
         let mut dive_profile = DiveProfile::default();
 
         dive_profile.maximum_surface_pressures = compartment_value_test_fixture();

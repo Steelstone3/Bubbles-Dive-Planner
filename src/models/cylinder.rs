@@ -15,8 +15,7 @@ pub struct Cylinder {
 mod cylinder_should {
     #[test]
     #[ignore = "not implemented"]
-    fn calculate_initial_pressurised_cylinder_volume() {
-    }
+    fn calculate_initial_pressurised_cylinder_volume() {}
 
     #[test]
     #[ignore = "not implemented"]

@@ -11,6 +11,6 @@ pub struct DiveStage {
 #[cfg(test)]
 mod dive_stage_should {
     #[test]
-    #[ignore = "reason"]
+    #[ignore = "not implemented"]
     fn update() {}
 }

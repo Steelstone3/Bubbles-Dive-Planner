@@ -9,6 +9,6 @@ pub struct GasManagement {
 #[cfg(test)]
 mod gas_management_should {
     #[test]
-    #[ignore]
+    #[ignore = "not implemented"]
     fn update() {}
 }

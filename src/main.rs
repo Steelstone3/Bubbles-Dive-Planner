@@ -1,8 +1,6 @@
-mod views;
-mod models;
 mod commands;
 mod controllers;
+mod models;
+mod views;
 
-fn main(){
-    
-}
+fn main() {}

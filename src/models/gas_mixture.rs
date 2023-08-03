@@ -10,6 +10,6 @@ pub struct GasMixture {
 #[cfg(test)]
 mod gas_mixture_should {
     #[test]
-    #[ignore = "reason"]
+    #[ignore = "not implemented"]
     fn update() {}
 }

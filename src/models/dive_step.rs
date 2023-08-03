@@ -9,6 +9,6 @@ pub struct DiveStep {
 #[cfg(test)]
 mod dive_step_should {
     #[test]
-    #[ignore = "reason"]
+    #[ignore = "not implemented"]
     fn update() {}
 }

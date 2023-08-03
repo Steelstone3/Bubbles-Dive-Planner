@@ -78,6 +78,6 @@ impl DiveModel {
 #[cfg(test)]
 mod dive_model_should {
     #[test]
-    #[ignore = "reason"]
+    #[ignore = "not implemented"]
     fn create_zhl16_dive_model() {}
 }
