@@ -42,9 +42,7 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.depth += 1;
             }
             Message::DepthChanged(depth) => {
-                match depth.parse::<u32>() {
-                    Ok() =>
-                }
+                self.dive_stage.dive_step.depth = depth.parse::<u32>();
             }
             Message::TimeChanged(time) => {
                 self.dive_stage.dive_step.time = time.parse::<u32>().unwrap();
@@ -67,7 +65,7 @@ impl Sandbox for DivePlanner {
             text("Depth").size(24),
             text_input("", "").on_input(Self::Message::DepthChanged),
             text("Time").size(24),
-            text_input("", ""),
+            text_input("", "").on_input(Self::Message::TimeChanged),
             button("Calculate").on_press(Self::Message::CalculateDivePlan),
             text(self.dive_stage.dive_step.depth).size(24),
         ]
