@@ -1,5 +1,6 @@
 use iced::widget::{button, column, text, text_input};
 use iced::{Alignment, Element, Sandbox, Settings};
+use models::dive_stage::DiveStage;
 
 mod commands;
 mod controllers;
@@ -12,19 +13,23 @@ pub fn main() -> iced::Result {
 }
 
 struct DivePlanner {
-    value: i32,
+    dive_stage: DiveStage,
 }
 
 #[derive(Debug, Clone, Copy)]
 enum Message {
     CalculateDivePlan,
+    DepthChanged(u32),
+    TimeChanged(u32),
 }
 
 impl Sandbox for DivePlanner {
     type Message = Message;
 
     fn new() -> Self {
-        Self { value: 0 }
+        Self {
+            dive_stage: DiveStage::default(),
+        }
     }
 
     fn title(&self) -> String {
@@ -34,7 +39,13 @@ impl Sandbox for DivePlanner {
     fn update(&mut self, message: Message) {
         match message {
             Message::CalculateDivePlan => {
-                self.value += 1;
+                self.dive_stage.dive_step.depth += 1;
+            }
+            Message::DepthChanged(depth) => {
+                self.dive_stage.dive_step.depth = depth;
+            }
+            Message::TimeChanged(time) => {
+                self.dive_stage.dive_step.time = time;
             }
         }
     }
@@ -46,10 +57,16 @@ impl Sandbox for DivePlanner {
             text("Time").size(24),
             text_input("", ""),
             button("Calculate").on_press(Self::Message::CalculateDivePlan),
-            text(self.value).size(24),
+            text(self.dive_stage.dive_step.depth).size(24),
         ]
         .padding(20)
         .align_items(Alignment::Center)
         .into()
+    }
+}
+
+impl Default for DivePlanner {
+    fn default() -> Self {
+        Self::new()
     }
 }

@@ -13,6 +13,12 @@ pub struct DiveModel {
     pub dive_profile: DiveProfile,
 }
 
+impl Default for DiveModel {
+    fn default() -> Self {
+        DiveModel::create_zhl16_dive_model()
+    }
+}
+
 impl DiveModel {
     #[allow(dead_code)]
     pub fn create_zhl16_dive_model() -> DiveModel {
