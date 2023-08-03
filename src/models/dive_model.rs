@@ -14,6 +14,7 @@ pub struct DiveModel {
 }
 
 impl DiveModel {
+    #[allow(dead_code)]
     pub fn create_zhl16_dive_model() -> DiveModel {
         DiveModel {
             compartment_count: 16,
@@ -72,4 +73,11 @@ impl DiveModel {
             },
         }
     }
+}
+
+#[cfg(test)]
+mod dive_model_should {
+    #[test]
+    #[ignore = "reason"]
+    fn create_zhl16_dive_model() {}
 }

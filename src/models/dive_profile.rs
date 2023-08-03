@@ -35,11 +35,11 @@ impl DiveProfile {
 }
 
 #[cfg(test)]
-mod gas_management_should {
+mod dive_profile_should {
     use super::*;
 
     #[test]
-    fn has_default() {
+    fn have_default() {
         let dive_profile = DiveProfile::default();
         let maximum_surface_pressures: [f32; 16] = default_compartment_value_test_fixture();
         let compartment_loads: [f32; 16] = default_compartment_value_test_fixture();
@@ -91,7 +91,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_compartment_loads() {
+    fn have_compartment_loads() {
         let mut dive_profile = DiveProfile::default();
 
         dive_profile.compartment_loads = compartment_value_test_fixture();
@@ -103,7 +103,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_tissue_pressures_nitrogen() {
+    fn have_tissue_pressures_nitrogen() {
         let mut dive_profile = DiveProfile::default();
 
         dive_profile.tissue_pressures_nitrogen = compartment_value_test_fixture();
@@ -115,7 +115,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_tissue_pressures_helium() {
+    fn have_tissue_pressures_helium() {
         let mut dive_profile = DiveProfile::default();
 
         dive_profile.tissue_pressures_helium = compartment_value_test_fixture();
@@ -127,7 +127,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_tissue_pressures_total() {
+    fn have_tissue_pressures_total() {
         let mut dive_profile = DiveProfile::default();
 
         dive_profile.tissue_pressures_total = compartment_value_test_fixture();
@@ -139,7 +139,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_tolerated_ambient_pressures() {
+    fn have_tolerated_ambient_pressures() {
         let mut dive_profile = DiveProfile::default();
 
         dive_profile.tolerated_ambient_pressures = compartment_value_test_fixture();
@@ -151,7 +151,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_a_values() {
+    fn have_a_values() {
         let mut dive_profile = DiveProfile::default();
 
         dive_profile.a_values = compartment_value_test_fixture();
@@ -160,7 +160,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_b_values() {
+    fn have_b_values() {
         let mut dive_profile = DiveProfile::default();
 
         dive_profile.b_values = compartment_value_test_fixture();
@@ -169,7 +169,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_oxygen_at_pressure() {
+    fn have_oxygen_at_pressure() {
         let mut dive_profile = DiveProfile::default();
         let value: f32 = 4.0;
 
@@ -179,7 +179,7 @@ mod gas_management_should {
     }
 
     #[test]
-    fn has_helium_at_pressure() {
+    fn have_helium_at_pressure() {
         let mut dive_profile = DiveProfile::default();
         let value: f32 = 4.0;
 
