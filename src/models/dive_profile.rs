@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-use std::fmt::Display;
 
 #[derive(PartialEq, Debug, Default, Copy, Clone, Serialize, Deserialize)]
 pub struct DiveProfile {
@@ -32,32 +31,6 @@ impl DiveProfile {
             helium_at_pressure: Default::default(),
             nitrogen_at_pressure: Default::default(),
         }
-    }
-
-    fn display_results(self) -> String {
-        println!();
-        let mut dive_results = "".to_string();
-
-        for (_, compartment) in (0..self.compartment_loads.len()).enumerate() {
-            let dive_result = format!(
-                "\nC: {} | TPt: {} | TAP: {} | MSP: {} | CLp: {}",
-                compartment + 1,
-                self.tissue_pressures_total[compartment],
-                self.tolerated_ambient_pressures[compartment],
-                self.maximum_surface_pressures[compartment],
-                self.compartment_loads[compartment]
-            );
-
-            dive_results.push_str(&dive_result);
-        }
-
-        dive_results
-    }
-}
-
-impl Display for DiveProfile {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.display_results())
     }
 }
 

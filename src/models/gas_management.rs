@@ -1,5 +1,4 @@
 use super::dive_step::DiveStep;
-use crate::presenters::presenter::{parse_numeric_value, text_prompt};
 use serde::{Deserialize, Serialize};
 
 #[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize, Default)]
@@ -9,17 +8,6 @@ pub struct GasManagement {
 }
 
 impl GasManagement {
-    pub fn new() -> Self {
-        Self {
-            gas_used: 0,
-            surface_air_consumption_rate: parse_numeric_value(text_prompt(
-                "Enter surface air consumption rate (L/min):",
-                "Enter a value 3 - 30",
-                "12",
-            )),
-        }
-    }
-
     pub fn update_gas_management(self, dive_step: DiveStep) -> Self {
         let gas_used =
             GasManagement::calculate_gas_used(dive_step, self.surface_air_consumption_rate);

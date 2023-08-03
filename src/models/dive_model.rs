@@ -1,7 +1,5 @@
 use super::dive_profile::DiveProfile;
-use inquire::Select;
 use serde::{Deserialize, Serialize};
-use std::fmt::Display;
 
 #[derive(Copy, Clone, Serialize, Deserialize)]
 pub struct DiveModel {
@@ -16,15 +14,6 @@ pub struct DiveModel {
 }
 
 impl DiveModel {
-    pub fn select() -> DiveModel {
-        Select::new(
-            "Select dive model:",
-            vec![DiveModel::create_zhl16_dive_model()],
-        )
-        .prompt()
-        .unwrap()
-    }
-
     pub fn create_zhl16_dive_model() -> DiveModel {
         DiveModel {
             compartment_count: 16,
@@ -82,11 +71,5 @@ impl DiveModel {
                 nitrogen_at_pressure: 0.0,
             },
         }
-    }
-}
-
-impl Display for DiveModel {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Zhl16")
     }
 }

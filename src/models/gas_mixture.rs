@@ -1,4 +1,3 @@
-use crate::presenters::presenter::{parse_numeric_value, text_prompt};
 use serde::{Deserialize, Serialize};
 
 #[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize, Default)]
@@ -9,21 +8,6 @@ pub struct GasMixture {
 }
 
 impl GasMixture {
-    pub fn new() -> Self {
-        let oxygen = parse_numeric_value(text_prompt(
-            "Enter oxygen (%):",
-            "Enter a value 5 - 100",
-            "21",
-        ));
-        let helium = parse_numeric_value(text_prompt(
-            "Enter helium (%):",
-            "Enter a value 0 - 100",
-            "0",
-        ));
-
-        GasMixture::assign_gas_mixture(oxygen, helium)
-    }
-
     fn assign_gas_mixture(mut oxygen: u32, mut helium: u32) -> GasMixture {
         if oxygen > 100 {
             oxygen = 100 - helium;
