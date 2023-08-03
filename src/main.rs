@@ -1,27 +1,26 @@
-use iced::widget::{button, column, text};
+use iced::widget::{button, column, text, text_input};
 use iced::{Alignment, Element, Sandbox, Settings};
 
-mod views;
-mod view_models;
-mod models;
 mod commands;
 mod controllers;
+mod models;
+mod view_models;
+mod views;
 
 pub fn main() -> iced::Result {
-    Counter::run(Settings::default())
+    DivePlanner::run(Settings::default())
 }
 
-struct Counter {
+struct DivePlanner {
     value: i32,
 }
 
 #[derive(Debug, Clone, Copy)]
 enum Message {
-    IncrementPressed,
-    DecrementPressed,
+    CalculateDivePlan,
 }
 
-impl Sandbox for Counter {
+impl Sandbox for DivePlanner {
     type Message = Message;
 
     fn new() -> Self {
@@ -29,25 +28,25 @@ impl Sandbox for Counter {
     }
 
     fn title(&self) -> String {
-        String::from("Counter - Iced")
+        String::from("Bubbles Dive Planner")
     }
 
     fn update(&mut self, message: Message) {
         match message {
-            Message::IncrementPressed => {
+            Message::CalculateDivePlan => {
                 self.value += 1;
-            }
-            Message::DecrementPressed => {
-                self.value -= 1;
             }
         }
     }
 
     fn view(&self) -> Element<Message> {
         column![
-            button("Increment").on_press(Message::IncrementPressed),
-            text(self.value).size(50),
-            button("Decrement").on_press(Message::DecrementPressed)
+            text("Depth").size(24),
+            text_input("", ""),
+            text("Time").size(24),
+            text_input("", ""),
+            button("Calculate").on_press(Self::Message::CalculateDivePlan),
+            text(self.value).size(24),
         ]
         .padding(20)
         .align_items(Alignment::Center)
