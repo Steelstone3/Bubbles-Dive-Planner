@@ -20,13 +20,16 @@ mod commands_ambient_pressures_should {
 
     #[test]
     fn calculate_ambient_pressures_of_the_dive_profile() {
+        // Given
         let dive_step = dive_step_test_fixture();
         let gas_mixture = gas_mixture_test_fixture();
         let expected_dive_profile_model = dive_profile_test_fixture();
 
+        // When
         let actual_dive_profile_model =
             super::calculate_ambient_pressures(expected_dive_profile_model, dive_step, gas_mixture);
 
+        // Then
         assert_eq!(
             format!("{:.3}", expected_dive_profile_model.oxygen_at_pressure),
             format!("{:.3}", actual_dive_profile_model.oxygen_at_pressure)

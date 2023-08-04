@@ -23,16 +23,16 @@ mod commands_a_b_values_should {
 
     #[test]
     fn calculate_a_values_of_the_dive_profile() {
-        //Given
+        // Given
         let mut zhl16 = DiveModel::create_zhl16_dive_model();
         let expected_dive_profile_model = dive_profile_test_fixture();
         zhl16.dive_profile = a_b_values_dive_profile_test_fixture();
 
         for compartment in 0..16 {
-            //When
+            // When
             let a_value = format!("{:.3}", super::calculate_a_values(compartment, zhl16));
 
-            //Then
+            // Then
             assert_eq!(
                 format!("{:.3}", expected_dive_profile_model.a_values[compartment]),
                 a_value
@@ -42,16 +42,16 @@ mod commands_a_b_values_should {
 
     #[test]
     fn calculate_b_values_of_the_dive_profile() {
-        //Given
+        // Given
         let mut zhl16 = DiveModel::create_zhl16_dive_model();
         let expected_dive_profile_model = dive_profile_test_fixture();
         zhl16.dive_profile = a_b_values_dive_profile_test_fixture();
 
         for compartment in 0..16 {
-            //When
+            // When
             let b_value = format!("{:.3}", super::calculate_b_values(compartment, zhl16));
 
-            //Then
+            // Then
             assert_eq!(
                 format!("{:.3}", expected_dive_profile_model.b_values[compartment]),
                 b_value

@@ -12,17 +12,17 @@ mod commands_compartment_loads_should {
 
     #[test]
     fn calculate_compartment_loads_of_the_dive_profile() {
-        //Given
+        // Given
         let actual_dive_profile = compartment_loads_dive_profile_test_fixture();
         let expected_dive_profile = dive_profile_test_fixture();
 
         for compartment in 0..16 {
-            //When
+            // When
             let compartment_load = format!(
                 "{:.3}",
                 super::calculate_compartment_loads(compartment, actual_dive_profile)
             );
-            //Then
+            // Then
             assert_eq!(
                 format!(
                     "{:.3}",
