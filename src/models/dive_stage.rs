@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 pub struct DiveStage {
     pub dive_model: DiveModel,
     pub dive_step: DiveStep,
-    pub selected_cylinder: Cylinder,
+    pub cylinder: Cylinder,
 }
 
 #[cfg(test)]
