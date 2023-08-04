@@ -14,7 +14,7 @@ mod commands_compartment_loads_should {
     #[test]
     fn calculate_compartment_loads_of_the_dive_profile() {
         //Arrange
-        let actual_dive_profile = compartment_load_dive_profile_test_fixture();
+        let actual_dive_profile = compartment_loads_dive_profile_test_fixture();
         let expected_dive_profile = dive_profile_test_fixture();
 
         for compartment in 0..16 {
@@ -33,7 +33,7 @@ mod commands_compartment_loads_should {
         }
     }
 
-    fn compartment_load_dive_profile_test_fixture() -> DiveProfile {
+    fn compartment_loads_dive_profile_test_fixture() -> DiveProfile {
         DiveProfile {
             maximum_surface_pressures: [
                 3.356, 2.640, 2.342, 2.122, 1.978, 1.828, 1.719, 1.637, 1.577, 1.521, 1.482, 1.450,

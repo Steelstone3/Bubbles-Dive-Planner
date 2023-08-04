@@ -22,7 +22,7 @@ mod commands_a_b_values_should {
     use crate::models::dive_profile::DiveProfile;
 
     #[test]
-    fn calculate_a_value_of_the_dive_profile() {
+    fn calculate_a_values_of_the_dive_profile() {
         //Given
         let mut zhl16 = DiveModel::create_zhl16_dive_model();
         let expected_dive_profile_model = dive_profile_test_fixture();
@@ -41,7 +41,7 @@ mod commands_a_b_values_should {
     }
 
     #[test]
-    fn calculate_b_value_of_the_dive_profile() {
+    fn calculate_b_values_of_the_dive_profile() {
         //Given
         let mut zhl16 = DiveModel::create_zhl16_dive_model();
         let expected_dive_profile_model = dive_profile_test_fixture();
