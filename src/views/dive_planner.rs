@@ -3,6 +3,8 @@ use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanne
 use iced::widget::{button, column, container, text, text_input};
 use iced::{Alignment, Element, Sandbox};
 
+use super::input_parser::parse_input_u32;
+
 impl Sandbox for DivePlanner {
     type Message = Message;
 
@@ -22,30 +24,27 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.depth += 1;
             }
             Message::DepthChanged(depth) => {
-                // TODO move this to a parser controller in views
-                let mut depth = depth.parse::<u32>().unwrap_or(0);
+                let mut depth_input = parse_input_u32(depth, 0);
 
                 // TODO move this to model validation
-                if depth > 100 {
-                    depth = 100;
+                if depth_input > 100 {
+                    depth_input = 100;
                 }
 
-                self.dive_stage.dive_step.depth = depth;
+                self.dive_stage.dive_step.depth = depth_input;
             }
             Message::TimeChanged(time) => {
-                // TODO move this to a parser controller in views
-                let mut time = time.parse::<u32>().unwrap_or(0);
+                let mut time_input = parse_input_u32(time, 0);
 
                 // TODO move this to model validation
-                if time > 60 {
-                    time = 60;
+                if time_input > 60 {
+                    time_input = 60;
                 }
 
-                self.dive_stage.dive_step.time = time;
+                self.dive_stage.dive_step.time = time_input;
             }
             Message::OxygenChanged(oxygen) => {
-                // TODO move this to a parser controller in views
-                let mut oxygen_input = oxygen.parse::<u32>().unwrap_or(5);
+                let mut oxygen_input = parse_input_u32(oxygen, 5);
 
                 // TODO Move this to model validation
                 if oxygen_input > 100 {
@@ -64,8 +63,7 @@ impl Sandbox for DivePlanner {
                     100 - oxygen_input - helium;
             }
             Message::HeliumChanged(helium) => {
-                // TODO move this to a parser controller in views
-                let mut helium_input = helium.parse::<u32>().unwrap_or(0);
+                let mut helium_input = parse_input_u32(helium, 0);
 
                 // TODO Move this to model validation
                 let mut oxygen = self.dive_stage.cylinder.gas_mixture.oxygen;

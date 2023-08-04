@@ -20,3 +20,10 @@ pub enum Message {
     OxygenChanged(String),
     HeliumChanged(String),
 }
+
+#[cfg(test)]
+mod dive_planner_should {
+    #[test]
+    #[ignore = "not implemented"]
+    fn update() {}
+}
