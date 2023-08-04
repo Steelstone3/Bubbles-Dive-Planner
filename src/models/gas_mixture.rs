@@ -34,8 +34,20 @@ impl GasMixture {
         }
     }
 
-    pub fn validate_helium() -> GasMixture {
-        todo!();
+    pub fn validate_helium(mut oxygen: u32, mut helium: u32) -> GasMixture {
+        if helium > 100 {
+            helium = 100;
+        }
+        
+        if oxygen + helium > 100 {
+            oxygen = 100 - helium;
+        }
+        
+        GasMixture {
+            oxygen,
+            helium,
+            nitrogen: GasMixture::calculate_nitrogen(oxygen, helium),
+        }
     }
 
     fn calculate_nitrogen(oxygen: u32, helium: u32) -> u32 {
@@ -81,11 +93,36 @@ mod gas_mixture_should {
     }
 
     #[test]
-    #[ignore = "not implemented"]
     fn validate_assignment_of_helium() {
         // When
+        let gas_mixture = GasMixture::validate_helium(0, 10);
 
         // Then
+        assert_eq!(0, gas_mixture.oxygen);
+        assert_eq!(10, gas_mixture.helium);
+        assert_eq!(90, gas_mixture.nitrogen);
+    }
+
+    #[test]
+    fn validate_assignment_of_helium_where_helium_is_above_maximum() {
+        // When
+        let gas_mixture = GasMixture::validate_helium(0, 101);
+
+        // Then
+        assert_eq!(0, gas_mixture.oxygen);
+        assert_eq!(100, gas_mixture.helium);
+        assert_eq!(0, gas_mixture.nitrogen);
+    }
+
+    #[test]
+    fn validate_assignment_of_helium_where_helium_and_oxygen_are_above_maximum() {
+        // When
+        let gas_mixture = GasMixture::validate_helium(50, 60);
+
+        // Then
+        assert_eq!(40, gas_mixture.oxygen);
+        assert_eq!(60, gas_mixture.helium);
+        assert_eq!(0, gas_mixture.nitrogen);
     }
 
     #[test]

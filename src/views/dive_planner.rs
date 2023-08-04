@@ -27,7 +27,7 @@ impl Sandbox for DivePlanner {
             }
             Message::DepthChanged(depth) => {
                 let depth_input = parse_input_u32(depth, 0);
-                self.dive_stage.dive_step.depth = DiveStep::validate(depth_input,100);
+                self.dive_stage.dive_step.depth = DiveStep::validate(depth_input, 100);
             }
             Message::TimeChanged(time) => {
                 let time_input = parse_input_u32(time, 0);
@@ -35,31 +35,19 @@ impl Sandbox for DivePlanner {
             }
             Message::OxygenChanged(oxygen) => {
                 let oxygen_input = parse_input_u32(oxygen, 5);
-                
+
                 let helium = self.dive_stage.cylinder.gas_mixture.helium;
                 let gas_mixture = GasMixture::validate_oxygen(oxygen_input, helium);
-                
-                self.dive_stage.cylinder.gas_mixture= gas_mixture;
+
+                self.dive_stage.cylinder.gas_mixture = gas_mixture;
             }
             Message::HeliumChanged(helium) => {
-                let mut helium_input = parse_input_u32(helium, 0);
+                let helium_input = parse_input_u32(helium, 0);
 
-                // TODO Move this to model validation
-                let mut oxygen = self.dive_stage.cylinder.gas_mixture.oxygen;
-                if helium_input > 95 {
-                    helium_input = 95;
-                    oxygen = 5
-                }
-                // TODO Move this to model validation
-                if helium_input + oxygen > 100 {
-                    oxygen = 100 - helium_input;
-                }
+                let oxygen = self.dive_stage.cylinder.gas_mixture.oxygen;
+                let gas_mixture = GasMixture::validate_helium(oxygen, helium_input);
 
-                // TODO Move this to model validation (output a gas mixture with nitrogen)
-                self.dive_stage.cylinder.gas_mixture.helium = helium_input;
-                self.dive_stage.cylinder.gas_mixture.oxygen = oxygen;
-                self.dive_stage.cylinder.gas_mixture.nitrogen =
-                    100 - helium_input - oxygen;
+                self.dive_stage.cylinder.gas_mixture = gas_mixture;
             }
         }
     }
@@ -76,23 +64,13 @@ impl Sandbox for DivePlanner {
                 text("Oxygen").size(24),
                 text_input(
                     "Enter Oxygen",
-                    &self
-                        .dive_stage
-                        .cylinder
-                        .gas_mixture
-                        .oxygen
-                        .to_string()
+                    &self.dive_stage.cylinder.gas_mixture.oxygen.to_string()
                 )
                 .on_input(Self::Message::OxygenChanged),
                 text("Helium").size(24),
                 text_input(
                     "Enter Helium",
-                    &self
-                        .dive_stage
-                        .cylinder
-                        .gas_mixture
-                        .helium
-                        .to_string()
+                    &self.dive_stage.cylinder.gas_mixture.helium.to_string()
                 )
                 .on_input(Self::Message::HeliumChanged),
                 text("Nitrogen").size(24),
