@@ -23,10 +23,7 @@ impl Sandbox for DivePlanner {
             }
             Message::DepthChanged(depth) => {
                 // TODO move this to a parser controller in views
-                let mut depth = match depth.parse::<u32>() {
-                    Ok(depth) => depth,
-                    Err(_) => 0,
-                };
+                let mut depth = depth.parse::<u32>().unwrap_or(0);
 
                 // TODO move this to model validation
                 if depth > 100 {
@@ -37,10 +34,7 @@ impl Sandbox for DivePlanner {
             }
             Message::TimeChanged(time) => {
                 // TODO move this to a parser controller in views
-                let mut time = match time.parse::<u32>() {
-                    Ok(time) => time,
-                    Err(_) => 0,
-                };
+                let mut time = time.parse::<u32>().unwrap_or(0);
 
                 // TODO move this to model validation
                 if time > 60 {
@@ -51,10 +45,7 @@ impl Sandbox for DivePlanner {
             }
             Message::OxygenChanged(oxygen) => {
                 // TODO move this to a parser controller in views
-                let mut oxygen_input = match oxygen.parse::<u32>() {
-                    Ok(oxygen) => oxygen,
-                    Err(_) => 5,
-                };
+                let mut oxygen_input = oxygen.parse::<u32>().unwrap_or(5);
 
                 // TODO Move this to model validation
                 if oxygen_input > 100 {
@@ -74,10 +65,7 @@ impl Sandbox for DivePlanner {
             }
             Message::HeliumChanged(helium) => {
                 // TODO move this to a parser controller in views
-                let mut helium_input = match helium.parse::<u32>() {
-                    Ok(helium) => helium,
-                    Err(_) => 0,
-                };
+                let mut helium_input = helium.parse::<u32>().unwrap_or(0);
 
                 // TODO Move this to model validation
                 let mut oxygen = self.dive_stage.cylinder.gas_mixture.oxygen;
