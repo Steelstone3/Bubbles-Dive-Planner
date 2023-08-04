@@ -48,10 +48,17 @@ impl Sandbox for DivePlanner {
             }
             Message::DepthChanged(depth) => {
                 // TODO move this to a parser controller in views
-                self.dive_stage.dive_step.depth = match depth.parse::<u32>() {
+                let mut depth = match depth.parse::<u32>() {
                     Ok(depth) => depth,
                     Err(_) => 0,
                 };
+
+                // TODO move this to model validation
+                if depth > 100 {
+                    depth = 100;
+                }
+
+                self.dive_stage.dive_step.depth = depth;
             }
             Message::TimeChanged(time) => {
                 // TODO move this to a parser controller in views
