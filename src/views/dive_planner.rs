@@ -76,8 +76,6 @@ impl Sandbox for DivePlanner {
                 text("Nitrogen").size(24),
                 text(self.dive_stage.cylinder.gas_mixture.nitrogen).size(24),
                 button("Calculate").on_press(Self::Message::CalculateDivePlan),
-                
-                
                 text(self.dive_stage.dive_model.dive_profile).size(24),
             ]
             .padding(20)
