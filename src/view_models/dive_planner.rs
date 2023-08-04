@@ -12,15 +12,6 @@ impl Default for DivePlanner {
     }
 }
 
-#[derive(Debug, Clone)]
-pub enum Message {
-    CalculateDivePlan,
-    DepthChanged(String),
-    TimeChanged(String),
-    OxygenChanged(String),
-    HeliumChanged(String),
-}
-
 #[cfg(test)]
 mod dive_planner_should {
     #[test]

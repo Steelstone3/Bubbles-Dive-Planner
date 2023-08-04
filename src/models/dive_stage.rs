@@ -7,10 +7,3 @@ pub struct DiveStage {
     pub dive_step: DiveStep,
     pub cylinder: Cylinder,
 }
-
-#[cfg(test)]
-mod dive_stage_should {
-    #[test]
-    #[ignore = "not implemented"]
-    fn update() {}
-}
