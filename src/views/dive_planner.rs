@@ -1,6 +1,6 @@
 use crate::commands::messages::Message;
-use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use crate::models::{dive_step::DiveStep, gas_mixture::GasMixture};
+use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column, container, text, text_input};
 use iced::{Alignment, Element, Sandbox};
 
