@@ -1,4 +1,3 @@
-
 use crate::models::dive_profile::DiveProfile;
 
 pub fn calculate_compartment_loads(compartment: usize, dive_profile_model: DiveProfile) -> f32 {
@@ -13,22 +12,23 @@ mod commands_compartment_loads_should {
 
     #[test]
     fn calculate_compartment_loads_of_the_dive_profile() {
-        //Arrange
+        //Given
         let actual_dive_profile = compartment_loads_dive_profile_test_fixture();
         let expected_dive_profile = dive_profile_test_fixture();
 
         for compartment in 0..16 {
-            //Act
-            //Assert
+            //When
+            let compartment_load = format!(
+                "{:.3}",
+                super::calculate_compartment_loads(compartment, actual_dive_profile)
+            );
+            //Then
             assert_eq!(
                 format!(
                     "{:.3}",
                     expected_dive_profile.compartment_loads[compartment]
                 ),
-                format!(
-                    "{:.3}",
-                    super::calculate_compartment_loads(compartment, actual_dive_profile)
-                )
+                compartment_load
             );
         }
     }
@@ -84,6 +84,7 @@ mod commands_compartment_loads_should {
             oxygen_at_pressure: 1.26,
             helium_at_pressure: 0.600,
             nitrogen_at_pressure: 4.14,
+            ..Default::default()
         }
     }
 }
