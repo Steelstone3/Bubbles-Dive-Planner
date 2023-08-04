@@ -17,9 +17,86 @@ impl Default for GasMixture {
     }
 }
 
+impl GasMixture {
+    pub fn validate_oxygen(mut oxygen: u32, mut helium: u32) -> GasMixture {
+        if oxygen > 100 {
+            oxygen = 100;
+        }
+        
+        if oxygen + helium > 100 {
+            helium = 100 - oxygen;
+        }
+
+        GasMixture {
+            oxygen,
+            helium,
+            nitrogen: GasMixture::calculate_nitrogen(oxygen, helium),
+        }
+    }
+
+    pub fn validate_helium() -> GasMixture {
+        todo!();
+    }
+
+    fn calculate_nitrogen(oxygen: u32, helium: u32) -> u32 {
+        100 - oxygen - helium
+    }
+}
+
 #[cfg(test)]
 mod gas_mixture_should {
+    use super::*;
+
+    #[test]
+    fn validate_assignment_of_oxygen() {
+        // When
+        let gas_mixture = GasMixture::validate_oxygen(21, 0);
+
+        // Then
+        assert_eq!(21, gas_mixture.oxygen);
+        assert_eq!(0, gas_mixture.helium);
+        assert_eq!(79, gas_mixture.nitrogen);
+    }
+
+    #[test]
+    fn validate_assignment_of_oxygen_where_oxygen_is_above_maximum() {
+        // When
+        let gas_mixture = GasMixture::validate_oxygen(101, 0);
+
+        // Then
+        assert_eq!(100, gas_mixture.oxygen);
+        assert_eq!(0, gas_mixture.helium);
+        assert_eq!(0, gas_mixture.nitrogen);
+    }
+
+    #[test]
+    fn validate_assignment_of_oxygen_where_oxygen_and_helium_are_above_maximum() {
+        // When
+        let gas_mixture = GasMixture::validate_oxygen(95, 6);
+
+        // Then
+        assert_eq!(95, gas_mixture.oxygen);
+        assert_eq!(5, gas_mixture.helium);
+        assert_eq!(0, gas_mixture.nitrogen);
+    }
+
     #[test]
     #[ignore = "not implemented"]
-    fn update() {}
+    fn validate_assignment_of_helium() {
+        // When
+
+        // Then
+    }
+
+    #[test]
+    fn calculate_nitrogen_for_a_given_gas_mixture() {
+        // Given
+        let gas_mixture = GasMixture{ oxygen: 21, helium: 10, nitrogen: 0 };
+
+        // When
+        let nitrogen = GasMixture::calculate_nitrogen(gas_mixture.oxygen, gas_mixture.helium);
+
+        // Then
+        assert_eq!(69, nitrogen);
+    }
 }

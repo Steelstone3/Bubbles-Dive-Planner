@@ -1,4 +1,5 @@
 use crate::models::dive_step::DiveStep;
+use crate::models::gas_mixture::GasMixture;
 use crate::view_models::dive_planner::Message;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column, container, text, text_input};
@@ -33,23 +34,12 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.time = DiveStep::validate(time_input, 60);
             }
             Message::OxygenChanged(oxygen) => {
-                let mut oxygen_input = parse_input_u32(oxygen, 5);
-
-                // TODO Move this to model validation
-                if oxygen_input > 100 {
-                    oxygen_input = 100;
-                }
-                // TODO Move this to model validation
-                let mut helium = self.dive_stage.cylinder.gas_mixture.helium;
-                if oxygen_input + helium > 100 {
-                    helium = 100 - oxygen_input;
-                }
-
-                // TODO Move this to model validation (output a gas mixture with nitrogen)
-                self.dive_stage.cylinder.gas_mixture.oxygen = oxygen_input;
-                self.dive_stage.cylinder.gas_mixture.helium = helium;
-                self.dive_stage.cylinder.gas_mixture.nitrogen =
-                    100 - oxygen_input - helium;
+                let oxygen_input = parse_input_u32(oxygen, 5);
+                
+                let helium = self.dive_stage.cylinder.gas_mixture.helium;
+                let gas_mixture = GasMixture::validate_oxygen(oxygen_input, helium);
+                
+                self.dive_stage.cylinder.gas_mixture= gas_mixture;
             }
             Message::HeliumChanged(helium) => {
                 let mut helium_input = parse_input_u32(helium, 0);
