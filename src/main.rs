@@ -12,10 +12,12 @@ pub fn main() -> iced::Result {
     DivePlanner::run(Settings::default())
 }
 
+// TODO move this to view models
 struct DivePlanner {
     dive_stage: DiveStage,
 }
 
+// TODO move this to view models
 #[derive(Debug, Clone)]
 enum Message {
     CalculateDivePlan,
@@ -25,6 +27,7 @@ enum Message {
     HeliumChanged(String),
 }
 
+// TODO move this to views
 impl Sandbox for DivePlanner {
     type Message = Message;
 
@@ -44,18 +47,63 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.depth += 1;
             }
             Message::DepthChanged(depth) => {
-                self.dive_stage.dive_step.depth = depth.parse::<u32>().unwrap();
+                // TODO move this to a parser controller in views
+                self.dive_stage.dive_step.depth = match depth.parse::<u32>() {
+                    Ok(depth) => depth,
+                    Err(_) => 0,
+                };
             }
             Message::TimeChanged(time) => {
-                self.dive_stage.dive_step.time = time.parse::<u32>().unwrap();
+                // TODO move this to a parser controller in views
+                self.dive_stage.dive_step.time = match time.parse::<u32>() {
+                    Ok(time) => time,
+                    Err(_) => 0,
+                };
             }
             Message::OxygenChanged(oxygen) => {
-                self.dive_stage.selected_cylinder.gas_mixture.oxygen =
-                    oxygen.parse::<u32>().unwrap();
+                // TODO move this to a parser controller in views
+                let mut oxygen_input = match oxygen.parse::<u32>() {
+                    Ok(oxygen) => oxygen,
+                    Err(_) => 0,
+                };
+
+                // TODO Move this to model validation
+                if oxygen_input > 100 {
+                    oxygen_input = 100;
+                }
+
+                // TODO Move this to model validation
+                let mut helium = self.dive_stage.selected_cylinder.gas_mixture.helium;
+                if oxygen_input + helium > 100 {
+                    helium = 100 - oxygen_input;
+                }
+
+                // TODO Move this to model validation (output a gas mixture with nitrogen)
+                self.dive_stage.selected_cylinder.gas_mixture.oxygen = oxygen_input;
+                self.dive_stage.selected_cylinder.gas_mixture.helium = helium;
             }
             Message::HeliumChanged(helium) => {
-                self.dive_stage.selected_cylinder.gas_mixture.helium =
-                    helium.parse::<u32>().unwrap();
+                // TODO move this to a parser controller in views
+                let mut helium_input = match helium.parse::<u32>() {
+                    Ok(helium) => helium,
+                    Err(_) => 0,
+                };
+
+                // TODO Move this to model validation
+                if helium_input > 100 {
+                    helium_input = 100;
+                }
+
+                // TODO Move this to model validation
+                let mut oxygen = self.dive_stage.selected_cylinder.gas_mixture.oxygen;
+                if helium_input + oxygen > 100 {
+                    oxygen = (100 - helium_input) + 5;
+                    helium_input -= 5;
+                }
+
+                // TODO Move this to model validation (output a gas mixture with nitrogen)
+                self.dive_stage.selected_cylinder.gas_mixture.helium = helium_input;
+                self.dive_stage.selected_cylinder.gas_mixture.oxygen = oxygen;
             }
         }
     }
@@ -64,13 +112,33 @@ impl Sandbox for DivePlanner {
         container(container(
             column![
                 text("Depth").size(24),
-                text_input("Enter Depth", &self.dive_stage.dive_step.depth.to_string()).on_input(Self::Message::DepthChanged),
+                text_input("Enter Depth", &self.dive_stage.dive_step.depth.to_string())
+                    .on_input(Self::Message::DepthChanged),
                 text("Time").size(24),
-                text_input("Enter Time", &self.dive_stage.dive_step.time.to_string()).on_input(Self::Message::TimeChanged),
+                text_input("Enter Time", &self.dive_stage.dive_step.time.to_string())
+                    .on_input(Self::Message::TimeChanged),
                 text("Oxygen").size(24),
-                text_input("Enter Oxygen", &self.dive_stage.selected_cylinder.gas_mixture.oxygen.to_string()).on_input(Self::Message::OxygenChanged),
+                text_input(
+                    "Enter Oxygen",
+                    &self
+                        .dive_stage
+                        .selected_cylinder
+                        .gas_mixture
+                        .oxygen
+                        .to_string()
+                )
+                .on_input(Self::Message::OxygenChanged),
                 text("Helium").size(24),
-                text_input("Enter Helium", &self.dive_stage.selected_cylinder.gas_mixture.helium.to_string()).on_input(Self::Message::HeliumChanged),
+                text_input(
+                    "Enter Helium",
+                    &self
+                        .dive_stage
+                        .selected_cylinder
+                        .gas_mixture
+                        .helium
+                        .to_string()
+                )
+                .on_input(Self::Message::HeliumChanged),
                 button("Calculate").on_press(Self::Message::CalculateDivePlan),
                 text(self.dive_stage.dive_step.depth).size(24),
             ]
@@ -81,6 +149,7 @@ impl Sandbox for DivePlanner {
     }
 }
 
+// TODO move this to view models
 impl Default for DivePlanner {
     fn default() -> Self {
         Self::new()
