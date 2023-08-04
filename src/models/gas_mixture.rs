@@ -1,10 +1,20 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize, Default)]
+#[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize)]
 pub struct GasMixture {
     pub oxygen: u32,
     pub helium: u32,
     pub nitrogen: u32,
+}
+
+impl Default for GasMixture {
+    fn default() -> Self {
+        Self {
+            oxygen: 21,
+            helium: 0,
+            nitrogen: 79,
+        }
+    }
 }
 
 #[cfg(test)]
