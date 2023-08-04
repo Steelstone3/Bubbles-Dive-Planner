@@ -1,3 +1,4 @@
+use crate::models::dive_step::DiveStep;
 use crate::view_models::dive_planner::Message;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column, container, text, text_input};
@@ -24,24 +25,12 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.depth += 1;
             }
             Message::DepthChanged(depth) => {
-                let mut depth_input = parse_input_u32(depth, 0);
-
-                // TODO move this to model validation
-                if depth_input > 100 {
-                    depth_input = 100;
-                }
-
-                self.dive_stage.dive_step.depth = depth_input;
+                let depth_input = parse_input_u32(depth, 0);
+                self.dive_stage.dive_step.depth = DiveStep::validate(depth_input,100);
             }
             Message::TimeChanged(time) => {
-                let mut time_input = parse_input_u32(time, 0);
-
-                // TODO move this to model validation
-                if time_input > 60 {
-                    time_input = 60;
-                }
-
-                self.dive_stage.dive_step.time = time_input;
+                let time_input = parse_input_u32(time, 0);
+                self.dive_stage.dive_step.time = DiveStep::validate(time_input, 60);
             }
             Message::OxygenChanged(oxygen) => {
                 let mut oxygen_input = parse_input_u32(oxygen, 5);
