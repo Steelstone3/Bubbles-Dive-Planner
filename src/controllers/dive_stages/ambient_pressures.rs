@@ -1,6 +1,6 @@
 use crate::models::{dive_profile::DiveProfile, dive_step::DiveStep, gas_mixture::GasMixture};
 
-pub fn calculate_ambient_pressure(
+pub fn calculate_ambient_pressures(
     mut dive_profile_model: DiveProfile,
     dive_step: DiveStep,
     gas_mixture: GasMixture,
@@ -25,7 +25,7 @@ mod commands_ambient_pressures_should {
         let expected_dive_profile_model = dive_profile_test_fixture();
 
         let actual_dive_profile_model =
-            super::calculate_ambient_pressure(expected_dive_profile_model, dive_step, gas_mixture);
+            super::calculate_ambient_pressures(expected_dive_profile_model, dive_step, gas_mixture);
 
         assert_eq!(
             format!("{:.3}", expected_dive_profile_model.oxygen_at_pressure),

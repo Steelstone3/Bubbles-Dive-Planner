@@ -1,6 +1,6 @@
 use crate::models::dive_model::DiveModel;
 
-pub fn calculate_a_value(compartment: usize, dive_model: DiveModel) -> f32 {
+pub fn calculate_a_values(compartment: usize, dive_model: DiveModel) -> f32 {
     (dive_model.a_values_nitrogen[compartment]
         * dive_model.dive_profile.nitrogen_tissue_pressures[compartment]
         + dive_model.a_values_helium[compartment]
@@ -8,7 +8,7 @@ pub fn calculate_a_value(compartment: usize, dive_model: DiveModel) -> f32 {
         / dive_model.dive_profile.total_tissue_pressures[compartment]
 }
 
-pub fn calculate_b_value(compartment: usize, dive_model: DiveModel) -> f32 {
+pub fn calculate_b_values(compartment: usize, dive_model: DiveModel) -> f32 {
     (dive_model.b_values_nitrogen[compartment]
         * dive_model.dive_profile.nitrogen_tissue_pressures[compartment]
         + dive_model.b_values_helium[compartment]
@@ -30,7 +30,7 @@ mod commands_a_b_values_should {
 
         for compartment in 0..16 {
             //When
-            let a_value = format!("{:.3}", super::calculate_a_value(compartment, zhl16));
+            let a_value = format!("{:.3}", super::calculate_a_values(compartment, zhl16));
 
             //Then
             assert_eq!(
@@ -49,7 +49,7 @@ mod commands_a_b_values_should {
 
         for compartment in 0..16 {
             //When
-            let b_value = format!("{:.3}", super::calculate_b_value(compartment, zhl16));
+            let b_value = format!("{:.3}", super::calculate_b_values(compartment, zhl16));
 
             //Then
             assert_eq!(

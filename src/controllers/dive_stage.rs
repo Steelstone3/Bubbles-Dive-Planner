@@ -1,6 +1,6 @@
 use crate::models::dive_stage::DiveStage;
 
-use super::dive_stages::a_b_values::{calculate_a_value, calculate_b_value};
+use super::dive_stages::a_b_values::{calculate_a_values, calculate_b_values};
 
 pub fn update_dive_profile(mut dive_stage: DiveStage) -> DiveStage {
     // dive_stage.dive_model.dive_profile =
@@ -21,9 +21,9 @@ fn run_dive_stages(compartment: usize, mut dive_stage: DiveStage) -> DiveStage {
     // dive_model.dive_profile.total_tissue_pressures[compartment] =
     //     calculate_tissue_pressure_total(compartment, dive_model.dive_profile);
     dive_stage.dive_model.dive_profile.a_values[compartment] =
-        calculate_a_value(compartment, dive_stage.dive_model);
+        calculate_a_values(compartment, dive_stage.dive_model);
     dive_stage.dive_model.dive_profile.b_values[compartment] =
-        calculate_b_value(compartment, dive_stage.dive_model);
+        calculate_b_values(compartment, dive_stage.dive_model);
     // dive_model.dive_profile.tolerated_ambient_pressures[compartment] =
     //     calculate_tolerated_ambient_pressure(compartment, dive_model.dive_profile);
     // dive_model.dive_profile.maximum_surface_pressures[compartment] =
