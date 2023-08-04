@@ -3,9 +3,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Copy, Clone, Serialize, Deserialize)]
 pub struct DiveModel {
-    pub compartment_count: usize,
-    pub nitrogen_half_time: [f32; 16],
-    pub helium_half_time: [f32; 16],
+    pub number_of_compartments: usize,
+    pub nitrogen_half_times: [f32; 16],
+    pub helium_half_times: [f32; 16],
     pub a_values_nitrogen: [f32; 16],
     pub b_values_nitrogen: [f32; 16],
     pub a_values_helium: [f32; 16],
@@ -23,12 +23,12 @@ impl DiveModel {
     #[allow(dead_code)]
     pub fn create_zhl16_dive_model() -> DiveModel {
         DiveModel {
-            compartment_count: 16,
-            nitrogen_half_time: [
+            number_of_compartments: 16,
+            nitrogen_half_times: [
                 4.0, 8.0, 12.5, 18.5, 27.0, 38.3, 54.3, 77.0, 109.0, 146.0, 187.0, 239.0, 305.0,
                 390.0, 498.0, 635.0,
             ],
-            helium_half_time: [
+            helium_half_times: [
                 1.51, 3.02, 4.72, 6.99, 10.21, 14.48, 20.53, 29.11, 41.20, 55.19, 70.69, 90.34,
                 115.29, 147.42, 188.24, 240.03,
             ],
@@ -55,13 +55,13 @@ impl DiveModel {
                 compartment_loads: [
                     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                 ],
-                tissue_pressures_nitrogen: [
+                nitrogen_tissue_pressures: [
                     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                 ],
-                tissue_pressures_helium: [
+                helium_tissue_pressures: [
                     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                 ],
-                tissue_pressures_total: [
+                total_tissue_pressures: [
                     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                 ],
                 tolerated_ambient_pressures: [
