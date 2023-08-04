@@ -18,7 +18,7 @@
             <StackPanel Margin="4,0" Background="#FFC3FDFF">
                 <ListBox
                     Margin="8,4"
-                    Items="{Binding DivePlan.CylinderSelector.Cylinders}" IsVisible="{Binding !!DivePlan.CylinderSelector.Cylinders.Count}"
+                    ItemsSource="{Binding DivePlan.CylinderSelector.Cylinders}" IsVisible="{Binding !!DivePlan.CylinderSelector.Cylinders.Count}"
                     SelectedItem="{Binding DivePlan.CylinderSelector.SelectedCylinder}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>

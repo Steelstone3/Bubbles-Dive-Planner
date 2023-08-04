@@ -20,7 +20,7 @@
             <ComboBox
                 Margin="8,4"
                 Background="#FFFFFFFF"
-                Items="{Binding DivePlan.DiveModelSelector.DiveModels}"
+                ItemsSource="{Binding DivePlan.DiveModelSelector.DiveModels}"
                 SelectedIndex="0"
                 SelectedItem="{Binding DivePlan.DiveModelSelector.SelectedDiveModel}">
                 <ComboBox.ItemTemplate>
