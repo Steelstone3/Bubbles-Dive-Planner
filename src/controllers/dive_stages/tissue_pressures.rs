@@ -31,7 +31,7 @@ pub fn calculate_helium_tissue_pressures(
                 )))
 }
 
-pub fn calculate_tissue_pressure_total(compartment: usize, dive_profile: DiveProfile) -> f32 {
+pub fn calculate_total_tissue_pressure(compartment: usize, dive_profile: DiveProfile) -> f32 {
     dive_profile.helium_tissue_pressures[compartment]
         + dive_profile.nitrogen_tissue_pressures[compartment]
 }
@@ -104,7 +104,7 @@ mod commands_tissue_pressure_should {
                 ),
                 format!(
                     "{:.3}",
-                    super::calculate_tissue_pressure_total(compartment, actual_dive_profile)
+                    super::calculate_total_tissue_pressure(compartment, actual_dive_profile)
                 )
             );
         }

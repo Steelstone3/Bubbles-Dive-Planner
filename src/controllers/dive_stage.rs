@@ -1,10 +1,23 @@
 use crate::models::dive_stage::DiveStage;
 
-use super::dive_stages::a_b_values::{calculate_a_values, calculate_b_values};
+use super::dive_stages::{
+    a_b_values::{calculate_a_values, calculate_b_values},
+    ambient_pressures::calculate_ambient_pressures,
+    compartment_loads::calculate_compartment_loads,
+    max_surface_pressures::calculate_max_surface_pressures,
+    tissue_pressures::{
+        calculate_helium_tissue_pressures, calculate_nitrogen_tissue_pressures,
+        calculate_total_tissue_pressure,
+    },
+    tolerated_ambient_pressures::calculate_tolerated_ambient_pressure,
+};
 
 pub fn update_dive_profile(mut dive_stage: DiveStage) -> DiveStage {
-    // dive_stage.dive_model.dive_profile =
-    // calculate_ambient_pressure(dive_stage.dive_model.dive_profile, dive_stage.dive_step, dive_stage.cylinder.gas_mixture);
+    dive_stage.dive_model.dive_profile = calculate_ambient_pressures(
+        dive_stage.dive_model.dive_profile,
+        dive_stage.dive_step,
+        dive_stage.cylinder.gas_mixture,
+    );
 
     for compartment in 0..dive_stage.dive_model.number_of_compartments {
         dive_stage = run_dive_stages(compartment, dive_stage);
@@ -14,22 +27,29 @@ pub fn update_dive_profile(mut dive_stage: DiveStage) -> DiveStage {
 }
 
 fn run_dive_stages(compartment: usize, mut dive_stage: DiveStage) -> DiveStage {
-    // dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =
-    //     calculate_tissue_pressure_nitrogen(compartment, dive_model, dive_step);
-    // dive_model.dive_profile.helium_tissue_pressures[compartment] =
-    //     calculate_tissue_pressure_helium(compartment, dive_model, dive_step);
-    // dive_model.dive_profile.total_tissue_pressures[compartment] =
-    //     calculate_tissue_pressure_total(compartment, dive_model.dive_profile);
+    dive_stage.dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =
+        calculate_nitrogen_tissue_pressures(
+            compartment,
+            dive_stage.dive_model,
+            dive_stage.dive_step,
+        );
+    dive_stage.dive_model.dive_profile.helium_tissue_pressures[compartment] =
+        calculate_helium_tissue_pressures(compartment, dive_stage.dive_model, dive_stage.dive_step);
+    dive_stage.dive_model.dive_profile.total_tissue_pressures[compartment] =
+        calculate_total_tissue_pressure(compartment, dive_stage.dive_model.dive_profile);
     dive_stage.dive_model.dive_profile.a_values[compartment] =
         calculate_a_values(compartment, dive_stage.dive_model);
     dive_stage.dive_model.dive_profile.b_values[compartment] =
         calculate_b_values(compartment, dive_stage.dive_model);
-    // dive_model.dive_profile.tolerated_ambient_pressures[compartment] =
-    //     calculate_tolerated_ambient_pressure(compartment, dive_model.dive_profile);
-    // dive_model.dive_profile.maximum_surface_pressures[compartment] =
-    //     calculate_max_surface_pressure(compartment, dive_model.dive_profile);
-    // dive_model.dive_profile.compartment_loads[compartment] =
-    //     calculate_compartment_load(compartment, dive_model.dive_profile);
+    dive_stage
+        .dive_model
+        .dive_profile
+        .tolerated_ambient_pressures[compartment] =
+        calculate_tolerated_ambient_pressure(compartment, dive_stage.dive_model.dive_profile);
+    dive_stage.dive_model.dive_profile.maximum_surface_pressures[compartment] =
+        calculate_max_surface_pressures(compartment, dive_stage.dive_model.dive_profile);
+    dive_stage.dive_model.dive_profile.compartment_loads[compartment] =
+        calculate_compartment_loads(compartment, dive_stage.dive_model.dive_profile);
 
     dive_stage
 }
@@ -43,7 +63,6 @@ mod dive_stage_should {
     };
 
     #[test]
-    #[ignore = "not implemented"]
     fn update_dive_profile_by_running_each_dive_stages() {
         //Arrange
         let dive_stage = DiveStage {
