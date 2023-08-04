@@ -1,35 +1,29 @@
-// Copyright (c) The Avalonia Project. All rights reserved.
-// Licensed under the MIT license. See licence.md file in the project root for full license information.
-
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using ReactiveUI;
+using BubblesDivePlanner.ViewModels;
 
 namespace BubblesDivePlanner.Views
 {
     public class ViewLocator : IDataTemplate
     {
-        public static bool SupportsRecycling => false;
-
-        public IControl Build(object data)
+        public Control Build(object data)
         {
-            var name = data.GetType().FullName.Replace("ViewModel", "View");
-            var type = Type.GetType(name);
+            if (data is null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
 
-            if (type != null)
-            {
-                return (Control)Activator.CreateInstance(type);
-            }
-            else
-            {
-                return new TextBlock { Text = "Not Found: " + name };
-            }
+            string name = data.GetType().FullName!.Replace("ViewModel", "View");
+            Type type = Type.GetType(name);
+
+            return type is null ? new TextBlock { Text = "Not Found: " + name } : (Control)Activator.CreateInstance(type)!;
         }
 
         public bool Match(object data)
         {
-            return data is ReactiveObject;
+            return data is null ? throw new ArgumentNullException(nameof(data)) : data is ReactiveObject;
         }
     }
 }

@@ -25,10 +25,10 @@
                 <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="MSP" FontWeight="Bold" IsVisible="{Binding !!Results.LatestResult.DiveProfile.TissuePressuresTotal.Count}"/>
                 <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="3" Text="CLP" FontWeight="Bold" IsVisible="{Binding !!Results.LatestResult.DiveProfile.TissuePressuresTotal.Count}"/>
         
-                <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" Items="{Binding Results.LatestResult.DiveProfile.TissuePressuresTotal}" IsVisible="{Binding !!Results.LatestResult.DiveProfile.TissuePressuresTotal.Count}"/>
-                <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" Items="{Binding Results.LatestResult.DiveProfile.ToleratedAmbientPressures}" IsVisible="{Binding !!Results.LatestResult.DiveProfile.ToleratedAmbientPressures.Count}"/>
-                <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="2" Items="{Binding Results.LatestResult.DiveProfile.MaxSurfacePressures}" IsVisible="{Binding !!Results.LatestResult.DiveProfile.MaxSurfacePressures.Count}"/>
-                <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="3" Items="{Binding Results.LatestResult.DiveProfile.CompartmentLoad}" IsVisible="{Binding !!Results.LatestResult.DiveProfile.CompartmentLoad.Count}"/>
+                <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Results.LatestResult.DiveProfile.TissuePressuresTotal}" IsVisible="{Binding !!Results.LatestResult.DiveProfile.TissuePressuresTotal.Count}"/>
+                <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Results.LatestResult.DiveProfile.ToleratedAmbientPressures}" IsVisible="{Binding !!Results.LatestResult.DiveProfile.ToleratedAmbientPressures.Count}"/>
+                <ItemsControl Background="#FF5D99C6" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Results.LatestResult.DiveProfile.MaxSurfacePressures}" IsVisible="{Binding !!Results.LatestResult.DiveProfile.MaxSurfacePressures.Count}"/>
+                <ItemsControl Background="#FF90CAF9" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding Results.LatestResult.DiveProfile.CompartmentLoad}" IsVisible="{Binding !!Results.LatestResult.DiveProfile.CompartmentLoad.Count}"/>
         </Grid>
     </StackPanel>
 </UserControl>
