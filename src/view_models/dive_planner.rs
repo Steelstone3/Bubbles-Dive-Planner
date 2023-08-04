@@ -11,10 +11,3 @@ impl Default for DivePlanner {
         Self::new()
     }
 }
-
-#[cfg(test)]
-mod dive_planner_should {
-    #[test]
-    #[ignore = "not implemented"]
-    fn update() {}
-}

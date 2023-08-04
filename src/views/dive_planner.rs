@@ -1,4 +1,5 @@
 use crate::commands::messages::Message;
+use crate::controllers::dive_stage::update_dive_profile;
 use crate::models::{dive_step::DiveStep, gas_mixture::GasMixture};
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column, container, text, text_input};
@@ -22,7 +23,7 @@ impl Sandbox for DivePlanner {
     fn update(&mut self, message: Message) {
         match message {
             Message::CalculateDivePlan => {
-                self.dive_stage.dive_step.depth += 1;
+                self.dive_stage = update_dive_profile(self.dive_stage);
             }
             Message::DepthChanged(depth) => {
                 let depth_input = parse_input_u32(depth, 0);
@@ -75,7 +76,9 @@ impl Sandbox for DivePlanner {
                 text("Nitrogen").size(24),
                 text(self.dive_stage.cylinder.gas_mixture.nitrogen).size(24),
                 button("Calculate").on_press(Self::Message::CalculateDivePlan),
-                text(self.dive_stage.dive_step.depth).size(24),
+                
+                
+                text(self.dive_stage.dive_model.dive_profile).size(24),
             ]
             .padding(20)
             .align_items(Alignment::Start),
