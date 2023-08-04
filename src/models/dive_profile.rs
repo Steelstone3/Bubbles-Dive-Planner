@@ -1,4 +1,3 @@
-use iced::executor::Default;
 use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
