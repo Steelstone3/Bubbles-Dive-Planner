@@ -55,10 +55,17 @@ impl Sandbox for DivePlanner {
             }
             Message::TimeChanged(time) => {
                 // TODO move this to a parser controller in views
-                self.dive_stage.dive_step.time = match time.parse::<u32>() {
+                let mut time = match time.parse::<u32>() {
                     Ok(time) => time,
                     Err(_) => 0,
                 };
+
+                // TODO move this to model validation
+                if time > 60 {
+                    time = 60;
+                }
+
+                self.dive_stage.dive_step.time = time;
             }
             Message::OxygenChanged(oxygen) => {
                 // TODO move this to a parser controller in views
