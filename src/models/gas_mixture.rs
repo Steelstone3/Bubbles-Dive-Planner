@@ -22,7 +22,7 @@ impl GasMixture {
         if oxygen > 100 {
             oxygen = 100;
         }
-        
+
         if oxygen + helium > 100 {
             helium = 100 - oxygen;
         }
@@ -38,11 +38,11 @@ impl GasMixture {
         if helium > 100 {
             helium = 100;
         }
-        
+
         if oxygen + helium > 100 {
             oxygen = 100 - helium;
         }
-        
+
         GasMixture {
             oxygen,
             helium,
@@ -128,7 +128,11 @@ mod gas_mixture_should {
     #[test]
     fn calculate_nitrogen_for_a_given_gas_mixture() {
         // Given
-        let gas_mixture = GasMixture{ oxygen: 21, helium: 10, nitrogen: 0 };
+        let gas_mixture = GasMixture {
+            oxygen: 21,
+            helium: 10,
+            nitrogen: 0,
+        };
 
         // When
         let nitrogen = GasMixture::calculate_nitrogen(gas_mixture.oxygen, gas_mixture.helium);

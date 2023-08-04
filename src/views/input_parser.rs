@@ -9,8 +9,8 @@ mod input_parser_should {
     #[test]
     fn parse_input_of_u32_type() {
         // When
-         let number = parse_input_u32(30.to_string(), 0);
-        
+        let number = parse_input_u32(30.to_string(), 0);
+
         // Then
         assert_eq!(30, number);
     }
@@ -18,8 +18,8 @@ mod input_parser_should {
     #[test]
     fn return_minimum_value_for_invalid_input() {
         // When
-         let number = parse_input_u32("Jeff".to_string(), 5);
-        
+        let number = parse_input_u32("Jeff".to_string(), 5);
+
         // Then
         assert_eq!(5, number);
     }
