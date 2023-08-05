@@ -59,10 +59,17 @@ impl Sandbox for DivePlanner {
         Column::new()
             .align_items(Alignment::Center)
             .width(Length::FillPortion(1))
-            .spacing(20)
+            .spacing(10)
             .push(
                 Row::new()
-                    .spacing(20)
+                    .spacing(10)
+                    // TODO Header in here possibly
+                    // .push(
+                    //     Row::new()
+                    //         .align_items(Alignment::Start)
+                    //         .spacing(10)
+                    //         .push(Text::new("Here lies the Header")),
+                    // )
                     .push(Scrollable::new(
                         Column::new()
                             .align_items(Alignment::Start)
@@ -73,6 +80,7 @@ impl Sandbox for DivePlanner {
                                     "Enter Depth",
                                     &self.dive_stage.dive_step.depth.to_string(),
                                 )
+                                .width(Length::Fixed(100.0))
                                 .on_input(Self::Message::DepthChanged),
                             )
                             .push(Text::new("Time"))
@@ -81,6 +89,7 @@ impl Sandbox for DivePlanner {
                                     "Enter Time",
                                     &self.dive_stage.dive_step.time.to_string(),
                                 )
+                                .width(Length::Fixed(100.0))
                                 .on_input(Self::Message::TimeChanged),
                             )
                             .push(Text::new("Left Column - Item 4"))
