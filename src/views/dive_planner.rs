@@ -27,33 +27,20 @@ impl Sandbox for DivePlanner {
     fn update(&mut self, message: Message) {
         match message {
             Message::CalculateDivePlan => {
+                // TODO consider dive profile assosiated function
                 self.dive_stage = update_dive_profile(self.dive_stage);
             }
             Message::DepthChanged(depth) => {
                 self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth);
             }
             Message::TimeChanged(time) => {
-                // TODO move to view
-                let time_input = parse_input_u32(time, 0);
-                self.dive_stage.dive_step.time = DiveStep::validate(time_input, 60);
+                self.dive_stage.dive_step.time = DiveStepView::update_time(time);
             }
             Message::OxygenChanged(oxygen) => {
-                // TODO move to view
-                let oxygen_input = parse_input_u32(oxygen, 5);
-
-                let helium = self.dive_stage.cylinder.gas_mixture.helium;
-                let gas_mixture = GasMixture::validate_oxygen(oxygen_input, helium);
-
-                self.dive_stage.cylinder.gas_mixture = gas_mixture;
+                self.dive_stage.cylinder.gas_mixture = CylinderView::update_oxygen(oxygen, self);
             }
             Message::HeliumChanged(helium) => {
-                // TODO move to view
-                let helium_input = parse_input_u32(helium, 0);
-
-                let oxygen = self.dive_stage.cylinder.gas_mixture.oxygen;
-                let gas_mixture = GasMixture::validate_helium(oxygen, helium_input);
-
-                self.dive_stage.cylinder.gas_mixture = gas_mixture;
+                self.dive_stage.cylinder.gas_mixture = CylinderView::update_helium(helium, self);
             }
         }
     }

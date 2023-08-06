@@ -1,6 +1,11 @@
-use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
+use crate::{
+    commands::messages::Message,
+    models::{dive_stage::DiveStage, gas_mixture::GasMixture},
+    view_models::dive_planner::DivePlanner,
+    views::input_parser::parse_input_u32,
+};
 use iced::{
-    widget::{Text, TextInput, text, text_input},
+    widget::{text, text_input, Text, TextInput},
     Renderer,
 };
 
@@ -19,7 +24,12 @@ impl CylinderView<'_> {
             oxygen_text: text("Oxygen"),
             oxygen_input: text_input(
                 "Enter Oxygen",
-                &dive_planner.dive_stage.cylinder.gas_mixture.oxygen.to_string(),
+                &dive_planner
+                    .dive_stage
+                    .cylinder
+                    .gas_mixture
+                    .oxygen
+                    .to_string(),
             )
             .width(100)
             .on_input(Message::OxygenChanged),
@@ -27,7 +37,12 @@ impl CylinderView<'_> {
             helium_text: text("Helium"),
             helium_input: text_input(
                 "Enter Helium",
-                &dive_planner.dive_stage.cylinder.gas_mixture.helium.to_string(),
+                &dive_planner
+                    .dive_stage
+                    .cylinder
+                    .gas_mixture
+                    .helium
+                    .to_string(),
             )
             .width(100)
             .on_input(Message::HeliumChanged),
@@ -35,5 +50,20 @@ impl CylinderView<'_> {
             nitrogen_text: text("Nitrogen"),
             nitrogen_text_value: text(dive_planner.dive_stage.cylinder.gas_mixture.nitrogen),
         }
+    }
+
+    //TODO test these functions ↓
+    pub fn update_oxygen(oxygen: String, dive_planner: &DivePlanner) -> GasMixture {
+        let oxygen_input = parse_input_u32(oxygen, 5);
+
+        let helium = dive_planner.dive_stage.cylinder.gas_mixture.helium;
+        GasMixture::validate_oxygen(oxygen_input, helium)
+    }
+
+    pub fn update_helium(helium: String, dive_planner: &DivePlanner) -> GasMixture {
+        let helium_input = parse_input_u32(helium, 0);
+
+        let oxygen = dive_planner.dive_stage.cylinder.gas_mixture.oxygen;
+        GasMixture::validate_helium(oxygen, helium_input)
     }
 }
