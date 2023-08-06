@@ -50,7 +50,6 @@ impl CylinderView<'_> {
         }
     }
 
-    //TODO test these functions ↓
     pub fn update_oxygen(oxygen: String, dive_planner: &DivePlanner) -> GasMixture {
         let oxygen_input = parse_input_u32(oxygen, 5);
 
@@ -64,4 +63,31 @@ impl CylinderView<'_> {
         let oxygen = dive_planner.dive_stage.cylinder.gas_mixture.oxygen;
         GasMixture::validate_helium(oxygen, helium_input)
     }
+}
+
+#[cfg(test)]
+mod cylinder_view_should {
+    #[test]
+    #[ignore]
+    fn update_oxygen_by_parsing_and_validating_input_successfully() {}
+
+    #[test]
+    #[ignore]
+    fn update_oxygen_by_parsing_with_invalid_input() {}
+
+    #[test]
+    #[ignore]
+    fn update_oxygen_by_being_unable_to_parse_input() {}
+
+    #[test]
+    #[ignore]
+    fn update_helium_by_parsing_and_validating_input_successfully() {}
+
+    #[test]
+    #[ignore]
+    fn update_helium_by_parsing_with_invalid_input() {}
+
+    #[test]
+    #[ignore]
+    fn update_helium_by_being_unable_to_parse_input() {}
 }

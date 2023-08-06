@@ -35,7 +35,6 @@ impl DiveStepView<'_> {
         }
     }
 
-    // TODO test these functions ↓
     pub fn update_depth(depth: String) -> u32 {
         let depth_input = parse_input_u32(depth, 0);
         DiveStep::validate(depth_input, 100)
@@ -45,4 +44,31 @@ impl DiveStepView<'_> {
         let time_input = parse_input_u32(time, 0);
         DiveStep::validate(time_input, 60)
     }
+}
+
+#[cfg(test)]
+mod dive_step_view_should {
+    #[test]
+    #[ignore]
+    fn update_depth_by_parsing_and_validating_input_successfully() {}
+    
+    #[test]
+    #[ignore]
+    fn update_depth_by_parsing_with_invalid_input() {}
+
+    #[test]
+    #[ignore]
+    fn update_depth_by_being_unable_to_parse_input() {}
+    
+    #[test]
+    #[ignore]
+    fn update_time_by_parsing_and_validating_input_successfully() {}
+
+    #[test]
+    #[ignore]
+    fn update_time_by_parsing_with_invalid_input() {}
+
+    #[test]
+    #[ignore]
+    fn update_time_by_being_unable_to_parse_input() {}
 }
