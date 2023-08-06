@@ -7,6 +7,7 @@ mod models;
 mod view_models;
 mod views;
 
+// TODO Update README.md
 // TODO Header Bar View
 // TODO Theme and style it
 // TODO Refactor The Calculate Button To A View
