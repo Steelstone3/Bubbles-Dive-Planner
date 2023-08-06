@@ -1,10 +1,13 @@
 use crate::commands::messages::Message;
 use crate::controllers::dive_stage::update_dive_profile;
-use crate::models::{dive_step::DiveStep, gas_mixture::GasMixture};
+
+use crate::models::dive_step::DiveStep;
+use crate::models::gas_mixture::GasMixture;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column, scrollable, text, text_input};
 use iced::{Alignment, Element, Length, Sandbox};
 
+use super::dive_step::DiveStepView;
 use super::input_parser::parse_input_u32;
 
 impl Sandbox for DivePlanner {
@@ -53,16 +56,14 @@ impl Sandbox for DivePlanner {
     }
 
     fn view(&self) -> Element<Message> {
+        let dive_step = DiveStepView::new(self);
+
         column![iced::widget::row![scrollable(
             column![
-                text("Depth"),
-                text_input("Enter Depth", &self.dive_stage.dive_step.depth.to_string())
-                    .width(100)
-                    .on_input(Self::Message::DepthChanged),
-                text("Time"),
-                text_input("Enter Time", &self.dive_stage.dive_step.time.to_string())
-                    .width(100)
-                    .on_input(Self::Message::TimeChanged),
+                dive_step.depth_text,
+                dive_step.depth_input,
+                dive_step.time_text,
+                dive_step.time_input,
                 text("Oxygen"),
                 text_input(
                     "Enter Oxygen",
