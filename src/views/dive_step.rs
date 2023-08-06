@@ -2,7 +2,9 @@ use iced::{
     widget::{text, text_input, Text, TextInput}, Renderer,
 };
 
-use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
+use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner, models::dive_step::DiveStep};
+
+use super::input_parser::parse_input_u32;
 
 pub struct DiveStepView<'a> {
     pub depth_text: Text<'a, Renderer>,
@@ -29,5 +31,10 @@ impl DiveStepView<'_> {
             .width(100)
             .on_input(Message::TimeChanged),
         }
+    }
+
+    pub fn update_depth(depth: String) -> u32{
+        let depth_input = parse_input_u32(depth, 0);
+        DiveStep::validate(depth_input, 100)
     }
 }

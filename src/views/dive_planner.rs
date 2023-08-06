@@ -30,9 +30,7 @@ impl Sandbox for DivePlanner {
                 self.dive_stage = update_dive_profile(self.dive_stage);
             }
             Message::DepthChanged(depth) => {
-                // TODO move to view
-                let depth_input = parse_input_u32(depth, 0);
-                self.dive_stage.dive_step.depth = DiveStep::validate(depth_input, 100);
+                self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth);
             }
             Message::TimeChanged(time) => {
                 // TODO move to view
