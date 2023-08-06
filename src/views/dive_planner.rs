@@ -1,11 +1,10 @@
+use super::cylinder::CylinderView;
+use super::dive_step::DiveStepView;
 use crate::commands::messages::Message;
-use crate::controllers::dive_stage::update_dive_profile;
-use crate::models::{dive_step::DiveStep, gas_mixture::GasMixture};
+use crate::models::dive_profile::DiveProfile;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
-use iced::widget::{button, column, container, text, text_input};
-use iced::{Alignment, Element, Sandbox};
-
-use super::input_parser::parse_input_u32;
+use iced::widget::{button, column, scrollable, text};
+use iced::{Alignment, Element, Length, Sandbox};
 
 impl Sandbox for DivePlanner {
     type Message = Message;
@@ -23,64 +22,54 @@ impl Sandbox for DivePlanner {
     fn update(&mut self, message: Message) {
         match message {
             Message::CalculateDivePlan => {
-                self.dive_stage = update_dive_profile(self.dive_stage);
+                self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
             }
             Message::DepthChanged(depth) => {
-                let depth_input = parse_input_u32(depth, 0);
-                self.dive_stage.dive_step.depth = DiveStep::validate(depth_input, 100);
+                self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth);
             }
             Message::TimeChanged(time) => {
-                let time_input = parse_input_u32(time, 0);
-                self.dive_stage.dive_step.time = DiveStep::validate(time_input, 60);
+                self.dive_stage.dive_step.time = DiveStepView::update_time(time);
             }
             Message::OxygenChanged(oxygen) => {
-                let oxygen_input = parse_input_u32(oxygen, 5);
-
-                let helium = self.dive_stage.cylinder.gas_mixture.helium;
-                let gas_mixture = GasMixture::validate_oxygen(oxygen_input, helium);
-
-                self.dive_stage.cylinder.gas_mixture = gas_mixture;
+                self.dive_stage.cylinder.gas_mixture = CylinderView::update_oxygen(oxygen, self);
             }
             Message::HeliumChanged(helium) => {
-                let helium_input = parse_input_u32(helium, 0);
-
-                let oxygen = self.dive_stage.cylinder.gas_mixture.oxygen;
-                let gas_mixture = GasMixture::validate_helium(oxygen, helium_input);
-
-                self.dive_stage.cylinder.gas_mixture = gas_mixture;
+                self.dive_stage.cylinder.gas_mixture = CylinderView::update_helium(helium, self);
             }
         }
     }
 
     fn view(&self) -> Element<Message> {
-        container(container(
+        let dive_step = DiveStepView::new(self);
+        let cylinder = CylinderView::new(self);
+
+        column![iced::widget::row![scrollable(
             column![
-                text("Depth").size(24),
-                text_input("Enter Depth", &self.dive_stage.dive_step.depth.to_string())
-                    .on_input(Self::Message::DepthChanged),
-                text("Time").size(24),
-                text_input("Enter Time", &self.dive_stage.dive_step.time.to_string())
-                    .on_input(Self::Message::TimeChanged),
-                text("Oxygen").size(24),
-                text_input(
-                    "Enter Oxygen",
-                    &self.dive_stage.cylinder.gas_mixture.oxygen.to_string()
-                )
-                .on_input(Self::Message::OxygenChanged),
-                text("Helium").size(24),
-                text_input(
-                    "Enter Helium",
-                    &self.dive_stage.cylinder.gas_mixture.helium.to_string()
-                )
-                .on_input(Self::Message::HeliumChanged),
-                text("Nitrogen").size(24),
-                text(self.dive_stage.cylinder.gas_mixture.nitrogen).size(24),
-                button("Calculate").on_press(Self::Message::CalculateDivePlan),
-                text(self.dive_stage.dive_model.dive_profile).size(24),
+                dive_step.depth_text,
+                dive_step.depth_input,
+                dive_step.time_text,
+                dive_step.time_input,
+                cylinder.oxygen_text,
+                cylinder.oxygen_input,
+                cylinder.helium_text,
+                cylinder.helium_input,
+                cylinder.nitrogen_text,
+                cylinder.nitrogen_text_value,
+                button("Calculate").on_press(Self::Message::CalculateDivePlan)
             ]
-            .padding(20)
-            .align_items(Alignment::Start),
-        ))
+            .align_items(Alignment::Start)
+            .spacing(10),
+        )]
+        .spacing(10)
+        .push(scrollable(
+            column![text(self.dive_stage.dive_model.dive_profile)]
+                .align_items(Alignment::Start)
+                .spacing(10)
+                .width(Length::FillPortion(4))
+        )),]
+        .align_items(Alignment::Center)
+        .width(Length::FillPortion(1))
+        .spacing(10)
         .into()
     }
 }

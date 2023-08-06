@@ -20,5 +20,5 @@ codegen-units = 1
 
 [dependencies]
 iced = { version = "0.*" }
-serde_json = { version = "1.*" }
-serde = { version = "1.*", features = ["derive"] }
+# serde_json = { version = "1.*" }
+# serde = { version = "1.*", features = ["derive"] }

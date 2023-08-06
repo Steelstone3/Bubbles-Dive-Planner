@@ -1,7 +1,6 @@
 use super::dive_profile::DiveProfile;
-use serde::{Deserialize, Serialize};
 
-#[derive(Copy, Clone, Serialize, Deserialize)]
+#[derive(Copy, Clone)]
 pub struct DiveModel {
     pub number_of_compartments: usize,
     pub nitrogen_half_times: [f32; 16],
