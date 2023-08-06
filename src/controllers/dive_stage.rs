@@ -12,6 +12,8 @@ use super::dive_stages::{
     tolerated_ambient_pressures::calculate_tolerated_ambient_pressure,
 };
 
+// TODO Arguably move this to be an assosiate function of dive profile
+// TODO impl DiveProfile{fn update(){}}
 pub fn update_dive_profile(mut dive_stage: DiveStage) -> DiveStage {
     dive_stage.dive_model.dive_profile = calculate_ambient_pressures(
         dive_stage.dive_model.dive_profile,
@@ -26,6 +28,7 @@ pub fn update_dive_profile(mut dive_stage: DiveStage) -> DiveStage {
     dive_stage
 }
 
+// TODO Then move this function in along with it
 fn run_dive_stages(compartment: usize, mut dive_stage: DiveStage) -> DiveStage {
     dive_stage.dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =
         calculate_nitrogen_tissue_pressures(
@@ -54,6 +57,7 @@ fn run_dive_stages(compartment: usize, mut dive_stage: DiveStage) -> DiveStage {
     dive_stage
 }
 
+// TODO along with these tests and then remove this file?
 #[cfg(test)]
 mod dive_stage_should {
     use super::*;
@@ -64,7 +68,7 @@ mod dive_stage_should {
 
     #[test]
     fn update_dive_profile_by_running_each_dive_stages() {
-        //Arrange
+        // Given
         let dive_stage = DiveStage {
             dive_model: DiveModel::create_zhl16_dive_model(),
             dive_step: dive_step_test_fixture(),
@@ -72,10 +76,10 @@ mod dive_stage_should {
         };
         let expected_dive_profile = dive_profile_test_fixture();
 
-        //Act
+        // When
         let actual_dive_stage = super::update_dive_profile(dive_stage);
 
-        //Assert
+        // Then
         assert_eq!(
             format!("{:.2}", expected_dive_profile.oxygen_at_pressure),
             format!(
