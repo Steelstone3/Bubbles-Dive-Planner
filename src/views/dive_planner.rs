@@ -4,9 +4,10 @@ use crate::controllers::dive_stage::update_dive_profile;
 use crate::models::dive_step::DiveStep;
 use crate::models::gas_mixture::GasMixture;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
-use iced::widget::{button, column, scrollable, text, text_input};
+use iced::widget::{button, column, scrollable, text};
 use iced::{Alignment, Element, Length, Sandbox};
 
+use super::cylinder::CylinderView;
 use super::dive_step::DiveStepView;
 use super::input_parser::parse_input_u32;
 
@@ -57,6 +58,7 @@ impl Sandbox for DivePlanner {
 
     fn view(&self) -> Element<Message> {
         let dive_step = DiveStepView::new(self);
+        let cylinder = CylinderView::new(self);
 
         column![iced::widget::row![scrollable(
             column![
@@ -64,22 +66,12 @@ impl Sandbox for DivePlanner {
                 dive_step.depth_input,
                 dive_step.time_text,
                 dive_step.time_input,
-                text("Oxygen"),
-                text_input(
-                    "Enter Oxygen",
-                    &self.dive_stage.cylinder.gas_mixture.oxygen.to_string()
-                )
-                .width(100)
-                .on_input(Self::Message::OxygenChanged),
-                text("Helium"),
-                text_input(
-                    "Enter Helium",
-                    &self.dive_stage.cylinder.gas_mixture.helium.to_string()
-                )
-                .width(100)
-                .on_input(Self::Message::HeliumChanged),
-                text("Nitrogen"),
-                text(self.dive_stage.cylinder.gas_mixture.nitrogen),
+                cylinder.oxygen_text,
+                cylinder.oxygen_input,
+                cylinder.helium_text,
+                cylinder.helium_input,
+                cylinder.nitrogen_text,
+                cylinder.nitrogen_text_value,
                 button("Calculate").on_press(Self::Message::CalculateDivePlan)
             ]
             .align_items(Alignment::Start)

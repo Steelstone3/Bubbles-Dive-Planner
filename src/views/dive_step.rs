@@ -13,7 +13,7 @@ pub struct DiveStepView<'a> {
 
 impl DiveStepView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
-        DiveStepView {
+        Self {
             depth_text: text("Depth"),
             depth_input: text_input(
                 "Enter Depth",
