@@ -75,7 +75,6 @@ impl DiveProfile {
         dive_stage
     }
 
-    // TODO Requires testing
     fn display_results(self) -> String {
         println!();
         let mut dive_results = "".to_string();
@@ -109,6 +108,10 @@ mod dive_profile_should {
     use crate::models::{
         cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep, gas_mixture::GasMixture,
     };
+
+    #[test]
+    #[ignore]
+    fn display_a_set_of_dive_profile_results() {}
 
     #[test]
     fn update_dive_profile_by_running_each_dive_stages() {
