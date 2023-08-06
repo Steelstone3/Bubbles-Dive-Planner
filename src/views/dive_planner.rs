@@ -30,14 +30,17 @@ impl Sandbox for DivePlanner {
                 self.dive_stage = update_dive_profile(self.dive_stage);
             }
             Message::DepthChanged(depth) => {
+                // TODO move to view
                 let depth_input = parse_input_u32(depth, 0);
                 self.dive_stage.dive_step.depth = DiveStep::validate(depth_input, 100);
             }
             Message::TimeChanged(time) => {
+                // TODO move to view
                 let time_input = parse_input_u32(time, 0);
                 self.dive_stage.dive_step.time = DiveStep::validate(time_input, 60);
             }
             Message::OxygenChanged(oxygen) => {
+                // TODO move to view
                 let oxygen_input = parse_input_u32(oxygen, 5);
 
                 let helium = self.dive_stage.cylinder.gas_mixture.helium;
@@ -46,6 +49,7 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.cylinder.gas_mixture = gas_mixture;
             }
             Message::HeliumChanged(helium) => {
+                // TODO move to view
                 let helium_input = parse_input_u32(helium, 0);
 
                 let oxygen = self.dive_stage.cylinder.gas_mixture.oxygen;
