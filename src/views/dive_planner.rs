@@ -71,36 +71,42 @@ impl Sandbox for DivePlanner {
                     //         .push(Text::new("Here lies the Header")),
                     // )
                     .push(Scrollable::new(
-                        Column::new()
-                            .align_items(Alignment::Start)
-                            .spacing(10)
-                            .push(Text::new("Depth"))
-                            .push(
-                                TextInput::new(
-                                    "Enter Depth",
-                                    &self.dive_stage.dive_step.depth.to_string(),
-                                )
-                                .width(Length::Fixed(100.0))
+                        column![
+                            text("Depth"),
+                            text_input("Enter Depth", &self.dive_stage.dive_step.depth.to_string())
+                                .width(100)
                                 .on_input(Self::Message::DepthChanged),
-                            )
-                            .push(Text::new("Time"))
-                            .push(
-                                TextInput::new(
-                                    "Enter Time",
-                                    &self.dive_stage.dive_step.time.to_string(),
-                                )
-                                .width(Length::Fixed(100.0))
+                            text("Time"),
+                            text_input("Enter Time", &self.dive_stage.dive_step.time.to_string())
+                                .width(100)
                                 .on_input(Self::Message::TimeChanged),
+                            text("Oxygen"),
+                            text_input(
+                                "Enter Oxygen",
+                                &self.dive_stage.cylinder.gas_mixture.oxygen.to_string()
                             )
-                            .push(Text::new("Left Column - Item 4"))
-                            .push(Text::new("Left Column - Item 5")),
+                            .width(100)
+                            .on_input(Self::Message::OxygenChanged),
+                            text("Helium"),
+                            text_input(
+                                "Enter Helium",
+                                &self.dive_stage.cylinder.gas_mixture.helium.to_string()
+                            )
+                            .width(100)
+                            .on_input(Self::Message::HeliumChanged),
+                            text("Nitrogen"),
+                            text(self.dive_stage.cylinder.gas_mixture.nitrogen),
+                            button("Calculate").on_press(Self::Message::CalculateDivePlan)
+                        ]
+                        .align_items(Alignment::Start)
+                        .spacing(10),
                     ))
                     .push(Scrollable::new(
                         Column::new()
-                            .align_items(Alignment::Center)
+                            .align_items(Alignment::Start)
                             .spacing(10)
                             .width(Length::FillPortion(4))
-                            .push(Text::new("Right Column - Item 1")),
+                            .push(text(self.dive_stage.dive_model.dive_profile)),
                     )),
             )
             .into()
