@@ -1,8 +1,6 @@
 use crate::{
-    commands::messages::Message,
-    models::{dive_stage::DiveStage, gas_mixture::GasMixture},
-    view_models::dive_planner::DivePlanner,
-    views::input_parser::parse_input_u32,
+    commands::messages::Message, models::gas_mixture::GasMixture,
+    view_models::dive_planner::DivePlanner, views::input_parser::parse_input_u32,
 };
 use iced::{
     widget::{text, text_input, Text, TextInput},

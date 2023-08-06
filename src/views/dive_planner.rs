@@ -1,15 +1,12 @@
 use crate::commands::messages::Message;
 use crate::controllers::dive_stage::update_dive_profile;
 
-use crate::models::dive_step::DiveStep;
-use crate::models::gas_mixture::GasMixture;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column, scrollable, text};
 use iced::{Alignment, Element, Length, Sandbox};
 
 use super::cylinder::CylinderView;
 use super::dive_step::DiveStepView;
-use super::input_parser::parse_input_u32;
 
 impl Sandbox for DivePlanner {
     type Message = Message;
