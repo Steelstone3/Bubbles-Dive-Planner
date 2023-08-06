@@ -1,6 +1,4 @@
-use serde::{Deserialize, Serialize};
-
-#[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize)]
+#[derive(PartialEq, Debug, Copy, Clone)]
 pub struct GasMixture {
     pub oxygen: u32,
     pub helium: u32,

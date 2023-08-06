@@ -10,10 +10,9 @@ use crate::controllers::dive_stages::{
     },
     tolerated_ambient_pressures::calculate_tolerated_ambient_pressure,
 };
-use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
-#[derive(PartialEq, Debug, Default, Copy, Clone, Serialize, Deserialize)]
+#[derive(PartialEq, Debug, Default, Copy, Clone)]
 pub struct DiveProfile {
     pub maximum_surface_pressures: [f32; 16],
     pub compartment_loads: [f32; 16],
