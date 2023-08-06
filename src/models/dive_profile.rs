@@ -1,7 +1,17 @@
+use super::dive_stage::DiveStage;
+use crate::controllers::dive_stages::{
+    a_b_values::{calculate_a_values, calculate_b_values},
+    ambient_pressures::calculate_ambient_pressures,
+    compartment_loads::calculate_compartment_loads,
+    max_surface_pressures::calculate_max_surface_pressures,
+    tissue_pressures::{
+        calculate_helium_tissue_pressures, calculate_nitrogen_tissue_pressures,
+        calculate_total_tissue_pressure,
+    },
+    tolerated_ambient_pressures::calculate_tolerated_ambient_pressure,
+};
 use serde::{Deserialize, Serialize};
 use std::fmt::Display;
-use crate::controllers::dive_stages::{tissue_pressures::{calculate_nitrogen_tissue_pressures, calculate_helium_tissue_pressures, calculate_total_tissue_pressure}, ambient_pressures::calculate_ambient_pressures, a_b_values::{calculate_a_values, calculate_b_values}, tolerated_ambient_pressures::calculate_tolerated_ambient_pressure, max_surface_pressures::calculate_max_surface_pressures, compartment_loads::calculate_compartment_loads};
-use super::dive_stage::DiveStage;
 
 #[derive(PartialEq, Debug, Default, Copy, Clone, Serialize, Deserialize)]
 pub struct DiveProfile {
@@ -95,10 +105,11 @@ impl Display for DiveProfile {
 
 #[cfg(test)]
 mod dive_profile_should {
-    use crate::models::{dive_step::DiveStep, cylinder::Cylinder, gas_mixture::GasMixture, dive_model::DiveModel};
-
     use super::*;
-    
+    use crate::models::{
+        cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep, gas_mixture::GasMixture,
+    };
+
     #[test]
     fn update_dive_profile_by_running_each_dive_stages() {
         // Given
