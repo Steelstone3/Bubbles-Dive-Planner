@@ -1,7 +1,7 @@
 use super::cylinder::CylinderView;
 use super::dive_step::DiveStepView;
 use crate::commands::messages::Message;
-use crate::controllers::dive_stage::update_dive_profile;
+use crate::models::dive_profile::DiveProfile;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column, scrollable, text};
 use iced::{Alignment, Element, Length, Sandbox};
@@ -22,8 +22,7 @@ impl Sandbox for DivePlanner {
     fn update(&mut self, message: Message) {
         match message {
             Message::CalculateDivePlan => {
-                // TODO consider dive profile assosiated function
-                self.dive_stage = update_dive_profile(self.dive_stage);
+                self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
             }
             Message::DepthChanged(depth) => {
                 self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth);
