@@ -1,14 +1,12 @@
-use iced::{
-    widget::{text, text_input, Text, TextInput},
-    Renderer,
-};
-
+use super::input_parser::parse_input_u32;
 use crate::{
     commands::messages::Message, models::dive_step::DiveStep,
     view_models::dive_planner::DivePlanner,
 };
-
-use super::input_parser::parse_input_u32;
+use iced::{
+    widget::{text, text_input, Text, TextInput},
+    Renderer,
+};
 
 pub struct DiveStepView<'a> {
     pub depth_text: Text<'a, Renderer>,

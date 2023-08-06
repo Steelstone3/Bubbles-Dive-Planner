@@ -1,5 +1,3 @@
-use crate::models::dive_stage::DiveStage;
-
 use super::dive_stages::{
     a_b_values::{calculate_a_values, calculate_b_values},
     ambient_pressures::calculate_ambient_pressures,
@@ -11,6 +9,7 @@ use super::dive_stages::{
     },
     tolerated_ambient_pressures::calculate_tolerated_ambient_pressure,
 };
+use crate::models::dive_stage::DiveStage;
 
 // TODO Arguably move this to be an assosiate function of dive profile
 // TODO impl DiveProfile{fn update(){}}
