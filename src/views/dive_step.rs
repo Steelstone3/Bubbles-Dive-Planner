@@ -3,14 +3,11 @@ use crate::{
     commands::messages::Message, models::dive_step::DiveStep,
     view_models::dive_planner::DivePlanner,
 };
-use iced::{
-    widget::{text, text_input, Text, TextInput},
-    Renderer,
-};
+use iced::widget::{text, text_input, Text, TextInput};
 
 pub struct DiveStepView<'a> {
-    pub depth_text: Text<'a, Renderer>,
-    pub depth_input: TextInput<'a, Message, Renderer>,
+    pub depth_text: Text<'a>,
+    pub depth_input: TextInput<'a, Message>,
     pub time_text: Text<'a>,
     pub time_input: TextInput<'a, Message>,
 }
@@ -51,7 +48,7 @@ mod dive_step_view_should {
     #[test]
     #[ignore]
     fn update_depth_by_parsing_and_validating_input_successfully() {}
-    
+
     #[test]
     #[ignore]
     fn update_depth_by_parsing_with_invalid_input() {}
@@ -59,7 +56,7 @@ mod dive_step_view_should {
     #[test]
     #[ignore]
     fn update_depth_by_being_unable_to_parse_input() {}
-    
+
     #[test]
     #[ignore]
     fn update_time_by_parsing_and_validating_input_successfully() {}

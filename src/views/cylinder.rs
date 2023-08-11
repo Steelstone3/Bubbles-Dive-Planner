@@ -2,18 +2,15 @@ use crate::{
     commands::messages::Message, models::gas_mixture::GasMixture,
     view_models::dive_planner::DivePlanner, views::input_parser::parse_input_u32,
 };
-use iced::{
-    widget::{text, text_input, Text, TextInput},
-    Renderer,
-};
+use iced::widget::{text, text_input, Text, TextInput};
 
 pub struct CylinderView<'a> {
-    pub oxygen_text: Text<'a, Renderer>,
-    pub oxygen_input: TextInput<'a, Message, Renderer>,
+    pub oxygen_text: Text<'a>,
+    pub oxygen_input: TextInput<'a, Message>,
     pub helium_text: Text<'a>,
     pub helium_input: TextInput<'a, Message>,
-    pub nitrogen_text: Text<'a, Renderer>,
-    pub nitrogen_text_value: Text<'a, Renderer>,
+    pub nitrogen_text: Text<'a>,
+    pub nitrogen_text_value: Text<'a>,
 }
 
 impl CylinderView<'_> {
