@@ -19,6 +19,6 @@ lto = true
 codegen-units = 1
 
 [dependencies]
-iced = { version = "0.*" }
+iced = { version = "0.10" }
 # serde_json = { version = "1.*" }
 # serde = { version = "1.*", features = ["derive"] }
