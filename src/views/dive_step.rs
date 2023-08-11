@@ -45,27 +45,83 @@ impl DiveStepView<'_> {
 
 #[cfg(test)]
 mod dive_step_view_should {
-    #[test]
-    #[ignore]
-    fn update_depth_by_parsing_and_validating_input_successfully() {}
+    use super::*;
 
     #[test]
-    #[ignore]
-    fn update_depth_by_parsing_with_invalid_input() {}
+    fn update_depth_by_parsing_and_validating_input_successfully() {
+        // Given
+        let expected = 50;
+        let input = "50".to_string();
+        
+        // When
+        let validated_depth = DiveStepView::update_depth(input);
+
+        // Then
+        assert_eq!(expected, validated_depth);
+    }
 
     #[test]
-    #[ignore]
-    fn update_depth_by_being_unable_to_parse_input() {}
+    fn update_depth_by_parsing_an_input_beyond_range() {
+        // Given
+        let expected = 100;
+        let input = "101".to_string();
+        
+        // When
+        let validated_depth = DiveStepView::update_depth(input);
+
+        // Then
+        assert_eq!(expected, validated_depth);
+    }
 
     #[test]
-    #[ignore]
-    fn update_time_by_parsing_and_validating_input_successfully() {}
+    fn update_depth_by_being_unable_to_parse_input() {
+          // Given
+          let expected = 0;
+          let input = "$%45sdg".to_string();
+          
+          // When
+          let validated_depth = DiveStepView::update_depth(input);
+  
+          // Then
+          assert_eq!(expected, validated_depth);
+    }
 
     #[test]
-    #[ignore]
-    fn update_time_by_parsing_with_invalid_input() {}
+    fn update_time_by_parsing_and_validating_input_successfully() {
+         // Given
+         let expected = 10;
+         let input = "10".to_string();
+         
+         // When
+         let validated_depth = DiveStepView::update_time(input);
+ 
+         // Then
+         assert_eq!(expected, validated_depth);
+    }
 
     #[test]
-    #[ignore]
-    fn update_time_by_being_unable_to_parse_input() {}
+    fn update_time_by_parsing_an_input_beyond_range() {
+           // Given
+           let expected = 60;
+           let input = "61".to_string();
+           
+           // When
+           let validated_depth = DiveStepView::update_time(input);
+   
+           // Then
+           assert_eq!(expected, validated_depth);
+    }
+
+    #[test]
+    fn update_time_by_being_unable_to_parse_input() {
+          // Given
+          let expected = 0;
+          let input = "$£61asd".to_string();
+          
+          // When
+          let validated_depth = DiveStepView::update_time(input);
+  
+          // Then
+          assert_eq!(expected, validated_depth);
+    }
 }
