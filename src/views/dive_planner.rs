@@ -31,10 +31,16 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.time = DiveStepView::update_time(time);
             }
             Message::OxygenChanged(oxygen) => {
-                self.dive_stage.cylinder.gas_mixture = CylinderView::update_oxygen(oxygen, self);
+                self.dive_stage.cylinder.gas_mixture = CylinderView::update_oxygen(
+                    oxygen,
+                    self.dive_stage.cylinder.gas_mixture.helium,
+                );
             }
             Message::HeliumChanged(helium) => {
-                self.dive_stage.cylinder.gas_mixture = CylinderView::update_helium(helium, self);
+                self.dive_stage.cylinder.gas_mixture = CylinderView::update_helium(
+                    helium,
+                    self.dive_stage.cylinder.gas_mixture.oxygen,
+                );
             }
         }
     }

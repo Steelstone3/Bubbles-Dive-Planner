@@ -47,44 +47,122 @@ impl CylinderView<'_> {
         }
     }
 
-    pub fn update_oxygen(oxygen: String, dive_planner: &DivePlanner) -> GasMixture {
+    pub fn update_oxygen(oxygen: String, helium: u32) -> GasMixture {
         let oxygen_input = parse_input_u32(oxygen, 5);
 
-        let helium = dive_planner.dive_stage.cylinder.gas_mixture.helium;
         GasMixture::validate_oxygen(oxygen_input, helium)
     }
 
-    pub fn update_helium(helium: String, dive_planner: &DivePlanner) -> GasMixture {
+    pub fn update_helium(helium: String, oxygen: u32) -> GasMixture {
         let helium_input = parse_input_u32(helium, 0);
 
-        let oxygen = dive_planner.dive_stage.cylinder.gas_mixture.oxygen;
         GasMixture::validate_helium(oxygen, helium_input)
     }
 }
 
 #[cfg(test)]
 mod cylinder_view_should {
-    #[test]
-    #[ignore]
-    fn update_oxygen_by_parsing_and_validating_input_successfully() {}
+    use super::*;
 
     #[test]
-    #[ignore]
-    fn update_oxygen_by_parsing_with_invalid_input() {}
+    fn update_oxygen_by_parsing_and_validating_input_successfully() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 21,
+            helium: 0,
+            nitrogen: 79,
+        };
+        let input = "21".to_string();
+
+        // When
+        let validated_gas_mixture = CylinderView::update_oxygen(input, 0);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
 
     #[test]
-    #[ignore]
-    fn update_oxygen_by_being_unable_to_parse_input() {}
+    fn update_oxygen_by_parsing_an_input_beyond_range() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 100,
+            helium: 0,
+            nitrogen: 0,
+        };
+        let input = "101".to_string();
+
+        // When
+        let validated_gas_mixture = CylinderView::update_oxygen(input, 0);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
 
     #[test]
-    #[ignore]
-    fn update_helium_by_parsing_and_validating_input_successfully() {}
+    fn update_oxygen_by_being_unable_to_parse_input() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 5,
+            helium: 0,
+            nitrogen: 95,
+        };
+        let input = "101£%^asda".to_string();
+
+        // When
+        let validated_gas_mixture = CylinderView::update_oxygen(input, 0);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
 
     #[test]
-    #[ignore]
-    fn update_helium_by_parsing_with_invalid_input() {}
+    fn update_helium_by_parsing_and_validating_input_successfully() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 0,
+            helium: 21,
+            nitrogen: 79,
+        };
+        let input = "21".to_string();
+
+        // When
+        let validated_gas_mixture = CylinderView::update_helium(input, 0);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
 
     #[test]
-    #[ignore]
-    fn update_helium_by_being_unable_to_parse_input() {}
+    fn update_helium_by_parsing_an_input_beyond_range() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 0,
+            helium: 100,
+            nitrogen: 0,
+        };
+        let input = "101".to_string();
+
+        // When
+        let validated_gas_mixture = CylinderView::update_helium(input, 0);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
+
+    #[test]
+    fn update_helium_by_being_unable_to_parse_input() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 0,
+            helium: 0,
+            nitrogen: 100,
+        };
+        let input = "101£%^&sdfd".to_string();
+
+        // When
+        let validated_gas_mixture = CylinderView::update_helium(input, 0);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
 }
