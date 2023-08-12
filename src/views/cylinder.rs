@@ -5,6 +5,7 @@ use crate::{
 use iced::widget::{text, text_input, Text, TextInput};
 
 pub struct CylinderView<'a> {
+    pub gas_mixture_text: Text<'a>,
     pub oxygen_text: Text<'a>,
     pub oxygen_input: TextInput<'a, Message>,
     pub helium_text: Text<'a>,
@@ -16,6 +17,7 @@ pub struct CylinderView<'a> {
 impl CylinderView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
+            gas_mixture_text: text("Gas Mixture"),
             oxygen_text: text("Oxygen"),
             oxygen_input: text_input(
                 "Enter Oxygen",

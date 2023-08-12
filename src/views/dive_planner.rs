@@ -56,6 +56,7 @@ impl Sandbox for DivePlanner {
                 dive_step.depth_input,
                 dive_step.time_text,
                 dive_step.time_input,
+                cylinder.gas_mixture_text,
                 cylinder.oxygen_text,
                 cylinder.oxygen_input,
                 cylinder.helium_text,
