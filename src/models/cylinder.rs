@@ -1,15 +1,17 @@
 use crate::models::gas_mixture::GasMixture;
 
+use super::gas_management::GasManagement;
+
 #[derive(PartialEq, Debug, Clone, Copy, Default)]
 pub struct Cylinder {
     pub volume: u32,
     pub pressure: u32,
     pub initial_pressurised_cylinder_volume: u32,
     pub gas_mixture: GasMixture,
+    pub gas_management: GasManagement,
 }
 
 impl Cylinder {
-    #[allow(dead_code)]
     pub fn update_initial_pressurised_cylinder_volume(&mut self) {
         self.initial_pressurised_cylinder_volume = self.volume * self.pressure;
     }
