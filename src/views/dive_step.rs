@@ -6,6 +6,7 @@ use crate::{
 use iced::widget::{text, text_input, Text, TextInput};
 
 pub struct DiveStepView<'a> {
+    pub dive_step_text: Text<'a>,
     pub depth_text: Text<'a>,
     pub depth_input: TextInput<'a, Message>,
     pub time_text: Text<'a>,
@@ -15,6 +16,7 @@ pub struct DiveStepView<'a> {
 impl DiveStepView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
+            dive_step_text: text("Dive Step"),
             depth_text: text("Depth"),
             depth_input: text_input(
                 "Enter Depth",

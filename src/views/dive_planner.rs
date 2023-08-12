@@ -51,6 +51,7 @@ impl Sandbox for DivePlanner {
 
         column![iced::widget::row![scrollable(
             column![
+                dive_step.dive_step_text,
                 dive_step.depth_text,
                 dive_step.depth_input,
                 dive_step.time_text,
