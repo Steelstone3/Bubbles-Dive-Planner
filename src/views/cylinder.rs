@@ -1,10 +1,15 @@
 use super::{
-    gas_mixture::GasMixtureView, input_parser::parse_input_u32, validation::validate_range,
+    gas_mixture::GasMixtureView,
+    input_parser::parse_input_u32,
+    validation::validate_maximum,
 };
 use crate::{
     commands::messages::Message, models::cylinder::Cylinder, view_models::dive_planner::DivePlanner,
 };
-use iced::{widget::Text, widget::{TextInput, text, text_input}};
+use iced::{
+    widget::Text,
+    widget::{text, text_input, TextInput},
+};
 
 pub struct CylinderView<'a> {
     pub cylinder_setup_text: Text<'a>,
@@ -20,24 +25,32 @@ impl CylinderView<'_> {
         Self {
             cylinder_setup_text: text("Cylinder Setup"),
             cylinder_volume_text: text("Volume (l)"),
-            cylinder_volume_input: text_input("Enter Cylinder Volume", &dive_planner.dive_stage.cylinder.volume.to_string()).on_input(Message::CylinderVolumeChanged),
+            cylinder_volume_input: text_input(
+                "Enter Cylinder Volume",
+                &dive_planner.dive_stage.cylinder.volume.to_string(),
+            )
+            .on_input(Message::CylinderVolumeChanged),
             cylinder_pressure_text: text("Pressure (bar)"),
-            cylinder_pressure_input: text_input("Enter Cylinder Pressure", &dive_planner.dive_stage.cylinder.pressure.to_string()).on_input(Message::CylinderPressureChanged),
+            cylinder_pressure_input: text_input(
+                "Enter Cylinder Pressure",
+                &dive_planner.dive_stage.cylinder.pressure.to_string(),
+            )
+            .on_input(Message::CylinderPressureChanged),
             gas_mixture: GasMixtureView::new(dive_planner),
         }
     }
 
     pub fn update_cylinder_volume(cylinder_volume: String, mut cylinder: Cylinder) -> Cylinder {
-        let cylinder_volume_input = parse_input_u32(cylinder_volume, 0);
-        cylinder.volume = validate_range(cylinder_volume_input, 3, 30);
+        let cylinder_volume_input = parse_input_u32(cylinder_volume, 3);
+        cylinder.volume = validate_maximum(cylinder_volume_input, 30);
         cylinder.update_initial_pressurised_cylinder_volume();
 
         cylinder
     }
 
     pub fn update_cylinder_pressure(cylinder_pressure: String, mut cylinder: Cylinder) -> Cylinder {
-        let cylinder_pressure_input = parse_input_u32(cylinder_pressure, 0);
-        cylinder.pressure = validate_range(cylinder_pressure_input, 50, 300);
+        let cylinder_pressure_input = parse_input_u32(cylinder_pressure, 50);
+        cylinder.pressure = validate_maximum(cylinder_pressure_input, 300);
         cylinder.update_initial_pressurised_cylinder_volume();
 
         cylinder
@@ -100,25 +113,6 @@ mod cylinder_view_should {
             ..Default::default()
         };
         let input = "31".to_string();
-
-        // When
-        let validated_cylinder_volume = CylinderView::update_cylinder_volume(input, cylinder);
-
-        // Then
-        assert_eq!(expected, validated_cylinder_volume);
-    }
-
-    #[test]
-    fn update_cylinder_volume_by_parsing_an_input_below_range() {
-        // Given
-        let expected = Cylinder {
-            volume: 3,
-            ..Default::default()
-        };
-        let cylinder = Cylinder {
-            ..Default::default()
-        };
-        let input = "2".to_string();
 
         // When
         let validated_cylinder_volume = CylinderView::update_cylinder_volume(input, cylinder);
@@ -198,25 +192,6 @@ mod cylinder_view_should {
             ..Default::default()
         };
         let input = "301".to_string();
-
-        // When
-        let validated_cylinder_pressure = CylinderView::update_cylinder_pressure(input, cylinder);
-
-        // Then
-        assert_eq!(expected, validated_cylinder_pressure);
-    }
-
-    #[test]
-    fn update_cylinder_pressure_by_parsing_an_input_below_range() {
-        // Given
-        let expected = Cylinder {
-            pressure: 50,
-            ..Default::default()
-        };
-        let cylinder = Cylinder {
-            ..Default::default()
-        };
-        let input = "49".to_string();
 
         // When
         let validated_cylinder_pressure = CylinderView::update_cylinder_pressure(input, cylinder);
