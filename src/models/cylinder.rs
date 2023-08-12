@@ -14,6 +14,7 @@ pub struct Cylinder {
 impl Cylinder {
     pub fn update_initial_pressurised_cylinder_volume(&mut self) {
         self.initial_pressurised_cylinder_volume = self.volume * self.pressure;
+        self.gas_management.remaining = self.initial_pressurised_cylinder_volume;
     }
 }
 
@@ -24,7 +25,16 @@ mod cylinder_should {
     #[test]
     fn calculate_the_initial_pressurised_cylinder_volume() {
         // Given
-        let expected_initial_pressurised_cylinder_volume = 2400;
+        let expected_cylinder = Cylinder {
+            volume: 12,
+            pressure: 200,
+            initial_pressurised_cylinder_volume: 2400,
+            gas_management: GasManagement {
+                remaining: 2400,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
         let mut cylinder = Cylinder {
             volume: 12,
             pressure: 200,
@@ -36,8 +46,8 @@ mod cylinder_should {
 
         // Then
         assert_eq!(
-            expected_initial_pressurised_cylinder_volume,
-            cylinder.initial_pressurised_cylinder_volume
+            expected_cylinder,
+            cylinder
         );
     }
 }

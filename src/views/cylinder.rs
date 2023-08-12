@@ -59,6 +59,8 @@ impl CylinderView<'_> {
 
 #[cfg(test)]
 mod cylinder_view_should {
+    use crate::models::gas_management::GasManagement;
+
     use super::*;
 
     #[test]
@@ -87,6 +89,7 @@ mod cylinder_view_should {
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
+            gas_management: GasManagement{remaining: 2400, ..Default::default()},
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -166,6 +169,7 @@ mod cylinder_view_should {
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
+            gas_management: GasManagement{remaining: 2400, ..Default::default()},
             ..Default::default()
         };
         let cylinder = Cylinder {
