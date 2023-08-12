@@ -1,6 +1,6 @@
 use super::input_parser::parse_input_u32;
 use crate::{
-    commands::messages::Message, models::{dive_step::DiveStep, validator::validate_maximum},
+    commands::messages::Message, models::{dive_step::DiveStep, validation::validate_maximum},
     view_models::dive_planner::DivePlanner,
 };
 use iced::widget::{text, text_input, Text, TextInput};
