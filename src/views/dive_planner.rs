@@ -1,6 +1,6 @@
 use super::cylinder::CylinderView;
-use super::gas_mixture::GasMixtureView;
 use super::dive_step::DiveStepView;
+use super::gas_mixture::GasMixtureView;
 use crate::commands::messages::Message;
 use crate::models::dive_profile::DiveProfile;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};

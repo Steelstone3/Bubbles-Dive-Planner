@@ -82,9 +82,9 @@ impl DiveProfile {
                 "C: {} | TPt: {} | TAP: {} | MSP: {} | CLp: {}\n",
                 compartment + 1,
                 format!("{:.3}", self.total_tissue_pressures[compartment]),
-                format!("{:.3}",self.tolerated_ambient_pressures[compartment]),
-                format!("{:.3}",self.maximum_surface_pressures[compartment]),
-                format!("{:.3}",self.compartment_loads[compartment])
+                format!("{:.3}", self.tolerated_ambient_pressures[compartment]),
+                format!("{:.3}", self.maximum_surface_pressures[compartment]),
+                format!("{:.3}", self.compartment_loads[compartment])
             );
 
             dive_results.push_str(&dive_result);
