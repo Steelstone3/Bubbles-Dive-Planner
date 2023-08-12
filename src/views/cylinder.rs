@@ -26,7 +26,6 @@ impl CylinderView<'_> {
                     .oxygen
                     .to_string(),
             )
-            .width(100)
             .on_input(Message::OxygenChanged),
 
             helium_text: text("Helium"),
@@ -39,7 +38,6 @@ impl CylinderView<'_> {
                     .helium
                     .to_string(),
             )
-            .width(100)
             .on_input(Message::HeliumChanged),
 
             nitrogen_text: text("Nitrogen"),

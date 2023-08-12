@@ -64,13 +64,16 @@ impl Sandbox for DivePlanner {
                 button("Calculate").on_press(Self::Message::CalculateDivePlan)
             ]
             .align_items(Alignment::Start)
-            .spacing(10),
+            .width(200)
+            .spacing(10)
+            .padding(10)
         )]
         .spacing(10)
         .push(scrollable(
             column![text(self.dive_stage.dive_model.dive_profile)]
                 .align_items(Alignment::Start)
                 .spacing(10)
+                .padding(10)
                 .width(Length::FillPortion(4))
         )),]
         .align_items(Alignment::Center)

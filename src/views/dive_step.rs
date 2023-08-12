@@ -20,14 +20,12 @@ impl DiveStepView<'_> {
                 "Enter Depth",
                 &dive_planner.dive_stage.dive_step.depth.to_string(),
             )
-            .width(100)
             .on_input(Message::DepthChanged),
             time_text: text("Time"),
             time_input: text_input(
                 "Enter Time",
                 &dive_planner.dive_stage.dive_step.time.to_string(),
             )
-            .width(100)
             .on_input(Message::TimeChanged),
         }
     }
