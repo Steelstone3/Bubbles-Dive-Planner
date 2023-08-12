@@ -1,8 +1,5 @@
-use super::input_parser::parse_input_u32;
-use crate::{
-    commands::messages::Message, models::validation::validate_maximum,
-    view_models::dive_planner::DivePlanner,
-};
+use super::{input_parser::parse_input_u32, validation::validate_maximum};
+use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
 use iced::widget::{text, text_input, Text, TextInput};
 
 pub struct DiveStepView<'a> {

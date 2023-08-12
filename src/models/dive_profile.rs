@@ -79,8 +79,10 @@ impl DiveProfile {
 
         for (_, compartment) in (0..self.compartment_loads.len()).enumerate() {
             let total_tissue_pressures = format!("{:.3}", self.total_tissue_pressures[compartment]);
-            let tolerated_ambient_pressures = format!("{:.3}", self.tolerated_ambient_pressures[compartment]);
-            let maximum_surface_pressures = format!("{:.3}", self.maximum_surface_pressures[compartment]);
+            let tolerated_ambient_pressures =
+                format!("{:.3}", self.tolerated_ambient_pressures[compartment]);
+            let maximum_surface_pressures =
+                format!("{:.3}", self.maximum_surface_pressures[compartment]);
             let compartment_loads = format!("{:.3}", self.compartment_loads[compartment]);
 
             let dive_result = format!(
