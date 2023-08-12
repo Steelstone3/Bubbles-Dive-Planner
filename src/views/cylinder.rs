@@ -9,7 +9,7 @@ pub struct CylinderView<'a> {
 impl CylinderView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
-            gas_mixture: GasMixtureView::new(&dive_planner),
+            gas_mixture: GasMixtureView::new(dive_planner),
         }
     }
 }
