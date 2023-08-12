@@ -1,8 +1,10 @@
 #[derive(Debug, Clone)]
 pub enum Message {
-    CalculateDivePlan,
     DepthChanged(String),
     TimeChanged(String),
+    CylinderVolumeChanged(String),
+    CylinderPressureChanged(String),
     OxygenChanged(String),
     HeliumChanged(String),
+    CalculateDivePlan,
 }

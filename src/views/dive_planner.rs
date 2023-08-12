@@ -22,15 +22,17 @@ impl Sandbox for DivePlanner {
 
     fn update(&mut self, message: Message) {
         match message {
-            Message::CalculateDivePlan => {
-                self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
-            }
             Message::DepthChanged(depth) => {
                 self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth);
             }
             Message::TimeChanged(time) => {
                 self.dive_stage.dive_step.time = DiveStepView::update_time(time);
             }
+            Message::CylinderVolumeChanged(cylinder_volume) => {
+                self.dive_stage.cylinder =
+                    CylinderView::update_cylinder_volume(cylinder_volume, self.dive_stage.cylinder);
+            }
+            Message::CylinderPressureChanged(_) => todo!(),
             Message::OxygenChanged(oxygen) => {
                 self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_oxygen(
                     oxygen,
@@ -42,6 +44,9 @@ impl Sandbox for DivePlanner {
                     helium,
                     self.dive_stage.cylinder.gas_mixture.oxygen,
                 );
+            }
+            Message::CalculateDivePlan => {
+                self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
             }
         }
     }
