@@ -5,3 +5,4 @@ pub mod dive_step;
 pub mod gas_mixture;
 //pub mod gas_mixture_read_only;
 pub mod input_parser;
+pub mod gas_management;

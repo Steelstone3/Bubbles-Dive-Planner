@@ -58,7 +58,7 @@ mod gas_mixture_should {
     use super::*;
 
     #[test]
-    fn validate_assignment_of_oxygen() {
+    fn validate_the_assignment_of_oxygen() {
         // When
         let gas_mixture = GasMixture::validate_oxygen(21, 0);
 
@@ -69,7 +69,7 @@ mod gas_mixture_should {
     }
 
     #[test]
-    fn validate_assignment_of_oxygen_where_oxygen_is_above_maximum() {
+    fn validate_the_assignment_of_oxygen_where_oxygen_is_above_maximum() {
         // When
         let gas_mixture = GasMixture::validate_oxygen(101, 0);
 
@@ -80,7 +80,7 @@ mod gas_mixture_should {
     }
 
     #[test]
-    fn validate_assignment_of_oxygen_where_oxygen_and_helium_are_above_maximum() {
+    fn validate_the_assignment_of_oxygen_where_oxygen_and_helium_are_above_maximum() {
         // When
         let gas_mixture = GasMixture::validate_oxygen(95, 6);
 
@@ -91,7 +91,7 @@ mod gas_mixture_should {
     }
 
     #[test]
-    fn validate_assignment_of_helium() {
+    fn validate_the_assignment_of_helium() {
         // When
         let gas_mixture = GasMixture::validate_helium(0, 10);
 
@@ -102,7 +102,7 @@ mod gas_mixture_should {
     }
 
     #[test]
-    fn validate_assignment_of_helium_where_helium_is_above_maximum() {
+    fn validate_the_assignment_of_helium_where_helium_is_above_maximum() {
         // When
         let gas_mixture = GasMixture::validate_helium(0, 101);
 
@@ -113,7 +113,7 @@ mod gas_mixture_should {
     }
 
     #[test]
-    fn validate_assignment_of_helium_where_helium_and_oxygen_are_above_maximum() {
+    fn validate_the_assignment_of_helium_where_helium_and_oxygen_are_above_maximum() {
         // When
         let gas_mixture = GasMixture::validate_helium(50, 60);
 

@@ -266,6 +266,7 @@ mod dive_profile_should {
                 helium: 10,
                 nitrogen: 69,
             },
+            ..Default::default()
         }
     }
 
