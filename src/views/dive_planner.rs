@@ -32,7 +32,10 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.cylinder =
                     CylinderView::update_cylinder_volume(cylinder_volume, self.dive_stage.cylinder);
             }
-            Message::CylinderPressureChanged(_) => todo!(),
+            Message::CylinderPressureChanged(cylinder_pressure) => {
+                self.dive_stage.cylinder =
+                    CylinderView::update_cylinder_pressure(cylinder_pressure, self.dive_stage.cylinder);
+            },
             Message::OxygenChanged(oxygen) => {
                 self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_oxygen(
                     oxygen,
@@ -63,6 +66,11 @@ impl Sandbox for DivePlanner {
                 dive_step.time_text,
                 dive_step.time_input,
                 // TODO Gas Management
+                cylinder.cylinder_setup_text,
+                cylinder.cylinder_volume_text,
+                cylinder.cylinder_volume_input,
+                cylinder.cylinder_pressure_text,
+                cylinder.cylinder_pressure_input,
                 cylinder.gas_mixture.gas_mixture_text,
                 cylinder.gas_mixture.oxygen_text,
                 cylinder.gas_mixture.oxygen_input,

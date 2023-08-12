@@ -4,7 +4,7 @@ use super::{
 use crate::{
     commands::messages::Message, models::cylinder::Cylinder, view_models::dive_planner::DivePlanner,
 };
-use iced::{widget::Text, widget::TextInput};
+use iced::{widget::Text, widget::{TextInput, text, text_input}};
 
 pub struct CylinderView<'a> {
     pub cylinder_setup_text: Text<'a>,
@@ -18,26 +18,26 @@ pub struct CylinderView<'a> {
 impl CylinderView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
-            cylinder_setup_text: todo!(),
-            cylinder_volume_text: todo!(),
-            cylinder_volume_input: todo!(),
-            cylinder_pressure_text: todo!(),
-            cylinder_pressure_input: todo!(),
+            cylinder_setup_text: text("Cylinder Setup"),
+            cylinder_volume_text: text("Volume (l)"),
+            cylinder_volume_input: text_input("Enter Cylinder Volume", &dive_planner.dive_stage.cylinder.volume.to_string()).on_input(Message::CylinderVolumeChanged),
+            cylinder_pressure_text: text("Pressure (bar)"),
+            cylinder_pressure_input: text_input("Enter Cylinder Pressure", &dive_planner.dive_stage.cylinder.pressure.to_string()).on_input(Message::CylinderPressureChanged),
             gas_mixture: GasMixtureView::new(dive_planner),
         }
     }
 
     pub fn update_cylinder_volume(cylinder_volume: String, mut cylinder: Cylinder) -> Cylinder {
         let cylinder_volume_input = parse_input_u32(cylinder_volume, 0);
-        cylinder.cylinder_volume = validate_range(cylinder_volume_input, 3, 30);
+        cylinder.volume = validate_range(cylinder_volume_input, 3, 30);
         cylinder.update_initial_pressurised_cylinder_volume();
 
         cylinder
     }
 
-    fn update_cylinder_pressure(cylinder_pressure: String, mut cylinder: Cylinder) -> Cylinder {
+    pub fn update_cylinder_pressure(cylinder_pressure: String, mut cylinder: Cylinder) -> Cylinder {
         let cylinder_pressure_input = parse_input_u32(cylinder_pressure, 0);
-        cylinder.cylinder_pressure = validate_range(cylinder_pressure_input, 50, 300);
+        cylinder.pressure = validate_range(cylinder_pressure_input, 50, 300);
         cylinder.update_initial_pressurised_cylinder_volume();
 
         cylinder
@@ -52,7 +52,7 @@ mod cylinder_view_should {
     fn update_cylinder_volume_by_parsing_and_validating_input_successfully() {
         // Given
         let expected = Cylinder {
-            cylinder_volume: 12,
+            volume: 12,
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -71,13 +71,13 @@ mod cylinder_view_should {
     fn updating_cylinder_volume_updates_initial_pressurised_cylinder_volume() {
         // Given
         let expected = Cylinder {
-            cylinder_volume: 12,
-            cylinder_pressure: 200,
+            volume: 12,
+            pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
             ..Default::default()
         };
         let cylinder = Cylinder {
-            cylinder_pressure: 200,
+            pressure: 200,
             ..Default::default()
         };
         let input = "12".to_string();
@@ -93,7 +93,7 @@ mod cylinder_view_should {
     fn update_cylinder_volume_by_parsing_an_input_beyond_range() {
         // Given
         let expected = Cylinder {
-            cylinder_volume: 30,
+            volume: 30,
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -112,7 +112,7 @@ mod cylinder_view_should {
     fn update_cylinder_volume_by_parsing_an_input_below_range() {
         // Given
         let expected = Cylinder {
-            cylinder_volume: 3,
+            volume: 3,
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -131,7 +131,7 @@ mod cylinder_view_should {
     fn update_cylinder_volume_by_being_unable_to_parse_input() {
         // Given
         let expected = Cylinder {
-            cylinder_volume: 3,
+            volume: 3,
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -150,7 +150,7 @@ mod cylinder_view_should {
     fn update_cylinder_pressure_by_parsing_and_validating_input_successfully() {
         // Given
         let expected = Cylinder {
-            cylinder_pressure: 200,
+            pressure: 200,
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -169,13 +169,13 @@ mod cylinder_view_should {
     fn updating_cylinder_pressure_updates_initial_pressurised_cylinder_volume() {
         // Given
         let expected = Cylinder {
-            cylinder_volume: 12,
-            cylinder_pressure: 200,
+            volume: 12,
+            pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
             ..Default::default()
         };
         let cylinder = Cylinder {
-            cylinder_volume: 12,
+            volume: 12,
             ..Default::default()
         };
         let input = "200".to_string();
@@ -191,7 +191,7 @@ mod cylinder_view_should {
     fn update_cylinder_pressure_by_parsing_an_input_beyond_range() {
         // Given
         let expected = Cylinder {
-            cylinder_pressure: 300,
+            pressure: 300,
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -210,7 +210,7 @@ mod cylinder_view_should {
     fn update_cylinder_pressure_by_parsing_an_input_below_range() {
         // Given
         let expected = Cylinder {
-            cylinder_pressure: 50,
+            pressure: 50,
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -229,7 +229,7 @@ mod cylinder_view_should {
     fn update_cylinder_pressure_by_being_unable_to_parse_input() {
         // Given
         let expected = Cylinder {
-            cylinder_pressure: 50,
+            pressure: 50,
             ..Default::default()
         };
         let cylinder = Cylinder {
