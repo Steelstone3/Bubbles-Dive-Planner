@@ -1,4 +1,5 @@
 use super::cylinder::CylinderView;
+use super::gas_mixture::GasMixtureView;
 use super::dive_step::DiveStepView;
 use crate::commands::messages::Message;
 use crate::models::dive_profile::DiveProfile;
@@ -31,13 +32,13 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.dive_step.time = DiveStepView::update_time(time);
             }
             Message::OxygenChanged(oxygen) => {
-                self.dive_stage.cylinder.gas_mixture = CylinderView::update_oxygen(
+                self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_oxygen(
                     oxygen,
                     self.dive_stage.cylinder.gas_mixture.helium,
                 );
             }
             Message::HeliumChanged(helium) => {
-                self.dive_stage.cylinder.gas_mixture = CylinderView::update_helium(
+                self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_helium(
                     helium,
                     self.dive_stage.cylinder.gas_mixture.oxygen,
                 );
@@ -56,13 +57,15 @@ impl Sandbox for DivePlanner {
                 dive_step.depth_input,
                 dive_step.time_text,
                 dive_step.time_input,
-                cylinder.gas_mixture_text,
-                cylinder.oxygen_text,
-                cylinder.oxygen_input,
-                cylinder.helium_text,
-                cylinder.helium_input,
-                cylinder.nitrogen_text,
-                cylinder.nitrogen_text_value,
+                // TODO Gas Management
+                cylinder.gas_mixture.gas_mixture_text,
+                cylinder.gas_mixture.oxygen_text,
+                cylinder.gas_mixture.oxygen_input,
+                cylinder.gas_mixture.helium_text,
+                cylinder.gas_mixture.helium_input,
+                cylinder.gas_mixture.nitrogen_text,
+                cylinder.gas_mixture.nitrogen_text_value,
+                // TODO Read Only View On Calculate
                 button("Calculate").on_press(Self::Message::CalculateDivePlan)
             ]
             .align_items(Alignment::Start)
