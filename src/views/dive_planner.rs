@@ -1,5 +1,6 @@
 use super::cylinder::CylinderView;
 use super::dive_step::DiveStepView;
+use super::gas_management::GasManagementView;
 use super::gas_mixture::GasMixtureView;
 use crate::commands::messages::Message;
 use crate::models::dive_profile::DiveProfile;
@@ -33,9 +34,14 @@ impl Sandbox for DivePlanner {
                     CylinderView::update_cylinder_volume(cylinder_volume, self.dive_stage.cylinder);
             }
             Message::CylinderPressureChanged(cylinder_pressure) => {
-                self.dive_stage.cylinder =
-                    CylinderView::update_cylinder_pressure(cylinder_pressure, self.dive_stage.cylinder);
-            },
+                self.dive_stage.cylinder = CylinderView::update_cylinder_pressure(
+                    cylinder_pressure,
+                    self.dive_stage.cylinder,
+                );
+            }
+            Message::SurfaceAirConsumptionChanged(surface_air_consumption) => {
+                self.dive_stage.cylinder.gas_management.surface_air_consumption_rate = GasManagementView::update_surface_air_consumption_rate(surface_air_consumption);
+            }
             Message::OxygenChanged(oxygen) => {
                 self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_oxygen(
                     oxygen,
@@ -71,6 +77,8 @@ impl Sandbox for DivePlanner {
                 cylinder.cylinder_volume_input,
                 cylinder.cylinder_pressure_text,
                 cylinder.cylinder_pressure_input,
+                cylinder.gas_management.surface_air_consumption_text,
+                cylinder.gas_management.surface_air_consumption_input,
                 cylinder.gas_mixture.gas_mixture_text,
                 cylinder.gas_mixture.oxygen_text,
                 cylinder.gas_mixture.oxygen_input,

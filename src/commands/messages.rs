@@ -4,6 +4,7 @@ pub enum Message {
     TimeChanged(String),
     CylinderVolumeChanged(String),
     CylinderPressureChanged(String),
+    SurfaceAirConsumptionChanged(String),
     OxygenChanged(String),
     HeliumChanged(String),
     CalculateDivePlan,

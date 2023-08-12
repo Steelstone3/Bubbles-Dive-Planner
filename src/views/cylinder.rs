@@ -1,7 +1,7 @@
 use super::{
     gas_mixture::GasMixtureView,
     input_parser::parse_input_u32,
-    validation::validate_maximum,
+    validation::validate_maximum, gas_management::GasManagementView,
 };
 use crate::{
     commands::messages::Message, models::cylinder::Cylinder, view_models::dive_planner::DivePlanner,
@@ -18,6 +18,7 @@ pub struct CylinderView<'a> {
     pub cylinder_pressure_text: Text<'a>,
     pub cylinder_pressure_input: TextInput<'a, Message>,
     pub gas_mixture: GasMixtureView<'a>,
+    pub gas_management: GasManagementView<'a>,
 }
 
 impl CylinderView<'_> {
@@ -37,6 +38,7 @@ impl CylinderView<'_> {
             )
             .on_input(Message::CylinderPressureChanged),
             gas_mixture: GasMixtureView::new(dive_planner),
+            gas_management: GasManagementView::new(dive_planner),
         }
     }
 
@@ -60,7 +62,6 @@ impl CylinderView<'_> {
 #[cfg(test)]
 mod cylinder_view_should {
     use crate::models::gas_management::GasManagement;
-
     use super::*;
 
     #[test]

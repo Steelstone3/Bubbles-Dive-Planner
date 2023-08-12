@@ -24,7 +24,7 @@ impl GasManagement {
         if is_out_of_air_supply {
             self.remaining = 0;
         } else {
-            self.remaining = self.remaining - self.used;
+            self.remaining -= self.used;
         }
     }
 }
