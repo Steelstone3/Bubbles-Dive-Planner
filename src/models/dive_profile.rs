@@ -29,6 +29,11 @@ pub struct DiveProfile {
 
 impl DiveProfile {
     pub fn update_dive_profile(mut dive_stage: DiveStage) -> DiveStage {
+        dive_stage
+            .cylinder
+            .gas_management
+            .update_gas_management(dive_stage.dive_step);
+
         dive_stage.dive_model.dive_profile = calculate_ambient_pressures(
             dive_stage.dive_model.dive_profile,
             dive_stage.dive_step,
@@ -111,7 +116,8 @@ impl Display for DiveProfile {
 mod dive_profile_should {
     use super::*;
     use crate::models::{
-        cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep, gas_mixture::GasMixture,
+        cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep,
+        gas_management::GasManagement, gas_mixture::GasMixture,
     };
 
     #[test]
@@ -125,6 +131,23 @@ mod dive_profile_should {
 
         // Then
         assert_eq!(expected_dive_profile_result, actual_dive_profile_result);
+    }
+
+    #[test]
+    fn update_gas_management_stage() {
+        // Given
+        let mut dive_stage = DiveStage {
+            dive_model: DiveModel::create_zhl16_dive_model(),
+            dive_step: dive_step_test_fixture(),
+            cylinder: cylinder_test_fixture(),
+        };
+
+        // When
+        let actual_dive_stage = DiveProfile::update_dive_profile(dive_stage);
+        dive_stage.cylinder.gas_management.remaining = 1680;
+
+        // Then
+        assert_eq!(dive_stage.cylinder, actual_dive_stage.cylinder);
     }
 
     #[test]
@@ -273,7 +296,14 @@ mod dive_profile_should {
                 helium: 10,
                 nitrogen: 69,
             },
-            ..Default::default()
+            initial_pressurised_cylinder_volume: 2400,
+            volume: 12,
+            pressure: 200,
+            gas_management: GasManagement {
+                remaining: 2400,
+                used: 720,
+                surface_air_consumption_rate: 12,
+            },
         }
     }
 
