@@ -9,14 +9,7 @@ pub struct Cylinder {
 }
 
 impl Cylinder {
-    // pub fn validate_range(input: u32, minimum: u32, maximum: u32) -> u32 {
-    //     if input > maximum {
-    //         return maximum;
-    //     }
-
-    //     input
-    // }
-
+    #[allow(dead_code)]
     pub fn update_initial_pressurised_cylinder_volume(&mut self) {
         self.initial_pressurised_cylinder_volume = self.cylinder_volume * self.cylinder_pressure;
     }
