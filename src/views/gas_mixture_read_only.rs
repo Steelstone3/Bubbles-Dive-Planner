@@ -1,4 +1,4 @@
-use iced::widget::{Text, text};
+use iced::widget::{text, Text};
 
 use crate::view_models::dive_planner::DivePlanner;
 
@@ -12,7 +12,7 @@ pub struct GasMixtureReadOnlyView<'a> {
     pub nitrogen_read_only_input: Text<'a>,
 }
 
-impl GasMixtureReadOnlyView<'_>{
+impl GasMixtureReadOnlyView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             gas_mixture_read_only_text: text("Gas Mixture"),
