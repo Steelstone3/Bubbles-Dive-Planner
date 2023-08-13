@@ -4,6 +4,7 @@ use super::gas_management::GasManagement;
 
 #[derive(PartialEq, Debug, Clone, Copy, Default)]
 pub struct Cylinder {
+    pub is_read_only: bool,
     pub volume: u32,
     pub pressure: u32,
     pub initial_pressurised_cylinder_volume: u32,
@@ -45,9 +46,6 @@ mod cylinder_should {
         cylinder.update_initial_pressurised_cylinder_volume();
 
         // Then
-        assert_eq!(
-            expected_cylinder,
-            cylinder
-        );
+        assert_eq!(expected_cylinder, cylinder);
     }
 }

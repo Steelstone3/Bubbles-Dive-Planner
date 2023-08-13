@@ -304,6 +304,7 @@ mod dive_profile_should {
                 used: 720,
                 surface_air_consumption_rate: 12,
             },
+            ..Default::default()
         }
     }
 
