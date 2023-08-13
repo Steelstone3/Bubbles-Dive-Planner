@@ -1,4 +1,5 @@
 use super::cylinder::CylinderView;
+use super::cylinder_read_only::CylinderReadOnlyView;
 use super::dive_step::DiveStepView;
 use super::gas_management::GasManagementView;
 use super::gas_mixture::GasMixtureView;
@@ -63,6 +64,7 @@ impl Sandbox for DivePlanner {
     fn view(&self) -> Element<Message> {
         let dive_step = DiveStepView::new(self);
         let cylinder = CylinderView::new(self);
+        let cylinder_read_only = CylinderReadOnlyView::new(self);
 
         column![iced::widget::row![scrollable(
             column![
@@ -71,7 +73,7 @@ impl Sandbox for DivePlanner {
                 dive_step.depth_input,
                 dive_step.time_text,
                 dive_step.time_input,
-                // TODO Gas Management
+                // Cylinder Setup
                 cylinder.cylinder_setup_text,
                 cylinder.cylinder_volume_text,
                 cylinder.cylinder_volume_input,
@@ -87,6 +89,23 @@ impl Sandbox for DivePlanner {
                 cylinder.gas_mixture.nitrogen_text,
                 cylinder.gas_mixture.nitrogen_text_value,
                 // TODO Read Only View On Calculate
+                cylinder_read_only.cylinder_read_only_text,
+                cylinder_read_only.cylinder_read_only_volume_text,
+                cylinder_read_only.cylinder_read_only_volume_input,
+                cylinder_read_only.cylinder_read_only_pressure_text,
+                cylinder_read_only.cylinder_read_only_pressure_input,
+                cylinder_read_only.gas_mixture_read_only.oxygen_read_only_text,
+                cylinder_read_only.gas_mixture_read_only.oxygen_read_only_input,
+                cylinder_read_only.gas_mixture_read_only.helium_read_only_text,
+                cylinder_read_only.gas_mixture_read_only.helium_read_only_input,
+                cylinder_read_only.gas_mixture_read_only.nitrogen_read_only_text,
+                cylinder_read_only.gas_mixture_read_only.nitrogen_read_only_input,
+                cylinder_read_only.gas_management_read_only.remaining_read_only_text,
+                cylinder_read_only.gas_management_read_only.remaining_read_only_input,
+                cylinder_read_only.gas_management_read_only.used_read_only_text,
+                cylinder_read_only.gas_management_read_only.used_read_only_input,
+                cylinder_read_only.gas_management_read_only.surface_air_consumption_rate_read_only_text,
+                cylinder_read_only.gas_management_read_only.surface_air_consumption_rate_read_only_input,
                 button("Calculate").on_press(Self::Message::CalculateDivePlan)
             ]
             .align_items(Alignment::Start)

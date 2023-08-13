@@ -30,12 +30,12 @@ impl DiveStepView<'_> {
     }
 
     pub fn update_depth(depth: String) -> u32 {
-        let depth_input = parse_input_u32(depth, 0);
+        let depth_input = parse_input_u32(depth, 1);
         validate_maximum(depth_input, 100)
     }
 
     pub fn update_time(time: String) -> u32 {
-        let time_input = parse_input_u32(time, 0);
+        let time_input = parse_input_u32(time, 1);
         validate_maximum(time_input, 60)
     }
 }
@@ -73,7 +73,7 @@ mod dive_step_view_should {
     #[test]
     fn update_depth_by_being_unable_to_parse_input() {
         // Given
-        let expected = 0;
+        let expected = 1;
         let input = "$%45sdg".to_string();
 
         // When
@@ -112,7 +112,7 @@ mod dive_step_view_should {
     #[test]
     fn update_time_by_being_unable_to_parse_input() {
         // Given
-        let expected = 0;
+        let expected = 1;
         let input = "$£61asd".to_string();
 
         // When
