@@ -49,14 +49,30 @@ impl GasMixtureView<'_> {
 
     pub fn update_oxygen(oxygen: String, helium: u32) -> GasMixture {
         let oxygen_input = parse_input_u32(oxygen, 5, 100 - helium);
-        
-        GasMixture::validate_oxygen(oxygen_input, helium)
+
+        let mut gas_mixture = GasMixture {
+            oxygen: oxygen_input,
+            helium,
+            ..Default::default()
+        };
+
+        gas_mixture.update_nitrogen();
+
+        gas_mixture
     }
 
     pub fn update_helium(helium: String, oxygen: u32) -> GasMixture {
         let helium_input = parse_input_u32(helium, 0, 100 - oxygen);
 
-        GasMixture::validate_helium(oxygen, helium_input)
+        let mut gas_mixture = GasMixture {
+            helium: helium_input,
+            oxygen,
+            ..Default::default()
+        };
+
+        gas_mixture.update_nitrogen();
+
+        gas_mixture
     }
 }
 
@@ -85,14 +101,14 @@ mod cylinder_view_should {
     fn update_oxygen_by_parsing_an_input_beyond_range() {
         // Given
         let expected = GasMixture {
-            oxygen: 100,
-            helium: 0,
+            oxygen: 90,
+            helium: 10,
             nitrogen: 0,
         };
         let input = "101".to_string();
 
         // When
-        let validated_gas_mixture = GasMixtureView::update_oxygen(input, 0);
+        let validated_gas_mixture = GasMixtureView::update_oxygen(input, 10);
 
         // Then
         assert_eq!(expected, validated_gas_mixture);
@@ -136,14 +152,14 @@ mod cylinder_view_should {
     fn update_helium_by_parsing_an_input_beyond_range() {
         // Given
         let expected = GasMixture {
-            oxygen: 0,
-            helium: 100,
+            oxygen: 10,
+            helium: 90,
             nitrogen: 0,
         };
         let input = "101".to_string();
 
         // When
-        let validated_gas_mixture = GasMixtureView::update_helium(input, 0);
+        let validated_gas_mixture = GasMixtureView::update_helium(input, 10);
 
         // Then
         assert_eq!(expected, validated_gas_mixture);
