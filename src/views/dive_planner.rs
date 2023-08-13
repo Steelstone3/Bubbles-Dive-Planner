@@ -71,13 +71,12 @@ impl Sandbox for DivePlanner {
         let cylinder = CylinderView::new(self);
         let cylinder_read_only = CylinderReadOnlyView::new(self);
 
-        let mut dive_stage_view = Default::default();
-
-        if !self.dive_stage.cylinder.is_read_only {
-            dive_stage_view = determine_view(dive_step, cylinder)
-        } else {
-            dive_stage_view = determine_view_2(dive_step, cylinder_read_only)
-        }
+        let dive_stage_view = determine_view(
+            self.dive_stage.cylinder.is_read_only,
+            dive_step,
+            cylinder,
+            cylinder_read_only,
+        );
 
         column![iced::widget::row![scrollable(
             column![
@@ -104,7 +103,24 @@ impl Sandbox for DivePlanner {
     }
 }
 
-fn determine_view<'a>(dive_step: DiveStepView<'a>, cylinder: CylinderView<'a>) -> iced::widget::Column<'a, Message> {
+// TODO move to dive stage view
+fn determine_view<'a>(
+    is_read_only: bool,
+    dive_step: DiveStepView<'a>,
+    cylinder: CylinderView<'a>,
+    cylinder_read_only: CylinderReadOnlyView<'a>,
+) -> iced::widget::Column<'a, Message> {
+    if is_read_only {
+        create_read_only_view(dive_step, cylinder_read_only)
+    } else {
+        create_setup_view(dive_step, cylinder)
+    }
+}
+
+fn create_setup_view<'a>(
+    dive_step: DiveStepView<'a>,
+    cylinder: CylinderView<'a>,
+) -> iced::widget::Column<'a, Message> {
     column![
         dive_step.dive_step_text,
         dive_step.depth_text,
@@ -129,57 +145,59 @@ fn determine_view<'a>(dive_step: DiveStepView<'a>, cylinder: CylinderView<'a>) -
     .spacing(10)
 }
 
-fn determine_view_2<'a>(dive_step: DiveStepView<'a>, cylinder_read_only: CylinderReadOnlyView<'a>) -> iced::widget::Column<'a, Message> {
+fn create_read_only_view<'a>(
+    dive_step: DiveStepView<'a>,
+    cylinder_read_only: CylinderReadOnlyView<'a>,
+) -> iced::widget::Column<'a, Message> {
     column![
-                dive_step.dive_step_text,
-                dive_step.depth_text,
-                dive_step.depth_input,
-                dive_step.time_text,
-                dive_step.time_input,
-                cylinder_read_only.cylinder_read_only_text,
-                cylinder_read_only.cylinder_read_only_volume_text,
-                cylinder_read_only.cylinder_read_only_volume_text_value,
-                cylinder_read_only.cylinder_read_only_pressure_text,
-                cylinder_read_only.cylinder_read_only_pressure_text_value,
-                cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_text,
-                cylinder_read_only
-                    .cylinder_read_only_initial_pressurised_cylinder_volume_text_value,
-                cylinder_read_only
-                    .gas_mixture_read_only
-                    .oxygen_read_only_text,
-                cylinder_read_only
-                    .gas_mixture_read_only
-                    .oxygen_read_only_text_value,
-                cylinder_read_only
-                    .gas_mixture_read_only
-                    .helium_read_only_text,
-                cylinder_read_only
-                    .gas_mixture_read_only
-                    .helium_read_only_text_value,
-                cylinder_read_only
-                    .gas_mixture_read_only
-                    .nitrogen_read_only_text,
-                cylinder_read_only
-                    .gas_mixture_read_only
-                    .nitrogen_read_only_text_value,
-                cylinder_read_only
-                    .gas_management_read_only
-                    .remaining_read_only_text,
-                cylinder_read_only
-                    .gas_management_read_only
-                    .remaining_read_only_text_value,
-                cylinder_read_only
-                    .gas_management_read_only
-                    .used_read_only_text,
-                cylinder_read_only
-                    .gas_management_read_only
-                    .used_read_only_text_value,
-                cylinder_read_only
-                    .gas_management_read_only
-                    .surface_air_consumption_rate_read_only_text,
-                cylinder_read_only
-                    .gas_management_read_only
-                    .surface_air_consumption_rate_read_only_text_value,
-            ]
-            .spacing(10)
+        dive_step.dive_step_text,
+        dive_step.depth_text,
+        dive_step.depth_input,
+        dive_step.time_text,
+        dive_step.time_input,
+        cylinder_read_only.cylinder_read_only_text,
+        cylinder_read_only.cylinder_read_only_volume_text,
+        cylinder_read_only.cylinder_read_only_volume_text_value,
+        cylinder_read_only.cylinder_read_only_pressure_text,
+        cylinder_read_only.cylinder_read_only_pressure_text_value,
+        cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_text,
+        cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_text_value,
+        cylinder_read_only
+            .gas_mixture_read_only
+            .oxygen_read_only_text,
+        cylinder_read_only
+            .gas_mixture_read_only
+            .oxygen_read_only_text_value,
+        cylinder_read_only
+            .gas_mixture_read_only
+            .helium_read_only_text,
+        cylinder_read_only
+            .gas_mixture_read_only
+            .helium_read_only_text_value,
+        cylinder_read_only
+            .gas_mixture_read_only
+            .nitrogen_read_only_text,
+        cylinder_read_only
+            .gas_mixture_read_only
+            .nitrogen_read_only_text_value,
+        cylinder_read_only
+            .gas_management_read_only
+            .remaining_read_only_text,
+        cylinder_read_only
+            .gas_management_read_only
+            .remaining_read_only_text_value,
+        cylinder_read_only
+            .gas_management_read_only
+            .used_read_only_text,
+        cylinder_read_only
+            .gas_management_read_only
+            .used_read_only_text_value,
+        cylinder_read_only
+            .gas_management_read_only
+            .surface_air_consumption_rate_read_only_text,
+        cylinder_read_only
+            .gas_management_read_only
+            .surface_air_consumption_rate_read_only_text_value,
+    ]
+    .spacing(10)
 }
