@@ -74,32 +74,63 @@ impl Sandbox for DivePlanner {
         let mut dive_stage_view = Default::default();
 
         if !self.dive_stage.cylinder.is_read_only {
-            dive_stage_view = column![
-                dive_step.dive_step_text,
-                dive_step.depth_text,
-                dive_step.depth_input,
-                dive_step.time_text,
-                dive_step.time_input,
-                cylinder.cylinder_setup_text,
-                cylinder.cylinder_volume_text,
-                cylinder.cylinder_volume_input,
-                cylinder.cylinder_pressure_text,
-                cylinder.cylinder_pressure_input,
-                cylinder.cylinder_initial_pressurised_cylinder_volume_text,
-                cylinder.cylinder_initial_pressurised_cylinder_volume_text_value,
-                cylinder.gas_management.surface_air_consumption_text,
-                cylinder.gas_management.surface_air_consumption_input,
-                cylinder.gas_mixture.gas_mixture_text,
-                cylinder.gas_mixture.oxygen_text,
-                cylinder.gas_mixture.oxygen_input,
-                cylinder.gas_mixture.helium_text,
-                cylinder.gas_mixture.helium_input,
-                cylinder.gas_mixture.nitrogen_text,
-                cylinder.gas_mixture.nitrogen_text_value,
-            ]
-            .spacing(10)
+            dive_stage_view = determine_view(dive_step, cylinder)
         } else {
-            dive_stage_view = column![
+            dive_stage_view = determine_view_2(dive_step, cylinder_read_only)
+        }
+
+        column![iced::widget::row![scrollable(
+            column![
+                dive_stage_view,
+                button("Calculate").on_press(Self::Message::CalculateDivePlan)
+            ]
+            .align_items(Alignment::Start)
+            .width(200)
+            .spacing(10)
+            .padding(10)
+        )]
+        .spacing(10)
+        .push(scrollable(
+            column![text(self.dive_stage.dive_model.dive_profile)]
+                .align_items(Alignment::Start)
+                .spacing(10)
+                .padding(10)
+                .width(Length::FillPortion(4))
+        )),]
+        .align_items(Alignment::Center)
+        .width(Length::FillPortion(1))
+        .spacing(10)
+        .into()
+    }
+}
+
+fn determine_view<'a>(dive_step: DiveStepView<'a>, cylinder: CylinderView<'a>) -> iced::widget::Column<'a, Message> {
+    column![
+        dive_step.dive_step_text,
+        dive_step.depth_text,
+        dive_step.depth_input,
+        dive_step.time_text,
+        dive_step.time_input,
+        cylinder.cylinder_setup_text,
+        cylinder.cylinder_volume_text,
+        cylinder.cylinder_volume_input,
+        cylinder.cylinder_pressure_text,
+        cylinder.cylinder_pressure_input,
+        cylinder.gas_management.surface_air_consumption_text,
+        cylinder.gas_management.surface_air_consumption_input,
+        cylinder.gas_mixture.gas_mixture_text,
+        cylinder.gas_mixture.oxygen_text,
+        cylinder.gas_mixture.oxygen_input,
+        cylinder.gas_mixture.helium_text,
+        cylinder.gas_mixture.helium_input,
+        cylinder.gas_mixture.nitrogen_text,
+        cylinder.gas_mixture.nitrogen_text_value,
+    ]
+    .spacing(10)
+}
+
+fn determine_view_2<'a>(dive_step: DiveStepView<'a>, cylinder_read_only: CylinderReadOnlyView<'a>) -> iced::widget::Column<'a, Message> {
+    column![
                 dive_step.dive_step_text,
                 dive_step.depth_text,
                 dive_step.depth_input,
@@ -151,29 +182,4 @@ impl Sandbox for DivePlanner {
                     .surface_air_consumption_rate_read_only_text_value,
             ]
             .spacing(10)
-        }
-
-        column![iced::widget::row![scrollable(
-            column![
-                dive_stage_view,
-                button("Calculate").on_press(Self::Message::CalculateDivePlan)
-            ]
-            .align_items(Alignment::Start)
-            .width(200)
-            .spacing(10)
-            .padding(10)
-        )]
-        .spacing(10)
-        .push(scrollable(
-            column![text(self.dive_stage.dive_model.dive_profile)]
-                .align_items(Alignment::Start)
-                .spacing(10)
-                .padding(10)
-                .width(Length::FillPortion(4))
-        )),]
-        .align_items(Alignment::Center)
-        .width(Length::FillPortion(1))
-        .spacing(10)
-        .into()
-    }
 }
