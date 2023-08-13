@@ -67,6 +67,7 @@ impl Sandbox for DivePlanner {
     }
 
     fn view(&self) -> Element<Message> {
+        // TODO Move to a dive stage view
         let dive_step = DiveStepView::new(self);
         let cylinder = CylinderView::new(self);
         let cylinder_read_only = CylinderReadOnlyView::new(self);
@@ -81,7 +82,9 @@ impl Sandbox for DivePlanner {
         column![iced::widget::row![scrollable(
             column![
                 dive_stage_view,
-                button("Calculate").on_press(Self::Message::CalculateDivePlan)
+                button("Calculate")
+                    .on_press(Self::Message::CalculateDivePlan)
+                    .width(Length::FillPortion(1))
             ]
             .align_items(Alignment::Start)
             .width(200)
@@ -164,6 +167,9 @@ fn create_read_only_view<'a>(
         cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_text_value,
         cylinder_read_only
             .gas_mixture_read_only
+            .gas_mixture_read_only_text,
+        cylinder_read_only
+            .gas_mixture_read_only
             .oxygen_read_only_text,
         cylinder_read_only
             .gas_mixture_read_only
@@ -180,6 +186,9 @@ fn create_read_only_view<'a>(
         cylinder_read_only
             .gas_mixture_read_only
             .nitrogen_read_only_text_value,
+        cylinder_read_only
+            .gas_management_read_only
+            .gas_management_read_only_text,
         cylinder_read_only
             .gas_management_read_only
             .remaining_read_only_text,
