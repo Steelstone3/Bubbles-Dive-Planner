@@ -73,7 +73,7 @@ impl Sandbox for DivePlanner {
                 dive_step.depth_input,
                 dive_step.time_text,
                 dive_step.time_input,
-                // Cylinder Setup
+                // TODO Make this view disappear on calculate
                 cylinder.cylinder_setup_text,
                 cylinder.cylinder_volume_text,
                 cylinder.cylinder_volume_input,
@@ -88,12 +88,14 @@ impl Sandbox for DivePlanner {
                 cylinder.gas_mixture.helium_input,
                 cylinder.gas_mixture.nitrogen_text,
                 cylinder.gas_mixture.nitrogen_text_value,
-                // TODO Read Only View On Calculate
+                // TODO Make this view appear on calculate
                 cylinder_read_only.cylinder_read_only_text,
                 cylinder_read_only.cylinder_read_only_volume_text,
                 cylinder_read_only.cylinder_read_only_volume_input,
                 cylinder_read_only.cylinder_read_only_pressure_text,
                 cylinder_read_only.cylinder_read_only_pressure_input,
+                cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_text,
+                cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_input,
                 cylinder_read_only.gas_mixture_read_only.oxygen_read_only_text,
                 cylinder_read_only.gas_mixture_read_only.oxygen_read_only_input,
                 cylinder_read_only.gas_mixture_read_only.helium_read_only_text,
