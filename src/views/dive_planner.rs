@@ -71,15 +71,15 @@ impl Sandbox for DivePlanner {
         let cylinder = CylinderView::new(self);
         let cylinder_read_only = CylinderReadOnlyView::new(self);
 
-        column![iced::widget::row![scrollable(
-            column![
+        let mut dive_stage_view = Default::default();
+
+        if !self.dive_stage.cylinder.is_read_only {
+            dive_stage_view = column![
                 dive_step.dive_step_text,
                 dive_step.depth_text,
                 dive_step.depth_input,
                 dive_step.time_text,
                 dive_step.time_input,
-                // TODO Make this view disappear on calculate
-                // if self.dive_stage.cylinder.is_read_only {}
                 cylinder.cylinder_setup_text,
                 cylinder.cylinder_volume_text,
                 cylinder.cylinder_volume_input,
@@ -96,8 +96,15 @@ impl Sandbox for DivePlanner {
                 cylinder.gas_mixture.helium_input,
                 cylinder.gas_mixture.nitrogen_text,
                 cylinder.gas_mixture.nitrogen_text_value,
-                // else{}
-                // TODO Make this view appear on calculate
+            ]
+            .spacing(10)
+        } else {
+            dive_stage_view = column![
+                dive_step.dive_step_text,
+                dive_step.depth_text,
+                dive_step.depth_input,
+                dive_step.time_text,
+                dive_step.time_input,
                 cylinder_read_only.cylinder_read_only_text,
                 cylinder_read_only.cylinder_read_only_volume_text,
                 cylinder_read_only.cylinder_read_only_volume_text_value,
@@ -142,6 +149,13 @@ impl Sandbox for DivePlanner {
                 cylinder_read_only
                     .gas_management_read_only
                     .surface_air_consumption_rate_read_only_text_value,
+            ]
+            .spacing(10)
+        }
+
+        column![iced::widget::row![scrollable(
+            column![
+                dive_stage_view,
                 button("Calculate").on_press(Self::Message::CalculateDivePlan)
             ]
             .align_items(Alignment::Start)
