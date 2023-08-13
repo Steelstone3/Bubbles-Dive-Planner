@@ -100,47 +100,48 @@ impl Sandbox for DivePlanner {
                 // TODO Make this view appear on calculate
                 cylinder_read_only.cylinder_read_only_text,
                 cylinder_read_only.cylinder_read_only_volume_text,
-                cylinder_read_only.cylinder_read_only_volume_input,
+                cylinder_read_only.cylinder_read_only_volume_text_value,
                 cylinder_read_only.cylinder_read_only_pressure_text,
-                cylinder_read_only.cylinder_read_only_pressure_input,
+                cylinder_read_only.cylinder_read_only_pressure_text_value,
                 cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_text,
-                cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_input,
+                cylinder_read_only
+                    .cylinder_read_only_initial_pressurised_cylinder_volume_text_value,
                 cylinder_read_only
                     .gas_mixture_read_only
                     .oxygen_read_only_text,
                 cylinder_read_only
                     .gas_mixture_read_only
-                    .oxygen_read_only_input,
+                    .oxygen_read_only_text_value,
                 cylinder_read_only
                     .gas_mixture_read_only
                     .helium_read_only_text,
                 cylinder_read_only
                     .gas_mixture_read_only
-                    .helium_read_only_input,
+                    .helium_read_only_text_value,
                 cylinder_read_only
                     .gas_mixture_read_only
                     .nitrogen_read_only_text,
                 cylinder_read_only
                     .gas_mixture_read_only
-                    .nitrogen_read_only_input,
+                    .nitrogen_read_only_text_value,
                 cylinder_read_only
                     .gas_management_read_only
                     .remaining_read_only_text,
                 cylinder_read_only
                     .gas_management_read_only
-                    .remaining_read_only_input,
+                    .remaining_read_only_text_value,
                 cylinder_read_only
                     .gas_management_read_only
                     .used_read_only_text,
                 cylinder_read_only
                     .gas_management_read_only
-                    .used_read_only_input,
+                    .used_read_only_text_value,
                 cylinder_read_only
                     .gas_management_read_only
                     .surface_air_consumption_rate_read_only_text,
                 cylinder_read_only
                     .gas_management_read_only
-                    .surface_air_consumption_rate_read_only_input,
+                    .surface_air_consumption_rate_read_only_text_value,
                 button("Calculate").on_press(Self::Message::CalculateDivePlan)
             ]
             .align_items(Alignment::Start)
