@@ -1,7 +1,6 @@
 use super::{
-    gas_mixture::GasMixtureView,
-    input_parser::parse_input_u32,
-    validation::validate_maximum, gas_management::GasManagementView,
+    gas_management::GasManagementView, gas_mixture::GasMixtureView, input_parser::parse_input_u32,
+    validation::validate_maximum,
 };
 use crate::{
     commands::messages::Message, models::cylinder::Cylinder, view_models::dive_planner::DivePlanner,
@@ -17,6 +16,8 @@ pub struct CylinderView<'a> {
     pub cylinder_volume_input: TextInput<'a, Message>,
     pub cylinder_pressure_text: Text<'a>,
     pub cylinder_pressure_input: TextInput<'a, Message>,
+    pub cylinder_initial_pressurised_cylinder_volume_text: Text<'a>,
+    pub cylinder_initial_pressurised_cylinder_volume_text_value: Text<'a>,
     pub gas_mixture: GasMixtureView<'a>,
     pub gas_management: GasManagementView<'a>,
 }
@@ -37,6 +38,13 @@ impl CylinderView<'_> {
                 &dive_planner.dive_stage.cylinder.pressure.to_string(),
             )
             .on_input(Message::CylinderPressureChanged),
+            cylinder_initial_pressurised_cylinder_volume_text: text("Pressurised Volume"),
+            cylinder_initial_pressurised_cylinder_volume_text_value: text(
+                dive_planner
+                    .dive_stage
+                    .cylinder
+                    .initial_pressurised_cylinder_volume,
+            ),
             gas_mixture: GasMixtureView::new(dive_planner),
             gas_management: GasManagementView::new(dive_planner),
         }
@@ -61,8 +69,8 @@ impl CylinderView<'_> {
 
 #[cfg(test)]
 mod cylinder_view_should {
-    use crate::models::gas_management::GasManagement;
     use super::*;
+    use crate::models::gas_management::GasManagement;
 
     #[test]
     fn update_cylinder_volume_by_parsing_and_validating_input_successfully() {
@@ -90,7 +98,10 @@ mod cylinder_view_should {
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
-            gas_management: GasManagement{remaining: 2400, ..Default::default()},
+            gas_management: GasManagement {
+                remaining: 2400,
+                ..Default::default()
+            },
             ..Default::default()
         };
         let cylinder = Cylinder {
@@ -170,7 +181,10 @@ mod cylinder_view_should {
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
-            gas_management: GasManagement{remaining: 2400, ..Default::default()},
+            gas_management: GasManagement {
+                remaining: 2400,
+                ..Default::default()
+            },
             ..Default::default()
         };
         let cylinder = Cylinder {

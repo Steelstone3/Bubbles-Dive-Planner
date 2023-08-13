@@ -79,6 +79,8 @@ impl Sandbox for DivePlanner {
                 cylinder.cylinder_volume_input,
                 cylinder.cylinder_pressure_text,
                 cylinder.cylinder_pressure_input,
+                cylinder.cylinder_initial_pressurised_cylinder_volume_text,
+                cylinder.cylinder_initial_pressurised_cylinder_volume_text_value,
                 cylinder.gas_management.surface_air_consumption_text,
                 cylinder.gas_management.surface_air_consumption_input,
                 cylinder.gas_mixture.gas_mixture_text,
