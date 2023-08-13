@@ -1,5 +1,6 @@
 use super::cylinder::CylinderView;
 use super::cylinder_read_only::CylinderReadOnlyView;
+use super::dive_stage_view::DiveStageView;
 use super::dive_step::DiveStepView;
 use super::gas_management::GasManagementView;
 use super::gas_mixture::GasMixtureView;
@@ -68,15 +69,13 @@ impl Sandbox for DivePlanner {
 
     fn view(&self) -> Element<Message> {
         // TODO Move to a dive stage view
-        let dive_step = DiveStepView::new(self);
-        let cylinder = CylinderView::new(self);
-        let cylinder_read_only = CylinderReadOnlyView::new(self);
+        let dive_stage = DiveStageView::new(self);
 
         let dive_stage_view = determine_view(
             self.dive_stage.cylinder.is_read_only,
-            dive_step,
-            cylinder,
-            cylinder_read_only,
+            dive_stage.dive_step,
+            dive_stage.cylinder,
+            dive_stage.cylinder_read_only,
         );
 
         column![iced::widget::row![scrollable(

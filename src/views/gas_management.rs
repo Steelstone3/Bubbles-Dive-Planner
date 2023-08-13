@@ -1,6 +1,6 @@
+use super::input_parser::parse_input_u32;
 use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
 use iced::widget::{text, text_input, Text, TextInput};
-use super::input_parser::parse_input_u32;
 
 pub struct GasManagementView<'a> {
     pub surface_air_consumption_text: Text<'a>,
