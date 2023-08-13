@@ -1,7 +1,6 @@
 use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
 use iced::widget::{text, text_input, Text, TextInput};
-
-use super::{input_parser::parse_input_u32, validation::validate_maximum};
+use super::input_parser::parse_input_u32;
 
 pub struct GasManagementView<'a> {
     pub surface_air_consumption_text: Text<'a>,
@@ -26,8 +25,7 @@ impl GasManagementView<'_> {
     }
 
     pub fn update_surface_air_consumption_rate(surface_air_consumption: String) -> u32 {
-        let surface_air_consumption_input = parse_input_u32(surface_air_consumption, 3);
-        validate_maximum(surface_air_consumption_input, 30)
+        parse_input_u32(surface_air_consumption, 3, 30)
     }
 }
 

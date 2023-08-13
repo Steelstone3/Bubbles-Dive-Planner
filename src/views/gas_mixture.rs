@@ -48,13 +48,13 @@ impl GasMixtureView<'_> {
     }
 
     pub fn update_oxygen(oxygen: String, helium: u32) -> GasMixture {
-        let oxygen_input = parse_input_u32(oxygen, 5);
-
+        let oxygen_input = parse_input_u32(oxygen, 5, 100 - helium);
+        
         GasMixture::validate_oxygen(oxygen_input, helium)
     }
 
     pub fn update_helium(helium: String, oxygen: u32) -> GasMixture {
-        let helium_input = parse_input_u32(helium, 0);
+        let helium_input = parse_input_u32(helium, 0, 100 - oxygen);
 
         GasMixture::validate_helium(oxygen, helium_input)
     }

@@ -1,4 +1,4 @@
-use super::{input_parser::parse_input_u32, validation::validate_maximum};
+use super::input_parser::parse_input_u32;
 use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
 use iced::widget::{text, text_input, Text, TextInput};
 
@@ -30,13 +30,11 @@ impl DiveStepView<'_> {
     }
 
     pub fn update_depth(depth: String) -> u32 {
-        let depth_input = parse_input_u32(depth, 1);
-        validate_maximum(depth_input, 100)
+        parse_input_u32(depth, 1, 100)
     }
 
     pub fn update_time(time: String) -> u32 {
-        let time_input = parse_input_u32(time, 1);
-        validate_maximum(time_input, 60)
+        parse_input_u32(time, 1, 60)
     }
 }
 

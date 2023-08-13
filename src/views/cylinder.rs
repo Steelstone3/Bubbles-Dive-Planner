@@ -1,6 +1,5 @@
 use super::{
     gas_management::GasManagementView, gas_mixture::GasMixtureView, input_parser::parse_input_u32,
-    validation::validate_maximum,
 };
 use crate::{
     commands::messages::Message, models::cylinder::Cylinder, view_models::dive_planner::DivePlanner,
@@ -51,16 +50,14 @@ impl CylinderView<'_> {
     }
 
     pub fn update_cylinder_volume(cylinder_volume: String, mut cylinder: Cylinder) -> Cylinder {
-        let cylinder_volume_input = parse_input_u32(cylinder_volume, 3);
-        cylinder.volume = validate_maximum(cylinder_volume_input, 30);
+        cylinder.volume = parse_input_u32(cylinder_volume, 3, 30);
         cylinder.update_initial_pressurised_cylinder_volume();
 
         cylinder
     }
 
     pub fn update_cylinder_pressure(cylinder_pressure: String, mut cylinder: Cylinder) -> Cylinder {
-        let cylinder_pressure_input = parse_input_u32(cylinder_pressure, 50);
-        cylinder.pressure = validate_maximum(cylinder_pressure_input, 300);
+        cylinder.pressure = parse_input_u32(cylinder_pressure, 50, 300);
         cylinder.update_initial_pressurised_cylinder_volume();
 
         cylinder
