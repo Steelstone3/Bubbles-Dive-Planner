@@ -3,14 +3,12 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum SelectableDiveModel {
     Bulhmann,
-    Usn
+    Usn,
 }
 
 impl SelectableDiveModel {
-    pub const ALL: [SelectableDiveModel; 2] = [
-        SelectableDiveModel::Bulhmann,
-        SelectableDiveModel::Usn,
-    ];
+    pub const ALL: [SelectableDiveModel; 2] =
+        [SelectableDiveModel::Bulhmann, SelectableDiveModel::Usn];
 }
 
 impl std::fmt::Display for SelectableDiveModel {
@@ -20,7 +18,7 @@ impl std::fmt::Display for SelectableDiveModel {
             "{}",
             match self {
                 SelectableDiveModel::Bulhmann => "Zhl16",
-                SelectableDiveModel::Usn => "USN Rev 6"
+                SelectableDiveModel::Usn => "USN Rev 6",
             }
         )
     }

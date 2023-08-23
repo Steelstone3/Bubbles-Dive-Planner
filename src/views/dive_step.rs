@@ -1,5 +1,5 @@
 use super::input_parser::parse_input_u32;
-use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
+use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner, models::dive_step::{MINIMUM_DEPTH_VALUE, MAXIMUM_DEPTH_VALUE, MINIMUM_TIME_VALUE, MAXIMUM_TIME_VALUE}};
 use iced::widget::{text, text_input, Text, TextInput};
 
 pub struct DiveStepView<'a> {
@@ -30,11 +30,11 @@ impl DiveStepView<'_> {
     }
 
     pub fn update_depth(depth: String) -> u32 {
-        parse_input_u32(depth, 1, 100)
+        parse_input_u32(depth, MINIMUM_DEPTH_VALUE, MAXIMUM_DEPTH_VALUE)
     }
 
     pub fn update_time(time: String) -> u32 {
-        parse_input_u32(time, 1, 60)
+        parse_input_u32(time, MINIMUM_TIME_VALUE, MAXIMUM_TIME_VALUE)
     }
 }
 

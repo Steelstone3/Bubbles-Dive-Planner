@@ -2,7 +2,12 @@ use super::{
     gas_management::GasManagementView, gas_mixture::GasMixtureView, input_parser::parse_input_u32,
 };
 use crate::{
-    commands::messages::Message, models::cylinder::Cylinder, view_models::dive_planner::DivePlanner,
+    commands::messages::Message,
+    models::cylinder::{
+        Cylinder, MAXIMUM_PRESSURE_VALUE, MAXIMUM_VOLUME_VALUE, MINIMUM_PRESSURE_VALUE,
+        MINIMUM_VOLUME_VALUE,
+    },
+    view_models::dive_planner::DivePlanner,
 };
 use iced::{
     widget::Text,
@@ -50,14 +55,19 @@ impl CylinderView<'_> {
     }
 
     pub fn update_cylinder_volume(cylinder_volume: String, mut cylinder: Cylinder) -> Cylinder {
-        cylinder.volume = parse_input_u32(cylinder_volume, 3, 30);
+        cylinder.volume =
+            parse_input_u32(cylinder_volume, MINIMUM_VOLUME_VALUE, MAXIMUM_VOLUME_VALUE);
         cylinder.update_initial_pressurised_cylinder_volume();
 
         cylinder
     }
 
     pub fn update_cylinder_pressure(cylinder_pressure: String, mut cylinder: Cylinder) -> Cylinder {
-        cylinder.pressure = parse_input_u32(cylinder_pressure, 50, 300);
+        cylinder.pressure = parse_input_u32(
+            cylinder_pressure,
+            MINIMUM_PRESSURE_VALUE,
+            MAXIMUM_PRESSURE_VALUE,
+        );
         cylinder.update_initial_pressurised_cylinder_volume();
 
         cylinder

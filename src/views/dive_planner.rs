@@ -36,6 +36,7 @@ impl Sandbox for DivePlanner {
             Message::FileLoad => *self = read_dive_stage("dive_plan.json"),
             Message::EditUndo => {}
             Message::EditRedo => {}
+            Message::ViewCns => {}
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_stage.dive_model.selected_dive_model = Some(selectable_dive_model);
 
@@ -84,6 +85,11 @@ impl Sandbox for DivePlanner {
                 );
             }
             Message::CalculateDivePlan => {
+                if !self.dive_stage.validate() {
+                    // TODO Display an invalid parameters warning
+                    return;
+                }
+
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
                 self.dive_stage.cylinder.is_read_only = true;
             }
@@ -105,8 +111,11 @@ impl Sandbox for DivePlanner {
 
         column![]
             .push(
-                Grid::with_columns(1)
-                    .push(row!(menu_bar.file, menu_bar.edit).spacing(10).padding(10)),
+                Grid::with_columns(1).push(
+                    row!(menu_bar.file, menu_bar.edit, menu_bar.view)
+                        .spacing(10)
+                        .padding(10),
+                ),
             )
             .push(
                 Grid::with_columns(2)

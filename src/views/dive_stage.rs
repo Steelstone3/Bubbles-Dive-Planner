@@ -1,8 +1,9 @@
-use crate::{commands::{messages::Message}, view_models::dive_planner::DivePlanner};
+use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column};
 
 use super::{
-    cylinder::CylinderView, cylinder_read_only::CylinderReadOnlyView, dive_step::DiveStepView, select_dive_model::SelectDiveModelView,
+    cylinder::CylinderView, cylinder_read_only::CylinderReadOnlyView, dive_step::DiveStepView,
+    select_dive_model::SelectDiveModelView,
 };
 
 pub struct DiveStageView<'a> {
