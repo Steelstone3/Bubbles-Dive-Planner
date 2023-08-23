@@ -18,6 +18,9 @@ opt-level = 'z'
 lto = true
 codegen-units = 1
 
+[dev-dependencies]
+rstest = {version = "0.*"}
+
 [dependencies]
 iced = { version = "0.10" }
 iced_aw = { version = "0.6.*" }
