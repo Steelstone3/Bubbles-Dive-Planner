@@ -8,8 +8,4 @@ pub struct SelectDiveModel {
     pub dive_model_list: [DiveModel; 2],
     pub selected_dive_model: Option<SelectableDiveModel>,
     pub dive_model: DiveModel,
-    // pub selected_dive_model_index: usize,
-    // pub manual_selection: Option<usize>,
 }
-
-impl SelectDiveModel {}

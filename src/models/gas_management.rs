@@ -1,6 +1,9 @@
 use super::dive_step::DiveStep;
 use serde::{Deserialize, Serialize};
 
+pub const MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE: u32 = 30;
+pub const MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE: u32 = 3;
+
 #[derive(PartialEq, Debug, Copy, Clone, Default, Serialize, Deserialize)]
 pub struct GasManagement {
     pub remaining: u32,
@@ -12,6 +15,16 @@ impl GasManagement {
     pub fn update_gas_management(&mut self, dive_step: DiveStep) {
         self.calculate_gas_used(dive_step);
         self.calculate_gas_remaining();
+    }
+
+    pub fn validate(&self) -> bool {
+        if self.surface_air_consumption_rate < MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE
+            || self.surface_air_consumption_rate > MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE
+        {
+            return false;
+        }
+
+        return true;
     }
 
     fn calculate_gas_used(&mut self, dive_step: DiveStep) {
@@ -33,6 +46,7 @@ impl GasManagement {
 #[cfg(test)]
 mod gas_management_should {
     use super::*;
+    use rstest::rstest;
 
     #[test]
     fn calculate_the_remaining_gas() {
@@ -124,5 +138,23 @@ mod gas_management_should {
 
         // Then
         assert_eq!(expected_gas_management, gas_management);
+    }
+
+    #[rstest]
+    #[case(31, false)]
+    #[case(2, false)]
+    #[case(12, true)]
+    fn validate(#[case] surface_air_consumption_rate: u32, #[case] is_valid: bool) {
+        // Given
+        let gas_management = GasManagement {
+            surface_air_consumption_rate,
+            ..Default::default()
+        };
+
+        // When
+        let is_valid_actual: bool = gas_management.validate();
+
+        // Then
+        assert_eq!(is_valid, is_valid_actual);
     }
 }

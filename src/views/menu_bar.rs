@@ -6,6 +6,7 @@ use iced_aw::{MenuBar, MenuTree};
 pub struct MenuBarView<'a> {
     pub file: MenuBar<'a, Message, Renderer>,
     pub edit: MenuBar<'a, Message, Renderer>,
+    pub view: MenuBar<'a, Message, Renderer>
 }
 
 impl Default for MenuBarView<'_> {
@@ -25,6 +26,13 @@ impl Default for MenuBarView<'_> {
                 vec![
                     MenuTree::new(button("Undo").on_press(Message::EditUndo)),
                     MenuTree::new(button("Redo").on_press(Message::EditRedo)),
+                ],
+            )
+            .width(100)]),
+            view: MenuBar::new(vec![MenuTree::with_children(
+                button("View").on_press(Message::MenuBar),
+                vec![
+                    MenuTree::new(button("CNS Table").on_press(Message::ViewCns)),
                 ],
             )
             .width(100)]),
