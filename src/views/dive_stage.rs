@@ -24,14 +24,13 @@ impl DiveStageView<'_> {
     }
 
     pub fn determine_view<'a>(
-        is_read_only: bool,
         dive_planner: &DivePlanner,
         select_dive_model: SelectDiveModelView<'a>,
         dive_step: DiveStepView<'a>,
         cylinder: CylinderView<'a>,
         cylinder_read_only: CylinderReadOnlyView<'a>,
     ) -> iced::widget::Column<'a, Message> {
-        if is_read_only {
+        if dive_planner.dive_stage.cylinder.is_read_only {
             DiveStageView::create_read_only_view(dive_planner, dive_step, cylinder_read_only)
         } else {
             DiveStageView::create_setup_view(dive_planner, select_dive_model, dive_step, cylinder)
@@ -140,6 +139,6 @@ impl DiveStageView<'_> {
             return button("Invalid Parameters");
         }
 
-        button("Calculate").on_press(Message::CalculateDivePlan)
+        button("Update Dive Profile").on_press(Message::UpdateDiveProfile)
     }
 }
