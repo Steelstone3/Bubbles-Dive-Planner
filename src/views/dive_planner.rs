@@ -4,6 +4,7 @@ use super::dive_step::DiveStepView;
 use super::gas_management::GasManagementView;
 use super::gas_mixture::GasMixtureView;
 use super::menu_bar::MenuBarView;
+
 use super::results::ResultsView;
 use crate::commands::messages::Message;
 use crate::commands::selectable_dive_model::SelectableDiveModel;
@@ -18,9 +19,11 @@ use iced_aw::Grid;
 impl Sandbox for DivePlanner {
     type Message = Message;
 
+    // TODO add results
     fn new() -> Self {
         Self {
             dive_stage: DiveStage::default(),
+            results: Default::default(),
         }
     }
 
@@ -32,7 +35,7 @@ impl Sandbox for DivePlanner {
         match message {
             Message::MenuBar => {}
             Message::FileNew => self.reset(),
-            Message::FileSave => upsert_dive_stage("dive_plan.json", *self),
+            Message::FileSave => upsert_dive_stage("dive_plan.json", self),
             Message::FileLoad => *self = read_dive_stage("dive_plan.json"),
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_stage.dive_model.selected_dive_model = Some(selectable_dive_model);
@@ -83,6 +86,7 @@ impl Sandbox for DivePlanner {
             }
             Message::UpdateDiveProfile => {
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
+                self.results.push(self.dive_stage);
             }
         }
     }
@@ -90,7 +94,7 @@ impl Sandbox for DivePlanner {
     fn view(&self) -> Element<Message> {
         let menu_bar = MenuBarView::default();
         let dive_stage = DiveStageView::new(self);
-        let result = ResultsView::new(self);
+        let results = ResultsView::new(&self.results);
 
         let dive_stage_view = DiveStageView::determine_view(
             self,
@@ -117,7 +121,7 @@ impl Sandbox for DivePlanner {
                             .padding(10),
                     ))
                     .push(scrollable(
-                        column![result.result_title_text, result.result_text,]
+                        column![results.result_title_text, results.results_text.spacing(10)]
                             .spacing(10)
                             .padding(10),
                     )),
