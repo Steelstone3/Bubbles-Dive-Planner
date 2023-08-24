@@ -1,5 +1,5 @@
 use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
-use iced::widget::{button, column};
+use iced::widget::{button, column, Button};
 
 use super::{
     cylinder::CylinderView, cylinder_read_only::CylinderReadOnlyView, dive_step::DiveStepView,
@@ -25,19 +25,21 @@ impl DiveStageView<'_> {
 
     pub fn determine_view<'a>(
         is_read_only: bool,
+        dive_planner: &DivePlanner,
         select_dive_model: SelectDiveModelView<'a>,
         dive_step: DiveStepView<'a>,
         cylinder: CylinderView<'a>,
         cylinder_read_only: CylinderReadOnlyView<'a>,
     ) -> iced::widget::Column<'a, Message> {
         if is_read_only {
-            DiveStageView::create_read_only_view(dive_step, cylinder_read_only)
+            DiveStageView::create_read_only_view(dive_planner, dive_step, cylinder_read_only)
         } else {
-            DiveStageView::create_setup_view(select_dive_model, dive_step, cylinder)
+            DiveStageView::create_setup_view(dive_planner, select_dive_model, dive_step, cylinder)
         }
     }
 
     fn create_setup_view<'a>(
+        dive_planner: &DivePlanner,
         select_dive_model: SelectDiveModelView<'a>,
         dive_step: DiveStepView<'a>,
         cylinder: CylinderView<'a>,
@@ -65,11 +67,12 @@ impl DiveStageView<'_> {
             cylinder.gas_mixture.helium_input,
             cylinder.gas_mixture.nitrogen_text,
             cylinder.gas_mixture.nitrogen_text_value,
-            button("Calculate").on_press(Message::CalculateDivePlan)
+            DiveStageView::validate_parameters(dive_planner)
         ]
     }
 
     fn create_read_only_view<'a>(
+        dive_planner: &DivePlanner,
         dive_step: DiveStepView<'a>,
         cylinder_read_only: CylinderReadOnlyView<'a>,
     ) -> iced::widget::Column<'a, Message> {
@@ -128,7 +131,15 @@ impl DiveStageView<'_> {
             cylinder_read_only
                 .gas_management_read_only
                 .surface_air_consumption_rate_read_only_text_value,
-            button("Calculate").on_press(Message::CalculateDivePlan)
+            DiveStageView::validate_parameters(dive_planner)
         ]
+    }
+
+    fn validate_parameters<'a>(dive_planner: &DivePlanner) -> Button<'a, Message> {
+        if !dive_planner.dive_stage.validate() {
+            return button("Invalid Parameters");
+        }
+
+        button("Calculate").on_press(Message::CalculateDivePlan)
     }
 }

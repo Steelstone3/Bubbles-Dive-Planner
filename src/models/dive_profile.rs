@@ -38,6 +38,10 @@ impl DiveProfile {
     }
 
     pub fn update_dive_profile(mut dive_stage: DiveStage) -> DiveStage {
+        if !dive_stage.validate() {
+            return dive_stage;
+        }
+
         dive_stage
             .cylinder
             .gas_management
@@ -52,6 +56,8 @@ impl DiveProfile {
         for compartment in 0..dive_stage.dive_model.dive_model.number_of_compartments {
             dive_stage = DiveProfile::run_dive_stages(compartment, dive_stage);
         }
+
+        dive_stage.cylinder.is_read_only = true;
 
         dive_stage
     }
@@ -174,6 +180,18 @@ mod dive_profile_should {
 
         // Then
         assert_eq!(expected_dive_profile_result, actual_dive_profile_result);
+    }
+
+    #[test]
+    fn return_error_message_if_parameters_are_invalid() {
+        // Given
+        let dive_stage = DiveStage::default();
+
+        // When
+        let actual_dive_profile_result = DiveProfile::update_dive_profile(dive_stage);
+
+        // Then
+        assert_eq!(dive_stage, actual_dive_profile_result);
     }
 
     #[test]
@@ -401,7 +419,7 @@ mod dive_profile_should {
                 used: 720,
                 surface_air_consumption_rate: 12,
             },
-            ..Default::default()
+            is_read_only: true,
         }
     }
 
