@@ -85,13 +85,7 @@ impl Sandbox for DivePlanner {
                 );
             }
             Message::CalculateDivePlan => {
-                if !self.dive_stage.validate() {
-                    // TODO Display an invalid parameters warning
-                    return;
-                }
-
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
-                self.dive_stage.cylinder.is_read_only = true;
             }
         }
     }
@@ -101,8 +95,10 @@ impl Sandbox for DivePlanner {
         let dive_stage = DiveStageView::new(self);
         let result = ResultView::new(self);
 
+        // TODO refactor away cylinder is read only
         let dive_stage_view = DiveStageView::determine_view(
             self.dive_stage.cylinder.is_read_only,
+            self,
             dive_stage.select_dive_model,
             dive_stage.dive_step,
             dive_stage.cylinder,
