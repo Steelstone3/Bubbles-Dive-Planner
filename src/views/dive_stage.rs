@@ -1,5 +1,8 @@
 use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
-use iced::widget::{button, column, Button};
+use iced::{
+    widget::{button, column, Button},
+    Length,
+};
 
 use super::{
     cylinder::CylinderView, cylinder_read_only::CylinderReadOnlyView, dive_step::DiveStepView,
@@ -136,9 +139,11 @@ impl DiveStageView<'_> {
 
     fn validate_parameters<'a>(dive_planner: &DivePlanner) -> Button<'a, Message> {
         if !dive_planner.dive_stage.validate() {
-            return button("Invalid Parameters");
+            return button("Invalid Parameters").width(Length::Fill);
         }
 
-        button("Update Dive Profile").on_press(Message::UpdateDiveProfile)
+        button("Update Dive Profile")
+            .on_press(Message::UpdateDiveProfile)
+            .width(Length::Fill)
     }
 }

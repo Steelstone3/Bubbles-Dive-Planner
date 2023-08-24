@@ -2,9 +2,10 @@ use crate::models::dive_stage::DiveStage;
 use iced::Sandbox;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Copy, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct DivePlanner {
     pub dive_stage: DiveStage,
+    pub results: Vec<DiveStage>,
 }
 
 impl Default for DivePlanner {
@@ -65,6 +66,8 @@ mod dive_step_view_should {
                     },
                 },
             },
+            // TODO Address the default here for the real test
+            results: Default::default(),
         };
 
         // When

@@ -38,7 +38,7 @@ impl GasMixture {
             return false;
         }
 
-        return true;
+        true
     }
 }
 

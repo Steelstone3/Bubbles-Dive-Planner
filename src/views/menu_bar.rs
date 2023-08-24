@@ -23,17 +23,12 @@ impl Default for MenuBarView<'_> {
             .width(100)]),
             edit: MenuBar::new(vec![MenuTree::with_children(
                 button("Edit").on_press(Message::MenuBar),
-                vec![
-                    MenuTree::new(button("Undo")),
-                    MenuTree::new(button("Redo"))
-                ],
+                vec![MenuTree::new(button("Undo")), MenuTree::new(button("Redo"))],
             )
             .width(100)]),
             view: MenuBar::new(vec![MenuTree::with_children(
                 button("View").on_press(Message::MenuBar),
-                vec![MenuTree::new(
-                    button("CNS Table")
-                )],
+                vec![MenuTree::new(button("CNS Table"))],
             )
             .width(100)]),
         }

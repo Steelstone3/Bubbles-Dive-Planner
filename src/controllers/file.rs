@@ -2,7 +2,7 @@ use crate::view_models::dive_planner::DivePlanner;
 use std::fs::File;
 use std::io::{Read, Write};
 
-pub fn upsert_dive_stage(file_name: &str, dive_planner: DivePlanner) {
+pub fn upsert_dive_stage(file_name: &str, dive_planner: &DivePlanner) {
     let mut file = File::create(file_name).expect("Can't create file.");
     let json = serde_json::ser::to_string_pretty(&dive_planner)
         .expect("Can't parse application data to string");
@@ -40,7 +40,7 @@ mod file_integration_should {
         let expected_dive_planner = DivePlanner::default();
 
         // When
-        upsert_dive_stage(file_name, expected_dive_planner);
+        upsert_dive_stage(file_name, &expected_dive_planner);
         let dive_planner = read_dive_stage(file_name);
 
         // Then
