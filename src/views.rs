@@ -9,5 +9,5 @@ pub mod gas_mixture;
 pub mod gas_mixture_read_only;
 pub mod input_parser;
 pub mod menu_bar;
-pub mod result;
+pub mod results;
 pub mod select_dive_model;
