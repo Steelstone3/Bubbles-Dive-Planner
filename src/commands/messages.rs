@@ -6,9 +6,6 @@ pub enum Message {
     FileNew,
     FileSave,
     FileLoad,
-    EditUndo,
-    EditRedo,
-    ViewCns,
     DiveModelSelected(SelectableDiveModel),
     DepthChanged(String),
     TimeChanged(String),
@@ -17,5 +14,5 @@ pub enum Message {
     SurfaceAirConsumptionChanged(String),
     OxygenChanged(String),
     HeliumChanged(String),
-    CalculateDivePlan,
+    UpdateDiveProfile,
 }

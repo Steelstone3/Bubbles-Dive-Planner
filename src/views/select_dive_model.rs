@@ -2,7 +2,7 @@ use crate::{
     commands::{messages::Message, selectable_dive_model::SelectableDiveModel},
     view_models::dive_planner::DivePlanner,
 };
-use iced::widget::{pick_list, PickList};
+use iced::{widget::{pick_list, PickList}, Length};
 
 pub struct SelectDiveModelView<'a> {
     pub selectable_dive_model: PickList<'a, SelectableDiveModel, Message>,
@@ -16,6 +16,7 @@ impl SelectDiveModelView<'_> {
                 dive_planner.dive_stage.dive_model.selected_dive_model,
                 Message::DiveModelSelected,
             )
+            .width(Length::Fill)
             .placeholder("Select Dive Model"),
         }
     }
