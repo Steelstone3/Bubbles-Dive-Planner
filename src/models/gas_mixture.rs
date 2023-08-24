@@ -4,6 +4,7 @@ pub const MAXIMUM_OXYGEN_VALUE: u32 = 100;
 pub const MINIMUM_OXYGEN_VALUE: u32 = 5;
 pub const MAXIMUM_HELIUM_VALUE: u32 = 100;
 pub const MINIMUM_HELIUM_VALUE: u32 = 0;
+const DEFAULT_NITROGEN_VALUE: u32 = 100;
 
 #[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize)]
 pub struct GasMixture {
@@ -15,16 +16,16 @@ pub struct GasMixture {
 impl Default for GasMixture {
     fn default() -> Self {
         Self {
-            oxygen: 21,
+            oxygen: 0,
             helium: 0,
-            nitrogen: 79,
+            nitrogen: DEFAULT_NITROGEN_VALUE,
         }
     }
 }
 
 impl GasMixture {
     pub fn update_nitrogen(&mut self) {
-        self.nitrogen = 100 - self.oxygen - self.helium
+        self.nitrogen = DEFAULT_NITROGEN_VALUE - self.oxygen - self.helium
     }
 
     pub fn validate(&self) -> bool {
