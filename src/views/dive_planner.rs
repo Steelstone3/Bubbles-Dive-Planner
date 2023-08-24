@@ -4,7 +4,7 @@ use super::dive_step::DiveStepView;
 use super::gas_management::GasManagementView;
 use super::gas_mixture::GasMixtureView;
 use super::menu_bar::MenuBarView;
-use super::result::ResultView;
+use super::results::ResultsView;
 use crate::commands::messages::Message;
 use crate::commands::selectable_dive_model::SelectableDiveModel;
 use crate::controllers::file::{read_dive_stage, upsert_dive_stage};
@@ -34,9 +34,6 @@ impl Sandbox for DivePlanner {
             Message::FileNew => self.reset(),
             Message::FileSave => upsert_dive_stage("dive_plan.json", *self),
             Message::FileLoad => *self = read_dive_stage("dive_plan.json"),
-            Message::EditUndo => {}
-            Message::EditRedo => {}
-            Message::ViewCns => {}
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_stage.dive_model.selected_dive_model = Some(selectable_dive_model);
 
@@ -84,7 +81,7 @@ impl Sandbox for DivePlanner {
                     self.dive_stage.cylinder.gas_mixture.oxygen,
                 );
             }
-            Message::CalculateDivePlan => {
+            Message::UpdateDiveProfile => {
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
             }
         }
@@ -93,11 +90,9 @@ impl Sandbox for DivePlanner {
     fn view(&self) -> Element<Message> {
         let menu_bar = MenuBarView::default();
         let dive_stage = DiveStageView::new(self);
-        let result = ResultView::new(self);
+        let result = ResultsView::new(self);
 
-        // TODO refactor away cylinder is read only
         let dive_stage_view = DiveStageView::determine_view(
-            self.dive_stage.cylinder.is_read_only,
             self,
             dive_stage.select_dive_model,
             dive_stage.dive_step,
