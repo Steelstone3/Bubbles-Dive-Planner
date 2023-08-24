@@ -24,7 +24,7 @@ impl GasManagement {
             return false;
         }
 
-        return true;
+        true
     }
 
     fn calculate_gas_used(&mut self, dive_step: DiveStep) {

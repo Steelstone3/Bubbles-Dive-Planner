@@ -20,7 +20,7 @@ impl DiveStep {
             return false;
         }
 
-        return true;
+        true
     }
 }
 
