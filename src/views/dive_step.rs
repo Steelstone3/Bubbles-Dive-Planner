@@ -1,5 +1,11 @@
 use super::input_parser::parse_input_u32;
-use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner, models::dive_step::{MINIMUM_DEPTH_VALUE, MAXIMUM_DEPTH_VALUE, MINIMUM_TIME_VALUE, MAXIMUM_TIME_VALUE}};
+use crate::{
+    commands::messages::Message,
+    models::dive_step::{
+        MAXIMUM_DEPTH_VALUE, MAXIMUM_TIME_VALUE, MINIMUM_DEPTH_VALUE, MINIMUM_TIME_VALUE,
+    },
+    view_models::dive_planner::DivePlanner,
+};
 use iced::widget::{text, text_input, Text, TextInput};
 
 pub struct DiveStepView<'a> {
@@ -14,13 +20,13 @@ impl DiveStepView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             dive_step_text: text("Dive Step"),
-            depth_text: text("Depth"),
+            depth_text: text("Depth (m)"),
             depth_input: text_input(
                 "Enter Depth",
                 &dive_planner.dive_stage.dive_step.depth.to_string(),
             )
             .on_input(Message::DepthChanged),
-            time_text: text("Time"),
+            time_text: text("Time (min)"),
             time_input: text_input(
                 "Enter Time",
                 &dive_planner.dive_stage.dive_step.time.to_string(),

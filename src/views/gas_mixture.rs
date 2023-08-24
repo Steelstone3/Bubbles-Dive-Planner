@@ -1,6 +1,11 @@
 use crate::{
-    commands::messages::Message, models::gas_mixture::{GasMixture, MINIMUM_OXYGEN_VALUE, MAXIMUM_OXYGEN_VALUE, MINIMUM_HELIUM_VALUE, MAXIMUM_HELIUM_VALUE},
-    view_models::dive_planner::DivePlanner, views::input_parser::parse_input_u32,
+    commands::messages::Message,
+    models::gas_mixture::{
+        GasMixture, MAXIMUM_HELIUM_VALUE, MAXIMUM_OXYGEN_VALUE, MINIMUM_HELIUM_VALUE,
+        MINIMUM_OXYGEN_VALUE,
+    },
+    view_models::dive_planner::DivePlanner,
+    views::input_parser::parse_input_u32,
 };
 use iced::widget::{text, text_input, Text, TextInput};
 
@@ -48,7 +53,8 @@ impl GasMixtureView<'_> {
     }
 
     pub fn update_oxygen(oxygen: String, helium: u32) -> GasMixture {
-        let oxygen_input = parse_input_u32(oxygen, MINIMUM_OXYGEN_VALUE, MAXIMUM_OXYGEN_VALUE - helium);
+        let oxygen_input =
+            parse_input_u32(oxygen, MINIMUM_OXYGEN_VALUE, MAXIMUM_OXYGEN_VALUE - helium);
 
         let mut gas_mixture = GasMixture {
             oxygen: oxygen_input,
@@ -62,7 +68,8 @@ impl GasMixtureView<'_> {
     }
 
     pub fn update_helium(helium: String, oxygen: u32) -> GasMixture {
-        let helium_input = parse_input_u32(helium, MINIMUM_HELIUM_VALUE, MAXIMUM_HELIUM_VALUE - oxygen);
+        let helium_input =
+            parse_input_u32(helium, MINIMUM_HELIUM_VALUE, MAXIMUM_HELIUM_VALUE - oxygen);
 
         let mut gas_mixture = GasMixture {
             helium: helium_input,
