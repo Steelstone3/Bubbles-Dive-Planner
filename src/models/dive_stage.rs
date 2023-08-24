@@ -14,7 +14,7 @@ impl DiveStage {
             return false;
         }
 
-        return true;
+        true
     }
 }
 
