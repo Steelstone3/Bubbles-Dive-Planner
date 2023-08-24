@@ -36,7 +36,7 @@ impl Cylinder {
             return false;
         }
 
-        return true;
+        true
     }
 }
 
