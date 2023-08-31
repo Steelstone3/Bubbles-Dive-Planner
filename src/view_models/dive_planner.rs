@@ -18,6 +18,10 @@ impl DivePlanner {
     pub fn reset(&mut self) {
         *self = DivePlanner::default();
     }
+
+    pub fn add_result(&mut self) {
+        self.results.push(self.dive_stage);
+    }
 }
 
 #[cfg(test)]
@@ -36,38 +40,14 @@ mod dive_step_view_should {
     #[test]
     fn reset_dive_planner_to_default_state() {
         // Given
-
         let expected = DivePlanner::default();
         let mut dive_planner = DivePlanner {
-            dive_stage: DiveStage {
-                dive_model: SelectDiveModel {
-                    dive_model_list: [dive_model_test_fixture(), dive_model_test_fixture()],
-                    dive_model: dive_model_test_fixture(),
-                    selected_dive_model: Some(SelectableDiveModel::Usn),
-                },
-                dive_step: DiveStep {
-                    depth: 50,
-                    time: 10,
-                },
-                cylinder: Cylinder {
-                    is_read_only: true,
-                    volume: 12,
-                    pressure: 200,
-                    initial_pressurised_cylinder_volume: 2400,
-                    gas_mixture: GasMixture {
-                        oxygen: 32,
-                        helium: 10,
-                        nitrogen: 58,
-                    },
-                    gas_management: GasManagement {
-                        remaining: 1680,
-                        used: 720,
-                        surface_air_consumption_rate: 12,
-                    },
-                },
-            },
-            // TODO Address the default here for the real test
-            results: Default::default(),
+            dive_stage: dive_stage_test_fixture(),
+            results: vec![
+                dive_stage_test_fixture(),
+                dive_stage_test_fixture(),
+                dive_stage_test_fixture(),
+            ],
         };
 
         // When
@@ -75,6 +55,52 @@ mod dive_step_view_should {
 
         // Then
         assert_eq!(expected, dive_planner);
+    }
+
+    #[test]
+    fn add_a_dive_stage_result() {
+        // Given
+        let dive_stage = dive_stage_test_fixture();
+        let mut dive_planner = DivePlanner{
+            dive_stage,
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.add_result();
+
+        // Then
+        assert_eq!(dive_stage, dive_planner.results[0])
+    }
+
+    fn dive_stage_test_fixture() -> DiveStage {
+        DiveStage {
+            dive_model: SelectDiveModel {
+                dive_model_list: [dive_model_test_fixture(), dive_model_test_fixture()],
+                dive_model: dive_model_test_fixture(),
+                selected_dive_model: Some(SelectableDiveModel::Usn),
+            },
+            dive_step: DiveStep {
+                depth: 50,
+                time: 10,
+            },
+            cylinder: Cylinder {
+                is_read_only: true,
+                volume: 12,
+                pressure: 200,
+                initial_pressurised_cylinder_volume: 2400,
+                gas_mixture: GasMixture {
+                    oxygen: 32,
+                    helium: 10,
+                    nitrogen: 58,
+                },
+                gas_management: GasManagement {
+                    remaining: 1680,
+                    used: 720,
+                    surface_air_consumption_rate: 12,
+                },
+            },
+        }
     }
 
     fn dive_model_test_fixture() -> DiveModel {
