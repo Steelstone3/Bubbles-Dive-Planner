@@ -19,7 +19,6 @@ use iced_aw::Grid;
 impl Sandbox for DivePlanner {
     type Message = Message;
 
-    // TODO add results
     fn new() -> Self {
         Self {
             dive_stage: DiveStage::default(),
@@ -86,7 +85,7 @@ impl Sandbox for DivePlanner {
             }
             Message::UpdateDiveProfile => {
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
-                self.results.push(self.dive_stage);
+                self.add_result();
             }
         }
     }
