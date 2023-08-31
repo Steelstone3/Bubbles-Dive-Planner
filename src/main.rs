@@ -7,7 +7,6 @@ mod models;
 mod view_models;
 mod views;
 
-// TODO Theme and style it
 pub fn main() -> iced::Result {
     DivePlanner::run(Settings::default())
 }

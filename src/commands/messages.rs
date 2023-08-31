@@ -6,6 +6,8 @@ pub enum Message {
     FileNew,
     FileSave,
     FileLoad,
+    EditUndo,
+    EditRedo,
     DiveModelSelected(SelectableDiveModel),
     DepthChanged(String),
     TimeChanged(String),
