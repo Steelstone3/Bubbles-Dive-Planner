@@ -8,7 +8,6 @@ pub struct ResultView<'a> {
 }
 
 impl ResultView<'_> {
-    // TODO make a results view. This will contain the tab with the historic results
     pub fn new(dive_stage: &DiveStage) -> Self {
         let footer = format!(
             "Parameters\n\nDive Step\nDepth: {} Time: {}\n\nCylinder\nO2%: {} N%: {} He: {}\nRemaining: {} Used: {}", 
