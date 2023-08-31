@@ -1,7 +1,7 @@
 Bubbles Dive Planner
 ====================
 
-The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities. Currently supports the Bulhmann dive model with more planned.
+The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities. Currently supports the ZHL16B Bulhmann and USN Revision 6 dive models.
 
 It uses rust for the backend and Iced for the frontend. 
 
