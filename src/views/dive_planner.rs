@@ -23,6 +23,7 @@ impl Sandbox for DivePlanner {
         Self {
             dive_stage: DiveStage::default(),
             results: Default::default(),
+            redo_buffer: Default::default(),
         }
     }
 
@@ -36,6 +37,8 @@ impl Sandbox for DivePlanner {
             Message::FileNew => self.reset(),
             Message::FileSave => upsert_dive_stage("dive_plan.json", self),
             Message::FileLoad => *self = read_dive_stage("dive_plan.json"),
+            Message::EditUndo => self.undo(),
+            Message::EditRedo => self.redo(),
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_stage.dive_model.selected_dive_model = Some(selectable_dive_model);
 
@@ -91,7 +94,7 @@ impl Sandbox for DivePlanner {
     }
 
     fn view(&self) -> Element<Message> {
-        let menu_bar = MenuBarView::default();
+        let menu_bar = MenuBarView::new(self);
         let dive_stage = DiveStageView::new(self);
         let results = ResultsView::new(&self.results);
 
