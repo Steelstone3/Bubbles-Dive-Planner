@@ -56,6 +56,7 @@ mod commands_ambient_pressures_should {
             oxygen: 21,
             helium: 10,
             nitrogen: 69,
+            maximum_operating_depth: 0.0,
         }
     }
 

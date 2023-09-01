@@ -10,13 +10,14 @@ pub struct ResultView<'a> {
 impl ResultView<'_> {
     pub fn new(dive_stage: &DiveStage) -> Self {
         let footer = format!(
-            "Parameters\n\nDive Step\nDepth: {} Time: {}\n\nCylinder\nO2%: {} N%: {} He: {}\nRemaining: {} Used: {}", 
+            "Parameters\n\nDive Step\nDepth (m): {} Time (min): {}\n\nCylinder\nO2 (%): {} N (%): {} He (%): {}\nRemaining: {}/{} (l) Used: {} (l)", 
             dive_stage.dive_step.depth,
             dive_stage.dive_step.time,
             dive_stage.cylinder.gas_mixture.oxygen,
             dive_stage.cylinder.gas_mixture.nitrogen,
             dive_stage.cylinder.gas_mixture.helium,
             dive_stage.cylinder.gas_management.remaining,
+            dive_stage.cylinder.initial_pressurised_cylinder_volume,
             dive_stage.cylinder.gas_management.used,
         ).to_string();
 
