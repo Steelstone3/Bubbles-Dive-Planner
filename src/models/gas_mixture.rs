@@ -6,6 +6,8 @@ pub const MAXIMUM_HELIUM_VALUE: u32 = 100;
 pub const MINIMUM_HELIUM_VALUE: u32 = 0;
 const DEFAULT_NITROGEN_VALUE: u32 = 100;
 
+// TODO add a maximum operating depth validation based on oxygen calculation should occur on "oxygen update"
+// TODO add a minimum operating depth validation based on dive profile calculation should occur on each "update dive profile"
 #[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize)]
 pub struct GasMixture {
     pub oxygen: u32,

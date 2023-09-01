@@ -1,11 +1,11 @@
-use super::cylinder::CylinderView;
-use super::dive_stage::DiveStageView;
-use super::dive_step::DiveStepView;
-use super::gas_management::GasManagementView;
-use super::gas_mixture::GasMixtureView;
+use super::dive_results::results::ResultsView;
+use super::information::dive_information::DiveInformationView;
 use super::menu_bar::MenuBarView;
-
-use super::results::ResultsView;
+use super::parameters::cylinder_parameters::cylinder::CylinderView;
+use super::parameters::cylinder_parameters::gas_management::GasManagementView;
+use super::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
+use super::parameters::dive_stage::DiveStageView;
+use super::parameters::dive_step::DiveStepView;
 use crate::commands::messages::Message;
 use crate::commands::selectable_dive_model::SelectableDiveModel;
 use crate::controllers::file::{read_dive_stage, upsert_dive_stage};
@@ -24,6 +24,7 @@ impl Sandbox for DivePlanner {
             dive_stage: DiveStage::default(),
             results: Default::default(),
             redo_buffer: Default::default(),
+            cns_toxicity: Default::default(),
         }
     }
 
@@ -96,6 +97,7 @@ impl Sandbox for DivePlanner {
     fn view(&self) -> Element<Message> {
         let menu_bar = MenuBarView::new(self);
         let dive_stage = DiveStageView::new(self);
+        let dive_information = DiveInformationView::new(self);
         let results = ResultsView::new(&self.results);
 
         let dive_stage_view = DiveStageView::determine_view(
@@ -123,9 +125,13 @@ impl Sandbox for DivePlanner {
                             .padding(10),
                     ))
                     .push(scrollable(
-                        column![results.result_title_text, results.results_text.spacing(10)]
-                            .spacing(10)
-                            .padding(10),
+                        column![
+                            results.result_title_text,
+                            dive_information.dive_information_text,
+                            results.results_text.spacing(10)
+                        ]
+                        .spacing(10)
+                        .padding(10),
                     )),
             )
             .into()

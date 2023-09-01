@@ -1,11 +1,14 @@
-use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
+use crate::{
+    commands::messages::Message, view_models::dive_planner::DivePlanner,
+    views::information::cylinder_read_only_parameters::cylinder_read_only::CylinderReadOnlyView,
+};
 use iced::{
     widget::{button, column, Button},
     Length,
 };
 
 use super::{
-    cylinder::CylinderView, cylinder_read_only::CylinderReadOnlyView, dive_step::DiveStepView,
+    cylinder_parameters::cylinder::CylinderView, dive_step::DiveStepView,
     select_dive_model::SelectDiveModelView,
 };
 
