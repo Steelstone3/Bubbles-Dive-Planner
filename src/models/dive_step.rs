@@ -5,6 +5,7 @@ pub const MINIMUM_DEPTH_VALUE: u32 = 1;
 pub const MAXIMUM_TIME_VALUE: u32 = 60;
 pub const MINIMUM_TIME_VALUE: u32 = 1;
 
+// TODO validate depth to the maximum operating depth calculated in gas mixture
 #[derive(Debug, PartialEq, Copy, Clone, Default, Serialize, Deserialize)]
 pub struct DiveStep {
     pub depth: u32,
