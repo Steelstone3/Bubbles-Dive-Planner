@@ -72,7 +72,7 @@ impl DiveStageView<'_> {
             cylinder.gas_mixture.helium_input,
             cylinder.gas_mixture.nitrogen_text,
             cylinder.gas_mixture.nitrogen_text_value,
-            DiveStageView::validate_parameters(dive_planner)
+            DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
         ]
     }
 
@@ -136,11 +136,13 @@ impl DiveStageView<'_> {
             cylinder_read_only
                 .gas_management_read_only
                 .surface_air_consumption_rate_read_only_text_value,
-            DiveStageView::validate_parameters(dive_planner)
+            DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
         ]
     }
 
-    fn validate_parameters<'a>(dive_planner: &DivePlanner) -> Button<'a, Message> {
+    fn is_update_dive_profile_button_enabled<'a>(
+        dive_planner: &DivePlanner,
+    ) -> Button<'a, Message> {
         if !dive_planner.dive_stage.validate() {
             return button("Invalid Parameters").width(Length::Fill);
         }
