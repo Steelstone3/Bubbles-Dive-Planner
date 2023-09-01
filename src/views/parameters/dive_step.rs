@@ -1,10 +1,10 @@
-use super::input_parser::parse_input_u32;
 use crate::{
     commands::messages::Message,
     models::dive_step::{
         MAXIMUM_DEPTH_VALUE, MAXIMUM_TIME_VALUE, MINIMUM_DEPTH_VALUE, MINIMUM_TIME_VALUE,
     },
     view_models::dive_planner::DivePlanner,
+    views::input_parser::parse_input_u32,
 };
 use iced::widget::{text, text_input, Text, TextInput};
 
