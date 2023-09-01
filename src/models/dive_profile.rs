@@ -13,6 +13,7 @@ use crate::controllers::dive_stages::{
 use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
+// TODO add dive ceiling to the update dive profile
 #[derive(PartialEq, Debug, Default, Copy, Clone, Serialize, Deserialize)]
 pub struct DiveProfile {
     pub number_of_compartments: usize,
@@ -119,7 +120,7 @@ impl DiveProfile {
         dive_stage
     }
 
-    fn display_results(self) -> String {
+    fn display_results(&self) -> String {
         let mut dive_results = "".to_string();
 
         for (_, compartment) in (0..self.number_of_compartments).enumerate() {
@@ -176,7 +177,7 @@ mod dive_profile_should {
         let expected_dive_profile_result = "C: 1 | TPt: 4.002 | TAP: 1.318 | MSP: 3.356 | CLp: 119.249\nC: 2 | TPt: 2.939 | TAP: 1.191 | MSP: 2.640 | CLp: 111.326\nC: 3 | TPt: 2.224 | TAP: 0.916 | MSP: 2.342 | CLp: 94.962\nC: 4 | TPt: 1.671 | TAP: 0.653 | MSP: 2.122 | CLp: 78.746\nC: 5 | TPt: 1.233 | TAP: 0.404 | MSP: 1.978 | CLp: 62.336\nC: 6 | TPt: 0.913 | TAP: 0.239 | MSP: 1.828 | CLp: 49.945\nC: 7 | TPt: 0.668 | TAP: 0.097 | MSP: 1.719 | CLp: 38.860\nC: 8 | TPt: 0.483 | TAP: -0.018 | MSP: 1.637 | CLp: 29.505\nC: 9 | TPt: 0.348 | TAP: -0.106 | MSP: 1.577 | CLp: 22.067\nC: 10 | TPt: 0.263 | TAP: -0.150 | MSP: 1.521 | CLp: 17.291\nC: 11 | TPt: 0.207 | TAP: -0.177 | MSP: 1.482 | CLp: 13.968\nC: 12 | TPt: 0.162 | TAP: -0.199 | MSP: 1.450 | CLp: 11.172\nC: 13 | TPt: 0.128 | TAP: -0.207 | MSP: 1.415 | CLp: 9.046\nC: 14 | TPt: 0.101 | TAP: -0.227 | MSP: 1.400 | CLp: 7.214\nC: 15 | TPt: 0.079 | TAP: -0.234 | MSP: 1.380 | CLp: 5.725\nC: 16 | TPt: 0.062 | TAP: -0.236 | MSP: 1.356 | CLp: 4.572\n";
 
         // When
-        let actual_dive_profile_result = DiveProfile::display_results(dive_profile);
+        let actual_dive_profile_result = DiveProfile::display_results(&dive_profile);
 
         // Then
         assert_eq!(expected_dive_profile_result, actual_dive_profile_result);
