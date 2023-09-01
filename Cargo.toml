@@ -1,6 +1,6 @@
 [package]
 name = "bubbles-dive-planner-rust"
-version = "0.7.0"
+version = "0.9.0"
 authors = ["Skippy <steelstone3@gmail.com>"]
 edition = "2021"
 homepage = "https://github.com/Steelstone3/Bubbles-Dive-Planner-Console"

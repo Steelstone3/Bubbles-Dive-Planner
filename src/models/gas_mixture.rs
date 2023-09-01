@@ -13,6 +13,7 @@ pub struct GasMixture {
     pub oxygen: u32,
     pub helium: u32,
     pub nitrogen: u32,
+    pub maximum_operating_depth: f32,
 }
 
 impl Default for GasMixture {
@@ -21,6 +22,7 @@ impl Default for GasMixture {
             oxygen: 0,
             helium: 0,
             nitrogen: DEFAULT_NITROGEN_VALUE,
+            maximum_operating_depth: 0.0,
         }
     }
 }
@@ -28,6 +30,15 @@ impl Default for GasMixture {
 impl GasMixture {
     pub fn update_nitrogen(&mut self) {
         self.nitrogen = DEFAULT_NITROGEN_VALUE - self.oxygen - self.helium
+    }
+
+    pub fn calculate_maximum_operating_depth(&mut self) {
+        if self.oxygen > 0 {
+            const TOLERATED_PARTIAL_PRESSURE: f32 = 1.4;
+            let oxygen_partial_pressure = self.oxygen as f32 / 100.0;
+            let tolerated_pressure = TOLERATED_PARTIAL_PRESSURE / oxygen_partial_pressure;
+            self.maximum_operating_depth = (tolerated_pressure * 10.0) - 10.0;
+        }
     }
 
     pub fn validate(&self) -> bool {
@@ -57,6 +68,7 @@ mod gas_mixture_should {
             oxygen: 21,
             helium: 10,
             nitrogen: 0,
+            maximum_operating_depth: 0.0,
         };
 
         // When
@@ -83,6 +95,7 @@ mod gas_mixture_should {
             oxygen,
             helium,
             nitrogen,
+            maximum_operating_depth: 0.0,
         };
 
         // When
@@ -90,5 +103,36 @@ mod gas_mixture_should {
 
         // Then
         assert_eq!(is_valid, is_valid_actual);
+    }
+
+    #[rstest]
+    #[case(0, 0.0)]
+    #[case(21, 56.67)]
+    #[case(32, 33.75)]
+    #[case(36, 28.89)]
+    #[case(50, 18.0)]
+    fn calculate_the_maximum_operating_depth(
+        #[case] oxygen: u32,
+        #[case] maximum_operating_depth: f32,
+    ) {
+        // Given
+        let mut gas_mixture = GasMixture {
+            oxygen,
+            ..Default::default()
+        };
+        let expected_gas_mixture = GasMixture {
+            oxygen,
+            maximum_operating_depth,
+            ..Default::default()
+        };
+
+        // When
+        gas_mixture.calculate_maximum_operating_depth();
+
+        // Then
+        assert_eq!(
+            format!("{:.2}", expected_gas_mixture.maximum_operating_depth),
+            format!("{:.2}", gas_mixture.maximum_operating_depth)
+        );
     }
 }

@@ -23,7 +23,7 @@ impl GasMixtureView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             gas_mixture_text: text("Gas Mixture"),
-            oxygen_text: text("Oxygen"),
+            oxygen_text: text("Oxygen (%)"),
             oxygen_input: text_input(
                 "Enter Oxygen",
                 &dive_planner
@@ -35,7 +35,7 @@ impl GasMixtureView<'_> {
             )
             .on_input(Message::OxygenChanged),
 
-            helium_text: text("Helium"),
+            helium_text: text("Helium (%)"),
             helium_input: text_input(
                 "Enter Helium",
                 &dive_planner
@@ -47,7 +47,7 @@ impl GasMixtureView<'_> {
             )
             .on_input(Message::HeliumChanged),
 
-            nitrogen_text: text("Nitrogen"),
+            nitrogen_text: text("Nitrogen (%)"),
             nitrogen_text_value: text(dive_planner.dive_stage.cylinder.gas_mixture.nitrogen),
         }
     }
@@ -63,6 +63,7 @@ impl GasMixtureView<'_> {
         };
 
         gas_mixture.update_nitrogen();
+        gas_mixture.calculate_maximum_operating_depth();
 
         gas_mixture
     }
@@ -94,6 +95,7 @@ mod cylinder_view_should {
             oxygen: 21,
             helium: 0,
             nitrogen: 79,
+            maximum_operating_depth: 56.66667,
         };
         let input = "21".to_string();
 
@@ -111,6 +113,7 @@ mod cylinder_view_should {
             oxygen: 90,
             helium: 10,
             nitrogen: 0,
+            maximum_operating_depth: 5.5555553,
         };
         let input = "101".to_string();
 
@@ -128,6 +131,7 @@ mod cylinder_view_should {
             oxygen: 5,
             helium: 0,
             nitrogen: 95,
+            maximum_operating_depth: 270.0,
         };
         let input = "101£%^asda".to_string();
 
@@ -145,6 +149,7 @@ mod cylinder_view_should {
             oxygen: 0,
             helium: 21,
             nitrogen: 79,
+            maximum_operating_depth: 0.0,
         };
         let input = "21".to_string();
 
@@ -162,6 +167,7 @@ mod cylinder_view_should {
             oxygen: 10,
             helium: 90,
             nitrogen: 0,
+            maximum_operating_depth: 0.0,
         };
         let input = "101".to_string();
 
@@ -179,6 +185,7 @@ mod cylinder_view_should {
             oxygen: 0,
             helium: 0,
             nitrogen: 100,
+            maximum_operating_depth: 0.0,
         };
         let input = "101£%^&sdfd".to_string();
 

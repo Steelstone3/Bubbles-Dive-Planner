@@ -13,7 +13,6 @@ use crate::controllers::dive_stages::{
 use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
-// TODO add dive ceiling to the update dive profile
 #[derive(PartialEq, Debug, Default, Copy, Clone, Serialize, Deserialize)]
 pub struct DiveProfile {
     pub number_of_compartments: usize,
@@ -28,12 +27,21 @@ pub struct DiveProfile {
     pub oxygen_at_pressure: f32,
     pub helium_at_pressure: f32,
     pub nitrogen_at_pressure: f32,
+    pub dive_ceiling: f32,
 }
 
 impl DiveProfile {
     pub fn new(number_of_compartments: usize) -> Self {
         Self {
             number_of_compartments,
+            nitrogen_tissue_pressures: [
+                0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79,
+                0.79, 0.79,
+            ],
+            total_tissue_pressures: [
+                0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79,
+                0.79, 0.79,
+            ],
             ..Default::default()
         }
     }
@@ -57,6 +65,12 @@ impl DiveProfile {
         for compartment in 0..dive_stage.dive_model.dive_model.number_of_compartments {
             dive_stage = DiveProfile::run_dive_stages(compartment, dive_stage);
         }
+
+        dive_stage
+            .dive_model
+            .dive_model
+            .dive_profile
+            .calculate_dive_ceiling();
 
         dive_stage.cylinder.is_read_only = true;
 
@@ -118,6 +132,17 @@ impl DiveProfile {
             calculate_compartment_loads(compartment, dive_stage.dive_model.dive_model.dive_profile);
 
         dive_stage
+    }
+
+    // TODO test this
+    fn calculate_dive_ceiling(&mut self) {
+        self.dive_ceiling = (self
+            .tolerated_ambient_pressures
+            .iter()
+            .cloned()
+            .fold(f32::NEG_INFINITY, f32::max)
+            - 1.0)
+            * 10.0
     }
 
     fn display_results(&self) -> String {
@@ -268,6 +293,17 @@ mod dive_profile_should {
                     .nitrogen_at_pressure
             )
         );
+        assert_eq!(
+            format!("{:.2}", expected_dive_profile.dive_ceiling),
+            format!(
+                "{:.2}",
+                actual_dive_stage
+                    .dive_model
+                    .dive_model
+                    .dive_profile
+                    .dive_ceiling
+            )
+        );
 
         for compartment in 0..16 {
             assert_eq!(
@@ -392,6 +428,7 @@ mod dive_profile_should {
                 oxygen: 21,
                 helium: 10,
                 nitrogen: 69,
+                maximum_operating_depth: 0.0,
             },
             initial_pressurised_cylinder_volume: 2400,
             volume: 12,
@@ -411,6 +448,7 @@ mod dive_profile_should {
                 oxygen: 21,
                 helium: 10,
                 nitrogen: 69,
+                maximum_operating_depth: 0.0,
             },
             initial_pressurised_cylinder_volume: 2400,
             volume: 12,
@@ -428,40 +466,40 @@ mod dive_profile_should {
         DiveProfile {
             number_of_compartments: 16,
             maximum_surface_pressures: [
-                3.356, 2.640, 2.342, 2.122, 1.978, 1.828, 1.719, 1.637, 1.577, 1.521, 1.482, 1.450,
-                1.415, 1.400, 1.380, 1.356,
+                3.350, 2.630, 2.33, 2.10, 1.95, 1.79, 1.68, 1.60, 1.54, 1.48, 1.44, 1.400, 1.35,
+                1.33, 1.300, 1.28,
             ],
             compartment_loads: [
-                119.249, 111.326, 94.962, 78.746, 62.336, 49.945, 38.860, 29.505, 22.067, 17.291,
-                13.968, 11.172, 9.046, 7.214, 5.725, 4.572,
+                124.0, 124.0, 115.0, 105.0, 94.0, 88.0, 81.0, 75.0, 71.0, 69.0, 67.0, 67.0, 67.0,
+                66.0, 66.0, 66.0,
             ],
             nitrogen_tissue_pressures: [
-                3.408, 2.399, 1.762, 1.294, 0.937, 0.685, 0.496, 0.356, 0.255, 0.192, 0.151, 0.118,
-                0.093, 0.073, 0.057, 0.045,
+                3.500, 2.700, 2.200, 1.8, 1.5, 1.3, 1.2, 1.1, 1.0, 0.9, 0.9, 0.9, 0.9, 0.8, 0.8,
+                0.8,
             ],
             helium_tissue_pressures: [
                 0.594, 0.540, 0.462, 0.377, 0.296, 0.228, 0.172, 0.127, 0.093, 0.071, 0.056, 0.044,
                 0.035, 0.028, 0.022, 0.017,
             ],
             total_tissue_pressures: [
-                4.002, 2.939, 2.224, 1.671, 1.233, 0.913, 0.668, 0.483, 0.348, 0.263, 0.207, 0.162,
-                0.128, 0.101, 0.079, 0.062,
+                4.140, 3.270, 2.68, 2.21, 1.84, 1.57, 1.36, 1.21, 1.09, 1.02, 0.97, 0.93, 0.90,
+                0.88, 0.86, 0.84,
             ],
             tolerated_ambient_pressures: [
-                1.318, 1.191, 0.916, 0.653, 0.404, 0.239, 0.097, -0.018, -0.106, -0.150, -0.177,
-                -0.199, -0.207, -0.227, -0.234, -0.236,
+                1.390, 1.410, 1.25, 1.09, 0.91, 0.82, 0.72, 0.65, 0.59, 0.57, 0.57, 0.56, 0.57,
+                0.57, 0.57, 0.58,
             ],
             a_values: [
-                1.328, 1.070, 0.930, 0.822, 0.728, 0.625, 0.555, 0.503, 0.466, 0.427, 0.399, 0.376,
-                0.349, 0.341, 0.326, 0.309,
+                1.3, 1.1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.5, 0.4, 0.4, 0.4, 0.3, 0.3, 0.3, 0.3, 0.2,
             ],
             b_values: [
-                0.493, 0.637, 0.708, 0.769, 0.800, 0.831, 0.859, 0.882, 0.900, 0.914, 0.923, 0.931,
-                0.938, 0.944, 0.949, 0.955,
+                0.493, 0.637, 0.708, 0.769, 0.800, 0.84, 0.859, 0.89, 0.910, 0.920, 0.93, 0.94,
+                0.95, 0.95, 0.96, 0.96,
             ],
             oxygen_at_pressure: 1.26,
             helium_at_pressure: 0.600,
             nitrogen_at_pressure: 4.14,
+            dive_ceiling: 4.1,
         }
     }
 
@@ -615,6 +653,7 @@ mod dive_profile_should {
             oxygen_at_pressure: 1.262_342_3,
             helium_at_pressure: 0.600_234_3,
             nitrogen_at_pressure: 4.142_343,
+            dive_ceiling: 0.0,
         }
     }
 }

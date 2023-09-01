@@ -9,10 +9,27 @@ pub struct DiveInformationView<'a> {
 
 impl DiveInformationView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
+        let maximum_operating_depth = format!(
+            "{:.2}",
+            dive_planner
+                .dive_stage
+                .cylinder
+                .gas_mixture
+                .maximum_operating_depth
+        );
+        let dive_ceiling = format!(
+            "{:.2}",
+            dive_planner
+                .dive_stage
+                .dive_model
+                .dive_model
+                .dive_profile
+                .dive_ceiling
+        );
+
         let footer = format!(
             "Dive Boundaries\n\nMaximum Operating Depth: {}\nDive Ceiling: {}",
-            0, // change to maximum operating depth from gas mixture
-            0, // change to dive ceiling from dive profile
+            maximum_operating_depth, dive_ceiling,
         )
         .to_string();
 

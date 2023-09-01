@@ -131,6 +131,7 @@ mod dive_step_view_should {
                     oxygen: 32,
                     helium: 10,
                     nitrogen: 58,
+                    maximum_operating_depth: 0.0,
                 },
                 gas_management: GasManagement {
                     remaining: 1680,
@@ -314,6 +315,7 @@ mod dive_step_view_should {
                     oxygen: 32,
                     helium: 10,
                     nitrogen: 58,
+                    maximum_operating_depth: 0.0,
                 },
                 gas_management: GasManagement {
                     remaining: 1680,
@@ -344,6 +346,7 @@ mod dive_step_view_should {
                     oxygen: 32,
                     helium: 10,
                     nitrogen: 58,
+                    maximum_operating_depth: 0.0,
                 },
                 gas_management: GasManagement {
                     remaining: 980,
@@ -380,6 +383,7 @@ mod dive_step_view_should {
                 oxygen_at_pressure: 2.34,
                 helium_at_pressure: 2.56,
                 nitrogen_at_pressure: 2.12,
+                dive_ceiling: 0.0,
             },
         }
     }
@@ -410,6 +414,7 @@ mod dive_step_view_should {
                 oxygen_at_pressure: 2.34,
                 helium_at_pressure: 2.56,
                 nitrogen_at_pressure: 2.12,
+                dive_ceiling: 0.0,
             },
         }
     }
