@@ -1,6 +1,4 @@
-use super::{
-    gas_management::GasManagementView, gas_mixture::GasMixtureView, input_parser::parse_input_u32,
-};
+use super::{gas_management::GasManagementView, gas_mixture::GasMixtureView};
 use crate::{
     commands::messages::Message,
     models::cylinder::{
@@ -8,6 +6,7 @@ use crate::{
         MINIMUM_VOLUME_VALUE,
     },
     view_models::dive_planner::DivePlanner,
+    views::input_parser::parse_input_u32,
 };
 use iced::{
     widget::Text,
