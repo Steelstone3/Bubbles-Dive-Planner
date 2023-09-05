@@ -1,11 +1,11 @@
 use serde::{Deserialize, Serialize};
+use std::fmt::Display;
 
 pub const MAXIMUM_DEPTH_VALUE: u32 = 100;
 pub const MINIMUM_DEPTH_VALUE: u32 = 1;
 pub const MAXIMUM_TIME_VALUE: u32 = 60;
 pub const MINIMUM_TIME_VALUE: u32 = 1;
 
-// TODO validate depth to the maximum operating depth calculated in gas mixture
 #[derive(Debug, PartialEq, Copy, Clone, Default, Serialize, Deserialize)]
 pub struct DiveStep {
     pub depth: u32,
@@ -23,13 +23,41 @@ impl DiveStep {
 
         true
     }
+
+    fn display_dive_step(&self) -> String {
+        format!(
+            "Dive Step\nDepth: {} (m) Time: {} (min)",
+            self.depth, self.time
+        )
+    }
+}
+
+impl Display for DiveStep {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.display_dive_step())
+    }
 }
 
 #[cfg(test)]
 mod dive_step_should {
+    use super::*;
     use rstest::rstest;
 
-    use super::*;
+    #[test]
+    fn display_read_only_dive_step() {
+        // Given
+        let dive_step = DiveStep {
+            depth: 50,
+            time: 10,
+        };
+        let expected_display = "Dive Step\nDepth: 50 (m) Time: 10 (min)";
+
+        // When
+        let display = dive_step.display_dive_step();
+
+        // Then
+        assert_eq!(expected_display, display);
+    }
 
     #[rstest]
     #[case(50, 10, true)]

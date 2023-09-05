@@ -21,6 +21,8 @@ impl Sandbox for DivePlanner {
 
     fn new() -> Self {
         Self {
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
             dive_stage: DiveStage::default(),
             results: Default::default(),
             redo_buffer: Default::default(),
@@ -40,15 +42,18 @@ impl Sandbox for DivePlanner {
             Message::FileLoad => *self = read_dive_stage("dive_plan.json"),
             Message::EditUndo => self.undo(),
             Message::EditRedo => self.redo(),
+            Message::ViewToggleCentralNervousSystemToxicityVisibility => {
+                self.cns_toxicity.is_visible = self.cns_toxicity.toggle_visibility();
+            }
             Message::DiveModelSelected(selectable_dive_model) => {
-                self.dive_stage.dive_model.selected_dive_model = Some(selectable_dive_model);
+                self.select_dive_model.selected_dive_model = Some(selectable_dive_model);
 
                 match selectable_dive_model {
                     SelectableDiveModel::Bulhmann => {
-                        self.dive_stage.dive_model.dive_model = DiveModel::create_zhl16_dive_model()
+                        self.dive_stage.dive_model = DiveModel::create_zhl16_dive_model()
                     }
                     SelectableDiveModel::Usn => {
-                        self.dive_stage.dive_model.dive_model = DiveModel::create_usn_rev_6_model()
+                        self.dive_stage.dive_model = DiveModel::create_usn_rev_6_model()
                     }
                 }
             }
@@ -120,7 +125,7 @@ impl Sandbox for DivePlanner {
                 Grid::with_columns(2)
                     .push(scrollable(
                         column![dive_stage_view.spacing(10),]
-                            .width(200)
+                            .width(300)
                             .spacing(10)
                             .padding(10),
                     ))
