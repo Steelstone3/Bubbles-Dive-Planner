@@ -7,5 +7,4 @@ use serde::{Deserialize, Serialize};
 pub struct SelectDiveModel {
     pub dive_model_list: [DiveModel; 2],
     pub selected_dive_model: Option<SelectableDiveModel>,
-    pub dive_model: DiveModel,
 }

@@ -56,85 +56,59 @@ impl DiveProfile {
             .gas_management
             .update_gas_management(dive_stage.dive_step);
 
-        dive_stage.dive_model.dive_model.dive_profile = calculate_ambient_pressures(
-            dive_stage.dive_model.dive_model.dive_profile,
+        dive_stage.dive_model.dive_profile = calculate_ambient_pressures(
+            dive_stage.dive_model.dive_profile,
             dive_stage.dive_step,
             dive_stage.cylinder.gas_mixture,
         );
 
-        for compartment in 0..dive_stage.dive_model.dive_model.number_of_compartments {
+        for compartment in 0..dive_stage.dive_model.number_of_compartments {
             dive_stage = DiveProfile::run_dive_stages(compartment, dive_stage);
         }
 
-        dive_stage
-            .dive_model
-            .dive_model
-            .dive_profile
-            .calculate_dive_ceiling();
+        dive_stage.dive_model.dive_profile.calculate_dive_ceiling();
 
         dive_stage.cylinder.is_read_only = true;
 
         dive_stage
     }
 
+    pub fn display_dive_ceiling(&self) -> String {
+        format!("Dive Ceiling: {:.2} (m)", self.dive_ceiling)
+    }
+
     fn run_dive_stages(compartment: usize, mut dive_stage: DiveStage) -> DiveStage {
+        dive_stage.dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =
+            calculate_nitrogen_tissue_pressures(
+                compartment,
+                dive_stage.dive_model,
+                dive_stage.dive_step,
+            );
+        dive_stage.dive_model.dive_profile.helium_tissue_pressures[compartment] =
+            calculate_helium_tissue_pressures(
+                compartment,
+                dive_stage.dive_model,
+                dive_stage.dive_step,
+            );
+        dive_stage.dive_model.dive_profile.total_tissue_pressures[compartment] =
+            calculate_total_tissue_pressure(compartment, dive_stage.dive_model.dive_profile);
+        dive_stage.dive_model.dive_profile.a_values[compartment] =
+            calculate_a_values(compartment, dive_stage.dive_model);
+        dive_stage.dive_model.dive_profile.b_values[compartment] =
+            calculate_b_values(compartment, dive_stage.dive_model);
         dive_stage
             .dive_model
-            .dive_model
             .dive_profile
-            .nitrogen_tissue_pressures[compartment] = calculate_nitrogen_tissue_pressures(
-            compartment,
-            dive_stage.dive_model.dive_model,
-            dive_stage.dive_step,
-        );
-        dive_stage
-            .dive_model
-            .dive_model
-            .dive_profile
-            .helium_tissue_pressures[compartment] = calculate_helium_tissue_pressures(
-            compartment,
-            dive_stage.dive_model.dive_model,
-            dive_stage.dive_step,
-        );
-        dive_stage
-            .dive_model
-            .dive_model
-            .dive_profile
-            .total_tissue_pressures[compartment] = calculate_total_tissue_pressure(
-            compartment,
-            dive_stage.dive_model.dive_model.dive_profile,
-        );
-        dive_stage.dive_model.dive_model.dive_profile.a_values[compartment] =
-            calculate_a_values(compartment, dive_stage.dive_model.dive_model);
-        dive_stage.dive_model.dive_model.dive_profile.b_values[compartment] =
-            calculate_b_values(compartment, dive_stage.dive_model.dive_model);
-        dive_stage
-            .dive_model
-            .dive_model
-            .dive_profile
-            .tolerated_ambient_pressures[compartment] = calculate_tolerated_ambient_pressure(
-            compartment,
-            dive_stage.dive_model.dive_model.dive_profile,
-        );
-        dive_stage
-            .dive_model
-            .dive_model
-            .dive_profile
-            .maximum_surface_pressures[compartment] = calculate_max_surface_pressures(
-            compartment,
-            dive_stage.dive_model.dive_model.dive_profile,
-        );
-        dive_stage
-            .dive_model
-            .dive_model
-            .dive_profile
-            .compartment_loads[compartment] =
-            calculate_compartment_loads(compartment, dive_stage.dive_model.dive_model.dive_profile);
+            .tolerated_ambient_pressures[compartment] =
+            calculate_tolerated_ambient_pressure(compartment, dive_stage.dive_model.dive_profile);
+        dive_stage.dive_model.dive_profile.maximum_surface_pressures[compartment] =
+            calculate_max_surface_pressures(compartment, dive_stage.dive_model.dive_profile);
+        dive_stage.dive_model.dive_profile.compartment_loads[compartment] =
+            calculate_compartment_loads(compartment, dive_stage.dive_model.dive_profile);
 
         dive_stage
     }
 
-    // TODO test this
     fn calculate_dive_ceiling(&mut self) {
         self.dive_ceiling = (self
             .tolerated_ambient_pressures
@@ -183,8 +157,24 @@ mod dive_profile_should {
     use super::*;
     use crate::models::{
         cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep,
-        gas_management::GasManagement, gas_mixture::GasMixture, select_dive_model::SelectDiveModel,
+        gas_management::GasManagement, gas_mixture::GasMixture,
     };
+
+    #[test]
+    fn display_read_only_dive_ceiling() {
+        // Given
+        let dive_profile = DiveProfile {
+            dive_ceiling: 3.765,
+            ..Default::default()
+        };
+        let expected_display = "Dive Ceiling: 3.77 (m)";
+
+        // When
+        let display = dive_profile.display_dive_ceiling();
+
+        // Then
+        assert_eq!(expected_display, display);
+    }
 
     #[test]
     fn create_a_new_dive_profile_with_a_set_number_of_compartments() {
@@ -224,10 +214,8 @@ mod dive_profile_should {
     fn update_gas_management_stage() {
         // Given
         let dive_stage = DiveStage {
-            dive_model: SelectDiveModel {
-                dive_model: DiveModel::create_zhl16_dive_model(),
-                ..Default::default()
-            },
+            dive_model: DiveModel::create_zhl16_dive_model(),
+
             dive_step: dive_step_test_fixture(),
             cylinder: cylinder_test_fixture(),
         };
@@ -247,10 +235,8 @@ mod dive_profile_should {
     fn update_dive_profile_by_running_each_dive_stages() {
         // Given
         let dive_stage = DiveStage {
-            dive_model: SelectDiveModel {
-                dive_model: DiveModel::create_zhl16_dive_model(),
-                ..Default::default()
-            },
+            dive_model: DiveModel::create_zhl16_dive_model(),
+
             dive_step: dive_step_test_fixture(),
             cylinder: cylinder_test_fixture(),
         };
@@ -264,22 +250,14 @@ mod dive_profile_should {
             format!("{:.2}", expected_dive_profile.oxygen_at_pressure),
             format!(
                 "{:.2}",
-                actual_dive_stage
-                    .dive_model
-                    .dive_model
-                    .dive_profile
-                    .oxygen_at_pressure
+                actual_dive_stage.dive_model.dive_profile.oxygen_at_pressure
             )
         );
         assert_eq!(
             format!("{:.2}", expected_dive_profile.helium_at_pressure),
             format!(
                 "{:.2}",
-                actual_dive_stage
-                    .dive_model
-                    .dive_model
-                    .dive_profile
-                    .helium_at_pressure
+                actual_dive_stage.dive_model.dive_profile.helium_at_pressure
             )
         );
         assert_eq!(
@@ -287,7 +265,6 @@ mod dive_profile_should {
             format!(
                 "{:.2}",
                 actual_dive_stage
-                    .dive_model
                     .dive_model
                     .dive_profile
                     .nitrogen_at_pressure
@@ -297,11 +274,7 @@ mod dive_profile_should {
             format!("{:.2}", expected_dive_profile.dive_ceiling),
             format!(
                 "{:.2}",
-                actual_dive_stage
-                    .dive_model
-                    .dive_model
-                    .dive_profile
-                    .dive_ceiling
+                actual_dive_stage.dive_model.dive_profile.dive_ceiling
             )
         );
 
@@ -314,7 +287,6 @@ mod dive_profile_should {
                 format!(
                     "{:.1}",
                     actual_dive_stage
-                        .dive_model
                         .dive_model
                         .dive_profile
                         .nitrogen_tissue_pressures[compartment]
@@ -329,7 +301,6 @@ mod dive_profile_should {
                     "{:.3}",
                     actual_dive_stage
                         .dive_model
-                        .dive_model
                         .dive_profile
                         .helium_tissue_pressures[compartment]
                 )
@@ -343,7 +314,6 @@ mod dive_profile_should {
                     "{:.2}",
                     actual_dive_stage
                         .dive_model
-                        .dive_model
                         .dive_profile
                         .total_tissue_pressures[compartment]
                 )
@@ -352,22 +322,14 @@ mod dive_profile_should {
                 format!("{:.1}", expected_dive_profile.a_values[compartment]),
                 format!(
                     "{:.1}",
-                    actual_dive_stage
-                        .dive_model
-                        .dive_model
-                        .dive_profile
-                        .a_values[compartment]
+                    actual_dive_stage.dive_model.dive_profile.a_values[compartment]
                 )
             );
             assert_eq!(
                 format!("{:.2}", expected_dive_profile.b_values[compartment]),
                 format!(
                     "{:.2}",
-                    actual_dive_stage
-                        .dive_model
-                        .dive_model
-                        .dive_profile
-                        .b_values[compartment]
+                    actual_dive_stage.dive_model.dive_profile.b_values[compartment]
                 )
             );
             assert_eq!(
@@ -378,7 +340,6 @@ mod dive_profile_should {
                 format!(
                     "{:.2}",
                     actual_dive_stage
-                        .dive_model
                         .dive_model
                         .dive_profile
                         .tolerated_ambient_pressures[compartment]
@@ -393,7 +354,6 @@ mod dive_profile_should {
                     "{:.2}",
                     actual_dive_stage
                         .dive_model
-                        .dive_model
                         .dive_profile
                         .maximum_surface_pressures[compartment]
                 )
@@ -405,11 +365,7 @@ mod dive_profile_should {
                 ),
                 format!(
                     "{:.0}",
-                    actual_dive_stage
-                        .dive_model
-                        .dive_model
-                        .dive_profile
-                        .compartment_loads[compartment]
+                    actual_dive_stage.dive_model.dive_profile.compartment_loads[compartment]
                 )
             );
         }

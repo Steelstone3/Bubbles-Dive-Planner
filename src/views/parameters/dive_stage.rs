@@ -1,6 +1,6 @@
 use crate::{
     commands::messages::Message, view_models::dive_planner::DivePlanner,
-    views::information::cylinder_read_only_parameters::cylinder_read_only::CylinderReadOnlyView,
+    views::information::cylinder_read_only::CylinderReadOnlyView,
 };
 use iced::{
     widget::{button, column, Button},
@@ -87,55 +87,8 @@ impl DiveStageView<'_> {
             dive_step.depth_input,
             dive_step.time_text,
             dive_step.time_input,
+            cylinder_read_only.cylinder_read_only_text_title,
             cylinder_read_only.cylinder_read_only_text,
-            cylinder_read_only.cylinder_read_only_volume_text,
-            cylinder_read_only.cylinder_read_only_volume_text_value,
-            cylinder_read_only.cylinder_read_only_pressure_text,
-            cylinder_read_only.cylinder_read_only_pressure_text_value,
-            cylinder_read_only
-                .gas_mixture_read_only
-                .gas_mixture_read_only_text,
-            cylinder_read_only
-                .gas_mixture_read_only
-                .oxygen_read_only_text,
-            cylinder_read_only
-                .gas_mixture_read_only
-                .oxygen_read_only_text_value,
-            cylinder_read_only
-                .gas_mixture_read_only
-                .helium_read_only_text,
-            cylinder_read_only
-                .gas_mixture_read_only
-                .helium_read_only_text_value,
-            cylinder_read_only
-                .gas_mixture_read_only
-                .nitrogen_read_only_text,
-            cylinder_read_only
-                .gas_mixture_read_only
-                .nitrogen_read_only_text_value,
-            cylinder_read_only
-                .gas_management_read_only
-                .gas_management_read_only_text,
-            cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_text,
-            cylinder_read_only.cylinder_read_only_initial_pressurised_cylinder_volume_text_value,
-            cylinder_read_only
-                .gas_management_read_only
-                .remaining_read_only_text,
-            cylinder_read_only
-                .gas_management_read_only
-                .remaining_read_only_text_value,
-            cylinder_read_only
-                .gas_management_read_only
-                .used_read_only_text,
-            cylinder_read_only
-                .gas_management_read_only
-                .used_read_only_text_value,
-            cylinder_read_only
-                .gas_management_read_only
-                .surface_air_consumption_rate_read_only_text,
-            cylinder_read_only
-                .gas_management_read_only
-                .surface_air_consumption_rate_read_only_text_value,
             DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
         ]
     }

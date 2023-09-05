@@ -16,7 +16,7 @@ impl SelectDiveModelView<'_> {
         Self {
             selectable_dive_model: pick_list(
                 &SelectableDiveModel::ALL[..],
-                dive_planner.dive_stage.dive_model.selected_dive_model,
+                dive_planner.select_dive_model.selected_dive_model,
                 Message::DiveModelSelected,
             )
             .width(Length::Fill)

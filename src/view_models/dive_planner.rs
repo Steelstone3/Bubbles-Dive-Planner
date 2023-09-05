@@ -1,11 +1,14 @@
 use crate::models::{
     central_nervous_system_toxicity::CentralNervousSystemToxicity, dive_stage::DiveStage,
+    select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
 };
 use iced::Sandbox;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct DivePlanner {
+    pub select_dive_model: SelectDiveModel,
+    pub select_cylinder: SelectCylinder,
     pub dive_stage: DiveStage,
     pub results: Vec<DiveStage>,
     pub redo_buffer: Vec<DiveStage>,
@@ -58,13 +61,9 @@ impl DivePlanner {
 
 #[cfg(test)]
 mod dive_step_view_should {
-    use crate::{
-        commands::selectable_dive_model::SelectableDiveModel,
-        models::{
-            cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile,
-            dive_step::DiveStep, gas_management::GasManagement, gas_mixture::GasMixture,
-            select_dive_model::SelectDiveModel,
-        },
+    use crate::models::{
+        cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile, dive_step::DiveStep,
+        gas_management::GasManagement, gas_mixture::GasMixture,
     };
 
     use super::*;
@@ -82,6 +81,8 @@ mod dive_step_view_should {
             ],
             redo_buffer: vec![dive_stage_test_fixture()],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
 
         // When
@@ -100,6 +101,8 @@ mod dive_step_view_should {
             results: Default::default(),
             redo_buffer: vec![dive_stage_test_fixture()],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
 
         // When
@@ -113,11 +116,7 @@ mod dive_step_view_should {
 
     fn dive_stage_test_fixture() -> DiveStage {
         DiveStage {
-            dive_model: SelectDiveModel {
-                dive_model_list: [dive_model_test_fixture_old(), dive_model_test_fixture_old()],
-                dive_model: dive_model_test_fixture_old(),
-                selected_dive_model: Some(SelectableDiveModel::Usn),
-            },
+            dive_model: dive_model_test_fixture_old(),
             dive_step: DiveStep {
                 depth: 50,
                 time: 10,
@@ -150,12 +149,16 @@ mod dive_step_view_should {
             results: vec![],
             redo_buffer: vec![],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: Default::default(),
             results: vec![],
             redo_buffer: vec![],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
 
         // When
@@ -173,12 +176,16 @@ mod dive_step_view_should {
             results: vec![dive_stage_test_fixture_old()],
             redo_buffer: vec![],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: Default::default(),
             results: vec![],
             redo_buffer: vec![dive_stage_test_fixture_old()],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
 
         // When
@@ -199,12 +206,16 @@ mod dive_step_view_should {
             ],
             redo_buffer: vec![],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_old(),
             results: vec![dive_stage_test_fixture_old()],
             redo_buffer: vec![dive_stage_test_fixture_latest()],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
 
         // When
@@ -225,6 +236,8 @@ mod dive_step_view_should {
             ],
             redo_buffer: Default::default(),
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_latest(),
@@ -234,6 +247,8 @@ mod dive_step_view_should {
             ],
             redo_buffer: Default::default(),
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
 
         // When
@@ -251,6 +266,8 @@ mod dive_step_view_should {
             results: vec![dive_stage_test_fixture_old()],
             redo_buffer: vec![dive_stage_test_fixture_latest()],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_latest(),
@@ -260,6 +277,8 @@ mod dive_step_view_should {
             ],
             redo_buffer: Default::default(),
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
 
         // When
@@ -280,12 +299,16 @@ mod dive_step_view_should {
                 dive_stage_test_fixture_latest(),
             ],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_latest(),
             results: vec![dive_stage_test_fixture_latest()],
             redo_buffer: vec![dive_stage_test_fixture_old()],
             cns_toxicity: Default::default(),
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
         };
 
         // When
@@ -297,11 +320,7 @@ mod dive_step_view_should {
 
     fn dive_stage_test_fixture_old() -> DiveStage {
         DiveStage {
-            dive_model: SelectDiveModel {
-                dive_model_list: [dive_model_test_fixture_old(), dive_model_test_fixture_old()],
-                dive_model: dive_model_test_fixture_old(),
-                selected_dive_model: Some(SelectableDiveModel::Usn),
-            },
+            dive_model: dive_model_test_fixture_old(),
             dive_step: DiveStep {
                 depth: 50,
                 time: 10,
@@ -328,11 +347,7 @@ mod dive_step_view_should {
 
     fn dive_stage_test_fixture_latest() -> DiveStage {
         DiveStage {
-            dive_model: SelectDiveModel {
-                dive_model_list: [dive_model_test_fixture_old(), dive_model_test_fixture_old()],
-                dive_model: dive_model_test_fixture_latest(),
-                selected_dive_model: Some(SelectableDiveModel::Usn),
-            },
+            dive_model: dive_model_test_fixture_latest(),
             dive_step: DiveStep {
                 depth: 100,
                 time: 15,
