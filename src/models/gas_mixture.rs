@@ -6,8 +6,6 @@ pub const MAXIMUM_HELIUM_VALUE: u32 = 100;
 pub const MINIMUM_HELIUM_VALUE: u32 = 0;
 const DEFAULT_NITROGEN_VALUE: u32 = 100;
 
-// TODO add a maximum operating depth validation based on oxygen calculation should occur on "oxygen update"
-// TODO add a minimum operating depth validation based on dive profile calculation should occur on each "update dive profile"
 #[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize)]
 pub struct GasMixture {
     pub oxygen: u32,
@@ -53,13 +51,35 @@ impl GasMixture {
 
         true
     }
+
+    pub fn display_maximum_operating_depth(&self) -> String {
+        format!(
+            "Maximum Operating Depth: {:.2} (m)",
+            self.maximum_operating_depth
+        )
+    }
 }
 
 #[cfg(test)]
 mod gas_mixture_should {
+    use super::*;
     use rstest::rstest;
 
-    use super::*;
+    #[test]
+    fn display_read_only_maximum_operating_depth() {
+        // Given
+        let gas_mixture = GasMixture {
+            maximum_operating_depth: 40.555,
+            ..Default::default()
+        };
+        let expected_display = "Maximum Operating Depth: 40.56 (m)";
+
+        // When
+        let display = gas_mixture.display_maximum_operating_depth();
+
+        // Then
+        assert_eq!(expected_display, display);
+    }
 
     #[test]
     fn calculate_nitrogen_for_a_given_gas_mixture() {

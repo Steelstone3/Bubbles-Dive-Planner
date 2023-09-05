@@ -10,24 +10,16 @@ pub struct ResultView<'a> {
 impl ResultView<'_> {
     pub fn new(dive_stage: &DiveStage) -> Self {
         let footer = format!(
-            "Parameters\n\nDive Step\nDepth (m): {} Time (min): {}\n\nCylinder\nO2 (%): {} N (%): {} He (%): {}\nRemaining: {}/{} (l) Used: {} (l)", 
-            dive_stage.dive_step.depth,
-            dive_stage.dive_step.time,
-            dive_stage.cylinder.gas_mixture.oxygen,
-            dive_stage.cylinder.gas_mixture.nitrogen,
-            dive_stage.cylinder.gas_mixture.helium,
-            dive_stage.cylinder.gas_management.remaining,
-            dive_stage.cylinder.initial_pressurised_cylinder_volume,
-            dive_stage.cylinder.gas_management.used,
-        ).to_string();
+            "Parameters\n\n{}\n\n{}",
+            dive_stage.dive_step,
+            dive_stage.cylinder.display_cylinder_summary()
+        )
+        .to_string();
 
         Self {
-            result_text: Card::new(
-                "Dive Profile",
-                text(dive_stage.dive_model.dive_model.dive_profile),
-            )
-            .foot(text(footer))
-            .width(iced::Length::Fixed(500.0)),
+            result_text: Card::new("Dive Profile", text(dive_stage.dive_model.dive_profile))
+                .foot(text(footer))
+                .width(iced::Length::Fixed(500.0)),
         }
     }
 }

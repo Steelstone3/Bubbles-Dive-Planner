@@ -1,6 +1,7 @@
 use super::gas_management::GasManagement;
 use crate::models::gas_mixture::GasMixture;
 use serde::{Deserialize, Serialize};
+use std::fmt::Display;
 
 pub const MAXIMUM_VOLUME_VALUE: u32 = 30;
 pub const MINIMUM_VOLUME_VALUE: u32 = 3;
@@ -38,12 +39,94 @@ impl Cylinder {
 
         true
     }
+
+    pub fn display_cylinder_summary(&self) -> String {
+        format!( "Cylinder\nVolume: {} (l) Pressure: {} (l)\nO2 (%): {} N (%): {} He (%): {}\nRemaining: {}/{} (l) Used: {} (l)" , self.volume, self.pressure, self.gas_mixture.oxygen, self.gas_mixture.nitrogen, self.gas_mixture.helium, self.gas_management.remaining, self.initial_pressurised_cylinder_volume, self.gas_management.used)
+    }
+
+    fn display_cylinder(&self) -> String {
+        format!(
+            "Cylinder\n\nVolume: {} (l)\nPressure: {} (bar)\n\nGas Mixture\n\nOxygen: {} (%)\nNitrogen: {} (%)\nHelium: {} (%)\n\nCylinder Management\n\nRemaining: {}/{} (l)\nUsed: {} (l)",
+            self.volume,
+            self.pressure,
+            self.gas_mixture.oxygen,
+            self.gas_mixture.nitrogen,
+            self.gas_mixture.helium,
+            self.gas_management.remaining,
+            self.initial_pressurised_cylinder_volume,
+            self.gas_management.used,
+        )
+    }
+}
+
+impl Display for Cylinder {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.display_cylinder())
+    }
 }
 
 #[cfg(test)]
 mod cylinder_should {
     use super::*;
     use rstest::rstest;
+
+    #[test]
+    fn display_read_only_cylinder_summary() {
+        // Given
+        let cylinder = Cylinder {
+            volume: 12,
+            pressure: 200,
+            initial_pressurised_cylinder_volume: 2400,
+            gas_management: GasManagement {
+                remaining: 1680,
+                used: 720,
+                surface_air_consumption_rate: 12,
+            },
+            is_read_only: true,
+            gas_mixture: GasMixture {
+                oxygen: 21,
+                helium: 10,
+                nitrogen: 69,
+                maximum_operating_depth: 55.66,
+            },
+        };
+        let expected_display = "Cylinder\nVolume: 12 (l) Pressure: 200 (l)\nO2 (%): 21 N (%): 69 He (%): 10\nRemaining: 1680/2400 (l) Used: 720 (l)";
+
+        // When
+        let display = cylinder.display_cylinder_summary();
+
+        // Then
+        assert_eq!(expected_display, display);
+    }
+
+    #[test]
+    fn display_read_only_cylinder() {
+        // Given
+        let cylinder = Cylinder {
+            volume: 12,
+            pressure: 200,
+            initial_pressurised_cylinder_volume: 2400,
+            gas_management: GasManagement {
+                remaining: 1680,
+                used: 720,
+                surface_air_consumption_rate: 12,
+            },
+            is_read_only: true,
+            gas_mixture: GasMixture {
+                oxygen: 21,
+                helium: 10,
+                nitrogen: 69,
+                maximum_operating_depth: 55.66,
+            },
+        };
+        let expected_display = "Cylinder\n\nVolume: 12 (l)\nPressure: 200 (bar)\n\nGas Mixture\n\nOxygen: 21 (%)\nNitrogen: 69 (%)\nHelium: 10 (%)\n\nCylinder Management\n\nRemaining: 1680/2400 (l)\nUsed: 720 (l)";
+
+        // When
+        let display = cylinder.display_cylinder();
+
+        // Then
+        assert_eq!(expected_display, display);
+    }
 
     #[test]
     fn calculate_the_initial_pressurised_cylinder_volume() {

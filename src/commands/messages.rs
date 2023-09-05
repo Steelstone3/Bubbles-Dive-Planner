@@ -8,6 +8,7 @@ pub enum Message {
     FileLoad,
     EditUndo,
     EditRedo,
+    ViewToggleCentralNervousSystemToxicityVisibility,
     DiveModelSelected(SelectableDiveModel),
     DepthChanged(String),
     TimeChanged(String),

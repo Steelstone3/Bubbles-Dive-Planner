@@ -6,14 +6,16 @@ const COLUMNS: usize = 11;
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct CentralNervousSystemToxicity {
-    pub oxygen_partial_pressure: [f32; COLUMNS],
-    pub maximum_single_dive_duration: [u32; COLUMNS],
-    pub maximum_total_dive_duration: [u32; COLUMNS],
+    pub is_visible: bool,
+    oxygen_partial_pressure: [f32; COLUMNS],
+    maximum_single_dive_duration: [u32; COLUMNS],
+    maximum_total_dive_duration: [u32; COLUMNS],
 }
 
 impl Default for CentralNervousSystemToxicity {
     fn default() -> Self {
         Self {
+            is_visible: Default::default(),
             oxygen_partial_pressure: [1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6],
             maximum_single_dive_duration: [45, 120, 150, 180, 210, 240, 300, 360, 450, 570, 720],
             maximum_total_dive_duration: [150, 180, 180, 210, 240, 270, 300, 360, 450, 570, 720],
@@ -22,8 +24,21 @@ impl Default for CentralNervousSystemToxicity {
 }
 
 impl CentralNervousSystemToxicity {
+    pub fn toggle_visibility(&self) -> bool {
+        match self.is_visible {
+            true => false,
+            false => true,
+        }
+    }
+
     fn display_cns_toxicity(&self) -> String {
         let mut central_nervous_system = "".to_string();
+
+        if !self.is_visible {
+            return central_nervous_system;
+        }
+
+        central_nervous_system.push_str("CNS Toxicity\n\n");
 
         for (_, compartment) in (0..COLUMNS).enumerate() {
             let dive_result = format!(
@@ -35,6 +50,8 @@ impl CentralNervousSystemToxicity {
 
             central_nervous_system.push_str(&dive_result);
         }
+
+        central_nervous_system.push('\n');
 
         central_nervous_system
     }
@@ -48,12 +65,46 @@ impl Display for CentralNervousSystemToxicity {
 
 #[cfg(test)]
 mod central_nervous_system_toxicity_should {
+    use rstest::rstest;
+
     use super::*;
 
-    #[test]
-    fn display_central_nervous_system_toxicity() {
+    #[rstest]
+    #[case(false, true)]
+    #[case(true, false)]
+    fn toggle_the_central_nervous_system_toxicity_visibility(
+        #[case] is_visible: bool,
+        #[case] expected_is_visible: bool,
+    ) {
         // Given
-        let expected_display = "O2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\n";
+        let mut cns_toxicity = central_nervous_system_toxicity_test_fixture();
+        cns_toxicity.is_visible = is_visible;
+
+        // When
+        let actual_is_visible = cns_toxicity.toggle_visibility();
+
+        // Then
+        assert_eq!(expected_is_visible, actual_is_visible)
+    }
+
+    #[test]
+    fn display_central_nervous_system_toxicity_is_not_visible() {
+        // Given
+        let expected_display = "";
+        let mut cns_toxicity = central_nervous_system_toxicity_test_fixture();
+        cns_toxicity.is_visible = false;
+
+        // When
+        let display = cns_toxicity.display_cns_toxicity();
+
+        // Then
+        assert_eq!(expected_display, display);
+    }
+
+    #[test]
+    fn display_central_nervous_system_toxicity_is_visible() {
+        // Given
+        let expected_display = "CNS Toxicity\n\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\nO2 PP (%): 2 | Per Dive (min): 2 | Per Day (min): 2\n\n";
         let cns_toxicity = central_nervous_system_toxicity_test_fixture();
 
         // When
@@ -71,6 +122,7 @@ mod central_nervous_system_toxicity_should {
             oxygen_partial_pressure: default_array,
             maximum_single_dive_duration: default_array_2,
             maximum_total_dive_duration: default_array_2,
+            is_visible: true,
         }
     }
 }

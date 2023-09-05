@@ -1,6 +1,6 @@
 [package]
 name = "bubbles-dive-planner-rust"
-version = "0.9.0"
+version = "0.10.0"
 authors = ["Skippy <steelstone3@gmail.com>"]
 edition = "2021"
 homepage = "https://github.com/Steelstone3/Bubbles-Dive-Planner-Console"
@@ -23,6 +23,6 @@ rstest = {version = "0.*"}
 
 [dependencies]
 iced = { version = "0.10" }
-iced_aw = { version = "0.6.*" }
+iced_aw = { version = "0.7.*" }
 serde = { version = "1.*", features = ["derive"] }
 serde_json = { version = "1.*" }

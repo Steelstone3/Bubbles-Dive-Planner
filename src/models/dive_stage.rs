@@ -1,9 +1,9 @@
-use super::{cylinder::Cylinder, dive_step::DiveStep, select_dive_model::SelectDiveModel};
+use super::{cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Clone, Copy, Default, Serialize, Deserialize)]
 pub struct DiveStage {
-    pub dive_model: SelectDiveModel,
+    pub dive_model: DiveModel,
     pub dive_step: DiveStep,
     pub cylinder: Cylinder,
 }
