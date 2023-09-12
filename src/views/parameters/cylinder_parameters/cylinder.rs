@@ -10,7 +10,7 @@ use crate::{
 };
 use iced::{
     widget::Text,
-    widget::{text, text_input, TextInput},
+    widget::{text, text_input, TextInput, Button, button},
 };
 
 pub struct CylinderView<'a> {
@@ -23,6 +23,7 @@ pub struct CylinderView<'a> {
     pub cylinder_initial_pressurised_cylinder_volume_text_value: Text<'a>,
     pub gas_mixture: GasMixtureView<'a>,
     pub gas_management: GasManagementView<'a>,
+    pub add_cylinder: Button<'a, Message>
 }
 
 impl CylinderView<'_> {
@@ -50,6 +51,7 @@ impl CylinderView<'_> {
             ),
             gas_mixture: GasMixtureView::new(dive_planner),
             gas_management: GasManagementView::new(dive_planner),
+            add_cylinder: button("Add Cylinder"),
         }
     }
 

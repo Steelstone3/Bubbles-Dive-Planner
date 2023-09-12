@@ -39,7 +39,7 @@ impl DiveStageView<'_> {
         if dive_planner.dive_stage.cylinder.is_read_only {
             DiveStageView::create_read_only_view(dive_planner, dive_step, cylinder_read_only)
         } else {
-            DiveStageView::create_setup_view(dive_planner, select_dive_model, dive_step, cylinder)
+            DiveStageView::create_setup_view(dive_planner, select_dive_model, dive_step, cylinder, cylinder_read_only)
         }
     }
 
@@ -48,6 +48,7 @@ impl DiveStageView<'_> {
         select_dive_model: SelectDiveModelView<'a>,
         dive_step: DiveStepView<'a>,
         cylinder: CylinderView<'a>,
+        cylinder_read_only: CylinderReadOnlyView<'a>,
     ) -> iced::widget::Column<'a, Message> {
         column![
             select_dive_model.selectable_dive_model,
@@ -72,6 +73,9 @@ impl DiveStageView<'_> {
             cylinder.gas_mixture.helium_input,
             cylinder.gas_mixture.nitrogen_text,
             cylinder.gas_mixture.nitrogen_text_value,
+            cylinder.add_cylinder,
+            cylinder_read_only.cylinder_read_only_text_title,
+            cylinder_read_only.cylinder_read_only_text,
             DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
         ]
     }
