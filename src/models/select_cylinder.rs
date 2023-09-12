@@ -5,3 +5,11 @@ use serde::{Deserialize, Serialize};
 pub struct SelectCylinder {
     cylinders: Vec<Cylinder>,
 }
+
+impl SelectCylinder {
+    // TODO Test this
+    pub fn add_cylinder(&mut self) {
+        self.cylinders.push(Cylinder::default())
+    }
+}
+

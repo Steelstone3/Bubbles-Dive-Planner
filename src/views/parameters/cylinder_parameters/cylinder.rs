@@ -51,7 +51,7 @@ impl CylinderView<'_> {
             ),
             gas_mixture: GasMixtureView::new(dive_planner),
             gas_management: GasManagementView::new(dive_planner),
-            add_cylinder: button("Add Cylinder"),
+            add_cylinder: button("Add Cylinder").on_press(Message::AddCylinder),
         }
     }
 
