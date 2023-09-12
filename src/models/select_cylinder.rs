@@ -1,9 +1,17 @@
 use super::cylinder::Cylinder;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Default, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct SelectCylinder {
     cylinders: Vec<Cylinder>,
+}
+
+impl Default for SelectCylinder {
+    fn default() -> Self {
+        Self {
+            cylinders: vec![Cylinder::default()],
+        }
+    }
 }
 
 impl SelectCylinder {
@@ -12,4 +20,3 @@ impl SelectCylinder {
         self.cylinders.push(Cylinder::default())
     }
 }
-
