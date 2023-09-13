@@ -133,10 +133,22 @@ impl Sandbox for DivePlanner {
                 }
             }
             Message::UpdateDiveProfile => {
-                               
+                // TODO Move function to select cylinder as a method
+                match self.select_cylinder.selected_cylinder.unwrap() {
+                    SelectableCylinder::Bottom => {
+                        self.select_cylinder.cylinders[0] = self.dive_stage.cylinder;
+                    }
+                    SelectableCylinder::Decompression => {
+                        self.select_cylinder.cylinders[1] = self.dive_stage.cylinder;
+                    }
+                    SelectableCylinder::Descend => {
+                        self.select_cylinder.cylinders[2] = self.dive_stage.cylinder;
+                    }
+                }
+
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
                 self.add_result();
-                
+
                 // TODO Move function to select cylinder as a method
                 match self.select_cylinder.selected_cylinder.unwrap() {
                     SelectableCylinder::Bottom => {
