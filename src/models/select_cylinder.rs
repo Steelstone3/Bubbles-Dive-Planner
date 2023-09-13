@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct SelectCylinder {
-    cylinders: [Cylinder; 3],
+    pub cylinders: [Cylinder; 3],
     pub selected_cylinder: Option<SelectableCylinder>,
 }
 

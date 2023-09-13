@@ -7,6 +7,7 @@ use super::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use super::parameters::dive_stage::DiveStageView;
 use super::parameters::dive_step::DiveStepView;
 use crate::commands::messages::Message;
+use crate::commands::selectable_cylinder::SelectableCylinder;
 use crate::commands::selectable_dive_model::SelectableDiveModel;
 use crate::controllers::file::{read_dive_stage, upsert_dive_stage};
 use crate::models::dive_model::DiveModel;
@@ -95,9 +96,25 @@ impl Sandbox for DivePlanner {
             Message::UpdateDiveProfile => {
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
                 self.add_result();
-            } // Message::SelectCylinder(index, cylinder) => {
-              //     self.dive_stage.cylinder = cylinder;
-              // }
+            }
+            Message::CylinderSelected(selectable_cylinder) => {
+                self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
+
+                match selectable_cylinder {
+                    SelectableCylinder::Bottom => {
+                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
+                        self.dive_stage.cylinder = self.select_cylinder.cylinders[0]
+                    }
+                    SelectableCylinder::Decompression => {
+                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
+                        self.dive_stage.cylinder = self.select_cylinder.cylinders[1]
+                    }
+                    SelectableCylinder::Descend => {
+                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
+                        self.dive_stage.cylinder = self.select_cylinder.cylinders[2]
+                    }
+                }
+            }
         }
     }
 
@@ -112,6 +129,7 @@ impl Sandbox for DivePlanner {
             dive_stage.select_dive_model,
             dive_stage.dive_step,
             dive_stage.cylinder,
+            dive_stage.select_cylinder,
             dive_stage.cylinder_read_only,
         );
 

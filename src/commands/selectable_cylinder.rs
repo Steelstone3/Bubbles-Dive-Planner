@@ -2,16 +2,16 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum SelectableCylinder {
-    Descend,
     Bottom,
     Decompression,
+    Descend,
 }
 
 impl SelectableCylinder {
     pub const ALL: [SelectableCylinder; 3] = [
-        SelectableCylinder::Descend,
         SelectableCylinder::Bottom,
         SelectableCylinder::Decompression,
+        SelectableCylinder::Descend,
     ];
 }
 
@@ -21,9 +21,9 @@ impl std::fmt::Display for SelectableCylinder {
             f,
             "{}",
             match self {
-                SelectableCylinder::Descend => "Descend",
                 SelectableCylinder::Bottom => "Bottom",
                 SelectableCylinder::Decompression => "Decompression",
+                SelectableCylinder::Descend => "Descend",
             }
         )
     }
