@@ -7,9 +7,7 @@ use super::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use super::parameters::dive_stage::DiveStageView;
 use super::parameters::dive_step::DiveStepView;
 use crate::commands::messages::Message;
-use crate::commands::selectable_dive_model::SelectableDiveModel;
 use crate::controllers::file::{read_dive_stage, upsert_dive_stage};
-use crate::models::dive_model::DiveModel;
 use crate::models::dive_profile::DiveProfile;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{column, row, scrollable};
@@ -46,17 +44,7 @@ impl Sandbox for DivePlanner {
                 self.cns_toxicity.is_visible = self.cns_toxicity.toggle_visibility();
             }
             Message::DiveModelSelected(selectable_dive_model) => {
-                // TODO move to dive model as a method
-                self.select_dive_model.selected_dive_model = Some(selectable_dive_model);
-
-                match selectable_dive_model {
-                    SelectableDiveModel::Bulhmann => {
-                        self.dive_stage.dive_model = DiveModel::create_zhl16_dive_model()
-                    }
-                    SelectableDiveModel::Usn => {
-                        self.dive_stage.dive_model = DiveModel::create_usn_rev_6_model()
-                    }
-                }
+                self.select_dive_model.select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model)
             }
             Message::DepthChanged(depth) => {
                 self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth);
