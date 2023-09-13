@@ -32,7 +32,9 @@ impl MenuBarView<'_> {
             .width(100)]),
             view: MenuBar::new(vec![MenuTree::with_children(
                 button("View").on_press(Message::MenuBar),
-                vec![MenuTree::new(button("CNS Table").on_press(Message::ViewToggleCentralNervousSystemToxicityVisibility))],
+                vec![MenuTree::new(button("CNS Table").on_press(
+                    Message::ViewToggleCentralNervousSystemToxicityVisibility,
+                ))],
             )
             .width(100)]),
         }
