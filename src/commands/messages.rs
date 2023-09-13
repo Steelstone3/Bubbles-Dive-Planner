@@ -1,4 +1,4 @@
-use super::selectable_dive_model::SelectableDiveModel;
+use super::{selectable_cylinder::SelectableCylinder, selectable_dive_model::SelectableDiveModel};
 
 #[derive(Debug, Clone)]
 pub enum Message {
@@ -17,5 +17,7 @@ pub enum Message {
     SurfaceAirConsumptionChanged(String),
     OxygenChanged(String),
     HeliumChanged(String),
+    CylinderSelected(SelectableCylinder),
+    UpdateCylinderSelected(SelectableCylinder),
     UpdateDiveProfile,
 }
