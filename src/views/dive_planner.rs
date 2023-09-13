@@ -93,11 +93,9 @@ impl Sandbox for DivePlanner {
                     self.dive_stage.cylinder.gas_mixture.oxygen,
                 );
             }
-            Message::CylinderSelected(selectable_cylinder) => {
-                self.dive_stage.cylinder = self
-                    .select_cylinder
-                    .on_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder)
-            }
+            Message::CylinderSelected(selectable_cylinder) => self
+                .select_cylinder
+                .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder),
             Message::UpdateCylinderSelected(selectable_cylinder) => self
                 .select_cylinder
                 .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder),
