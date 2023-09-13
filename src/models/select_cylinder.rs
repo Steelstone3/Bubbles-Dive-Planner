@@ -9,14 +9,15 @@ pub struct SelectCylinder {
 impl Default for SelectCylinder {
     fn default() -> Self {
         Self {
-            cylinders: vec![Cylinder::default()],
+            cylinders: Default::default(),
         }
     }
 }
 
 impl SelectCylinder {
     // TODO Test this
-    pub fn add_cylinder(&mut self) {
-        self.cylinders.push(Cylinder::default())
+    pub fn add_cylinder(&mut self, cylinder: Cylinder) {
+        self.cylinders.push(cylinder)
     }
 }
+

@@ -1,3 +1,5 @@
+use crate::models::cylinder::Cylinder;
+
 use super::selectable_dive_model::SelectableDiveModel;
 
 #[derive(Debug, Clone)]
@@ -18,5 +20,6 @@ pub enum Message {
     OxygenChanged(String),
     HeliumChanged(String),
     AddCylinder,
+    // SelectCylinder(usize, Cylinder),
     UpdateDiveProfile,
 }

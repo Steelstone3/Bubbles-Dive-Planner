@@ -92,11 +92,14 @@ impl Sandbox for DivePlanner {
                     self.dive_stage.cylinder.gas_mixture.oxygen,
                 );
             }
-            Message::AddCylinder => self.select_cylinder.add_cylinder(),
+            Message::AddCylinder => self.select_cylinder.add_cylinder(self.dive_stage.cylinder),
             Message::UpdateDiveProfile => {
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
                 self.add_result();
             }
+            // Message::SelectCylinder(index, cylinder) => {
+            //     self.dive_stage.cylinder = cylinder;
+            // } 
         }
     }
 
