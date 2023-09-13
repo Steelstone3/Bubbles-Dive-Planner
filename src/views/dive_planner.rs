@@ -7,12 +7,16 @@ use super::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use super::parameters::dive_stage::DiveStageView;
 use super::parameters::dive_step::DiveStepView;
 use crate::commands::messages::Message;
-use crate::controllers::file::{read_dive_stage, upsert_dive_stage};
+use crate::controllers::file::{
+    read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results,
+};
 use crate::models::dive_profile::DiveProfile;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{column, row, scrollable};
 use iced::{Element, Sandbox};
 use iced_aw::Grid;
+
+const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.json";
 
 impl Sandbox for DivePlanner {
     type Message = Message;
@@ -36,8 +40,11 @@ impl Sandbox for DivePlanner {
         match message {
             Message::MenuBar => {}
             Message::FileNew => self.reset(),
-            Message::FileSave => upsert_dive_stage("dive_plan.json", self),
-            Message::FileLoad => *self = read_dive_stage("dive_plan.json"),
+            Message::FileSave => {
+                upsert_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME, self);
+                upsert_dive_results("dive_plan.json", &self.results);
+            }
+            Message::FileLoad => *self = read_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME),
             Message::EditUndo => self.undo(),
             Message::EditRedo => self.redo(),
             Message::ViewToggleCentralNervousSystemToxicityVisibility => {
@@ -46,9 +53,9 @@ impl Sandbox for DivePlanner {
             Message::ViewToggleSelectCylinderVisibility => {
                 self.select_cylinder.is_visible = self.select_cylinder.toggle_visibility();
             }
-            Message::DiveModelSelected(selectable_dive_model) => {
-                self.select_dive_model.select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model)
-            }
+            Message::DiveModelSelected(selectable_dive_model) => self
+                .select_dive_model
+                .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model),
             Message::DepthChanged(depth) => {
                 self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth);
             }
