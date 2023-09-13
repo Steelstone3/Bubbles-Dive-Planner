@@ -23,8 +23,10 @@ impl DiveInformationView<'_> {
         Self {
             dive_information_text: Card::new(
                 "Dive Information",
-                text(format!("{}Dive Boundaries\n\n{}\n{}",
-                &dive_planner.cns_toxicity, maximum_operating_depth, dive_ceiling)),
+                text(format!(
+                    "{}Dive Boundaries\n\n{}\n{}",
+                    &dive_planner.cns_toxicity, maximum_operating_depth, dive_ceiling
+                )),
             )
             .width(iced::Length::Fixed(500.0)),
         }
