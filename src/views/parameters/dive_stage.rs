@@ -58,7 +58,10 @@ impl DiveStageView<'_> {
         cylinder_read_only: CylinderReadOnlyView<'a>,
     ) -> Column<'a, Message> {
         column![
-            Self::is_dive_model_read_only(dive_planner.dive_stage.cylinder.is_read_only, select_dive_model),
+            Self::is_dive_model_read_only(
+                dive_planner.dive_stage.cylinder.is_read_only,
+                select_dive_model
+            ),
             dive_step.dive_step_text,
             dive_step.depth_text,
             dive_step.depth_input,
@@ -78,10 +81,10 @@ impl DiveStageView<'_> {
         ]
     }
 
-    fn is_dive_model_read_only<'a>(
+    fn is_dive_model_read_only(
         is_read_only: bool,
-        select_dive_model: SelectDiveModelView<'a>,
-    ) -> Column<'a, Message> {
+        select_dive_model: SelectDiveModelView<'_>,
+    ) -> Column<'_, Message> {
         // TODO read_only from dive model
         if is_read_only {
             return column![];
@@ -90,10 +93,10 @@ impl DiveStageView<'_> {
         column![select_dive_model.selectable_dive_model].spacing(10.0)
     }
 
-    fn is_cylinder_setup_read_only<'a>(
+    fn is_cylinder_setup_read_only(
         is_read_only: bool,
-        cylinder: CylinderView<'a>,
-    ) -> Column<'a, Message> {
+        cylinder: CylinderView<'_>,
+    ) -> Column<'_, Message> {
         if is_read_only {
             return column![];
         }
@@ -119,11 +122,11 @@ impl DiveStageView<'_> {
         .spacing(10.0)
     }
 
-    fn is_select_cylinder_visible<'a>(
+    fn is_select_cylinder_visible(
         is_visible: bool,
         is_read_only: bool,
-        select_cylinder: SelectCylinderView<'a>,
-    ) -> Column<'a, Message> {
+        select_cylinder: SelectCylinderView<'_>,
+    ) -> Column<'_, Message> {
         if is_visible && !is_read_only {
             return column![
                 select_cylinder.update_cylinder,
