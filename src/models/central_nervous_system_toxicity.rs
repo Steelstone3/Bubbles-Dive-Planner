@@ -24,7 +24,7 @@ impl Default for CentralNervousSystemToxicity {
 }
 
 impl CentralNervousSystemToxicity {
-    pub fn toggle_visibility(&self) -> bool {
+    pub fn toggle_visibility(&mut self) -> bool {
         match self.is_visible {
             true => false,
             false => true,

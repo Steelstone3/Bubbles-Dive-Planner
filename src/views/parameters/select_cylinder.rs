@@ -3,11 +3,12 @@ use crate::{
     view_models::dive_planner::DivePlanner,
 };
 use iced::{
-    widget::{pick_list, text, PickList, Text},
+    widget::{button, pick_list, text, Button, PickList, Text},
     Length,
 };
 
 pub struct SelectCylinderView<'a> {
+    pub update_cylinder: Button<'a, Message>,
     pub cylinder_read_only_text_title: Text<'a>,
     pub selectable_cylinder: PickList<'a, SelectableCylinder, Message>,
 }
@@ -15,6 +16,11 @@ pub struct SelectCylinderView<'a> {
 impl SelectCylinderView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
+            update_cylinder: button("Update Cylinder").width(Length::Fill).on_press(
+                Message::UpdateCylinderSelected(
+                    dive_planner.select_cylinder.selected_cylinder.unwrap(),
+                ),
+            ),
             cylinder_read_only_text_title: text("Select Cylinder"),
             selectable_cylinder: pick_list(
                 &SelectableCylinder::ALL[..],

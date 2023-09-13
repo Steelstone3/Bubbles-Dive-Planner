@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct SelectCylinder {
+    pub is_visible: bool,
     pub cylinders: [Cylinder; 3],
     pub selected_cylinder: Option<SelectableCylinder>,
 }
@@ -11,6 +12,7 @@ pub struct SelectCylinder {
 impl Default for SelectCylinder {
     fn default() -> Self {
         Self {
+            is_visible: Default::default(),
             cylinders: Default::default(),
             selected_cylinder: Some(SelectableCylinder::Bottom),
         }
@@ -83,13 +85,42 @@ impl SelectCylinder {
         self.cylinders[1].is_read_only = true;
         self.cylinders[2].is_read_only = true;
     }
+
+    pub fn toggle_visibility(&self) -> bool {
+        match self.is_visible {
+            true => false,
+            false => true,
+        }
+    }
 }
 
 #[cfg(test)]
 mod select_cylinder_should {
+    use rstest::rstest;
+
     use crate::models::{gas_management::GasManagement, gas_mixture::GasMixture};
 
     use super::*;
+
+    #[rstest]
+    #[case(false, true)]
+    #[case(true, false)]
+    fn toggle_select_cylinder_visibility(
+        #[case] is_visible: bool,
+        #[case] expected_is_visible: bool,
+    ) {
+        // Given
+        let select_cylinder = SelectCylinder {
+            is_visible,
+            ..Default::default()
+        };
+
+        // When
+        let is_visible = select_cylinder.toggle_visibility();
+
+        // Then
+        assert_eq!(expected_is_visible, is_visible);
+    }
 
     #[test]
     fn set_cylinders_to_read_only() {
@@ -97,15 +128,16 @@ mod select_cylinder_should {
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
             selected_cylinder: Default::default(),
+            is_visible: true,
         };
 
         // When
         select_cylinder.is_read_only();
 
         // Then
-        assert!(select_cylinder.cylinders[0].is_read_only);
-        assert!(select_cylinder.cylinders[1].is_read_only);
-        assert!(select_cylinder.cylinders[2].is_read_only);
+        assert_eq!(true, select_cylinder.cylinders[0].is_read_only);
+        assert_eq!(true, select_cylinder.cylinders[1].is_read_only);
+        assert_eq!(true, select_cylinder.cylinders[2].is_read_only);
     }
 
     #[test]
@@ -114,6 +146,7 @@ mod select_cylinder_should {
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
             selected_cylinder: Some(SelectableCylinder::Bottom),
+            is_visible: true,
         };
         let cylinder = Cylinder {
             is_read_only: true,
@@ -168,10 +201,12 @@ mod select_cylinder_should {
         let mut select_cylinder = SelectCylinder {
             cylinders: [expected_cylinder, Default::default(), Default::default()],
             selected_cylinder: Some(SelectableCylinder::Bottom),
+            is_visible: true,
         };
 
         // When
-        select_cylinder.on_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), &mut cylinder);
+        select_cylinder
+            .on_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), &mut cylinder);
 
         // Then
         assert_eq!(cylinder, select_cylinder.cylinders[0]);
@@ -183,6 +218,7 @@ mod select_cylinder_should {
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
             selected_cylinder: Some(SelectableCylinder::Bottom),
+            is_visible: true,
         };
         let cylinder = Cylinder {
             is_read_only: true,
@@ -203,7 +239,8 @@ mod select_cylinder_should {
         };
 
         // When
-        select_cylinder.update_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), cylinder);
+        select_cylinder
+            .update_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), cylinder);
 
         // Then
         assert_eq!(cylinder, select_cylinder.cylinders[0]);
