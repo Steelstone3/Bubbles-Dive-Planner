@@ -93,10 +93,6 @@ impl Sandbox for DivePlanner {
                     self.dive_stage.cylinder.gas_mixture.oxygen,
                 );
             }
-            Message::UpdateDiveProfile => {
-                self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
-                self.add_result();
-            }
             Message::CylinderSelected(selectable_cylinder) => {
                 self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
 
@@ -114,6 +110,28 @@ impl Sandbox for DivePlanner {
                         self.dive_stage.cylinder = self.select_cylinder.cylinders[2]
                     }
                 }
+            }
+            Message::UpdateCylinderSelected(selectable_cylinder) => {
+                self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
+
+                match selectable_cylinder {
+                    SelectableCylinder::Bottom => {
+                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
+                        self.select_cylinder.cylinders[0] = self.dive_stage.cylinder;
+                    }
+                    SelectableCylinder::Decompression => {
+                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
+                        self.select_cylinder.cylinders[1] = self.dive_stage.cylinder;
+                    }
+                    SelectableCylinder::Descend => {
+                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
+                        self.select_cylinder.cylinders[2] = self.dive_stage.cylinder;
+                    }
+                }
+            }
+            Message::UpdateDiveProfile => {
+                self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
+                self.add_result();
             }
         }
     }

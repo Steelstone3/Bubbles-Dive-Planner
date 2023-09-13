@@ -18,5 +18,6 @@ pub enum Message {
     OxygenChanged(String),
     HeliumChanged(String),
     CylinderSelected(SelectableCylinder),
+    UpdateCylinderSelected(SelectableCylinder),
     UpdateDiveProfile,
 }

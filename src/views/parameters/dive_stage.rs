@@ -89,6 +89,7 @@ impl DiveStageView<'_> {
             cylinder.gas_mixture.helium_input,
             cylinder.gas_mixture.nitrogen_text,
             cylinder.gas_mixture.nitrogen_text_value,
+            cylinder.update_cylinder,
             select_cylinder.cylinder_read_only_text_title,
             select_cylinder.selectable_cylinder,
             cylinder_read_only.cylinder_read_only_text,
