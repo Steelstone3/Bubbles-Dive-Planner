@@ -7,7 +7,6 @@ use super::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use super::parameters::dive_stage::DiveStageView;
 use super::parameters::dive_step::DiveStepView;
 use crate::commands::messages::Message;
-use crate::commands::selectable_cylinder::SelectableCylinder;
 use crate::commands::selectable_dive_model::SelectableDiveModel;
 use crate::controllers::file::{read_dive_stage, upsert_dive_stage};
 use crate::models::dive_model::DiveModel;
@@ -95,77 +94,24 @@ impl Sandbox for DivePlanner {
                 );
             }
             Message::CylinderSelected(selectable_cylinder) => {
-                // TODO move to select cylinder as a method
-                self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
-
-                match selectable_cylinder {
-                    SelectableCylinder::Bottom => {
-                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
-                        self.dive_stage.cylinder = self.select_cylinder.cylinders[0]
-                    }
-                    SelectableCylinder::Decompression => {
-                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
-                        self.dive_stage.cylinder = self.select_cylinder.cylinders[1]
-                    }
-                    SelectableCylinder::Descend => {
-                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
-                        self.dive_stage.cylinder = self.select_cylinder.cylinders[2]
-                    }
-                }
+                self.dive_stage.cylinder = self
+                    .select_cylinder
+                    .on_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder)
             }
-            Message::UpdateCylinderSelected(selectable_cylinder) => {
-                // TODO Move to select cylinder as a method
-                self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
-
-                match selectable_cylinder {
-                    SelectableCylinder::Bottom => {
-                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
-                        self.select_cylinder.cylinders[0] = self.dive_stage.cylinder;
-                    }
-                    SelectableCylinder::Decompression => {
-                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
-                        self.select_cylinder.cylinders[1] = self.dive_stage.cylinder;
-                    }
-                    SelectableCylinder::Descend => {
-                        self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
-                        self.select_cylinder.cylinders[2] = self.dive_stage.cylinder;
-                    }
-                }
-            }
+            Message::UpdateCylinderSelected(selectable_cylinder) => self
+                .select_cylinder
+                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder),
             Message::UpdateDiveProfile => {
-                // TODO Move function to select cylinder as a method
-                match self.select_cylinder.selected_cylinder.unwrap() {
-                    SelectableCylinder::Bottom => {
-                        self.select_cylinder.cylinders[0] = self.dive_stage.cylinder;
-                    }
-                    SelectableCylinder::Decompression => {
-                        self.select_cylinder.cylinders[1] = self.dive_stage.cylinder;
-                    }
-                    SelectableCylinder::Descend => {
-                        self.select_cylinder.cylinders[2] = self.dive_stage.cylinder;
-                    }
-                }
+                self.select_cylinder
+                    .assign_cylinder(self.dive_stage.cylinder);
 
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
                 self.add_result();
 
-                // TODO Move function to select cylinder as a method
-                match self.select_cylinder.selected_cylinder.unwrap() {
-                    SelectableCylinder::Bottom => {
-                        self.select_cylinder.cylinders[0] = self.dive_stage.cylinder;
-                    }
-                    SelectableCylinder::Decompression => {
-                        self.select_cylinder.cylinders[1] = self.dive_stage.cylinder;
-                    }
-                    SelectableCylinder::Descend => {
-                        self.select_cylinder.cylinders[2] = self.dive_stage.cylinder;
-                    }
-                }
+                self.select_cylinder
+                    .assign_cylinder(self.dive_stage.cylinder);
 
-                // TODO Move function to select cylinder as a method
-                self.select_cylinder.cylinders[0].is_read_only = true;
-                self.select_cylinder.cylinders[1].is_read_only = true;
-                self.select_cylinder.cylinders[2].is_read_only = true;
+                self.select_cylinder.is_read_only();
             }
         }
     }
