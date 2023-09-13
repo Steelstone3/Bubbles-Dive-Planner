@@ -9,6 +9,7 @@ pub enum Message {
     EditUndo,
     EditRedo,
     ViewToggleCentralNervousSystemToxicityVisibility,
+    ViewToggleSelectCylinderVisibility,
     DiveModelSelected(SelectableDiveModel),
     DepthChanged(String),
     TimeChanged(String),
