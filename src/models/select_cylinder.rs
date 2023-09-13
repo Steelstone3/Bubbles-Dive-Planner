@@ -1,5 +1,5 @@
 use super::{cylinder::Cylinder, dive_stage::DiveStage};
-use crate::commands::selectable_cylinder::{SelectableCylinder, self};
+use crate::commands::selectable_cylinder::{self, SelectableCylinder};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -19,7 +19,11 @@ impl Default for SelectCylinder {
 
 impl SelectCylinder {
     //TODO write a test
-    pub fn update_cylinder_selected(&mut self,selectable_cylinder:SelectableCylinder, cylinder: Cylinder) {
+    pub fn update_cylinder_selected(
+        &mut self,
+        selectable_cylinder: SelectableCylinder,
+        cylinder: Cylinder,
+    ) {
         self.selected_cylinder = Some(selectable_cylinder);
 
         match selectable_cylinder {
@@ -39,7 +43,11 @@ impl SelectCylinder {
     }
 
     //TODO write a test
-    pub fn on_cylinder_selected(&mut self,selectable_cylinder:SelectableCylinder, mut cylinder: Cylinder) -> Cylinder {
+    pub fn on_cylinder_selected(
+        &mut self,
+        selectable_cylinder: SelectableCylinder,
+        mut cylinder: Cylinder,
+    ) -> Cylinder {
         self.selected_cylinder = Some(selectable_cylinder);
 
         match selectable_cylinder {
@@ -60,7 +68,6 @@ impl SelectCylinder {
         cylinder
     }
 
-    //TODO write a test
     pub fn assign_cylinder(&mut self, cylinder: Cylinder) {
         match self.selected_cylinder.unwrap() {
             SelectableCylinder::Bottom => {
@@ -75,7 +82,6 @@ impl SelectCylinder {
         }
     }
 
-    //TODO write a test
     pub fn is_read_only(&mut self) {
         self.cylinders[0].is_read_only = true;
         self.cylinders[1].is_read_only = true;
@@ -85,5 +91,58 @@ impl SelectCylinder {
 
 #[cfg(test)]
 mod select_cylinder_should {
+    use crate::models::{gas_management::GasManagement, gas_mixture::GasMixture};
+
     use super::*;
+
+    #[test]
+    fn set_cylinders_to_read_only() {
+        // Given
+        let mut select_cylinder = SelectCylinder {
+            cylinders: Default::default(),
+            selected_cylinder: Default::default(),
+        };
+
+        // When
+        select_cylinder.is_read_only();
+
+        // Then
+        assert_eq!(true, select_cylinder.cylinders[0].is_read_only);
+        assert_eq!(true, select_cylinder.cylinders[1].is_read_only);
+        assert_eq!(true, select_cylinder.cylinders[2].is_read_only);
+    }
+
+    #[test]
+    fn assign_to_the_selected_cylinder() {
+        // Given
+        let mut select_cylinder = SelectCylinder {
+            cylinders: Default::default(),
+            selected_cylinder: Some(SelectableCylinder::Bottom),
+        };
+        let cylinder = Cylinder {
+            is_read_only: true,
+            volume: 12,
+            pressure: 200,
+            initial_pressurised_cylinder_volume: 2400,
+            gas_mixture: GasMixture {
+                oxygen: 21,
+                helium: 10,
+                nitrogen: 69,
+                maximum_operating_depth: 56.67,
+            },
+            gas_management: GasManagement {
+                remaining: 1680,
+                used: 720,
+                surface_air_consumption_rate: 12,
+            },
+        };
+
+        // When
+        select_cylinder.assign_cylinder(cylinder);
+
+        // Then
+        assert_eq!(cylinder, select_cylinder.cylinders[0]);
+        assert_ne!(cylinder, select_cylinder.cylinders[1]);
+        assert_ne!(cylinder, select_cylinder.cylinders[2]);
+    }
 }
