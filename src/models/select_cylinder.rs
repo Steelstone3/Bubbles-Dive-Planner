@@ -135,9 +135,9 @@ mod select_cylinder_should {
         select_cylinder.is_read_only();
 
         // Then
-        assert_eq!(true, select_cylinder.cylinders[0].is_read_only);
-        assert_eq!(true, select_cylinder.cylinders[1].is_read_only);
-        assert_eq!(true, select_cylinder.cylinders[2].is_read_only);
+        assert!(select_cylinder.cylinders[0].is_read_only);
+        assert!(select_cylinder.cylinders[1].is_read_only);
+        assert!(select_cylinder.cylinders[2].is_read_only);
     }
 
     #[test]

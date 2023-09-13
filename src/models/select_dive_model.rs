@@ -19,16 +19,16 @@ impl Default for SelectDiveModel {
 }
 
 impl SelectDiveModel {
-    pub fn select_dive_model(&mut self, selectable_dive_model: SelectableDiveModel, dive_model: &mut DiveModel) {
+    pub fn select_dive_model(
+        &mut self,
+        selectable_dive_model: SelectableDiveModel,
+        dive_model: &mut DiveModel,
+    ) {
         self.selected_dive_model = Some(selectable_dive_model);
 
         match selectable_dive_model {
-            SelectableDiveModel::Bulhmann => {
-                *dive_model = DiveModel::create_zhl16_dive_model()
-            }
-            SelectableDiveModel::Usn => {
-                *dive_model = DiveModel::create_usn_rev_6_model()
-            }
+            SelectableDiveModel::Bulhmann => *dive_model = DiveModel::create_zhl16_dive_model(),
+            SelectableDiveModel::Usn => *dive_model = DiveModel::create_usn_rev_6_model(),
         }
     }
 }
@@ -47,7 +47,10 @@ mod select_dive_model_should {
         };
 
         // When
-        select_dive_model.select_dive_model(select_dive_model.selected_dive_model.unwrap(), &mut dive_model);
+        select_dive_model.select_dive_model(
+            select_dive_model.selected_dive_model.unwrap(),
+            &mut dive_model,
+        );
 
         // Then
         assert_eq!(DiveModel::create_usn_rev_6_model(), dive_model);
