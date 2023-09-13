@@ -70,7 +70,6 @@ impl DiveStageView<'_> {
             ),
             Self::is_select_cylinder_visible(
                 dive_planner.select_cylinder.is_visible,
-                cylinder,
                 select_cylinder
             ),
             cylinder_read_only.cylinder_read_only_text,
@@ -109,12 +108,11 @@ impl DiveStageView<'_> {
 
     fn is_select_cylinder_visible<'a>(
         is_visible: bool,
-        cylinder: CylinderView<'a>,
-        select_cylinder: &SelectCylinderView<'a>,
+        select_cylinder: SelectCylinderView<'a>,
     ) -> Column<'a, Message> {
         if is_visible {
             return column![
-                cylinder.update_cylinder,
+                select_cylinder.update_cylinder,
                 select_cylinder.cylinder_read_only_text_title,
                 select_cylinder.selectable_cylinder,
             ]
