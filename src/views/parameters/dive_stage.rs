@@ -39,7 +39,13 @@ impl DiveStageView<'_> {
         if dive_planner.dive_stage.cylinder.is_read_only {
             DiveStageView::create_read_only_view(dive_planner, dive_step, cylinder_read_only)
         } else {
-            DiveStageView::create_setup_view(dive_planner, select_dive_model, dive_step, cylinder, cylinder_read_only)
+            DiveStageView::create_setup_view(
+                dive_planner,
+                select_dive_model,
+                dive_step,
+                cylinder,
+                cylinder_read_only,
+            )
         }
     }
 

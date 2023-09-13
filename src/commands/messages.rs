@@ -1,5 +1,3 @@
-use crate::models::cylinder::Cylinder;
-
 use super::selectable_dive_model::SelectableDiveModel;
 
 #[derive(Debug, Clone)]

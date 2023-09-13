@@ -10,7 +10,7 @@ use crate::{
 };
 use iced::{
     widget::Text,
-    widget::{text, text_input, TextInput, Button, button},
+    widget::{text, text_input, TextInput},
 };
 
 pub struct CylinderView<'a> {

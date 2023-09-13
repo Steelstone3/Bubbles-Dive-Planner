@@ -95,10 +95,9 @@ impl Sandbox for DivePlanner {
             Message::UpdateDiveProfile => {
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
                 self.add_result();
-            }
-            // Message::SelectCylinder(index, cylinder) => {
-            //     self.dive_stage.cylinder = cylinder;
-            // } 
+            } // Message::SelectCylinder(index, cylinder) => {
+              //     self.dive_stage.cylinder = cylinder;
+              // }
         }
     }
 
