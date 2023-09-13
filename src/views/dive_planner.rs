@@ -47,6 +47,7 @@ impl Sandbox for DivePlanner {
                 self.cns_toxicity.is_visible = self.cns_toxicity.toggle_visibility();
             }
             Message::DiveModelSelected(selectable_dive_model) => {
+                // TODO move to dive model as a method
                 self.select_dive_model.selected_dive_model = Some(selectable_dive_model);
 
                 match selectable_dive_model {
@@ -94,6 +95,7 @@ impl Sandbox for DivePlanner {
                 );
             }
             Message::CylinderSelected(selectable_cylinder) => {
+                // TODO move to select cylinder as a method
                 self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
 
                 match selectable_cylinder {
@@ -112,6 +114,7 @@ impl Sandbox for DivePlanner {
                 }
             }
             Message::UpdateCylinderSelected(selectable_cylinder) => {
+                // TODO Move to select cylinder as a method
                 self.select_cylinder.selected_cylinder = Some(selectable_cylinder);
 
                 match selectable_cylinder {
@@ -130,8 +133,31 @@ impl Sandbox for DivePlanner {
                 }
             }
             Message::UpdateDiveProfile => {
+                               
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
                 self.add_result();
+                
+                // TODO Move function to select cylinder as a method
+                match self.select_cylinder.selected_cylinder.unwrap() {
+                    SelectableCylinder::Bottom => {
+                        self.select_cylinder.cylinders[0] = self.dive_stage.cylinder;
+                    }
+                    SelectableCylinder::Decompression => {
+                        self.select_cylinder.cylinders[1] = self.dive_stage.cylinder;
+                    }
+                    SelectableCylinder::Descend => {
+                        self.select_cylinder.cylinders[2] = self.dive_stage.cylinder;
+                    }
+                }
+
+                // TODO Move function to select cylinder as a method
+                self.select_cylinder.cylinders[0].is_read_only = true;
+                self.select_cylinder.cylinders[1].is_read_only = true;
+                self.select_cylinder.cylinders[2].is_read_only = true;
+                
+                // for mut cylinder in self.select_cylinder.cylinders {
+                //     cylinder.is_read_only = false;
+                // }
             }
         }
     }
