@@ -154,10 +154,6 @@ impl Sandbox for DivePlanner {
                 self.select_cylinder.cylinders[0].is_read_only = true;
                 self.select_cylinder.cylinders[1].is_read_only = true;
                 self.select_cylinder.cylinders[2].is_read_only = true;
-                
-                // for mut cylinder in self.select_cylinder.cylinders {
-                //     cylinder.is_read_only = false;
-                // }
             }
         }
     }
