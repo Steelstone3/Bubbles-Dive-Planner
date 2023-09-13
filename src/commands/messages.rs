@@ -19,7 +19,6 @@ pub enum Message {
     SurfaceAirConsumptionChanged(String),
     OxygenChanged(String),
     HeliumChanged(String),
-    AddCylinder,
     // SelectCylinder(usize, Cylinder),
     UpdateDiveProfile,
 }

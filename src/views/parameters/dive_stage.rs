@@ -73,7 +73,6 @@ impl DiveStageView<'_> {
             cylinder.gas_mixture.helium_input,
             cylinder.gas_mixture.nitrogen_text,
             cylinder.gas_mixture.nitrogen_text_value,
-            cylinder.add_cylinder,
             cylinder_read_only.cylinder_read_only_text_title,
             cylinder_read_only.cylinder_read_only_text,
             DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
