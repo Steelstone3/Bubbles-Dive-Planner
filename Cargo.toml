@@ -7,9 +7,7 @@ homepage = "https://github.com/Steelstone3/Bubbles-Dive-Planner-Console"
 repository = "https://github.com/Steelstone3/Bubbles-Dive-Planner-Console"
 license = "GPLv3"
 readme = "README.md"
-include = [
-
-]
+include = []
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -28,10 +26,10 @@ opt-level = 1
 opt-level = 3
 
 [dev-dependencies]
-rstest = {version = "0"}
+rstest = "0"
 
 [dependencies]
-iced = { version = "0.10" }
-iced_aw = { version = "0.7" }
+iced = "0.10"
+iced_aw = "0.7"
 serde = { version = "1", features = ["derive"] }
-serde_json = { version = "1" }
+serde_json = "1"
