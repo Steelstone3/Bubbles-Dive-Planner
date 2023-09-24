@@ -16,6 +16,10 @@ impl DiveStage {
 
         true
     }
+
+    pub fn calculate_decompression_dive_steps(&self) -> Vec<DiveStep> {
+        todo!();
+    }
 }
 
 #[cfg(test)]
