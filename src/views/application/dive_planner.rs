@@ -3,6 +3,7 @@ use crate::controllers::file::{
     read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results,
 };
 use crate::models::dive_profile::DiveProfile;
+use crate::view_models::dive_planner::DivePlanner;
 use crate::views::dive_results::results::ResultsView;
 use crate::views::information::dive_information::DiveInformationView;
 use crate::views::parameters::cylinder_parameters::cylinder::CylinderView;
@@ -10,7 +11,6 @@ use crate::views::parameters::cylinder_parameters::gas_management::GasManagement
 use crate::views::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use crate::views::parameters::dive_stage::DiveStageView;
 use crate::views::parameters::dive_step::DiveStepView;
-use crate::view_models::dive_planner::DivePlanner;
 use iced::widget::{column, row, scrollable};
 use iced::{Element, Sandbox};
 use iced_aw::Grid;
@@ -24,7 +24,13 @@ impl Sandbox for DivePlanner {
 
     fn new() -> Self {
         Self {
-            ..Default::default()
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
+            dive_stage: Default::default(),
+            results: Default::default(),
+            decompression_steps: Default::default(),
+            cns_toxicity: Default::default(),
+            redo_buffer: Default::default(),
         }
     }
 
