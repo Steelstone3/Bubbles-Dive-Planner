@@ -28,8 +28,9 @@ impl Sandbox for DivePlanner {
             select_cylinder: Default::default(),
             dive_stage: DiveStage::default(),
             results: Default::default(),
-            redo_buffer: Default::default(),
             cns_toxicity: Default::default(),
+            decompression_steps: Default::default(),
+            redo_buffer: Default::default(),
         }
     }
 
