@@ -1,20 +1,21 @@
-use super::dive_results::results::ResultsView;
-use super::information::dive_information::DiveInformationView;
-use super::menu_bar::MenuBarView;
-use super::parameters::cylinder_parameters::cylinder::CylinderView;
-use super::parameters::cylinder_parameters::gas_management::GasManagementView;
-use super::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
-use super::parameters::dive_stage::DiveStageView;
-use super::parameters::dive_step::DiveStepView;
 use crate::commands::messages::Message;
 use crate::controllers::file::{
     read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results,
 };
 use crate::models::dive_profile::DiveProfile;
+use crate::views::dive_results::results::ResultsView;
+use crate::views::information::dive_information::DiveInformationView;
+use crate::views::parameters::cylinder_parameters::cylinder::CylinderView;
+use crate::views::parameters::cylinder_parameters::gas_management::GasManagementView;
+use crate::views::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
+use crate::views::parameters::dive_stage::DiveStageView;
+use crate::views::parameters::dive_step::DiveStepView;
 use crate::{models::dive_stage::DiveStage, view_models::dive_planner::DivePlanner};
 use iced::widget::{column, row, scrollable};
 use iced::{Element, Sandbox};
 use iced_aw::Grid;
+
+use super::menu_bar::MenuBarView;
 
 const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.json";
 
