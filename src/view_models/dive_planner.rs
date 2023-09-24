@@ -1,6 +1,7 @@
 use crate::models::{
     central_nervous_system_toxicity::CentralNervousSystemToxicity, dive_stage::DiveStage,
-    dive_step::DiveStep, select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
+    dive_step::DiveStep, results::DiveResults, select_cylinder::SelectCylinder,
+    select_dive_model::SelectDiveModel,
 };
 use iced::Sandbox;
 use serde::{Deserialize, Serialize};
@@ -10,7 +11,7 @@ pub struct DivePlanner {
     pub select_dive_model: SelectDiveModel,
     pub select_cylinder: SelectCylinder,
     pub dive_stage: DiveStage,
-    pub results: Vec<DiveStage>,
+    pub dive_results: DiveResults,
     pub decompression_steps: Vec<DiveStep>,
     pub cns_toxicity: CentralNervousSystemToxicity,
     pub redo_buffer: Vec<DiveStage>,
@@ -28,7 +29,7 @@ impl DivePlanner {
     }
 
     pub fn add_result(&mut self) {
-        self.results.push(self.dive_stage);
+        self.dive_results.results.push(self.dive_stage);
         self.redo_buffer = Default::default();
     }
 
@@ -36,8 +37,12 @@ impl DivePlanner {
         if self.is_undoable() {
             let latest = self.dive_stage;
             self.redo_buffer.push(latest);
-            self.results.pop();
-            self.dive_stage = *self.results.last().unwrap_or(&Default::default());
+            self.dive_results.results.pop();
+            self.dive_stage = *self
+                .dive_results
+                .results
+                .last()
+                .unwrap_or(&Default::default());
         } else {
             self.reset();
         }
@@ -46,13 +51,13 @@ impl DivePlanner {
     pub fn redo(&mut self) {
         if self.is_redoable() {
             let redo = self.redo_buffer.pop().unwrap();
-            self.results.push(redo);
+            self.dive_results.results.push(redo);
             self.dive_stage = redo;
         }
     }
 
     pub fn is_undoable(&self) -> bool {
-        !self.results.is_empty()
+        !self.dive_results.results.is_empty()
     }
 
     pub fn is_redoable(&self) -> bool {
@@ -75,11 +80,13 @@ mod dive_step_view_should {
         let expected = DivePlanner::default();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture(),
-            results: vec![
-                dive_stage_test_fixture(),
-                dive_stage_test_fixture(),
-                dive_stage_test_fixture(),
-            ],
+            dive_results: DiveResults {
+                results: vec![
+                    dive_stage_test_fixture(),
+                    dive_stage_test_fixture(),
+                    dive_stage_test_fixture(),
+                ],
+            },
             redo_buffer: vec![dive_stage_test_fixture()],
             ..Default::default()
         };
@@ -97,7 +104,7 @@ mod dive_step_view_should {
         let dive_stage = dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {
             dive_stage,
-            results: Default::default(),
+            dive_results: Default::default(),
             redo_buffer: vec![dive_stage_test_fixture()],
             ..Default::default()
         };
@@ -106,8 +113,8 @@ mod dive_step_view_should {
         dive_planner.add_result();
 
         // Then
-        assert_eq!(1, dive_planner.results.len());
-        assert_eq!(dive_stage, dive_planner.results[0]);
+        assert_eq!(1, dive_planner.dive_results.results.len());
+        assert_eq!(dive_stage, dive_planner.dive_results.results[0]);
         assert_eq!(0, dive_planner.redo_buffer.len());
     }
 
@@ -143,13 +150,13 @@ mod dive_step_view_should {
         // Given
         let mut dive_planner = DivePlanner {
             dive_stage: Default::default(),
-            results: vec![],
+            dive_results: DiveResults { results: vec![] },
             redo_buffer: vec![],
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: Default::default(),
-            results: vec![],
+            dive_results: DiveResults { results: vec![] },
             redo_buffer: vec![],
             ..Default::default()
         };
@@ -166,13 +173,15 @@ mod dive_step_view_should {
         // Given
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_old(),
-            results: vec![dive_stage_test_fixture_old()],
+            dive_results: DiveResults {
+                results: vec![dive_stage_test_fixture_old()],
+            },
             redo_buffer: vec![],
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: Default::default(),
-            results: vec![],
+            dive_results: DiveResults { results: vec![] },
             redo_buffer: vec![dive_stage_test_fixture_old()],
             ..Default::default()
         };
@@ -189,16 +198,20 @@ mod dive_step_view_should {
         // Given
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_latest(),
-            results: vec![
-                dive_stage_test_fixture_old(),
-                dive_stage_test_fixture_latest(),
-            ],
+            dive_results: DiveResults {
+                results: vec![
+                    dive_stage_test_fixture_old(),
+                    dive_stage_test_fixture_latest(),
+                ],
+            },
             redo_buffer: vec![],
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_old(),
-            results: vec![dive_stage_test_fixture_old()],
+            dive_results: DiveResults {
+                results: vec![dive_stage_test_fixture_old()],
+            },
             redo_buffer: vec![dive_stage_test_fixture_latest()],
             ..Default::default()
         };
@@ -215,18 +228,22 @@ mod dive_step_view_should {
         // Given
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_latest(),
-            results: vec![
-                dive_stage_test_fixture_old(),
-                dive_stage_test_fixture_latest(),
-            ],
+            dive_results: DiveResults {
+                results: vec![
+                    dive_stage_test_fixture_old(),
+                    dive_stage_test_fixture_latest(),
+                ],
+            },
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_latest(),
-            results: vec![
-                dive_stage_test_fixture_old(),
-                dive_stage_test_fixture_latest(),
-            ],
+            dive_results: DiveResults {
+                results: vec![
+                    dive_stage_test_fixture_old(),
+                    dive_stage_test_fixture_latest(),
+                ],
+            },
             ..Default::default()
         };
 
@@ -242,16 +259,20 @@ mod dive_step_view_should {
         // Given
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_old(),
-            results: vec![dive_stage_test_fixture_old()],
+            dive_results: DiveResults {
+                results: vec![dive_stage_test_fixture_old()],
+            },
             redo_buffer: vec![dive_stage_test_fixture_latest()],
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_latest(),
-            results: vec![
-                dive_stage_test_fixture_old(),
-                dive_stage_test_fixture_latest(),
-            ],
+            dive_results: DiveResults {
+                results: vec![
+                    dive_stage_test_fixture_old(),
+                    dive_stage_test_fixture_latest(),
+                ],
+            },
             ..Default::default()
         };
 
@@ -267,7 +288,7 @@ mod dive_step_view_should {
         // Given
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_old(),
-            results: vec![],
+            dive_results: DiveResults { results: vec![] },
             redo_buffer: vec![
                 dive_stage_test_fixture_old(),
                 dive_stage_test_fixture_latest(),
@@ -276,7 +297,9 @@ mod dive_step_view_should {
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_latest(),
-            results: vec![dive_stage_test_fixture_latest()],
+            dive_results: DiveResults {
+                results: vec![dive_stage_test_fixture_latest()],
+            },
             redo_buffer: vec![dive_stage_test_fixture_old()],
             ..Default::default()
         };

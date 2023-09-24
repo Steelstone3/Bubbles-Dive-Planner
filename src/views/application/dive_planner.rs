@@ -18,6 +18,7 @@ use iced_aw::Grid;
 use super::menu_bar::MenuBarView;
 
 const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.json";
+const DIVE_PLAN: &str = "dive_plan.json";
 
 impl Sandbox for DivePlanner {
     type Message = Message;
@@ -27,7 +28,7 @@ impl Sandbox for DivePlanner {
             select_dive_model: Default::default(),
             select_cylinder: Default::default(),
             dive_stage: Default::default(),
-            results: Default::default(),
+            dive_results: Default::default(),
             decompression_steps: Default::default(),
             cns_toxicity: Default::default(),
             redo_buffer: Default::default(),
@@ -44,7 +45,7 @@ impl Sandbox for DivePlanner {
             Message::FileNew => self.reset(),
             Message::FileSave => {
                 upsert_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME, self);
-                upsert_dive_results("dive_plan.json", &self.results);
+                upsert_dive_results(DIVE_PLAN, &self.dive_results.results);
             }
             Message::FileLoad => *self = read_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME),
             Message::EditUndo => self.undo(),
@@ -118,7 +119,7 @@ impl Sandbox for DivePlanner {
         let menu_bar = MenuBarView::new(self);
         let dive_stage = DiveStageView::new(self);
         let dive_information = DiveInformationView::new(self);
-        let results = ResultsView::new(&self.results);
+        let results = ResultsView::new(&self.dive_results.results);
 
         let dive_stage_view = DiveStageView::determine_view(
             self,
