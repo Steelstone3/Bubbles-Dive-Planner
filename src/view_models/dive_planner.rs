@@ -1,7 +1,7 @@
 use crate::models::{
     central_nervous_system_toxicity::CentralNervousSystemToxicity, dive_stage::DiveStage,
     dive_step::DiveStep, results::DiveResults, select_cylinder::SelectCylinder,
-    select_dive_model::SelectDiveModel,
+    select_dive_model::SelectDiveModel, decompression_steps::DecompressionSteps,
 };
 use iced::Sandbox;
 use serde::{Deserialize, Serialize};
@@ -12,7 +12,7 @@ pub struct DivePlanner {
     pub select_cylinder: SelectCylinder,
     pub dive_stage: DiveStage,
     pub dive_results: DiveResults,
-    pub decompression_steps: Vec<DiveStep>,
+    pub decompression_steps: DecompressionSteps,
     pub cns_toxicity: CentralNervousSystemToxicity,
     pub redo_buffer: Vec<DiveStage>,
 }
