@@ -20,7 +20,7 @@ lto = true
 codegen-units = 1
 
 [profile.dev]
-opt-level = 3
+opt-level = 0
 
 [profile.dev.package."*"]
 opt-level = 3
