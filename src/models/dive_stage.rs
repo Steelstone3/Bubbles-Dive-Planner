@@ -1,4 +1,11 @@
-use super::{cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep};
+use std::default;
+
+use super::{
+    cylinder::Cylinder,
+    dive_model::DiveModel,
+    dive_profile::{self, DiveProfile},
+    dive_step::DiveStep,
+};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Clone, Copy, Default, Serialize, Deserialize)]
@@ -18,7 +25,19 @@ impl DiveStage {
     }
 
     pub fn calculate_decompression_dive_steps(&self) -> Vec<DiveStep> {
-        todo!();
+        let mut dive_steps = Default::default();
+        let mut dive_profile = self.dive_model.dive_profile;
+
+        let controlling_tissue = self.calculate_decompression_dive_steps();
+
+        dive_steps
+    }
+
+    fn calculate_controlling_tissue(dive_profile: DiveProfile) -> f32 {
+        dive_profile
+            .compartment_loads
+            .iter()
+            .fold(f32::NEG_INFINITY, |max, &x| max.max(x))
     }
 }
 
@@ -171,5 +190,23 @@ mod dive_stage_should {
 
         // Then
         assert_eq!(is_valid, is_valid_actual);
+    }
+
+    #[test]
+    fn calculate_the_controlling_tissue_as_a_percentage() {
+        // Given
+        let dive_profile = DiveProfile {
+            compartment_loads: [
+                45.0, 156.4, 120.0, 34.0, 67.0, 55.0, 23.0, 78.0, 84.0, 54.0, 52.0, 47.0, 65.0,
+                29.0, 77.0, 99.9,
+            ],
+            ..Default::default()
+        };
+
+        // When
+        let controlling_tissue = DiveStage::calculate_controlling_tissue(dive_profile);
+
+        // Then
+        assert_eq!(156.4, controlling_tissue);
     }
 }
