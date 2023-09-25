@@ -1,7 +1,7 @@
 use crate::models::{
-    central_nervous_system_toxicity::CentralNervousSystemToxicity, dive_stage::DiveStage,
-    dive_step::DiveStep, results::DiveResults, select_cylinder::SelectCylinder,
-    select_dive_model::SelectDiveModel, decompression_steps::DecompressionSteps,
+    central_nervous_system_toxicity::CentralNervousSystemToxicity,
+    decompression_steps::DecompressionSteps, dive_stage::DiveStage, results::DiveResults,
+    select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
 };
 use iced::Sandbox;
 use serde::{Deserialize, Serialize};

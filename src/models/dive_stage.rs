@@ -1,10 +1,5 @@
-use std::default;
-
 use super::{
-    cylinder::Cylinder,
-    dive_model::DiveModel,
-    dive_profile::{self, DiveProfile},
-    dive_step::DiveStep,
+    cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile, dive_step::DiveStep,
 };
 use serde::{Deserialize, Serialize};
 
@@ -28,7 +23,11 @@ impl DiveStage {
         let mut dive_steps = Default::default();
         let mut dive_profile = self.dive_model.dive_profile;
 
-        let controlling_tissue = self.calculate_decompression_dive_steps();
+        let controlling_tissue = DiveStage::calculate_controlling_tissue(dive_profile);
+
+        if controlling_tissue < 100.0 {
+            return Default::default();
+        }
 
         dive_steps
     }
@@ -37,7 +36,9 @@ impl DiveStage {
         dive_profile
             .compartment_loads
             .iter()
-            .fold(f32::NEG_INFINITY, |max, &x| max.max(x))
+            .fold(f32::NEG_INFINITY, |max, &compartment_load| {
+                max.max(compartment_load)
+            })
     }
 }
 
