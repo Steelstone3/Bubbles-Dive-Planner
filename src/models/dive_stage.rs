@@ -27,9 +27,7 @@ impl DiveStage {
             return Default::default();
         }
 
-        // TODO this while loop isn't working
         while dive_stage.dive_model.dive_profile.dive_ceiling > 0.0 {
-            // Assign the dive step
             dive_stage.dive_step = DiveStep {
                 depth: DiveStage::find_nearest_decompression_depth(
                     dive_stage.dive_model.dive_profile.dive_ceiling,
@@ -37,10 +35,8 @@ impl DiveStage {
                 time: 1,
             };
 
-            // Calculate the dive step
             dive_stage = DiveStage::calculate_decompression_time_at_depth(dive_stage);
 
-            // Add dive step to the list
             dive_steps.push(dive_stage.dive_step);
         }
 
@@ -57,7 +53,6 @@ impl DiveStage {
         return (dive_ceiling / (step_interval as f32)).ceil() as u32 * step_interval;
     }
 
-    // TODO test
     fn calculate_decompression_time_at_depth(mut dive_stage: DiveStage) -> DiveStage {
         let mut time = 0;
 
