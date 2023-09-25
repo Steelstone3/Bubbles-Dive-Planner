@@ -1,4 +1,4 @@
-use iced::widget::{button, text};
+use iced::widget::text;
 use iced_aw::Card;
 
 use crate::{commands::messages::Message, models::dive_step::DiveStep};

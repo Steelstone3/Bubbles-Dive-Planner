@@ -13,8 +13,8 @@ pub struct ResultsView<'a> {
 impl ResultsView<'_> {
     // TODO change this to take a DiveResults
     pub fn new(dive_stages: &Vec<DiveStage>) -> Self {
-        let results_view = ResultsView::to_result_view(dive_stages);
-        let cards = ResultsView::to_cards(results_view);
+        let result_views = ResultsView::to_result_views(dive_stages);
+        let cards = ResultsView::to_cards(result_views);
         let column = ResultsView::to_column(cards);
 
         Self {
@@ -23,20 +23,20 @@ impl ResultsView<'_> {
         }
     }
 
-    fn to_result_view<'a>(dive_stages: &Vec<DiveStage>) -> Vec<ResultView<'a>> {
-        let mut results_view = vec![];
+    fn to_result_views<'a>(dive_stages: &Vec<DiveStage>) -> Vec<ResultView<'a>> {
+        let mut result_views = vec![];
 
         for dive_stage in dive_stages {
-            results_view.push(ResultView::new(dive_stage));
+            result_views.push(ResultView::new(dive_stage));
         }
 
-        results_view
+        result_views
     }
 
-    fn to_cards(results_view: Vec<ResultView<'_>>) -> Vec<Card<'_, Message>> {
+    fn to_cards(result_views: Vec<ResultView<'_>>) -> Vec<Card<'_, Message>> {
         let mut cards = vec![];
 
-        for result_view in results_view {
+        for result_view in result_views {
             cards.push(result_view.result_text);
         }
 
@@ -44,7 +44,7 @@ impl ResultsView<'_> {
     }
 
     fn to_column(cards: Vec<Card<'_, Message>>) -> Column<'_, Message> {
-        let mut column: Column<'_, Message> = column![];
+        let mut column = column![];
 
         for card in cards.into_iter() {
             column = column.push(card);

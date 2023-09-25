@@ -3,5 +3,5 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, PartialEq, Serialize, Deserialize)]
 pub struct DecompressionSteps {
-    dive_steps: Vec<DiveStep>,
+    pub dive_steps: Vec<DiveStep>,
 }
