@@ -155,7 +155,7 @@ impl Sandbox for DivePlanner {
         let menu_bar = MenuBarView::new(self);
         let dive_stage = DiveStageView::new(self);
         let dive_information = DiveInformationView::new(self);
-        let results = ResultsView::new(&self.dive_results);
+        let results = ResultsView::build_view(&self);
 
         // TODO can probably internalise this functionality
         let dive_stage_view = DiveStageView::determine_view(
@@ -195,8 +195,7 @@ impl Sandbox for DivePlanner {
                                 .spacing(10),
                             dive_information.decompression_steps.refresh_decompression,
                             dive_information.decompression_steps.calculate_decompression,
-                            results.result_title_text,
-                            results.results_text.spacing(10)
+                            results.spacing(10)
                         ]
                         .spacing(10)
                         .padding(10),

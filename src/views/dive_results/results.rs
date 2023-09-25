@@ -3,7 +3,8 @@ use iced_aw::Card;
 
 use crate::{
     commands::messages::Message,
-    models::{dive_stage::DiveStage, results::DiveResults}, view_models::dive_planner::DivePlanner,
+    models::{dive_stage::DiveStage, results::DiveResults},
+    view_models::dive_planner::DivePlanner,
 };
 
 use super::result::ResultView;
@@ -14,12 +15,22 @@ pub struct ResultsView<'a> {
 }
 
 impl ResultsView<'_> {
-    pub fn new(dive_results: &DiveResults) -> Self {
+    pub fn build_view<'a>(dive_planner: &DivePlanner) -> Column<'a, Message> {
+        if !dive_planner.dive_results.is_visible {
+            return Default::default();
+        }
+
+        let results = Self::new(&dive_planner.dive_results);
+
+        column![results.result_title_text, results.results_text]
+    }
+
+    fn new<'a>(dive_results: &DiveResults) -> ResultsView<'a> {
         let result_views = ResultsView::to_result_views(&dive_results.results);
         let cards = ResultsView::to_cards(result_views);
         let column = ResultsView::to_column(cards);
 
-        Self {
+        ResultsView {
             result_title_text: text("Results"),
             results_text: column,
         }
@@ -54,22 +65,4 @@ impl ResultsView<'_> {
 
         column
     }
-
-    // fn determine_view<'a>(dive_planner: &DivePlanner) -> Column<'a, Message>{
-    //     if !dive_planner.dive_results.is_visible {
-    //         return Default::default()
-    //     }
-
-    //     column![
-
-    //     ]
-    // }
-
-    // fn determine_view<'a>(dive_results: &DiveResults) -> Text<'a> {
-    //     if !dive_results.is_visible {
-    //         return text("");
-    //     }
-
-    //     text("Results")
-    // }
 }
