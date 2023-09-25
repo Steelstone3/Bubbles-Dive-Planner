@@ -112,11 +112,13 @@ impl Sandbox for DivePlanner {
                 self.select_cylinder
                     .assign_cylinder(self.dive_stage.cylinder);
 
-                self.select_cylinder.is_read_only();
+                self.select_cylinder.read_only_view();
                 self.dive_results.is_visible = true;
 
                 self.decompression_steps.dive_steps =
                     self.dive_stage.calculate_decompression_dive_steps();
+
+                self.decompression_steps.update_visibility();
             }
             Message::RefreshDecompression => {
                 // TODO Wrap and reuse this in dive_planner
