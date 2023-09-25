@@ -248,7 +248,6 @@ mod dive_stage_should {
     }
 
     #[test]
-    #[ignore]
     fn calculate_current_decompression_dive_steps() {
         // Given
         let expected_decompression_steps = vec![
