@@ -200,7 +200,10 @@ mod dive_stage_should {
     #[test]
     fn calculate_current_decompression_dive_steps() {
         // Given
-        let expected_decompression_steps = vec![DiveStep { depth: 3, time: 1 }];
+        let expected_decompression_steps = vec![
+            DiveStep { depth: 6, time: 1 },
+            DiveStep { depth: 3, time: 3 },
+        ];
         let mut dive_stage = DiveStage {
             dive_model: DiveModel::create_zhl16_dive_model(),
             ..Default::default()
