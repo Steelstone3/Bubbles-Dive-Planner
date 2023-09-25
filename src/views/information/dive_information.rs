@@ -1,14 +1,26 @@
-use iced::widget::text;
+use iced::widget::{column, text, Column};
 use iced_aw::Card;
 
 use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
 
+use super::decompression_steps::DecompressionStepsView;
+
 pub struct DiveInformationView<'a> {
-    pub dive_information_text: Card<'a, Message>,
+    dive_information_text: Card<'a, Message>,
+    decompression_steps: Column<'a, Message>,
 }
 
 impl DiveInformationView<'_> {
-    pub fn new(dive_planner: &DivePlanner) -> Self {
+    pub fn build_view<'a>(dive_planner: &DivePlanner) -> Column<'a, Message> {
+        let dive_information = Self::new(dive_planner);
+
+        column![
+            dive_information.dive_information_text,
+            dive_information.decompression_steps
+        ].padding(10.0)
+    }
+
+    fn new<'a>(dive_planner: &DivePlanner) -> DiveInformationView<'a> {
         let maximum_operating_depth = dive_planner
             .dive_stage
             .cylinder
@@ -20,7 +32,7 @@ impl DiveInformationView<'_> {
             .dive_profile
             .display_dive_ceiling();
 
-        Self {
+        DiveInformationView {
             dive_information_text: Card::new(
                 "Dive Information",
                 text(format!(
@@ -29,6 +41,7 @@ impl DiveInformationView<'_> {
                 )),
             )
             .width(iced::Length::Fixed(500.0)),
+            decompression_steps: DecompressionStepsView::build_view(dive_planner),
         }
     }
 }

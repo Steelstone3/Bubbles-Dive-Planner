@@ -1,18 +1,26 @@
 use crate::commands::messages::Message;
 use crate::view_models::dive_planner::DivePlanner;
-use iced::widget::{button, Button};
+use iced::widget::{button, row, Button, Row};
 use iced::Renderer;
 use iced_aw::{MenuBar, MenuTree};
 
 pub struct MenuBarView<'a> {
-    pub file: MenuBar<'a, Message, Renderer>,
-    pub edit: MenuBar<'a, Message, Renderer>,
-    pub view: MenuBar<'a, Message, Renderer>,
+    file: MenuBar<'a, Message, Renderer>,
+    edit: MenuBar<'a, Message, Renderer>,
+    view: MenuBar<'a, Message, Renderer>,
 }
 
 impl MenuBarView<'_> {
-    pub fn new(dive_planner: &DivePlanner) -> Self {
-        Self {
+    pub fn build_view<'a>(dive_planner: &DivePlanner) -> Row<'a, Message> {
+        let menu_bar = MenuBarView::new(dive_planner);
+
+        row![menu_bar.file, menu_bar.edit, menu_bar.view]
+            .padding(10.0)
+            .spacing(10.0)
+    }
+
+    fn new<'a>(dive_planner: &DivePlanner) -> MenuBarView<'a> {
+        MenuBarView {
             file: MenuBar::new(vec![MenuTree::with_children(
                 button("File").on_press(Message::MenuBar),
                 vec![

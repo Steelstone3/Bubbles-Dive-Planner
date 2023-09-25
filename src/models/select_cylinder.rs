@@ -80,7 +80,7 @@ impl SelectCylinder {
         }
     }
 
-    pub fn is_read_only(&mut self) {
+    pub fn read_only_view(&mut self) {
         self.cylinders[0].is_read_only = true;
         self.cylinders[1].is_read_only = true;
         self.cylinders[2].is_read_only = true;
@@ -132,7 +132,7 @@ mod select_cylinder_should {
         };
 
         // When
-        select_cylinder.is_read_only();
+        select_cylinder.read_only_view();
 
         // Then
         assert!(select_cylinder.cylinders[0].is_read_only);
