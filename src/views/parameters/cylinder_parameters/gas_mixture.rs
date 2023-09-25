@@ -5,7 +5,7 @@ use crate::{
         MINIMUM_OXYGEN_VALUE,
     },
     view_models::dive_planner::DivePlanner,
-    views::input_parser::parse_input_u32,
+    views::application::input_parser::parse_input_u32,
 };
 use iced::widget::{text, text_input, Text, TextInput};
 
