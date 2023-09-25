@@ -14,7 +14,6 @@ pub struct ResultsView<'a> {
 }
 
 impl ResultsView<'_> {
-    // TODO PRIORITY hide results when is_visible is false
     pub fn new(dive_results: &DiveResults) -> Self {
         let result_views = ResultsView::to_result_views(&dive_results.results);
         let cards = ResultsView::to_cards(result_views);
