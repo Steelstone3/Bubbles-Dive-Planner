@@ -14,6 +14,7 @@ pub struct SelectCylinderView<'a> {
 }
 
 impl SelectCylinderView<'_> {
+    // TODO add a build view
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             update_cylinder: button("Update Cylinder").width(Length::Fill).on_press(

@@ -17,6 +17,7 @@ pub struct DiveStepView<'a> {
 }
 
 impl DiveStepView<'_> {
+    // TODO add build view
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             dive_step_text: text("Dive Step"),

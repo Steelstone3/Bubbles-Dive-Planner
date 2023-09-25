@@ -12,6 +12,7 @@ pub struct SelectDiveModelView<'a> {
 }
 
 impl SelectDiveModelView<'_> {
+    //TODO add a build view
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             selectable_dive_model: pick_list(

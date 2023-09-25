@@ -7,6 +7,7 @@ pub struct CylinderReadOnlyView<'a> {
 }
 
 impl CylinderReadOnlyView<'_> {
+    // TODO add a build view
     pub fn new(cylinder: &Cylinder) -> Self {
         Self {
             cylinder_read_only_text: Card::new("Cylinder", text(cylinder)),

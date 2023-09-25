@@ -8,6 +8,7 @@ pub struct DecompressionStepView<'a> {
 }
 
 impl DecompressionStepView<'_> {
+    // TODO add a build view
     pub fn new(dive_step: &DiveStep) -> Self {
         Self {
             decompression_step_text: Card::new("Decompression Step", text(dive_step))

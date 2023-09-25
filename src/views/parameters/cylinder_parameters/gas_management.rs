@@ -14,6 +14,7 @@ pub struct GasManagementView<'a> {
 }
 
 impl GasManagementView<'_> {
+    // TODO add a build view
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             surface_air_consumption_text: text("S.A.C Rate (l/min)"),

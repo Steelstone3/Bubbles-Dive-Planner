@@ -20,6 +20,7 @@ pub struct GasMixtureView<'a> {
 }
 
 impl GasMixtureView<'_> {
+    // TODO add a build view
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             gas_mixture_text: text("Gas Mixture"),

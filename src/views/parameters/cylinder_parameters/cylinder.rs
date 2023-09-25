@@ -26,6 +26,7 @@ pub struct CylinderView<'a> {
 }
 
 impl CylinderView<'_> {
+    // TODO add a build view
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
             cylinder_setup_text: text("Cylinder Setup"),
