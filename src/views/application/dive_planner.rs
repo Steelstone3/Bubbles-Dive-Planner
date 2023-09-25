@@ -139,7 +139,7 @@ impl Sandbox for DivePlanner {
 
                     self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
 
-                    // TODO Refactor dive_planner.update_results()
+                    // TODO Refactor to using dive_planner.update_results()
                     self.dive_results.results.push(self.dive_stage);
                     self.redo_buffer = Default::default();
                 }
