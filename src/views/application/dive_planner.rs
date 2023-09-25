@@ -109,6 +109,7 @@ impl Sandbox for DivePlanner {
                 // self.dive_stage.calculate_decompression_dive_steps();
             }
             Message::UpdateDiveProfile => {
+                // TODO Wrap this in dive_planner under view models
                 self.select_cylinder
                     .assign_cylinder(self.dive_stage.cylinder);
 
@@ -119,6 +120,34 @@ impl Sandbox for DivePlanner {
                     .assign_cylinder(self.dive_stage.cylinder);
 
                 self.select_cylinder.is_read_only();
+
+                self.decompression_steps.dive_steps =
+                    self.dive_stage.calculate_decompression_dive_steps();
+            }
+            Message::RefreshDecompression => {
+                // TODO Wrap and reuse this in dive_planner
+                self.select_cylinder
+                    .assign_cylinder(self.dive_stage.cylinder);
+
+                self.decompression_steps.dive_steps =
+                    self.dive_stage.calculate_decompression_dive_steps();
+            }
+            Message::DecompressionUpdateDiveProfile => {
+                self.select_cylinder
+                    .assign_cylinder(self.dive_stage.cylinder);
+
+                self.decompression_steps.dive_steps =
+                    self.dive_stage.calculate_decompression_dive_steps();
+
+                for dive_step in &self.decompression_steps.dive_steps {
+                    self.dive_stage.dive_step = *dive_step;
+
+                    self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
+
+                    // TODO Refactor dive_planner.update_results()
+                    self.dive_results.results.push(self.dive_stage);
+                    self.redo_buffer = Default::default();
+                }
 
                 self.decompression_steps.dive_steps =
                     self.dive_stage.calculate_decompression_dive_steps();
@@ -167,6 +196,7 @@ impl Sandbox for DivePlanner {
                                 .decompression_steps
                                 .decompression_steps_text
                                 .spacing(10),
+                            dive_information.decompression_steps.refresh_decompression,
                             dive_information.decompression_steps.calculate_decompression,
                             results.result_title_text,
                             results.results_text.spacing(10)

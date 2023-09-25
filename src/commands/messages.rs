@@ -21,4 +21,6 @@ pub enum Message {
     CylinderSelected(SelectableCylinder),
     UpdateCylinderSelected(SelectableCylinder),
     UpdateDiveProfile,
+    RefreshDecompression,
+    DecompressionUpdateDiveProfile,
 }

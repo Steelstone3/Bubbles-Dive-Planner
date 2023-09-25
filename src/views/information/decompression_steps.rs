@@ -3,16 +3,17 @@ use iced_aw::Card;
 
 use crate::{
     commands::messages::Message,
-    models::{dive_step::DiveStep},
+    models::dive_step::DiveStep,
     view_models::dive_planner::DivePlanner,
 };
 
-use super::{cylinder_read_only::CylinderReadOnlyView, decompression_step::DecompressionStepView};
+use super::decompression_step::DecompressionStepView;
 
+// TODO refresh button isn't ideal should find a way to do it on cylinder change that doesn't cause regressions
 pub struct DecompressionStepsView<'a> {
     pub decompression_steps_title_text: Text<'a>,
     pub decompression_steps_text: Column<'a, Message>,
-    pub cylinder_used: CylinderReadOnlyView<'a>,
+    pub refresh_decompression: Button<'a, Message>,
     pub calculate_decompression: Button<'a, Message>,
 }
 
@@ -27,8 +28,8 @@ impl DecompressionStepsView<'_> {
         Self {
             decompression_steps_title_text: text("Decompression Steps"),
             decompression_steps_text: column,
-            cylinder_used: CylinderReadOnlyView::new(&dive_planner.dive_stage.cylinder),
-            calculate_decompression: button("Update Dive Profile"),
+            calculate_decompression: button("Update Dive Profile").on_press(Message::DecompressionUpdateDiveProfile),
+            refresh_decompression: button("Refresh").on_press(Message::RefreshDecompression),
         }
     }
 
