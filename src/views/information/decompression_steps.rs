@@ -28,7 +28,7 @@ impl DecompressionStepsView<'_> {
             decompression_steps.decompression_steps_text,
             decompression_steps.refresh_decompression,
             decompression_steps.calculate_decompression,
-        ]
+        ].spacing(10.0)
     }
 
     fn new<'a>(dive_planner: &DivePlanner) -> DecompressionStepsView<'a> {

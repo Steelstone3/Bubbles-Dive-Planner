@@ -149,6 +149,8 @@ impl Sandbox for DivePlanner {
 
                 self.decompression_steps.dive_steps =
                     self.dive_stage.calculate_decompression_dive_steps();
+
+                self.decompression_steps.update_visibility();
             }
         }
     }
