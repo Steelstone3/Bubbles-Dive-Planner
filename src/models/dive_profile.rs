@@ -68,6 +68,7 @@ impl DiveProfile {
 
         dive_stage.dive_model.dive_profile.calculate_dive_ceiling();
 
+        dive_stage.dive_model.is_read_only = true;
         dive_stage.cylinder.is_read_only = true;
 
         dive_stage

@@ -393,6 +393,7 @@ mod dive_step_view_should {
                 nitrogen_at_pressure: 2.12,
                 dive_ceiling: 0.0,
             },
+            is_read_only: Default::default(),
         }
     }
 
@@ -424,6 +425,7 @@ mod dive_step_view_should {
                 nitrogen_at_pressure: 2.12,
                 dive_ceiling: 0.0,
             },
+            is_read_only: Default::default(),
         }
     }
 }

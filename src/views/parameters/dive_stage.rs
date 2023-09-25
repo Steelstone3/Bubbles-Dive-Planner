@@ -60,7 +60,7 @@ impl DiveStageView<'_> {
     ) -> Column<'a, Message> {
         column![
             Self::is_dive_model_read_only(
-                dive_planner.dive_stage.cylinder.is_read_only,
+                dive_planner.dive_stage.dive_model.is_read_only,
                 select_dive_model
             ),
             dive_step.dive_step_text,
