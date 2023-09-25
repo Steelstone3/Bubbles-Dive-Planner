@@ -60,54 +60,46 @@ impl Sandbox for DivePlanner {
                 .select_dive_model
                 .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model),
             Message::DepthChanged(depth) => {
-                self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth);
+                self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth)
             }
             Message::TimeChanged(time) => {
-                self.dive_stage.dive_step.time = DiveStepView::update_time(time);
+                self.dive_stage.dive_step.time = DiveStepView::update_time(time)
             }
             Message::CylinderVolumeChanged(cylinder_volume) => {
                 self.dive_stage.cylinder =
-                    CylinderView::update_cylinder_volume(cylinder_volume, self.dive_stage.cylinder);
+                    CylinderView::update_cylinder_volume(cylinder_volume, self.dive_stage.cylinder)
             }
             Message::CylinderPressureChanged(cylinder_pressure) => {
                 self.dive_stage.cylinder = CylinderView::update_cylinder_pressure(
                     cylinder_pressure,
                     self.dive_stage.cylinder,
-                );
+                )
             }
             Message::SurfaceAirConsumptionChanged(surface_air_consumption) => {
                 self.dive_stage
                     .cylinder
                     .gas_management
                     .surface_air_consumption_rate =
-                    GasManagementView::update_surface_air_consumption_rate(surface_air_consumption);
+                    GasManagementView::update_surface_air_consumption_rate(surface_air_consumption)
             }
             Message::OxygenChanged(oxygen) => {
                 self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_oxygen(
                     oxygen,
                     self.dive_stage.cylinder.gas_mixture.helium,
-                );
+                )
             }
             Message::HeliumChanged(helium) => {
                 self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_helium(
                     helium,
                     self.dive_stage.cylinder.gas_mixture.oxygen,
-                );
+                )
             }
-            Message::CylinderSelected(selectable_cylinder) => {
-                self.select_cylinder
-                    .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
-
-                // self.decompression_steps.dive_steps =
-                //     self.dive_stage.calculate_decompression_dive_steps();
-            }
-            Message::UpdateCylinderSelected(selectable_cylinder) => {
-                self.select_cylinder
-                    .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
-
-                // self.decompression_steps.dive_steps =
-                // self.dive_stage.calculate_decompression_dive_steps();
-            }
+            Message::CylinderSelected(selectable_cylinder) => self
+                .select_cylinder
+                .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder),
+            Message::UpdateCylinderSelected(selectable_cylinder) => self
+                .select_cylinder
+                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder),
             Message::UpdateDiveProfile => {
                 // TODO Wrap this in dive_planner under view models
                 self.select_cylinder
@@ -116,6 +108,7 @@ impl Sandbox for DivePlanner {
                 self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
                 self.add_result();
 
+                // update gas_mixture
                 self.select_cylinder
                     .assign_cylinder(self.dive_stage.cylinder);
 
