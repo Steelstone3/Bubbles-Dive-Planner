@@ -11,7 +11,7 @@ use crate::views::parameters::cylinder_parameters::gas_management::GasManagement
 use crate::views::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use crate::views::parameters::dive_stage::DiveStageView;
 use crate::views::parameters::dive_step::DiveStepView;
-use iced::widget::{column, row, scrollable};
+use iced::widget::{column, scrollable};
 use iced::{Element, Sandbox};
 use iced_aw::Grid;
 
@@ -152,7 +152,7 @@ impl Sandbox for DivePlanner {
     }
 
     fn view(&self) -> Element<Message> {
-        let menu_bar = MenuBarView::new(self);
+        let menu_bar = MenuBarView::build_view(self);
         let dive_stage = DiveStageView::new(self);
         let dive_information = DiveInformationView::build_view(&self);
         let results = ResultsView::build_view(&self);
@@ -168,13 +168,7 @@ impl Sandbox for DivePlanner {
         );
 
         column![]
-            .push(
-                Grid::with_columns(1).push(
-                    row!(menu_bar.file, menu_bar.edit, menu_bar.view)
-                        .spacing(10)
-                        .padding(10),
-                ),
-            )
+            .push(Grid::with_columns(1).push(menu_bar.spacing(10).padding(10)))
             .push(
                 Grid::with_columns(2)
                     .push(scrollable(
@@ -184,12 +178,9 @@ impl Sandbox for DivePlanner {
                             .padding(10),
                     ))
                     .push(scrollable(
-                        column![
-                            dive_information.spacing(10),
-                            results.spacing(10.0)
-                        ]
-                        .spacing(10)
-                        .padding(10),
+                        column![dive_information.spacing(10), results.spacing(10.0)]
+                            .spacing(10)
+                            .padding(10),
                     )),
             )
             .into()
