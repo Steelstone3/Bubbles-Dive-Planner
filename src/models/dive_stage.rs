@@ -29,16 +29,19 @@ impl DiveStage {
 
         // TODO this while loop isn't working
         while dive_stage.dive_model.dive_profile.dive_ceiling > 0.0 {
-            let mut dive_step = DiveStep {
+            // Assign the dive step
+            dive_stage.dive_step = DiveStep {
                 depth: DiveStage::find_nearest_decompression_depth(
                     dive_stage.dive_model.dive_profile.dive_ceiling,
                 ),
                 time: 1,
             };
 
-            dive_step = DiveStage::calculate_decompression_time_at_depth(dive_step, dive_stage);
+            // Calculate the dive step
+            dive_stage = DiveStage::calculate_decompression_time_at_depth(dive_stage);
 
-            dive_steps.push(dive_step);
+            // Add dive step to the list
+            dive_steps.push(dive_stage.dive_step);
         }
 
         dive_steps
@@ -55,26 +58,26 @@ impl DiveStage {
     }
 
     // TODO test
-    fn calculate_decompression_time_at_depth(
-        dive_step: DiveStep,
-        mut dive_stage: DiveStage,
-    ) -> DiveStep {
+    fn calculate_decompression_time_at_depth(mut dive_stage: DiveStage) -> DiveStage {
         let mut time = 0;
 
-        while dive_step.depth
+        while dive_stage.dive_step.depth
             == DiveStage::find_nearest_decompression_depth(
                 dive_stage.dive_model.dive_profile.dive_ceiling,
             )
         {
-            dive_stage.dive_step = dive_step;
             dive_stage = DiveProfile::update_dive_profile(dive_stage);
             time += 1;
         }
 
-        DiveStep {
-            depth: dive_step.depth,
+        let dive_step = DiveStep {
+            depth: dive_stage.dive_step.depth,
             time,
-        }
+        };
+
+        dive_stage.dive_step = dive_step;
+
+        dive_stage
     }
 }
 
@@ -285,21 +288,20 @@ mod dive_stage_should {
     #[test]
     fn calculate_decompression_time_at_depth() {
         // Given
-        let dive_step = DiveStep { depth: 6, time: 1 };
         let expected_dive_step = DiveStep { depth: 6, time: 1 };
         let mut dive_stage = DiveStage {
             dive_model: DiveModel::create_zhl16_dive_model(),
-            dive_step: dive_step_test_fixture(),
+            dive_step: expected_dive_step,
             cylinder: cylinder_test_fixture(),
         };
         dive_stage.dive_model.dive_profile = dive_profile_test_fixture();
 
         // When
-        let actual_dive_step =
-            DiveStage::calculate_decompression_time_at_depth(dive_step, dive_stage);
+        let dive_stage = DiveStage::calculate_decompression_time_at_depth(dive_stage);
 
         // Then
-        assert_eq!(expected_dive_step, actual_dive_step)
+        assert_eq!(expected_dive_step, dive_stage.dive_step);
+        assert_eq!(2.6097548, dive_stage.dive_model.dive_profile.dive_ceiling)
     }
 
     fn dive_step_test_fixture() -> DiveStep {
