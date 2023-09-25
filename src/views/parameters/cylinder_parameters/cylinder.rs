@@ -5,7 +5,6 @@ use crate::{
         Cylinder, MAXIMUM_PRESSURE_VALUE, MAXIMUM_VOLUME_VALUE, MINIMUM_PRESSURE_VALUE,
         MINIMUM_VOLUME_VALUE,
     },
-    view_models::dive_planner::DivePlanner,
     views::application::input_parser::parse_input_u32,
 };
 use iced::{

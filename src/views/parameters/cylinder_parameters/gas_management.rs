@@ -1,9 +1,9 @@
 use crate::{
     commands::messages::Message,
     models::gas_management::{
-        MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE, MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE, GasManagement,
+        GasManagement, MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE,
+        MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE,
     },
-    view_models::dive_planner::DivePlanner,
     views::application::input_parser::parse_input_u32,
 };
 use iced::widget::{text, text_input, Text, TextInput};
@@ -20,9 +20,7 @@ impl GasManagementView<'_> {
             surface_air_consumption_text: text("S.A.C Rate (l/min)"),
             surface_air_consumption_input: text_input(
                 "Enter S.A.C Rate",
-                &gas_management
-                    .surface_air_consumption_rate
-                    .to_string(),
+                &gas_management.surface_air_consumption_rate.to_string(),
             )
             .on_input(Message::SurfaceAirConsumptionChanged),
         }

@@ -1,10 +1,9 @@
 use crate::{
     commands::messages::Message,
     models::gas_mixture::{
-        self, GasMixture, MAXIMUM_HELIUM_VALUE, MAXIMUM_OXYGEN_VALUE, MINIMUM_HELIUM_VALUE,
+        GasMixture, MAXIMUM_HELIUM_VALUE, MAXIMUM_OXYGEN_VALUE, MINIMUM_HELIUM_VALUE,
         MINIMUM_OXYGEN_VALUE,
     },
-    view_models::dive_planner::DivePlanner,
     views::application::input_parser::parse_input_u32,
 };
 use iced::widget::{text, text_input, Text, TextInput};

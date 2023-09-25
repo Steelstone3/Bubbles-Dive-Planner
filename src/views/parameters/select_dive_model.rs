@@ -12,12 +12,15 @@ pub struct SelectDiveModelView<'a> {
 }
 
 impl SelectDiveModelView<'_> {
-    pub fn build_view<'a>(is_read_only: bool, select_dive_model: &SelectDiveModel) -> Column<'a, Message> {
+    pub fn build_view<'a>(
+        is_read_only: bool,
+        select_dive_model: &SelectDiveModel,
+    ) -> Column<'a, Message> {
         if is_read_only {
             return column![];
         }
 
-        let select_dive_model = SelectDiveModelView::new(&select_dive_model);
+        let select_dive_model = SelectDiveModelView::new(select_dive_model);
 
         column![select_dive_model.selectable_dive_model]
             .spacing(10.0)
