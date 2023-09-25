@@ -14,7 +14,7 @@ use super::{
 
 pub struct DiveStageView<'a> {
     select_dive_model: SelectDiveModelView<'a>,
-    dive_step: DiveStepView<'a>,
+    dive_step: Column<'a, Message>,
     cylinder: CylinderView<'a>,
     select_cylinder: SelectCylinderView<'a>,
     cylinder_read_only: CylinderReadOnlyView<'a>,
@@ -29,11 +29,7 @@ impl DiveStageView<'_> {
                 dive_planner.dive_stage.dive_model.is_read_only,
                 dive_stage.select_dive_model
             ),
-            dive_stage.dive_step.dive_step_text,
-            dive_stage.dive_step.depth_text,
-            dive_stage.dive_step.depth_input,
-            dive_stage.dive_step.time_text,
-            dive_stage.dive_step.time_input,
+            dive_stage.dive_step,
             Self::determine_cylinder_view(
                 dive_planner.dive_stage.cylinder.is_read_only,
                 dive_stage.cylinder
@@ -54,7 +50,7 @@ impl DiveStageView<'_> {
     fn new<'a>(dive_planner: &DivePlanner) -> DiveStageView<'a> {
         DiveStageView {
             select_dive_model: SelectDiveModelView::new(dive_planner),
-            dive_step: DiveStepView::new(dive_planner),
+            dive_step: DiveStepView::build_view(&dive_planner.dive_stage.dive_step),
             cylinder: CylinderView::new(dive_planner),
             select_cylinder: SelectCylinderView::new(dive_planner),
             cylinder_read_only: CylinderReadOnlyView::new(&dive_planner.dive_stage.cylinder),

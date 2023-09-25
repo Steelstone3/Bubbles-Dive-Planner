@@ -1,12 +1,11 @@
 use crate::{
     commands::messages::Message,
     models::dive_step::{
-        MAXIMUM_DEPTH_VALUE, MAXIMUM_TIME_VALUE, MINIMUM_DEPTH_VALUE, MINIMUM_TIME_VALUE,
+        DiveStep, MAXIMUM_DEPTH_VALUE, MAXIMUM_TIME_VALUE, MINIMUM_DEPTH_VALUE, MINIMUM_TIME_VALUE,
     },
-    view_models::dive_planner::DivePlanner,
     views::application::input_parser::parse_input_u32,
 };
-use iced::widget::{text, text_input, Text, TextInput};
+use iced::widget::{column, text, text_input, Column, Text, TextInput};
 
 pub struct DiveStepView<'a> {
     pub dive_step_text: Text<'a>,
@@ -17,23 +16,16 @@ pub struct DiveStepView<'a> {
 }
 
 impl DiveStepView<'_> {
-    // TODO add build view
-    pub fn new(dive_planner: &DivePlanner) -> Self {
-        Self {
-            dive_step_text: text("Dive Step"),
-            depth_text: text("Depth (m)"),
-            depth_input: text_input(
-                "Enter Depth",
-                &dive_planner.dive_stage.dive_step.depth.to_string(),
-            )
-            .on_input(Message::DepthChanged),
-            time_text: text("Time (min)"),
-            time_input: text_input(
-                "Enter Time",
-                &dive_planner.dive_stage.dive_step.time.to_string(),
-            )
-            .on_input(Message::TimeChanged),
-        }
+    pub fn build_view<'a>(dive_step: &DiveStep) -> Column<'a, Message> {
+        let dive_step = DiveStepView::new(dive_step);
+
+        column![
+            dive_step.dive_step_text,
+            dive_step.depth_text,
+            dive_step.depth_input,
+            dive_step.time_text,
+            dive_step.time_input,
+        ]
     }
 
     pub fn update_depth(depth: String) -> u32 {
@@ -42,6 +34,18 @@ impl DiveStepView<'_> {
 
     pub fn update_time(time: String) -> u32 {
         parse_input_u32(time, MINIMUM_TIME_VALUE, MAXIMUM_TIME_VALUE)
+    }
+
+    fn new<'a>(dive_step: &DiveStep) -> DiveStepView<'a> {
+        DiveStepView {
+            dive_step_text: text("Dive Step"),
+            depth_text: text("Depth (m)"),
+            depth_input: text_input("Enter Depth", &dive_step.depth.to_string())
+                .on_input(Message::DepthChanged),
+            time_text: text("Time (min)"),
+            time_input: text_input("Enter Time", &dive_step.time.to_string())
+                .on_input(Message::TimeChanged),
+        }
     }
 }
 
