@@ -9,16 +9,29 @@ use crate::{
 use super::decompression_step::DecompressionStepView;
 
 // TODO refresh button isn't ideal should find a way to do it on cylinder change that doesn't cause regressions
-// TODO PRIORITY hide the complete view when there are no decompression steps
 pub struct DecompressionStepsView<'a> {
-    pub decompression_steps_title_text: Text<'a>,
-    pub decompression_steps_text: Column<'a, Message>,
-    pub refresh_decompression: Button<'a, Message>,
-    pub calculate_decompression: Button<'a, Message>,
+    decompression_steps_title_text: Text<'a>,
+    decompression_steps_text: Column<'a, Message>,
+    refresh_decompression: Button<'a, Message>,
+    calculate_decompression: Button<'a, Message>,
 }
 
 impl DecompressionStepsView<'_> {
-    pub fn new<'a>(dive_planner: &DivePlanner) -> DecompressionStepsView<'a> {
+    pub fn build_view<'a>(dive_planner: &DivePlanner) -> Column<'a, Message> {
+        let decompression_steps = DecompressionStepsView::new(dive_planner);
+
+        if !dive_planner.decompression_steps.is_visible {
+            return column![];
+        }
+        column![
+            decompression_steps.decompression_steps_title_text,
+            decompression_steps.decompression_steps_text,
+            decompression_steps.refresh_decompression,
+            decompression_steps.calculate_decompression,
+        ]
+    }
+
+    fn new<'a>(dive_planner: &DivePlanner) -> DecompressionStepsView<'a> {
         let decompression_step_views = DecompressionStepsView::to_decompression_step_views(
             &dive_planner.decompression_steps.dive_steps,
         );
@@ -69,6 +82,6 @@ impl DecompressionStepsView<'_> {
     }
 
     // fn determine_view<'a>() -> Column<'a, Message>{
-        
+
     // }
 }

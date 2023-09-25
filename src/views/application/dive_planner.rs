@@ -154,10 +154,10 @@ impl Sandbox for DivePlanner {
     fn view(&self) -> Element<Message> {
         let menu_bar = MenuBarView::new(self);
         let dive_stage = DiveStageView::new(self);
-        let dive_information = DiveInformationView::new(self);
+        let dive_information = DiveInformationView::build_view(&self);
         let results = ResultsView::build_view(&self);
 
-        // TODO can probably internalise this functionality
+        // TODO big refactor for this. Can probably internalise this functionality following the pattern
         let dive_stage_view = DiveStageView::determine_view(
             self,
             dive_stage.select_dive_model,
@@ -185,17 +185,8 @@ impl Sandbox for DivePlanner {
                     ))
                     .push(scrollable(
                         column![
-                            dive_information.dive_information_text,
-                            dive_information
-                                .decompression_steps
-                                .decompression_steps_title_text,
-                            dive_information
-                                .decompression_steps
-                                .decompression_steps_text
-                                .spacing(10),
-                            dive_information.decompression_steps.refresh_decompression,
-                            dive_information.decompression_steps.calculate_decompression,
-                            results.spacing(10)
+                            dive_information.spacing(10),
+                            results.spacing(10.0)
                         ]
                         .spacing(10)
                         .padding(10),

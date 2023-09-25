@@ -10,8 +10,8 @@ use crate::{
 use super::result::ResultView;
 
 pub struct ResultsView<'a> {
-    pub result_title_text: Text<'a>,
-    pub results_text: Column<'a, Message>,
+    result_title_text: Text<'a>,
+    results_text: Column<'a, Message>,
 }
 
 impl ResultsView<'_> {
@@ -22,7 +22,7 @@ impl ResultsView<'_> {
 
         let results = Self::new(&dive_planner.dive_results);
 
-        column![results.result_title_text, results.results_text]
+        column![results.result_title_text, results.results_text].padding(10.0)
     }
 
     fn new<'a>(dive_results: &DiveResults) -> ResultsView<'a> {
