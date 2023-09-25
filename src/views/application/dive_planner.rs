@@ -133,12 +133,14 @@ impl Sandbox for DivePlanner {
                     self.dive_stage.calculate_decompression_dive_steps();
             }
             Message::DecompressionUpdateDiveProfile => {
+                // TODO this is a repeat of the above method
                 self.select_cylinder
                     .assign_cylinder(self.dive_stage.cylinder);
 
                 self.decompression_steps.dive_steps =
                     self.dive_stage.calculate_decompression_dive_steps();
 
+                // TODO Refactor this into dive_planner
                 for dive_step in &self.decompression_steps.dive_steps {
                     self.dive_stage.dive_step = *dive_step;
 

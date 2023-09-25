@@ -10,6 +10,7 @@ use crate::{
 use super::decompression_step::DecompressionStepView;
 
 // TODO refresh button isn't ideal should find a way to do it on cylinder change that doesn't cause regressions
+// TODO hide the complete view when there are no decompression steps
 pub struct DecompressionStepsView<'a> {
     pub decompression_steps_title_text: Text<'a>,
     pub decompression_steps_text: Column<'a, Message>,
