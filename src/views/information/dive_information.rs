@@ -17,7 +17,8 @@ impl DiveInformationView<'_> {
         column![
             dive_information.dive_information_text,
             dive_information.decompression_steps
-        ].padding(10.0)
+        ]
+        .padding(10.0)
     }
 
     fn new<'a>(dive_planner: &DivePlanner) -> DiveInformationView<'a> {
