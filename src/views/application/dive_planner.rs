@@ -154,7 +154,7 @@ impl Sandbox for DivePlanner {
         let menu_bar = MenuBarView::new(self);
         let dive_stage = DiveStageView::new(self);
         let dive_information = DiveInformationView::new(self);
-        let results = ResultsView::new(&self.dive_results.results);
+        let results = ResultsView::new(&self.dive_results);
 
         let dive_stage_view = DiveStageView::determine_view(
             self,

@@ -1,7 +1,7 @@
 use iced::widget::{column, text, Column, Text};
 use iced_aw::Card;
 
-use crate::{commands::messages::Message, models::dive_stage::DiveStage};
+use crate::{commands::messages::Message, models::{dive_stage::DiveStage, results::DiveResults}};
 
 use super::result::ResultView;
 
@@ -11,9 +11,9 @@ pub struct ResultsView<'a> {
 }
 
 impl ResultsView<'_> {
-    // TODO change this to take a DiveResults
-    pub fn new(dive_stages: &Vec<DiveStage>) -> Self {
-        let result_views = ResultsView::to_result_views(dive_stages);
+    // TODO hide results when is_visible is false
+    pub fn new(dive_results: &DiveResults) -> Self {
+        let result_views = ResultsView::to_result_views(&dive_results.results);
         let cards = ResultsView::to_cards(result_views);
         let column = ResultsView::to_column(cards);
 
