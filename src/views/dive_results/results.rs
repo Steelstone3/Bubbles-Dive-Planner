@@ -3,7 +3,7 @@ use iced_aw::Card;
 
 use crate::{
     commands::messages::Message,
-    models::{dive_stage::DiveStage, results::DiveResults},
+    models::{dive_stage::DiveStage, results::DiveResults}, view_models::dive_planner::DivePlanner,
 };
 
 use super::result::ResultView;
@@ -54,6 +54,16 @@ impl ResultsView<'_> {
 
         column
     }
+
+    // fn determine_view<'a>(dive_planner: &DivePlanner) -> Column<'a, Message>{
+    //     if !dive_planner.dive_results.is_visible {
+    //         return Default::default()
+    //     }
+
+    //     column![
+
+    //     ]
+    // }
 
     // fn determine_view<'a>(dive_results: &DiveResults) -> Text<'a> {
     //     if !dive_results.is_visible {
