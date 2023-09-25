@@ -94,9 +94,13 @@ impl Sandbox for DivePlanner {
                     self.dive_stage.cylinder.gas_mixture.oxygen,
                 );
             }
-            Message::CylinderSelected(selectable_cylinder) => self
-                .select_cylinder
-                .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder),
+            Message::CylinderSelected(selectable_cylinder) => {
+                self.select_cylinder
+                    .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
+
+                // self.decompression_steps.dive_steps =
+                //     self.dive_stage.calculate_decompression_dive_steps();
+            }
             Message::UpdateCylinderSelected(selectable_cylinder) => self
                 .select_cylinder
                 .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder),
@@ -111,6 +115,9 @@ impl Sandbox for DivePlanner {
                     .assign_cylinder(self.dive_stage.cylinder);
 
                 self.select_cylinder.is_read_only();
+
+                self.decompression_steps.dive_steps =
+                    self.dive_stage.calculate_decompression_dive_steps();
             }
         }
     }
@@ -149,10 +156,12 @@ impl Sandbox for DivePlanner {
                     .push(scrollable(
                         column![
                             dive_information.dive_information_text,
-                            dive_information.decompression_steps.decompression_steps_title_text,
                             dive_information
-                            .decompression_steps
-                            .decompression_steps_text,
+                                .decompression_steps
+                                .decompression_steps_title_text,
+                            dive_information
+                                .decompression_steps
+                                .decompression_steps_text,
                             dive_information.decompression_steps.calculate_decompression,
                             results.result_title_text,
                             results.results_text.spacing(10)
