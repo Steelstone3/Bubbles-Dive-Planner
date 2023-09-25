@@ -1,7 +1,7 @@
 use crate::{
     commands::messages::Message,
     models::gas_mixture::{
-        GasMixture, MAXIMUM_HELIUM_VALUE, MAXIMUM_OXYGEN_VALUE, MINIMUM_HELIUM_VALUE,
+        self, GasMixture, MAXIMUM_HELIUM_VALUE, MAXIMUM_OXYGEN_VALUE, MINIMUM_HELIUM_VALUE,
         MINIMUM_OXYGEN_VALUE,
     },
     view_models::dive_planner::DivePlanner,
@@ -21,35 +21,19 @@ pub struct GasMixtureView<'a> {
 
 impl GasMixtureView<'_> {
     // TODO add a build view
-    pub fn new(dive_planner: &DivePlanner) -> Self {
+    pub fn new(gas_mixture: &GasMixture) -> Self {
         Self {
             gas_mixture_text: text("Gas Mixture"),
             oxygen_text: text("Oxygen (%)"),
-            oxygen_input: text_input(
-                "Enter Oxygen",
-                &dive_planner
-                    .dive_stage
-                    .cylinder
-                    .gas_mixture
-                    .oxygen
-                    .to_string(),
-            )
-            .on_input(Message::OxygenChanged),
+            oxygen_input: text_input("Enter Oxygen", &gas_mixture.oxygen.to_string())
+                .on_input(Message::OxygenChanged),
 
             helium_text: text("Helium (%)"),
-            helium_input: text_input(
-                "Enter Helium",
-                &dive_planner
-                    .dive_stage
-                    .cylinder
-                    .gas_mixture
-                    .helium
-                    .to_string(),
-            )
-            .on_input(Message::HeliumChanged),
+            helium_input: text_input("Enter Helium", &gas_mixture.helium.to_string())
+                .on_input(Message::HeliumChanged),
 
             nitrogen_text: text("Nitrogen (%)"),
-            nitrogen_text_value: text(dive_planner.dive_stage.cylinder.gas_mixture.nitrogen),
+            nitrogen_text_value: text(gas_mixture.nitrogen),
         }
     }
 

@@ -1,7 +1,7 @@
 use crate::{
     commands::messages::Message,
     models::gas_management::{
-        MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE, MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE,
+        MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE, MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE, GasManagement,
     },
     view_models::dive_planner::DivePlanner,
     views::application::input_parser::parse_input_u32,
@@ -15,15 +15,12 @@ pub struct GasManagementView<'a> {
 
 impl GasManagementView<'_> {
     // TODO add a build view
-    pub fn new(dive_planner: &DivePlanner) -> Self {
+    pub fn new(gas_management: &GasManagement) -> Self {
         Self {
             surface_air_consumption_text: text("S.A.C Rate (l/min)"),
             surface_air_consumption_input: text_input(
                 "Enter S.A.C Rate",
-                &dive_planner
-                    .dive_stage
-                    .cylinder
-                    .gas_management
+                &gas_management
                     .surface_air_consumption_rate
                     .to_string(),
             )
