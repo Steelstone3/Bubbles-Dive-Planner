@@ -157,6 +157,7 @@ impl Sandbox for DivePlanner {
         let dive_information = DiveInformationView::new(self);
         let results = ResultsView::new(&self.dive_results);
 
+        // TODO can probably internalise this functionality
         let dive_stage_view = DiveStageView::determine_view(
             self,
             dive_stage.select_dive_model,

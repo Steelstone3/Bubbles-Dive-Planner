@@ -21,6 +21,7 @@ pub struct DiveStageView<'a> {
 }
 
 // TODO make the parameters here more specific
+// TODO refactor down to dive_stage to make it clearer. Too many parameters smell
 impl DiveStageView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
@@ -40,7 +41,7 @@ impl DiveStageView<'_> {
         select_cylinder: SelectCylinderView<'a>,
         cylinder_read_only: CylinderReadOnlyView<'a>,
     ) -> iced::widget::Column<'a, Message> {
-        DiveStageView::create_parameters_view(
+        DiveStageView::determine_parameters_view(
             dive_planner,
             select_dive_model,
             dive_step,
@@ -50,7 +51,7 @@ impl DiveStageView<'_> {
         )
     }
 
-    fn create_parameters_view<'a>(
+    fn determine_parameters_view<'a>(
         dive_planner: &DivePlanner,
         select_dive_model: SelectDiveModelView<'a>,
         dive_step: DiveStepView<'a>,
@@ -59,7 +60,7 @@ impl DiveStageView<'_> {
         cylinder_read_only: CylinderReadOnlyView<'a>,
     ) -> Column<'a, Message> {
         column![
-            Self::is_dive_model_read_only(
+            Self::determine_dive_model_view(
                 dive_planner.dive_stage.dive_model.is_read_only,
                 select_dive_model
             ),
@@ -68,11 +69,11 @@ impl DiveStageView<'_> {
             dive_step.depth_input,
             dive_step.time_text,
             dive_step.time_input,
-            Self::is_cylinder_setup_read_only(
+            Self::determine_cylinder_view(
                 dive_planner.dive_stage.cylinder.is_read_only,
                 cylinder
             ),
-            Self::is_select_cylinder_visible(
+            Self::determine_select_cylinder_view(
                 dive_planner.select_cylinder.is_visible,
                 dive_planner.dive_stage.cylinder.is_read_only,
                 select_cylinder
@@ -82,11 +83,10 @@ impl DiveStageView<'_> {
         ]
     }
 
-    fn is_dive_model_read_only(
+    fn determine_dive_model_view(
         is_read_only: bool,
         select_dive_model: SelectDiveModelView<'_>,
     ) -> Column<'_, Message> {
-        // TODO read_only from dive model
         if is_read_only {
             return column![];
         }
@@ -94,7 +94,7 @@ impl DiveStageView<'_> {
         column![select_dive_model.selectable_dive_model].spacing(10.0)
     }
 
-    fn is_cylinder_setup_read_only(
+    fn determine_cylinder_view(
         is_read_only: bool,
         cylinder: CylinderView<'_>,
     ) -> Column<'_, Message> {
@@ -123,7 +123,7 @@ impl DiveStageView<'_> {
         .spacing(10.0)
     }
 
-    fn is_select_cylinder_visible(
+    fn determine_select_cylinder_view(
         is_visible: bool,
         is_read_only: bool,
         select_cylinder: SelectCylinderView<'_>,
