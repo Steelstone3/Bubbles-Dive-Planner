@@ -29,7 +29,7 @@ impl DiveStageView<'_> {
                 dive_planner.dive_stage.dive_model.is_read_only,
                 dive_stage.select_dive_model
             ),
-            dive_stage.dive_step,
+            dive_stage.dive_step.spacing(10.0).padding(10),
             Self::determine_cylinder_view(
                 dive_planner.dive_stage.cylinder.is_read_only,
                 dive_stage.cylinder
