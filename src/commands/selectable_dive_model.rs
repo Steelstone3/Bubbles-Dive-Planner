@@ -23,3 +23,14 @@ impl std::fmt::Display for SelectableDiveModel {
         )
     }
 }
+
+#[cfg(test)]
+mod selectable_dive_model_should {
+    use super::*;
+
+    #[test]
+    fn display_selectable_dive_models() {
+        assert_eq!("Zhl16", SelectableDiveModel::Bulhmann.to_string());
+        assert_eq!("USN Rev 6", SelectableDiveModel::Usn.to_string());
+    }
+}

@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Copy, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DiveModel {
+    pub is_read_only: bool,
     pub number_of_compartments: usize,
     pub nitrogen_half_times: [f32; 16],
     pub helium_half_times: [f32; 16],
@@ -50,10 +51,11 @@ impl DiveModel {
                 0.8997, 0.9073, 0.9122, 0.9171, 0.9217, 0.9267,
             ],
             dive_profile: DiveProfile::new(number_of_compartments),
+            is_read_only: Default::default(),
         }
     }
 
-    pub fn create_usn_rev_6_model() -> DiveModel {
+    pub fn create_usn_rev_6_dive_model() -> DiveModel {
         let number_of_compartments = 9;
 
         DiveModel {
@@ -83,6 +85,7 @@ impl DiveModel {
                 0.0,
             ],
             dive_profile: DiveProfile::new(number_of_compartments),
+            is_read_only: Default::default(),
         }
     }
 }
@@ -109,7 +112,7 @@ mod dive_model_should {
         let expected_usn_rev_6_model = usn_rev_6_dive_model_test_fixture();
 
         // When
-        let usn_rev_6_model = DiveModel::create_usn_rev_6_model();
+        let usn_rev_6_model = DiveModel::create_usn_rev_6_dive_model();
 
         // Then
         assert_eq!(expected_usn_rev_6_model, usn_rev_6_model);
@@ -145,6 +148,7 @@ mod dive_model_should {
                 0.8997, 0.9073, 0.9122, 0.9171, 0.9217, 0.9267,
             ],
             dive_profile: DiveProfile::new(number_of_compartments),
+            is_read_only: Default::default(),
         }
     }
 
@@ -178,6 +182,7 @@ mod dive_model_should {
                 0.0,
             ],
             dive_profile: DiveProfile::new(number_of_compartments),
+            is_read_only: Default::default(),
         }
     }
 }

@@ -43,11 +43,53 @@ fn get_file_contents(file_name: &str) -> String {
 #[cfg(test)]
 mod file_integration_should {
     use super::*;
+    use std::fs;
+
+    #[test]
+    fn save_dive_results_file() {
+        // Given
+        let dive_plan = "test_file_1.json";
+        let results = vec![DiveStage::default()];
+
+        // When
+        upsert_dive_results(dive_plan, &results);
+
+        // Then
+        assert!(fs::metadata(dive_plan).is_ok());
+        assert!(fs::metadata(dive_plan).unwrap().len() != 0);
+    }
+
+    #[test]
+    fn save_dive_planner_state_file() {
+        // Given
+        let dive_planner_state_file_name = "test_file_2.json";
+        let dive_planner = DivePlanner::default();
+
+        // When
+        upsert_dive_planner_state(dive_planner_state_file_name, &dive_planner);
+
+        // Then
+        assert!(fs::metadata(dive_planner_state_file_name).is_ok());
+        assert!(fs::metadata(dive_planner_state_file_name).unwrap().len() != 0);
+    }
+
+    #[test]
+    fn handle_loading_an_empty_dive_planner_state() {
+        // Given
+        let file_name = "non_existant_file.json";
+        let expected_dive_planner = DivePlanner::default();
+
+        // When
+        let dive_planner = read_dive_planner_state(file_name);
+
+        // Then
+        assert_eq!(expected_dive_planner, dive_planner);
+    }
 
     #[test]
     fn create_a_file_saving_and_loading_dive_planner_state() {
         // Given
-        let file_name = "test_file.json";
+        let file_name = "test_file_3.json";
         let expected_dive_planner = DivePlanner::default();
 
         // When
