@@ -20,7 +20,7 @@ impl ResultsView<'_> {
         let column = ResultsView::to_column(cards);
 
         Self {
-            result_title_text: Self::determine_view(dive_results),
+            result_title_text: text("Results"),
             results_text: column,
         }
     }
@@ -55,11 +55,11 @@ impl ResultsView<'_> {
         column
     }
 
-    fn determine_view<'a>(dive_results: &DiveResults) -> Text<'a> {
-        if !dive_results.is_visible {
-            return text("");
-        }
+    // fn determine_view<'a>(dive_results: &DiveResults) -> Text<'a> {
+    //     if !dive_results.is_visible {
+    //         return text("");
+    //     }
 
-        text("Results")
-    }
+    //     text("Results")
+    // }
 }

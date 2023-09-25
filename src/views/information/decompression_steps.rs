@@ -68,7 +68,7 @@ impl DecompressionStepsView<'_> {
         column
     }
 
-    fn determine_view() {
+    // fn determine_view<'a>() -> Column<'a, Message>{
         
-    }
+    // }
 }
