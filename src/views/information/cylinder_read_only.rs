@@ -1,6 +1,4 @@
-use crate::{
-    commands::messages::Message, models::cylinder::Cylinder,
-};
+use crate::{commands::messages::Message, models::cylinder::Cylinder};
 use iced::widget::text;
 use iced_aw::Card;
 

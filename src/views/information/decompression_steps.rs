@@ -2,8 +2,7 @@ use iced::widget::{button, column, text, Button, Column, Text};
 use iced_aw::Card;
 
 use crate::{
-    commands::messages::Message,
-    models::dive_step::DiveStep,
+    commands::messages::Message, models::dive_step::DiveStep,
     view_models::dive_planner::DivePlanner,
 };
 
@@ -29,7 +28,8 @@ impl DecompressionStepsView<'_> {
         Self {
             decompression_steps_title_text: text("Decompression Steps"),
             decompression_steps_text: column,
-            calculate_decompression: button("Update Dive Profile").on_press(Message::DecompressionUpdateDiveProfile),
+            calculate_decompression: button("Update Dive Profile")
+                .on_press(Message::DecompressionUpdateDiveProfile),
             refresh_decompression: button("Refresh").on_press(Message::RefreshDecompression),
         }
     }
