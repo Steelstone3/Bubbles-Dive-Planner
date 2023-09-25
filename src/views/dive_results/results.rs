@@ -1,7 +1,10 @@
 use iced::widget::{column, text, Column, Text};
 use iced_aw::Card;
 
-use crate::{commands::messages::Message, models::{dive_stage::DiveStage, results::DiveResults}};
+use crate::{
+    commands::messages::Message,
+    models::{dive_stage::DiveStage, results::DiveResults},
+};
 
 use super::result::ResultView;
 
@@ -11,14 +14,14 @@ pub struct ResultsView<'a> {
 }
 
 impl ResultsView<'_> {
-    // TODO hide results when is_visible is false
+    // TODO PRIORITY hide results when is_visible is false
     pub fn new(dive_results: &DiveResults) -> Self {
         let result_views = ResultsView::to_result_views(&dive_results.results);
         let cards = ResultsView::to_cards(result_views);
         let column = ResultsView::to_column(cards);
 
         Self {
-            result_title_text: text("Results"),
+            result_title_text: Self::determine_view(dive_results),
             results_text: column,
         }
     }
@@ -51,5 +54,13 @@ impl ResultsView<'_> {
         }
 
         column
+    }
+
+    fn determine_view<'a>(dive_results: &DiveResults) -> Text<'a> {
+        if !dive_results.is_visible {
+            return text("");
+        }
+
+        text("Results")
     }
 }

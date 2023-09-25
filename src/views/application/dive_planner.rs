@@ -113,6 +113,7 @@ impl Sandbox for DivePlanner {
                     .assign_cylinder(self.dive_stage.cylinder);
 
                 self.select_cylinder.is_read_only();
+                self.dive_results.is_visible = true;
 
                 self.decompression_steps.dive_steps =
                     self.dive_stage.calculate_decompression_dive_steps();
