@@ -23,11 +23,15 @@ impl DiveStage {
         let mut dive_steps = vec![];
         let mut dive_stage = *self;
 
+        // TODO Refactor this into methods
+        // shortcut
         if dive_stage.dive_model.dive_profile.dive_ceiling <= 0.0 {
             return Default::default();
         }
 
+        // while is_in_decompression
         while dive_stage.dive_model.dive_profile.dive_ceiling > 0.0 {
+            // create a dive step at the nearest decompression depth
             dive_stage.dive_step = DiveStep {
                 depth: DiveStage::find_nearest_decompression_depth(
                     dive_stage.dive_model.dive_profile.dive_ceiling,
@@ -35,8 +39,10 @@ impl DiveStage {
                 time: 1,
             };
 
+            // calculate the time at depth using a simulated dive_profile
             dive_stage = DiveStage::calculate_decompression_time_at_depth(dive_stage);
 
+            // add the decompression step to the list
             dive_steps.push(dive_stage.dive_step);
         }
 
