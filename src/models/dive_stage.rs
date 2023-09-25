@@ -236,7 +236,6 @@ mod dive_stage_should {
     }
 
     #[test]
-    #[ignore]
     fn calculate_current_decompression_dive_steps() {
         // Given
         let expected_decompression_steps = vec![
@@ -245,7 +244,8 @@ mod dive_stage_should {
         ];
         let mut dive_stage = DiveStage {
             dive_model: DiveModel::create_zhl16_dive_model(),
-            ..Default::default()
+            dive_step: dive_step_test_fixture(),
+            cylinder: cylinder_test_fixture(),
         };
         dive_stage.dive_model.dive_profile = dive_profile_test_fixture();
 
@@ -273,14 +273,14 @@ mod dive_stage_should {
     }
 
     #[test]
-    #[ignore]
     fn calculate_decompression_time_at_depth() {
         // Given
         let dive_step = DiveStep { depth: 6, time: 0 };
         let expected_dive_step = DiveStep { depth: 6, time: 1 };
         let mut dive_stage = DiveStage {
             dive_model: DiveModel::create_zhl16_dive_model(),
-            ..Default::default()
+            dive_step: dive_step_test_fixture(),
+            cylinder: cylinder_test_fixture(),
         };
         dive_stage.dive_model.dive_profile = dive_profile_test_fixture();
 
@@ -290,6 +290,33 @@ mod dive_stage_should {
 
         // Then
         assert_eq!(expected_dive_step, actual_dive_step)
+    }
+
+    fn dive_step_test_fixture() -> DiveStep {
+        DiveStep {
+            depth: 50,
+            time: 10,
+        }
+    }
+
+    fn cylinder_test_fixture() -> Cylinder {
+        Cylinder {
+            gas_mixture: GasMixture {
+                oxygen: 21,
+                helium: 10,
+                nitrogen: 69,
+                maximum_operating_depth: 0.0,
+            },
+            initial_pressurised_cylinder_volume: 2400,
+            volume: 12,
+            pressure: 200,
+            gas_management: GasManagement {
+                remaining: 2400,
+                used: 720,
+                surface_air_consumption_rate: 12,
+            },
+            ..Default::default()
+        }
     }
 
     fn dive_profile_test_fixture() -> DiveProfile {
