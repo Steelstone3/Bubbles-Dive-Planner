@@ -65,7 +65,7 @@ impl DiveStageView<'_> {
             return column![];
         }
 
-        column![select_dive_model.selectable_dive_model].spacing(10.0)
+        column![select_dive_model.selectable_dive_model].spacing(10.0).padding(10.0)
     }
 
     fn determine_cylinder_view(

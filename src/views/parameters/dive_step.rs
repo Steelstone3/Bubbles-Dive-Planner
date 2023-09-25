@@ -8,11 +8,11 @@ use crate::{
 use iced::widget::{column, text, text_input, Column, Text, TextInput};
 
 pub struct DiveStepView<'a> {
-    pub dive_step_text: Text<'a>,
-    pub depth_text: Text<'a>,
-    pub depth_input: TextInput<'a, Message>,
-    pub time_text: Text<'a>,
-    pub time_input: TextInput<'a, Message>,
+    dive_step_text: Text<'a>,
+    depth_text: Text<'a>,
+    depth_input: TextInput<'a, Message>,
+    time_text: Text<'a>,
+    time_input: TextInput<'a, Message>,
 }
 
 impl DiveStepView<'_> {
