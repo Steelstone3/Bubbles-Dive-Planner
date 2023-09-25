@@ -13,7 +13,7 @@ use super::{
 };
 
 pub struct DiveStageView<'a> {
-    select_dive_model: SelectDiveModelView<'a>,
+    select_dive_model: Column<'a, Message>,
     dive_step: Column<'a, Message>,
     cylinder: CylinderView<'a>,
     select_cylinder: SelectCylinderView<'a>,
@@ -25,11 +25,8 @@ impl DiveStageView<'_> {
         let dive_stage = Self::new(dive_planner);
 
         column![
-            Self::determine_dive_model_view(
-                dive_planner.dive_stage.dive_model.is_read_only,
-                dive_stage.select_dive_model
-            ),
-            dive_stage.dive_step.spacing(10.0).padding(10),
+            dive_stage.select_dive_model.spacing(10.0).padding(10.0),
+            dive_stage.dive_step.spacing(10.0).padding(10.0),
             Self::determine_cylinder_view(
                 dive_planner.dive_stage.cylinder.is_read_only,
                 dive_stage.cylinder
@@ -49,7 +46,7 @@ impl DiveStageView<'_> {
     // TODO make the parameters here more specific
     fn new<'a>(dive_planner: &DivePlanner) -> DiveStageView<'a> {
         DiveStageView {
-            select_dive_model: SelectDiveModelView::new(dive_planner),
+            select_dive_model: SelectDiveModelView::build_view(dive_planner),
             dive_step: DiveStepView::build_view(&dive_planner.dive_stage.dive_step),
             cylinder: CylinderView::new(dive_planner),
             select_cylinder: SelectCylinderView::new(dive_planner),
@@ -57,18 +54,18 @@ impl DiveStageView<'_> {
         }
     }
 
-    fn determine_dive_model_view(
-        is_read_only: bool,
-        select_dive_model: SelectDiveModelView<'_>,
-    ) -> Column<'_, Message> {
-        if is_read_only {
-            return column![];
-        }
+    // fn determine_dive_model_view(
+    //     is_read_only: bool,
+    //     select_dive_model: SelectDiveModelView<'_>,
+    // ) -> Column<'_, Message> {
+    //     if is_read_only {
+    //         return column![];
+    //     }
 
-        column![select_dive_model.selectable_dive_model]
-            .spacing(10.0)
-            .padding(10.0)
-    }
+    //     column![select_dive_model.selectable_dive_model]
+    //         .spacing(10.0)
+    //         .padding(10.0)
+    // }
 
     fn determine_cylinder_view(
         is_read_only: bool,
