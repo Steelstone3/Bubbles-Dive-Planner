@@ -18,14 +18,14 @@ pub struct DecompressionStepsView<'a> {
 }
 
 impl DecompressionStepsView<'_> {
-    pub fn new(dive_planner: &DivePlanner) -> Self {
+    pub fn new<'a>(dive_planner: &DivePlanner) -> DecompressionStepsView<'a> {
         let decompression_step_views = DecompressionStepsView::to_decompression_step_views(
             &dive_planner.decompression_steps.dive_steps,
         );
         let cards = DecompressionStepsView::to_cards(decompression_step_views);
         let column = DecompressionStepsView::to_column(cards);
 
-        Self {
+        DecompressionStepsView {
             decompression_steps_title_text: text("Decompression Steps"),
             decompression_steps_text: column,
             calculate_decompression: button("Update Dive Profile")
