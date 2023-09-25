@@ -7,7 +7,7 @@ use super::decompression_steps::DecompressionStepsView;
 
 pub struct DiveInformationView<'a> {
     pub dive_information_text: Card<'a, Message>,
-    pub decompression_steps: DecompressionStepsView<'a>
+    pub decompression_steps: DecompressionStepsView<'a>,
 }
 
 impl DiveInformationView<'_> {
@@ -32,7 +32,7 @@ impl DiveInformationView<'_> {
                 )),
             )
             .width(iced::Length::Fixed(500.0)),
-            decompression_steps: DecompressionStepsView::new(&dive_planner.decompression_steps),
+            decompression_steps: DecompressionStepsView::new(dive_planner),
         }
     }
 }

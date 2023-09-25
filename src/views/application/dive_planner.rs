@@ -101,13 +101,13 @@ impl Sandbox for DivePlanner {
                 // self.decompression_steps.dive_steps =
                 //     self.dive_stage.calculate_decompression_dive_steps();
             }
-            Message::UpdateCylinderSelected(selectable_cylinder) => {self
-                .select_cylinder
-                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
+            Message::UpdateCylinderSelected(selectable_cylinder) => {
+                self.select_cylinder
+                    .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
 
                 // self.decompression_steps.dive_steps =
                 // self.dive_stage.calculate_decompression_dive_steps();
-            },
+            }
             Message::UpdateDiveProfile => {
                 self.select_cylinder
                     .assign_cylinder(self.dive_stage.cylinder);
@@ -165,7 +165,8 @@ impl Sandbox for DivePlanner {
                                 .decompression_steps_title_text,
                             dive_information
                                 .decompression_steps
-                                .decompression_steps_text,
+                                .decompression_steps_text
+                                .spacing(10),
                             dive_information.decompression_steps.calculate_decompression,
                             results.result_title_text,
                             results.results_text.spacing(10)

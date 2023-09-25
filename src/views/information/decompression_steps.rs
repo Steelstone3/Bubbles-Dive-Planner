@@ -3,27 +3,31 @@ use iced_aw::Card;
 
 use crate::{
     commands::messages::Message,
-    models::{decompression_steps::DecompressionSteps, dive_step::DiveStep},
+    models::{dive_step::DiveStep},
+    view_models::dive_planner::DivePlanner,
 };
 
-use super::decompression_step::DecompressionStepView;
+use super::{cylinder_read_only::CylinderReadOnlyView, decompression_step::DecompressionStepView};
 
 pub struct DecompressionStepsView<'a> {
     pub decompression_steps_title_text: Text<'a>,
     pub decompression_steps_text: Column<'a, Message>,
+    pub cylinder_used: CylinderReadOnlyView<'a>,
     pub calculate_decompression: Button<'a, Message>,
 }
 
 impl DecompressionStepsView<'_> {
-    pub fn new(decompression_steps: &DecompressionSteps) -> Self {
-        let decompression_step_views =
-            DecompressionStepsView::to_decompression_step_views(&decompression_steps.dive_steps);
+    pub fn new(dive_planner: &DivePlanner) -> Self {
+        let decompression_step_views = DecompressionStepsView::to_decompression_step_views(
+            &dive_planner.decompression_steps.dive_steps,
+        );
         let cards = DecompressionStepsView::to_cards(decompression_step_views);
         let column = DecompressionStepsView::to_column(cards);
 
         Self {
             decompression_steps_title_text: text("Decompression Steps"),
             decompression_steps_text: column,
+            cylinder_used: CylinderReadOnlyView::new(&dive_planner.dive_stage.cylinder),
             calculate_decompression: button("Update Dive Profile"),
         }
     }
@@ -52,7 +56,7 @@ impl DecompressionStepsView<'_> {
         cards
     }
 
-    fn to_column(cards: Vec<Card<'_, Message>>) -> Column<'_, Message> {      
+    fn to_column(cards: Vec<Card<'_, Message>>) -> Column<'_, Message> {
         let mut column = column![];
 
         for card in cards.into_iter() {

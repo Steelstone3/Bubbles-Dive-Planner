@@ -50,7 +50,7 @@ impl DiveStage {
             return 0;
         }
 
-        return (dive_ceiling / (step_interval as f32)).ceil() as u32 * step_interval;
+        (dive_ceiling / (step_interval as f32)).ceil() as u32 * step_interval
     }
 
     fn calculate_decompression_time_at_depth(mut dive_stage: DiveStage) -> DiveStage {

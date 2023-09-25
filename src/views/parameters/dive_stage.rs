@@ -20,6 +20,7 @@ pub struct DiveStageView<'a> {
     pub cylinder_read_only: CylinderReadOnlyView<'a>,
 }
 
+// TODO make the parameters here more specific
 impl DiveStageView<'_> {
     pub fn new(dive_planner: &DivePlanner) -> Self {
         Self {
@@ -27,7 +28,7 @@ impl DiveStageView<'_> {
             dive_step: DiveStepView::new(dive_planner),
             cylinder: CylinderView::new(dive_planner),
             select_cylinder: SelectCylinderView::new(dive_planner),
-            cylinder_read_only: CylinderReadOnlyView::new(dive_planner),
+            cylinder_read_only: CylinderReadOnlyView::new(&dive_planner.dive_stage.cylinder),
         }
     }
 
@@ -152,8 +153,6 @@ impl DiveStageView<'_> {
             return button("Invalid Parameters").width(Length::Fill);
         }
 
-        button("Update Dive Profile")
-            .on_press(Message::UpdateDiveProfile)
-            .width(Length::Fill)
+        button("Update Dive Profile").on_press(Message::UpdateDiveProfile)
     }
 }
