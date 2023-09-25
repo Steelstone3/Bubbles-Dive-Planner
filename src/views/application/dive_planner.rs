@@ -101,9 +101,13 @@ impl Sandbox for DivePlanner {
                 // self.decompression_steps.dive_steps =
                 //     self.dive_stage.calculate_decompression_dive_steps();
             }
-            Message::UpdateCylinderSelected(selectable_cylinder) => self
+            Message::UpdateCylinderSelected(selectable_cylinder) => {self
                 .select_cylinder
-                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder),
+                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
+
+                // self.decompression_steps.dive_steps =
+                // self.dive_stage.calculate_decompression_dive_steps();
+            },
             Message::UpdateDiveProfile => {
                 self.select_cylinder
                     .assign_cylinder(self.dive_stage.cylinder);
