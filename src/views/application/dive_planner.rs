@@ -153,30 +153,15 @@ impl Sandbox for DivePlanner {
 
     fn view(&self) -> Element<Message> {
         let menu_bar = MenuBarView::build_view(self);
-        let dive_stage = DiveStageView::new(self);
-        let dive_information = DiveInformationView::build_view(&self);
-        let results = ResultsView::build_view(&self);
-
-        // TODO big refactor for this. Can probably internalise this functionality following the pattern
-        let dive_stage_view = DiveStageView::determine_view(
-            self,
-            dive_stage.select_dive_model,
-            dive_stage.dive_step,
-            dive_stage.cylinder,
-            dive_stage.select_cylinder,
-            dive_stage.cylinder_read_only,
-        );
+        let dive_stage = DiveStageView::build_view(self);
+        let dive_information = DiveInformationView::build_view(self);
+        let results = ResultsView::build_view(self);
 
         column![]
             .push(Grid::with_columns(1).push(menu_bar.spacing(10).padding(10)))
             .push(
                 Grid::with_columns(2)
-                    .push(scrollable(
-                        column![dive_stage_view.spacing(10),]
-                            .width(300)
-                            .spacing(10)
-                            .padding(10),
-                    ))
+                    .push(scrollable(dive_stage.width(300.0).spacing(10).padding(10)))
                     .push(scrollable(
                         column![dive_information.spacing(10), results.spacing(10.0)]
                             .spacing(10)

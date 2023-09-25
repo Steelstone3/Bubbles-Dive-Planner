@@ -13,74 +13,52 @@ use super::{
 };
 
 pub struct DiveStageView<'a> {
-    pub select_dive_model: SelectDiveModelView<'a>,
-    pub dive_step: DiveStepView<'a>,
-    pub cylinder: CylinderView<'a>,
-    pub select_cylinder: SelectCylinderView<'a>,
-    pub cylinder_read_only: CylinderReadOnlyView<'a>,
+    select_dive_model: SelectDiveModelView<'a>,
+    dive_step: DiveStepView<'a>,
+    cylinder: CylinderView<'a>,
+    select_cylinder: SelectCylinderView<'a>,
+    cylinder_read_only: CylinderReadOnlyView<'a>,
 }
 
-// TODO make the parameters here more specific
-// TODO refactor down to dive_stage to make it clearer. Too many parameters smell
 impl DiveStageView<'_> {
-    pub fn new(dive_planner: &DivePlanner) -> Self {
-        Self {
+    pub fn build_view<'a>(dive_planner: &DivePlanner) -> Column<'a, Message> {
+        let dive_stage = Self::new(dive_planner);
+
+        column![
+            Self::determine_dive_model_view(
+                dive_planner.dive_stage.dive_model.is_read_only,
+                dive_stage.select_dive_model
+            ),
+            dive_stage.dive_step.dive_step_text,
+            dive_stage.dive_step.depth_text,
+            dive_stage.dive_step.depth_input,
+            dive_stage.dive_step.time_text,
+            dive_stage.dive_step.time_input,
+            Self::determine_cylinder_view(
+                dive_planner.dive_stage.cylinder.is_read_only,
+                dive_stage.cylinder
+            ),
+            Self::determine_select_cylinder_view(
+                dive_planner.select_cylinder.is_visible,
+                dive_planner.dive_stage.cylinder.is_read_only,
+                dive_stage.select_cylinder
+            ),
+            dive_stage.cylinder_read_only.cylinder_read_only_text,
+            DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
+        ]
+        .padding(10.0)
+        .spacing(10.0)
+    }
+
+    // TODO make the parameters here more specific
+    fn new<'a>(dive_planner: &DivePlanner) -> DiveStageView<'a> {
+        DiveStageView {
             select_dive_model: SelectDiveModelView::new(dive_planner),
             dive_step: DiveStepView::new(dive_planner),
             cylinder: CylinderView::new(dive_planner),
             select_cylinder: SelectCylinderView::new(dive_planner),
             cylinder_read_only: CylinderReadOnlyView::new(&dive_planner.dive_stage.cylinder),
         }
-    }
-
-    pub fn determine_view<'a>(
-        dive_planner: &DivePlanner,
-        select_dive_model: SelectDiveModelView<'a>,
-        dive_step: DiveStepView<'a>,
-        cylinder: CylinderView<'a>,
-        select_cylinder: SelectCylinderView<'a>,
-        cylinder_read_only: CylinderReadOnlyView<'a>,
-    ) -> iced::widget::Column<'a, Message> {
-        DiveStageView::determine_parameters_view(
-            dive_planner,
-            select_dive_model,
-            dive_step,
-            cylinder,
-            select_cylinder,
-            cylinder_read_only,
-        )
-    }
-
-    fn determine_parameters_view<'a>(
-        dive_planner: &DivePlanner,
-        select_dive_model: SelectDiveModelView<'a>,
-        dive_step: DiveStepView<'a>,
-        cylinder: CylinderView<'a>,
-        select_cylinder: SelectCylinderView<'a>,
-        cylinder_read_only: CylinderReadOnlyView<'a>,
-    ) -> Column<'a, Message> {
-        column![
-            Self::determine_dive_model_view(
-                dive_planner.dive_stage.dive_model.is_read_only,
-                select_dive_model
-            ),
-            dive_step.dive_step_text,
-            dive_step.depth_text,
-            dive_step.depth_input,
-            dive_step.time_text,
-            dive_step.time_input,
-            Self::determine_cylinder_view(
-                dive_planner.dive_stage.cylinder.is_read_only,
-                cylinder
-            ),
-            Self::determine_select_cylinder_view(
-                dive_planner.select_cylinder.is_visible,
-                dive_planner.dive_stage.cylinder.is_read_only,
-                select_cylinder
-            ),
-            cylinder_read_only.cylinder_read_only_text,
-            DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
-        ]
     }
 
     fn determine_dive_model_view(
