@@ -148,8 +148,13 @@ impl Sandbox for DivePlanner {
                     ))
                     .push(scrollable(
                         column![
-                            results.result_title_text,
                             dive_information.dive_information_text,
+                            dive_information.decompression_steps.decompression_steps_title_text,
+                            dive_information
+                            .decompression_steps
+                            .decompression_steps_text,
+                            dive_information.decompression_steps.calculate_decompression,
+                            results.result_title_text,
                             results.results_text.spacing(10)
                         ]
                         .spacing(10)

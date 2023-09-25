@@ -11,6 +11,7 @@ pub struct ResultsView<'a> {
 }
 
 impl ResultsView<'_> {
+    // TODO change this to take a DiveResults
     pub fn new(dive_stages: &Vec<DiveStage>) -> Self {
         let results_view = ResultsView::to_result_view(dive_stages);
         let cards = ResultsView::to_cards(results_view);
