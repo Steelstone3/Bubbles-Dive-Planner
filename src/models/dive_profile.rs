@@ -109,7 +109,7 @@ impl DiveProfile {
         dive_stage
     }
 
-    fn calculate_dive_ceiling(&mut self) {
+    pub fn calculate_dive_ceiling(&mut self) {
         self.dive_ceiling = (self
             .tolerated_ambient_pressures
             .iter()

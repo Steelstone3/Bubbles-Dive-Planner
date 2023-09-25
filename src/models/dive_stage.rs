@@ -23,31 +23,19 @@ impl DiveStage {
         let mut dive_steps = Default::default();
         let mut dive_profile = self.dive_model.dive_profile;
 
-        let controlling_tissue = DiveStage::calculate_controlling_tissue(dive_profile);
-
-        if controlling_tissue < 100.0 {
+        if dive_profile.dive_ceiling <= 0.0 {
             return Default::default();
         }
 
         dive_steps
     }
-
-    fn calculate_controlling_tissue(dive_profile: DiveProfile) -> f32 {
-        dive_profile
-            .compartment_loads
-            .iter()
-            .fold(f32::NEG_INFINITY, |max, &compartment_load| {
-                max.max(compartment_load)
-            })
-    }
 }
 
 #[cfg(test)]
 mod dive_stage_should {
-    use rstest::rstest;
-
     use super::*;
     use crate::models::{gas_management::GasManagement, gas_mixture::GasMixture};
+    use rstest::rstest;
 
     #[rstest]
     #[case(50, 10, true)]
@@ -194,20 +182,76 @@ mod dive_stage_should {
     }
 
     #[test]
-    fn calculate_the_controlling_tissue_as_a_percentage() {
+    fn calculate_decompression_steps_where_dive_ceiling_is_zero() {
         // Given
-        let dive_profile = DiveProfile {
-            compartment_loads: [
-                45.0, 156.4, 120.0, 34.0, 67.0, 55.0, 23.0, 78.0, 84.0, 54.0, 52.0, 47.0, 65.0,
-                29.0, 77.0, 99.9,
-            ],
+        let expected_decompression_steps: Vec<DiveStep> = Default::default();
+        let dive_stage = DiveStage {
+            dive_model: DiveModel::create_zhl16_dive_model(),
             ..Default::default()
         };
 
         // When
-        let controlling_tissue = DiveStage::calculate_controlling_tissue(dive_profile);
+        let decompression_steps = dive_stage.calculate_decompression_dive_steps();
 
         // Then
-        assert_eq!(156.4, controlling_tissue);
+        assert_eq!(expected_decompression_steps, decompression_steps)
+    }
+
+    #[test]
+    fn calculate_current_decompression_dive_steps() {
+        // Given
+        let expected_decompression_steps = vec![DiveStep { depth: 3, time: 1 }];
+        let mut dive_stage = DiveStage {
+            dive_model: DiveModel::create_zhl16_dive_model(),
+            ..Default::default()
+        };
+        dive_stage.dive_model.dive_profile = dive_profile_test_fixture();
+
+        // When
+        let decompression_steps = dive_stage.calculate_decompression_dive_steps();
+
+        // Then
+        assert_eq!(expected_decompression_steps, decompression_steps)
+    }
+
+    fn dive_profile_test_fixture() -> DiveProfile {
+        DiveProfile {
+            number_of_compartments: 16,
+            maximum_surface_pressures: [
+                3.350, 2.630, 2.33, 2.10, 1.95, 1.79, 1.68, 1.60, 1.54, 1.48, 1.44, 1.400, 1.35,
+                1.33, 1.300, 1.28,
+            ],
+            compartment_loads: [
+                124.0, 124.0, 115.0, 105.0, 94.0, 88.0, 81.0, 75.0, 71.0, 69.0, 67.0, 67.0, 67.0,
+                66.0, 66.0, 66.0,
+            ],
+            nitrogen_tissue_pressures: [
+                3.500, 2.700, 2.200, 1.8, 1.5, 1.3, 1.2, 1.1, 1.0, 0.9, 0.9, 0.9, 0.9, 0.8, 0.8,
+                0.8,
+            ],
+            helium_tissue_pressures: [
+                0.594, 0.540, 0.462, 0.377, 0.296, 0.228, 0.172, 0.127, 0.093, 0.071, 0.056, 0.044,
+                0.035, 0.028, 0.022, 0.017,
+            ],
+            total_tissue_pressures: [
+                4.140, 3.270, 2.68, 2.21, 1.84, 1.57, 1.36, 1.21, 1.09, 1.02, 0.97, 0.93, 0.90,
+                0.88, 0.86, 0.84,
+            ],
+            tolerated_ambient_pressures: [
+                1.390, 1.410, 1.25, 1.09, 0.91, 0.82, 0.72, 0.65, 0.59, 0.57, 0.57, 0.56, 0.57,
+                0.57, 0.57, 0.58,
+            ],
+            a_values: [
+                1.3, 1.1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.5, 0.4, 0.4, 0.4, 0.3, 0.3, 0.3, 0.3, 0.2,
+            ],
+            b_values: [
+                0.493, 0.637, 0.708, 0.769, 0.800, 0.84, 0.859, 0.89, 0.910, 0.920, 0.93, 0.94,
+                0.95, 0.95, 0.96, 0.96,
+            ],
+            oxygen_at_pressure: 1.26,
+            helium_at_pressure: 0.600,
+            nitrogen_at_pressure: 4.14,
+            dive_ceiling: 4.1,
+        }
     }
 }
