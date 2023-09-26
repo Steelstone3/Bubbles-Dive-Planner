@@ -16,7 +16,7 @@ pub struct DiveStageView<'a> {
     select_dive_model: Column<'a, Message>,
     dive_step: Column<'a, Message>,
     cylinder: Column<'a, Message>,
-    select_cylinder: SelectCylinderView<'a>,
+    select_cylinder: Column<'a, Message>,
     cylinder_read_only: CylinderReadOnlyView<'a>,
 }
 
@@ -28,11 +28,7 @@ impl DiveStageView<'_> {
             dive_stage.select_dive_model.spacing(10.0).padding(10.0),
             dive_stage.dive_step.spacing(10.0).padding(10.0),
             dive_stage.cylinder.spacing(10.0).padding(10.0),
-            Self::determine_select_cylinder_view(
-                dive_planner.select_cylinder.is_visible,
-                dive_planner.dive_stage.cylinder.is_read_only,
-                dive_stage.select_cylinder
-            ),
+            dive_stage.select_cylinder.spacing(10.0).padding(10.0),
             dive_stage.cylinder_read_only.cylinder_read_only_text,
             DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
         ]
@@ -52,31 +48,12 @@ impl DiveStageView<'_> {
                 dive_planner.dive_stage.cylinder.is_read_only,
                 &dive_planner.dive_stage.cylinder,
             ),
-            select_cylinder: SelectCylinderView::new(dive_planner),
+            select_cylinder: SelectCylinderView::build_view(
+                dive_planner.select_cylinder.is_visible,
+                dive_planner.dive_stage.cylinder.is_read_only,
+                &dive_planner.select_cylinder,
+            ),
             cylinder_read_only: CylinderReadOnlyView::new(&dive_planner.dive_stage.cylinder),
-        }
-    }
-
-    fn determine_select_cylinder_view(
-        is_visible: bool,
-        is_read_only: bool,
-        select_cylinder: SelectCylinderView<'_>,
-    ) -> Column<'_, Message> {
-        if is_visible && !is_read_only {
-            return column![
-                select_cylinder.update_cylinder,
-                select_cylinder.cylinder_read_only_text_title,
-                select_cylinder.selectable_cylinder,
-            ]
-            .spacing(10.0);
-        } else if is_visible && is_read_only {
-            return column![
-                select_cylinder.cylinder_read_only_text_title,
-                select_cylinder.selectable_cylinder,
-            ]
-            .spacing(10.0);
-        } else {
-            return column![];
         }
     }
 
