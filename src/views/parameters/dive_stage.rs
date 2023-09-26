@@ -17,7 +17,7 @@ pub struct DiveStageView<'a> {
     dive_step: Column<'a, Message>,
     cylinder: Column<'a, Message>,
     select_cylinder: Column<'a, Message>,
-    cylinder_read_only: CylinderReadOnlyView<'a>,
+    cylinder_read_only: Column<'a, Message>,
 }
 
 impl DiveStageView<'_> {
@@ -29,14 +29,13 @@ impl DiveStageView<'_> {
             dive_stage.dive_step.spacing(10.0),
             dive_stage.cylinder.spacing(10.0),
             dive_stage.select_cylinder.spacing(10.0),
-            dive_stage.cylinder_read_only.cylinder_read_only_text,
+            dive_stage.cylinder_read_only.spacing(10.0),
             DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
         ]
         .padding(10.0)
         .spacing(10.0)
     }
 
-    // TODO make the parameters here more specific
     fn new<'a>(dive_planner: &DivePlanner) -> DiveStageView<'a> {
         DiveStageView {
             select_dive_model: SelectDiveModelView::build_view(
@@ -53,7 +52,7 @@ impl DiveStageView<'_> {
                 dive_planner.dive_stage.cylinder.is_read_only,
                 &dive_planner.select_cylinder,
             ),
-            cylinder_read_only: CylinderReadOnlyView::new(&dive_planner.dive_stage.cylinder),
+            cylinder_read_only: CylinderReadOnlyView::build_view(&dive_planner.dive_stage.cylinder),
         }
     }
 
