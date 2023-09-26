@@ -64,27 +64,22 @@ impl Sandbox for DivePlanner {
                     self.dive_stage.cylinder,
                 ));
             }
-            Message::SurfaceAirConsumptionChanged(surface_air_consumption) => {
-                self.surface_air_consumption_changed(GasManagementView::update_surface_air_consumption_rate(surface_air_consumption))
+            Message::SurfaceAirConsumptionChanged(surface_air_consumption) => self
+                .surface_air_consumption_changed(
+                    GasManagementView::update_surface_air_consumption_rate(surface_air_consumption),
+                ),
+            Message::OxygenChanged(oxygen) => self.gas_mixture_changed(
+                GasMixtureView::update_oxygen(oxygen, self.dive_stage.cylinder.gas_mixture.helium),
+            ),
+            Message::HeliumChanged(helium) => self.gas_mixture_changed(
+                GasMixtureView::update_helium(helium, self.dive_stage.cylinder.gas_mixture.oxygen),
+            ),
+            Message::CylinderSelected(selectable_cylinder) => {
+                self.cylinder_selected(selectable_cylinder)
             }
-            Message::OxygenChanged(oxygen) => {
-                self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_oxygen(
-                    oxygen,
-                    self.dive_stage.cylinder.gas_mixture.helium,
-                )
+            Message::UpdateCylinderSelected(selectable_cylinder) => {
+                self.update_cylinder_selected(selectable_cylinder)
             }
-            Message::HeliumChanged(helium) => {
-                self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_helium(
-                    helium,
-                    self.dive_stage.cylinder.gas_mixture.oxygen,
-                )
-            }
-            Message::CylinderSelected(selectable_cylinder) => self
-                .select_cylinder
-                .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder),
-            Message::UpdateCylinderSelected(selectable_cylinder) => self
-                .select_cylinder
-                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder),
             Message::UpdateDiveProfile => {
                 self.update_dive_profile();
             }

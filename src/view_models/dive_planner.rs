@@ -1,10 +1,14 @@
 use crate::{
-    commands::selectable_dive_model::SelectableDiveModel,
+    commands::{
+        selectable_cylinder::SelectableCylinder,
+        selectable_dive_model::SelectableDiveModel,
+    },
     controllers::file::{read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results},
     models::{
         central_nervous_system_toxicity::CentralNervousSystemToxicity, cylinder::Cylinder,
         decompression_steps::DecompressionSteps, dive_profile::DiveProfile, dive_stage::DiveStage,
-        results::DiveResults, select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
+        gas_mixture::GasMixture, results::DiveResults, select_cylinder::SelectCylinder,
+        select_dive_model::SelectDiveModel,
     },
 };
 use iced::Sandbox;
@@ -74,6 +78,20 @@ impl DivePlanner {
             .cylinder
             .gas_management
             .surface_air_consumption_rate = surface_air_consumption_rate;
+    }
+
+    pub fn gas_mixture_changed(&mut self, gas_mixture: GasMixture) {
+        self.dive_stage.cylinder.gas_mixture = gas_mixture;
+    }
+
+    pub fn cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
+        self.select_cylinder
+            .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
+    }
+
+    pub fn update_cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
+        self.select_cylinder
+                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
     }
 
     // TODO up to here
