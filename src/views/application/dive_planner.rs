@@ -104,22 +104,11 @@ impl Sandbox for DivePlanner {
                 self.update_dive_profile();
             }
             Message::RefreshDecompression => {
-                // TODO Wrap and reuse this in dive_planner
-                // assign cylinder
-                self.select_cylinder
-                    .assign_cylinder(self.dive_stage.cylinder);
-
-                // calculate decompression steps
-                self.assign_decompression_steps();
-                // self.decompression_steps.dive_steps =
-                    // self.dive_stage.calculate_decompression_dive_steps();
+                self.refresh_decompression();
             }
             Message::DecompressionUpdateDiveProfile => {
                 // TODO this is a repeat of the above method
-                self.select_cylinder
-                    .assign_cylinder(self.dive_stage.cylinder);
-
-                self.assign_decompression_steps();
+               self.refresh_decompression();
 
                 // TODO Refactor this into dive_planner
                 for dive_step in &self.decompression_steps.dive_steps {

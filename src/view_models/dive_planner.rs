@@ -29,23 +29,23 @@ impl DivePlanner {
     }
 
     pub fn update_dive_profile(&mut self) {
-        // assign cylinder
         self.assign_selected_cylinder();
 
-        // update dive profile result
         self.assign_dive_stage(DiveProfile::update_dive_profile(self.dive_stage));
 
-        // add result to the results
         self.add_result();
 
-        // update gas_mixture
         self.assign_selected_cylinder();
 
-        // Update decompression steps
         self.assign_decompression_steps();
 
-        // update visibility
         self.update_visibility();
+    }
+
+    pub fn refresh_decompression(&mut self) {
+        self.assign_selected_cylinder();
+
+        self.assign_decompression_steps();
     }
 
     pub fn undo(&mut self) {
@@ -80,6 +80,18 @@ impl DivePlanner {
     }
 
     // TODO test
+    pub fn assign_decompression_steps(&mut self) {
+        self.decompression_steps
+            .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
+    }
+
+    // TODO test
+    fn assign_selected_cylinder(&mut self) {
+        self.select_cylinder
+            .assign_cylinder(self.dive_stage.cylinder);
+    }
+
+    // TODO test
     fn assign_dive_stage(&mut self, dive_stage: DiveStage) {
         self.dive_stage = dive_stage
     }
@@ -94,18 +106,6 @@ impl DivePlanner {
         self.select_cylinder.read_only_view();
         self.dive_results.is_visible = true;
         self.decompression_steps.update_visibility();
-    }
-
-    // TODO test
-    fn assign_selected_cylinder(&mut self) {
-        self.select_cylinder
-            .assign_cylinder(self.dive_stage.cylinder);
-    }
-
-    // TODO test
-    pub fn assign_decompression_steps(&mut self) {
-        self.decompression_steps
-            .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
     }
 }
 
