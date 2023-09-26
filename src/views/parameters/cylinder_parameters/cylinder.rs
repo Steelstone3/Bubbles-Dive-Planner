@@ -5,51 +5,69 @@ use crate::{
         Cylinder, MAXIMUM_PRESSURE_VALUE, MAXIMUM_VOLUME_VALUE, MINIMUM_PRESSURE_VALUE,
         MINIMUM_VOLUME_VALUE,
     },
-    view_models::dive_planner::DivePlanner,
     views::application::input_parser::parse_input_u32,
 };
 use iced::{
     widget::Text,
-    widget::{text, text_input, TextInput},
+    widget::{column, text, text_input, Column, TextInput},
 };
 
 pub struct CylinderView<'a> {
-    pub cylinder_setup_text: Text<'a>,
-    pub cylinder_volume_text: Text<'a>,
-    pub cylinder_volume_input: TextInput<'a, Message>,
-    pub cylinder_pressure_text: Text<'a>,
-    pub cylinder_pressure_input: TextInput<'a, Message>,
-    pub cylinder_initial_pressurised_cylinder_volume_text: Text<'a>,
-    pub cylinder_initial_pressurised_cylinder_volume_text_value: Text<'a>,
-    pub gas_mixture: GasMixtureView<'a>,
-    pub gas_management: GasManagementView<'a>,
+    cylinder_setup_text: Text<'a>,
+    cylinder_volume_text: Text<'a>,
+    cylinder_volume_input: TextInput<'a, Message>,
+    cylinder_pressure_text: Text<'a>,
+    cylinder_pressure_input: TextInput<'a, Message>,
+    cylinder_initial_pressurised_cylinder_volume_text: Text<'a>,
+    cylinder_initial_pressurised_cylinder_volume_text_value: Text<'a>,
+    gas_mixture: Column<'a, Message>,
+    gas_management: Column<'a, Message>,
 }
 
 impl CylinderView<'_> {
-    pub fn new(dive_planner: &DivePlanner) -> Self {
+    pub fn build_view<'a>(is_read_only: bool, cylinder: &Cylinder) -> Column<'a, Message> {
+        if is_read_only {
+            return column![];
+        }
+
+        let cylinder = CylinderView::new(cylinder);
+
+        column![
+            cylinder.cylinder_setup_text,
+            cylinder.cylinder_volume_text,
+            cylinder.cylinder_volume_input,
+            cylinder.cylinder_pressure_text,
+            cylinder.cylinder_pressure_input,
+            cylinder.cylinder_initial_pressurised_cylinder_volume_text,
+            cylinder.cylinder_initial_pressurised_cylinder_volume_text_value,
+            cylinder.gas_management.spacing(10.0),
+            cylinder.gas_mixture.spacing(10.0),
+        ]
+        .spacing(10.0)
+        .padding(10.0)
+    }
+
+    fn new(cylinder: &Cylinder) -> Self {
         Self {
             cylinder_setup_text: text("Cylinder Setup"),
             cylinder_volume_text: text("Volume (l)"),
             cylinder_volume_input: text_input(
                 "Enter Cylinder Volume",
-                &dive_planner.dive_stage.cylinder.volume.to_string(),
+                &cylinder.volume.to_string(),
             )
             .on_input(Message::CylinderVolumeChanged),
             cylinder_pressure_text: text("Pressure (bar)"),
             cylinder_pressure_input: text_input(
                 "Enter Cylinder Pressure",
-                &dive_planner.dive_stage.cylinder.pressure.to_string(),
+                &cylinder.pressure.to_string(),
             )
             .on_input(Message::CylinderPressureChanged),
             cylinder_initial_pressurised_cylinder_volume_text: text("Pressurised Volume"),
             cylinder_initial_pressurised_cylinder_volume_text_value: text(
-                dive_planner
-                    .dive_stage
-                    .cylinder
-                    .initial_pressurised_cylinder_volume,
+                cylinder.initial_pressurised_cylinder_volume,
             ),
-            gas_mixture: GasMixtureView::new(dive_planner),
-            gas_management: GasManagementView::new(dive_planner),
+            gas_mixture: GasMixtureView::build_view(&cylinder.gas_mixture),
+            gas_management: GasManagementView::build_view(&cylinder.gas_management),
         }
     }
 
