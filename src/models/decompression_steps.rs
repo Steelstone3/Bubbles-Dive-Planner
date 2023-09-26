@@ -11,6 +11,11 @@ impl DecompressionSteps {
     pub fn update_visibility(&mut self) {
         self.is_visible = !self.dive_steps.is_empty();
     }
+
+    // TODO test
+    pub fn assign_decompression_steps(&mut self, decompression_dive_steps: Vec<DiveStep>) {
+        self.dive_steps = decompression_dive_steps
+    }
 }
 
 #[cfg(test)]

@@ -1,7 +1,7 @@
 use crate::models::{
     central_nervous_system_toxicity::CentralNervousSystemToxicity,
-    decompression_steps::DecompressionSteps, dive_stage::DiveStage, results::DiveResults,
-    select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
+    decompression_steps::DecompressionSteps, dive_profile::DiveProfile, dive_stage::DiveStage,
+    results::DiveResults, select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
 };
 use iced::Sandbox;
 use serde::{Deserialize, Serialize};
@@ -28,9 +28,26 @@ impl DivePlanner {
         *self = DivePlanner::default();
     }
 
-    pub fn add_result(&mut self) {
-        self.dive_results.results.push(self.dive_stage);
-        self.redo_buffer = Default::default();
+    pub fn update_dive_profile(&mut self) {
+        // assign cylinder
+        self.select_cylinder
+            .assign_cylinder(self.dive_stage.cylinder);
+
+        // update dive profile result
+        self.assign_dive_stage(DiveProfile::update_dive_profile(self.dive_stage));
+
+        // add result to the results
+        self.add_result();
+
+        // update gas_mixture
+        self.select_cylinder
+            .assign_cylinder(self.dive_stage.cylinder);
+
+        // Update decompression steps
+        self.decompression_steps.assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
+
+        // update visibility
+        self.update_visibility();
     }
 
     pub fn undo(&mut self) {
@@ -62,6 +79,23 @@ impl DivePlanner {
 
     pub fn is_redoable(&self) -> bool {
         !self.redo_buffer.is_empty()
+    }
+
+    // TODO test
+    fn assign_dive_stage(&mut self, dive_stage: DiveStage) {
+        self.dive_stage = dive_stage
+    }
+
+    fn add_result(&mut self) {
+        self.dive_results.results.push(self.dive_stage);
+        self.redo_buffer = Default::default();
+    }
+
+    // TODO test
+    fn update_visibility(&mut self) {
+        self.select_cylinder.read_only_view();
+        self.dive_results.is_visible = true;
+        self.decompression_steps.update_visibility();
     }
 }
 
