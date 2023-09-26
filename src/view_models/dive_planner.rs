@@ -162,13 +162,13 @@ impl DivePlanner {
 
     // TODO test
     pub fn decompression_update_dive_profile(&mut self) {
-         self.refresh_decompression();
+        self.refresh_decompression();
 
-         self.run_decompression_steps();
+        self.run_decompression_steps();
 
-         self.assign_decompression_steps();
+        self.assign_decompression_steps();
 
-         self.update_decompression_steps_visibility();
+        self.update_decompression_steps_visibility();
     }
 
     // TODO test

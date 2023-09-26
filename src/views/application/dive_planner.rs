@@ -1,5 +1,4 @@
 use crate::commands::messages::Message;
-use crate::models::dive_profile::DiveProfile;
 use crate::view_models::dive_planner::DivePlanner;
 use crate::views::dive_results::results::ResultsView;
 use crate::views::information::dive_information::DiveInformationView;

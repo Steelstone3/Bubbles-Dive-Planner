@@ -83,7 +83,7 @@ mod central_nervous_system_toxicity_should {
         cns_toxicity.is_visible = is_visible;
 
         // When
-         cns_toxicity.toggle_visibility();
+        cns_toxicity.toggle_visibility();
 
         // Then
         assert_eq!(expected_is_visible, cns_toxicity.is_visible)
