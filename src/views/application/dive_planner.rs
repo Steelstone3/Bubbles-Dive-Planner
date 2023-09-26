@@ -47,9 +47,9 @@ impl Sandbox for DivePlanner {
             Message::ViewToggleSelectCylinderVisibility => {
                 self.view_toggle_select_cylinder_visibility();
             }
-            Message::DiveModelSelected(selectable_dive_model) => self
-                .select_dive_model
-                .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model),
+            Message::DiveModelSelected(selectable_dive_model) => {
+                self.dive_model_selected(selectable_dive_model)
+            }
             Message::DepthChanged(depth) => {
                 self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth)
             }

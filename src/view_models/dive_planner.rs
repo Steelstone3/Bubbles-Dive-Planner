@@ -1,4 +1,5 @@
 use crate::{
+    commands::selectable_dive_model::SelectableDiveModel,
     controllers::file::{read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results},
     models::{
         central_nervous_system_toxicity::CentralNervousSystemToxicity,
@@ -49,6 +50,11 @@ impl DivePlanner {
 
     pub fn view_toggle_select_cylinder_visibility(&mut self) {
         self.select_cylinder.toggle_visibility();
+    }
+
+    pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
+        self.select_dive_model
+            .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
     }
 
     pub fn update_dive_profile(&mut self) {
