@@ -171,12 +171,12 @@ impl DivePlanner {
          self.update_decompression_steps_visibility();
     }
 
-    // private methods
-
+    // TODO test
     fn run_decompression_steps(&mut self) {
         for dive_step in &self.decompression_steps.dive_steps {
             self.dive_stage.dive_step = *dive_step;
 
+            // TODO Refactor to use assign dive stage
             self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
 
             // TODO Refactor to using dive_planner.update_results()
@@ -185,6 +185,7 @@ impl DivePlanner {
         }
     }
 
+    // TODO test
     fn update_decompression_steps_visibility(&mut self) {
         self.decompression_steps.update_visibility();
     }
