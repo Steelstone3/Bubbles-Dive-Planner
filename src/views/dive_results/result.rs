@@ -8,7 +8,6 @@ pub struct ResultView<'a> {
 }
 
 impl ResultView<'_> {
-    // TODO add a build view
     pub fn new(dive_stage: &DiveStage) -> Self {
         let footer = format!(
             "Parameters\n\n{}\n\n{}",
