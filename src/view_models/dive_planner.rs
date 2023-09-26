@@ -181,8 +181,9 @@ impl DivePlanner {
 
             // TODO Refactor to using dive_planner.update_results()
             self.dive_results.results.push(self.dive_stage);
-            self.redo_buffer = Default::default();
         }
+        
+        self.redo_buffer = Default::default();
     }
 
     // TODO test
