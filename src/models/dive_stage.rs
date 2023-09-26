@@ -34,17 +34,13 @@ impl DiveStage {
         dive_steps
     }
 
-    // TODO Test
     fn add_decompression_step(dive_stage: &mut DiveStage, dive_steps: &mut Vec<DiveStep>) {
-        // create a dive step at the nearest decompression depth
         dive_stage.dive_step = DiveStage::find_nearest_decompression_depth(
             dive_stage.dive_model.dive_profile.dive_ceiling,
         );
-    
-        // calculate the time at depth using a simulated dive_profile
+
         *dive_stage = DiveStage::calculate_decompression_time_at_depth(*dive_stage);
-    
-        // add the decompression step to the list
+
         dive_steps.push(dive_stage.dive_step);
     }
 
@@ -273,6 +269,25 @@ mod dive_stage_should {
 
         // Then
         assert_eq!(expected_decompression_steps, decompression_steps)
+    }
+
+    #[test]
+    fn add_decompression_step() {
+        // Given
+        let expected_dive_steps = vec![DiveStep { depth: 6, time: 1 }];
+        let mut dive_stage = DiveStage {
+            dive_model: DiveModel::create_zhl16_dive_model(),
+            dive_step: dive_step_test_fixture(),
+            cylinder: cylinder_test_fixture(),
+        };
+        dive_stage.dive_model.dive_profile = dive_profile_test_fixture();
+        let mut dive_steps = vec![];
+
+        // When
+        DiveStage::add_decompression_step(&mut dive_stage, &mut dive_steps);
+
+        // Then
+        assert_eq!(expected_dive_steps, dive_steps);
     }
 
     #[rstest]
