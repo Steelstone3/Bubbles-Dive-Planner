@@ -60,7 +60,7 @@ impl DiveStageView<'_> {
         dive_planner: &DivePlanner,
     ) -> Button<'a, Message> {
         if !dive_planner.dive_stage.validate() {
-            return button("Invalid Parameters").width(Length::Fill);
+            return button("Invalid Parameters");
         }
 
         button("Update Dive Profile").on_press(Message::UpdateDiveProfile)
