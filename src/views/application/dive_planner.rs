@@ -45,7 +45,7 @@ impl Sandbox for DivePlanner {
                 self.view_toggle_central_nervous_system_toxicity_visibility();
             }
             Message::ViewToggleSelectCylinderVisibility => {
-                self.select_cylinder.is_visible = self.select_cylinder.toggle_visibility();
+                self.view_toggle_select_cylinder_visibility();
             }
             Message::DiveModelSelected(selectable_dive_model) => self
                 .select_dive_model

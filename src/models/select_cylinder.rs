@@ -87,11 +87,13 @@ impl SelectCylinder {
         self.cylinders[2].is_read_only = true;
     }
 
-    pub fn toggle_visibility(&self) -> bool {
-        match self.is_visible {
+    pub fn toggle_visibility(&mut self) {
+        let is_visible = match self.is_visible {
             true => false,
             false => true,
-        }
+        };
+
+        self.is_visible = is_visible;
     }
 }
 
@@ -111,16 +113,16 @@ mod select_cylinder_should {
         #[case] expected_is_visible: bool,
     ) {
         // Given
-        let select_cylinder = SelectCylinder {
+        let mut select_cylinder = SelectCylinder {
             is_visible,
             ..Default::default()
         };
 
         // When
-        let is_visible = select_cylinder.toggle_visibility();
+        select_cylinder.toggle_visibility();
 
         // Then
-        assert_eq!(expected_is_visible, is_visible);
+        assert_eq!(expected_is_visible, select_cylinder.is_visible);
     }
 
     #[test]

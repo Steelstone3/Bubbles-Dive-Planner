@@ -47,6 +47,10 @@ impl DivePlanner {
         self.cns_toxicity.toggle_visibility();
     }
 
+    pub fn view_toggle_select_cylinder_visibility(&mut self) {
+        self.select_cylinder.toggle_visibility();
+    }
+
     pub fn update_dive_profile(&mut self) {
         self.assign_selected_cylinder();
 
