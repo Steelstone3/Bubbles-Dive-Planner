@@ -15,6 +15,7 @@ pub struct DiveStageView<'a> {
     cylinder: Column<'a, Message>,
     select_cylinder: Column<'a, Message>,
     cylinder_read_only: Column<'a, Message>,
+    update_dive_profile: Column<'a, Message>,
 }
 
 impl DiveStageView<'_> {
@@ -27,12 +28,7 @@ impl DiveStageView<'_> {
             dive_stage.cylinder.spacing(10.0),
             dive_stage.select_cylinder.spacing(10.0),
             dive_stage.cylinder_read_only.spacing(10.0),
-            // TODO refactor into a view
-            column![DiveStageView::is_update_dive_profile_button_enabled(
-                dive_planner
-            )]
-            .padding(10.0)
-            .spacing(10.0)
+            dive_stage.update_dive_profile.spacing(10.0)
         ]
         .padding(10.0)
         .spacing(10.0)
@@ -55,6 +51,12 @@ impl DiveStageView<'_> {
                 &dive_planner.select_cylinder,
             ),
             cylinder_read_only: CylinderReadOnlyView::build_view(&dive_planner.dive_stage.cylinder),
+            // TODO refactor into a view
+            update_dive_profile: column![DiveStageView::is_update_dive_profile_button_enabled(
+                dive_planner
+            )]
+            .padding(10.0)
+            .spacing(10.0),
         }
     }
 
