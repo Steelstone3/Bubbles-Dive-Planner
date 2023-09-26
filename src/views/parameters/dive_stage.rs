@@ -51,7 +51,7 @@ impl DiveStageView<'_> {
                 &dive_planner.select_cylinder,
             ),
             cylinder_read_only: CylinderReadOnlyView::build_view(&dive_planner.dive_stage.cylinder),
-            // TODO NEXT refactor into a view
+            // TODO NEXT VERSION refactor into a view
             update_dive_profile: column![DiveStageView::is_update_dive_profile_button_enabled(
                 dive_planner
             )]

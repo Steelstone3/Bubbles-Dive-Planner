@@ -21,7 +21,7 @@ pub enum Message {
     CylinderSelected(SelectableCylinder),
     UpdateCylinderSelected(SelectableCylinder),
     UpdateDiveProfile,
-    // TODO NEXT Refresh decompression should instead refresh on oxygen changed
+    // TODO NEXT VERSION Refresh decompression should instead refresh on oxygen changed
     RefreshDecompression,
     DecompressionUpdateDiveProfile,
 }
