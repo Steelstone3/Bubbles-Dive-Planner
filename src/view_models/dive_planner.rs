@@ -2,7 +2,7 @@ use crate::{
     commands::selectable_dive_model::SelectableDiveModel,
     controllers::file::{read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results},
     models::{
-        central_nervous_system_toxicity::CentralNervousSystemToxicity,
+        central_nervous_system_toxicity::CentralNervousSystemToxicity, cylinder::Cylinder,
         decompression_steps::DecompressionSteps, dive_profile::DiveProfile, dive_stage::DiveStage,
         results::DiveResults, select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
     },
@@ -56,6 +56,27 @@ impl DivePlanner {
         self.select_dive_model
             .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
     }
+
+    pub fn depth_changed(&mut self, depth: u32) {
+        self.dive_stage.dive_step.depth = depth;
+    }
+
+    pub fn time_changed(&mut self, time: u32) {
+        self.dive_stage.dive_step.time = time;
+    }
+
+    pub fn cylinder_changed(&mut self, cylinder: Cylinder) {
+        self.dive_stage.cylinder = cylinder;
+    }
+
+    pub fn surface_air_consumption_changed(&mut self, surface_air_consumption_rate: u32) {
+        self.dive_stage
+            .cylinder
+            .gas_management
+            .surface_air_consumption_rate = surface_air_consumption_rate;
+    }
+
+    // TODO up to here
 
     pub fn update_dive_profile(&mut self) {
         self.assign_selected_cylinder();

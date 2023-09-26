@@ -50,28 +50,22 @@ impl Sandbox for DivePlanner {
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_model_selected(selectable_dive_model)
             }
-            Message::DepthChanged(depth) => {
-                self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth)
-            }
-            Message::TimeChanged(time) => {
-                self.dive_stage.dive_step.time = DiveStepView::update_time(time)
-            }
+            Message::DepthChanged(depth) => self.depth_changed(DiveStepView::update_depth(depth)),
+            Message::TimeChanged(time) => self.time_changed(DiveStepView::update_time(time)),
             Message::CylinderVolumeChanged(cylinder_volume) => {
-                self.dive_stage.cylinder =
-                    CylinderView::update_cylinder_volume(cylinder_volume, self.dive_stage.cylinder)
+                self.cylinder_changed(CylinderView::update_cylinder_volume(
+                    cylinder_volume,
+                    self.dive_stage.cylinder,
+                ));
             }
             Message::CylinderPressureChanged(cylinder_pressure) => {
-                self.dive_stage.cylinder = CylinderView::update_cylinder_pressure(
+                self.cylinder_changed(CylinderView::update_cylinder_pressure(
                     cylinder_pressure,
                     self.dive_stage.cylinder,
-                )
+                ));
             }
             Message::SurfaceAirConsumptionChanged(surface_air_consumption) => {
-                self.dive_stage
-                    .cylinder
-                    .gas_management
-                    .surface_air_consumption_rate =
-                    GasManagementView::update_surface_air_consumption_rate(surface_air_consumption)
+                self.surface_air_consumption_changed(GasManagementView::update_surface_air_consumption_rate(surface_air_consumption))
             }
             Message::OxygenChanged(oxygen) => {
                 self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_oxygen(
