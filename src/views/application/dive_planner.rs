@@ -87,15 +87,7 @@ impl Sandbox for DivePlanner {
                 self.refresh_decompression();
             }
             Message::DecompressionUpdateDiveProfile => {
-                // TODO this is a repeat of the above method
-                self.refresh_decompression();
-
-                // TODO Refactor this into dive_planner
-                self.run_decompression_steps();
-
-                self.assign_decompression_steps();
-
-                self.update_decompression_steps_visibility();
+                self.decompression_update_dive_profile();
             }
         }
     }

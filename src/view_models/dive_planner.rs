@@ -161,29 +161,36 @@ impl DivePlanner {
     }
 
     // TODO test
-    pub fn decompression_update_dive_profile() {}
+    pub fn decompression_update_dive_profile(&mut self) {
+         self.refresh_decompression();
+
+         self.run_decompression_steps();
+
+         self.assign_decompression_steps();
+
+         self.update_decompression_steps_visibility();
+    }
 
     // private methods
 
-    pub fn run_decompression_steps(&mut self) {
+    fn run_decompression_steps(&mut self) {
         for dive_step in &self.decompression_steps.dive_steps {
             self.dive_stage.dive_step = *dive_step;
 
             self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
 
             // TODO Refactor to using dive_planner.update_results()
-            
             self.dive_results.results.push(self.dive_stage);
             self.redo_buffer = Default::default();
         }
     }
 
-    pub fn update_decompression_steps_visibility(&mut self) {
+    fn update_decompression_steps_visibility(&mut self) {
         self.decompression_steps.update_visibility();
     }
 
     // TODO test
-    pub fn assign_decompression_steps(&mut self) {
+    fn assign_decompression_steps(&mut self) {
         self.decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
     }
