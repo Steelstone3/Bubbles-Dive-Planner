@@ -1,10 +1,16 @@
-use crate::models::{
-    central_nervous_system_toxicity::CentralNervousSystemToxicity,
-    decompression_steps::DecompressionSteps, dive_profile::DiveProfile, dive_stage::DiveStage,
-    results::DiveResults, select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
+use crate::{
+    controllers::file::{read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results},
+    models::{
+        central_nervous_system_toxicity::CentralNervousSystemToxicity,
+        decompression_steps::DecompressionSteps, dive_profile::DiveProfile, dive_stage::DiveStage,
+        results::DiveResults, select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
+    },
 };
 use iced::Sandbox;
 use serde::{Deserialize, Serialize};
+
+const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.json";
+const DIVE_PLAN: &str = "dive_plan.json";
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct DivePlanner {
@@ -24,8 +30,21 @@ impl Default for DivePlanner {
 }
 
 impl DivePlanner {
-    pub fn reset(&mut self) {
+    pub fn file_new(&mut self) {
         *self = DivePlanner::default();
+    }
+
+    pub fn file_save(&self) {
+        upsert_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME, self);
+        upsert_dive_results(DIVE_PLAN, &self.dive_results.results);
+    }
+
+    pub fn file_load(&mut self) {
+        *self = read_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME)
+    }
+
+    pub fn view_toggle_central_nervous_system_toxicity_visibility(&mut self) {
+        self.cns_toxicity.toggle_visibility();
     }
 
     pub fn update_dive_profile(&mut self) {
@@ -48,7 +67,7 @@ impl DivePlanner {
         self.assign_decompression_steps();
     }
 
-    pub fn undo(&mut self) {
+    pub fn edit_undo(&mut self) {
         if self.is_undoable() {
             let latest = self.dive_stage;
             self.redo_buffer.push(latest);
@@ -59,11 +78,11 @@ impl DivePlanner {
                 .last()
                 .unwrap_or(&Default::default());
         } else {
-            self.reset();
+            self.file_new();
         }
     }
 
-    pub fn redo(&mut self) {
+    pub fn edit_redo(&mut self) {
         if self.is_redoable() {
             let redo = self.redo_buffer.pop().unwrap();
             self.dive_results.results.push(redo);
@@ -137,7 +156,7 @@ mod dive_step_view_should {
         };
 
         // When
-        dive_planner.reset();
+        dive_planner.file_new();
 
         // Then
         assert_eq!(expected, dive_planner);
@@ -213,7 +232,7 @@ mod dive_step_view_should {
         };
 
         // When
-        dive_planner.undo();
+        dive_planner.edit_undo();
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);
@@ -242,7 +261,7 @@ mod dive_step_view_should {
         };
 
         // When
-        dive_planner.undo();
+        dive_planner.edit_undo();
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);
@@ -274,7 +293,7 @@ mod dive_step_view_should {
         };
 
         // When
-        dive_planner.undo();
+        dive_planner.edit_undo();
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);
@@ -307,7 +326,7 @@ mod dive_step_view_should {
         };
 
         // When
-        dive_planner.redo();
+        dive_planner.edit_redo();
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);
@@ -338,7 +357,7 @@ mod dive_step_view_should {
         };
 
         // When
-        dive_planner.redo();
+        dive_planner.edit_redo();
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);
@@ -371,7 +390,7 @@ mod dive_step_view_should {
         };
 
         // When
-        dive_planner.redo();
+        dive_planner.edit_redo();
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);

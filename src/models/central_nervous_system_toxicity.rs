@@ -24,11 +24,13 @@ impl Default for CentralNervousSystemToxicity {
 }
 
 impl CentralNervousSystemToxicity {
-    pub fn toggle_visibility(&mut self) -> bool {
-        match self.is_visible {
+    pub fn toggle_visibility(&mut self) {
+        let is_visible = match self.is_visible {
             true => false,
             false => true,
-        }
+        };
+
+        self.is_visible = is_visible;
     }
 
     fn display_cns_toxicity(&self) -> String {
@@ -81,10 +83,10 @@ mod central_nervous_system_toxicity_should {
         cns_toxicity.is_visible = is_visible;
 
         // When
-        let actual_is_visible = cns_toxicity.toggle_visibility();
+         cns_toxicity.toggle_visibility();
 
         // Then
-        assert_eq!(expected_is_visible, actual_is_visible)
+        assert_eq!(expected_is_visible, cns_toxicity.is_visible)
     }
 
     #[test]

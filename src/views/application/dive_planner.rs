@@ -1,7 +1,4 @@
 use crate::commands::messages::Message;
-use crate::controllers::file::{
-    read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results,
-};
 use crate::models::dive_profile::DiveProfile;
 use crate::view_models::dive_planner::DivePlanner;
 use crate::views::dive_results::results::ResultsView;
@@ -16,9 +13,6 @@ use iced::{Element, Sandbox};
 use iced_aw::Grid;
 
 use super::menu_bar::MenuBarView;
-
-const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.json";
-const DIVE_PLAN: &str = "dive_plan.json";
 
 impl Sandbox for DivePlanner {
     type Message = Message;
@@ -42,16 +36,13 @@ impl Sandbox for DivePlanner {
     fn update(&mut self, message: Message) {
         match message {
             Message::MenuBar => {}
-            Message::FileNew => self.reset(),
-            Message::FileSave => {
-                upsert_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME, self);
-                upsert_dive_results(DIVE_PLAN, &self.dive_results.results);
-            }
-            Message::FileLoad => *self = read_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME),
-            Message::EditUndo => self.undo(),
-            Message::EditRedo => self.redo(),
+            Message::FileNew => self.file_new(),
+            Message::FileSave => self.file_save(),
+            Message::FileLoad => self.file_load(),
+            Message::EditUndo => self.edit_undo(),
+            Message::EditRedo => self.edit_redo(),
             Message::ViewToggleCentralNervousSystemToxicityVisibility => {
-                self.cns_toxicity.is_visible = self.cns_toxicity.toggle_visibility();
+                self.view_toggle_central_nervous_system_toxicity_visibility();
             }
             Message::ViewToggleSelectCylinderVisibility => {
                 self.select_cylinder.is_visible = self.select_cylinder.toggle_visibility();
@@ -108,7 +99,7 @@ impl Sandbox for DivePlanner {
             }
             Message::DecompressionUpdateDiveProfile => {
                 // TODO this is a repeat of the above method
-               self.refresh_decompression();
+                self.refresh_decompression();
 
                 // TODO Refactor this into dive_planner
                 for dive_step in &self.decompression_steps.dive_steps {
