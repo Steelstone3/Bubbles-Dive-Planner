@@ -20,8 +20,8 @@ pub struct CylinderView<'a> {
     cylinder_pressure_input: TextInput<'a, Message>,
     cylinder_initial_pressurised_cylinder_volume_text: Text<'a>,
     cylinder_initial_pressurised_cylinder_volume_text_value: Text<'a>,
-    gas_mixture: GasMixtureView<'a>,
-    gas_management: GasManagementView<'a>,
+    gas_mixture: Column<'a, Message>,
+    gas_management: Column<'a, Message>,
 }
 
 impl CylinderView<'_> {
@@ -40,17 +40,11 @@ impl CylinderView<'_> {
             cylinder.cylinder_pressure_input,
             cylinder.cylinder_initial_pressurised_cylinder_volume_text,
             cylinder.cylinder_initial_pressurised_cylinder_volume_text_value,
-            cylinder.gas_management.surface_air_consumption_text,
-            cylinder.gas_management.surface_air_consumption_input,
-            cylinder.gas_mixture.gas_mixture_text,
-            cylinder.gas_mixture.oxygen_text,
-            cylinder.gas_mixture.oxygen_input,
-            cylinder.gas_mixture.helium_text,
-            cylinder.gas_mixture.helium_input,
-            cylinder.gas_mixture.nitrogen_text,
-            cylinder.gas_mixture.nitrogen_text_value,
+            cylinder.gas_management.spacing(10.0),
+            cylinder.gas_mixture.spacing(10.0),
         ]
         .spacing(10.0)
+        .padding(10.0)
     }
 
     fn new(cylinder: &Cylinder) -> Self {
@@ -72,8 +66,8 @@ impl CylinderView<'_> {
             cylinder_initial_pressurised_cylinder_volume_text_value: text(
                 cylinder.initial_pressurised_cylinder_volume,
             ),
-            gas_mixture: GasMixtureView::new(&cylinder.gas_mixture),
-            gas_management: GasManagementView::new(&cylinder.gas_management),
+            gas_mixture: GasMixtureView::build_view(&cylinder.gas_mixture),
+            gas_management: GasManagementView::build_view(&cylinder.gas_management),
         }
     }
 

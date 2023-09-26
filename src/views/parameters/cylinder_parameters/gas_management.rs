@@ -6,17 +6,25 @@ use crate::{
     },
     views::application::input_parser::parse_input_u32,
 };
-use iced::widget::{text, text_input, Text, TextInput};
+use iced::widget::{column, text, text_input, Column, Text, TextInput};
 
 pub struct GasManagementView<'a> {
-    pub surface_air_consumption_text: Text<'a>,
-    pub surface_air_consumption_input: TextInput<'a, Message>,
+    surface_air_consumption_text: Text<'a>,
+    surface_air_consumption_input: TextInput<'a, Message>,
 }
 
 impl GasManagementView<'_> {
-    // TODO add a build view
-    pub fn new(gas_management: &GasManagement) -> Self {
-        Self {
+    pub fn build_view<'a>(gas_management: &GasManagement) -> Column<'a, Message> {
+        let gas_management = GasManagementView::new(gas_management);
+
+        column![
+            gas_management.surface_air_consumption_text,
+            gas_management.surface_air_consumption_input
+        ]
+    }
+
+    fn new<'a>(gas_management: &GasManagement) -> GasManagementView<'a> {
+        GasManagementView {
             surface_air_consumption_text: text("S.A.C Rate (l/min)"),
             surface_air_consumption_input: text_input(
                 "Enter S.A.C Rate",
