@@ -91,19 +91,11 @@ impl Sandbox for DivePlanner {
                 self.refresh_decompression();
 
                 // TODO Refactor this into dive_planner
-                for dive_step in &self.decompression_steps.dive_steps {
-                    self.dive_stage.dive_step = *dive_step;
-
-                    self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
-
-                    // TODO Refactor to using dive_planner.update_results()
-                    self.dive_results.results.push(self.dive_stage);
-                    self.redo_buffer = Default::default();
-                }
+                self.run_decompression_steps();
 
                 self.assign_decompression_steps();
 
-                self.decompression_steps.update_visibility();
+                self.update_decompression_steps_visibility();
             }
         }
     }

@@ -1,7 +1,6 @@
 use crate::{
     commands::{
-        selectable_cylinder::SelectableCylinder,
-        selectable_dive_model::SelectableDiveModel,
+        selectable_cylinder::SelectableCylinder, selectable_dive_model::SelectableDiveModel,
     },
     controllers::file::{read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results},
     models::{
@@ -39,81 +38,15 @@ impl DivePlanner {
         *self = DivePlanner::default();
     }
 
+    // TODO test
     pub fn file_save(&self) {
         upsert_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME, self);
         upsert_dive_results(DIVE_PLAN, &self.dive_results.results);
     }
 
+    // TODO test
     pub fn file_load(&mut self) {
         *self = read_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME)
-    }
-
-    pub fn view_toggle_central_nervous_system_toxicity_visibility(&mut self) {
-        self.cns_toxicity.toggle_visibility();
-    }
-
-    pub fn view_toggle_select_cylinder_visibility(&mut self) {
-        self.select_cylinder.toggle_visibility();
-    }
-
-    pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
-        self.select_dive_model
-            .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
-    }
-
-    pub fn depth_changed(&mut self, depth: u32) {
-        self.dive_stage.dive_step.depth = depth;
-    }
-
-    pub fn time_changed(&mut self, time: u32) {
-        self.dive_stage.dive_step.time = time;
-    }
-
-    pub fn cylinder_changed(&mut self, cylinder: Cylinder) {
-        self.dive_stage.cylinder = cylinder;
-    }
-
-    pub fn surface_air_consumption_changed(&mut self, surface_air_consumption_rate: u32) {
-        self.dive_stage
-            .cylinder
-            .gas_management
-            .surface_air_consumption_rate = surface_air_consumption_rate;
-    }
-
-    pub fn gas_mixture_changed(&mut self, gas_mixture: GasMixture) {
-        self.dive_stage.cylinder.gas_mixture = gas_mixture;
-    }
-
-    pub fn cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
-        self.select_cylinder
-            .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
-    }
-
-    pub fn update_cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
-        self.select_cylinder
-                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
-    }
-
-    // TODO up to here
-
-    pub fn update_dive_profile(&mut self) {
-        self.assign_selected_cylinder();
-
-        self.assign_dive_stage(DiveProfile::update_dive_profile(self.dive_stage));
-
-        self.add_result();
-
-        self.assign_selected_cylinder();
-
-        self.assign_decompression_steps();
-
-        self.update_visibility();
-    }
-
-    pub fn refresh_decompression(&mut self) {
-        self.assign_selected_cylinder();
-
-        self.assign_decompression_steps();
     }
 
     pub fn edit_undo(&mut self) {
@@ -139,12 +72,114 @@ impl DivePlanner {
         }
     }
 
+    // TODO test
     pub fn is_undoable(&self) -> bool {
         !self.dive_results.results.is_empty()
     }
 
+    // TODO test
     pub fn is_redoable(&self) -> bool {
         !self.redo_buffer.is_empty()
+    }
+
+    // TODO test
+    pub fn view_toggle_central_nervous_system_toxicity_visibility(&mut self) {
+        self.cns_toxicity.toggle_visibility();
+    }
+
+    // TODO test
+    pub fn view_toggle_select_cylinder_visibility(&mut self) {
+        self.select_cylinder.toggle_visibility();
+    }
+
+    // TODO test
+    pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
+        self.select_dive_model
+            .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
+    }
+
+    // TODO test
+    pub fn depth_changed(&mut self, depth: u32) {
+        self.dive_stage.dive_step.depth = depth;
+    }
+
+    // TODO test
+    pub fn time_changed(&mut self, time: u32) {
+        self.dive_stage.dive_step.time = time;
+    }
+
+    // TODO test
+    pub fn cylinder_changed(&mut self, cylinder: Cylinder) {
+        self.dive_stage.cylinder = cylinder;
+    }
+
+    // TODO test
+    pub fn surface_air_consumption_changed(&mut self, surface_air_consumption_rate: u32) {
+        self.dive_stage
+            .cylinder
+            .gas_management
+            .surface_air_consumption_rate = surface_air_consumption_rate;
+    }
+
+    // TODO test
+    pub fn gas_mixture_changed(&mut self, gas_mixture: GasMixture) {
+        self.dive_stage.cylinder.gas_mixture = gas_mixture;
+    }
+
+    // TODO test
+    pub fn cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
+        self.select_cylinder
+            .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
+    }
+
+    // TODO test
+    pub fn update_cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
+        self.select_cylinder
+            .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
+    }
+
+    // TODO test
+    pub fn update_dive_profile(&mut self) {
+        self.assign_selected_cylinder();
+
+        self.assign_dive_stage(DiveProfile::update_dive_profile(self.dive_stage));
+
+        self.add_result();
+
+        self.assign_selected_cylinder();
+
+        self.assign_decompression_steps();
+
+        self.update_visibility();
+    }
+
+    // TODO test
+    pub fn refresh_decompression(&mut self) {
+        self.assign_selected_cylinder();
+
+        self.assign_decompression_steps();
+    }
+
+    // TODO test
+    pub fn decompression_update_dive_profile() {}
+
+    // private methods
+
+    pub fn run_decompression_steps(&mut self) {
+        for dive_step in &self.decompression_steps.dive_steps {
+            self.dive_stage.dive_step = *dive_step;
+
+            self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
+
+            // TODO Refactor to using dive_planner.update_results()
+            
+            self.dive_results.results.push(self.dive_stage);
+            self.redo_buffer = Default::default();
+        }
+    }
+
+    pub fn update_decompression_steps_visibility(&mut self) {
+        self.decompression_steps.update_visibility();
     }
 
     // TODO test
