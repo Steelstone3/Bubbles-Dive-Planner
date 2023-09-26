@@ -27,6 +27,7 @@ impl DiveStepView<'_> {
             dive_step.time_input,
         ]
         .spacing(10.0)
+        .padding(10.0)
     }
 
     pub fn update_depth(depth: String) -> u32 {

@@ -25,10 +25,10 @@ impl DiveStageView<'_> {
         let dive_stage = Self::new(dive_planner);
 
         column![
-            dive_stage.select_dive_model.spacing(10.0).padding(10.0),
-            dive_stage.dive_step.spacing(10.0).padding(10.0),
-            dive_stage.cylinder.spacing(10.0).padding(10.0),
-            dive_stage.select_cylinder.spacing(10.0).padding(10.0),
+            dive_stage.select_dive_model.spacing(10.0),
+            dive_stage.dive_step.spacing(10.0),
+            dive_stage.cylinder.spacing(10.0),
+            dive_stage.select_cylinder.spacing(10.0),
             dive_stage.cylinder_read_only.cylinder_read_only_text,
             DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
         ]
