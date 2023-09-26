@@ -1,6 +1,7 @@
 use crate::models::dive_step::DiveStep;
 use serde::{Deserialize, Serialize};
 
+// TODO encapsulate
 #[derive(Debug, Default, Clone, PartialEq, Serialize, Deserialize)]
 pub struct DecompressionSteps {
     pub is_visible: bool,

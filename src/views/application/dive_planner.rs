@@ -110,16 +110,16 @@ impl Sandbox for DivePlanner {
                     .assign_cylinder(self.dive_stage.cylinder);
 
                 // calculate decompression steps
-                self.decompression_steps.dive_steps =
-                    self.dive_stage.calculate_decompression_dive_steps();
+                self.assign_decompression_steps();
+                // self.decompression_steps.dive_steps =
+                    // self.dive_stage.calculate_decompression_dive_steps();
             }
             Message::DecompressionUpdateDiveProfile => {
                 // TODO this is a repeat of the above method
                 self.select_cylinder
                     .assign_cylinder(self.dive_stage.cylinder);
 
-                self.decompression_steps.dive_steps =
-                    self.dive_stage.calculate_decompression_dive_steps();
+                self.assign_decompression_steps();
 
                 // TODO Refactor this into dive_planner
                 for dive_step in &self.decompression_steps.dive_steps {
@@ -132,8 +132,7 @@ impl Sandbox for DivePlanner {
                     self.redo_buffer = Default::default();
                 }
 
-                self.decompression_steps.dive_steps =
-                    self.dive_stage.calculate_decompression_dive_steps();
+                self.assign_decompression_steps();
 
                 self.decompression_steps.update_visibility();
             }
