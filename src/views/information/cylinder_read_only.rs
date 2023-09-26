@@ -8,7 +8,7 @@ pub struct CylinderReadOnlyView<'a> {
 
 impl CylinderReadOnlyView<'_> {
     pub fn build_view<'a>(cylinder: &Cylinder) -> Column<'a, Message> {
-        let cylinder_read_only = CylinderReadOnlyView::new(&cylinder);
+        let cylinder_read_only = CylinderReadOnlyView::new(cylinder);
 
         column![cylinder_read_only.cylinder_read_only_text]
             .padding(10.0)

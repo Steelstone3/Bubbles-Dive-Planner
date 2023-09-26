@@ -2,10 +2,7 @@ use crate::{
     commands::messages::Message, view_models::dive_planner::DivePlanner,
     views::information::cylinder_read_only::CylinderReadOnlyView,
 };
-use iced::{
-    widget::{button, column, Button, Column},
-    Length,
-};
+use iced::widget::{button, column, Button, Column};
 
 use super::{
     cylinder_parameters::cylinder::CylinderView, dive_step::DiveStepView,
@@ -30,7 +27,12 @@ impl DiveStageView<'_> {
             dive_stage.cylinder.spacing(10.0),
             dive_stage.select_cylinder.spacing(10.0),
             dive_stage.cylinder_read_only.spacing(10.0),
-            DiveStageView::is_update_dive_profile_button_enabled(dive_planner)
+            // TODO refactor into a view
+            column![DiveStageView::is_update_dive_profile_button_enabled(
+                dive_planner
+            )]
+            .padding(10.0)
+            .spacing(10.0)
         ]
         .padding(10.0)
         .spacing(10.0)
