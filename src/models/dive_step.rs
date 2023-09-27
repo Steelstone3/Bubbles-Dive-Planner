@@ -52,11 +52,8 @@ mod dive_step_should {
         };
         let expected_display = "Dive Step\nDepth: 50 (m) Time: 10 (min)";
 
-        // When
-        let display = dive_step.display_dive_step();
-
         // Then
-        assert_eq!(expected_display, display);
+        assert_eq!(expected_display, dive_step.to_string());
     }
 
     #[rstest]

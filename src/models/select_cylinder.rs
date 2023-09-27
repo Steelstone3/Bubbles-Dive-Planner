@@ -32,10 +32,12 @@ impl SelectCylinder {
                 self.selected_cylinder = Some(selectable_cylinder);
                 self.cylinders[0] = cylinder;
             }
+            // TODO test
             SelectableCylinder::Decompression => {
                 self.selected_cylinder = Some(selectable_cylinder);
                 self.cylinders[1] = cylinder;
             }
+            // TODO test
             SelectableCylinder::Descend => {
                 self.selected_cylinder = Some(selectable_cylinder);
                 self.cylinders[2] = cylinder;
@@ -55,10 +57,12 @@ impl SelectCylinder {
                 self.selected_cylinder = Some(selectable_cylinder);
                 *cylinder = self.cylinders[0]
             }
+            // TODO test
             SelectableCylinder::Decompression => {
                 self.selected_cylinder = Some(selectable_cylinder);
                 *cylinder = self.cylinders[1]
             }
+            // TODO test
             SelectableCylinder::Descend => {
                 self.selected_cylinder = Some(selectable_cylinder);
                 *cylinder = self.cylinders[2]
@@ -68,9 +72,11 @@ impl SelectCylinder {
 
     pub fn assign_cylinder(&mut self, cylinder: Cylinder) {
         match self.selected_cylinder.unwrap() {
+            // TODO test
             SelectableCylinder::Bottom => {
                 self.cylinders[0] = cylinder;
             }
+            // TODO test
             SelectableCylinder::Decompression => {
                 self.cylinders[1] = cylinder;
             }

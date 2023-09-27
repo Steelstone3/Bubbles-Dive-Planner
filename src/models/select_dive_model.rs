@@ -37,8 +37,29 @@ impl SelectDiveModel {
 mod select_dive_model_should {
     use super::*;
 
+    //TODO as an rstest
     #[test]
-    fn select_a_dive_model() {
+    fn select_a_dive_model_zhl16() {
+        // Given
+        let mut dive_model = DiveModel::create_zhl16_dive_model();
+        let mut select_dive_model = SelectDiveModel {
+            dive_model_list: Default::default(),
+            selected_dive_model: Some(SelectableDiveModel::Bulhmann),
+        };
+
+        // When
+        select_dive_model.select_dive_model(
+            select_dive_model.selected_dive_model.unwrap(),
+            &mut dive_model,
+        );
+
+        // Then
+        assert_eq!(DiveModel::create_zhl16_dive_model(), dive_model);
+    }
+
+    //TODO as an rstest
+    #[test]
+    fn select_a_dive_model_usn() {
         // Given
         let mut dive_model = DiveModel::create_zhl16_dive_model();
         let mut select_dive_model = SelectDiveModel {
