@@ -11,6 +11,7 @@ impl SelectableDiveModel {
         [SelectableDiveModel::Bulhmann, SelectableDiveModel::Usn];
 }
 
+// TODO Test
 impl std::fmt::Display for SelectableDiveModel {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
@@ -21,5 +22,16 @@ impl std::fmt::Display for SelectableDiveModel {
                 SelectableDiveModel::Usn => "USN Rev 6",
             }
         )
+    }
+}
+
+#[cfg(test)]
+mod selectable_dive_model_should {
+    use super::*;
+
+    #[test]
+    fn display_selectable_dive_models() {
+        assert_eq!("Zhl16", SelectableDiveModel::Bulhmann.to_string());
+        assert_eq!("USN Rev 6", SelectableDiveModel::Usn.to_string());
     }
 }
