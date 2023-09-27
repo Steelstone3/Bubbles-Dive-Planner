@@ -2,7 +2,6 @@ use super::cylinder::Cylinder;
 use crate::commands::selectable_cylinder::SelectableCylinder;
 use serde::{Deserialize, Serialize};
 
-// TODO encapsulate
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct SelectCylinder {
     pub is_visible: bool,
