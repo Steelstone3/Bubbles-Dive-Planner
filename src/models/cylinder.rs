@@ -121,11 +121,8 @@ mod cylinder_should {
         };
         let expected_display = "Cylinder\n\nVolume: 12 (l)\nPressure: 200 (bar)\n\nGas Mixture\n\nOxygen: 21 (%)\nNitrogen: 69 (%)\nHelium: 10 (%)\n\nCylinder Management\n\nRemaining: 1680/2400 (l)\nUsed: 720 (l)";
 
-        // When
-        let display = cylinder.display_cylinder();
-
         // Then
-        assert_eq!(expected_display, display);
+        assert_eq!(expected_display, cylinder.to_string());
     }
 
     #[test]

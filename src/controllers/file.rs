@@ -13,8 +13,8 @@ pub fn upsert_dive_planner_state(file_name: &str, dive_planner: &DivePlanner) {
 pub fn read_dive_planner_state(file_name: &str) -> DivePlanner {
     let contents = get_file_contents(file_name);
 
-    // TODO Test contents empty
     if contents.is_empty() {
+        // TODO Test contents empty
         return DivePlanner::default();
     }
 
