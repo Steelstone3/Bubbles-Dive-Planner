@@ -16,6 +16,7 @@ pub struct DiveStepView<'a> {
 }
 
 impl DiveStepView<'_> {
+    // TODO test? investigate if this is testable expected column to actual column then repeat
     pub fn build_view<'a>(dive_step: &DiveStep) -> Column<'a, Message> {
         let dive_step = DiveStepView::new(dive_step);
 
