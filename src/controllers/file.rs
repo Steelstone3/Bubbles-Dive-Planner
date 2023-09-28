@@ -14,14 +14,12 @@ pub fn read_dive_planner_state(file_name: &str) -> DivePlanner {
     let contents = get_file_contents(file_name);
 
     if contents.is_empty() {
-        // TODO Test contents empty
         return DivePlanner::default();
     }
 
     serde_json::from_str(&contents).expect("Can't parse file contents to application data")
 }
 
-// TODO test
 pub fn upsert_dive_results(file_name: &str, dive_stages: &Vec<DiveStage>) {
     let mut file = File::create(file_name).expect("Can't create file.");
 

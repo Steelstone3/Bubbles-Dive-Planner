@@ -81,12 +81,10 @@ impl DivePlanner {
         !self.redo_buffer.is_empty()
     }
 
-    // TODO test
     pub fn view_toggle_central_nervous_system_toxicity_visibility(&mut self) {
         self.cns_toxicity.toggle_visibility();
     }
 
-    // TODO test
     pub fn view_toggle_select_cylinder_visibility(&mut self) {
         self.select_cylinder.toggle_visibility();
     }
@@ -222,7 +220,9 @@ impl DivePlanner {
 
 #[cfg(test)]
 mod dive_step_view_should {
+    use rstest::rstest;
     use std::fs::{self};
+
     use crate::models::{
         cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile, dive_step::DiveStep,
         gas_management::GasManagement, gas_mixture::GasMixture,
@@ -482,6 +482,91 @@ mod dive_step_view_should {
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);
+    }
+
+    #[rstest]
+    #[case(false, true)]
+    #[case(true, false)]
+    fn toggle_select_cylinder_visibility(
+        #[case] is_visible: bool,
+        #[case] expected_is_visible: bool,
+    ) {
+        // Given
+        let select_cylinder = SelectCylinder {
+            is_visible,
+            ..Default::default()
+        };
+        let mut dive_planner = DivePlanner {
+            select_cylinder,
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.view_toggle_select_cylinder_visibility();
+
+        // Then
+        assert_eq!(expected_is_visible, dive_planner.select_cylinder.is_visible);
+    }
+
+    #[rstest]
+    #[case(false, true)]
+    #[case(true, false)]
+    fn toggle_the_central_nervous_system_toxicity_visibility(
+        #[case] is_visible: bool,
+        #[case] expected_is_visible: bool,
+    ) {
+        // Given
+        let mut cns_toxicity = CentralNervousSystemToxicity::default();
+        cns_toxicity.is_visible = is_visible;
+        let mut dive_planner = DivePlanner {
+            cns_toxicity,
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.view_toggle_central_nervous_system_toxicity_visibility();
+
+        // Then
+        assert_eq!(expected_is_visible, dive_planner.cns_toxicity.is_visible)
+    }
+
+    #[rstest]
+    #[ignore]
+    #[case(
+        DiveModel::create_zhl16_dive_model(),
+        SelectableDiveModel::Bulhmann,
+        DiveModel::create_usn_rev_6_dive_model()
+    )]
+    #[ignore]
+    #[case(
+        DiveModel::create_usn_rev_6_dive_model(),
+        SelectableDiveModel::Usn,
+        DiveModel::create_zhl16_dive_model()
+    )]
+    fn select_dive_model(
+        #[case] expected_dive_model: DiveModel,
+        #[case] selectable_dive_model: SelectableDiveModel,
+        #[case] dive_model: DiveModel,
+    ) {
+        // Given
+        let select_dive_model = SelectDiveModel {
+            dive_model_list: Default::default(),
+            selected_dive_model: Some(selectable_dive_model),
+        };
+        let mut dive_planner = DivePlanner {
+            dive_stage: DiveStage {
+                dive_model,
+                ..Default::default()
+            },
+            select_dive_model,
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.dive_model_selected(select_dive_model.selected_dive_model.unwrap());
+
+        // Then
+        assert_eq!(expected_dive_model, dive_model);
     }
 
     fn dive_stage_test_fixture() -> DiveStage {
