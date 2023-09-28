@@ -51,30 +51,30 @@ impl Sandbox for DivePlanner {
             }
             Message::DepthChanged(depth) => self.depth_changed(DiveStepView::update_depth(depth)),
             Message::TimeChanged(time) => self.time_changed(DiveStepView::update_time(time)),
-            // TODO refactor to cylinder with just cylinder volume as a parameter
+            // TODO NEXT VERSION refactor to cylinder with just cylinder volume as a parameter
             Message::CylinderVolumeChanged(cylinder_volume) => {
                 self.cylinder_changed(CylinderView::update_cylinder_volume(
                     cylinder_volume,
                     self.dive_stage.cylinder,
                 ));
             }
-            // TODO refactor to cylinder with just cylinder pressure as a parameter
+            // TODO NEXT VERSION refactor to cylinder with just cylinder pressure as a parameter
             Message::CylinderPressureChanged(cylinder_pressure) => {
                 self.cylinder_changed(CylinderView::update_cylinder_pressure(
                     cylinder_pressure,
                     self.dive_stage.cylinder,
                 ));
             }
-            // TODO refactor to gas management with just surface air consumption as a parameter
+            // TODO NEXT VERSION refactor to gas management with just surface air consumption as a parameter
             Message::SurfaceAirConsumptionChanged(surface_air_consumption) => self
                 .surface_air_consumption_changed(
                     GasManagementView::update_surface_air_consumption_rate(surface_air_consumption),
                 ),
-            // TODO refactor to gas mixture with just oxygen as a parameter
+            // TODO NEXT VERSION refactor to gas mixture with just oxygen as a parameter
             Message::OxygenChanged(oxygen) => self.gas_mixture_changed(
                 GasMixtureView::update_oxygen(oxygen, self.dive_stage.cylinder.gas_mixture.helium),
             ),
-            // TODO refactor to gas mixture with just helium as a parameter
+            // TODO NEXT VERSION refactor to gas mixture with just helium as a parameter
             Message::HeliumChanged(helium) => self.gas_mixture_changed(
                 GasMixtureView::update_helium(helium, self.dive_stage.cylinder.gas_mixture.oxygen),
             ),
