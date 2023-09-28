@@ -38,7 +38,6 @@ impl DivePlanner {
         *self = DivePlanner::default();
     }
 
-    // TODO test
     pub fn file_save(&self) {
         upsert_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME, self);
         upsert_dive_results(DIVE_PLAN, &self.dive_results.results);
@@ -223,12 +222,35 @@ impl DivePlanner {
 
 #[cfg(test)]
 mod dive_step_view_should {
+    use std::fs::{self};
     use crate::models::{
         cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile, dive_step::DiveStep,
         gas_management::GasManagement, gas_mixture::GasMixture,
     };
 
     use super::*;
+
+    #[test]
+    fn file_saves_and_loads_acceptance_test() {
+        // Given
+        let dive_planner = DivePlanner {
+            dive_stage: dive_stage_test_fixture(),
+            dive_results: DiveResults {
+                results: vec![dive_stage_test_fixture()],
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.file_save();
+
+        // Then
+        assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).is_ok());
+        assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).unwrap().len() != 0);
+        assert!(fs::metadata(DIVE_PLAN).is_ok());
+        assert!(fs::metadata(DIVE_PLAN).unwrap().len() != 0);
+    }
 
     #[test]
     fn reset_dive_planner_to_default_state() {
@@ -273,33 +295,6 @@ mod dive_step_view_should {
         assert_eq!(1, dive_planner.dive_results.results.len());
         assert_eq!(dive_stage, dive_planner.dive_results.results[0]);
         assert_eq!(0, dive_planner.redo_buffer.len());
-    }
-
-    fn dive_stage_test_fixture() -> DiveStage {
-        DiveStage {
-            dive_model: dive_model_test_fixture_old(),
-            dive_step: DiveStep {
-                depth: 50,
-                time: 10,
-            },
-            cylinder: Cylinder {
-                is_read_only: true,
-                volume: 12,
-                pressure: 200,
-                initial_pressurised_cylinder_volume: 2400,
-                gas_mixture: GasMixture {
-                    oxygen: 32,
-                    helium: 10,
-                    nitrogen: 58,
-                    maximum_operating_depth: 0.0,
-                },
-                gas_management: GasManagement {
-                    remaining: 1680,
-                    used: 720,
-                    surface_air_consumption_rate: 12,
-                },
-            },
-        }
     }
 
     #[test]
@@ -487,6 +482,33 @@ mod dive_step_view_should {
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);
+    }
+
+    fn dive_stage_test_fixture() -> DiveStage {
+        DiveStage {
+            dive_model: dive_model_test_fixture_old(),
+            dive_step: DiveStep {
+                depth: 50,
+                time: 10,
+            },
+            cylinder: Cylinder {
+                is_read_only: true,
+                volume: 12,
+                pressure: 200,
+                initial_pressurised_cylinder_volume: 2400,
+                gas_mixture: GasMixture {
+                    oxygen: 32,
+                    helium: 10,
+                    nitrogen: 58,
+                    maximum_operating_depth: 0.0,
+                },
+                gas_management: GasManagement {
+                    remaining: 1680,
+                    used: 720,
+                    surface_air_consumption_rate: 12,
+                },
+            },
+        }
     }
 
     fn dive_stage_test_fixture_old() -> DiveStage {

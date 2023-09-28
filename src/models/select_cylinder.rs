@@ -80,6 +80,7 @@ impl SelectCylinder {
             SelectableCylinder::Decompression => {
                 self.cylinders[1] = cylinder;
             }
+            // TODO test
             SelectableCylinder::Descend => {
                 self.cylinders[2] = cylinder;
             }
