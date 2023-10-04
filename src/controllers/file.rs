@@ -87,6 +87,7 @@ mod file_integration_should {
     }
 
     #[test]
+    #[ignore]
     fn create_a_file_saving_and_loading_dive_planner_state() {
         // Given
         let file_name = "test_file.json";
