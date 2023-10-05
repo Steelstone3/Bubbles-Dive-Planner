@@ -86,21 +86,21 @@ impl SelectCylinder {
         self.cylinders[2].is_read_only = true;
     }
 
-    pub fn toggle_visibility(&self) -> bool {
-        match self.is_visible {
+    pub fn toggle_visibility(&mut self) {
+        let is_visible = match self.is_visible {
             true => false,
             false => true,
-        }
+        };
+
+        self.is_visible = is_visible;
     }
 }
 
 #[cfg(test)]
 mod select_cylinder_should {
-    use rstest::rstest;
-
-    use crate::models::{gas_management::GasManagement, gas_mixture::GasMixture};
-
     use super::*;
+    use crate::models::{gas_management::GasManagement, gas_mixture::GasMixture};
+    use rstest::rstest;
 
     #[rstest]
     #[case(false, true)]
@@ -110,16 +110,16 @@ mod select_cylinder_should {
         #[case] expected_is_visible: bool,
     ) {
         // Given
-        let select_cylinder = SelectCylinder {
+        let mut select_cylinder = SelectCylinder {
             is_visible,
             ..Default::default()
         };
 
         // When
-        let is_visible = select_cylinder.toggle_visibility();
+        select_cylinder.toggle_visibility();
 
         // Then
-        assert_eq!(expected_is_visible, is_visible);
+        assert_eq!(expected_is_visible, select_cylinder.is_visible);
     }
 
     #[test]
@@ -140,12 +140,17 @@ mod select_cylinder_should {
         assert!(select_cylinder.cylinders[2].is_read_only);
     }
 
-    #[test]
-    fn assign_to_the_selected_cylinder() {
-        // Given
+    #[rstest]
+    #[case(SelectableCylinder::Bottom, 0)]
+    #[case(SelectableCylinder::Decompression, 1)]
+    #[case(SelectableCylinder::Descend, 2)]
+    fn assign_to_the_selected_cylinder(
+        #[case] selectable_cylinder: SelectableCylinder,
+        #[case] index: usize,
+    ) {
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
-            selected_cylinder: Some(SelectableCylinder::Bottom),
+            selected_cylinder: Some(selectable_cylinder),
             is_visible: true,
         };
         let cylinder = Cylinder {
@@ -170,13 +175,17 @@ mod select_cylinder_should {
         select_cylinder.assign_cylinder(cylinder);
 
         // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[0]);
-        assert_ne!(cylinder, select_cylinder.cylinders[1]);
-        assert_ne!(cylinder, select_cylinder.cylinders[2]);
+        assert_eq!(cylinder, select_cylinder.cylinders[index]);
     }
 
-    #[test]
-    fn update_cylinder_setup_parameters_on_selection_changed() {
+    #[rstest]
+    #[case(SelectableCylinder::Bottom, 0)]
+    #[case(SelectableCylinder::Decompression, 1)]
+    #[case(SelectableCylinder::Descend, 2)]
+    fn update_cylinder_setup_parameters_on_selection_changed(
+        #[case] selectable_cylinder: SelectableCylinder,
+        #[case] index: usize,
+    ) {
         // Given
         let mut cylinder = Cylinder {
             ..Default::default()
@@ -200,7 +209,7 @@ mod select_cylinder_should {
         };
         let mut select_cylinder = SelectCylinder {
             cylinders: [expected_cylinder, Default::default(), Default::default()],
-            selected_cylinder: Some(SelectableCylinder::Bottom),
+            selected_cylinder: Some(selectable_cylinder),
             is_visible: true,
         };
 
@@ -209,15 +218,18 @@ mod select_cylinder_should {
             .on_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), &mut cylinder);
 
         // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[0]);
+        assert_eq!(cylinder, select_cylinder.cylinders[index]);
     }
 
-    #[test]
-    fn update_the_selected_cylinder() {
+    #[rstest]
+    #[case(SelectableCylinder::Bottom, 0)]
+    #[case(SelectableCylinder::Decompression, 1)]
+    #[case(SelectableCylinder::Descend, 2)]
+    fn update_the_selected_cylinder(#[case] selectable_cylinder: SelectableCylinder, #[case] index: usize) {
         // Given
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
-            selected_cylinder: Some(SelectableCylinder::Bottom),
+            selected_cylinder: Some(selectable_cylinder),
             is_visible: true,
         };
         let cylinder = Cylinder {
@@ -243,6 +255,6 @@ mod select_cylinder_should {
             .update_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), cylinder);
 
         // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[0]);
+        assert_eq!(cylinder, select_cylinder.cylinders[index]);
     }
 }

@@ -1,24 +1,13 @@
 use crate::commands::messages::Message;
-use crate::controllers::file::{
-    read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results,
-};
-use crate::models::dive_profile::DiveProfile;
 use crate::view_models::dive_planner::DivePlanner;
 use crate::views::dive_results::results::ResultsView;
 use crate::views::information::dive_information::DiveInformationView;
-use crate::views::parameters::cylinder_parameters::cylinder::CylinderView;
-use crate::views::parameters::cylinder_parameters::gas_management::GasManagementView;
-use crate::views::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use crate::views::parameters::dive_stage::DiveStageView;
-use crate::views::parameters::dive_step::DiveStepView;
 use iced::widget::{column, scrollable};
 use iced::{Element, Sandbox};
 use iced_aw::Grid;
 
 use super::menu_bar::MenuBarView;
-
-const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.json";
-const DIVE_PLAN: &str = "dive_plan.json";
 
 impl Sandbox for DivePlanner {
     type Message = Message;
@@ -42,115 +31,57 @@ impl Sandbox for DivePlanner {
     fn update(&mut self, message: Message) {
         match message {
             Message::MenuBar => {}
-            Message::FileNew => self.reset(),
-            Message::FileSave => {
-                upsert_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME, self);
-                upsert_dive_results(DIVE_PLAN, &self.dive_results.results);
-            }
-            Message::FileLoad => *self = read_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME),
-            Message::EditUndo => self.undo(),
-            Message::EditRedo => self.redo(),
+            Message::FileNew => self.file_new(),
+            Message::FileSave => self.file_save(),
+            Message::FileLoad => self.file_load(),
+            Message::EditUndo => self.edit_undo(),
+            Message::EditRedo => self.edit_redo(),
             Message::ViewToggleCentralNervousSystemToxicityVisibility => {
-                self.cns_toxicity.is_visible = self.cns_toxicity.toggle_visibility();
+                self.view_toggle_central_nervous_system_toxicity_visibility();
             }
             Message::ViewToggleSelectCylinderVisibility => {
-                self.select_cylinder.is_visible = self.select_cylinder.toggle_visibility();
+                self.view_toggle_select_cylinder_visibility();
             }
-            Message::DiveModelSelected(selectable_dive_model) => self
-                .select_dive_model
-                .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model),
-            Message::DepthChanged(depth) => {
-                self.dive_stage.dive_step.depth = DiveStepView::update_depth(depth)
+            Message::DiveModelSelected(selectable_dive_model) => {
+                self.dive_model_selected(selectable_dive_model)
             }
-            Message::TimeChanged(time) => {
-                self.dive_stage.dive_step.time = DiveStepView::update_time(time)
-            }
+            Message::DepthChanged(depth) => self.dive_stage.dive_step.update_depth(depth),
+            Message::TimeChanged(time) => self.dive_stage.dive_step.update_time(time),
             Message::CylinderVolumeChanged(cylinder_volume) => {
-                self.dive_stage.cylinder =
-                    CylinderView::update_cylinder_volume(cylinder_volume, self.dive_stage.cylinder)
-            }
-            Message::CylinderPressureChanged(cylinder_pressure) => {
-                self.dive_stage.cylinder = CylinderView::update_cylinder_pressure(
-                    cylinder_pressure,
-                    self.dive_stage.cylinder,
-                )
-            }
-            Message::SurfaceAirConsumptionChanged(surface_air_consumption) => {
                 self.dive_stage
                     .cylinder
-                    .gas_management
-                    .surface_air_consumption_rate =
-                    GasManagementView::update_surface_air_consumption_rate(surface_air_consumption)
+                    .update_cylinder_volume(cylinder_volume);
             }
+            Message::CylinderPressureChanged(cylinder_pressure) => {
+                self.dive_stage
+                    .cylinder
+                    .update_cylinder_pressure(cylinder_pressure);
+            }
+            Message::SurfaceAirConsumptionChanged(surface_air_consumption) => self
+                .dive_stage
+                .cylinder
+                .gas_management
+                .update_surface_air_consumption_rate(surface_air_consumption),
             Message::OxygenChanged(oxygen) => {
-                self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_oxygen(
-                    oxygen,
-                    self.dive_stage.cylinder.gas_mixture.helium,
-                )
+                self.dive_stage.cylinder.gas_mixture.update_oxygen(oxygen)
             }
             Message::HeliumChanged(helium) => {
-                self.dive_stage.cylinder.gas_mixture = GasMixtureView::update_helium(
-                    helium,
-                    self.dive_stage.cylinder.gas_mixture.oxygen,
-                )
+                self.dive_stage.cylinder.gas_mixture.update_helium(helium)
             }
-            Message::CylinderSelected(selectable_cylinder) => self
-                .select_cylinder
-                .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder),
-            Message::UpdateCylinderSelected(selectable_cylinder) => self
-                .select_cylinder
-                .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder),
+            Message::CylinderSelected(selectable_cylinder) => {
+                self.cylinder_selected(selectable_cylinder)
+            }
+            Message::UpdateCylinderSelected(selectable_cylinder) => {
+                self.update_cylinder_selected(selectable_cylinder)
+            }
             Message::UpdateDiveProfile => {
-                // TODO Wrap this in dive_planner under view models
-                self.select_cylinder
-                    .assign_cylinder(self.dive_stage.cylinder);
-
-                self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
-                self.add_result();
-
-                // update gas_mixture
-                self.select_cylinder
-                    .assign_cylinder(self.dive_stage.cylinder);
-
-                self.select_cylinder.read_only_view();
-                self.dive_results.is_visible = true;
-
-                self.decompression_steps.dive_steps =
-                    self.dive_stage.calculate_decompression_dive_steps();
-
-                self.decompression_steps.update_visibility();
+                self.update_dive_profile();
             }
             Message::RefreshDecompression => {
-                // TODO Wrap and reuse this in dive_planner
-                self.select_cylinder
-                    .assign_cylinder(self.dive_stage.cylinder);
-
-                self.decompression_steps.dive_steps =
-                    self.dive_stage.calculate_decompression_dive_steps();
+                self.refresh_decompression();
             }
             Message::DecompressionUpdateDiveProfile => {
-                // TODO this is a repeat of the above method
-                self.select_cylinder
-                    .assign_cylinder(self.dive_stage.cylinder);
-
-                self.decompression_steps.dive_steps =
-                    self.dive_stage.calculate_decompression_dive_steps();
-
-                // TODO Refactor this into dive_planner
-                for dive_step in &self.decompression_steps.dive_steps {
-                    self.dive_stage.dive_step = *dive_step;
-
-                    self.dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
-
-                    // TODO Refactor to using dive_planner.update_results()
-                    self.dive_results.results.push(self.dive_stage);
-                    self.redo_buffer = Default::default();
-                }
-
-                self.decompression_steps.dive_steps =
-                    self.dive_stage.calculate_decompression_dive_steps();
-
-                self.decompression_steps.update_visibility();
+                self.decompression_update_dive_profile();
             }
         }
     }
