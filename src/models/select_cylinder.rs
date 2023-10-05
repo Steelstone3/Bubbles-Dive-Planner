@@ -102,11 +102,9 @@ impl SelectCylinder {
 
 #[cfg(test)]
 mod select_cylinder_should {
-    use rstest::rstest;
-
-    use crate::models::{gas_management::GasManagement, gas_mixture::GasMixture};
-
     use super::*;
+    use crate::models::{gas_management::GasManagement, gas_mixture::GasMixture};
+    use rstest::rstest;
 
     #[rstest]
     #[case(false, true)]
@@ -146,13 +144,17 @@ mod select_cylinder_should {
         assert!(select_cylinder.cylinders[2].is_read_only);
     }
 
-    //TODO make an rs test
-    #[test]
-    fn assign_to_the_selected_cylinder_bottom() {
-        // Given
+    #[rstest]
+    #[case(SelectableCylinder::Bottom, 0)]
+    #[case(SelectableCylinder::Decompression, 1)]
+    #[case(SelectableCylinder::Descend, 2)]
+    fn assign_to_the_selected_cylinder(
+        #[case] selectable_cylinder: SelectableCylinder,
+        #[case] index: usize,
+    ) {
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
-            selected_cylinder: Some(SelectableCylinder::Bottom),
+            selected_cylinder: Some(selectable_cylinder),
             is_visible: true,
         };
         let cylinder = Cylinder {
@@ -177,78 +179,17 @@ mod select_cylinder_should {
         select_cylinder.assign_cylinder(cylinder);
 
         // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[0]);
+        assert_eq!(cylinder, select_cylinder.cylinders[index]);
     }
 
-    //TODO make an rs test
-    #[test]
-    fn assign_to_the_selected_cylinder_decompression() {
-        let mut select_cylinder = SelectCylinder {
-            cylinders: Default::default(),
-            selected_cylinder: Some(SelectableCylinder::Decompression),
-            is_visible: true,
-        };
-        let cylinder = Cylinder {
-            is_read_only: true,
-            volume: 12,
-            pressure: 200,
-            initial_pressurised_cylinder_volume: 2400,
-            gas_mixture: GasMixture {
-                oxygen: 21,
-                helium: 10,
-                nitrogen: 69,
-                maximum_operating_depth: 56.67,
-            },
-            gas_management: GasManagement {
-                remaining: 1680,
-                used: 720,
-                surface_air_consumption_rate: 12,
-            },
-        };
-
-        // When
-        select_cylinder.assign_cylinder(cylinder);
-
-        // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[1]);
-    }
-
-    //TODO make an rs test
-    #[test]
-    fn assign_to_the_selected_cylinder_descend() {
-        let mut select_cylinder = SelectCylinder {
-            cylinders: Default::default(),
-            selected_cylinder: Some(SelectableCylinder::Descend),
-            is_visible: true,
-        };
-        let cylinder = Cylinder {
-            is_read_only: true,
-            volume: 12,
-            pressure: 200,
-            initial_pressurised_cylinder_volume: 2400,
-            gas_mixture: GasMixture {
-                oxygen: 21,
-                helium: 10,
-                nitrogen: 69,
-                maximum_operating_depth: 56.67,
-            },
-            gas_management: GasManagement {
-                remaining: 1680,
-                used: 720,
-                surface_air_consumption_rate: 12,
-            },
-        };
-
-        // When
-        select_cylinder.assign_cylinder(cylinder);
-
-        // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[2]);
-    }
-
-    // TODO Make an rstest
-    #[test]
-    fn update_cylinder_setup_parameters_on_selection_changed_bottom() {
+    #[rstest]
+    #[case(SelectableCylinder::Bottom, 0)]
+    #[case(SelectableCylinder::Decompression, 1)]
+    #[case(SelectableCylinder::Descend, 2)]
+    fn update_cylinder_setup_parameters_on_selection_changed(
+        #[case] selectable_cylinder: SelectableCylinder,
+        #[case] index: usize,
+    ) {
         // Given
         let mut cylinder = Cylinder {
             ..Default::default()
@@ -272,7 +213,7 @@ mod select_cylinder_should {
         };
         let mut select_cylinder = SelectCylinder {
             cylinders: [expected_cylinder, Default::default(), Default::default()],
-            selected_cylinder: Some(SelectableCylinder::Bottom),
+            selected_cylinder: Some(selectable_cylinder),
             is_visible: true,
         };
 
@@ -281,83 +222,7 @@ mod select_cylinder_should {
             .on_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), &mut cylinder);
 
         // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[0]);
-    }
-
-    // TODO Make an rstest
-    #[test]
-    fn update_cylinder_setup_parameters_on_selection_changed_decompression() {
-        // Given
-        let mut cylinder = Cylinder {
-            ..Default::default()
-        };
-        let expected_cylinder = Cylinder {
-            is_read_only: true,
-            volume: 12,
-            pressure: 200,
-            initial_pressurised_cylinder_volume: 2400,
-            gas_mixture: GasMixture {
-                oxygen: 21,
-                helium: 10,
-                nitrogen: 69,
-                maximum_operating_depth: 56.67,
-            },
-            gas_management: GasManagement {
-                remaining: 1680,
-                used: 720,
-                surface_air_consumption_rate: 12,
-            },
-        };
-        let mut select_cylinder = SelectCylinder {
-            cylinders: [expected_cylinder, Default::default(), Default::default()],
-            selected_cylinder: Some(SelectableCylinder::Decompression),
-            is_visible: true,
-        };
-
-        // When
-        select_cylinder
-            .on_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), &mut cylinder);
-
-        // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[1]);
-    }
-
-    // TODO Make an rstest
-    #[test]
-    fn update_cylinder_setup_parameters_on_selection_changed_descend() {
-        // Given
-        let mut cylinder = Cylinder {
-            ..Default::default()
-        };
-        let expected_cylinder = Cylinder {
-            is_read_only: true,
-            volume: 12,
-            pressure: 200,
-            initial_pressurised_cylinder_volume: 2400,
-            gas_mixture: GasMixture {
-                oxygen: 21,
-                helium: 10,
-                nitrogen: 69,
-                maximum_operating_depth: 56.67,
-            },
-            gas_management: GasManagement {
-                remaining: 1680,
-                used: 720,
-                surface_air_consumption_rate: 12,
-            },
-        };
-        let mut select_cylinder = SelectCylinder {
-            cylinders: [expected_cylinder, Default::default(), Default::default()],
-            selected_cylinder: Some(SelectableCylinder::Descend),
-            is_visible: true,
-        };
-
-        // When
-        select_cylinder
-            .on_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), &mut cylinder);
-
-        // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[2]);
+        assert_eq!(cylinder, select_cylinder.cylinders[index]);
     }
 
     #[test]
