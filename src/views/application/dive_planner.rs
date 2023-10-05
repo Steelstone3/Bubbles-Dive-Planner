@@ -2,7 +2,6 @@ use crate::commands::messages::Message;
 use crate::view_models::dive_planner::DivePlanner;
 use crate::views::dive_results::results::ResultsView;
 use crate::views::information::dive_information::DiveInformationView;
-use crate::views::parameters::cylinder_parameters::cylinder::CylinderView;
 use crate::views::parameters::cylinder_parameters::gas_management::GasManagementView;
 use crate::views::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use crate::views::parameters::dive_stage::DiveStageView;
@@ -51,19 +50,15 @@ impl Sandbox for DivePlanner {
             }
             Message::DepthChanged(depth) => self.depth_changed(DiveStepView::update_depth(depth)),
             Message::TimeChanged(time) => self.time_changed(DiveStepView::update_time(time)),
-            // TODO NEXT VERSION refactor to cylinder with just cylinder volume as a parameter
             Message::CylinderVolumeChanged(cylinder_volume) => {
-                self.cylinder_changed(CylinderView::update_cylinder_volume(
-                    cylinder_volume,
-                    self.dive_stage.cylinder,
-                ));
+                self.dive_stage
+                    .cylinder
+                    .update_cylinder_volume(cylinder_volume);
             }
-            // TODO NEXT VERSION refactor to cylinder with just cylinder pressure as a parameter
             Message::CylinderPressureChanged(cylinder_pressure) => {
-                self.cylinder_changed(CylinderView::update_cylinder_pressure(
-                    cylinder_pressure,
-                    self.dive_stage.cylinder,
-                ));
+                self.dive_stage
+                    .cylinder
+                    .update_cylinder_pressure(cylinder_pressure);
             }
             // TODO NEXT VERSION refactor to gas management with just surface air consumption as a parameter
             Message::SurfaceAirConsumptionChanged(surface_air_consumption) => self

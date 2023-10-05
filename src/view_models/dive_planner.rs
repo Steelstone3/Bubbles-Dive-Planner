@@ -4,7 +4,7 @@ use crate::{
     },
     controllers::file::{read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results},
     models::{
-        central_nervous_system_toxicity::CentralNervousSystemToxicity, cylinder::Cylinder,
+        central_nervous_system_toxicity::CentralNervousSystemToxicity,
         decompression_steps::DecompressionSteps, dive_profile::DiveProfile, dive_stage::DiveStage,
         gas_mixture::GasMixture, results::DiveResults, select_cylinder::SelectCylinder,
         select_dive_model::SelectDiveModel,
@@ -103,11 +103,6 @@ impl DivePlanner {
     // TODO test
     pub fn time_changed(&mut self, time: u32) {
         self.dive_stage.dive_step.time = time;
-    }
-
-    // TODO test
-    pub fn cylinder_changed(&mut self, cylinder: Cylinder) {
-        self.dive_stage.cylinder = cylinder;
     }
 
     // TODO test
