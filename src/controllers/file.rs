@@ -33,7 +33,6 @@ pub fn upsert_dive_results(file_name: &str, dive_stages: &Vec<DiveStage>) {
 fn get_file_contents(file_name: &str) -> String {
     let mut contents = String::new();
 
-    // TODO Test
     if let Ok(mut file) = File::open(file_name) {
         file.read_to_string(&mut contents).expect("Can't read file");
     }
