@@ -32,12 +32,10 @@ impl SelectCylinder {
                 self.selected_cylinder = Some(selectable_cylinder);
                 self.cylinders[0] = cylinder;
             }
-            // TODO test
             SelectableCylinder::Decompression => {
                 self.selected_cylinder = Some(selectable_cylinder);
                 self.cylinders[1] = cylinder;
             }
-            // TODO test
             SelectableCylinder::Descend => {
                 self.selected_cylinder = Some(selectable_cylinder);
                 self.cylinders[2] = cylinder;
@@ -57,12 +55,10 @@ impl SelectCylinder {
                 self.selected_cylinder = Some(selectable_cylinder);
                 *cylinder = self.cylinders[0]
             }
-            // TODO test
             SelectableCylinder::Decompression => {
                 self.selected_cylinder = Some(selectable_cylinder);
                 *cylinder = self.cylinders[1]
             }
-            // TODO test
             SelectableCylinder::Descend => {
                 self.selected_cylinder = Some(selectable_cylinder);
                 *cylinder = self.cylinders[2]
@@ -225,12 +221,15 @@ mod select_cylinder_should {
         assert_eq!(cylinder, select_cylinder.cylinders[index]);
     }
 
-    #[test]
-    fn update_the_selected_cylinder() {
+    #[rstest]
+    #[case(SelectableCylinder::Bottom, 0)]
+    #[case(SelectableCylinder::Decompression, 1)]
+    #[case(SelectableCylinder::Descend, 2)]
+    fn update_the_selected_cylinder(#[case] selectable_cylinder: SelectableCylinder, #[case] index: usize) {
         // Given
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
-            selected_cylinder: Some(SelectableCylinder::Bottom),
+            selected_cylinder: Some(selectable_cylinder),
             is_visible: true,
         };
         let cylinder = Cylinder {
@@ -256,6 +255,6 @@ mod select_cylinder_should {
             .update_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), cylinder);
 
         // Then
-        assert_eq!(cylinder, select_cylinder.cylinders[0]);
+        assert_eq!(cylinder, select_cylinder.cylinders[index]);
     }
 }
