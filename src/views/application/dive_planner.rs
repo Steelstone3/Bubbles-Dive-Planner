@@ -4,7 +4,6 @@ use crate::views::dive_results::results::ResultsView;
 use crate::views::information::dive_information::DiveInformationView;
 use crate::views::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use crate::views::parameters::dive_stage::DiveStageView;
-use crate::views::parameters::dive_step::DiveStepView;
 use iced::widget::{column, scrollable};
 use iced::{Element, Sandbox};
 use iced_aw::Grid;
@@ -47,10 +46,8 @@ impl Sandbox for DivePlanner {
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_model_selected(selectable_dive_model)
             }
-            // TODO NEXT VERSION refactor to depth with just depth as a parameter
-            Message::DepthChanged(depth) => self.depth_changed(DiveStepView::update_depth(depth)),
-            // TODO NEXT VERSION refactor to time with just time as a parameter
-            Message::TimeChanged(time) => self.time_changed(DiveStepView::update_time(time)),
+            Message::DepthChanged(depth) => self.dive_stage.dive_step.update_depth(depth),
+            Message::TimeChanged(time) => self.dive_stage.dive_step.update_time(time),
             Message::CylinderVolumeChanged(cylinder_volume) => {
                 self.dive_stage
                     .cylinder

@@ -96,16 +96,6 @@ impl DivePlanner {
     }
 
     // TODO test
-    pub fn depth_changed(&mut self, depth: u32) {
-        self.dive_stage.dive_step.depth = depth;
-    }
-
-    // TODO test
-    pub fn time_changed(&mut self, time: u32) {
-        self.dive_stage.dive_step.time = time;
-    }
-
-    // TODO test
     pub fn gas_mixture_changed(&mut self, gas_mixture: GasMixture) {
         self.dive_stage.cylinder.gas_mixture = gas_mixture;
     }
