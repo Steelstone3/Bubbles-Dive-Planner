@@ -33,6 +33,7 @@ pub fn upsert_dive_results(file_name: &str, dive_stages: &Vec<DiveStage>) {
 fn get_file_contents(file_name: &str) -> String {
     let mut contents = String::new();
 
+    // TODO Test
     if let Ok(mut file) = File::open(file_name) {
         file.read_to_string(&mut contents).expect("Can't read file");
     }
@@ -48,7 +49,7 @@ mod file_integration_should {
     #[test]
     fn save_dive_results_file() {
         // Given
-        let dive_plan = "test_file.json";
+        let dive_plan = "test_file_1.json";
         let results = vec![DiveStage::default()];
 
         // When
@@ -62,7 +63,7 @@ mod file_integration_should {
     #[test]
     fn save_dive_planner_state_file() {
         // Given
-        let dive_planner_state_file_name = "test_file.json";
+        let dive_planner_state_file_name = "test_file_2.json";
         let dive_planner = DivePlanner::default();
 
         // When
@@ -87,10 +88,9 @@ mod file_integration_should {
     }
 
     #[test]
-    #[ignore]
     fn create_a_file_saving_and_loading_dive_planner_state() {
         // Given
-        let file_name = "test_file.json";
+        let file_name = "test_file_3.json";
         let expected_dive_planner = DivePlanner::default();
 
         // When
