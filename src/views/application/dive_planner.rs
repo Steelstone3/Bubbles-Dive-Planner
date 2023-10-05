@@ -1,4 +1,5 @@
 use crate::commands::messages::Message;
+use crate::models::gas_mixture::GasMixture;
 use crate::view_models::dive_planner::DivePlanner;
 use crate::views::dive_results::results::ResultsView;
 use crate::views::information::dive_information::DiveInformationView;
@@ -63,14 +64,14 @@ impl Sandbox for DivePlanner {
                 .cylinder
                 .gas_management
                 .update_surface_air_consumption_rate(surface_air_consumption),
-            // TODO NEXT VERSION refactor to gas mixture with just oxygen as a parameter
-            Message::OxygenChanged(oxygen) => self.gas_mixture_changed(
-                GasMixtureView::update_oxygen(oxygen, self.dive_stage.cylinder.gas_mixture.helium),
-            ),
+            Message::OxygenChanged(oxygen) => {
+                self.dive_stage.cylinder.gas_mixture.update_oxygen(oxygen)
+            }
             // TODO NEXT VERSION refactor to gas mixture with just helium as a parameter
-            Message::HeliumChanged(helium) => self.gas_mixture_changed(
-                GasMixtureView::update_helium(helium, self.dive_stage.cylinder.gas_mixture.oxygen),
-            ),
+            Message::HeliumChanged(helium) => self.gas_mixture_changed(GasMixture::update_helium(
+                helium,
+                self.dive_stage.cylinder.gas_mixture.oxygen,
+            )),
             Message::CylinderSelected(selectable_cylinder) => {
                 self.cylinder_selected(selectable_cylinder)
             }

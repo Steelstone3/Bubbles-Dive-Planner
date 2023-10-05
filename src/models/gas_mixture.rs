@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 
+use crate::views::application::input_parser::parse_input_u32;
+
 pub const MAXIMUM_OXYGEN_VALUE: u32 = 100;
 pub const MINIMUM_OXYGEN_VALUE: u32 = 5;
 pub const MAXIMUM_HELIUM_VALUE: u32 = 100;
@@ -26,6 +28,34 @@ impl Default for GasMixture {
 }
 
 impl GasMixture {
+    pub fn update_oxygen(&mut self, oxygen: String) {
+        let oxygen_input = parse_input_u32(
+            oxygen,
+            MINIMUM_OXYGEN_VALUE,
+            MAXIMUM_OXYGEN_VALUE - self.helium,
+        );
+
+        self.oxygen = oxygen_input;
+
+        self.update_nitrogen();
+        self.calculate_maximum_operating_depth();
+    }
+
+    pub fn update_helium(helium: String, oxygen: u32) -> GasMixture {
+        let helium_input =
+            parse_input_u32(helium, MINIMUM_HELIUM_VALUE, MAXIMUM_HELIUM_VALUE - oxygen);
+
+        let mut gas_mixture = GasMixture {
+            helium: helium_input,
+            oxygen,
+            ..Default::default()
+        };
+
+        gas_mixture.update_nitrogen();
+
+        gas_mixture
+    }
+
     pub fn update_nitrogen(&mut self) {
         self.nitrogen = DEFAULT_NITROGEN_VALUE - self.oxygen - self.helium
     }
@@ -64,6 +94,124 @@ impl GasMixture {
 mod gas_mixture_should {
     use super::*;
     use rstest::rstest;
+
+    #[test]
+    fn update_oxygen_by_parsing_and_validating_input_successfully() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 21,
+            helium: 0,
+            nitrogen: 79,
+            maximum_operating_depth: 56.66667,
+        };
+        let input = "21".to_string();
+        let mut gas_mixture = GasMixture {
+            ..Default::default()
+        };
+
+        // When
+        gas_mixture.update_oxygen(input);
+
+        // Then
+        assert_eq!(expected, gas_mixture);
+    }
+
+    #[test]
+    fn update_oxygen_by_parsing_an_input_beyond_range() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 90,
+            helium: 10,
+            nitrogen: 0,
+            maximum_operating_depth: 5.5555553,
+        };
+        let input = "101".to_string();
+        let mut gas_mixture = GasMixture {
+            helium: 10,
+            ..Default::default()
+        };
+
+        // When
+        let validated_gas_mixture = gas_mixture.update_oxygen(input);
+
+        // Then
+        assert_eq!(expected, gas_mixture);
+    }
+
+    #[test]
+    fn update_oxygen_by_being_unable_to_parse_input() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 5,
+            helium: 0,
+            nitrogen: 95,
+            maximum_operating_depth: 270.0,
+        };
+        let input = "101£%^asda".to_string();
+        let mut gas_mixture = GasMixture {
+            ..Default::default()
+        };
+
+        // When
+        gas_mixture.update_oxygen(input);
+
+        // Then
+        assert_eq!(expected, gas_mixture);
+    }
+
+    #[test]
+    fn update_helium_by_parsing_and_validating_input_successfully() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 0,
+            helium: 21,
+            nitrogen: 79,
+            maximum_operating_depth: 0.0,
+        };
+        let input = "21".to_string();
+
+        // When
+        let validated_gas_mixture = GasMixture::update_helium(input, 0);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
+
+    #[test]
+    fn update_helium_by_parsing_an_input_beyond_range() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 10,
+            helium: 90,
+            nitrogen: 0,
+            maximum_operating_depth: 0.0,
+        };
+        let input = "101".to_string();
+
+        // When
+        let validated_gas_mixture = GasMixture::update_helium(input, 10);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
+
+    #[test]
+    fn update_helium_by_being_unable_to_parse_input() {
+        // Given
+        let expected = GasMixture {
+            oxygen: 0,
+            helium: 0,
+            nitrogen: 100,
+            maximum_operating_depth: 0.0,
+        };
+        let input = "101£%^&sdfd".to_string();
+
+        // When
+        let validated_gas_mixture = GasMixture::update_helium(input, 0);
+
+        // Then
+        assert_eq!(expected, validated_gas_mixture);
+    }
 
     #[test]
     fn display_read_only_maximum_operating_depth() {
