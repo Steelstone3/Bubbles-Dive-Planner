@@ -41,19 +41,16 @@ impl GasMixture {
         self.calculate_maximum_operating_depth();
     }
 
-    pub fn update_helium(helium: String, oxygen: u32) -> GasMixture {
-        let helium_input =
-            parse_input_u32(helium, MINIMUM_HELIUM_VALUE, MAXIMUM_HELIUM_VALUE - oxygen);
+    pub fn update_helium(&mut self, helium: String) {
+        let helium_input = parse_input_u32(
+            helium,
+            MINIMUM_HELIUM_VALUE,
+            MAXIMUM_HELIUM_VALUE - self.oxygen,
+        );
 
-        let mut gas_mixture = GasMixture {
-            helium: helium_input,
-            oxygen,
-            ..Default::default()
-        };
+        self.helium = helium_input;
 
-        gas_mixture.update_nitrogen();
-
-        gas_mixture
+        self.update_nitrogen();
     }
 
     pub fn update_nitrogen(&mut self) {
@@ -132,7 +129,7 @@ mod gas_mixture_should {
         };
 
         // When
-        let validated_gas_mixture = gas_mixture.update_oxygen(input);
+        gas_mixture.update_oxygen(input);
 
         // Then
         assert_eq!(expected, gas_mixture);
@@ -169,12 +166,15 @@ mod gas_mixture_should {
             maximum_operating_depth: 0.0,
         };
         let input = "21".to_string();
+        let mut gas_mixture = GasMixture {
+            ..Default::default()
+        };
 
         // When
-        let validated_gas_mixture = GasMixture::update_helium(input, 0);
+        gas_mixture.update_helium(input);
 
         // Then
-        assert_eq!(expected, validated_gas_mixture);
+        assert_eq!(expected, gas_mixture);
     }
 
     #[test]
@@ -187,12 +187,16 @@ mod gas_mixture_should {
             maximum_operating_depth: 0.0,
         };
         let input = "101".to_string();
+        let mut gas_mixture = GasMixture {
+            oxygen: 10,
+            ..Default::default()
+        };
 
         // When
-        let validated_gas_mixture = GasMixture::update_helium(input, 10);
+        gas_mixture.update_helium(input);
 
         // Then
-        assert_eq!(expected, validated_gas_mixture);
+        assert_eq!(expected, gas_mixture);
     }
 
     #[test]
@@ -205,12 +209,15 @@ mod gas_mixture_should {
             maximum_operating_depth: 0.0,
         };
         let input = "101£%^&sdfd".to_string();
+        let mut gas_mixture = GasMixture {
+            ..Default::default()
+        };
 
         // When
-        let validated_gas_mixture = GasMixture::update_helium(input, 0);
+        gas_mixture.update_helium(input);
 
         // Then
-        assert_eq!(expected, validated_gas_mixture);
+        assert_eq!(expected, gas_mixture);
     }
 
     #[test]

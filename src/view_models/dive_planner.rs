@@ -6,8 +6,7 @@ use crate::{
     models::{
         central_nervous_system_toxicity::CentralNervousSystemToxicity,
         decompression_steps::DecompressionSteps, dive_profile::DiveProfile, dive_stage::DiveStage,
-        gas_mixture::GasMixture, results::DiveResults, select_cylinder::SelectCylinder,
-        select_dive_model::SelectDiveModel,
+        results::DiveResults, select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
     },
 };
 use iced::Sandbox;
@@ -93,11 +92,6 @@ impl DivePlanner {
     pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
         self.select_dive_model
             .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
-    }
-
-    // TODO test
-    pub fn gas_mixture_changed(&mut self, gas_mixture: GasMixture) {
-        self.dive_stage.cylinder.gas_mixture = gas_mixture;
     }
 
     // TODO test

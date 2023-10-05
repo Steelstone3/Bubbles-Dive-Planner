@@ -1,9 +1,7 @@
 use crate::commands::messages::Message;
-use crate::models::gas_mixture::GasMixture;
 use crate::view_models::dive_planner::DivePlanner;
 use crate::views::dive_results::results::ResultsView;
 use crate::views::information::dive_information::DiveInformationView;
-use crate::views::parameters::cylinder_parameters::gas_mixture::GasMixtureView;
 use crate::views::parameters::dive_stage::DiveStageView;
 use iced::widget::{column, scrollable};
 use iced::{Element, Sandbox};
@@ -67,11 +65,9 @@ impl Sandbox for DivePlanner {
             Message::OxygenChanged(oxygen) => {
                 self.dive_stage.cylinder.gas_mixture.update_oxygen(oxygen)
             }
-            // TODO NEXT VERSION refactor to gas mixture with just helium as a parameter
-            Message::HeliumChanged(helium) => self.gas_mixture_changed(GasMixture::update_helium(
-                helium,
-                self.dive_stage.cylinder.gas_mixture.oxygen,
-            )),
+            Message::HeliumChanged(helium) => {
+                self.dive_stage.cylinder.gas_mixture.update_helium(helium)
+            }
             Message::CylinderSelected(selectable_cylinder) => {
                 self.cylinder_selected(selectable_cylinder)
             }
