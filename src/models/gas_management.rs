@@ -1,3 +1,5 @@
+use crate::views::application::input_parser::parse_input_u32;
+
 use super::dive_step::DiveStep;
 use serde::{Deserialize, Serialize};
 
@@ -12,6 +14,16 @@ pub struct GasManagement {
 }
 
 impl GasManagement {
+    pub fn update_surface_air_consumption_rate(&mut self, surface_air_consumption_rate: String) {
+        let surface_air_consumption_rate = parse_input_u32(
+            surface_air_consumption_rate,
+            MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE,
+            MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE,
+        );
+
+        self.surface_air_consumption_rate = surface_air_consumption_rate;
+    }
+
     pub fn update_gas_management(&mut self, dive_step: DiveStep) {
         self.calculate_gas_used(dive_step);
         self.calculate_gas_remaining();
@@ -47,6 +59,54 @@ impl GasManagement {
 mod gas_management_should {
     use super::*;
     use rstest::rstest;
+
+    #[test]
+    fn update_surface_air_consumption_rate_by_parsing_and_validating_input_successfully() {
+        // Given
+        let expected = 12;
+        let input = "12".to_string();
+        let mut gas_management = GasManagement {
+            ..Default::default()
+        };
+
+        // When
+        gas_management.update_surface_air_consumption_rate(input);
+
+        // Then
+        assert_eq!(expected, gas_management.surface_air_consumption_rate);
+    }
+
+    #[test]
+    fn update_surface_air_consumption_rate_by_parsing_an_input_beyond_range() {
+        // Given
+        let expected = 30;
+        let input = "31".to_string();
+        let mut gas_management = GasManagement {
+            ..Default::default()
+        };
+
+        // When
+        gas_management.update_surface_air_consumption_rate(input);
+
+        // Then
+        assert_eq!(expected, gas_management.surface_air_consumption_rate);
+    }
+
+    #[test]
+    fn update_surface_air_consumption_rate_by_being_unable_to_parse_input() {
+        // Given
+        let expected = 3;
+        let input = "$%45sdg".to_string();
+        let mut gas_management = GasManagement {
+            ..Default::default()
+        };
+
+        // When
+        gas_management.update_surface_air_consumption_rate(input);
+
+        // Then
+        assert_eq!(expected, gas_management.surface_air_consumption_rate);
+    }
 
     #[test]
     fn calculate_the_remaining_gas() {

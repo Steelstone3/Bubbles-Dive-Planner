@@ -8,7 +8,7 @@ use crate::{
 
 use super::decompression_step::DecompressionStepView;
 
-// TODO refresh button isn't ideal should find a way to do it on cylinder change that doesn't cause regressions
+// TODO NEXT VERSION refresh button isn't ideal should find a way to do it on cylinder change that doesn't cause regressions
 pub struct DecompressionStepsView<'a> {
     decompression_steps_title_text: Text<'a>,
     decompression_steps_text: Column<'a, Message>,

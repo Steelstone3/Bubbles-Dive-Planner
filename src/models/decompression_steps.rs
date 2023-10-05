@@ -11,6 +11,10 @@ impl DecompressionSteps {
     pub fn update_visibility(&mut self) {
         self.is_visible = !self.dive_steps.is_empty();
     }
+
+    pub fn assign_decompression_steps(&mut self, decompression_dive_steps: Vec<DiveStep>) {
+        self.dive_steps = decompression_dive_steps
+    }
 }
 
 #[cfg(test)]
@@ -48,5 +52,29 @@ mod decompression_steps_should {
 
         // Then
         assert!(!decompression_steps.is_visible);
+    }
+
+    #[test]
+    fn assign_decompression_steps() {
+        // Given
+        let mut decompression_steps = DecompressionSteps {
+            is_visible: true,
+            dive_steps: vec![],
+        };
+
+        // When
+        decompression_steps.assign_decompression_steps(vec![DiveStep {
+            depth: 50,
+            time: 10,
+        }]);
+
+        // Then
+        assert_eq!(
+            vec![DiveStep {
+                depth: 50,
+                time: 10,
+            }],
+            decompression_steps.dive_steps
+        );
     }
 }

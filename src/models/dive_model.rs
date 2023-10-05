@@ -55,7 +55,7 @@ impl DiveModel {
         }
     }
 
-    pub fn create_usn_rev_6_model() -> DiveModel {
+    pub fn create_usn_rev_6_dive_model() -> DiveModel {
         let number_of_compartments = 9;
 
         DiveModel {
@@ -112,7 +112,7 @@ mod dive_model_should {
         let expected_usn_rev_6_model = usn_rev_6_dive_model_test_fixture();
 
         // When
-        let usn_rev_6_model = DiveModel::create_usn_rev_6_model();
+        let usn_rev_6_model = DiveModel::create_usn_rev_6_dive_model();
 
         // Then
         assert_eq!(expected_usn_rev_6_model, usn_rev_6_model);

@@ -28,22 +28,25 @@ impl SelectDiveModel {
 
         match selectable_dive_model {
             SelectableDiveModel::Bulhmann => *dive_model = DiveModel::create_zhl16_dive_model(),
-            SelectableDiveModel::Usn => *dive_model = DiveModel::create_usn_rev_6_model(),
+            SelectableDiveModel::Usn => *dive_model = DiveModel::create_usn_rev_6_dive_model(),
         }
     }
 }
 
 #[cfg(test)]
 mod select_dive_model_should {
+    use rstest::rstest;
     use super::*;
 
-    #[test]
-    fn select_a_dive_model() {
+    #[rstest]
+    #[case(DiveModel::create_zhl16_dive_model(), SelectableDiveModel::Bulhmann, DiveModel::create_usn_rev_6_dive_model())]
+    #[case(DiveModel::create_usn_rev_6_dive_model(), SelectableDiveModel::Usn, DiveModel::create_zhl16_dive_model())]
+    fn select_dive_model( #[case] expected_dive_model: DiveModel, #[case] selectable_dive_model: SelectableDiveModel ,#[case] dive_model: DiveModel) {
         // Given
-        let mut dive_model = DiveModel::create_zhl16_dive_model();
+        let mut dive_model = dive_model;
         let mut select_dive_model = SelectDiveModel {
             dive_model_list: Default::default(),
-            selected_dive_model: Some(SelectableDiveModel::Usn),
+            selected_dive_model: Some(selectable_dive_model),
         };
 
         // When
@@ -53,6 +56,6 @@ mod select_dive_model_should {
         );
 
         // Then
-        assert_eq!(DiveModel::create_usn_rev_6_model(), dive_model);
+        assert_eq!(expected_dive_model, dive_model);
     }
 }
