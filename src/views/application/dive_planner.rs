@@ -47,7 +47,9 @@ impl Sandbox for DivePlanner {
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_model_selected(selectable_dive_model)
             }
+            // TODO NEXT VERSION refactor to depth with just depth as a parameter
             Message::DepthChanged(depth) => self.depth_changed(DiveStepView::update_depth(depth)),
+            // TODO NEXT VERSION refactor to time with just time as a parameter
             Message::TimeChanged(time) => self.time_changed(DiveStepView::update_time(time)),
             Message::CylinderVolumeChanged(cylinder_volume) => {
                 self.dive_stage
