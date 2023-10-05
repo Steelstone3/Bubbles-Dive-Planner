@@ -11,7 +11,6 @@ impl SelectableDiveModel {
         [SelectableDiveModel::Bulhmann, SelectableDiveModel::Usn];
 }
 
-// TODO Test
 impl std::fmt::Display for SelectableDiveModel {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
