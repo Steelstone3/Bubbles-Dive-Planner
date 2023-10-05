@@ -106,14 +106,6 @@ impl DivePlanner {
     }
 
     // TODO test
-    pub fn surface_air_consumption_changed(&mut self, surface_air_consumption_rate: u32) {
-        self.dive_stage
-            .cylinder
-            .gas_management
-            .surface_air_consumption_rate = surface_air_consumption_rate;
-    }
-
-    // TODO test
     pub fn gas_mixture_changed(&mut self, gas_mixture: GasMixture) {
         self.dive_stage.cylinder.gas_mixture = gas_mixture;
     }
