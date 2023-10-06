@@ -85,7 +85,6 @@ impl DivePlanner {
         self.select_cylinder.toggle_visibility();
     }
 
-    // TODO test
     pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
         self.select_dive_model
             .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
@@ -546,13 +545,11 @@ mod dive_step_view_should {
     }
 
     #[rstest]
-    #[ignore]
     #[case(
         DiveModel::create_zhl16_dive_model(),
         SelectableDiveModel::Bulhmann,
         DiveModel::create_usn_rev_6_dive_model()
     )]
-    #[ignore]
     #[case(
         DiveModel::create_usn_rev_6_dive_model(),
         SelectableDiveModel::Usn,
@@ -581,7 +578,7 @@ mod dive_step_view_should {
         dive_planner.dive_model_selected(select_dive_model.selected_dive_model.unwrap());
 
         // Then
-        assert_eq!(expected_dive_model, dive_model);
+        assert_eq!(expected_dive_model, dive_planner.dive_stage.dive_model);
     }
 
     fn dive_stage_test_fixture() -> DiveStage {
