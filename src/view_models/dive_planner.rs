@@ -179,15 +179,13 @@ impl DivePlanner {
 
 #[cfg(test)]
 mod dive_step_view_should {
-    use rstest::rstest;
-    use std::fs::{self};
-
+    use super::*;
     use crate::models::{
         cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile, dive_step::DiveStep,
         gas_management::GasManagement, gas_mixture::GasMixture,
     };
-
-    use super::*;
+    use rstest::rstest;
+    use std::fs::{self};
 
     #[test]
     #[ignore]
