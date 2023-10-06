@@ -100,7 +100,13 @@ impl DivePlanner {
             .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
     }
 
-    // TODO test
+    pub fn refresh_decompression(&mut self) {
+        self.assign_selected_cylinder();
+
+        self.assign_decompression_steps();
+    }
+
+    // TODO test ↓
     pub fn update_dive_profile(&mut self) {
         self.assign_selected_cylinder();
 
@@ -115,12 +121,6 @@ impl DivePlanner {
         self.update_visibility();
     }
 
-    pub fn refresh_decompression(&mut self) {
-        self.assign_selected_cylinder();
-
-        self.assign_decompression_steps();
-    }
-
     // TODO test
     pub fn decompression_update_dive_profile(&mut self) {
         self.refresh_decompression();
@@ -132,6 +132,7 @@ impl DivePlanner {
         self.update_decompression_steps_visibility();
     }
 
+    // TODO test in public method
     fn run_decompression_steps(&mut self) {
         for dive_step in &self.decompression_steps.dive_steps {
             self.dive_stage.dive_step = *dive_step;
@@ -146,29 +147,35 @@ impl DivePlanner {
         self.redo_buffer = Default::default();
     }
 
+    // TODO test in public method
     fn update_decompression_steps_visibility(&mut self) {
         self.decompression_steps.update_visibility();
     }
 
+    // TODO test in public method
     fn assign_decompression_steps(&mut self) {
         self.decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
     }
 
+    // TODO test in public method
     fn assign_selected_cylinder(&mut self) {
         self.select_cylinder
             .assign_cylinder(self.dive_stage.cylinder);
     }
 
+    // TODO test in public method
     fn assign_dive_stage(&mut self, dive_stage: DiveStage) {
         self.dive_stage = dive_stage
     }
 
+    // TODO test in public method
     fn add_result(&mut self) {
         self.dive_results.results.push(self.dive_stage);
         self.redo_buffer = Default::default();
     }
 
+    // TODO test in public method
     fn update_visibility(&mut self) {
         self.select_cylinder.read_only_view();
         self.dive_results.is_visible = true;
