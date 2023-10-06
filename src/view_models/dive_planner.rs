@@ -73,7 +73,6 @@ impl DivePlanner {
         !self.dive_results.results.is_empty()
     }
 
-    // TODO test
     pub fn is_redoable(&self) -> bool {
         !self.redo_buffer.is_empty()
     }
@@ -219,30 +218,25 @@ mod dive_step_view_should {
         assert_eq!(expected_is_undoable, is_undoable)
     }
 
-    #[test]
-    fn file_saves_acceptance_test() {
+    #[rstest]
+    #[case(vec![dive_stage_test_fixture()], true)]
+    #[case(vec![], false)]
+    fn is_redoable(#[case] redo_buffer: Vec<DiveStage>, #[case] expected_is_redoable: bool) {
         // Given
         let dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture(),
-            dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture()],
-                ..Default::default()
-            },
+           redo_buffer,
             ..Default::default()
         };
 
         // When
-        dive_planner.file_save();
+        let is_redoable =  dive_planner.is_redoable();
 
         // Then
-        assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).is_ok());
-        assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).unwrap().len() != 0);
-        assert!(fs::metadata(DIVE_PLAN).is_ok());
-        assert!(fs::metadata(DIVE_PLAN).unwrap().len() != 0);
+        assert_eq!(expected_is_redoable, is_redoable)
     }
-    
+
     #[test]
-    fn file_loads_acceptance_test() {
+    fn file_saves_and_loads_acceptance_test() {
         // Given
         let expected_dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture(),
@@ -268,6 +262,8 @@ mod dive_step_view_should {
         // Then
         assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).is_ok());
         assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).unwrap().len() != 0);
+        assert!(fs::metadata(DIVE_PLAN).is_ok());
+        assert!(fs::metadata(DIVE_PLAN).unwrap().len() != 0);
         assert_eq!(expected_dive_planner, dive_planner);
     }
 
