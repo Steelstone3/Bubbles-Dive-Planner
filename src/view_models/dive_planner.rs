@@ -189,6 +189,18 @@ mod dive_step_view_should {
 
     use super::*;
 
+    #[test]
+    #[ignore]
+    fn update_dive_profile() {}
+
+    #[test]
+    #[ignore]
+    fn refresh_decompression() {}
+
+    #[test]
+    #[ignore]
+    fn decompression_update_dive_profile() {}
+
     #[rstest]
     #[case(SelectableCylinder::Bottom, 0)]
     #[case(SelectableCylinder::Decompression, 1)]
@@ -230,8 +242,7 @@ mod dive_step_view_should {
         };
 
         // When
-        dive_planner
-            .update_cylinder_selected(selectable_cylinder);
+        dive_planner.update_cylinder_selected(selectable_cylinder);
 
         // Then
         assert_eq!(cylinder, dive_planner.select_cylinder.cylinders[index]);
