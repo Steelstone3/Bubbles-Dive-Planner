@@ -106,7 +106,7 @@ impl DivePlanner {
         self.assign_decompression_steps();
     }
 
-    // TODO test ↓
+    // TODO test ↓ (from here)
     pub fn update_dive_profile(&mut self) {
         self.assign_selected_cylinder();
 
