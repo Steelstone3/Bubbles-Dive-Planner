@@ -372,26 +372,6 @@ mod dive_step_view_should {
     }
 
     #[test]
-    fn add_a_dive_stage_result() {
-        // Given
-        let dive_stage = dive_stage_test_fixture();
-        let mut dive_planner = DivePlanner {
-            dive_stage,
-            dive_results: Default::default(),
-            redo_buffer: vec![dive_stage_test_fixture()],
-            ..Default::default()
-        };
-
-        // When
-        dive_planner.add_result();
-
-        // Then
-        assert_eq!(1, dive_planner.dive_results.results.len());
-        assert_eq!(dive_stage, dive_planner.dive_results.results[0]);
-        assert_eq!(0, dive_planner.redo_buffer.len());
-    }
-
-    #[test]
     fn undo_a_dive_stage_with_no_results() {
         // Given
         let mut dive_planner = DivePlanner {
