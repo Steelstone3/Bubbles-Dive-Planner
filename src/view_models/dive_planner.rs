@@ -115,7 +115,6 @@ impl DivePlanner {
         self.update_visibility();
     }
 
-    // TODO test
     pub fn refresh_decompression(&mut self) {
         self.assign_selected_cylinder();
 
@@ -192,8 +191,47 @@ mod dive_step_view_should {
     fn update_dive_profile() {}
 
     #[test]
-    #[ignore]
-    fn refresh_decompression() {}
+    fn refresh_decompression() {
+        // Given
+        let cylinder = dive_stage_test_fixture().cylinder;
+        let selectable_cylinder = SelectableCylinder::Bottom;
+        let expected_dive_planner = DivePlanner {
+            select_cylinder: SelectCylinder {
+                selected_cylinder: Some(selectable_cylinder),
+                cylinders: [cylinder, Default::default(), Default::default()],
+                ..Default::default()
+            },
+            dive_stage: dive_stage_real_test_fixture(),
+            decompression_steps: DecompressionSteps {
+                is_visible: false,
+                dive_steps: vec![
+                    DiveStep { depth: 6, time: 1 },
+                    DiveStep { depth: 3, time: 3 },
+                ],
+            },
+            ..Default::default()
+        };
+        let mut dive_planner = DivePlanner {
+            select_cylinder: SelectCylinder {
+                selected_cylinder: Some(selectable_cylinder),
+                cylinders: [Default::default(), Default::default(), Default::default()],
+                ..Default::default()
+            },
+            dive_stage: dive_stage_real_test_fixture(),
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.refresh_decompression();
+
+        // Then
+        assert_eq!(expected_dive_planner, dive_planner);
+        // pub fn refresh_decompression(&mut self) {
+        //     self.assign_selected_cylinder();
+
+        //     self.assign_decompression_steps();
+        // }
+    }
 
     #[test]
     #[ignore]
@@ -648,6 +686,77 @@ mod dive_step_view_should {
 
         // Then
         assert_eq!(expected_dive_model, dive_planner.dive_stage.dive_model);
+    }
+
+    fn dive_stage_real_test_fixture() -> DiveStage {
+        let mut dive_model = DiveModel::create_zhl16_dive_model();
+        dive_model.dive_profile = dive_profile_real_test_fixture();
+
+        DiveStage {
+            dive_model,
+            dive_step: DiveStep {
+                depth: 50,
+                time: 10,
+            },
+            cylinder: Cylinder {
+                is_read_only: true,
+                volume: 12,
+                pressure: 200,
+                initial_pressurised_cylinder_volume: 2400,
+                gas_mixture: GasMixture {
+                    oxygen: 32,
+                    helium: 10,
+                    nitrogen: 58,
+                    maximum_operating_depth: 0.0,
+                },
+                gas_management: GasManagement {
+                    remaining: 1680,
+                    used: 720,
+                    surface_air_consumption_rate: 12,
+                },
+            },
+        }
+    }
+
+    fn dive_profile_real_test_fixture() -> DiveProfile {
+        DiveProfile {
+            number_of_compartments: 16,
+            maximum_surface_pressures: [
+                3.350, 2.630, 2.33, 2.10, 1.95, 1.79, 1.68, 1.60, 1.54, 1.48, 1.44, 1.400, 1.35,
+                1.33, 1.300, 1.28,
+            ],
+            compartment_loads: [
+                124.0, 124.0, 115.0, 105.0, 94.0, 88.0, 81.0, 75.0, 71.0, 69.0, 67.0, 67.0, 67.0,
+                66.0, 66.0, 66.0,
+            ],
+            nitrogen_tissue_pressures: [
+                3.500, 2.700, 2.200, 1.8, 1.5, 1.3, 1.2, 1.1, 1.0, 0.9, 0.9, 0.9, 0.9, 0.8, 0.8,
+                0.8,
+            ],
+            helium_tissue_pressures: [
+                0.594, 0.540, 0.462, 0.377, 0.296, 0.228, 0.172, 0.127, 0.093, 0.071, 0.056, 0.044,
+                0.035, 0.028, 0.022, 0.017,
+            ],
+            total_tissue_pressures: [
+                4.140, 3.270, 2.68, 2.21, 1.84, 1.57, 1.36, 1.21, 1.09, 1.02, 0.97, 0.93, 0.90,
+                0.88, 0.86, 0.84,
+            ],
+            tolerated_ambient_pressures: [
+                1.390, 1.410, 1.25, 1.09, 0.91, 0.82, 0.72, 0.65, 0.59, 0.57, 0.57, 0.56, 0.57,
+                0.57, 0.57, 0.58,
+            ],
+            a_values: [
+                1.3, 1.1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.5, 0.4, 0.4, 0.4, 0.3, 0.3, 0.3, 0.3, 0.2,
+            ],
+            b_values: [
+                0.493, 0.637, 0.708, 0.769, 0.800, 0.84, 0.859, 0.89, 0.910, 0.920, 0.93, 0.94,
+                0.95, 0.95, 0.96, 0.96,
+            ],
+            oxygen_at_pressure: 1.26,
+            helium_at_pressure: 0.600,
+            nitrogen_at_pressure: 4.14,
+            dive_ceiling: 4.1,
+        }
     }
 
     fn dive_stage_test_fixture() -> DiveStage {
