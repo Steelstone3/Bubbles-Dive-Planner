@@ -69,7 +69,6 @@ impl DivePlanner {
         }
     }
 
-    // TODO test
     pub fn is_undoable(&self) -> bool {
         !self.dive_results.results.is_empty()
     }
@@ -199,6 +198,26 @@ mod dive_step_view_should {
     };
 
     use super::*;
+
+    #[rstest]
+    #[case(vec![dive_stage_test_fixture()], true)]
+    #[case(vec![], false)]
+    fn is_undoable(#[case] results: Vec<DiveStage>, #[case] expected_is_undoable: bool) {
+        // Given
+        let dive_planner = DivePlanner {
+            dive_results: DiveResults {
+                results,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // When
+        let is_undoable =  dive_planner.is_undoable();
+
+        // Then
+        assert_eq!(expected_is_undoable, is_undoable)
+    }
 
     #[test]
     fn file_saves_acceptance_test() {
