@@ -90,7 +90,6 @@ impl DivePlanner {
             .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
     }
 
-    // TODO test
     pub fn cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
         self.select_cylinder
             .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
@@ -198,6 +197,48 @@ mod dive_step_view_should {
     use super::*;
 
     #[rstest]
+    #[case(SelectableCylinder::Bottom)]
+    #[case(SelectableCylinder::Decompression)]
+    #[case(SelectableCylinder::Descend)]
+    fn select_a_cylinder(
+        #[case] selectable_cylinder: SelectableCylinder,
+    ) {
+        // Given
+        let expected_cylinder = Cylinder {
+            is_read_only: true,
+            volume: 12,
+            pressure: 200,
+            initial_pressurised_cylinder_volume: 2400,
+            gas_mixture: GasMixture {
+                oxygen: 21,
+                helium: 10,
+                nitrogen: 69,
+                maximum_operating_depth: 56.67,
+            },
+            gas_management: GasManagement {
+                remaining: 1680,
+                used: 720,
+                surface_air_consumption_rate: 12,
+            },
+        };
+        let select_cylinder = SelectCylinder {
+            cylinders: [expected_cylinder, expected_cylinder, expected_cylinder],
+            selected_cylinder: Some(selectable_cylinder),
+            is_visible: true,
+        };
+        let mut dive_planner = DivePlanner {
+            select_cylinder,
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.cylinder_selected(selectable_cylinder);
+        
+        // Then
+        assert_eq!(expected_cylinder, dive_planner.dive_stage.cylinder);
+    }
+
+    #[rstest]
     #[case(vec![dive_stage_test_fixture()], true)]
     #[case(vec![], false)]
     fn is_undoable(#[case] results: Vec<DiveStage>, #[case] expected_is_undoable: bool) {
@@ -211,7 +252,7 @@ mod dive_step_view_should {
         };
 
         // When
-        let is_undoable =  dive_planner.is_undoable();
+        let is_undoable = dive_planner.is_undoable();
 
         // Then
         assert_eq!(expected_is_undoable, is_undoable)
@@ -223,12 +264,12 @@ mod dive_step_view_should {
     fn is_redoable(#[case] redo_buffer: Vec<DiveStage>, #[case] expected_is_redoable: bool) {
         // Given
         let dive_planner = DivePlanner {
-           redo_buffer,
+            redo_buffer,
             ..Default::default()
         };
 
         // When
-        let is_redoable =  dive_planner.is_redoable();
+        let is_redoable = dive_planner.is_redoable();
 
         // Then
         assert_eq!(expected_is_redoable, is_redoable)
