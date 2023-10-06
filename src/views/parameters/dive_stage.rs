@@ -5,8 +5,9 @@ use crate::{
 use iced::widget::{column, Column};
 
 use super::{
-    cylinder_parameters::cylinder::CylinderView, dive_step::DiveStepView,
-    select_cylinder::SelectCylinderView, select_dive_model::SelectDiveModelView, dive_profile::DiveProfileView,
+    cylinder_parameters::cylinder::CylinderView, dive_profile::DiveProfileView,
+    dive_step::DiveStepView, select_cylinder::SelectCylinderView,
+    select_dive_model::SelectDiveModelView,
 };
 
 pub struct DiveStageView<'a> {
@@ -52,8 +53,8 @@ impl DiveStageView<'_> {
             ),
             cylinder_read_only: CylinderReadOnlyView::build_view(&dive_planner.dive_stage.cylinder),
             update_dive_profile: DiveProfileView::build_view(&dive_planner.dive_stage)
-            .padding(10.0)
-            .spacing(10.0),
+                .padding(10.0)
+                .spacing(10.0),
         }
     }
 }

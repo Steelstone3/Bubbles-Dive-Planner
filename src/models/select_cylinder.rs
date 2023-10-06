@@ -224,7 +224,10 @@ mod select_cylinder_should {
     #[case(SelectableCylinder::Bottom, 0)]
     #[case(SelectableCylinder::Decompression, 1)]
     #[case(SelectableCylinder::Descend, 2)]
-    fn update_the_selected_cylinder(#[case] selectable_cylinder: SelectableCylinder, #[case] index: usize) {
+    fn update_the_selected_cylinder(
+        #[case] selectable_cylinder: SelectableCylinder,
+        #[case] index: usize,
+    ) {
         // Given
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
@@ -250,8 +253,7 @@ mod select_cylinder_should {
         };
 
         // When
-        select_cylinder
-            .update_cylinder_selected(selectable_cylinder, cylinder);
+        select_cylinder.update_cylinder_selected(selectable_cylinder, cylinder);
 
         // Then
         assert_eq!(cylinder, select_cylinder.cylinders[index]);

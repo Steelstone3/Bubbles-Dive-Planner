@@ -1,7 +1,4 @@
-use crate::{
-    commands::messages::Message,
-    models::dive_step::DiveStep,
-};
+use crate::{commands::messages::Message, models::dive_step::DiveStep};
 use iced::widget::{column, text, text_input, Column, Text, TextInput};
 
 pub struct DiveStepView<'a> {
