@@ -15,8 +15,8 @@ impl CylinderReadOnlyView<'_> {
             .spacing(10.0)
     }
 
-    fn new(cylinder: &Cylinder) -> Self {
-        Self {
+    fn new<'a>(cylinder: &Cylinder) ->  CylinderReadOnlyView<'a> {
+        CylinderReadOnlyView {
             cylinder_read_only_text: Card::new("Cylinder", text(cylinder)),
         }
     }
