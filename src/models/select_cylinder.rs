@@ -251,7 +251,7 @@ mod select_cylinder_should {
 
         // When
         select_cylinder
-            .update_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), cylinder);
+            .update_cylinder_selected(selectable_cylinder, cylinder);
 
         // Then
         assert_eq!(cylinder, select_cylinder.cylinders[index]);
