@@ -42,7 +42,6 @@ impl DivePlanner {
         upsert_dive_results(DIVE_PLAN, &self.dive_results.results);
     }
 
-    // TODO test
     pub fn file_load(&mut self) {
         *self = read_dive_planner_state(DIVE_PLANNER_STATE_FILE_NAME)
     }
@@ -202,7 +201,7 @@ mod dive_step_view_should {
     use super::*;
 
     #[test]
-    fn file_saves_and_loads_acceptance_test() {
+    fn file_saves_acceptance_test() {
         // Given
         let dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture(),
@@ -221,6 +220,36 @@ mod dive_step_view_should {
         assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).unwrap().len() != 0);
         assert!(fs::metadata(DIVE_PLAN).is_ok());
         assert!(fs::metadata(DIVE_PLAN).unwrap().len() != 0);
+    }
+    
+    #[test]
+    fn file_loads_acceptance_test() {
+        // Given
+        let expected_dive_planner = DivePlanner {
+            dive_stage: dive_stage_test_fixture(),
+            dive_results: DiveResults {
+                results: vec![dive_stage_test_fixture()],
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+        let mut dive_planner = DivePlanner {
+            dive_stage: dive_stage_test_fixture(),
+            dive_results: DiveResults {
+                results: vec![dive_stage_test_fixture()],
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.file_save();
+        dive_planner.file_load();
+
+        // Then
+        assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).is_ok());
+        assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).unwrap().len() != 0);
+        assert_eq!(expected_dive_planner, dive_planner);
     }
 
     #[test]
