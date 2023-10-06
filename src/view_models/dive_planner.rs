@@ -201,7 +201,7 @@ mod dive_step_view_should {
                 cylinders: [cylinder, Default::default(), Default::default()],
                 ..Default::default()
             },
-            dive_stage: dive_stage_real_test_fixture(),
+            dive_stage: dive_stage_test_fixture(),
             decompression_steps: DecompressionSteps {
                 is_visible: false,
                 dive_steps: vec![
@@ -217,7 +217,7 @@ mod dive_step_view_should {
                 cylinders: [Default::default(), Default::default(), Default::default()],
                 ..Default::default()
             },
-            dive_stage: dive_stage_real_test_fixture(),
+            dive_stage: dive_stage_test_fixture(),
             ..Default::default()
         };
 
@@ -226,11 +226,6 @@ mod dive_step_view_should {
 
         // Then
         assert_eq!(expected_dive_planner, dive_planner);
-        // pub fn refresh_decompression(&mut self) {
-        //     self.assign_selected_cylinder();
-
-        //     self.assign_decompression_steps();
-        // }
     }
 
     #[test]
@@ -715,9 +710,9 @@ mod dive_step_view_should {
         assert_eq!(expected_dive_model, dive_planner.dive_stage.dive_model);
     }
 
-    fn dive_stage_real_test_fixture() -> DiveStage {
+    fn dive_stage_test_fixture() -> DiveStage {
         let mut dive_model = DiveModel::create_zhl16_dive_model();
-        dive_model.dive_profile = dive_profile_real_test_fixture();
+        dive_model.dive_profile = dive_profile_test_fixture();
 
         DiveStage {
             dive_model,
@@ -745,7 +740,7 @@ mod dive_step_view_should {
         }
     }
 
-    fn dive_profile_real_test_fixture() -> DiveProfile {
+    fn dive_profile_test_fixture() -> DiveProfile {
         DiveProfile {
             number_of_compartments: 16,
             maximum_surface_pressures: [
@@ -783,38 +778,6 @@ mod dive_step_view_should {
             helium_at_pressure: 0.600,
             nitrogen_at_pressure: 4.14,
             dive_ceiling: 4.1,
-        }
-    }
-
-    // TODO remove?
-    fn dive_stage_test_fixture() -> DiveStage {
-        let default_array_latest = [
-            4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0,
-        ];
-
-        DiveStage {
-            dive_model: dive_model_test_fixture_default(default_array_latest),
-            dive_step: DiveStep {
-                depth: 50,
-                time: 10,
-            },
-            cylinder: Cylinder {
-                is_read_only: true,
-                volume: 12,
-                pressure: 200,
-                initial_pressurised_cylinder_volume: 2400,
-                gas_mixture: GasMixture {
-                    oxygen: 32,
-                    helium: 10,
-                    nitrogen: 58,
-                    maximum_operating_depth: 0.0,
-                },
-                gas_management: GasManagement {
-                    remaining: 1680,
-                    used: 720,
-                    surface_air_consumption_rate: 12,
-                },
-            },
         }
     }
 
