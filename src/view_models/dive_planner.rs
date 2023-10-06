@@ -133,7 +133,6 @@ impl DivePlanner {
         self.update_decompression_steps_visibility();
     }
 
-    // TODO test
     fn run_decompression_steps(&mut self) {
         for dive_step in &self.decompression_steps.dive_steps {
             self.dive_stage.dive_step = *dive_step;
@@ -148,24 +147,20 @@ impl DivePlanner {
         self.redo_buffer = Default::default();
     }
 
-    // TODO test
     fn update_decompression_steps_visibility(&mut self) {
         self.decompression_steps.update_visibility();
     }
 
-    // TODO test
     fn assign_decompression_steps(&mut self) {
         self.decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
     }
 
-    // TODO test
     fn assign_selected_cylinder(&mut self) {
         self.select_cylinder
             .assign_cylinder(self.dive_stage.cylinder);
     }
 
-    // TODO test
     fn assign_dive_stage(&mut self, dive_stage: DiveStage) {
         self.dive_stage = dive_stage
     }
@@ -175,7 +170,6 @@ impl DivePlanner {
         self.redo_buffer = Default::default();
     }
 
-    // TODO test
     fn update_visibility(&mut self) {
         self.select_cylinder.read_only_view();
         self.dive_results.is_visible = true;
