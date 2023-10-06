@@ -450,10 +450,13 @@ mod dive_step_view_should {
     #[test]
     fn undo_a_dive_stage_with_one_result() {
         // Given
+        let default_array_old = [
+            2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,
+        ];
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_old(),
+            dive_stage: dive_stage_test_fixture_default(default_array_old),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture_old()],
+                results: vec![dive_stage_test_fixture_default(default_array_old)],
                 ..Default::default()
             },
             redo_buffer: vec![],
@@ -465,7 +468,7 @@ mod dive_step_view_should {
                 results: vec![],
                 ..Default::default()
             },
-            redo_buffer: vec![dive_stage_test_fixture_old()],
+            redo_buffer: vec![dive_stage_test_fixture_default(default_array_old)],
             ..Default::default()
         };
 
@@ -479,12 +482,18 @@ mod dive_step_view_should {
     #[test]
     fn undo_a_dive_stage_with_multiple_results() {
         // Given
+        let default_array_old = [
+            2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,
+        ];
+        let default_array_latest = [
+            4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0,
+        ];
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_latest(),
+            dive_stage: dive_stage_test_fixture_default(default_array_latest),
             dive_results: DiveResults {
                 results: vec![
-                    dive_stage_test_fixture_old(),
-                    dive_stage_test_fixture_latest(),
+                    dive_stage_test_fixture_default(default_array_old),
+                    dive_stage_test_fixture_default(default_array_latest),
                 ],
                 ..Default::default()
             },
@@ -492,12 +501,12 @@ mod dive_step_view_should {
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_old(),
+            dive_stage: dive_stage_test_fixture_default(default_array_old),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture_old()],
+                results: vec![dive_stage_test_fixture_default(default_array_old)],
                 ..Default::default()
             },
-            redo_buffer: vec![dive_stage_test_fixture_latest()],
+            redo_buffer: vec![dive_stage_test_fixture_default(default_array_latest)],
             ..Default::default()
         };
 
@@ -511,23 +520,29 @@ mod dive_step_view_should {
     #[test]
     fn redo_when_buffer_is_empty() {
         // Given
+        let default_array_old = [
+            2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,
+        ];
+        let default_array_latest = [
+            4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0,
+        ];
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_latest(),
+            dive_stage: dive_stage_test_fixture_default(default_array_latest),
             dive_results: DiveResults {
                 results: vec![
-                    dive_stage_test_fixture_old(),
-                    dive_stage_test_fixture_latest(),
+                    dive_stage_test_fixture_default(default_array_old),
+                    dive_stage_test_fixture_default(default_array_latest),
                 ],
                 ..Default::default()
             },
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_latest(),
+            dive_stage: dive_stage_test_fixture_default(default_array_latest),
             dive_results: DiveResults {
                 results: vec![
-                    dive_stage_test_fixture_old(),
-                    dive_stage_test_fixture_latest(),
+                    dive_stage_test_fixture_default(default_array_old),
+                    dive_stage_test_fixture_default(default_array_latest),
                 ],
                 ..Default::default()
             },
@@ -544,21 +559,27 @@ mod dive_step_view_should {
     #[test]
     fn redo_dive_stage() {
         // Given
+        let default_array_old = [
+            2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,
+        ];
+        let default_array_latest = [
+            4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0,
+        ];
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_old(),
+            dive_stage: dive_stage_test_fixture_default(default_array_old),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture_old()],
+                results: vec![dive_stage_test_fixture_default(default_array_old)],
                 ..Default::default()
             },
-            redo_buffer: vec![dive_stage_test_fixture_latest()],
+            redo_buffer: vec![dive_stage_test_fixture_default(default_array_latest)],
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_latest(),
+            dive_stage: dive_stage_test_fixture_default(default_array_latest),
             dive_results: DiveResults {
                 results: vec![
-                    dive_stage_test_fixture_old(),
-                    dive_stage_test_fixture_latest(),
+                    dive_stage_test_fixture_default(default_array_old),
+                    dive_stage_test_fixture_default(default_array_latest),
                 ],
                 ..Default::default()
             },
@@ -575,26 +596,32 @@ mod dive_step_view_should {
     #[test]
     fn redo_multiple_dive_stages() {
         // Given
+        let default_array_old = [
+            2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,
+        ];
+        let default_array_latest = [
+            4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0,
+        ];
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_old(),
+            dive_stage: dive_stage_test_fixture_default(default_array_old),
             dive_results: DiveResults {
                 results: vec![],
                 ..Default::default()
             },
             redo_buffer: vec![
-                dive_stage_test_fixture_old(),
-                dive_stage_test_fixture_latest(),
+                dive_stage_test_fixture_default(default_array_old),
+                dive_stage_test_fixture_default(default_array_latest),
             ],
 
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_latest(),
+            dive_stage: dive_stage_test_fixture_default(default_array_latest),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture_latest()],
+                results: vec![dive_stage_test_fixture_default(default_array_latest)],
                 ..Default::default()
             },
-            redo_buffer: vec![dive_stage_test_fixture_old()],
+            redo_buffer: vec![dive_stage_test_fixture_default(default_array_old)],
             ..Default::default()
         };
 
@@ -759,124 +786,66 @@ mod dive_step_view_should {
         }
     }
 
+    // TODO remove?
     fn dive_stage_test_fixture() -> DiveStage {
-        DiveStage {
-            dive_model: dive_model_test_fixture_old(),
-            dive_step: DiveStep {
-                depth: 50,
-                time: 10,
-            },
-            cylinder: Cylinder {
-                is_read_only: true,
-                volume: 12,
-                pressure: 200,
-                initial_pressurised_cylinder_volume: 2400,
-                gas_mixture: GasMixture {
-                    oxygen: 32,
-                    helium: 10,
-                    nitrogen: 58,
-                    maximum_operating_depth: 0.0,
-                },
-                gas_management: GasManagement {
-                    remaining: 1680,
-                    used: 720,
-                    surface_air_consumption_rate: 12,
-                },
-            },
-        }
-    }
-
-    fn dive_stage_test_fixture_old() -> DiveStage {
-        DiveStage {
-            dive_model: dive_model_test_fixture_old(),
-            dive_step: DiveStep {
-                depth: 50,
-                time: 10,
-            },
-            cylinder: Cylinder {
-                is_read_only: true,
-                volume: 12,
-                pressure: 200,
-                initial_pressurised_cylinder_volume: 2400,
-                gas_mixture: GasMixture {
-                    oxygen: 32,
-                    helium: 10,
-                    nitrogen: 58,
-                    maximum_operating_depth: 0.0,
-                },
-                gas_management: GasManagement {
-                    remaining: 1680,
-                    used: 720,
-                    surface_air_consumption_rate: 12,
-                },
-            },
-        }
-    }
-
-    fn dive_stage_test_fixture_latest() -> DiveStage {
-        DiveStage {
-            dive_model: dive_model_test_fixture_latest(),
-            dive_step: DiveStep {
-                depth: 100,
-                time: 15,
-            },
-            cylinder: Cylinder {
-                is_read_only: true,
-                volume: 12,
-                pressure: 200,
-                initial_pressurised_cylinder_volume: 2400,
-                gas_mixture: GasMixture {
-                    oxygen: 32,
-                    helium: 10,
-                    nitrogen: 58,
-                    maximum_operating_depth: 0.0,
-                },
-                gas_management: GasManagement {
-                    remaining: 980,
-                    used: 600,
-                    surface_air_consumption_rate: 12,
-                },
-            },
-        }
-    }
-
-    fn dive_model_test_fixture_old() -> DiveModel {
-        let default_array = [
-            2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,
-        ];
-
-        DiveModel {
-            number_of_compartments: 2,
-            nitrogen_half_times: default_array,
-            helium_half_times: default_array,
-            a_values_nitrogen: default_array,
-            b_values_nitrogen: default_array,
-            a_values_helium: default_array,
-            b_values_helium: default_array,
-            dive_profile: DiveProfile {
-                number_of_compartments: 16,
-                maximum_surface_pressures: default_array,
-                compartment_loads: default_array,
-                nitrogen_tissue_pressures: default_array,
-                helium_tissue_pressures: default_array,
-                total_tissue_pressures: default_array,
-                tolerated_ambient_pressures: default_array,
-                a_values: default_array,
-                b_values: default_array,
-                oxygen_at_pressure: 2.34,
-                helium_at_pressure: 2.56,
-                nitrogen_at_pressure: 2.12,
-                dive_ceiling: 0.0,
-            },
-            is_read_only: Default::default(),
-        }
-    }
-
-    fn dive_model_test_fixture_latest() -> DiveModel {
-        let default_array = [
+        let default_array_latest = [
             4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0,
         ];
 
+        DiveStage {
+            dive_model: dive_model_test_fixture_default(default_array_latest),
+            dive_step: DiveStep {
+                depth: 50,
+                time: 10,
+            },
+            cylinder: Cylinder {
+                is_read_only: true,
+                volume: 12,
+                pressure: 200,
+                initial_pressurised_cylinder_volume: 2400,
+                gas_mixture: GasMixture {
+                    oxygen: 32,
+                    helium: 10,
+                    nitrogen: 58,
+                    maximum_operating_depth: 0.0,
+                },
+                gas_management: GasManagement {
+                    remaining: 1680,
+                    used: 720,
+                    surface_air_consumption_rate: 12,
+                },
+            },
+        }
+    }
+
+    fn dive_stage_test_fixture_default(default_array: [f32; 16]) -> DiveStage {
+        DiveStage {
+            dive_model: dive_model_test_fixture_default(default_array),
+            dive_step: DiveStep {
+                depth: 50,
+                time: 10,
+            },
+            cylinder: Cylinder {
+                is_read_only: true,
+                volume: 12,
+                pressure: 200,
+                initial_pressurised_cylinder_volume: 2400,
+                gas_mixture: GasMixture {
+                    oxygen: 32,
+                    helium: 10,
+                    nitrogen: 58,
+                    maximum_operating_depth: 0.0,
+                },
+                gas_management: GasManagement {
+                    remaining: 1680,
+                    used: 720,
+                    surface_air_consumption_rate: 12,
+                },
+            },
+        }
+    }
+
+    fn dive_model_test_fixture_default(default_array: [f32; 16]) -> DiveModel {
         DiveModel {
             number_of_compartments: 2,
             nitrogen_half_times: default_array,
