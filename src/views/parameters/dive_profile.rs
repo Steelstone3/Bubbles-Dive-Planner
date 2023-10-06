@@ -14,8 +14,8 @@ impl DiveProfileView<'_> {
         column![dive_profile.update_dive_profile]
     }
 
-    fn new<'a>(dive_stage: &DiveStage) -> DiveProfileView<'a> {
-        DiveProfileView {
+    fn new(dive_stage: &DiveStage) -> Self {
+        Self {
             update_dive_profile: DiveProfileView::is_update_dive_profile_button_enabled(dive_stage),
         }
     }
