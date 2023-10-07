@@ -39,8 +39,8 @@ impl SelectCylinderView<'_> {
         }
     }
 
-    fn new<'a>(select_cylinder: &SelectCylinder) -> SelectCylinderView<'a> {
-        SelectCylinderView {
+    fn new(select_cylinder: &SelectCylinder) -> Self {
+        Self {
             update_cylinder: button("Update Cylinder").width(Length::Fill).on_press(
                 Message::UpdateCylinderSelected(select_cylinder.selected_cylinder.unwrap()),
             ),

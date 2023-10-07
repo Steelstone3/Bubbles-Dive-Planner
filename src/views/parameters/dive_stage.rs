@@ -2,11 +2,12 @@ use crate::{
     commands::messages::Message, view_models::dive_planner::DivePlanner,
     views::information::cylinder_read_only::CylinderReadOnlyView,
 };
-use iced::widget::{button, column, Button, Column};
+use iced::widget::{column, Column};
 
 use super::{
-    cylinder_parameters::cylinder::CylinderView, dive_step::DiveStepView,
-    select_cylinder::SelectCylinderView, select_dive_model::SelectDiveModelView,
+    cylinder_parameters::cylinder::CylinderView, dive_profile::DiveProfileView,
+    dive_step::DiveStepView, select_cylinder::SelectCylinderView,
+    select_dive_model::SelectDiveModelView,
 };
 
 pub struct DiveStageView<'a> {
@@ -51,22 +52,9 @@ impl DiveStageView<'_> {
                 &dive_planner.select_cylinder,
             ),
             cylinder_read_only: CylinderReadOnlyView::build_view(&dive_planner.dive_stage.cylinder),
-            // TODO NEXT VERSION refactor into a view
-            update_dive_profile: column![DiveStageView::is_update_dive_profile_button_enabled(
-                dive_planner
-            )]
-            .padding(10.0)
-            .spacing(10.0),
+            update_dive_profile: DiveProfileView::build_view(&dive_planner.dive_stage)
+                .padding(10.0)
+                .spacing(10.0),
         }
-    }
-
-    fn is_update_dive_profile_button_enabled<'a>(
-        dive_planner: &DivePlanner,
-    ) -> Button<'a, Message> {
-        if !dive_planner.dive_stage.validate() {
-            return button("Invalid Parameters");
-        }
-
-        button("Update Dive Profile").on_press(Message::UpdateDiveProfile)
     }
 }

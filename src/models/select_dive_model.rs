@@ -35,13 +35,25 @@ impl SelectDiveModel {
 
 #[cfg(test)]
 mod select_dive_model_should {
-    use rstest::rstest;
     use super::*;
+    use rstest::rstest;
 
     #[rstest]
-    #[case(DiveModel::create_zhl16_dive_model(), SelectableDiveModel::Bulhmann, DiveModel::create_usn_rev_6_dive_model())]
-    #[case(DiveModel::create_usn_rev_6_dive_model(), SelectableDiveModel::Usn, DiveModel::create_zhl16_dive_model())]
-    fn select_dive_model( #[case] expected_dive_model: DiveModel, #[case] selectable_dive_model: SelectableDiveModel ,#[case] dive_model: DiveModel) {
+    #[case(
+        DiveModel::create_zhl16_dive_model(),
+        SelectableDiveModel::Bulhmann,
+        DiveModel::create_usn_rev_6_dive_model()
+    )]
+    #[case(
+        DiveModel::create_usn_rev_6_dive_model(),
+        SelectableDiveModel::Usn,
+        DiveModel::create_zhl16_dive_model()
+    )]
+    fn select_dive_model(
+        #[case] expected_dive_model: DiveModel,
+        #[case] selectable_dive_model: SelectableDiveModel,
+        #[case] dive_model: DiveModel,
+    ) {
         // Given
         let mut dive_model = dive_model;
         let mut select_dive_model = SelectDiveModel {
