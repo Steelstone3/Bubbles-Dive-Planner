@@ -36,7 +36,10 @@ mod selectable_cylinder_should {
     #[test]
     fn display_selectable_cylinders() {
         assert_eq!("Bottom", SelectableCylinder::Bottom.to_string());
-        assert_eq!("Decompression", SelectableCylinder::Decompression.to_string());
+        assert_eq!(
+            "Decompression",
+            SelectableCylinder::Decompression.to_string()
+        );
         assert_eq!("Descend", SelectableCylinder::Descend.to_string());
     }
 }

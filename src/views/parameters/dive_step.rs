@@ -1,7 +1,4 @@
-use crate::{
-    commands::messages::Message,
-    models::dive_step::DiveStep,
-};
+use crate::{commands::messages::Message, models::dive_step::DiveStep};
 use iced::widget::{column, text, text_input, Column, Text, TextInput};
 
 pub struct DiveStepView<'a> {
@@ -27,8 +24,8 @@ impl DiveStepView<'_> {
         .padding(10.0)
     }
 
-    fn new<'a>(dive_step: &DiveStep) -> DiveStepView<'a> {
-        DiveStepView {
+    fn new(dive_step: &DiveStep) -> Self {
+        Self {
             dive_step_text: text("Dive Step"),
             depth_text: text("Depth (m)"),
             depth_input: text_input("Enter Depth", &dive_step.depth.to_string())

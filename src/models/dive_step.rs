@@ -95,7 +95,7 @@ mod dive_step_should {
         };
 
         // When
-         dive_step.update_depth(input);
+        dive_step.update_depth(input);
 
         // Then
         assert_eq!(expected, dive_step.depth);
@@ -111,7 +111,7 @@ mod dive_step_should {
         };
 
         // When
-         dive_step.update_time(input);
+        dive_step.update_time(input);
 
         // Then
         assert_eq!(expected, dive_step.time);
@@ -127,7 +127,7 @@ mod dive_step_should {
         };
 
         // When
-       dive_step.update_time(input);
+        dive_step.update_time(input);
 
         // Then
         assert_eq!(expected, dive_step.time);
