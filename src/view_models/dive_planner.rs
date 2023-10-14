@@ -93,6 +93,8 @@ impl DivePlanner {
     pub fn cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
         self.select_cylinder
             .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
+
+        self.refresh_decompression();   
     }
 
     pub fn update_cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
@@ -100,9 +102,7 @@ impl DivePlanner {
             .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
     }
 
-    pub fn refresh_decompression(&mut self) {
-        self.assign_selected_cylinder();
-
+    fn refresh_decompression(&mut self) {
         self.assign_decompression_steps();
     }
 
@@ -233,44 +233,6 @@ mod dive_step_view_should {
         assert!(dive_planner.select_cylinder.cylinders[0].is_read_only);
         assert!(dive_planner.select_cylinder.cylinders[1].is_read_only);
         assert!(dive_planner.select_cylinder.cylinders[2].is_read_only);
-    }
-
-    #[test]
-    fn refresh_decompression() {
-        // Given
-        let cylinder = dive_stage_test_fixture().cylinder;
-        let selectable_cylinder = SelectableCylinder::Bottom;
-        let expected_dive_planner = DivePlanner {
-            select_cylinder: SelectCylinder {
-                selected_cylinder: Some(selectable_cylinder),
-                cylinders: [cylinder, Default::default(), Default::default()],
-                ..Default::default()
-            },
-            dive_stage: dive_stage_test_fixture(),
-            decompression_steps: DecompressionSteps {
-                is_visible: false,
-                dive_steps: vec![
-                    DiveStep { depth: 6, time: 1 },
-                    DiveStep { depth: 3, time: 3 },
-                ],
-            },
-            ..Default::default()
-        };
-        let mut dive_planner = DivePlanner {
-            select_cylinder: SelectCylinder {
-                selected_cylinder: Some(selectable_cylinder),
-                cylinders: [Default::default(), Default::default(), Default::default()],
-                ..Default::default()
-            },
-            dive_stage: dive_stage_test_fixture(),
-            ..Default::default()
-        };
-
-        // When
-        dive_planner.refresh_decompression();
-
-        // Then
-        assert_eq!(expected_dive_planner, dive_planner);
     }
 
     #[test]
@@ -462,6 +424,44 @@ mod dive_step_view_should {
 
         // Then
         assert_eq!(expected_cylinder, dive_planner.dive_stage.cylinder);
+    }
+
+    #[test]
+    fn on_selecting_cylinder_refresh_decompression() {
+      // Given
+      let cylinder = dive_stage_test_fixture().cylinder;
+      let selectable_cylinder = SelectableCylinder::Bottom;
+      let expected_dive_planner = DivePlanner {
+          select_cylinder: SelectCylinder {
+              selected_cylinder: Some(selectable_cylinder),
+              cylinders: [Default::default(), cylinder, Default::default()],
+              ..Default::default()
+          },
+          dive_stage: dive_stage_test_fixture(),
+          decompression_steps: DecompressionSteps {
+              is_visible: false,
+              dive_steps: vec![
+                  DiveStep { depth: 6, time: 1 },
+                  DiveStep { depth: 3, time: 3 },
+              ],
+          },
+          ..Default::default()
+      };
+      let mut dive_planner = DivePlanner {
+          select_cylinder: SelectCylinder {
+              selected_cylinder: Some(selectable_cylinder),
+              cylinders: [Default::default(), cylinder, Default::default()],
+              ..Default::default()
+          },
+          dive_stage: dive_stage_test_fixture(),
+          ..Default::default()
+      };
+
+      // When
+      dive_planner.cylinder_selected(selectable_cylinder);
+
+      // Then
+      assert_eq!(expected_dive_planner, dive_planner);  
     }
 
     #[rstest]
