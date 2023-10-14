@@ -24,6 +24,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    needs: [format]
     steps:
     - uses: actions/checkout@v3
     - uses: Swatinem/rust-cache@v2
@@ -33,6 +34,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    needs: [lint]
     steps:
     - uses: actions/checkout@v3
     - uses: Swatinem/rust-cache@v2
