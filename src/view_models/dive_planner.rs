@@ -101,11 +101,7 @@ impl DivePlanner {
         self.select_cylinder
             .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
     }
-
-    fn refresh_decompression(&mut self) {
-        self.assign_decompression_steps();
-    }
-
+  
     pub fn decompression_update_dive_profile(&mut self) {
         self.refresh_decompression();
 
@@ -124,12 +120,16 @@ impl DivePlanner {
         self.add_result();
 
         self.assign_selected_cylinder();
-
+        
         self.assign_decompression_steps();
-
+        
         self.update_visibility();
     }
 
+    fn refresh_decompression(&mut self) {
+        self.assign_decompression_steps();
+    }
+    
     fn run_decompression_steps(&mut self) {
         for dive_step in &self.decompression_steps.dive_steps {
             self.dive_stage.dive_step = *dive_step;
