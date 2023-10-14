@@ -175,7 +175,7 @@ impl DivePlanner {
 }
 
 #[cfg(test)]
-mod dive_step_view_should {
+mod dive_planner_should {
     use super::*;
     use crate::models::{
         cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile, dive_step::DiveStep,
