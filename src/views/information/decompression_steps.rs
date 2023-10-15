@@ -8,11 +8,9 @@ use crate::{
 
 use super::decompression_step::DecompressionStepView;
 
-// TODO NEXT VERSION refresh button isn't ideal should find a way to do it on cylinder change that doesn't cause regressions
 pub struct DecompressionStepsView<'a> {
     decompression_steps_title_text: Text<'a>,
     decompression_steps_text: Column<'a, Message>,
-    refresh_decompression: Button<'a, Message>,
     calculate_decompression: Button<'a, Message>,
 }
 
@@ -26,7 +24,6 @@ impl DecompressionStepsView<'_> {
         column![
             decompression_steps.decompression_steps_title_text,
             decompression_steps.decompression_steps_text,
-            decompression_steps.refresh_decompression,
             decompression_steps.calculate_decompression,
         ]
         .spacing(10.0)
@@ -44,7 +41,6 @@ impl DecompressionStepsView<'_> {
             decompression_steps_text: column,
             calculate_decompression: button("Update Dive Profile")
                 .on_press(Message::DecompressionUpdateDiveProfile),
-            refresh_decompression: button("Refresh").on_press(Message::RefreshDecompression),
         }
     }
 
@@ -81,8 +77,4 @@ impl DecompressionStepsView<'_> {
 
         column
     }
-
-    // fn determine_view<'a>() -> Column<'a, Message>{
-
-    // }
 }
