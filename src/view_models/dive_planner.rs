@@ -392,6 +392,10 @@ mod dive_planner_should {
     #[case(SelectableCylinder::Descend)]
     fn select_a_cylinder(#[case] selectable_cylinder: SelectableCylinder) {
         // Given
+        let expected_decompression_steps = vec![
+            DiveStep { depth: 6, time: 1 },
+            DiveStep { depth: 3, time: 3 },
+        ];
         let expected_cylinder = Cylinder {
             is_read_only: true,
             volume: 12,
@@ -424,52 +428,10 @@ mod dive_planner_should {
 
         // Then
         assert_eq!(expected_cylinder, dive_planner.dive_stage.cylinder);
-    }
-
-    #[test]
-    fn on_selecting_cylinder_refresh_decompression() {
-        // Given
-
-        let cylinder = dive_stage_test_fixture().cylinder;
-        let selectable_cylinder = SelectableCylinder::Bottom;
-        let expected_dive_planner = DivePlanner {
-            select_cylinder: SelectCylinder {
-                selected_cylinder: Some(selectable_cylinder),
-                cylinders: [Default::default(), cylinder, Default::default()],
-                ..Default::default()
-            },
-            dive_stage: dive_stage_test_fixture(),
-            decompression_steps: DecompressionSteps {
-                is_visible: false,
-                dive_steps: vec![
-                    DiveStep { depth: 6, time: 1 },
-                    DiveStep { depth: 3, time: 3 },
-                ],
-            },
-            ..Default::default()
-        };
-        let mut dive_planner = DivePlanner {
-            select_cylinder: SelectCylinder {
-                selected_cylinder: Some(selectable_cylinder),
-                cylinders: [Default::default(), cylinder, Default::default()],
-                ..Default::default()
-            },
-            dive_stage: dive_stage_test_fixture(),
-            // decompression_steps: DecompressionSteps {
-            //     is_visible: false,
-            //     dive_steps: vec![
-            //         DiveStep { depth: 6, time: 1 },
-            //         DiveStep { depth: 3, time: 3 },
-            //     ],
-            // },
-            ..Default::default()
-        };
-
-        // When
-        dive_planner.cylinder_selected(selectable_cylinder);
-
-        // Then
-        assert_eq!(expected_dive_planner, dive_planner);
+        assert_eq!(
+            expected_decompression_steps,
+            dive_planner.decompression_steps.dive_steps
+        );
     }
 
     #[rstest]
