@@ -69,16 +69,13 @@ impl Sandbox for DivePlanner {
                 self.dive_stage.cylinder.gas_mixture.update_helium(helium)
             }
             Message::CylinderSelected(selectable_cylinder) => {
-                self.cylinder_selected(selectable_cylinder)
+                self.cylinder_selected(selectable_cylinder);
             }
             Message::UpdateCylinderSelected(selectable_cylinder) => {
                 self.update_cylinder_selected(selectable_cylinder)
             }
             Message::UpdateDiveProfile => {
                 self.update_dive_profile();
-            }
-            Message::RefreshDecompression => {
-                self.refresh_decompression();
             }
             Message::DecompressionUpdateDiveProfile => {
                 self.decompression_update_dive_profile();
