@@ -392,10 +392,13 @@ mod dive_planner_should {
     #[case(SelectableCylinder::Descend)]
     fn select_a_cylinder(#[case] selectable_cylinder: SelectableCylinder) {
         // Given
-        let expected_decompression_steps = vec![
-            DiveStep { depth: 6, time: 1 },
-            DiveStep { depth: 3, time: 3 },
-        ];
+        let expected_decompression_steps = DecompressionSteps {
+            is_visible: false,
+            dive_steps: vec![
+                DiveStep { depth: 6, time: 1 },
+                DiveStep { depth: 3, time: 3 },
+            ],
+        };
         let expected_cylinder = Cylinder {
             is_read_only: true,
             volume: 12,
@@ -418,8 +421,10 @@ mod dive_planner_should {
             selected_cylinder: Some(selectable_cylinder),
             is_visible: true,
         };
+        let dive_stage = dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {
             select_cylinder,
+            dive_stage,
             ..Default::default()
         };
 
@@ -430,7 +435,7 @@ mod dive_planner_should {
         assert_eq!(expected_cylinder, dive_planner.dive_stage.cylinder);
         assert_eq!(
             expected_decompression_steps,
-            dive_planner.decompression_steps.dive_steps
+            dive_planner.decompression_steps
         );
     }
 
