@@ -236,7 +236,6 @@ mod dive_planner_should {
     }
 
     #[test]
-    #[ignore]
     fn decompression_update_dive_profile() {
         // Given
         let cylinder = dive_stage_test_fixture().cylinder;
@@ -317,7 +316,7 @@ mod dive_planner_should {
         let mut dive_planner = DivePlanner {
             select_cylinder: SelectCylinder {
                 selected_cylinder: Some(selectable_cylinder),
-                cylinders: [Default::default(), Default::default(), Default::default()],
+                cylinders: [cylinder, Default::default(), Default::default()],
                 ..Default::default()
             },
             dive_stage: dive_stage_test_fixture(),
