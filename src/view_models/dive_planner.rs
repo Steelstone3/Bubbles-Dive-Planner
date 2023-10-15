@@ -387,11 +387,8 @@ mod dive_planner_should {
     }
 
     #[rstest]
-    #[ignore]
     #[case(SelectableCylinder::Bottom)]
-    #[ignore]
     #[case(SelectableCylinder::Decompression)]
-    #[ignore]
     #[case(SelectableCylinder::Descend)]
     fn select_a_cylinder(#[case] selectable_cylinder: SelectableCylinder) {
         // Given
@@ -430,9 +427,9 @@ mod dive_planner_should {
     }
 
     #[test]
-    #[ignore]
     fn on_selecting_cylinder_refresh_decompression() {
         // Given
+
         let cylinder = dive_stage_test_fixture().cylinder;
         let selectable_cylinder = SelectableCylinder::Bottom;
         let expected_dive_planner = DivePlanner {
@@ -458,6 +455,13 @@ mod dive_planner_should {
                 ..Default::default()
             },
             dive_stage: dive_stage_test_fixture(),
+            // decompression_steps: DecompressionSteps {
+            //     is_visible: false,
+            //     dive_steps: vec![
+            //         DiveStep { depth: 6, time: 1 },
+            //         DiveStep { depth: 3, time: 3 },
+            //     ],
+            // },
             ..Default::default()
         };
 
