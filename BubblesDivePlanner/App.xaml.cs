@@ -18,7 +18,7 @@ namespace BubblesDivePlanner
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(),
+                    DataContext = new Main(),
                 };
             }
 
