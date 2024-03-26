@@ -37,7 +37,7 @@ public class Main : ReactiveObject, IMain
     {
         DiveStage.DiveModel = DiveModelSelector.DiveModelSelected;
         new DiveProfileStagesFactory().Run(DiveStage);
-        Results.LatestResult = DiveStage;
+        Results.LatestResult = new DiveStageClone().Clone(DiveStage);
     }
 }
 
