@@ -32,9 +32,12 @@ public class GasMixture : ReactiveObject, IGasMixture
         get => nitrogen;
         private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
     }
+
+    // TODO Test
+    public bool IsValid => gasMixtureValidator.Validate(this);
 }
 
-public interface IGasMixture
+public interface IGasMixture : IValidation
 {
     float Oxygen { get; set; }
     float Helium { get; set; }
