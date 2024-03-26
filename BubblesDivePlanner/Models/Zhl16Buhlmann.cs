@@ -1,3 +1,3 @@
-public class Zhl16Buhlmann : IDiveModel
+public class Zhl16Buhlmann : DiveModel
 {
 }
