@@ -1,4 +1,3 @@
-
 using ReactiveUI;
 
 public class DiveStep : ReactiveObject, IDiveStep

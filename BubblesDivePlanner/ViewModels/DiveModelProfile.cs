@@ -2,6 +2,10 @@ using ReactiveUI;
 
 public class DiveModelProfile : ReactiveObject, IDiveModelProfile
 {
+    public DiveModelProfile(byte compartmentCount)
+    {
+    }
+    
     private float oxygenAtPressure;
     public float OxygenAtPressure
     {
@@ -71,7 +75,6 @@ public class DiveModelProfile : ReactiveObject, IDiveModelProfile
         get => maxSurfacePressures;
         set => this.RaiseAndSetIfChanged(ref maxSurfacePressures, value);
     }
-
     public float[] compartmentLoads;
     public float[] CompartmentLoads
     {

@@ -8,7 +8,7 @@ public class DiveModelProfileShould
     {
         // Given
         float[] defaultValue = new float[] { 5.0F, 10.0F };
-        DiveModelProfile diveModelProfile = new();
+        DiveModelProfile diveModelProfile = new((byte)defaultValue.Length);
         List<string> events = new();
         diveModelProfile.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 

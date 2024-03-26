@@ -2,14 +2,14 @@ using ReactiveUI;
 
 public class DiveModel : ReactiveObject, IDiveModel
 {
-    public string Name { get; }
-    public byte CompartmentCount { get; }
-    public float[] NitrogenHalfTime { get; }
-    public float[] HeliumHalfTime { get; }
-    public float[] AValuesNitrogen { get; }
-    public float[] BValuesNitrogen { get; }
-    public float[] AValuesHelium { get; }
-    public float[] BValuesHelium { get; }
+    public string Name { get; protected set; }
+    public byte CompartmentCount { get; protected set; }
+    public float[] NitrogenHalfTime { get; protected set; }
+    public float[] HeliumHalfTime { get; protected set; }
+    public float[] AValuesNitrogen { get; protected set; }
+    public float[] BValuesNitrogen { get; protected set; }
+    public float[] AValuesHelium { get; protected set; }
+    public float[] BValuesHelium { get; protected set; }
 
     private IDiveModelProfile diveModelProfile;
     public IDiveModelProfile DiveModelProfile
