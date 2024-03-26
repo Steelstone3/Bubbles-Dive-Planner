@@ -2,6 +2,13 @@
 
 public class Main : ReactiveObject, IMain
 {
+    public IDiveModelSelector diveModelSelector;
+    public IDiveModelSelector DiveModelSelector
+    {
+        get => diveModelSelector;
+        set => this.RaiseAndSetIfChanged(ref diveModelSelector, value);
+    }
+
     public IDivePlan divePlan;
     public IDivePlan DivePlan
     {
@@ -12,5 +19,6 @@ public class Main : ReactiveObject, IMain
 
 public interface IMain
 {
+    IDiveModelSelector DiveModelSelector { get; set; }
     IDivePlan DivePlan { get; set; }
 }

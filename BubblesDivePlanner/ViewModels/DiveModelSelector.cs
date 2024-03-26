@@ -18,5 +18,6 @@ public class DiveModelSelector : ReactiveObject, IDiveModelSelector
 
 public interface IDiveModelSelector
 {
+    IList<IDiveModel> DiveModels { get; }
     IDiveModel DiveModelSelected { get; set; }
 }
