@@ -4,7 +4,6 @@ using Xunit;
 
 public class DiveModelSelectorShould
 {
-
     [Fact]
     public void Construct()
     {
@@ -14,7 +13,6 @@ public class DiveModelSelectorShould
         // Then
         Assert.NotEmpty(diveModelSelector.DiveModels);
     }
-
 
     [Fact]
     public void RaisePropertyChangedEvents()
