@@ -11,23 +11,23 @@ public class MainShould
 
         // Then
         Assert.NotNull(main.DiveModelSelector);
-        Assert.NotNull(main.DivePlan);
+        Assert.NotNull(main.DiveStage);
     }
 
     [Fact]
     public void RaisePropertyChangedEvents()
     {
         // Given
-        Mock<IDivePlan> divePlan = new();
+        Mock<IDiveStage> divePlan = new();
         Main main = new();
         List<string> events = new();
         main.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        main.DivePlan = divePlan.Object;
+        main.DiveStage = divePlan.Object;
 
         // Then
         Assert.NotEmpty(events);
-        Assert.Contains(nameof(main.DivePlan), events);
+        Assert.Contains(nameof(main.DiveStage), events);
     }
 }

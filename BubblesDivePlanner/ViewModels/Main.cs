@@ -14,16 +14,16 @@ public class Main : ReactiveObject, IMain
         set => this.RaiseAndSetIfChanged(ref diveModelSelector, value);
     }
 
-    private IDivePlan divePlan = new DivePlan();
-    public IDivePlan DivePlan
+    private IDiveStage diveStage = new DiveStage();
+    public IDiveStage DiveStage
     {
-        get => divePlan;
-        set => this.RaiseAndSetIfChanged(ref divePlan, value);
+        get => diveStage;
+        set => this.RaiseAndSetIfChanged(ref diveStage, value);
     }
 }
 
 public interface IMain
 {
     IDiveModelSelector DiveModelSelector { get; set; }
-    IDivePlan DivePlan { get; set; }
+    IDiveStage DiveStage { get; set; }
 }

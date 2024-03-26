@@ -1,13 +1,44 @@
-public class GasMixture : IGasMixture
+using ReactiveUI;
+
+// TODO AH Test
+public class GasMixture : ReactiveObject, IGasMixture
 {
-    public float Oxygen { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float Nitrogen { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float Helium { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    private float oxygen;
+        public float Oxygen
+        {
+            get => oxygen;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref oxygen, value);
+                Nitrogen = CalculateNitrogen();
+            }
+        }
+
+        private float helium;
+        public float Helium
+        {
+            get => helium;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref helium, value);
+                Nitrogen = CalculateNitrogen();
+            }
+        }
+
+        private float nitrogen = 100;
+        public float Nitrogen
+        {
+            get => nitrogen;
+            private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
+        }
+
+        // TODO AH Move to a controller
+        private float CalculateNitrogen() => 100 - Oxygen - Helium;
 }
 
 public interface IGasMixture
 {
     float Oxygen { get; set; }
-    float Nitrogen { get; set; }
     float Helium { get; set; }
+    float Nitrogen { get; }
 }
