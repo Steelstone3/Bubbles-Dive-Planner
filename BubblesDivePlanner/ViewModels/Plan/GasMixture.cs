@@ -1,39 +1,37 @@
 using ReactiveUI;
 
-// TODO AH Test
 public class GasMixture : ReactiveObject, IGasMixture
 {
+    private readonly IGasMixtureValidator gasMixtureValidator = new GasMixtureValidator();
+
     private float oxygen;
-        public float Oxygen
+    public float Oxygen
+    {
+        get => oxygen;
+        set
         {
-            get => oxygen;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref oxygen, value);
-                Nitrogen = CalculateNitrogen();
-            }
+            this.RaiseAndSetIfChanged(ref oxygen, value);
+            Nitrogen = gasMixtureValidator.CalculateNitrogen(this);
         }
+    }
 
-        private float helium;
-        public float Helium
+    private float helium;
+    public float Helium
+    {
+        get => helium;
+        set
         {
-            get => helium;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref helium, value);
-                Nitrogen = CalculateNitrogen();
-            }
+            this.RaiseAndSetIfChanged(ref helium, value);
+            Nitrogen = gasMixtureValidator.CalculateNitrogen(this);
         }
+    }
 
-        private float nitrogen = 100;
-        public float Nitrogen
-        {
-            get => nitrogen;
-            private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
-        }
-
-        // TODO AH Move to a controller
-        public float CalculateNitrogen() => 100.0F - Oxygen - Helium;
+    private float nitrogen = 100;
+    public float Nitrogen
+    {
+        get => nitrogen;
+        private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
+    }
 }
 
 public interface IGasMixture
