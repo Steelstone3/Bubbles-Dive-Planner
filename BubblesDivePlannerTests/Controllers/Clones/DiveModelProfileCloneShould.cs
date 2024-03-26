@@ -14,6 +14,7 @@ public class DiveModelProfileCloneShould
         IDiveModelProfile newDiveModelProfile = diveModelProfileClone.Clone(diveModelProfile.Object);
 
         // Then
+        Assert.NotNull(newDiveModelProfile);
         Assert.NotSame(diveModelProfile.Object, newDiveModelProfile);
     }
 }

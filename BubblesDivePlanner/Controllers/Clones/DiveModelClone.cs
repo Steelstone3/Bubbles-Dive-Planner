@@ -1,7 +1,10 @@
 public class DiveModelClone
 {
-    // TODO AH Test
-    public IDiveModel Clone(IDiveModel diveModel) {
-        return null;
+    public IDiveModel Clone(IDiveModel diveModel)
+    {
+        return new DiveModel()
+        {
+            
+        };
     }
 }

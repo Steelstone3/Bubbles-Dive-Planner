@@ -2,6 +2,8 @@ using ReactiveUI;
 
 public class DiveModelProfile : ReactiveObject, IDiveModelProfile
 {
+    public DiveModelProfile() { }
+
     public DiveModelProfile(byte compartmentCount)
     {
         nitrogenTissuePressures = new float[compartmentCount];
@@ -19,7 +21,7 @@ public class DiveModelProfile : ReactiveObject, IDiveModelProfile
             totalTissuePressures[i] = 0.79F;
         }
     }
-    
+
     private float oxygenAtPressure;
     public float OxygenAtPressure
     {
@@ -41,55 +43,56 @@ public class DiveModelProfile : ReactiveObject, IDiveModelProfile
         set => this.RaiseAndSetIfChanged(ref heliumAtPressure, value);
     }
 
-    public float[] nitrogenTissuePressures;
+    private float[] nitrogenTissuePressures;
     public float[] NitrogenTissuePressures
     {
         get => nitrogenTissuePressures;
         set => this.RaiseAndSetIfChanged(ref nitrogenTissuePressures, value);
     }
 
-    public float[] heliumTissuePressures;
+    private float[] heliumTissuePressures;
     public float[] HeliumTissuePressures
     {
         get => heliumTissuePressures;
         set => this.RaiseAndSetIfChanged(ref heliumTissuePressures, value);
     }
 
-    public float[] totalTissuePressures;
+    private float[] totalTissuePressures;
     public float[] TotalTissuePressures
     {
         get => totalTissuePressures;
         set => this.RaiseAndSetIfChanged(ref totalTissuePressures, value);
     }
 
-    public float[] aValues;
+    private float[] aValues;
     public float[] AValues
     {
         get => aValues;
         set => this.RaiseAndSetIfChanged(ref aValues, value);
     }
 
-    public float[] bValues;
+    private float[] bValues;
     public float[] BValues
     {
         get => bValues;
         set => this.RaiseAndSetIfChanged(ref bValues, value);
     }
 
-    public float[] toleratedAmbientPressures;
+    private float[] toleratedAmbientPressures;
     public float[] ToleratedAmbientPressures
     {
         get => toleratedAmbientPressures;
         set => this.RaiseAndSetIfChanged(ref toleratedAmbientPressures, value);
     }
 
-    public float[] maxSurfacePressures;
+    private float[] maxSurfacePressures;
     public float[] MaxSurfacePressures
     {
         get => maxSurfacePressures;
         set => this.RaiseAndSetIfChanged(ref maxSurfacePressures, value);
     }
-    public float[] compartmentLoads;
+    
+    private float[] compartmentLoads;
     public float[] CompartmentLoads
     {
         get => compartmentLoads;

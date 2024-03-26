@@ -14,6 +14,7 @@ public class GasMixtureCloneShould
         IGasMixture newGasMixture = gasMixtureClone.Clone(gasMixture.Object);
 
         // Then
+        Assert.NotNull(newGasMixture);
         Assert.NotSame(gasMixture.Object, newGasMixture);
     }
 }

@@ -14,6 +14,7 @@ public class DiveStepCloneShould
         IDiveStep newDiveStep = diveStepClone.Clone(diveStep.Object);
 
         // Then
+        Assert.NotNull(newDiveStep);
         Assert.NotSame(diveStep.Object, newDiveStep);
     }
 }

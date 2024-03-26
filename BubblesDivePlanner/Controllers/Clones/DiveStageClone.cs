@@ -1,7 +1,11 @@
 public class DiveStageClone
 {
-    // TODO AH Test
     public IDiveStage Clone(IDiveStage diveStage) {
-        return null;
+        return new DiveStage()
+        {
+            DiveModel = new DiveModelClone().Clone(diveStage.DiveModel),
+            DiveStep = new DiveStepClone().Clone(diveStage.DiveStep),
+            GasMixture = new GasMixtureClone().Clone(diveStage.GasMixture)
+        };
     }
 }

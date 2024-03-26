@@ -1,7 +1,11 @@
 public class GasMixtureClone
 {
-    // TODO AH Test
-    public IGasMixture Clone(IGasMixture gasMixture) {
-        return null;
+    public IGasMixture Clone(IGasMixture gasMixture)
+    {
+        return new GasMixture()
+        {
+            Oxygen = gasMixture.Oxygen,
+            Helium = gasMixture.Helium,
+        };
     }
 }
