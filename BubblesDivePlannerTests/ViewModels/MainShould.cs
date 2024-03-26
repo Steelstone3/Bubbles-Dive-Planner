@@ -4,6 +4,17 @@ using Xunit;
 public class MainShould
 {
     [Fact]
+    public void Construct()
+    {
+        // Given
+        Main main = new();
+
+        // Then
+        Assert.NotNull(main.DiveModelSelector);
+        Assert.NotNull(main.DivePlan);
+    }
+
+    [Fact]
     public void RaisePropertyChangedEvents()
     {
         // Given
