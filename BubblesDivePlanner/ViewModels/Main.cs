@@ -2,14 +2,14 @@
 
 public class Main : ReactiveObject, IMain
 {
-    public IDiveModelSelector diveModelSelector;
+    private IDiveModelSelector diveModelSelector = new DiveModelSelector();
     public IDiveModelSelector DiveModelSelector
     {
         get => diveModelSelector;
         set => this.RaiseAndSetIfChanged(ref diveModelSelector, value);
     }
 
-    public IDivePlan divePlan;
+    private IDivePlan divePlan = new DivePlan();
     public IDivePlan DivePlan
     {
         get => divePlan;
