@@ -14,7 +14,9 @@ public class DiveProfileStagesFactory : IDiveProfileStagesFactory
 
     public void Run(IDiveStage diveStage)
     {
-        foreach (IDiveProfileStage diveProfileStage in Create(diveStage))
+        IDiveProfileStage[] diveProfileStages = Create(diveStage);
+
+        foreach (IDiveProfileStage diveProfileStage in diveProfileStages)
         {
             diveProfileStage.Run();
         }
