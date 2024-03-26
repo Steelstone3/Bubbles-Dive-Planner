@@ -7,7 +7,12 @@ public class DiveStageCloneShould
     public void Clone()
     {
         // Given
+        Mock<IDiveModel> diveModel = new();
+        diveModel.Setup(diveModel=>diveModel.DiveModelProfile).Returns(new Mock<IDiveModelProfile>().Object);
         Mock<IDiveStage> diveStage = new();
+        diveStage.Setup(diveStage => diveStage.DiveModel).Returns(diveModel.Object);
+        diveStage.Setup(diveStage => diveStage.DiveStep).Returns(new Mock<IDiveStep>().Object);
+        diveStage.Setup(diveStage => diveStage.GasMixture).Returns(new Mock<IGasMixture>().Object);
         DiveStageClone diveStageClone = new();
 
         // When

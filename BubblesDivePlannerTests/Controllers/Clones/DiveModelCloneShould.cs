@@ -8,6 +8,7 @@ public class DiveModelCloneShould
     {
         // Given
         Mock<IDiveModel> diveModel = new();
+        diveModel.Setup(diveModel => diveModel.DiveModelProfile).Returns(new Mock<IDiveModelProfile>().Object);
         DiveModelClone diveModelClone = new();
 
         // When

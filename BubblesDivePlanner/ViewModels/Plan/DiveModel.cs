@@ -2,14 +2,14 @@ using ReactiveUI;
 
 public class DiveModel : ReactiveObject, IDiveModel
 {
-    public string Name { get; protected set; }
-    public byte CompartmentCount { get; protected set; }
-    public float[] NitrogenHalfTime { get; protected set; }
-    public float[] HeliumHalfTime { get; protected set; }
-    public float[] AValuesNitrogen { get; protected set; }
-    public float[] BValuesNitrogen { get; protected set; }
-    public float[] AValuesHelium { get; protected set; }
-    public float[] BValuesHelium { get; protected set; }
+    public string Name { get; set; }
+    public byte CompartmentCount { get; set; }
+    public float[] NitrogenHalfTime { get; set; }
+    public float[] HeliumHalfTime { get; set; }
+    public float[] AValuesNitrogen { get; set; }
+    public float[] BValuesNitrogen { get; set; }
+    public float[] AValuesHelium { get; set; }
+    public float[] BValuesHelium { get; set; }
 
     private IDiveModelProfile diveModelProfile;
     public IDiveModelProfile DiveModelProfile
@@ -21,13 +21,13 @@ public class DiveModel : ReactiveObject, IDiveModel
 
 public interface IDiveModel
 {
-    string Name { get; }
-    byte CompartmentCount { get; }
-    float[] NitrogenHalfTime { get; }
-    float[] HeliumHalfTime { get; }
-    float[] AValuesNitrogen { get; }
-    float[] BValuesNitrogen { get; }
-    float[] AValuesHelium { get; }
-    float[] BValuesHelium { get; }
+    string Name { get; set; }
+    byte CompartmentCount { get; set; }
+    float[] NitrogenHalfTime { get; set; }
+    float[] HeliumHalfTime { get; set; }
+    float[] AValuesNitrogen { get; set; }
+    float[] BValuesNitrogen { get; set; }
+    float[] AValuesHelium { get; set; }
+    float[] BValuesHelium { get; set; }
     IDiveModelProfile DiveModelProfile { get; set; }
 }
