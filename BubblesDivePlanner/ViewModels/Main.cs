@@ -2,6 +2,11 @@
 
 public class Main : ReactiveObject, IMain
 {
+    public Main()
+    {
+        
+    }
+
     private IDiveModelSelector diveModelSelector = new DiveModelSelector();
     public IDiveModelSelector DiveModelSelector
     {
