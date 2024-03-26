@@ -8,17 +8,17 @@ public class DiveStepShould
     {
         // Given
         DiveStep diveStep = new();
-        List<string> viewModelEvents = new();
-        diveStep.PropertyChanged += (sender, e) => viewModelEvents.Add(e.PropertyName);
+        List<string> events = new();
+        diveStep.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
         diveStep.Depth = 50;
         diveStep.Time = 10;
 
         // Then
-        Assert.NotEmpty(viewModelEvents);
-        Assert.Contains(nameof(diveStep.Depth), viewModelEvents);
-        Assert.Contains(nameof(diveStep.Time), viewModelEvents);
+        Assert.NotEmpty(events);
+        Assert.Contains(nameof(diveStep.Depth), events);
+        Assert.Contains(nameof(diveStep.Time), events);
     }
 }
 
