@@ -8,8 +8,6 @@ public class DiveStepCloneShould
     {
         // Given
         Mock<IDiveStep> diveStep = new();
-        diveStep.Setup(diveStep => diveStep.Depth).Returns(50);
-        diveStep.Setup(diveStep => diveStep.Time).Returns(10);
         DiveStepClone diveStepClone = new();
 
         // When
