@@ -4,8 +4,8 @@ public class DiveModelSelector : ReactiveObject, IDiveModelSelector
 {
     public IList<IDiveModel> DiveModels => new List<IDiveModel>
     {
-        new Zhl16BuhlmannModel(),
-        new UsnRevision6Model(),
+        new Zhl16Buhlmann(),
+        new UsnRevisionSix(),
     };
 
     private IDiveModel diveModelSelected;

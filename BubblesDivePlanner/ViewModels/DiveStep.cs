@@ -18,7 +18,7 @@ public class DiveStep : ReactiveObject, IDiveStep
     }
 }
 
-internal interface IDiveStep
+public interface IDiveStep
 {
     byte Depth { get; set; }
     byte Time { get; set; }

@@ -1,4 +1,3 @@
-using ReactiveUI;
 using Xunit;
 
 public class DiveStepShould
