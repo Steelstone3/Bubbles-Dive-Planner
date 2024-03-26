@@ -1,11 +1,8 @@
 ﻿using ReactiveUI;
 
-namespace BubblesDivePlanner.ApplicationEntry
+public class MainWindowViewModel : ReactiveObject
 {
-    public class MainWindowViewModel : ReactiveObject
+    public MainWindowViewModel()
     {
-        public MainWindowViewModel()
-        {
-        }
     }
 }
