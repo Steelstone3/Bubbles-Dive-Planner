@@ -1,10 +1,11 @@
-﻿using ReactiveUI;
+﻿using System.Reactive;
+using ReactiveUI;
 
 public class Main : ReactiveObject, IMain
 {
     public Main()
     {
-        
+        CalculateCommand = ReactiveCommand.Create(CalculateDiveStage, CanCalculateDiveStage);
     }
 
     private IDiveModelSelector diveModelSelector = new DiveModelSelector();
@@ -19,6 +20,17 @@ public class Main : ReactiveObject, IMain
     {
         get => diveStage;
         set => this.RaiseAndSetIfChanged(ref diveStage, value);
+    }
+
+    public ReactiveCommand<Unit, Unit> CalculateCommand { get; }
+
+    public IObservable<bool> CanCalculateDiveStage { get; }
+
+    private void CalculateDiveStage()
+    {
+        DiveStage.DiveModel = DiveModelSelector.DiveModelSelected;
+        new DiveProfileStagesFactory().Run(DiveStage);
+        
     }
 }
 
