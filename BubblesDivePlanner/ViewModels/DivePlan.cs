@@ -2,7 +2,6 @@ using ReactiveUI;
 
 public class DivePlan : ReactiveObject, IDivePlan
 {
-
     private IDiveModel diveModel;
     public IDiveModel DiveModel 
     {
