@@ -51,8 +51,8 @@
                     Text="Dive Plan" />
                 <plan:DiveModelSelectorView />
                 <plan:DiveStepView />
-                <plan:CylinderSetupView />
-                <plan:CylinderSelectorView />
+                <!-- <plan:CylinderSetupView /> -->
+                <!-- <plan:CylinderSelectorView /> -->
                 <plan:CalculateDiveStepView />
             </StackPanel>
         </ScrollViewer>
@@ -62,7 +62,7 @@
             Grid.Column="1"
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF9E9E9E">
-                <results:ResultsView />
+                <!-- <results:ResultsView /> -->
             </StackPanel>
         </ScrollViewer>
 
@@ -77,9 +77,9 @@
                     FontStyle="Italic"
                     FontWeight="Bold"
                     Text="Dive Information" />
-                <information:DecompressionProfileView />
-                <information:DiveBoundariesView/>
-                <information:CentralNervousSystemToxicityView />
+                <!-- <information:DecompressionProfileView /> -->
+                <!-- <information:DiveBoundariesView/> -->
+                <!-- <information:CentralNervousSystemToxicityView /> -->
             </StackPanel>
         </ScrollViewer>
     </Grid>
