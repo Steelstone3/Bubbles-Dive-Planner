@@ -4,7 +4,7 @@ using Xunit;
 public class DiveModelSelectorShould
 {
     [Fact]
-    public void Construct()
+    public void HaveDefaults()
     {
         // Given
         DiveModelSelector diveModelSelector = new();

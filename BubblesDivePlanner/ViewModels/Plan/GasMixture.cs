@@ -33,7 +33,7 @@ public class GasMixture : ReactiveObject, IGasMixture
         }
 
         // TODO AH Move to a controller
-        private float CalculateNitrogen() => 100 - Oxygen - Helium;
+        private float CalculateNitrogen() => 100.0F - Oxygen - Helium;
 }
 
 public interface IGasMixture
