@@ -4,6 +4,20 @@ public class DiveModelProfile : ReactiveObject, IDiveModelProfile
 {
     public DiveModelProfile(byte compartmentCount)
     {
+        nitrogenTissuePressures = new float[compartmentCount];
+        heliumTissuePressures = new float[compartmentCount];
+        totalTissuePressures = new float[compartmentCount];
+        aValues = new float[compartmentCount];
+        bValues = new float[compartmentCount];
+        toleratedAmbientPressures = new float[compartmentCount];
+        maxSurfacePressures = new float[compartmentCount];
+        compartmentLoads = new float[compartmentCount];
+
+        for (int i = 0; i < compartmentCount; i++)
+        {
+            nitrogenTissuePressures[i] = 0.79F;
+            totalTissuePressures[i] = 0.79F;
+        }
     }
     
     private float oxygenAtPressure;

@@ -1,8 +1,32 @@
-using Moq;
 using Xunit;
 
 public class DiveModelProfileShould
 {
+    [Fact]
+    public void HaveDefaults()
+    {
+        // Given
+        const int COMPARTMENTS = 16;
+        DiveModelProfile diveModelProfile = new(COMPARTMENTS);
+
+        // Then
+        Assert.Equal(0.0F, diveModelProfile.OxygenAtPressure);
+        Assert.Equal(0.0F, diveModelProfile.HeliumAtPressure);
+        Assert.Equal(0.0F, diveModelProfile.NitrogenAtPressure);
+
+        for (int i = 0; i < COMPARTMENTS; i++)
+        {
+            Assert.Equal(0.79F, diveModelProfile.NitrogenTissuePressures[i]);
+            Assert.Equal(0.0F, diveModelProfile.HeliumTissuePressures[i]);
+            Assert.Equal(0.79F, diveModelProfile.TotalTissuePressures[i]);
+            Assert.Equal(0.0F, diveModelProfile.AValues[i]);
+            Assert.Equal(0.0F, diveModelProfile.BValues[i]);
+            Assert.Equal(0.0F, diveModelProfile.ToleratedAmbientPressures[i]);
+            Assert.Equal(0.0F, diveModelProfile.MaxSurfacePressures[i]);
+            Assert.Equal(0.0F, diveModelProfile.CompartmentLoads[i]);
+        }
+    }
+
     [Fact]
     public void RaisePropertyChangedEvents()
     {
