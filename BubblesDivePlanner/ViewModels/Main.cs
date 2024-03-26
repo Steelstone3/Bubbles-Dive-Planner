@@ -5,7 +5,7 @@ public class Main : ReactiveObject, IMain
 {
     public Main()
     {
-        CalculateCommand = ReactiveCommand.Create(CalculateDiveStage, CanCalculateDiveStage);
+        CalculateCommand = ReactiveCommand.Create(CalculateDiveStage); //, CanCalculateDiveStage);
     }
 
     private IDiveModelSelector diveModelSelector = new DiveModelSelector();
@@ -24,13 +24,13 @@ public class Main : ReactiveObject, IMain
 
     public ReactiveCommand<Unit, Unit> CalculateCommand { get; }
 
-    public IObservable<bool> CanCalculateDiveStage { get; }
+    // public IObservable<bool> CanCalculateDiveStage { get; }
 
     private void CalculateDiveStage()
     {
         DiveStage.DiveModel = DiveModelSelector.DiveModelSelected;
         new DiveProfileStagesFactory().Run(DiveStage);
-        
+
     }
 }
 

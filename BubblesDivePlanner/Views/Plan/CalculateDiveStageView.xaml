@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="BubblesDivePlanner.Views.Plan.CalculateDiveStepView"
+    x:Class="BubblesDivePlanner.Views.Plan.CalculateDiveStageView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -19,10 +19,10 @@
             <Button
                 Margin="8,4"
                 HorizontalAlignment="Stretch"
-                Command="{Binding CalculateDiveStepCommand}" HotKey="Enter"
+                Command="{Binding CalculateCommand}" HotKey="Enter"
                 FontWeight="Bold"
-                IsEnabled="{Binding CanCalculateDiveStep}"
                 Content="Calculate Dive Profile" />
         </StackPanel>
+                <!-- IsEnabled="{Binding CanCalculateDiveStep}" -->
     </StackPanel>
 </UserControl>

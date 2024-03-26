@@ -54,7 +54,7 @@
                 <plan:GasMixtureView />
                 <!-- <plan:CylinderSetupView /> -->
                 <!-- <plan:CylinderSelectorView /> -->
-                <plan:CalculateDiveStepView />
+                <plan:CalculateDiveStageView />
             </StackPanel>
         </ScrollViewer>
 
