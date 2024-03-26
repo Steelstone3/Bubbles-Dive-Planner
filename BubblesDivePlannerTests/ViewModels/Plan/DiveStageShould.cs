@@ -1,4 +1,5 @@
 using Moq;
+using ReactiveUI;
 using Xunit;
 
 public class DiveStageShould
@@ -20,6 +21,7 @@ public class DiveStageShould
         diveStage.GasMixture = gasMixture.Object;
 
         // Then
+        Assert.IsAssignableFrom<ReactiveObject>(diveStage);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveStage.DiveModel), events);
         Assert.Contains(nameof(diveStage.DiveStep), events);

@@ -1,3 +1,4 @@
+using ReactiveUI;
 using Xunit;
 
 public class GasMixtureShould
@@ -25,6 +26,7 @@ public class GasMixtureShould
         gasMixture.Helium = 10;
 
         // Then
+        Assert.IsAssignableFrom<ReactiveObject>(gasMixture);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(gasMixture.Oxygen), events);
         Assert.Contains(nameof(gasMixture.Helium), events);

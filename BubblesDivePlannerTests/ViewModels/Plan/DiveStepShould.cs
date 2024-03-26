@@ -1,3 +1,4 @@
+using ReactiveUI;
 using Xunit;
 
 public class DiveStepShould
@@ -15,6 +16,7 @@ public class DiveStepShould
         diveStep.Time = 10;
 
         // Then
+        Assert.IsAssignableFrom<ReactiveObject>(diveStep);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveStep.Depth), events);
         Assert.Contains(nameof(diveStep.Time), events);

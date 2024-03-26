@@ -1,4 +1,3 @@
-// TODO AH Test
 using ReactiveUI;
 
 public class Results : ReactiveObject, IResults

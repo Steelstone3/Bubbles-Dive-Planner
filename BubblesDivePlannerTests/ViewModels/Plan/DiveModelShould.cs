@@ -1,4 +1,5 @@
 using Moq;
+using ReactiveUI;
 using Xunit;
 
 public class DiveModelShould
@@ -16,6 +17,7 @@ public class DiveModelShould
         diveModel.DiveModelProfile = diveModelProfile.Object;
 
         // Then
+        Assert.IsAssignableFrom<ReactiveObject>(diveModel);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveModel.DiveModelProfile), events);
     }

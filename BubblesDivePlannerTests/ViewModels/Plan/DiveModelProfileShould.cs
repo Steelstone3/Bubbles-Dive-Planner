@@ -1,3 +1,4 @@
+using ReactiveUI;
 using Xunit;
 
 public class DiveModelProfileShould
@@ -49,6 +50,7 @@ public class DiveModelProfileShould
         diveModelProfile.CompartmentLoads = defaultValue;
 
         // Then
+        Assert.IsAssignableFrom<ReactiveObject>(diveModelProfile);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveModelProfile.OxygenAtPressure), events);
         Assert.Contains(nameof(diveModelProfile.HeliumAtPressure), events);
