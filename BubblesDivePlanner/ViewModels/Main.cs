@@ -22,6 +22,13 @@ public class Main : ReactiveObject, IMain
         set => this.RaiseAndSetIfChanged(ref diveStage, value);
     }
 
+    private IResults results = new Results();
+    public IResults Results
+    {
+        get => results;
+        set => this.RaiseAndSetIfChanged(ref results, value);
+    }
+
     public ReactiveCommand<Unit, Unit> CalculateCommand { get; }
 
     // public IObservable<bool> CanCalculateDiveStage { get; }
@@ -30,7 +37,7 @@ public class Main : ReactiveObject, IMain
     {
         DiveStage.DiveModel = DiveModelSelector.DiveModelSelected;
         new DiveProfileStagesFactory().Run(DiveStage);
-
+        Results.LatestResult = DiveStage;
     }
 }
 
