@@ -1,23 +1,23 @@
-// TODO AH Test
 public class MaximumSurfacePressures : IDiveProfileStage
 {
-    private readonly IDiveModel diveModel;
+    private IDiveStage diveStage;
 
-    public MaximumSurfacePressures(IDiveModel diveModel)
+    public MaximumSurfacePressures(IDiveStage diveStage)
     {
-        this.diveModel = diveModel;
+        this.diveStage = diveStage;
     }
 
     public void Run()
     {
-        for (int compartment = 0; compartment < diveModel.CompartmentCount; compartment++)
+        float[] newMaxSurfacePressures = new float[diveStage.DiveModel.CompartmentCount];
+
+        for (int compartment = 0; compartment < diveStage.DiveModel.CompartmentCount; compartment++)
         {
-            CalculateMaximumSurfacePressure(compartment);
+            newMaxSurfacePressures[compartment] = CalculateMaximumSurfacePressure(compartment);
         }
+
+        diveStage.DiveModel.DiveModelProfile.MaxSurfacePressures = newMaxSurfacePressures;
     }
 
-    private void CalculateMaximumSurfacePressure(int compartment)
-    {
-        diveModel.DiveModelProfile.MaxSurfacePressures[compartment] = (float)Math.Round((1.0f / diveModel.DiveModelProfile.BValues[compartment]) + diveModel.DiveModelProfile.AValues[compartment], 4);
-    }
+    private float CalculateMaximumSurfacePressure(int compartment) => (float)Math.Round((1.0f / diveStage.DiveModel.DiveModelProfile.BValues[compartment]) + diveStage.DiveModel.DiveModelProfile.AValues[compartment], 4);
 }

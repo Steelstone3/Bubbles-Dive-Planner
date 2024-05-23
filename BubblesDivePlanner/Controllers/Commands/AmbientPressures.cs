@@ -1,32 +1,22 @@
-// TODO AH Test
 public class AmbientPressures : IDiveProfileStage
 {
-    private readonly IDiveModelProfile diveModelProfile;
-    private readonly IGasMixture gasMixture;
-    private readonly IDiveStep diveStep;
+    private IDiveStage diveStage;
 
-    public AmbientPressures(IDiveModelProfile diveModelProfile, IGasMixture gasMixture, IDiveStep diveStep)
+    public AmbientPressures(IDiveStage diveStage)
     {
-        this.diveModelProfile = diveModelProfile;
-        this.gasMixture = gasMixture;
-        this.diveStep = diveStep;
+        this.diveStage = diveStage;
     }
 
     public void Run()
     {
-        var pressureAmbient = CalculateAmbientPressure();
-        CalculateAdjustedGasPressures(pressureAmbient);
+        float ambientPressure = CalculateAmbientPressure();
+        diveStage.DiveModel.DiveModelProfile.NitrogenAtPressure = CalculateAdjustedNitrogenPressure(ambientPressure);
+        diveStage.DiveModel.DiveModelProfile.OxygenAtPressure = CalculateAdjustedOxygenPressure(ambientPressure);
+        diveStage.DiveModel.DiveModelProfile.HeliumAtPressure = CalculateAdjustedHeliumPressure(ambientPressure);
     }
 
-    private double CalculateAmbientPressure()
-    {
-        return 1.0 + (diveStep.Depth / 10.0);
-    }
-
-    private void CalculateAdjustedGasPressures(double pressureAmbient)
-    {
-        diveModelProfile.NitrogenAtPressure = (float)(gasMixture.Nitrogen / 100 * pressureAmbient);
-        diveModelProfile.OxygenAtPressure = (float)(gasMixture.Oxygen / 100 * pressureAmbient);
-        diveModelProfile.HeliumAtPressure = (float)(gasMixture.Helium / 100 * pressureAmbient);
-    }
+    private float CalculateAmbientPressure() => (float)(1.0 + (diveStage.DiveStep.Depth / 10.0));
+    private float CalculateAdjustedNitrogenPressure(float pressureAmbient) => diveStage.GasMixture.Nitrogen / 100 * pressureAmbient;
+    private float CalculateAdjustedOxygenPressure(float pressureAmbient) => diveStage.GasMixture.Oxygen / 100 * pressureAmbient;
+    private float CalculateAdjustedHeliumPressure(float pressureAmbient) => diveStage.GasMixture.Helium / 100 * pressureAmbient;
 }

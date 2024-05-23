@@ -1,23 +1,23 @@
-// TODO AH Test
 public class ToleratedAmbientPressures : IDiveProfileStage
 {
-    private readonly IDiveModel diveModel;
+    private IDiveStage diveStage;
 
-    public ToleratedAmbientPressures(IDiveModel diveModel)
+    public ToleratedAmbientPressures(IDiveStage diveStage)
     {
-        this.diveModel = diveModel;
+        this.diveStage = diveStage;
     }
 
     public void Run()
     {
-        for (int compartment = 0; compartment < diveModel.CompartmentCount; compartment++)
+        float[] newToleratedAmbientPressures = new float[diveStage.DiveModel.CompartmentCount];
+
+        for (int compartment = 0; compartment < diveStage.DiveModel.CompartmentCount; compartment++)
         {
-            CalculateToleratedAmbientPressure(compartment);
+            newToleratedAmbientPressures[compartment] = CalculateToleratedAmbientPressure(compartment);
         }
+
+        diveStage.DiveModel.DiveModelProfile.ToleratedAmbientPressures = newToleratedAmbientPressures;
     }
 
-    private void CalculateToleratedAmbientPressure(int compartment)
-    {
-        diveModel.DiveModelProfile.ToleratedAmbientPressures[compartment] = (float)Math.Round((diveModel.DiveModelProfile.TotalTissuePressures[compartment] - diveModel.DiveModelProfile.AValues[compartment]) * diveModel.DiveModelProfile.BValues[compartment], 4);
-    }
+    private float CalculateToleratedAmbientPressure(int compartment) => (float)Math.Round((diveStage.DiveModel.DiveModelProfile.TotalTissuePressures[compartment] - diveStage.DiveModel.DiveModelProfile.AValues[compartment]) * diveStage.DiveModel.DiveModelProfile.BValues[compartment], 4);
 }

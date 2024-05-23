@@ -22,9 +22,12 @@ public class DiveStage : ReactiveObject, IDiveStage
         get => gasMixture;
         set => this.RaiseAndSetIfChanged(ref gasMixture, value);
     }
+
+    // TODO AH Test
+    public bool IsValid => DiveStep.IsValid && GasMixture.IsValid;
 }
 
-public interface IDiveStage
+public interface IDiveStage : IValidation
 {
     IDiveModel DiveModel { get; set; }
     IDiveStep DiveStep { get; set; }

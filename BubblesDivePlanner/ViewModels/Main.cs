@@ -3,8 +3,11 @@ using ReactiveUI;
 
 public class Main : ReactiveObject, IMain
 {
+    private readonly DiveProfileStagesFactory diveProfileStagesFactory;
+
     public Main()
     {
+        diveProfileStagesFactory = new DiveProfileStagesFactory();
         CalculateCommand = ReactiveCommand.Create(CalculateDiveStage); //, CanCalculateDiveStage);
     }
 
@@ -35,9 +38,15 @@ public class Main : ReactiveObject, IMain
 
     private void CalculateDiveStage()
     {
+        // TODO AH temporary whilst CanCalculateDiveStage is not implemented
+        if (!DiveStage.IsValid)
+        {
+            return;
+        }
+
         DiveStage.DiveModel = DiveModelSelector.DiveModelSelected;
-        new DiveProfileStagesFactory().Run(DiveStage);
-        Results.LatestResult = new DiveStageClone().Clone(DiveStage);
+        diveProfileStagesFactory.Run(DiveStage);
+        Results.LatestResult = DiveStage;
     }
 }
 

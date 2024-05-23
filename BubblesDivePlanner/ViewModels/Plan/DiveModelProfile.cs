@@ -2,8 +2,6 @@ using ReactiveUI;
 
 public class DiveModelProfile : ReactiveObject, IDiveModelProfile
 {
-    public DiveModelProfile() { }
-
     public DiveModelProfile(byte compartmentCount)
     {
         nitrogenTissuePressures = new float[compartmentCount];
@@ -15,10 +13,10 @@ public class DiveModelProfile : ReactiveObject, IDiveModelProfile
         maxSurfacePressures = new float[compartmentCount];
         compartmentLoads = new float[compartmentCount];
 
-        for (int i = 0; i < compartmentCount; i++)
+        for (int compartment = 0; compartment < compartmentCount; compartment++)
         {
-            nitrogenTissuePressures[i] = 0.79F;
-            totalTissuePressures[i] = 0.79F;
+            nitrogenTissuePressures[compartment] = 0.79F;
+            totalTissuePressures[compartment] = 0.79F;
         }
     }
 

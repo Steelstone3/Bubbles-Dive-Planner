@@ -3,11 +3,12 @@ using Xunit;
 
 public class DiveModelProfileShould
 {
+    private const int COMPARTMENTS = 16;
+
     [Fact]
     public void HaveDefaults()
     {
         // Given
-        const int COMPARTMENTS = 16;
         DiveModelProfile diveModelProfile = new(COMPARTMENTS);
 
         // Then
@@ -32,8 +33,8 @@ public class DiveModelProfileShould
     public void RaisePropertyChangedEvents()
     {
         // Given
-        float[] defaultValue = new float[] { 5.0F, 10.0F };
-        DiveModelProfile diveModelProfile = new();
+        float[] defaultValue = [5.0F, 10.0F];
+        DiveModelProfile diveModelProfile = new(COMPARTMENTS);
         List<string> events = new();
         diveModelProfile.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 

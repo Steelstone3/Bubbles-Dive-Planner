@@ -1,23 +1,23 @@
-// TODO AH Test
 public class CompartmentLoads : IDiveProfileStage
 {
-    private readonly IDiveModel diveModel;
+    private IDiveStage diveStage;
 
-    public CompartmentLoads(IDiveModel diveModel)
+    public CompartmentLoads(IDiveStage diveStage)
     {
-        this.diveModel = diveModel;
+        this.diveStage = diveStage;
     }
 
     public void Run()
     {
-        for (int compartment = 0; compartment < diveModel.CompartmentCount; compartment++)
+        float[] newCompartmentLoads = new float[diveStage.DiveModel.CompartmentCount];
+
+        for (int compartment = 0; compartment < diveStage.DiveModel.CompartmentCount; compartment++)
         {
-            CalculateCompartmentLoad(compartment);
+            newCompartmentLoads[compartment] = CalculateCompartmentLoad(compartment);
         }
+
+        diveStage.DiveModel.DiveModelProfile.CompartmentLoads = newCompartmentLoads;
     }
 
-    private void CalculateCompartmentLoad(int compartment)
-    {
-        diveModel.DiveModelProfile.CompartmentLoads[compartment] = (float)Math.Round(diveModel.DiveModelProfile.TotalTissuePressures[compartment] / diveModel.DiveModelProfile.MaxSurfacePressures[compartment] * 100, 2);
-    }
+    private float CalculateCompartmentLoad(int compartment) => (float)Math.Round(diveStage.DiveModel.DiveModelProfile.TotalTissuePressures[compartment] / diveStage.DiveModel.DiveModelProfile.MaxSurfacePressures[compartment] * 100, 2);
 }
