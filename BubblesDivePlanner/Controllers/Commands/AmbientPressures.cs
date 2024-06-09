@@ -16,7 +16,7 @@ public class AmbientPressures : IDiveProfileStage
     }
 
     private float CalculateAmbientPressure() => (float)(1.0 + (diveStage.DiveStep.Depth / 10.0));
-    private float CalculateAdjustedNitrogenPressure(float pressureAmbient) => diveStage.GasMixture.Nitrogen / 100 * pressureAmbient;
-    private float CalculateAdjustedOxygenPressure(float pressureAmbient) => diveStage.GasMixture.Oxygen / 100 * pressureAmbient;
-    private float CalculateAdjustedHeliumPressure(float pressureAmbient) => diveStage.GasMixture.Helium / 100 * pressureAmbient;
+    private float CalculateAdjustedNitrogenPressure(float pressureAmbient) => diveStage.Cylinder.GasMixture.Nitrogen / 100 * pressureAmbient;
+    private float CalculateAdjustedOxygenPressure(float pressureAmbient) => diveStage.Cylinder.GasMixture.Oxygen / 100 * pressureAmbient;
+    private float CalculateAdjustedHeliumPressure(float pressureAmbient) => diveStage.Cylinder.GasMixture.Helium / 100 * pressureAmbient;
 }

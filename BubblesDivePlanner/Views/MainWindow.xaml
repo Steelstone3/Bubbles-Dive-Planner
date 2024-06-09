@@ -51,9 +51,8 @@
                     Text="Dive Plan" />
                 <plan:DiveModelSelectorView />
                 <plan:DiveStepView />
-                <plan:GasMixtureView />
-                <!-- <plan:CylinderSetupView /> -->
-                <!-- <plan:CylinderSelectorView /> -->
+                <plan:CylinderSelectorView />
+                <plan:CylinderView />
                 <plan:CalculateDiveStageView />
             </StackPanel>
         </ScrollViewer>
@@ -63,7 +62,7 @@
             Grid.Column="1"
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF9E9E9E">
-                <plan:ResultsView />
+                <results:ResultView />
             </StackPanel>
         </ScrollViewer>
 

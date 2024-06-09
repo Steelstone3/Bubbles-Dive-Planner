@@ -1,11 +1,11 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BubblesDivePlanner.Views.Plan
+namespace BubblesDivePlanner.Views.Results
 {
-    public class ResultsView : UserControl
+    public class ResultView : UserControl
     {
-        public ResultsView()
+        public ResultView()
         {
             InitializeComponent();
         }
