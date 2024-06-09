@@ -2,7 +2,7 @@ using ReactiveUI;
 
 public class Results : ReactiveObject, IResults
 {
-    private IDiveStage latestResult = new DiveStage();
+    private IDiveStage latestResult = new DiveStage(new DiveStageValidator());
     public IDiveStage LatestResult
     {
         get => latestResult;

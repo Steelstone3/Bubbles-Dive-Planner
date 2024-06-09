@@ -1,3 +1,4 @@
+using Moq;
 using Xunit;
 
 public class DiveProfileStagesFactoryShould
@@ -8,7 +9,17 @@ public class DiveProfileStagesFactoryShould
         // Given
         const byte COMPARTMENT_COUNT = 16;
 
-        IDiveStage expectedDiveStage = new DiveStage()
+        Mock<IDiveStep> diveStep = new();
+        diveStep.Setup(ds => ds.Depth).Returns(50);
+        diveStep.Setup(ds => ds.Time).Returns(10);
+        Mock<IGasMixture> gasMixture = new();
+        gasMixture.Setup(gm => gm.Oxygen).Returns(21);
+        gasMixture.Setup(gm => gm.Helium).Returns(10);
+        gasMixture.Setup(gm => gm.Nitrogen).Returns(69);
+        Mock<ICylinder> cylinder = new();
+        cylinder.Setup(c => c.GasMixture).Returns(gasMixture.Object);
+        Mock<IDiveStageValidator> diveStageValidator = new();
+        IDiveStage expectedDiveStage = new DiveStage(diveStageValidator.Object)
         {
             DiveModel = new Zhl16Buhlmann()
             {
@@ -171,30 +182,14 @@ public class DiveProfileStagesFactoryShould
                     },
                 }
             },
-            DiveStep = new DiveStep()
-            {
-                Depth = 50,
-                Time = 10,
-            },
-            GasMixture = new GasMixture()
-            {
-                Oxygen = 21,
-                Helium = 10,
-            }
+            DiveStep = diveStep.Object,
+            Cylinder = cylinder.Object,
         };
-        IDiveStage diveStage = new DiveStage()
+        IDiveStage diveStage = new DiveStage(diveStageValidator.Object)
         {
             DiveModel = new Zhl16Buhlmann(),
-            DiveStep = new DiveStep()
-            {
-                Depth = 50,
-                Time = 10,
-            },
-            GasMixture = new GasMixture()
-            {
-                Oxygen = 21,
-                Helium = 10,
-            }
+            DiveStep = diveStep.Object,
+            Cylinder = cylinder.Object,
         };
 
         IDiveProfileStagesFactory diveProfileStagesFactory = new DiveProfileStagesFactory();
@@ -206,9 +201,9 @@ public class DiveProfileStagesFactoryShould
         Assert.Equal(expectedDiveStage.DiveStep.Depth, diveStage.DiveStep.Depth);
         Assert.Equal(expectedDiveStage.DiveStep.Time, diveStage.DiveStep.Time);
 
-        Assert.Equal(expectedDiveStage.GasMixture.Oxygen, diveStage.GasMixture.Oxygen);
-        Assert.Equal(expectedDiveStage.GasMixture.Helium, diveStage.GasMixture.Helium);
-        Assert.Equal(expectedDiveStage.GasMixture.Nitrogen, diveStage.GasMixture.Nitrogen);
+        Assert.Equal(expectedDiveStage.Cylinder.GasMixture.Oxygen, diveStage.Cylinder.GasMixture.Oxygen);
+        Assert.Equal(expectedDiveStage.Cylinder.GasMixture.Helium, diveStage.Cylinder.GasMixture.Helium);
+        Assert.Equal(expectedDiveStage.Cylinder.GasMixture.Nitrogen, diveStage.Cylinder.GasMixture.Nitrogen);
 
         Assert.Equal(expectedDiveStage.DiveModel.DiveModelProfile.OxygenAtPressure, diveStage.DiveModel.DiveModelProfile.OxygenAtPressure, 4);
         Assert.Equal(expectedDiveStage.DiveModel.DiveModelProfile.HeliumAtPressure, diveStage.DiveModel.DiveModelProfile.HeliumAtPressure, 4);

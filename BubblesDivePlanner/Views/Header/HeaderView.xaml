@@ -13,13 +13,11 @@
                 <MenuItem Header="_New" HotKey="Ctrl+N" Command="{Binding HeaderModel.FileModel.NewModel.CreateNewDivePlannerInstanceCommand}"/>
                 <MenuItem Header="_Open ..." HotKey="Ctrl+O" />
                 <MenuItem Header="_Save ..." HotKey="Ctrl+S" />
-                <!-- <Separator /> -->
-                <!-- <MenuItem Header="_Print" HotKey="Ctrl+P" /> -->
             </MenuItem>
 
             <MenuItem Header="_Edit">
-                <!-- <MenuItem Header="_Undo" HotKey="Ctrl+Z" /> -->
-                <!-- <MenuItem Header="_Redo" HotKey="Ctrl+Y" /> -->
+                <MenuItem Header="_Undo" HotKey="Ctrl+Z" />
+                <MenuItem Header="_Redo" HotKey="Ctrl+Y" />
             </MenuItem> 
 
             <MenuItem Header="_Help">

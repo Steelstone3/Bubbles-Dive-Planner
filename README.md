@@ -33,3 +33,11 @@ Or set the BubblesDivePlannerTests.csproj up in your testing enviroment in your 
 Follow the steps for installing dotnet 8.0 runtime for your given operating system.
 
 > <https://dotnet.microsoft.com/download/dotnet/8.0>
+
+## Help and Support
+
+For help and support using Bubbles Dive Planner consult the wiki page 
+
+> https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki
+>
+> git clone https://github.com/Steelstone3/Bubbles-Dive-Planner.wiki.git
