@@ -14,9 +14,16 @@ public class DiveModelSelector : ReactiveObject, IDiveModelSelector
         get => diveModelSelected;
         set => this.RaiseAndSetIfChanged(ref diveModelSelected, value);
     }
+
+    private bool isVisible = true;
+    public bool IsVisible
+    {
+        get => isVisible;
+        set => this.RaiseAndSetIfChanged(ref isVisible, value);
+    }
 }
 
-public interface IDiveModelSelector
+public interface IDiveModelSelector : IVisibility
 {
     IList<IDiveModel> DiveModels { get; }
     IDiveModel DiveModelSelected { get; set; }

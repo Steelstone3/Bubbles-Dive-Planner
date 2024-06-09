@@ -5,12 +5,14 @@ using Xunit;
 public class DiveModelSelectorShould
 {
     [Fact]
-    public void HaveDefaults()
+    public void Constructs()
     {
         // Given
         DiveModelSelector diveModelSelector = new();
 
         // Then
+        Assert.IsAssignableFrom<IVisibility>(diveModelSelector);
+        Assert.True(diveModelSelector.IsVisible);
         Assert.NotEmpty(diveModelSelector.DiveModels);
     }
 
@@ -25,10 +27,12 @@ public class DiveModelSelectorShould
 
         // When
         diveModelSelector.DiveModelSelected = diveModel.Object;
+        diveModelSelector.IsVisible = false;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(diveModelSelector);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveModelSelector.DiveModelSelected), events);
+        Assert.Contains(nameof(diveModelSelector.IsVisible), events);
     }
 }
