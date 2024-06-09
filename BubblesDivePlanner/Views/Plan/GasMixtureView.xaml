@@ -9,12 +9,12 @@
     mc:Ignorable="d">
         <StackPanel Margin="4,0" Background="#FFC3FDFF">
             <TextBlock Margin="4" Text="Oxygen (%):" FontWeight="Bold"/>
-            <TextBox Margin="4" Text="{Binding DiveStage.GasMixture.Oxygen}" />
+            <TextBox Margin="4" Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Oxygen}" />
             <TextBlock Margin="4" Text="Helium (%):" FontWeight="Bold"/>
-            <TextBox Margin="4" Text="{Binding DiveStage.GasMixture.Helium}" />
+            <TextBox Margin="4" Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Helium}" />
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="4,4,0,4" Text="Nitrogen (%): " FontWeight="Bold"/>
-                <TextBlock Margin="0,4,4,4" Text="{Binding DiveStage.GasMixture.Nitrogen}"/>
+                <TextBlock Margin="0,4,4,4" Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Nitrogen}"/>
             </StackPanel>
         </StackPanel>
 </UserControl>

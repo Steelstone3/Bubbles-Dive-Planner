@@ -1,4 +1,4 @@
 public interface IVisibility
 {
-    bool IsVisibility { get; set; }
+    bool IsVisible { get; set; }
 }
