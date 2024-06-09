@@ -1,3 +1,4 @@
+using Moq;
 using Xunit;
 
 public class AmbientPressuresShould
@@ -9,19 +10,21 @@ public class AmbientPressuresShould
         float expectedOxygenAtPressure = 1.26f;
         float expectedNitrogenAtPressure = 4.74f;
         float expectedHeliumAtPressure = 0.0f;
-        IDiveStage diveStage = new DiveStage()
+        Mock<IDiveStep> diveStep = new();
+        diveStep.Setup(ds => ds.Depth).Returns(50);
+        diveStep.Setup(ds => ds.Time).Returns(10);
+        Mock<IGasMixture> gasMixture = new();
+        gasMixture.Setup(gm => gm.Oxygen).Returns(21);
+        gasMixture.Setup(gm => gm.Helium).Returns(0);
+        gasMixture.Setup(gm => gm.Nitrogen).Returns(79);
+        Mock<ICylinder> cylinder = new();
+        cylinder.Setup(c => c.GasMixture).Returns(gasMixture.Object);
+        Mock<IDiveStageValidator> diveStageValidator = new();
+        IDiveStage diveStage = new DiveStage(diveStageValidator.Object)
         {
             DiveModel = new Zhl16Buhlmann(),
-            DiveStep = new DiveStep()
-            {
-                Depth = 50,
-                Time = 10,
-            },
-            GasMixture = new GasMixture()
-            {
-                Oxygen = 21,
-                Helium = 0,
-            }
+            DiveStep = diveStep.Object,
+            Cylinder = cylinder.Object,
         };
         IDiveProfileStage diveProfileStage = new AmbientPressures(diveStage);
 
