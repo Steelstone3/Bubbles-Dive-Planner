@@ -2,6 +2,13 @@ using ReactiveUI;
 
 public class DiveStage : ReactiveObject, IDiveStage
 {
+    private readonly IDiveStageValidator diveStageValidator;
+
+    public DiveStage(IDiveStageValidator diveStageValidator)
+    {
+        this.diveStageValidator = diveStageValidator;
+    }
+
     private IDiveModel diveModel;
     public IDiveModel DiveModel
     {
@@ -9,27 +16,26 @@ public class DiveStage : ReactiveObject, IDiveStage
         set => this.RaiseAndSetIfChanged(ref diveModel, value);
     }
 
-    private IDiveStep diveStep = new DiveStep();
+    private IDiveStep diveStep = new DiveStep(new DiveStepValidator());
     public IDiveStep DiveStep
     {
         get => diveStep;
         set => this.RaiseAndSetIfChanged(ref diveStep, value);
     }
 
-    private IGasMixture gasMixture = new GasMixture();
-    public IGasMixture GasMixture
+    private ICylinder cylinder = new Cylinder(new CylinderValidator(), new CylinderController());
+    public ICylinder Cylinder
     {
-        get => gasMixture;
-        set => this.RaiseAndSetIfChanged(ref gasMixture, value);
+        get => cylinder;
+        set => this.RaiseAndSetIfChanged(ref cylinder, value);
     }
 
-    // TODO AH Test
-    public bool IsValid => DiveStep.IsValid && GasMixture.IsValid;
+    public bool IsValid => diveStageValidator.Validate(this);
 }
 
 public interface IDiveStage : IValidation
 {
     IDiveModel DiveModel { get; set; }
     IDiveStep DiveStep { get; set; }
-    IGasMixture GasMixture { get; set; }
+    ICylinder Cylinder { get; set; }
 }

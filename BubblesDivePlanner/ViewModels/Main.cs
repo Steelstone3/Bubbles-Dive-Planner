@@ -3,11 +3,8 @@ using ReactiveUI;
 
 public class Main : ReactiveObject, IMain
 {
-    private readonly DiveProfileStagesFactory diveProfileStagesFactory;
-
     public Main()
     {
-        diveProfileStagesFactory = new DiveProfileStagesFactory();
         CalculateCommand = ReactiveCommand.Create(CalculateDiveStage); //, CanCalculateDiveStage);
     }
 
@@ -18,7 +15,14 @@ public class Main : ReactiveObject, IMain
         set => this.RaiseAndSetIfChanged(ref diveModelSelector, value);
     }
 
-    private IDiveStage diveStage = new DiveStage();
+    private ICylinderSelector cylinderSelector = new CylinderSelector();
+    public ICylinderSelector CylinderSelector
+    {
+        get => cylinderSelector;
+        set => this.RaiseAndSetIfChanged(ref cylinderSelector, value);
+    }
+
+    private IDiveStage diveStage = new DiveStage(new DiveStageValidator());
     public IDiveStage DiveStage
     {
         get => diveStage;
@@ -38,15 +42,35 @@ public class Main : ReactiveObject, IMain
 
     private void CalculateDiveStage()
     {
+        DiveStage.DiveModel = DiveModelSelector.DiveModelSelected;
+        DiveStage.Cylinder = CylinderSelector.SelectedCylinder;
+
         // TODO AH temporary whilst CanCalculateDiveStage is not implemented
         if (!DiveStage.IsValid)
         {
             return;
         }
 
-        DiveStage.DiveModel = DiveModelSelector.DiveModelSelected;
+        VisibilityController visibilityController = new();
+        // TODO AH Move this to withing a toggle visibility method
+        visibilityController.SetInvisible(diveModelSelector);
+        visibilityController.SetInvisible(cylinderSelector.SelectedCylinder);
+        visibilityController.SetVisible(cylinderSelector.SelectedCylinder.GasMixture);
+        visibilityController.SetVisible(cylinderSelector.SelectedCylinder.GasUsage);
+        foreach (var cylinder in cylinderSelector.Cylinders)
+        {
+            visibilityController.SetInvisible(cylinder);
+            visibilityController.SetVisible(cylinder.GasMixture);
+            visibilityController.SetVisible(cylinder.GasUsage);
+        }
+        // TODO AH Up to here
+
+        DiveProfileStagesFactory diveProfileStagesFactory = new();
         diveProfileStagesFactory.Run(DiveStage);
         Results.LatestResult = DiveStage;
+
+        CylinderController cylinderController = new();
+        DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DiveStage.DiveStep, DiveStage.Cylinder.GasUsage);
     }
 }
 
