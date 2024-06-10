@@ -25,7 +25,7 @@ public class Cylinder : ReactiveObject, ICylinder
         set
         {
             this.RaiseAndSetIfChanged(ref volume, value);
-            InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(Volume, Pressure);
+            InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(volume, pressure);
         }
     }
 
@@ -36,7 +36,7 @@ public class Cylinder : ReactiveObject, ICylinder
         set
         {
             this.RaiseAndSetIfChanged(ref pressure, value);
-            InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(Volume, Pressure);
+            InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(volume, pressure);
         }
     }
 

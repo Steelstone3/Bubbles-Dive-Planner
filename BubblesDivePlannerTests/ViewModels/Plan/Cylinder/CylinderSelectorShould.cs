@@ -42,11 +42,13 @@ public class CylinderSelectorShould
     public void AddCylinder()
     {
         // Given
-        Mock<ICylinder> cylinder = new();
-        cylinder.Setup(c => c.IsValid).Returns(true);
+        Mock<ICylinderValidator> cylinderValidator = new();
+        Mock<ICylinderController> cylinderController = new();
+        ICylinder cylinder = new Cylinder(cylinderValidator.Object, cylinderController.Object);
+        cylinderValidator.Setup(cv => cv.Validate(cylinder)).Returns(true);
         CylinderSelector cylinderSelector = new()
         {
-            SelectedCylinder = cylinder.Object
+            SelectedCylinder = cylinder
         };
 
         // When

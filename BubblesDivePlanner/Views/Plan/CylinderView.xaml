@@ -9,10 +9,10 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <StackPanel>
-        <StackPanel Margin="4,0" Background="#FFC3FDFF">
+        <StackPanel Margin="4,0" Background="#FFC3FDFF" IsVisible="{Binding CylinderSelector.SelectedCylinder.GasMixture.IsVisible}">
             <plan:GasMixtureReadOnlyView/>
         </StackPanel>
-        <StackPanel Margin="4,0" Background="#FFC3FDFF">
+        <StackPanel Margin="4,0" Background="#FFC3FDFF" IsVisible="{Binding CylinderSelector.SelectedCylinder.GasUsage.IsVisible}">
             <plan:GasUsageReadOnlyView/>
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FF5D99C6" IsVisible="{Binding CylinderSelector.SelectedCylinder.IsVisible}">
@@ -32,18 +32,18 @@
             <TextBlock Margin="8,4" Text="S.A.C Rate (l/min):" FontWeight="Bold" />
             <TextBox Margin="8,4" Text="{Binding CylinderSelector.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate}" />
         </StackPanel>
-        <StackPanel Margin="4,0" Background="#FFC3FDFF" IsVisible="{Binding CylinderSelector.SelectedCylinder.GasMixture.IsVisible}">
+        <StackPanel Margin="4,0" Background="#FFC3FDFF" IsVisible="{Binding CylinderSelector.SelectedCylinder.IsVisible}">
             <plan:GasMixtureView/>
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FFC3FDFF" IsVisible="{Binding CylinderSelector.SelectedCylinder.IsVisible}">
             <!-- TODO AH Bug with adding two or more cylinders -->
-            <!-- <Button
+            <Button
                 Margin="8,4"
                 HorizontalAlignment="Stretch"
                 FontWeight="Bold"
                 FontSize="12"
                 Command="{Binding CylinderSelector.AddCylinderCommand}"
-                Content="Add Cylinder" /> -->
+                Content="Add Cylinder" />
         </StackPanel>
     </StackPanel>
 </UserControl>
