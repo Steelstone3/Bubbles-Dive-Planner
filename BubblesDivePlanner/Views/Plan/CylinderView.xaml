@@ -32,10 +32,10 @@
             <TextBlock Margin="8,4" Text="S.A.C Rate (l/min):" FontWeight="Bold" />
             <TextBox Margin="8,4" Text="{Binding CylinderSelector.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate}" />
         </StackPanel>
-        <StackPanel Margin="4,0" Background="#FFC3FDFF">
+        <StackPanel Margin="4,0" Background="#FFC3FDFF" IsVisible="{Binding CylinderSelector.SelectedCylinder.IsVisible}">
             <plan:GasMixtureView/>
         </StackPanel>
-        <StackPanel Margin="4,0" Background="#FFC3FDFF">
+        <StackPanel Margin="4,0" Background="#FFC3FDFF" IsVisible="{Binding CylinderSelector.SelectedCylinder.IsVisible}">
             <!-- TODO AH Bug with adding two or more cylinders -->
             <!-- <Button
                 Margin="8,4"
