@@ -30,8 +30,9 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
             return;
         }
 
-        // TODO AH need a deep clone here
-        Cylinders.Add(SelectedCylinder);
+        ICylinderPrototype cylinderPrototype = new CylinderPrototype();
+        ICylinder clonedSelectedCylinder = cylinderPrototype.DeepClone(SelectedCylinder);
+        Cylinders.Add(clonedSelectedCylinder);
     }
 }
 
