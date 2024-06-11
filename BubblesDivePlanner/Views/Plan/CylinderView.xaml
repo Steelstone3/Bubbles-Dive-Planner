@@ -37,13 +37,13 @@
         </StackPanel>
         <StackPanel Margin="4,0" Background="#FFC3FDFF" IsVisible="{Binding CylinderSelector.SelectedCylinder.IsVisible}">
             <!-- TODO AH Bug with adding two or more cylinders -->
-            <!-- <Button
+            <Button
                 Margin="8,4"
                 HorizontalAlignment="Stretch"
                 FontWeight="Bold"
                 FontSize="12"
                 Command="{Binding CylinderSelector.AddCylinderCommand}"
-                Content="Add Cylinder" /> -->
+                Content="Add Cylinder" />
         </StackPanel>
     </StackPanel>
 </UserControl>

@@ -52,6 +52,7 @@ public class Main : ReactiveObject, IMain
         }
         
         VisibilityController visibilityController = new();
+        visibilityController.SetInvisible(diveModelSelector);
         visibilityController.SetInvisible(cylinderSelector.SelectedCylinder);
         visibilityController.SetVisible(cylinderSelector.SelectedCylinder.GasMixture);
         visibilityController.SetVisible(cylinderSelector.SelectedCylinder.GasUsage);
