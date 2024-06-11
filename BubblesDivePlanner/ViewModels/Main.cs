@@ -50,12 +50,18 @@ public class Main : ReactiveObject, IMain
         {
             return;
         }
-        
+
         VisibilityController visibilityController = new();
         visibilityController.SetInvisible(diveModelSelector);
         visibilityController.SetInvisible(cylinderSelector.SelectedCylinder);
         visibilityController.SetVisible(cylinderSelector.SelectedCylinder.GasMixture);
         visibilityController.SetVisible(cylinderSelector.SelectedCylinder.GasUsage);
+        foreach (var cylinder in cylinderSelector.Cylinders)
+        {
+            visibilityController.SetInvisible(cylinder);
+            visibilityController.SetVisible(cylinder.GasMixture);
+            visibilityController.SetVisible(cylinder.GasUsage);
+        }
 
         DiveProfileStagesFactory diveProfileStagesFactory = new();
         diveProfileStagesFactory.Run(DiveStage);
