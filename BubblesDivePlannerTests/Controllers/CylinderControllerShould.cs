@@ -1,4 +1,3 @@
-using Moq;
 using Xunit;
 
 public class CylinderControllerShould
@@ -32,5 +31,25 @@ public class CylinderControllerShould
 
         // Then
         Assert.Equal(expectedNitrogen, nitrogen);
+    }
+
+    [Fact(Skip = "To do")]
+    public void CalculateRemainingPressurisedVolume()
+    {
+        // Given
+    
+        // When
+    
+        // Then
+    }
+
+    [Fact(Skip = "To do")]
+    public void CalculateGasUsed()
+    {
+        // Given
+    
+        // When
+    
+        // Then
     }
 }
