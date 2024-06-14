@@ -34,20 +34,25 @@ public class CylinderControllerShould
         Assert.Equal(expectedNitrogen, nitrogen);
     }
 
-    [Fact (Skip = "Test fails?")]
+    [Fact]
     public void UpdateGasUsage()
     {
         // Given
-        Mock<IDiveStep> diveStep = new();
-        diveStep.Setup(ds => ds.Depth).Returns(50);
-        diveStep.Setup(ds => ds.Time).Returns(10);
-
-        Mock<IGasUsage> gasUsage = new();
-        gasUsage.Setup(gu => gu.Remaining).Returns(2400);
-        gasUsage.Setup(gu => gu.Used).Returns(720);
+        Mock<IDiveStepValidator> diveStepValidator = new();
+        DiveStep diveStep = new(diveStepValidator.Object)
+        {
+            Depth = 50,
+            Time = 10,
+        };
+        Mock<IGasUsageValidator> gasUsageValidator = new();
+        GasUsage gasUsage = new(gasUsageValidator.Object)
+        {
+            Remaining = 2400,
+            SurfaceAirConsumptionRate = 12,
+        };
 
         // When
-        IGasUsage updatedGasUsage = cylinderController.UpdateGasUsage(diveStep.Object, gasUsage.Object);
+        IGasUsage updatedGasUsage = cylinderController.UpdateGasUsage(diveStep, gasUsage);
     
         // Then
         Assert.Equal(1680, updatedGasUsage.Remaining);
