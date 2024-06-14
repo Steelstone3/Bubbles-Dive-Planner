@@ -1,16 +1,28 @@
 public class VisibilityController : IVisibilityController
 {
-    public void SetInvisible(IVisibility visibility)
+    public void SetVisibility(IMain main)
     {
-        if(visibility.IsVisible)
+        SetInvisible(main.DiveModelSelector);
+        SetInvisible(main.CylinderSelector.SetupCylinder);
+    }
+
+    // public void SetDefaultVisibility(IMain main)
+    // {
+    //     SetVisible(main.DiveModelSelector);
+    //     SetVisible(main.CylinderSelector.SetupCylinder);
+    // }
+
+    private void SetVisible(IVisibility visibility)
+    {
+        if (!visibility.IsVisible)
         {
             visibility.IsVisible = !visibility.IsVisible;
         }
     }
 
-    public void SetVisible(IVisibility visibility)
+    private void SetInvisible(IVisibility visibility)
     {
-        if(!visibility.IsVisible)
+        if (visibility.IsVisible)
         {
             visibility.IsVisible = !visibility.IsVisible;
         }
@@ -19,6 +31,6 @@ public class VisibilityController : IVisibilityController
 
 public interface IVisibilityController
 {
-    void SetInvisible(IVisibility visibility);
-    void SetVisible(IVisibility visibility);
+    void SetVisibility(IMain main);
+    // void SetDefaultVisibility(IMain main);
 }

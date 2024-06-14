@@ -12,14 +12,12 @@ public class CylinderPrototype : ICylinderPrototype
             {
                 Oxygen = cylinder.GasMixture.Oxygen,
                 Helium = cylinder.GasMixture.Helium,
-                IsVisible = cylinder.GasMixture.IsVisible,
             },
             GasUsage = new GasUsage(new GasUsageValidator())
             {
                 Remaining = cylinder.GasUsage.Remaining,
                 Used = cylinder.GasUsage.Used,
                 SurfaceAirConsumptionRate = cylinder.GasUsage.SurfaceAirConsumptionRate,
-                IsVisible = cylinder.GasUsage.IsVisible,
             }
         };
 

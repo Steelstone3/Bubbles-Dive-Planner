@@ -30,17 +30,10 @@ public class GasUsage : ReactiveObject, IGasUsage
         set => this.RaiseAndSetIfChanged(ref surfaceAirConsumptionRate, value);
     }
 
-    private bool isVisible;
-    public bool IsVisible
-    {
-        get => isVisible;
-        set => this.RaiseAndSetIfChanged(ref isVisible, value);
-    }
-
     public bool IsValid => gasUsageValidator.Validate(this);
 }
 
-public interface IGasUsage : IVisibility, IValidation
+public interface IGasUsage : IValidation
 {
     ushort Remaining { get; set; }
     ushort Used { get; set; }

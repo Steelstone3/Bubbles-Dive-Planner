@@ -9,13 +9,10 @@ public class GasUsageShould
     {
         // Given
         Mock<IGasUsageValidator> gasUsageValidator = new();
-        // Mock<ICylinderController> cylinderController = new();
         GasUsage gasUsage = new(gasUsageValidator.Object);
 
         // Then
         Assert.IsAssignableFrom<IValidation>(gasUsage);
-        Assert.IsAssignableFrom<IVisibility>(gasUsage);
-        Assert.False(gasUsage.IsVisible);
     }
 
     [Fact]
@@ -31,7 +28,6 @@ public class GasUsageShould
         gasUsage.Remaining = 1680;
         gasUsage.Used = 720;
         gasUsage.SurfaceAirConsumptionRate = 12;
-        gasUsage.IsVisible = true;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(gasUsage);
@@ -39,7 +35,6 @@ public class GasUsageShould
         Assert.Contains(nameof(gasUsage.Remaining), events);
         Assert.Contains(nameof(gasUsage.Used), events);
         Assert.Contains(nameof(gasUsage.SurfaceAirConsumptionRate), events);
-        Assert.Contains(nameof(gasUsage.IsVisible), events);
     }
 
     [Fact]

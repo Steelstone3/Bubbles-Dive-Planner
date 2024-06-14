@@ -10,8 +10,6 @@ public class CylinderSelectorShould
         // Given
         CylinderSelector cylinderSelector = new();
     
-        // When
-    
         // Then
         Assert.NotNull(cylinderSelector.SetupCylinder);
         Assert.Null(cylinderSelector.SelectedCylinder);
