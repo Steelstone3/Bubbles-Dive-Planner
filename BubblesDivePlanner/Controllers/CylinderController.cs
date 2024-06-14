@@ -24,7 +24,5 @@ public interface ICylinderController
 {
     ushort CalculateInitialPressurisedVolume(byte volume, ushort pressure);
     IGasUsage UpdateGasUsage(IDiveStep diveStep, IGasUsage gasUsage);
-    // ushort CalculateRemainingPressurisedVolume(IGasUsage gasUsage);
-    // ushort CalculateGasUsed(IDiveStep diveStep, IGasUsage gasUsage);
     float CalculateNitrogen(float oxygen, float helium);
 }

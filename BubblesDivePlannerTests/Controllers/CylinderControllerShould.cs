@@ -1,3 +1,4 @@
+using Moq;
 using Xunit;
 
 public class CylinderControllerShould
@@ -33,23 +34,23 @@ public class CylinderControllerShould
         Assert.Equal(expectedNitrogen, nitrogen);
     }
 
-    [Fact(Skip = "To do")]
-    public void CalculateRemainingPressurisedVolume()
+    [Fact (Skip = "Test fails?")]
+    public void UpdateGasUsage()
     {
         // Given
-    
-        // When
-    
-        // Then
-    }
+        Mock<IDiveStep> diveStep = new();
+        diveStep.Setup(ds => ds.Depth).Returns(50);
+        diveStep.Setup(ds => ds.Time).Returns(10);
 
-    [Fact(Skip = "To do")]
-    public void CalculateGasUsed()
-    {
-        // Given
-    
+        Mock<IGasUsage> gasUsage = new();
+        gasUsage.Setup(gu => gu.Remaining).Returns(2400);
+        gasUsage.Setup(gu => gu.Used).Returns(720);
+
         // When
+        IGasUsage updatedGasUsage = cylinderController.UpdateGasUsage(diveStep.Object, gasUsage.Object);
     
         // Then
+        Assert.Equal(1680, updatedGasUsage.Remaining);
+        Assert.Equal(720, updatedGasUsage.Used);
     }
 }
