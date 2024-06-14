@@ -62,7 +62,7 @@
             Grid.Column="1"
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF9E9E9E">
-                <plan:ResultsView />
+                <results:ResultView />
             </StackPanel>
         </ScrollViewer>
 
