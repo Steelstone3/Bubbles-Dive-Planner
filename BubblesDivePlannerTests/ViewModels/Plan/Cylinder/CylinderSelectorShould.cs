@@ -14,11 +14,13 @@ public class CylinderSelectorShould
         cylinderSelector.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
+        cylinderSelector.SetupCylinder = cylinder.Object;
         cylinderSelector.SelectedCylinder = cylinder.Object;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(cylinderSelector);
         Assert.NotEmpty(events);
+        Assert.Contains(nameof(cylinderSelector.SetupCylinder), events);
         Assert.Contains(nameof(cylinderSelector.SelectedCylinder), events);
     }
 
@@ -48,7 +50,7 @@ public class CylinderSelectorShould
         cylinderValidator.Setup(cv => cv.Validate(cylinder)).Returns(true);
         CylinderSelector cylinderSelector = new()
         {
-            SelectedCylinder = cylinder
+            SetupCylinder = cylinder
         };
 
         // When
