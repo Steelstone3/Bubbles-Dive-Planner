@@ -52,6 +52,7 @@ public class Main : ReactiveObject, IMain
         }
 
         VisibilityController visibilityController = new();
+        // TODO AH Move this to withing a toggle visibility method
         visibilityController.SetInvisible(diveModelSelector);
         visibilityController.SetInvisible(cylinderSelector.SelectedCylinder);
         visibilityController.SetVisible(cylinderSelector.SelectedCylinder.GasMixture);
@@ -62,10 +63,14 @@ public class Main : ReactiveObject, IMain
             visibilityController.SetVisible(cylinder.GasMixture);
             visibilityController.SetVisible(cylinder.GasUsage);
         }
+        // TODO AH Up to here
 
         DiveProfileStagesFactory diveProfileStagesFactory = new();
         diveProfileStagesFactory.Run(DiveStage);
         Results.LatestResult = DiveStage;
+
+        CylinderController cylinderController = new();
+        DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DiveStage.DiveStep, DiveStage.Cylinder.GasUsage);
     }
 }
 

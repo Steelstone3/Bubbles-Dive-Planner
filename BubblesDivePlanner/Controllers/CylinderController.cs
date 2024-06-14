@@ -3,24 +3,28 @@ public class CylinderController : ICylinderController
     public ushort CalculateInitialPressurisedVolume(byte volume, ushort pressure) => (ushort)(volume * pressure);
 
     // TODO AH Test
-    public ushort CalculateRemainingPressurisedVolume(ushort gasRemaining, ushort gasUsed)
+    public IGasUsage UpdateGasUsage(IDiveStep diveStep, IGasUsage gasUsage)
     {
-        return gasRemaining > gasUsed ? (ushort)(gasRemaining - gasUsed) : (ushort)0;
-    }
+        gasUsage.Used = CalculateGasUsed(diveStep, gasUsage);
+        gasUsage.Remaining = CalculateRemainingPressurisedVolume(gasUsage);
 
-    // TODO AH Test
-    public ushort CalculateGasUsed(IDiveStep diveStep, byte surfaceAirConsumptionRate)
-    {
-        return (ushort)(((diveStep.Depth / 10) + 1) * diveStep.Time * surfaceAirConsumptionRate);
+        return gasUsage;
     }
 
     public float CalculateNitrogen(float oxygen, float helium) => 100.0F - oxygen - helium;
+
+    // TODO AH Test
+    private ushort CalculateRemainingPressurisedVolume(IGasUsage gasUsage) => gasUsage.Remaining > gasUsage.Used ? (ushort)(gasUsage.Remaining - gasUsage.Used) : (ushort)0;
+
+    // TODO AH Test
+    private ushort CalculateGasUsed(IDiveStep diveStep, IGasUsage gasUsage) => (ushort)(((diveStep.Depth / 10) + 1) * diveStep.Time * gasUsage.SurfaceAirConsumptionRate);
 }
 
 public interface ICylinderController
 {
     ushort CalculateInitialPressurisedVolume(byte volume, ushort pressure);
-    ushort CalculateRemainingPressurisedVolume(ushort gasRemaining, ushort gasUsed);
-    ushort CalculateGasUsed(IDiveStep diveStep, byte surfaceAirConsumptionRate);
+    IGasUsage UpdateGasUsage(IDiveStep diveStep, IGasUsage gasUsage);
+    // ushort CalculateRemainingPressurisedVolume(IGasUsage gasUsage);
+    // ushort CalculateGasUsed(IDiveStep diveStep, IGasUsage gasUsage);
     float CalculateNitrogen(float oxygen, float helium);
 }
