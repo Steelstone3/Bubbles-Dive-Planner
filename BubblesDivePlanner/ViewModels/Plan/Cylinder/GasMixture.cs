@@ -41,17 +41,10 @@ public class GasMixture : ReactiveObject, IGasMixture
         private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
     }
 
-    private bool isVisibile;
-    public bool IsVisible
-    {
-        get => isVisibile;
-        set => this.RaiseAndSetIfChanged(ref isVisibile, value);
-    }
-
     public bool IsValid => gasMixtureValidator.Validate(this);
 }
 
-public interface IGasMixture : IVisibility, IValidation
+public interface IGasMixture : IValidation
 {
     float Oxygen { get; set; }
     float Helium { get; set; }

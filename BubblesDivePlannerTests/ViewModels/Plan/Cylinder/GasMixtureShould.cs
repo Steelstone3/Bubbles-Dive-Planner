@@ -15,8 +15,6 @@ public class GasMixtureShould
 
         // Then
         Assert.IsAssignableFrom<IValidation>(gasMixture);
-        Assert.IsAssignableFrom<IVisibility>(gasMixture);
-        Assert.False(gasMixture.IsVisible);
         Assert.Equal(100.0F, gasMixture.Nitrogen);
     }
 
@@ -31,14 +29,12 @@ public class GasMixtureShould
         // When
         gasMixture.Oxygen = 21;
         gasMixture.Helium = 10;
-        gasMixture.IsVisible = true;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(gasMixture);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(gasMixture.Oxygen), events);
         Assert.Contains(nameof(gasMixture.Helium), events);
-        Assert.Contains(nameof(gasMixture.IsVisible), events);
     }
 
     [Fact]
