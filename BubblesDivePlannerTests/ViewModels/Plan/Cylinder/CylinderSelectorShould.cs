@@ -5,6 +5,20 @@ using Xunit;
 public class CylinderSelectorShould
 {
     [Fact]
+    public void Construct()
+    {
+        // Given
+        CylinderSelector cylinderSelector = new();
+    
+        // When
+    
+        // Then
+        Assert.NotNull(cylinderSelector.SetupCylinder);
+        Assert.Null(cylinderSelector.SelectedCylinder);
+        Assert.Empty(cylinderSelector.Cylinders);
+    }
+
+    [Fact]
     public void RaisePropertyChangedEvents()
     {
         // Given

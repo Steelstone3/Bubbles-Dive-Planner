@@ -5,7 +5,7 @@ using Xunit;
 public class GasUsageShould
 {
     [Fact]
-    public void Constructs()
+    public void Construct()
     {
         // Given
         Mock<IGasUsageValidator> gasUsageValidator = new();

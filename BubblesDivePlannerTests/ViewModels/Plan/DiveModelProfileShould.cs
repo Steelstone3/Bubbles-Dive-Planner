@@ -6,7 +6,7 @@ public class DiveModelProfileShould
     private const int COMPARTMENTS = 16;
 
     [Fact]
-    public void HaveDefaults()
+    public void Construct()
     {
         // Given
         DiveModelProfile diveModelProfile = new(COMPARTMENTS);
