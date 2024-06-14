@@ -8,7 +8,7 @@ public class GasMixtureShould
     private readonly Mock<ICylinderController> cylinderController = new();
 
     [Fact]
-    public void Constructs()
+    public void Construct()
     {
         // Given
         GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object);

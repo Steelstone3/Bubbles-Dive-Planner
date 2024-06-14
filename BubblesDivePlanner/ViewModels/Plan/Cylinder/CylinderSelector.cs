@@ -16,7 +16,14 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
         get;
     } = new ObservableCollection<ICylinder>();
 
-    private ICylinder selectedCylinder = new Cylinder(new CylinderValidator(), new CylinderController());
+    private ICylinder setupCylinder = new Cylinder(new CylinderValidator(), new CylinderController());
+    public ICylinder SetupCylinder
+    {
+        get => setupCylinder;
+        set => this.RaiseAndSetIfChanged(ref setupCylinder, value);
+    }
+
+    private ICylinder selectedCylinder;
     public ICylinder SelectedCylinder
     {
         get => selectedCylinder;
@@ -25,13 +32,13 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
 
     private void AddCylinder()
     {
-        if (!SelectedCylinder.IsValid)
+        if (!SetupCylinder.IsValid)
         {
             return;
         }
 
         ICylinderPrototype cylinderPrototype = new CylinderPrototype();
-        ICylinder clonedSelectedCylinder = cylinderPrototype.DeepClone(SelectedCylinder);
+        ICylinder clonedSelectedCylinder = cylinderPrototype.DeepClone(SetupCylinder);
         Cylinders.Add(clonedSelectedCylinder);
     }
 }
@@ -39,5 +46,6 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
 public interface ICylinderSelector
 {
     ObservableCollection<ICylinder> Cylinders { get; }
+    ICylinder SetupCylinder { get; set; }
     ICylinder SelectedCylinder { get; set; }
 }

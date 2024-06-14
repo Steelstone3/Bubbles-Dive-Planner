@@ -5,7 +5,7 @@ using Xunit;
 public class CylinderShould
 {
     [Fact]
-    public void Constructs()
+    public void Construct()
     {
         // Given
         Mock<ICylinderValidator> cylinderValidator = new();

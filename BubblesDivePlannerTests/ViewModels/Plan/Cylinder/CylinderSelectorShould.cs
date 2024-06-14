@@ -5,6 +5,20 @@ using Xunit;
 public class CylinderSelectorShould
 {
     [Fact]
+    public void Construct()
+    {
+        // Given
+        CylinderSelector cylinderSelector = new();
+    
+        // When
+    
+        // Then
+        Assert.NotNull(cylinderSelector.SetupCylinder);
+        Assert.Null(cylinderSelector.SelectedCylinder);
+        Assert.Empty(cylinderSelector.Cylinders);
+    }
+
+    [Fact]
     public void RaisePropertyChangedEvents()
     {
         // Given
@@ -14,11 +28,13 @@ public class CylinderSelectorShould
         cylinderSelector.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
+        cylinderSelector.SetupCylinder = cylinder.Object;
         cylinderSelector.SelectedCylinder = cylinder.Object;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(cylinderSelector);
         Assert.NotEmpty(events);
+        Assert.Contains(nameof(cylinderSelector.SetupCylinder), events);
         Assert.Contains(nameof(cylinderSelector.SelectedCylinder), events);
     }
 
@@ -48,7 +64,7 @@ public class CylinderSelectorShould
         cylinderValidator.Setup(cv => cv.Validate(cylinder)).Returns(true);
         CylinderSelector cylinderSelector = new()
         {
-            SelectedCylinder = cylinder
+            SetupCylinder = cylinder
         };
 
         // When
