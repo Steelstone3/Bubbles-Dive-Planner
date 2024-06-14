@@ -5,41 +5,17 @@ public class VisibilityControllerShould
 {
     private readonly IVisibilityController visibilityController = new VisibilityController();
 
- [Fact]
-    public void SetVisible()
-    {
-        // TODO AH Make the cylinder setup and dive model visible by default
-        // TODO AH Invisibile once the calculate is ran
-        // TODO AH Make both read only views invisibile until first calculation
-        // Given
-        Mock<ICylinderValidator> cylinderValidator = new();
-        Mock<ICylinderController> cylinderController = new();
-        Cylinder cylinder = new(cylinderValidator.Object, cylinderController.Object);
-        cylinder.IsVisible = false;
-
-        // When
-        visibilityController.SetVisible(cylinder);
-
-        // Then
-        Assert.True(cylinder.IsVisible);
-    }
-
     [Fact]
-    public void SetInvisible()
+    public void SetVisibility()
     {
-        // TODO AH Make the cylinder setup and dive model visible by default
-        // TODO AH Invisibile once the calculate is ran
-        // TODO AH Make both read only views invisibile until first calculation
         // Given
-        Mock<ICylinderValidator> cylinderValidator = new();
-        Mock<ICylinderController> cylinderController = new();
-        Cylinder cylinder = new(cylinderValidator.Object, cylinderController.Object);
-        cylinder.IsVisible = false;
+        IMain main = new Main();
 
         // When
-        visibilityController.SetInvisible(cylinder);
+        visibilityController.SetVisibility(main);
 
         // Then
-        Assert.False(cylinder.IsVisible);
+        Assert.False(main.DiveModelSelector.IsVisible);
+        Assert.False(main.CylinderSelector.SetupCylinder.IsVisible);
     }
 }
