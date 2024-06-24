@@ -53,7 +53,7 @@ public class CylinderControllerShould
 
         // When
         IGasUsage updatedGasUsage = cylinderController.UpdateGasUsage(diveStep, gasUsage);
-    
+
         // Then
         Assert.Equal(1680, updatedGasUsage.Remaining);
         Assert.Equal(720, updatedGasUsage.Used);

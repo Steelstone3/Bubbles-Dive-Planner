@@ -2,7 +2,7 @@ public class CylinderPrototype : ICylinderPrototype
 {
     public ICylinder DeepClone(ICylinder cylinder)
     {
-        ICylinder newCylinder = new Cylinder(new CylinderValidator(), new CylinderController())
+        return new Cylinder(new CylinderValidator(), new CylinderController())
         {
             Name = cylinder.Name,
             Volume = cylinder.Volume,
@@ -20,8 +20,6 @@ public class CylinderPrototype : ICylinderPrototype
                 SurfaceAirConsumptionRate = cylinder.GasUsage.SurfaceAirConsumptionRate,
             }
         };
-
-        return newCylinder;
     }
 }
 

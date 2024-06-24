@@ -11,32 +11,29 @@ public class MainShould
         Main main = new();
 
         // Then
-        Assert.NotNull(main.DiveModelSelector);
-        Assert.NotNull(main.DiveStage);
+        Assert.NotNull(main.DivePlan);
+        Assert.NotNull(main.Result);
     }
 
     [Fact]
     public void RaisePropertyChangedEvents()
     {
         // Given
-        Mock<IDiveModelSelector> diveModelSelector = new();
-        Mock<ICylinderSelector> cylinderSelector = new();
-        Mock<IDiveStage> diveStage = new();
+        Mock<IDivePlan> divePlan = new();
+        Mock<IResult> results = new();
         Main main = new();
         List<string> events = new();
         main.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        main.DiveModelSelector = diveModelSelector.Object;
-        main.CylinderSelector = cylinderSelector.Object;
-        main.DiveStage = diveStage.Object;
+        main.DivePlan = divePlan.Object;
+        main.Result = results.Object;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(main);
         Assert.NotEmpty(events);
-        Assert.Contains(nameof(main.DiveModelSelector), events);
-        Assert.Contains(nameof(main.CylinderSelector), events);
-        Assert.Contains(nameof(main.DiveStage), events);
+        Assert.Contains(nameof(main.DivePlan), events);
+        Assert.Contains(nameof(main.Result), events);
     }
 
     [Fact(Skip = "To Do")]

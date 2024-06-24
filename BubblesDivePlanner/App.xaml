@@ -3,11 +3,9 @@
              x:Class="BubblesDivePlanner.App"
              xmlns:local="using:BubblesDivePlanner.Views"
              RequestedThemeVariant="Light">
-
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-  
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
