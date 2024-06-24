@@ -8,32 +8,18 @@ public class Main : ReactiveObject, IMain
         CalculateCommand = ReactiveCommand.Create(CalculateDiveStage); //, CanCalculateDiveStage);
     }
 
-    private IDiveModelSelector diveModelSelector = new DiveModelSelector();
-    public IDiveModelSelector DiveModelSelector
+    private IDivePlan divePlan = new DivePlan();
+    public IDivePlan DivePlan
     {
-        get => diveModelSelector;
-        set => this.RaiseAndSetIfChanged(ref diveModelSelector, value);
+        get => divePlan;
+        set => this.RaiseAndSetIfChanged(ref divePlan, value);
     }
 
-    private ICylinderSelector cylinderSelector = new CylinderSelector();
-    public ICylinderSelector CylinderSelector
+    private IResult result = new Result();
+    public IResult Result
     {
-        get => cylinderSelector;
-        set => this.RaiseAndSetIfChanged(ref cylinderSelector, value);
-    }
-
-    private IDiveStage diveStage = new DiveStage(new DiveStageValidator());
-    public IDiveStage DiveStage
-    {
-        get => diveStage;
-        set => this.RaiseAndSetIfChanged(ref diveStage, value);
-    }
-
-    private IResults results = new Results();
-    public IResults Results
-    {
-        get => results;
-        set => this.RaiseAndSetIfChanged(ref results, value);
+        get => result;
+        set => this.RaiseAndSetIfChanged(ref result, value);
     }
 
     public ReactiveCommand<Unit, Unit> CalculateCommand { get; }
@@ -42,11 +28,11 @@ public class Main : ReactiveObject, IMain
 
     private void CalculateDiveStage()
     {
-        DiveStage.DiveModel = DiveModelSelector.DiveModelSelected;
-        DiveStage.Cylinder = CylinderSelector.SelectedCylinder;
+        DivePlan.DiveStage.DiveModel = DivePlan.DiveModelSelector.DiveModelSelected;
+        DivePlan.DiveStage.Cylinder = DivePlan.CylinderSelector.SelectedCylinder;
 
         // TODO AH temporary whilst CanCalculateDiveStage is not implemented
-        if (!DiveStage.IsValid)
+        if (!DivePlan.DiveStage.IsValid)
         {
             return;
         }
@@ -60,36 +46,22 @@ public class Main : ReactiveObject, IMain
 
         visibilityController.SetVisibility(this);
 
-        DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DiveStage.DiveStep, DiveStage.Cylinder.GasUsage);
+        DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
 
-        diveProfileStagesFactory.Run(DiveStage);
-        Results.LatestResult = diveStagePrototype.DeepClone(DiveStage);
+        diveProfileStagesFactory.Run(DivePlan.DiveStage);
+        Result.Results = diveStagePrototype.DeepClone(DivePlan.DiveStage);
     }
 }
 
 public interface IMain
 {
-    // TODO AH IPlan
-    public IDiveModelSelector DiveModelSelector
+    public IDivePlan DivePlan
     {
         get;
         set;
     }
 
-    public ICylinderSelector CylinderSelector
-    {
-        get;
-        set;
-    }
-
-    public IDiveStage DiveStage
-    {
-        get;
-        set;
-    }
-    // TODO AH Up to here
-
-    public IResults Results
+    public IResult Result
     {
         get;
         set;

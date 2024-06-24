@@ -7,7 +7,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-        <StackPanel IsVisible="{Binding !!CylinderSelector.Cylinders.Count}">
+        <StackPanel IsVisible="{Binding !!DivePlan.CylinderSelector.Cylinders.Count}">
             <StackPanel Margin="4,0" Background="#FF5D99C6">
                 <TextBlock
                     Margin="4"
@@ -18,8 +18,8 @@
             <StackPanel Margin="4,0" Background="#FFC3FDFF">
                 <ListBox
                     Margin="8,4"
-                    ItemsSource="{Binding CylinderSelector.Cylinders}"
-                    SelectedItem="{Binding CylinderSelector.SelectedCylinder}">
+                    ItemsSource="{Binding DivePlan.CylinderSelector.Cylinders}"
+                    SelectedItem="{Binding DivePlan.CylinderSelector.SelectedCylinder}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="2" Orientation="Horizontal">
