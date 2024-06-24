@@ -59,7 +59,8 @@ public class Main : ReactiveObject, IMain
 
         DiveProfileStagesFactory diveProfileStagesFactory = new();
         diveProfileStagesFactory.Run(DiveStage);
-        Results.LatestResult = new DiveStagePrototype(new DiveStepPrototype(), new CylinderPrototype()).DeepClone(DiveStage);
+        Results.LatestResult = diveStage;
+        // Results.LatestResult = new DiveStagePrototype(new DiveStepPrototype(), new CylinderPrototype()).DeepClone(DiveStage);
     }
 }
 
