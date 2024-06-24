@@ -52,14 +52,18 @@ public class Main : ReactiveObject, IMain
         }
 
         VisibilityController visibilityController = new();
+        CylinderController cylinderController = new();
+        DiveProfileStagesFactory diveProfileStagesFactory = new();
+        DiveStepPrototype diveStepPrototype = new();
+        CylinderPrototype cylinderPrototype = new();
+        DiveStagePrototype diveStagePrototype = new(diveStepPrototype, cylinderPrototype);
+
         visibilityController.SetVisibility(this);
 
-        CylinderController cylinderController = new();
         DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DiveStage.DiveStep, DiveStage.Cylinder.GasUsage);
 
-        DiveProfileStagesFactory diveProfileStagesFactory = new();
         diveProfileStagesFactory.Run(DiveStage);
-        Results.LatestResult = new DiveStagePrototype(new DiveStepPrototype(), new CylinderPrototype()).DeepClone(DiveStage);
+        Results.LatestResult = diveStagePrototype.DeepClone(DiveStage);
     }
 }
 
