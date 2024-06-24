@@ -21,31 +21,37 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="0" Text="Depth" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="1" Text="{Binding Results.LatestResult.DiveStep.Depth}"/>
-                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="2" Text="Time" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="0" Grid.Column="3" Text="{Binding Results.LatestResult.DiveStep.Time}"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="0" Grid.Column="0" Text="Dive Profile" FontWeight="Bold"/>
 
-                <TextBlock Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" Text="Oxygen" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" Text="{Binding Results.LatestResult.Cylinder.GasMixture.Oxygen}"/>
-                <TextBlock Background="#FF5D99C6" Grid.Row="1" Grid.Column="2" Text="Helium" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="1" Grid.Column="3" Text="{Binding Results.LatestResult.Cylinder.GasMixture.Helium}"/>
-                
-                <TextBlock Margin="0,0,0,8" Background="#FF5D99C6" Grid.Row="2" Grid.Column="0" Text="Remaining" FontWeight="Bold"/>
-                <TextBlock Margin="0,0,0,8" Background="#FF90CAF9" Grid.Row="2" Grid.Column="1" Text="{Binding Results.LatestResult.Cylinder.GasUsage.Remaining}"/>
-                <TextBlock Margin="0,0,0,8" Background="#FF5D99C6" Grid.Row="2" Grid.Column="2" Text="Used" FontWeight="Bold"/>
-                <TextBlock Margin="0,0,0,8" Background="#FF90CAF9" Grid.Row="2" Grid.Column="3" Text="{Binding Results.LatestResult.Cylinder.GasUsage.Used}"/>
-
-                <TextBlock Background="#FF5D99C6" Grid.Row="3" Grid.Column="0" Text="TP" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="3" Grid.Column="1" Text="TAP" FontWeight="Bold"/>
-                <TextBlock Background="#FF5D99C6" Grid.Row="3" Grid.Column="2" Text="MSP" FontWeight="Bold"/>
-                <TextBlock Background="#FF90CAF9" Grid.Row="3" Grid.Column="3" Text="CLP" FontWeight="Bold"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="1" Grid.Column="0" Text="TP" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="1" Grid.Column="1" Text="TAP" FontWeight="Bold"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="1" Grid.Column="2" Text="MSP" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="1" Grid.Column="3" Text="CLP" FontWeight="Bold"/>
         
-                <ItemsControl Background="#FF5D99C6" Grid.Row="4" Grid.Column="0" ItemsSource="{Binding Results.LatestResult.DiveModel.DiveModelProfile.TotalTissuePressures}"/>
-                <ItemsControl Background="#FF90CAF9" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Results.LatestResult.DiveModel.DiveModelProfile.ToleratedAmbientPressures}"/>
-                <ItemsControl Background="#FF5D99C6" Grid.Row="4" Grid.Column="2" ItemsSource="{Binding Results.LatestResult.DiveModel.DiveModelProfile.MaxSurfacePressures}"/>
-                <ItemsControl Background="#FF90CAF9" Grid.Row="4" Grid.Column="3" ItemsSource="{Binding Results.LatestResult.DiveModel.DiveModelProfile.CompartmentLoads}"/>
+                <ItemsControl Margin="0,0,0,8" Background="#FF5D99C6" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Results.LatestResult.DiveModel.DiveModelProfile.TotalTissuePressures}"/>
+                <ItemsControl Margin="0,0,0,8" Background="#FF90CAF9" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Results.LatestResult.DiveModel.DiveModelProfile.ToleratedAmbientPressures}"/>
+                <ItemsControl Margin="0,0,0,8" Background="#FF5D99C6" Grid.Row="2" Grid.Column="2" ItemsSource="{Binding Results.LatestResult.DiveModel.DiveModelProfile.MaxSurfacePressures}"/>
+                <ItemsControl Margin="0,0,0,8" Background="#FF90CAF9" Grid.Row="2" Grid.Column="3" ItemsSource="{Binding Results.LatestResult.DiveModel.DiveModelProfile.CompartmentLoads}"/>
+
+                <TextBlock Background="#FF5D99C6" Grid.Row="3" Grid.Column="0" Text="Dive Stage" FontWeight="Bold"/>
+
+                <TextBlock Background="#FF5D99C6" Grid.Row="4" Grid.Column="0" Text="Depth" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="4" Grid.Column="1" Text="{Binding Results.LatestResult.DiveStep.Depth}"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="4" Grid.Column="2" Text="Time" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="4" Grid.Column="3" Text="{Binding Results.LatestResult.DiveStep.Time}"/>
+
+                <TextBlock Background="#FF5D99C6" Grid.Row="5" Grid.Column="0" Text="Oxygen" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="5" Grid.Column="1" Text="{Binding Results.LatestResult.Cylinder.GasMixture.Oxygen}"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="5" Grid.Column="2" Text="Helium" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="5" Grid.Column="3" Text="{Binding Results.LatestResult.Cylinder.GasMixture.Helium}"/>
+                
+                <TextBlock Background="#FF5D99C6" Grid.Row="6" Grid.Column="0" Text="Remaining" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="6" Grid.Column="1" Text="{Binding Results.LatestResult.Cylinder.GasUsage.Remaining}"/>
+                <TextBlock Background="#FF5D99C6" Grid.Row="6" Grid.Column="2" Text="Used" FontWeight="Bold"/>
+                <TextBlock Background="#FF90CAF9" Grid.Row="6" Grid.Column="3" Text="{Binding Results.LatestResult.Cylinder.GasUsage.Used}"/>
         </Grid>
     </StackPanel>
 </UserControl>
