@@ -56,7 +56,7 @@ public class Main : ReactiveObject, IMain
 
         DiveProfileStagesFactory diveProfileStagesFactory = new();
         diveProfileStagesFactory.Run(DiveStage);
-        Results.LatestResult = DiveStage;
+        Results.LatestResult = new DiveStagePrototype(new DiveStepPrototype(), new CylinderPrototype()).DeepClone(DiveStage);
 
         CylinderController cylinderController = new();
         DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DiveStage.DiveStep, DiveStage.Cylinder.GasUsage);
