@@ -15,11 +15,11 @@ public class Main : ReactiveObject, IMain
         set => this.RaiseAndSetIfChanged(ref divePlan, value);
     }
 
-    private IResults results = new Results();
-    public IResults Results
+    private IResult result = new Result();
+    public IResult Result
     {
-        get => results;
-        set => this.RaiseAndSetIfChanged(ref results, value);
+        get => result;
+        set => this.RaiseAndSetIfChanged(ref result, value);
     }
 
     public ReactiveCommand<Unit, Unit> CalculateCommand { get; }
@@ -49,7 +49,7 @@ public class Main : ReactiveObject, IMain
         DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
 
         diveProfileStagesFactory.Run(DivePlan.DiveStage);
-        Results.LatestResult = diveStagePrototype.DeepClone(DivePlan.DiveStage);
+        Result.Results = diveStagePrototype.DeepClone(DivePlan.DiveStage);
     }
 }
 
@@ -61,7 +61,7 @@ public interface IMain
         set;
     }
 
-    public IResults Results
+    public IResult Result
     {
         get;
         set;

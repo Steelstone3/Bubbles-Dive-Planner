@@ -12,7 +12,7 @@ public class MainShould
 
         // Then
         Assert.NotNull(main.DivePlan);
-        Assert.NotNull(main.Results);
+        Assert.NotNull(main.Result);
     }
 
     [Fact]
@@ -20,20 +20,20 @@ public class MainShould
     {
         // Given
         Mock<IDivePlan> divePlan = new();
-        Mock<IResults> results = new();
+        Mock<IResult> results = new();
         Main main = new();
         List<string> events = new();
         main.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
         main.DivePlan = divePlan.Object;
-        main.Results = results.Object;
+        main.Result = results.Object;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(main);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(main.DivePlan), events);
-        Assert.Contains(nameof(main.Results), events);
+        Assert.Contains(nameof(main.Result), events);
     }
 
     [Fact(Skip = "To Do")]
