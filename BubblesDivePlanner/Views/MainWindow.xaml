@@ -7,6 +7,7 @@
     xmlns:view_models="clr-namespace:BubblesDivePlanner.ViewModels"
     xmlns:header="clr-namespace:BubblesDivePlanner.Views.Header"
     xmlns:plan="clr-namespace:BubblesDivePlanner.Views.Plan"
+    xmlns:cylinder="clr-namespace:BubblesDivePlanner.Views.Plan.Cylinder"
     xmlns:information="clr-namespace:BubblesDivePlanner.Views.Information"
     xmlns:results="clr-namespace:BubblesDivePlanner.Views.Results"
     Title="Bubbles Dive Planner"
@@ -51,8 +52,8 @@
                     Text="Dive Plan" />
                 <plan:DiveModelSelectorView />
                 <plan:DiveStepView />
-                <plan:CylinderSelectorView />
-                <plan:CylinderView />
+                <cylinder:CylinderSelectorView />
+                <cylinder:CylinderView />
                 <plan:CalculateDiveStageView />
             </StackPanel>
         </ScrollViewer>

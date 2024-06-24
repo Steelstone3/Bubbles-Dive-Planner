@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="BubblesDivePlanner.Views.Plan.GasMixtureReadOnlyView"
+    x:Class="BubblesDivePlanner.Views.Plan.Cylinder.GasUsageReadOnlyView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,29 +13,36 @@
                     Margin="4"
                     FontSize="16"
                     FontWeight="DemiBold"                    
-                    Text="Gas Mixture" />
+                    Text="Gas Usage" />
             </StackPanel>
             <StackPanel Background="#FFC3FDFF">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="8,4,0,4" 
-                        Text="Oxygen (%): " 
+                        Text="Pressurised Cylinder Volume (l): " 
                         FontWeight="Bold"/>
                     <TextBlock Margin="0,4,8,4"
-                        Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Oxygen}" />
+                        Text="{Binding CylinderSelector.SelectedCylinder.InitialPressurisedVolume}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="8,4,0,4" 
-                        Text="Helium (%): " 
+                        Text="Gas Remaining (l): " 
                         FontWeight="Bold"/>
                     <TextBlock Margin="0,4,8,4"
-                        Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Helium}" />
+                        Text="{Binding CylinderSelector.SelectedCylinder.GasUsage.Remaining}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="8,4,0,4" 
-                        Text="Nitrogen (%): " 
+                        Text="Gas Used (l): " 
                         FontWeight="Bold"/>
                     <TextBlock Margin="0,4,8,4"
-                        Text="{Binding CylinderSelector.SelectedCylinder.GasMixture.Nitrogen}" />
+                        Text="{Binding CylinderSelector.SelectedCylinder.GasUsage.Used}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="8,4,0,4" 
+                        Text="S.A.C Rate (l/min): " 
+                        FontWeight="Bold"/>
+                    <TextBlock Margin="0,4,8,4"
+                        Text="{Binding CylinderSelector.SelectedCylinder.GasUsage.SurfaceAirConsumptionRate}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
