@@ -1,0 +1,214 @@
+<Window x:Class="BubblesDivePlanner.Views.Header.HelpView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="Help"
+        Icon="/Assets/dive-planner-logo.ico"
+        d:DesignWidth="300"
+        d:DesignHeight="250"
+        MinWidth="300"
+        Width="300"
+        MinHeight="250"
+        Height="250"
+        mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Background="#FF90CAF9">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Margin="4"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           FontSize="20"
+                           FontStyle="Italic"
+                           FontWeight="Bold"
+                           Text="Help" />
+                <StackPanel Margin="4,0"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Disclaimer" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               HorizontalAlignment="Stretch"
+                               Text="I nor any contributors to the Bubbles Dive Planner Project can guarantee safety whilst using the Bubbles Dive Planner Application for diving activities. Please consult your own Scuba Diving training when planning Scuba Diving activities."
+                               TextWrapping="Wrap" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Dive Model Selection" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               HorizontalAlignment="Stretch"
+                               Text="Select a dive model from the drop down&#xA;&#xA;ZHL16-B Model&#xA;USN Revision 6 Model&#xA;&#xA;ZHL16-B is a 16 compartment model that uses the neo-Haldane decompression model. It is used in some dive computers either in its original or an adapted form be it for more conservative profiles or a different tissue half time.&#xA;&#xA;ZH-L 16 or ZH-L 16 A (air, nitrox): The experimental set of parameters published in 1986.&#xA;&#xA;ZH-L 16 B (air, nitrox): The set of parameters modified for printed dive table production, using slightly more conservative “a” values for tissue compartments #6, 7, 8 and 13.&#xA;&#xA;USN Revision 6 is a 9 compartment model and one of the most well researched dive models in the world. Used by the United States Navy it derives values at the point of appearance of micro bubbles in the blood stream for US service personnel. This model relies on the user being conserved with the model rather than the model having in built conservatism."
+                               TextWrapping="Wrap" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Dive Step" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               HorizontalAlignment="Stretch"
+                               Text="A Dive Step is a concept for planning the dive profile&#xA;&#xA;Depth (metres)&#xA;Time (minute)&#xA;&#xA;Enter the desired depth (metres) and the time (minute) to spend at that given depth.&#xA;&#xA;Disclaimer&#xA;&#xA;Ensure that when planning a dive intended to be executed to do so within the bounds of BOTH YOUR AND YOUR DIVE BUDDY'S current minimum TRAINING and QUALIFICATIONS."
+                               TextWrapping="Wrap" />
+                    <StackPanel Margin="4,0"
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Cylinder Setup" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="Cylinder (tank) setup allows for the creation of cylinders (tank).&#xA;&#xA;- Name&#xA;- Volume (litres)&#xA;- Pressure (BAR)&#xA;- Surface Air Consumption Rate (litres/minute)&#xA;- Gas Mixture&#xA;  - Oxygen (%)&#xA;  - Helium (%)&#xA;  - Nitrogen (%)&#xA;&#xA;Enter the name, volume (litres), pressure (BAR), surface air consumption (litres/minutes) and gas mixture (%)."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="9"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Adding Cylinders" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="10"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="Once the cylinder is setup click the Add Cylinder button. This will add a cylinder to a select-able list. Click on a cylinder entered to select it."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="11"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Gas Usage" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="12"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="For a cylinder that is already set up, Gas Usage allows for gas planning. Gas Usage displays the following information:&#xA;&#xA;- Original Pressurised Cylinder Volume (l)&#xA;- Current Pressurised Cylinder Volume (l)&#xA;- Gas Remaining (l)&#xA;- Gas Used (l) (for a dive stage)&#xA;&#xA;This information is displayed in read-only format when a Dive Stage has been calculated and updates on each subsequently calculated Dive Stage."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="13"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Calculate Dive Profile" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="14"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="Once a Dive Plan is setup click the button Calculate Dive Profile.&#xA;&#xA;This will then calculate a Dive Stage and display both the parameters used as well as the Dive Profile result showing the nitrogen and helium loading."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="15"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Results" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="16"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="Results appear as a list of steps in the middle of the Dive Planner. The results are immutable and show the following information.&#xA;&#xA;- Parameters used for the dive stage&#xA;- Calculated dive profile result&#xA;&#xA;The parameters displayed are the following:&#xA;&#xA;- Depth (metre)&#xA;- Time (minute)&#xA;- Cylinder Name&#xA;- Gas Mixture (%)&#xA;- Remaining Gas (litre)&#xA;- Used Gas (litre) (for the dive stage)&#xA;&#xA;The dive profile result displays the nitrogen and helium loading of the diver in table format.&#xA;&#xA;- Total Tissue Pressure (TP)&#xA;- Tolerated Ambient Pressure (TAP)&#xA;- Maximum Surface Pressure (MSP)&#xA;- Compartment Load Percentage (%) (CLP)"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="17"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Link" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="18"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/Usage"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,40 @@
+<UserControl x:Class="BubblesDivePlanner.Views.Plan.Cylinder.GasMixtureReadOnlyView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <StackPanel Background="#FFC3FDFF">
+        <StackPanel Background="#FF5D99C6">
+            <TextBlock Margin="4"
+                       FontSize="16"
+                       FontWeight="DemiBold"
+                       Text="Gas Mixture" />
+        </StackPanel>
+        <StackPanel Background="#FFC3FDFF">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="8,4,0,4"
+                           Text="Oxygen (%): "
+                           FontWeight="Bold" />
+                <TextBlock Margin="0,4,8,4"
+                           Text="{Binding DivePlan.CylinderSelector.SelectedCylinder.GasMixture.Oxygen}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="8,4,0,4"
+                           Text="Helium (%): "
+                           FontWeight="Bold" />
+                <TextBlock Margin="0,4,8,4"
+                           Text="{Binding DivePlan.CylinderSelector.SelectedCylinder.GasMixture.Helium}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="8,4,0,4"
+                           Text="Nitrogen (%): "
+                           FontWeight="Bold" />
+                <TextBlock Margin="0,4,8,4"
+                           Text="{Binding DivePlan.CylinderSelector.SelectedCylinder.GasMixture.Nitrogen}" />
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

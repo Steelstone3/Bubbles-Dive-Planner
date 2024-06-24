@@ -1,0 +1,74 @@
+<Window x:Class="BubblesDivePlanner.Views.Header.AboutView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="About"
+        Icon="/Assets/dive-planner-logo.ico"
+        d:DesignWidth="300"
+        d:DesignHeight="250"
+        MinWidth="300"
+        Width="300"
+        MinHeight="250"
+        Height="250"
+        mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Background="#FF90CAF9">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Margin="4"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           FontSize="20"
+                           FontStyle="Italic"
+                           FontWeight="Bold"
+                           Text="About" />
+                <StackPanel Margin="4,0"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Summary" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               HorizontalAlignment="Stretch"
+                               Text="The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities."
+                               TextWrapping="Wrap" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Link" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               HorizontalAlignment="Stretch"
+                               Text="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/About"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

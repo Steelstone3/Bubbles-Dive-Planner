@@ -14,6 +14,7 @@ public class GasMixtureShould
         GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object);
 
         // Then
+        Assert.IsAssignableFrom<IGasMixture>(gasMixture);
         Assert.IsAssignableFrom<IValidation>(gasMixture);
         Assert.Equal(100.0F, gasMixture.Nitrogen);
     }
@@ -43,7 +44,7 @@ public class GasMixtureShould
         // Given
         float oxygen = 21;
         float helium = 10;
-        
+
         Mock<ICylinderController> cylinderController = new();
         cylinderController.Setup(cc => cc.CalculateNitrogen(oxygen, helium));
         GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object)

@@ -9,8 +9,9 @@ public class CylinderSelectorShould
     {
         // Given
         CylinderSelector cylinderSelector = new();
-    
+
         // Then
+        Assert.IsAssignableFrom<ICylinderSelector>(cylinderSelector);
         Assert.NotNull(cylinderSelector.SetupCylinder);
         Assert.Null(cylinderSelector.SelectedCylinder);
         Assert.Empty(cylinderSelector.Cylinders);

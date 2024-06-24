@@ -3,9 +3,9 @@ using Avalonia.Markup.Xaml;
 
 namespace BubblesDivePlanner.Views.Results
 {
-    public class ResultView : UserControl
+    public class ResultsView : UserControl
     {
-        public ResultView()
+        public ResultsView()
         {
             InitializeComponent();
         }
