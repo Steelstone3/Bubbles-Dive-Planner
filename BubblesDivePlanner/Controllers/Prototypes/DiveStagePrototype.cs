@@ -15,6 +15,7 @@ public class DiveStagePrototype : IDiveStagePrototype
         {
             DiveStep = diveStepPrototype.DeepClone(diveStage.DiveStep),
             Cylinder = cylinderPrototype.DeepClone(diveStage.Cylinder),
+            DiveModel = diveStage.DiveModel,
         };
 
         return clonedDiveStage;
