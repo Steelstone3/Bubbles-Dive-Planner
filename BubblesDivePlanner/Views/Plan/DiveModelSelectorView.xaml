@@ -7,7 +7,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <StackPanel IsVisible="{Binding DiveModelSelector.IsVisible}">
+    <StackPanel IsVisible="{Binding DivePlan.DiveModelSelector.IsVisible}">
         <StackPanel Margin="4,0" Background="#FF5D99C6">
             <TextBlock
                 Margin="4"
@@ -20,9 +20,9 @@
             <ComboBox
                 Margin="8,4"
                 Background="#FFFFFFFF"
-                ItemsSource="{Binding DiveModelSelector.DiveModels}"
+                ItemsSource="{Binding DivePlan.DiveModelSelector.DiveModels}"
                 SelectedIndex="0"
-                SelectedItem="{Binding DiveModelSelector.DiveModelSelected}">
+                SelectedItem="{Binding DivePlan.DiveModelSelector.DiveModelSelected}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

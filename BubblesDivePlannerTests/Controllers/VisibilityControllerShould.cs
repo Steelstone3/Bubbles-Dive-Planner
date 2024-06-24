@@ -15,7 +15,7 @@ public class VisibilityControllerShould
         visibilityController.SetVisibility(main);
 
         // Then
-        Assert.False(main.DiveModelSelector.IsVisible);
-        Assert.False(main.CylinderSelector.SetupCylinder.IsVisible);
+        Assert.False(main.DivePlan.DiveModelSelector.IsVisible);
+        Assert.False(main.DivePlan.CylinderSelector.SetupCylinder.IsVisible);
     }
 }
