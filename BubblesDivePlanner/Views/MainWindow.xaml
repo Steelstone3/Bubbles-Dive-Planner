@@ -58,12 +58,12 @@
             </StackPanel>
         </ScrollViewer>
 
-         <ScrollViewer
+        <ScrollViewer
             Grid.Row="1"
             Grid.Column="1"
             VerticalScrollBarVisibility="Auto">
             <StackPanel Background="#FF9E9E9E">
-                <results:ResultView />
+                <results:ResultsView />
             </StackPanel>
         </ScrollViewer>
 

@@ -1,5 +1,4 @@
 using Moq;
-using ReactiveUI;
 using Xunit;
 
 public class ResultShould
@@ -9,16 +8,16 @@ public class ResultShould
     {
         // Given
         Mock<IDiveStage> diveStage = new();
-        Result results = new();
+        Result result = new();
         List<string> events = new();
-        results.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
+        result.Results.CollectionChanged += (sender, e) => events.Add(e.NewItems.ToString());
 
         // When
-        results.Results = diveStage.Object;
+        result.Results.Add(diveStage.Object);
 
         // Then
-        Assert.IsAssignableFrom<ReactiveObject>(results);
+        Assert.NotNull(result.Results);
+        Assert.NotEmpty(result.Results);
         Assert.NotEmpty(events);
-        Assert.Contains(nameof(results.Results), events);
     }
 }

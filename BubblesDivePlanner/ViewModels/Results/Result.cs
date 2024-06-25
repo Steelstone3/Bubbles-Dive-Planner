@@ -1,16 +1,14 @@
-using ReactiveUI;
+using System.Collections.ObjectModel;
 
-public class Result : ReactiveObject, IResult
+public class Result : IResult
 {
-    private IDiveStage results = new DiveStage(new DiveStageValidator());
-    public IDiveStage Results
+    public ObservableCollection<IDiveStage> Results
     {
-        get => results;
-        set => this.RaiseAndSetIfChanged(ref results, value);
-    }
+        get;
+    } = [];
 }
 
 public interface IResult
 {
-    IDiveStage Results { get; set; }
+    ObservableCollection<IDiveStage> Results { get; }
 }
