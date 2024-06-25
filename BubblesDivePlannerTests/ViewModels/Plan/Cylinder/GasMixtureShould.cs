@@ -43,7 +43,7 @@ public class GasMixtureShould
         // Given
         float oxygen = 21;
         float helium = 10;
-        
+
         Mock<ICylinderController> cylinderController = new();
         cylinderController.Setup(cc => cc.CalculateNitrogen(oxygen, helium));
         GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object)

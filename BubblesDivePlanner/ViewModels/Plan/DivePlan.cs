@@ -2,7 +2,7 @@ using ReactiveUI;
 
 public class DivePlan : ReactiveObject, IDivePlan
 {
- private IDiveModelSelector diveModelSelector = new DiveModelSelector();
+    private IDiveModelSelector diveModelSelector = new DiveModelSelector();
     public IDiveModelSelector DiveModelSelector
     {
         get => diveModelSelector;
@@ -27,7 +27,7 @@ public class DivePlan : ReactiveObject, IDivePlan
 
 public interface IDivePlan
 {
-   public IDiveModelSelector DiveModelSelector
+    public IDiveModelSelector DiveModelSelector
     {
         get;
         set;
