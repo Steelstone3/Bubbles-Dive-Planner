@@ -40,9 +40,10 @@ public class Main : ReactiveObject, IMain
         VisibilityController visibilityController = new();
         CylinderController cylinderController = new();
         DiveProfileStagesFactory diveProfileStagesFactory = new();
+        DiveModelPrototype diveModelPrototype = new();
         DiveStepPrototype diveStepPrototype = new();
         CylinderPrototype cylinderPrototype = new();
-        DiveStagePrototype diveStagePrototype = new(diveStepPrototype, cylinderPrototype);
+        DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype, cylinderPrototype);
 
         visibilityController.SetVisibility(this);
 
