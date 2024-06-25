@@ -49,7 +49,7 @@ public class Main : ReactiveObject, IMain
         DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
 
         diveProfileStagesFactory.Run(DivePlan.DiveStage);
-        Result.Results = diveStagePrototype.DeepClone(DivePlan.DiveStage);
+        Result.Results.Add(diveStagePrototype.DeepClone(DivePlan.DiveStage));
     }
 }
 
