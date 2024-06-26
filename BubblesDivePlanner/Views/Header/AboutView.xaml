@@ -12,31 +12,44 @@
         MaxHeight="200"
         MinHeight="200"
         mc:Ignorable="d">
-    <Grid Background="#FF90CAF9">
-        <TextBlock Margin="4"
-                   FontSize="20"
-                   FontStyle="Italic"
-                   FontWeight="Bold"
-                   Text="About" />
-        <StackPanel Margin="4,0"
-                    Background="#FF5D99C6">
-            <TextBlock Margin="4"
-                       FontSize="16"
-                       FontWeight="DemiBold"
-                       Text="Dive Step" />
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Background="#FF90CAF9">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Margin="4"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           FontSize="20"
+                           FontStyle="Italic"
+                           FontWeight="Bold"
+                           Text="About" />
+                <StackPanel Margin="4,0"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Summary" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               Width="276"
+                               HorizontalAlignment="Left"
+                               Text="The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities."
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
         </StackPanel>
-        <StackPanel Margin="4,0"
-                    Background="#FFC3FDFF">
-            <TextBlock Margin="8,4"
-                       Text="Depth (m):"
-                       FontWeight="Bold" />
-            <TextBox Margin="8,4"
-                     Text="{Binding DivePlan.DiveStage.DiveStep.Depth}" />
-            <TextBlock Margin="8,4"
-                       Text="Time (min):"
-                       FontWeight="Bold" />
-            <TextBox Margin="8,4"
-                     Text="{Binding DivePlan.DiveStage.DiveStep.Time}" />
-        </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Window>
