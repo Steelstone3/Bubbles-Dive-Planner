@@ -6,19 +6,21 @@
         Title="About"
         Icon="/Assets/dive-planner-logo.ico"
         d:DesignWidth="300"
-        d:DesignHeight="200"
+        d:DesignHeight="250"
         MaxWidth="300"
         MinWidth="300"
-        MaxHeight="200"
-        MinHeight="200"
+        MaxHeight="250"
+        MinHeight="250"
         mc:Ignorable="d">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Background="#FF90CAF9">
+    <StackPanel Background="#FF90CAF9">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
@@ -39,6 +41,7 @@
                                FontWeight="DemiBold"
                                Text="Summary" />
                 </StackPanel>
+                <!-- TODO AH Width 276 is fixed -->
                 <StackPanel Margin="4,0"
                             Grid.Row="2"
                             Grid.Column="0"
@@ -49,7 +52,33 @@
                                Text="The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities."
                                TextWrapping="Wrap" />
                 </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Link" />
+                </StackPanel>
+                <!-- TODO AH Width 276 is fixed -->
+                <StackPanel Margin="4,0"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               Width="276"
+                               HorizontalAlignment="Left"
+                               Text="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/About"
+                               TextWrapping="Wrap" />
+                </StackPanel>
             </Grid>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </StackPanel>
 </Window>
+<!-- <Hyperlink Margin="8,4"
+                               Url="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/About"
+ Width="276" 
+ HorizontalAlignment="Left" 
+ TextWrapping="Wrap" 
+                               Command="{Binding Header.Help.AboutLinkCommand}" /> -->
