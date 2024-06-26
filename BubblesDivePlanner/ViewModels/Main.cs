@@ -63,6 +63,12 @@ public class Main : ReactiveObject, IMain
 
 public interface IMain
 {
+    public IHeader Header
+    {
+        get;
+        set;
+    }
+
     public IDivePlan DivePlan
     {
         get;
