@@ -8,6 +8,12 @@ public class Main : ReactiveObject, IMain
         CalculateCommand = ReactiveCommand.Create(CalculateDiveStage); //, CanCalculateDiveStage);
     }
 
+    public IHeader Header
+    {
+        get;
+        set;
+    } = new Header();
+
     private IDivePlan divePlan = new DivePlan();
     public IDivePlan DivePlan
     {

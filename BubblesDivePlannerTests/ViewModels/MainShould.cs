@@ -11,6 +11,7 @@ public class MainShould
         Main main = new();
 
         // Then
+        Assert.NotNull(main.Header);
         Assert.NotNull(main.DivePlan);
         Assert.NotNull(main.Result);
     }
