@@ -20,6 +20,7 @@ public class MainShould
     public void RaisePropertyChangedEvents()
     {
         // Given
+        Mock<IHeader> header = new();
         Mock<IDivePlan> divePlan = new();
         Mock<IResult> results = new();
         Main main = new();
@@ -27,12 +28,14 @@ public class MainShould
         main.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
+        main.Header = header.Object;
         main.DivePlan = divePlan.Object;
         main.Result = results.Object;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(main);
         Assert.NotEmpty(events);
+        Assert.Contains(nameof(main.Header), events);
         Assert.Contains(nameof(main.DivePlan), events);
         Assert.Contains(nameof(main.Result), events);
     }
