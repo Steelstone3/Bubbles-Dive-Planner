@@ -26,6 +26,10 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Margin="4"
                            Grid.Row="0"
@@ -59,10 +63,46 @@
                     <TextBlock Margin="4"
                                FontSize="16"
                                FontWeight="DemiBold"
-                               Text="Link" />
+                               Text="Dive Model Selection" />
                 </StackPanel>
                 <StackPanel Margin="4,0"
                             Grid.Row="4"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               HorizontalAlignment="Stretch"
+                               Text="Select a dive model from the drop down&#xA;&#xA;ZHL16-B Model&#xA;USN Revision 6 Model&#xA;&#xA;ZHL16-B is a 16 compartment model that uses the neo-Haldane decompression model. It is used in some dive computers either in its original or an adapted form be it for more conservative profiles or a different tissue half time.&#xA;&#xA;ZH-L 16 or ZH-L 16 A (air, nitrox): The experimental set of parameters published in 1986.&#xA;&#xA;ZH-L 16 B (air, nitrox): The set of parameters modified for printed dive table production, using slightly more conservative “a” values for tissue compartments #6, 7, 8 and 13.&#xA;&#xA;USN Revision 6 is a 9 compartment model and one of the most well researched dive models in the world. Used by the United States Navy it derives values at the point of appearance of micro bubbles in the blood stream for US service personnel. This model relies on the user being conserved with the model rather than the model having in built conservatism."
+                               TextWrapping="Wrap" />
+                </StackPanel>
+                 <StackPanel Margin="4,0"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Dive Step" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Background="#FFC3FDFF">
+                    <TextBlock Margin="8,4"
+                               HorizontalAlignment="Stretch"
+                               Text="A Dive Step is a concept for planning the dive profile&#xA;&#xA;Depth&#xA;Time&#xA;&#xA;Enter the desired depth and the time to spend at that given depth.&#xA;&#xA;Disclaimer&#xA;&#xA;Ensure that when planning a dive intended to be executed to do so within the bounds of BOTH YOUR AND YOUR DIVE BUDDY'S current minimum TRAINING and QUALIFICATIONS."
+                               TextWrapping="Wrap" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="7"
+                            Grid.Column="0"
+                            Background="#FF5D99C6">
+                    <TextBlock Margin="4"
+                               FontSize="16"
+                               FontWeight="DemiBold"
+                               Text="Link" />
+                </StackPanel>
+                <StackPanel Margin="4,0"
+                            Grid.Row="8"
                             Grid.Column="0"
                             Background="#FFC3FDFF">
                     <TextBlock Margin="8,4"
