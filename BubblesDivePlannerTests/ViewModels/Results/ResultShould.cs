@@ -16,6 +16,7 @@ public class ResultShould
         result.Results.Add(diveStage.Object);
 
         // Then
+        Assert.IsAssignableFrom<IResult>(result);
         Assert.NotNull(result.Results);
         Assert.NotEmpty(result.Results);
         Assert.NotEmpty(events);

@@ -12,6 +12,7 @@ public class GasUsageShould
         GasUsage gasUsage = new(gasUsageValidator.Object);
 
         // Then
+        Assert.IsAssignableFrom<IGasUsage>(gasUsage);
         Assert.IsAssignableFrom<IValidation>(gasUsage);
     }
 

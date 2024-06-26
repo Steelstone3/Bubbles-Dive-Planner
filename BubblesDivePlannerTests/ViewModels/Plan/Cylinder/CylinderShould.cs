@@ -13,6 +13,7 @@ public class CylinderShould
         Cylinder cylinder = new(cylinderValidator.Object, cylinderController.Object);
 
         // Then
+        Assert.IsAssignableFrom<ICylinder>(cylinder);
         Assert.IsAssignableFrom<IValidation>(cylinder);
         Assert.IsAssignableFrom<IVisibility>(cylinder);
         Assert.True(cylinder.IsVisible);

@@ -14,6 +14,7 @@ public class GasMixtureShould
         GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object);
 
         // Then
+        Assert.IsAssignableFrom<IGasMixture>(gasMixture);
         Assert.IsAssignableFrom<IValidation>(gasMixture);
         Assert.Equal(100.0F, gasMixture.Nitrogen);
     }

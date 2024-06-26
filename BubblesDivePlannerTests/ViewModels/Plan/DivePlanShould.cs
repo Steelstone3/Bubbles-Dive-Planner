@@ -11,6 +11,7 @@ public class DivePlanShould
         DivePlan divePlan = new();
 
         // Then
+        Assert.IsAssignableFrom<IDivePlan>(divePlan);
         Assert.NotNull(divePlan.DiveModelSelector);
         Assert.NotNull(divePlan.CylinderSelector);
         Assert.NotNull(divePlan.DiveStage);

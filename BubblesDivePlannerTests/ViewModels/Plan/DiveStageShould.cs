@@ -22,6 +22,7 @@ public class DiveStageShould
         diveStage.Cylinder = cylinder.Object;
 
         // Then
+        Assert.IsAssignableFrom<IDiveStage>(diveStage);
         Assert.IsAssignableFrom<ReactiveObject>(diveStage);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveStage.DiveModel), events);

@@ -11,6 +11,7 @@ public class MainShould
         Main main = new();
 
         // Then
+        Assert.IsAssignableFrom<IMain>(main);
         Assert.NotNull(main.Header);
         Assert.NotNull(main.DivePlan);
         Assert.NotNull(main.Result);

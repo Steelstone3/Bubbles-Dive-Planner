@@ -18,6 +18,7 @@ public class DiveStepShould
         diveStep.Time = 10;
 
         // Then
+        Assert.IsAssignableFrom<IDiveStep>(diveStep);
         Assert.IsAssignableFrom<ReactiveObject>(diveStep);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveStep.Depth), events);

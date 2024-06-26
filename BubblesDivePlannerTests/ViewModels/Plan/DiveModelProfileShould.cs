@@ -12,6 +12,7 @@ public class DiveModelProfileShould
         DiveModelProfile diveModelProfile = new(COMPARTMENTS);
 
         // Then
+        Assert.IsAssignableFrom<IDiveModelProfile>(diveModelProfile);
         Assert.Equal(0.0F, diveModelProfile.OxygenAtPressure);
         Assert.Equal(0.0F, diveModelProfile.HeliumAtPressure);
         Assert.Equal(0.0F, diveModelProfile.NitrogenAtPressure);
