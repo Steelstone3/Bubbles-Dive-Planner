@@ -1,4 +1,5 @@
 using System.Reactive;
+using BubblesDivePlanner.Views.Header;
 using ReactiveUI;
 
 public class Help : IHelp
@@ -14,11 +15,13 @@ public class Help : IHelp
 
     private void OpenHelp()
     {
+        throw new NotImplementedException();
     }
 
     private void OpenAbout()
     {
-        throw new NotImplementedException();
+        AboutView aboutView = new();
+        aboutView.Show();
     }
 }
 

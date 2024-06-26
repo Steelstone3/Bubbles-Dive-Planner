@@ -11,7 +11,7 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_New"
                           HotKey="Ctrl+N"
-                          Command="{Binding HeaderModel.FileModel.NewModel.CreateNewDivePlannerInstanceCommand}" />
+                          Command="{Binding Header.File.NewCommand}" />
                 <MenuItem Header="_Open ..."
                           HotKey="Ctrl+O" />
                 <MenuItem Header="_Save ..."
@@ -27,7 +27,8 @@
                 <MenuItem Header="_View Help"
                           HotKey="Ctrl+H" />
                 <MenuItem Header="_About"
-                          HotKey="Ctrl+I" />
+                          HotKey="Ctrl+I"
+                          Command="{Binding Header.Help.AboutCommand}" />
             </MenuItem>
         </Menu>
     </Grid>
