@@ -1,3 +1,4 @@
+<!-- TODO AH Check for a fixed size setting -->
 <Window x:Class="BubblesDivePlanner.Views.Header.AboutView"
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -76,9 +77,3 @@
         </ScrollViewer>
     </StackPanel>
 </Window>
-<!-- <Hyperlink Margin="8,4"
-                               Url="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/About"
- Width="276" 
- HorizontalAlignment="Left" 
- TextWrapping="Wrap" 
-                               Command="{Binding Header.Help.AboutLinkCommand}" /> -->
