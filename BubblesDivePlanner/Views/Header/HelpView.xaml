@@ -1,16 +1,16 @@
-<Window x:Class="BubblesDivePlanner.Views.Header.AboutView"
+<Window x:Class="BubblesDivePlanner.Views.Header.HelpView"
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="About"
+        Title="Help"
         Icon="/Assets/dive-planner-logo.ico"
         d:DesignWidth="300"
         d:DesignHeight="250"
-        MaxWidth="300"
+        MaxWidth="600"
         MinWidth="300"
         Width="300"
-        MaxHeight="250"
+        MaxHeight="550"
         MinHeight="250"
         Height="250"
         mc:Ignorable="d">
@@ -33,7 +33,7 @@
                            FontSize="20"
                            FontStyle="Italic"
                            FontWeight="Bold"
-                           Text="About" />
+                           Text="Help" />
                 <StackPanel Margin="4,0"
                             Grid.Row="1"
                             Grid.Column="0"
@@ -41,7 +41,7 @@
                     <TextBlock Margin="4"
                                FontSize="16"
                                FontWeight="DemiBold"
-                               Text="Summary" />
+                               Text="Disclaimer" />
                 </StackPanel>
                 <StackPanel Margin="4,0"
                             Grid.Row="2"
@@ -49,7 +49,7 @@
                             Background="#FFC3FDFF">
                     <TextBlock Margin="8,4"
                                HorizontalAlignment="Stretch"
-                               Text="The idea behind Bubbles Dive Planner is to aim for scuba divers to be able to perform the safe planning of scuba diving activities."
+                               Text="I nor any contributors to the Bubbles Dive Planner Project can guarantee safety whilst using the Bubbles Dive Planner Application for diving activities. Please consult your own Scuba Diving training when planning Scuba Diving activities."
                                TextWrapping="Wrap" />
                 </StackPanel>
                 <StackPanel Margin="4,0"
@@ -67,7 +67,7 @@
                             Background="#FFC3FDFF">
                     <TextBlock Margin="8,4"
                                HorizontalAlignment="Stretch"
-                               Text="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/About"
+                               Text="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/Usage"
                                TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>

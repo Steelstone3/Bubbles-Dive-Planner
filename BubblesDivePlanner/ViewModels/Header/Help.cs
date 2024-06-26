@@ -15,7 +15,8 @@ public class Help : IHelp
 
     private void OpenHelp()
     {
-        throw new NotImplementedException();
+        HelpView helpView = new();
+        helpView.Show();
     }
 
     private void OpenAbout()

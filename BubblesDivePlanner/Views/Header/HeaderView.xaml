@@ -25,7 +25,8 @@
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_View Help"
-                          HotKey="Ctrl+H" />
+                          HotKey="Ctrl+H"
+                          Command="{Binding Header.Help.HelpCommand}" />
                 <MenuItem Header="_About"
                           HotKey="Ctrl+I"
                           Command="{Binding Header.Help.AboutCommand}" />
