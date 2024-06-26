@@ -7,10 +7,8 @@
         Icon="/Assets/dive-planner-logo.ico"
         d:DesignWidth="300"
         d:DesignHeight="250"
-        MaxWidth="600"
         MinWidth="300"
         Width="300"
-        MaxHeight="550"
         MinHeight="250"
         Height="250"
         mc:Ignorable="d">
