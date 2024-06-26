@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="About"
+        Icon="/Assets/dive-planner-logo.ico"
         d:DesignWidth="300"
         d:DesignHeight="200"
         MaxWidth="300"
@@ -16,5 +18,25 @@
                    FontStyle="Italic"
                    FontWeight="Bold"
                    Text="About" />
+        <StackPanel Margin="4,0"
+                    Background="#FF5D99C6">
+            <TextBlock Margin="4"
+                       FontSize="16"
+                       FontWeight="DemiBold"
+                       Text="Dive Step" />
+        </StackPanel>
+        <StackPanel Margin="4,0"
+                    Background="#FFC3FDFF">
+            <TextBlock Margin="8,4"
+                       Text="Depth (m):"
+                       FontWeight="Bold" />
+            <TextBox Margin="8,4"
+                     Text="{Binding DivePlan.DiveStage.DiveStep.Depth}" />
+            <TextBlock Margin="8,4"
+                       Text="Time (min):"
+                       FontWeight="Bold" />
+            <TextBox Margin="8,4"
+                     Text="{Binding DivePlan.DiveStage.DiveStep.Time}" />
+        </StackPanel>
     </Grid>
 </Window>
