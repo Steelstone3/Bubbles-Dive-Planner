@@ -87,10 +87,32 @@
                             Background="#FFC3FDFF">
                     <TextBlock Margin="8,4"
                                HorizontalAlignment="Stretch"
-                               Text="A Dive Step is a concept for planning the dive profile&#xA;&#xA;Depth&#xA;Time&#xA;&#xA;Enter the desired depth and the time to spend at that given depth.&#xA;&#xA;Disclaimer&#xA;&#xA;Ensure that when planning a dive intended to be executed to do so within the bounds of BOTH YOUR AND YOUR DIVE BUDDY'S current minimum TRAINING and QUALIFICATIONS."
+                               Text="A Dive Step is a concept for planning the dive profile&#xA;&#xA;Depth (metres)&#xA;Time (minute)&#xA;&#xA;Enter the desired depth (metres) and the time (minute) to spend at that given depth.&#xA;&#xA;Disclaimer&#xA;&#xA;Ensure that when planning a dive intended to be executed to do so within the bounds of BOTH YOUR AND YOUR DIVE BUDDY'S current minimum TRAINING and QUALIFICATIONS."
                                TextWrapping="Wrap" />
+                    <StackPanel Margin="4,0"
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Cylinder Setup" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="Cylinder (tank) setup allows for the creation of cylinders (tank).&#xA;&#xA;- Name&#xA;- Volume (litres)&#xA;- Pressure (BAR)&#xA;- Surface Air Consumption Rate (litres/minute)&#xA;- Gas Mixture&#xA;  - Oxygen (%)&#xA;  - Helium (%)&#xA;  - Nitrogen (%)&#xA;&#xA;Enter the name, volume (litres), pressure (BAR), surface air consumption (litres/minutes) and gas mixture (%)."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="4,0"
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
+<!-- <StackPanel Margin="4,0"
                             Grid.Row="7"
                             Grid.Column="0"
                             Background="#FF5D99C6">
@@ -107,8 +129,4 @@
                                HorizontalAlignment="Stretch"
                                Text="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/Usage"
                                TextWrapping="Wrap" />
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-    </ScrollViewer>
-</Window>
+                </StackPanel> -->
