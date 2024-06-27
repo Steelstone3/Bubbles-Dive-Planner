@@ -28,6 +28,8 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Margin="4"
                            Grid.Row="0"
@@ -105,6 +107,24 @@
                         <TextBlock Margin="8,4"
                                    HorizontalAlignment="Stretch"
                                    Text="Cylinder (tank) setup allows for the creation of cylinders (tank).&#xA;&#xA;- Name&#xA;- Volume (litres)&#xA;- Pressure (BAR)&#xA;- Surface Air Consumption Rate (litres/minute)&#xA;- Gas Mixture&#xA;  - Oxygen (%)&#xA;  - Helium (%)&#xA;  - Nitrogen (%)&#xA;&#xA;Enter the name, volume (litres), pressure (BAR), surface air consumption (litres/minutes) and gas mixture (%)."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="9"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Adding Cylinders" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="10"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="Once the cylinder is setup click the Add Cylinder button. This will add a cylinder to a select-able list. Click on a cylinder entered to select it."
                                    TextWrapping="Wrap" />
                     </StackPanel>
                 </StackPanel>
