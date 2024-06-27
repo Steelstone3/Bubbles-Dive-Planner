@@ -12,9 +12,9 @@
                 <MenuItem Header="_New"
                           HotKey="Ctrl+N"
                           Command="{Binding Header.File.NewCommand}" />
-                <MenuItem Header="_Open ..."
+                <MenuItem Header="_Open"
                           HotKey="Ctrl+O" />
-                <MenuItem Header="_Save ..."
+                <MenuItem Header="_Save"
                           HotKey="Ctrl+S" />
             </MenuItem>
             <MenuItem Header="_Edit">
@@ -24,10 +24,10 @@
                           HotKey="Ctrl+Y" />
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="_View Help"
+                <MenuItem Header="_Help ..."
                           HotKey="Ctrl+H"
                           Command="{Binding Header.Help.HelpCommand}" />
-                <MenuItem Header="_About"
+                <MenuItem Header="_About ..."
                           HotKey="Ctrl+I"
                           Command="{Binding Header.Help.AboutCommand}" />
             </MenuItem>
