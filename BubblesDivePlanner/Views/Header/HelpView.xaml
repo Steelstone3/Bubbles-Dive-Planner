@@ -32,6 +32,12 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Margin="4"
                            Grid.Row="0"
@@ -165,26 +171,44 @@
                                    Text="Once a Dive Plan is setup click the button Calculate Dive Profile.&#xA;&#xA;This will then calculate a Dive Stage and display both the parameters used as well as the Dive Profile result showing the nitrogen and helium loading."
                                    TextWrapping="Wrap" />
                     </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="15"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Results" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="16"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="Results appear as a list of steps in the middle of the Dive Planner. The results are immutable and show the following information.&#xA;&#xA;- Parameters used for the dive stage&#xA;- Calculated dive profile result&#xA;&#xA;The parameters displayed are the following:&#xA;&#xA;- Depth (metre)&#xA;- Time (minute)&#xA;- Cylinder Name&#xA;- Gas Mixture (%)&#xA;- Remaining Gas (litre)&#xA;- Used Gas (litre) (for the dive stage)&#xA;&#xA;The dive profile result displays the nitrogen and helium loading of the diver in table format.&#xA;&#xA;- Total Tissue Pressure (TP)&#xA;- Tolerated Ambient Pressure (TAP)&#xA;- Maximum Surface Pressure (MSP)&#xA;- Compartment Load Percentage (%) (CLP)"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="17"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Link" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="18"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/Usage"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </StackPanel>
     </ScrollViewer>
 </Window>
-<!-- <StackPanel Margin="4,0"
-                            Grid.Row="7"
-                            Grid.Column="0"
-                            Background="#FF5D99C6">
-                    <TextBlock Margin="4"
-                               FontSize="16"
-                               FontWeight="DemiBold"
-                               Text="Link" />
-                </StackPanel>
-                <StackPanel Margin="4,0"
-                            Grid.Row="8"
-                            Grid.Column="0"
-                            Background="#FFC3FDFF">
-                    <TextBlock Margin="8,4"
-                               HorizontalAlignment="Stretch"
-                               Text="https://github.com/Steelstone3/Bubbles-Dive-Planner/wiki/Usage"
-                               TextWrapping="Wrap" />
-                </StackPanel> -->
