@@ -30,6 +30,8 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Margin="4"
                            Grid.Row="0"
@@ -125,6 +127,42 @@
                         <TextBlock Margin="8,4"
                                    HorizontalAlignment="Stretch"
                                    Text="Once the cylinder is setup click the Add Cylinder button. This will add a cylinder to a select-able list. Click on a cylinder entered to select it."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="11"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Gas Usage" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="12"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="For a cylinder that is already set up, Gas Usage allows for gas planning. Gas Usage displays the following information:&#xA;&#xA;- Original Pressurised Cylinder Volume (l)&#xA;- Current Pressurised Cylinder Volume (l)&#xA;- Gas Remaining (l)&#xA;- Gas Used (l) (for a dive stage)&#xA;&#xA;This information is displayed in read-only format when a Dive Stage has been calculated and updates on each subsequently calculated Dive Stage."
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="13"
+                                Grid.Column="0"
+                                Background="#FF5D99C6">
+                        <TextBlock Margin="4"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Text="Calculate Dive Profile" />
+                    </StackPanel>
+                    <StackPanel Margin="4,0"
+                                Grid.Row="14"
+                                Grid.Column="0"
+                                Background="#FFC3FDFF">
+                        <TextBlock Margin="8,4"
+                                   HorizontalAlignment="Stretch"
+                                   Text="Once a Dive Plan is setup click the button Calculate Dive Profile.&#xA;&#xA;This will then calculate a Dive Stage and display both the parameters used as well as the Dive Profile result showing the nitrogen and helium loading."
                                    TextWrapping="Wrap" />
                     </StackPanel>
                 </StackPanel>
