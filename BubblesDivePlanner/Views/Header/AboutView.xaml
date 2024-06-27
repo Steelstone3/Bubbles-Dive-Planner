@@ -14,8 +14,8 @@
         MinHeight="250"
         Height="250"
         mc:Ignorable="d">
-    <StackPanel Background="#FF90CAF9">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Background="#FF90CAF9">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -71,6 +71,6 @@
                                TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
-        </ScrollViewer>
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Window>

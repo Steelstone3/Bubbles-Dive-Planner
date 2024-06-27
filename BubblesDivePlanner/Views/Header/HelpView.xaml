@@ -12,8 +12,8 @@
         MinHeight="250"
         Height="250"
         mc:Ignorable="d">
-    <StackPanel Background="#FF90CAF9">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Background="#FF90CAF9">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -72,7 +72,7 @@
                                Text="Select a dive model from the drop down&#xA;&#xA;ZHL16-B Model&#xA;USN Revision 6 Model&#xA;&#xA;ZHL16-B is a 16 compartment model that uses the neo-Haldane decompression model. It is used in some dive computers either in its original or an adapted form be it for more conservative profiles or a different tissue half time.&#xA;&#xA;ZH-L 16 or ZH-L 16 A (air, nitrox): The experimental set of parameters published in 1986.&#xA;&#xA;ZH-L 16 B (air, nitrox): The set of parameters modified for printed dive table production, using slightly more conservative “a” values for tissue compartments #6, 7, 8 and 13.&#xA;&#xA;USN Revision 6 is a 9 compartment model and one of the most well researched dive models in the world. Used by the United States Navy it derives values at the point of appearance of micro bubbles in the blood stream for US service personnel. This model relies on the user being conserved with the model rather than the model having in built conservatism."
                                TextWrapping="Wrap" />
                 </StackPanel>
-                 <StackPanel Margin="4,0"
+                <StackPanel Margin="4,0"
                             Grid.Row="5"
                             Grid.Column="0"
                             Background="#FF5D99C6">
@@ -109,6 +109,6 @@
                                TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
-        </ScrollViewer>
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Window>
