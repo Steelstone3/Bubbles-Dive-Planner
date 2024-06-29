@@ -19,6 +19,7 @@ public class GasMixture : ReactiveObject, IGasMixture
         {
             this.RaiseAndSetIfChanged(ref oxygen, value);
             Nitrogen = cylinderController.CalculateNitrogen(Oxygen, Helium);
+            MaximumOperatingDepth = cylinderController.CalculateMaximumOperatingDepth(Oxygen);
         }
     }
 
@@ -41,6 +42,13 @@ public class GasMixture : ReactiveObject, IGasMixture
         private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
     }
 
+    private float maximumOperatingDepth;
+    public float MaximumOperatingDepth 
+    { 
+        get => maximumOperatingDepth;
+        private set => this.RaiseAndSetIfChanged(ref maximumOperatingDepth, value);
+    }
+
     public bool IsValid => gasMixtureValidator.Validate(this);
 }
 
@@ -49,4 +57,5 @@ public interface IGasMixture : IValidation
     float Oxygen { get; set; }
     float Helium { get; set; }
     float Nitrogen { get; }
+    float MaximumOperatingDepth { get; }
 }

@@ -58,6 +58,24 @@ public class GasMixtureShould
     }
 
     [Fact]
+    public void CalculateMaximumOperatingDepth()
+    {
+        // Given
+        float oxygen = 21.0F;
+        float maximumOperatingDepth = 56.6F;
+        Mock<ICylinderController> cylinderController = new();
+        cylinderController.Setup(cc => cc.CalculateMaximumOperatingDepth(oxygen)).Returns(maximumOperatingDepth);
+        GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object)
+        {
+            Oxygen = oxygen
+        };
+
+        // Then
+        cylinderController.VerifyAll();
+        Assert.Equal(gasMixture.MaximumOperatingDepth, maximumOperatingDepth);
+    }
+
+    [Fact]
     public void Validate()
     {
         // Given
