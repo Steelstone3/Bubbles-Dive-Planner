@@ -22,6 +22,13 @@ public class Main : ReactiveObject, IMain
         set => this.RaiseAndSetIfChanged(ref divePlan, value);
     }
 
+    private IDiveInformation diveInformation = new DiveInformation();
+    public IDiveInformation DiveInformation
+    {
+        get => diveInformation;
+        set => this.RaiseAndSetIfChanged(ref diveInformation, value);
+    }
+
     private IResult result = new Result();
     public IResult Result
     {
