@@ -1,15 +1,17 @@
+using Moq;
 using ReactiveUI;
 using Xunit;
 
 public class DiveModelProfileShould
 {
     private const int COMPARTMENTS = 16;
+    private readonly Mock<IDiveBoundaryController> diveBoundaryController = new();
 
     [Fact]
     public void Construct()
     {
         // Given
-        DiveModelProfile diveModelProfile = new(COMPARTMENTS);
+        DiveModelProfile diveModelProfile = new(COMPARTMENTS, diveBoundaryController.Object);
 
         // Then
         Assert.IsAssignableFrom<IDiveModelProfile>(diveModelProfile);
@@ -35,7 +37,7 @@ public class DiveModelProfileShould
     {
         // Given
         float[] defaultValue = [5.0F, 10.0F];
-        DiveModelProfile diveModelProfile = new(COMPARTMENTS);
+        DiveModelProfile diveModelProfile = new(COMPARTMENTS, diveBoundaryController.Object);
         List<string> events = new();
         diveModelProfile.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
@@ -66,13 +68,21 @@ public class DiveModelProfileShould
         Assert.Contains(nameof(diveModelProfile.CompartmentLoads), events);
     }
 
-    [Fact(Skip="Needs interaction test")]
+    [Fact(Skip ="Interaction test")]
     public void CalculateDiveCeiling()
     {
         // Given
-    
+        float[] toleratedAmbientPressures = new float[COMPARTMENTS] { 0.9F, 0.2F, 0.3F, 1.0F, 1.1F, 1.2F, 0.1F, 0.11F, 0.12F, 0.14F, 0.15F, 0.16F, 0.17F, 0.18F, 0.19F, 0.21F };
+        diveBoundaryController.Setup(db => db.CalculateDiveCeiling(toleratedAmbientPressures));
+        DiveModelProfile diveModelProfile = new(COMPARTMENTS, diveBoundaryController.Object)
+        {
+            ToleratedAmbientPressures = toleratedAmbientPressures
+        };
+
         // When
-    
+
+
         // Then
+        
     }
 }

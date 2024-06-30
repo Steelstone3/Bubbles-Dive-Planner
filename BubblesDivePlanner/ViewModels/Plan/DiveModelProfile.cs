@@ -2,7 +2,9 @@ using ReactiveUI;
 
 public class DiveModelProfile : ReactiveObject, IDiveModelProfile
 {
-    public DiveModelProfile(byte compartmentCount)
+    private readonly IDiveBoundaryController diveBoundaryController;
+
+    public DiveModelProfile(byte compartmentCount, IDiveBoundaryController diveBoundaryController)
     {
         nitrogenTissuePressures = new float[compartmentCount];
         heliumTissuePressures = new float[compartmentCount];
@@ -18,6 +20,8 @@ public class DiveModelProfile : ReactiveObject, IDiveModelProfile
             nitrogenTissuePressures[compartment] = 0.79F;
             totalTissuePressures[compartment] = 0.79F;
         }
+
+        this.diveBoundaryController = diveBoundaryController;
     }
 
     private float oxygenAtPressure;
@@ -97,7 +101,7 @@ public class DiveModelProfile : ReactiveObject, IDiveModelProfile
         set => this.RaiseAndSetIfChanged(ref compartmentLoads, value);
     }
 
-    float DiveCeiling => ToleratedAmbientPressures.Max() <= 0.0F ? 0.0F : new DiveBoundaryController().CalculateDiveCeiling(ToleratedAmbientPressures);
+    float DiveCeiling => ToleratedAmbientPressures.Max() <= 0.0F ? 0.0F : diveBoundaryController.CalculateDiveCeiling(ToleratedAmbientPressures);
 }
 
 public interface IDiveModelProfile

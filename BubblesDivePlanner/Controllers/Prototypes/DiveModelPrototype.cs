@@ -18,7 +18,7 @@ public class DiveModelPrototype : IDiveModelPrototype
 
     private IDiveModelProfile DiveModelProfileDeepClone(IDiveModelProfile diveModelProfile)
     {
-        return new DiveModelProfile(0)
+        return new DiveModelProfile(0, new DiveBoundaryController())
         {
             OxygenAtPressure = diveModelProfile.OxygenAtPressure,
             NitrogenAtPressure = diveModelProfile.NitrogenAtPressure,
