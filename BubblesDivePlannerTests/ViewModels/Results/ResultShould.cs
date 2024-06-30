@@ -11,7 +11,6 @@ public class ResultShould
         Result result = new();
 
         // Then
-        Assert.IsAssignableFrom<ReactiveObject>(result);
         Assert.IsAssignableFrom<IResult>(result);
         Assert.NotNull(result.Results);
         Assert.Empty(result.Results);
@@ -33,21 +32,5 @@ public class ResultShould
         Assert.NotNull(result.Results);
         Assert.NotEmpty(result.Results);
         Assert.NotEmpty(events);
-    }
-
-    [Fact]
-    public void RaisePropertyChangedEvents()
-    {
-        // Given
-        Result result = new();
-        List<string> events = new();
-        result.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
-
-        // When
-        result.DiveCeiling = 2.0F;
-
-        // Then
-        Assert.NotEmpty(events);
-        Assert.Contains(nameof(result.DiveCeiling), events);
     }
 }

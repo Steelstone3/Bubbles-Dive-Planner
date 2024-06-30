@@ -66,7 +66,7 @@ public class Main : ReactiveObject, IMain
 
         diveProfileStagesFactory.Run(DivePlan.DiveStage);
         Result.Results.Add(diveStagePrototype.DeepClone(DivePlan.DiveStage));
-        Result.DiveCeiling = diveBoundaryController.GetOverallDiveCeiling(Result.Results);
+        DiveInformation.DiveCeiling = diveBoundaryController.GetOverallDiveCeiling(Result.Results);
     }
 }
 
