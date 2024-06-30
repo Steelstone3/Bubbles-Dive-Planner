@@ -101,7 +101,10 @@ public class DiveModelProfile : ReactiveObject, IDiveModelProfile
         set => this.RaiseAndSetIfChanged(ref compartmentLoads, value);
     }
 
-    float DiveCeiling => ToleratedAmbientPressures.Max() <= 0.0F ? 0.0F : diveBoundaryController.CalculateDiveCeiling(ToleratedAmbientPressures);
+    public float DiveCeiling
+    {
+        get => ToleratedAmbientPressures.Max() <= 0.0F ? 0.0F : diveBoundaryController.CalculateDiveCeiling(ToleratedAmbientPressures);
+    }
 }
 
 public interface IDiveModelProfile
@@ -117,4 +120,5 @@ public interface IDiveModelProfile
     float[] ToleratedAmbientPressures { get; set; }
     float[] MaxSurfacePressures { get; set; }
     float[] CompartmentLoads { get; set; }
+    float DiveCeiling { get; }
 }
