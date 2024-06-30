@@ -4,11 +4,13 @@ public class GasMixture : ReactiveObject, IGasMixture
 {
     private readonly IGasMixtureValidator gasMixtureValidator;
     private readonly ICylinderController cylinderController;
+    private readonly IDiveBoundaryController diveBoundaryController;
 
-    public GasMixture(IGasMixtureValidator gasMixtureValidator, ICylinderController cylinderController)
+    public GasMixture(IGasMixtureValidator gasMixtureValidator, ICylinderController cylinderController, IDiveBoundaryController diveBoundaryController)
     {
         this.gasMixtureValidator = gasMixtureValidator;
         this.cylinderController = cylinderController;
+        this.diveBoundaryController = diveBoundaryController;
     }
 
     private float oxygen;
@@ -19,7 +21,7 @@ public class GasMixture : ReactiveObject, IGasMixture
         {
             this.RaiseAndSetIfChanged(ref oxygen, value);
             Nitrogen = cylinderController.CalculateNitrogen(Oxygen, Helium);
-            MaximumOperatingDepth = cylinderController.CalculateMaximumOperatingDepth(Oxygen);
+            MaximumOperatingDepth = diveBoundaryController.CalculateMaximumOperatingDepth(Oxygen);
         }
     }
 
@@ -43,8 +45,8 @@ public class GasMixture : ReactiveObject, IGasMixture
     }
 
     private float maximumOperatingDepth;
-    public float MaximumOperatingDepth 
-    { 
+    public float MaximumOperatingDepth
+    {
         get => maximumOperatingDepth;
         private set => this.RaiseAndSetIfChanged(ref maximumOperatingDepth, value);
     }

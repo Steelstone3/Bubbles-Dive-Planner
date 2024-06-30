@@ -7,23 +7,27 @@ public class DiveProfileStagesFactoryShould
     public void Run()
     {
         // Given
+        Mock<IDiveBoundaryController> diveBoundaryController = new();
         const byte COMPARTMENT_COUNT = 16;
 
         Mock<IDiveStep> diveStep = new();
         diveStep.Setup(ds => ds.Depth).Returns(50);
         diveStep.Setup(ds => ds.Time).Returns(10);
+
         Mock<IGasMixture> gasMixture = new();
         gasMixture.Setup(gm => gm.Oxygen).Returns(21);
         gasMixture.Setup(gm => gm.Helium).Returns(10);
         gasMixture.Setup(gm => gm.Nitrogen).Returns(69);
+
         Mock<ICylinder> cylinder = new();
         cylinder.Setup(c => c.GasMixture).Returns(gasMixture.Object);
+
         Mock<IDiveStageValidator> diveStageValidator = new();
         IDiveStage expectedDiveStage = new DiveStage(diveStageValidator.Object)
         {
             DiveModel = new Zhl16Buhlmann()
             {
-                DiveModelProfile = new DiveModelProfile(COMPARTMENT_COUNT)
+                DiveModelProfile = new DiveModelProfile(COMPARTMENT_COUNT, diveBoundaryController.Object)
                 {
                     OxygenAtPressure = 1.26f,
                     NitrogenAtPressure = 4.14f,

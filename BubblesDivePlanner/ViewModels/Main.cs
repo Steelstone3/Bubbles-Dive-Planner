@@ -45,6 +45,7 @@ public class Main : ReactiveObject, IMain
         }
 
         VisibilityController visibilityController = new();
+        DiveBoundaryController diveBoundaryController = new();
         CylinderController cylinderController = new();
         DiveProfileStagesFactory diveProfileStagesFactory = new();
         DiveModelPrototype diveModelPrototype = new();
@@ -58,6 +59,7 @@ public class Main : ReactiveObject, IMain
 
         diveProfileStagesFactory.Run(DivePlan.DiveStage);
         Result.Results.Add(diveStagePrototype.DeepClone(DivePlan.DiveStage));
+        Result.DiveCeiling = diveBoundaryController.GetOverallDiveCeiling(Result.Results);
     }
 }
 

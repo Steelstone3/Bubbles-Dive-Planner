@@ -8,7 +8,7 @@ public class CylinderPrototype : ICylinderPrototype
             Volume = cylinder.Volume,
             Pressure = cylinder.Pressure,
             InitialPressurisedVolume = cylinder.InitialPressurisedVolume,
-            GasMixture = new GasMixture(new GasMixtureValidator(), new CylinderController())
+            GasMixture = new GasMixture(new GasMixtureValidator(), new CylinderController(), new DiveBoundaryController())
             {
                 Oxygen = cylinder.GasMixture.Oxygen,
                 Helium = cylinder.GasMixture.Helium,
