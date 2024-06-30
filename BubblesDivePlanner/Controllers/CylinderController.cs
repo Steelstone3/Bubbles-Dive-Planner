@@ -15,6 +15,7 @@ public class CylinderController : ICylinderController
     private ushort CalculateRemainingPressurisedVolume(IGasUsage gasUsage) => gasUsage.Remaining > gasUsage.Used ? (ushort)(gasUsage.Remaining - gasUsage.Used) : (ushort)0;
 
     private ushort CalculateGasUsed(IDiveStep diveStep, IGasUsage gasUsage) => (ushort)(((diveStep.Depth / 10) + 1) * diveStep.Time * gasUsage.SurfaceAirConsumptionRate);
+
 }
 
 public interface ICylinderController

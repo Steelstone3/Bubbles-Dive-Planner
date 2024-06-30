@@ -54,6 +54,23 @@ public class CylinderSelectorShould
     }
 
     [Fact]
+    public void SelectedCylinderChangedEvents()
+    {
+        // Given
+        Mock<ICylinder> cylinder = new();
+        CylinderSelector cylinderSelector = new();
+        string eventMessage = "Cylinder Changed";
+        List<string> events = new();
+        cylinderSelector.SelectedCylinderChanged += () => events.Add(eventMessage);
+
+        // When
+        cylinderSelector.SelectedCylinder = cylinder.Object;
+
+        // Then
+        Assert.Contains(eventMessage, events);
+    }
+
+    [Fact]
     public void AddCylinder()
     {
         // Given

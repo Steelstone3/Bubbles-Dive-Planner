@@ -28,14 +28,14 @@
                                        FontWeight="Bold" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="4,0"
-                                           Text="Volume:"
+                                           Text="V:"
                                            FontWeight="Bold" />
                                 <TextBlock Margin="4,0"
                                            Text="{Binding Volume}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="4,0"
-                                           Text="Pressure:"
+                                           Text="P:"
                                            FontWeight="Bold" />
                                 <TextBlock Margin="4,0"
                                            Text="{Binding Pressure}" />

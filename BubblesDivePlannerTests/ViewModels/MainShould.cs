@@ -14,6 +14,7 @@ public class MainShould
         Assert.IsAssignableFrom<IMain>(main);
         Assert.NotNull(main.Header);
         Assert.NotNull(main.DivePlan);
+        Assert.NotNull(main.DiveInformation);
         Assert.NotNull(main.Result);
     }
 
@@ -23,6 +24,7 @@ public class MainShould
         // Given
         Mock<IHeader> header = new();
         Mock<IDivePlan> divePlan = new();
+        Mock<IDiveInformation> diveInformation = new();
         Mock<IResult> results = new();
         Main main = new();
         List<string> events = new();
@@ -31,6 +33,7 @@ public class MainShould
         // When
         main.Header = header.Object;
         main.DivePlan = divePlan.Object;
+        main.DiveInformation = diveInformation.Object;
         main.Result = results.Object;
 
         // Then
@@ -38,24 +41,41 @@ public class MainShould
         Assert.NotEmpty(events);
         Assert.Contains(nameof(main.Header), events);
         Assert.Contains(nameof(main.DivePlan), events);
+        Assert.Contains(nameof(main.DiveInformation), events);
         Assert.Contains(nameof(main.Result), events);
     }
 
-    [Fact(Skip = "To Do")]
+    [Fact]
     public void CalculateDiveStage()
     {
-        // // Given
-        // Mock<ICylinder> cylinder = new();
-        // cylinder.Setup(c => c.IsValid).Returns(true);
-        // CylinderSelector cylinderSelector = new()
-        // {
-        //     SelectedCylinder = cylinder.Object
-        // };
+        // Given
+        Main main = new();
+        main.DivePlan.DiveModelSelector.DiveModelSelected = new Zhl16Buhlmann();
+        main.DivePlan.DiveStage.DiveStep.Depth = 50;
+        main.DivePlan.DiveStage.DiveStep.Time = 10;
+        main.DivePlan.CylinderSelector.SetupCylinder.Name = "Air";
+        main.DivePlan.CylinderSelector.SetupCylinder.Volume = 12;
+        main.DivePlan.CylinderSelector.SetupCylinder.Pressure = 200;
+        main.DivePlan.CylinderSelector.SetupCylinder.GasUsage.SurfaceAirConsumptionRate = 12;
+        main.DivePlan.CylinderSelector.SetupCylinder.GasMixture.Oxygen = 21;
+        main.DivePlan.CylinderSelector.SelectedCylinder = main.DivePlan.CylinderSelector.SetupCylinder;
+        main.DivePlan.CylinderSelector.Cylinders.Add(main.DivePlan.CylinderSelector.SelectedCylinder);
 
-        // // When
-        // cylinderSelector.AddCylinderCommand.Execute().Subscribe();
+        // When
+        main.CalculateCommand.Execute().Subscribe();
 
-        // // Then
-        // Assert.NotEmpty(cylinderSelector.Cylinders);
+        // Then
+        Assert.NotEmpty(main.Result.Results);
+        Assert.NotEmpty(main.DiveInformation.DecompressionProfile.DecompressionSteps);
+    }
+
+    [Fact(Skip = "Later")]
+    public void UpdateDecompressionSteps()
+    {
+        // Given
+
+        // When
+
+        // Then
     }
 }

@@ -26,6 +26,8 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Margin="0,8,0,0"
                                    Background="#FF5D99C6"
@@ -97,42 +99,66 @@
                                    Background="#FF5D99C6"
                                    Grid.Row="5"
                                    Grid.Column="0"
-                                   Text="Dive Profile"
+                                   Text="Dive Boundaries"
                                    FontWeight="Bold" />
                         <TextBlock Background="#FF5D99C6"
                                    Grid.Row="6"
                                    Grid.Column="0"
-                                   Text="TP"
+                                   Text="Ceiling"
                                    FontWeight="Bold" />
                         <TextBlock Background="#FF90CAF9"
                                    Grid.Row="6"
                                    Grid.Column="1"
-                                   Text="TAP"
-                                   FontWeight="Bold" />
+                                   Text="{Binding DiveModel.DiveModelProfile.DiveCeiling}" />
                         <TextBlock Background="#FF5D99C6"
                                    Grid.Row="6"
                                    Grid.Column="2"
-                                   Text="MSP"
+                                   Text="Floor"
                                    FontWeight="Bold" />
                         <TextBlock Background="#FF90CAF9"
                                    Grid.Row="6"
                                    Grid.Column="3"
+                                   Text="{Binding Cylinder.GasMixture.MaximumOperatingDepth}" />
+                        <TextBlock Margin="0,8,0,0"
+                                   Background="#FF5D99C6"
+                                   Grid.Row="7"
+                                   Grid.Column="0"
+                                   Text="Dive Profile"
+                                   FontWeight="Bold" />
+                        <TextBlock Background="#FF5D99C6"
+                                   Grid.Row="8"
+                                   Grid.Column="0"
+                                   Text="TP"
+                                   FontWeight="Bold" />
+                        <TextBlock Background="#FF90CAF9"
+                                   Grid.Row="8"
+                                   Grid.Column="1"
+                                   Text="TAP"
+                                   FontWeight="Bold" />
+                        <TextBlock Background="#FF5D99C6"
+                                   Grid.Row="8"
+                                   Grid.Column="2"
+                                   Text="MSP"
+                                   FontWeight="Bold" />
+                        <TextBlock Background="#FF90CAF9"
+                                   Grid.Row="8"
+                                   Grid.Column="3"
                                    Text="CLP"
                                    FontWeight="Bold" />
                         <ItemsControl Background="#FF5D99C6"
-                                      Grid.Row="7"
+                                      Grid.Row="9"
                                       Grid.Column="0"
                                       ItemsSource="{Binding DiveModel.DiveModelProfile.TotalTissuePressures}" />
                         <ItemsControl Background="#FF90CAF9"
-                                      Grid.Row="7"
+                                      Grid.Row="9"
                                       Grid.Column="1"
                                       ItemsSource="{Binding DiveModel.DiveModelProfile.ToleratedAmbientPressures}" />
                         <ItemsControl Background="#FF5D99C6"
-                                      Grid.Row="7"
+                                      Grid.Row="9"
                                       Grid.Column="2"
                                       ItemsSource="{Binding DiveModel.DiveModelProfile.MaxSurfacePressures}" />
                         <ItemsControl Background="#FF90CAF9"
-                                      Grid.Row="7"
+                                      Grid.Row="9"
                                       Grid.Column="3"
                                       ItemsSource="{Binding DiveModel.DiveModelProfile.CompartmentLoads}" />
                     </Grid>

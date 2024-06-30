@@ -7,6 +7,7 @@ public class TissuePressuresShould
     public void RunTissuePressureStages()
     {
         // Given
+        Mock<IDiveBoundaryController> diveBoundaryController = new();
         const byte COMPARTMENT_COUNT = 16;
         float[] expectedNitrogenTissuePressures = new float[COMPARTMENT_COUNT] { 4.0417f, 3.0792f, 2.4713f, 2.0243f, 1.6843f, 1.4439f, 1.2634f, 1.13f, 1.0334f, 0.9731f, 0.9337f, 0.9029f, 0.8788f, 0.8596f, 0.8446f, 0.8329f };
         float[] expectedHeliumTissuePressures = new float[COMPARTMENT_COUNT] { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
@@ -25,7 +26,7 @@ public class TissuePressuresShould
         {
             DiveModel = new Zhl16Buhlmann()
             {
-                DiveModelProfile = new DiveModelProfile(COMPARTMENT_COUNT)
+                DiveModelProfile = new DiveModelProfile(COMPARTMENT_COUNT, diveBoundaryController.Object)
                 {
                     NitrogenAtPressure = 4.74f,
                     OxygenAtPressure = 1.26f,
