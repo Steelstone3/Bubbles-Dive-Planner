@@ -65,4 +65,14 @@ public class DiveModelProfileShould
         Assert.Contains(nameof(diveModelProfile.MaxSurfacePressures), events);
         Assert.Contains(nameof(diveModelProfile.CompartmentLoads), events);
     }
+
+    [Fact(Skip="Needs interaction test")]
+    public void CalculateDiveCeiling()
+    {
+        // Given
+    
+        // When
+    
+        // Then
+    }
 }

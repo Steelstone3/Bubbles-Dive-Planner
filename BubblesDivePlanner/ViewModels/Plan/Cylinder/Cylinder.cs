@@ -51,7 +51,7 @@ public class Cylinder : ReactiveObject, ICylinder
         }
     }
 
-    private IGasMixture gasMixture = new GasMixture(new GasMixtureValidator(), new CylinderController());
+    private IGasMixture gasMixture = new GasMixture(new GasMixtureValidator(), new CylinderController(), new DiveBoundaryController());
     public IGasMixture GasMixture
     {
         get => gasMixture;
