@@ -19,14 +19,17 @@ public class DiveBoundaryControllerShould
         // Then
         Assert.Equal(expectedMaximumOperatingDepth, maximumOperatingDepth, 5);
     }
-    
-    [Fact]
-    public void CalculateDiveCeiling()
+
+    [Theory]
+    [InlineData(new float[] { 0.4F, 1.0F, 1.2F }, 2.0F)]
+    [InlineData(new float[] { 0.4F, 0.2F, 0.1F }, -6.0F)]
+    [InlineData(new float[] { 3.0F, 2.0F, 1.0F }, 20.0F)]
+    public void CalculateDiveCeiling(float[] toleratedAmbientPressures, float expectedDiveCeiling)
     {
-        // Given
-    
         // When
-    
+        float diveCeiling = diveBoundaryController.CalculateDiveCeiling(toleratedAmbientPressures);
+
         // Then
+        Assert.Equal(expectedDiveCeiling, diveCeiling);
     }
 }

@@ -12,7 +12,7 @@ public class DiveBoundaryController : IDiveBoundaryController
 
     public float CalculateDiveCeiling(float[] toleratedAmbientPressures)
     {
-        throw new NotImplementedException();
+        return (float)Math.Round((toleratedAmbientPressures.Max() - 1.0) * 10.0, 2);
     }
 }
 
