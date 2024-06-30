@@ -13,6 +13,8 @@ public class DiveInformationShould
         Assert.IsAssignableFrom<ReactiveObject>(diveInformation);
         Assert.IsAssignableFrom<IDiveInformation>(diveInformation);
         Assert.Equal(0.0F, diveInformation.DiveCeiling);
+        Assert.NotNull(diveInformation.DecompressionSteps);
+        Assert.Empty(diveInformation.DecompressionSteps);
     }
 
     [Fact]

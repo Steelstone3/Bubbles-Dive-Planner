@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using ReactiveUI;
 
 public class Result : IResult
 {
