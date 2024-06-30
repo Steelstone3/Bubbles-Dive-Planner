@@ -40,7 +40,7 @@ public class ResultShould
     {
         // Given
         Result result = new();
-         List<string> events = new();
+        List<string> events = new();
         result.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When

@@ -45,8 +45,8 @@ public class GasMixture : ReactiveObject, IGasMixture
     }
 
     private float maximumOperatingDepth;
-    public float MaximumOperatingDepth 
-    { 
+    public float MaximumOperatingDepth
+    {
         get => maximumOperatingDepth;
         private set => this.RaiseAndSetIfChanged(ref maximumOperatingDepth, value);
     }

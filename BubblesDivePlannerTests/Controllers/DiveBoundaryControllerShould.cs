@@ -53,7 +53,7 @@ public class DiveBoundaryControllerShould
     {
         // Given
         float expectedDiveCeiling = 3.0F;
-        Mock<IDiveModelProfile> diveModelProfile =new();
+        Mock<IDiveModelProfile> diveModelProfile = new();
         diveModelProfile.Setup(dp => dp.DiveCeiling).Returns(expectedDiveCeiling);
         Mock<IDiveModel> diveModel = new();
         diveModel.Setup(dm => dm.DiveModelProfile).Returns(diveModelProfile.Object);
