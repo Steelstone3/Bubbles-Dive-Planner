@@ -1,3 +1,4 @@
+using Moq;
 using Xunit;
 
 public class DiveBoundaryControllerShould
@@ -31,5 +32,40 @@ public class DiveBoundaryControllerShould
 
         // Then
         Assert.Equal(expectedDiveCeiling, diveCeiling);
+    }
+
+    [Fact]
+    public void GetOverallDiveCeilingWithNoResults()
+    {
+        // Given
+        float expectedDiveCeiling = 0.0F;
+        List<IDiveStage> diveStages = null;
+
+        // When
+        float diveCeiling = diveBoundaryController.GetOverallDiveCeiling(diveStages);
+
+        // Then
+        Assert.Equal(expectedDiveCeiling, diveCeiling);
+    }
+
+    [Fact]
+    public void GetOverallDiveCeiling()
+    {
+        // Given
+        float expectedDiveCeiling = 3.0F;
+        Mock<IDiveModelProfile> diveModelProfile =new();
+        diveModelProfile.Setup(dp => dp.DiveCeiling).Returns(expectedDiveCeiling);
+        Mock<IDiveModel> diveModel = new();
+        diveModel.Setup(dm => dm.DiveModelProfile).Returns(diveModelProfile.Object);
+        Mock<IDiveStage> diveStage = new();
+        diveStage.Setup(ds => ds.DiveModel).Returns(diveModel.Object);
+        List<IDiveStage> diveStages = new() { diveStage.Object };
+
+        // When
+        float diveCeiling = diveBoundaryController.GetOverallDiveCeiling(diveStages);
+
+        // Then
+        Assert.Equal(expectedDiveCeiling, diveCeiling);
+        diveStage.VerifyAll();
     }
 }

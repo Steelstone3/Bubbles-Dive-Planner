@@ -1,10 +1,24 @@
 using Moq;
+using ReactiveUI;
 using Xunit;
 
 public class ResultShould
 {
     [Fact]
-    public void RaisePropertyChangedEvents()
+    public void Construct()
+    {
+        // Given
+        Result result = new();
+
+        // Then
+        Assert.IsAssignableFrom<ReactiveObject>(result);
+        Assert.IsAssignableFrom<IResult>(result);
+        Assert.NotNull(result.Results);
+        Assert.Empty(result.Results);
+    }
+
+    [Fact]
+    public void CollectionChangedEvents()
     {
         // Given
         Mock<IDiveStage> diveStage = new();
@@ -16,9 +30,24 @@ public class ResultShould
         result.Results.Add(diveStage.Object);
 
         // Then
-        Assert.IsAssignableFrom<IResult>(result);
         Assert.NotNull(result.Results);
         Assert.NotEmpty(result.Results);
         Assert.NotEmpty(events);
+    }
+
+    [Fact]
+    public void RaisePropertyChangedEvents()
+    {
+        // Given
+        Result result = new();
+         List<string> events = new();
+        result.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
+
+        // When
+        result.DiveCeiling = 2.0F;
+
+        // Then
+        Assert.NotEmpty(events);
+        Assert.Contains(nameof(result.DiveCeiling), events);
     }
 }
