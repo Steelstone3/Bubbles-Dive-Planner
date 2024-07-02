@@ -27,6 +27,7 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Margin="0,8,0,0"
                                    Background="#FF5D99C6"
