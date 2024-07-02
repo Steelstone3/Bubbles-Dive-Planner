@@ -1,3 +1,4 @@
+using Moq;
 using ReactiveUI;
 using Xunit;
 
@@ -12,24 +13,22 @@ public class DiveInformationShould
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(diveInformation);
         Assert.IsAssignableFrom<IDiveInformation>(diveInformation);
-        Assert.Equal(0.0F, diveInformation.DiveCeiling);
-        Assert.NotNull(diveInformation.DecompressionSteps);
-        Assert.Empty(diveInformation.DecompressionSteps);
     }
 
     [Fact]
     public void RaisePropertyChangedEvents()
     {
         // Given
+        Mock<IDecompressionProfile> decompressionProfile = new();
         DiveInformation diveInformation = new();
         List<string> events = new();
         diveInformation.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        diveInformation.DiveCeiling = 2.0F;
+        diveInformation.DecompressionProfile = decompressionProfile.Object;
 
         // Then
         Assert.NotEmpty(events);
-        Assert.Contains(nameof(diveInformation.DiveCeiling), events);
+        Assert.Contains(nameof(diveInformation.DecompressionProfile), events);
     }
 }

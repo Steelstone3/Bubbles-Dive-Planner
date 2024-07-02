@@ -21,7 +21,7 @@
                            Text="Dive Ceiling: "
                            FontWeight="Bold" />
                 <TextBlock Margin="0,4,8,4"
-                           Text="{Binding DiveInformation.DiveCeiling}" />
+                           Text="{Binding DiveInformation.DecompressionProfile.DiveCeiling}" />
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="4,0"
