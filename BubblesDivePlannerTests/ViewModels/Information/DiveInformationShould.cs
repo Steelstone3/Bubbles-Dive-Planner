@@ -3,7 +3,7 @@ using Xunit;
 
 public class DiveInformationShould
 {
-[Fact]
+    [Fact]
     public void Construct()
     {
         // Given
