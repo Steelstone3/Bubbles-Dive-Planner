@@ -64,7 +64,7 @@
                            FontStyle="Italic"
                            FontWeight="Bold"
                            Text="Dive Information" />
-                <!-- <information:DecompressionProfileView /> -->
+                <information:DecompressionProfileView />
                 <information:DiveBoundariesView/>
                 <!-- <information:CentralNervousSystemToxicityView /> -->
             </StackPanel>

@@ -23,6 +23,7 @@ public class MainShould
         // Given
         Mock<IHeader> header = new();
         Mock<IDivePlan> divePlan = new();
+        Mock<IDiveInformation> diveInformation = new();
         Mock<IResult> results = new();
         Main main = new();
         List<string> events = new();
@@ -31,6 +32,7 @@ public class MainShould
         // When
         main.Header = header.Object;
         main.DivePlan = divePlan.Object;
+        main.DiveInformation = diveInformation.Object;
         main.Result = results.Object;
 
         // Then
@@ -38,6 +40,7 @@ public class MainShould
         Assert.NotEmpty(events);
         Assert.Contains(nameof(main.Header), events);
         Assert.Contains(nameof(main.DivePlan), events);
+        Assert.Contains(nameof(main.DiveInformation), events);
         Assert.Contains(nameof(main.Result), events);
     }
 

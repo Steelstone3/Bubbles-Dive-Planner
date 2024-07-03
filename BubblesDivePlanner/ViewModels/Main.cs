@@ -22,6 +22,13 @@ public class Main : ReactiveObject, IMain
         set => this.RaiseAndSetIfChanged(ref divePlan, value);
     }
 
+    private IDiveInformation diveInformation = new DiveInformation();
+    public IDiveInformation DiveInformation
+    {
+        get => diveInformation;
+        set => this.RaiseAndSetIfChanged(ref diveInformation, value);
+    }
+
     private IResult result = new Result();
     public IResult Result
     {
@@ -44,22 +51,58 @@ public class Main : ReactiveObject, IMain
             return;
         }
 
+        // VISIBILITY
+        ToggleVisibility();
+
+        // RESULTS
+        CalculateDiveResults();
+
+        // DIVE BOUNDARIES
+        CalculateDiveBoundaries();
+    }
+
+    private void ToggleVisibility()
+    {
         VisibilityController visibilityController = new();
-        DiveBoundaryController diveBoundaryController = new();
+
+        visibilityController.SetVisibility(this);
+    }
+
+    private void CalculateDiveResults()
+    {
         CylinderController cylinderController = new();
-        DiveProfileStagesFactory diveProfileStagesFactory = new();
+        
+        DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
+
         DiveModelPrototype diveModelPrototype = new();
         DiveStepPrototype diveStepPrototype = new();
         CylinderPrototype cylinderPrototype = new();
         DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype, cylinderPrototype);
 
-        visibilityController.SetVisibility(this);
-
-        DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
+        DiveProfileStagesFactory diveProfileStagesFactory = new();
 
         diveProfileStagesFactory.Run(DivePlan.DiveStage);
         Result.Results.Add(diveStagePrototype.DeepClone(DivePlan.DiveStage));
-        Result.DiveCeiling = diveBoundaryController.GetOverallDiveCeiling(Result.Results);
+    }
+
+    private void CalculateDiveBoundaries()
+    {
+        DiveModelPrototype diveModelPrototype = new();
+        DiveStepPrototype diveStepPrototype = new();
+        CylinderPrototype cylinderPrototype = new();
+        DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype, cylinderPrototype);
+
+        DiveBoundaryController diveBoundaryController = new();
+        DecompressionController decompressionController = new();
+
+        DiveInformation.DecompressionProfile.DiveCeiling = diveBoundaryController.GetOverallDiveCeiling(Result.Results);
+        DiveInformation.DecompressionProfile.DecompressionSteps.Clear();
+        List<IDiveStep> decompressionSteps = decompressionController.CollateDecompressionDiveSteps(diveStagePrototype.DeepClone(DivePlan.DiveStage));
+
+        foreach (var decompressionStep in decompressionSteps)
+        {
+            DiveInformation.DecompressionProfile.DecompressionSteps.Add(decompressionStep);
+        }
     }
 }
 
@@ -72,6 +115,12 @@ public interface IMain
     }
 
     public IDivePlan DivePlan
+    {
+        get;
+        set;
+    }
+
+    public IDiveInformation DiveInformation
     {
         get;
         set;
