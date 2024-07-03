@@ -51,7 +51,6 @@ public class Main : ReactiveObject, IMain
             return;
         }
 
-
         // VISIBILITY
         ToggleVisibility();
 
@@ -72,6 +71,7 @@ public class Main : ReactiveObject, IMain
     private void CalculateDiveResults()
     {
         CylinderController cylinderController = new();
+        
         DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
 
         DiveModelPrototype diveModelPrototype = new();
