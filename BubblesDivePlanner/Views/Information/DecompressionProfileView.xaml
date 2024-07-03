@@ -6,7 +6,7 @@
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
-    <StackPanel IsVisible="{Binding !!DiveInformation.DecompressionProfile.DecompressionDiveSteps.Count}">
+    <StackPanel IsVisible="{Binding !!DiveInformation.DecompressionProfile.DecompressionSteps.Count}">
         <StackPanel Margin="4,0"
                     Background="#FF5D99C6">
             <TextBlock Margin="4"
@@ -35,7 +35,7 @@
                            Text="Time"
                            FontWeight="Bold" />
             </Grid>
-            <ItemsControl ItemsSource="{Binding DiveInformation.DecompressionProfile.DecompressionDiveSteps}">
+            <ItemsControl ItemsSource="{Binding DiveInformation.DecompressionProfile.DecompressionSteps}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="4,0">
