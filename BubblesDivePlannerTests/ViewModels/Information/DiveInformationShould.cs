@@ -13,6 +13,8 @@ public class DiveInformationShould
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(diveInformation);
         Assert.IsAssignableFrom<IDiveInformation>(diveInformation);
+        Assert.NotNull(diveInformation.DecompressionProfile);
+        Assert.NotNull(diveInformation.CentralNervousSystemToxicity);
     }
 
     [Fact]

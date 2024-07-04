@@ -8,9 +8,12 @@ public class DiveInformation : ReactiveObject, IDiveInformation
         get => decompressionProfile;
         set => this.RaiseAndSetIfChanged(ref decompressionProfile, value);
     }
+
+    public ICentralNervousSystemToxicity CentralNervousSystemToxicity { get; } = new CentralNervousSystemToxicity();
 }
 
 public interface IDiveInformation
 {
     IDecompressionProfile DecompressionProfile { get; set; }
+    ICentralNervousSystemToxicity CentralNervousSystemToxicity { get; }
 }
