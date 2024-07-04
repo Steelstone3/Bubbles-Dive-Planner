@@ -42,7 +42,7 @@ public class DecompressionController
 
         return diveStepModel;
     }
-    
+
     private byte FindNearestDepthToDiveCeiling(float diveCeiling)
     {
         const int stepInterval = 3;
