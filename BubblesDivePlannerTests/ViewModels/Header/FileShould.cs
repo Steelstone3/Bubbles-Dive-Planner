@@ -1,6 +1,6 @@
 using Xunit;
 
-public class MainPrototypeShould
+public class FileShould
 {
     [Fact]
     public void NewInstance()
@@ -11,11 +11,11 @@ public class MainPrototypeShould
         IDivePlan divePlan = main.DivePlan;
         IDiveInformation diveInformation = main.DiveInformation;
         IResult result = main.Result;
-        MainPrototype mainPrototype = new();
+        File file = new(main);
 
         // When
-        mainPrototype.NewInstance(main);
-
+        file.NewCommand.Execute().Subscribe();
+    
         // Then
         Assert.Same(header, main.Header);
         Assert.NotSame(divePlan, main.DivePlan);

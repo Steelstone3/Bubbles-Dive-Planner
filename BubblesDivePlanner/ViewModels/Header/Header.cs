@@ -1,6 +1,19 @@
 public class Header : IHeader
 {
-    public IHelp Help
+    private IMain main;
+
+    public Header(IMain main)
+    {
+        this.main = main;
+        File = new File(main);
+    }
+
+    public File File
+    {
+        get;
+    }
+
+    public Help Help
     {
         get;
     } = new Help();
@@ -8,7 +21,12 @@ public class Header : IHeader
 
 public interface IHeader
 {
-    IHelp Help
+    File File
+    {
+        get;
+    }
+
+    Help Help
     {
         get;
     }

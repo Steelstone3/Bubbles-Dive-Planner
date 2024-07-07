@@ -7,13 +7,12 @@ public class Main : ReactiveObject, IMain
     {
         CalculateCommand = ReactiveCommand.Create(CalculateDiveStage); //, CanCalculateDiveStage);
         DivePlan.CylinderSelector.SelectedCylinderChanged = () => CalculateDiveBoundaries();
+        Header = new Header(this);
     }
 
-    private IHeader header = new Header();
     public IHeader Header
     {
-        get => header;
-        set => this.RaiseAndSetIfChanged(ref header, value);
+        get;
     }
 
     private IDivePlan divePlan = new DivePlan();
@@ -119,7 +118,6 @@ public interface IMain
     public IHeader Header
     {
         get;
-        set;
     }
 
     public IDivePlan DivePlan

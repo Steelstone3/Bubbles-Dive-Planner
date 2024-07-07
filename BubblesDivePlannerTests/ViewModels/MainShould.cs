@@ -31,7 +31,6 @@ public class MainShould
         main.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        main.Header = header.Object;
         main.DivePlan = divePlan.Object;
         main.DiveInformation = diveInformation.Object;
         main.Result = results.Object;
@@ -39,7 +38,6 @@ public class MainShould
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(main);
         Assert.NotEmpty(events);
-        Assert.Contains(nameof(main.Header), events);
         Assert.Contains(nameof(main.DivePlan), events);
         Assert.Contains(nameof(main.DiveInformation), events);
         Assert.Contains(nameof(main.Result), events);
