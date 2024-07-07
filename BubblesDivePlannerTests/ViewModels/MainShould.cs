@@ -52,7 +52,7 @@ public class MainShould
         Main main = new();
         main.DivePlan.DiveModelSelector.DiveModelSelected = new Zhl16Buhlmann();
         main.DivePlan.DiveStage.DiveStep.Depth = 50;
-        main.DivePlan.DiveStage.DiveStep.Time = 50;
+        main.DivePlan.DiveStage.DiveStep.Time = 10;
         main.DivePlan.CylinderSelector.SetupCylinder.Name = "Air";
         main.DivePlan.CylinderSelector.SetupCylinder.Volume = 12;
         main.DivePlan.CylinderSelector.SetupCylinder.Pressure = 200;
@@ -67,5 +67,15 @@ public class MainShould
         // Then
         Assert.NotEmpty(main.Result.Results);
         Assert.NotEmpty(main.DiveInformation.DecompressionProfile.DecompressionSteps);
+    }
+
+    [Fact(Skip = "Later")]
+    public void UpdateDecompressionSteps()
+    {
+        // Given
+
+        // When
+
+        // Then
     }
 }
