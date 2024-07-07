@@ -52,13 +52,13 @@ public class Main : ReactiveObject, IMain
             return;
         }
 
-        // VISIBILITY
+        // Visibility
         ToggleVisibility();
 
-        // RESULTS
+        // Results
         CalculateDiveResults();
 
-        // DIVE BOUNDARIES
+        // Dive Boundaries
         CalculateDiveBoundaries();
     }
 
