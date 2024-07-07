@@ -18,5 +18,7 @@ public class CylinderPrototypeShould
 
         // Then
         Assert.NotSame(cylinder, clonedCylinder);
+        Assert.NotSame(cylinder.GasMixture, clonedCylinder.GasMixture);
+        Assert.NotSame(cylinder.GasUsage, clonedCylinder.GasUsage);
     }
 }

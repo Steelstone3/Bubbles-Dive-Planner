@@ -2,7 +2,7 @@ using System.Reactive;
 using BubblesDivePlanner.Views.Header;
 using ReactiveUI;
 
-public class Help : IHelp
+public class Help
 {
     public Help()
     {
@@ -24,9 +24,4 @@ public class Help : IHelp
         AboutView aboutView = new();
         aboutView.Show();
     }
-}
-
-public interface IHelp
-{
-
 }
