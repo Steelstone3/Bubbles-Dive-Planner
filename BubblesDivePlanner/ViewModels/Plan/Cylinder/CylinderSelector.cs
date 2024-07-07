@@ -4,10 +4,13 @@ using ReactiveUI;
 
 public class CylinderSelector : ReactiveObject, ICylinderSelector
 {
+
     public CylinderSelector()
     {
         AddCylinderCommand = ReactiveCommand.Create(AddCylinder); //, CanAddCylinder);
     }
+
+    public Action SelectedCylinderChanged { get; set; }
 
     public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
 
@@ -27,7 +30,11 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
     public ICylinder SelectedCylinder
     {
         get => selectedCylinder;
-        set => this.RaiseAndSetIfChanged(ref selectedCylinder, value);
+        set
+        {
+            this.RaiseAndSetIfChanged(ref selectedCylinder, value);
+            SelectedCylinderChanged?.Invoke();
+        }
     }
 
     private void AddCylinder()
@@ -45,6 +52,7 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
 
 public interface ICylinderSelector
 {
+    Action SelectedCylinderChanged { get; set; }
     ObservableCollection<ICylinder> Cylinders { get; }
     ICylinder SetupCylinder { get; set; }
     ICylinder SelectedCylinder { get; set; }

@@ -6,6 +6,7 @@ public class Main : ReactiveObject, IMain
     public Main()
     {
         CalculateCommand = ReactiveCommand.Create(CalculateDiveStage); //, CanCalculateDiveStage);
+        DivePlan.CylinderSelector.SelectedCylinderChanged = () => CalculateDiveBoundaries();
     }
 
     private IHeader header = new Header();
@@ -87,6 +88,13 @@ public class Main : ReactiveObject, IMain
 
     private void CalculateDiveBoundaries()
     {
+        if (DivePlan.DiveStage.DiveModel == null)
+        {
+            return;
+        }
+
+        DivePlan.DiveStage.Cylinder = DivePlan.CylinderSelector.SelectedCylinder;
+
         DiveModelPrototype diveModelPrototype = new();
         DiveStepPrototype diveStepPrototype = new();
         CylinderPrototype cylinderPrototype = new();
