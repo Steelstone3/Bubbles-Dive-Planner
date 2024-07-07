@@ -23,6 +23,9 @@ public class DiveStagePrototypeShould
 
         // Then
         Assert.NotSame(diveStage, clonedDiveStage);
+        Assert.NotSame(diveStage.DiveModel, clonedDiveStage.DiveModel);
+        Assert.NotSame(diveStage.DiveStep, clonedDiveStage.DiveStep);
+        Assert.NotSame(diveStage.Cylinder, clonedDiveStage.Cylinder);
         diveModelPrototype.VerifyAll();
         diveStepPrototype.VerifyAll();
         cylinderPrototype.VerifyAll();
