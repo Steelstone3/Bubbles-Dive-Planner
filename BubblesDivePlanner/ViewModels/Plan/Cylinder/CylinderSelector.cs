@@ -4,7 +4,6 @@ using ReactiveUI;
 
 public class CylinderSelector : ReactiveObject, ICylinderSelector
 {
-
     public CylinderSelector()
     {
         AddCylinderCommand = ReactiveCommand.Create(AddCylinder); //, CanAddCylinder);

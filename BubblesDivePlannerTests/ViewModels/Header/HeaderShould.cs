@@ -1,3 +1,4 @@
+using Moq;
 using Xunit;
 
 public class HeaderShould
@@ -6,10 +7,12 @@ public class HeaderShould
     public void Construct()
     {
         // Given
-        Header header = new();
+        Mock<IMain> main = new();
+        Header header = new(main.Object);
 
         // Then
         Assert.IsAssignableFrom<IHeader>(header);
         Assert.NotNull(header.Help);
+        Assert.NotNull(header.File);
     }
 }

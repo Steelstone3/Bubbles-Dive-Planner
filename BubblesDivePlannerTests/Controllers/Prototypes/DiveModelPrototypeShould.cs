@@ -14,5 +14,6 @@ public class DiveModelPrototypeShould
 
         // Then
         Assert.NotSame(diveModel, clonedDiveModel);
+        Assert.NotSame(diveModel.DiveModelProfile, clonedDiveModel.DiveModelProfile);
     }
 }
