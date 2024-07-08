@@ -13,7 +13,7 @@ public class FileController : IFileController
         try
         {
             using StreamWriter writer = new(FILE_NAME);
-            var serialisedResult = jsonController.Serialise(result);
+            string serialisedResult = jsonController.Serialise(result);
             writer.Write(serialisedResult);
         }
         catch (Exception)

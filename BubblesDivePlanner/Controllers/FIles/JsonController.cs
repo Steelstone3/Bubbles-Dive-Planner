@@ -1,8 +1,10 @@
+using Newtonsoft.Json;
+
 public class JsonController : IJsonController
 {
     public string Serialise(IResult result)
     {
-        throw new NotImplementedException();
+        return JsonConvert.SerializeObject(result.Results, Formatting.Indented);
     }
 }
 
