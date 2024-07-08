@@ -2,13 +2,13 @@ using Newtonsoft.Json;
 
 public class JsonController : IJsonController
 {
-    public string Serialise(IResult result)
+    public string Serialise(IMain main)
     {
-        return JsonConvert.SerializeObject(result.Results, Formatting.Indented);
+        return JsonConvert.SerializeObject(main, Formatting.Indented);
     }
 }
 
 public interface IJsonController
 {
-    string Serialise(IResult result);
+    string Serialise(IMain main);
 }

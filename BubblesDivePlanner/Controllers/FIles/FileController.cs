@@ -8,12 +8,12 @@ public class FileController : IFileController
         this.jsonController = jsonController;
     }
 
-    public void Save(IResult result)
+    public void Save(IMain main)
     {
         try
         {
             using StreamWriter writer = new(FILE_NAME);
-            string serialisedResult = jsonController.Serialise(result);
+            string serialisedResult = jsonController.Serialise(main);
             writer.Write(serialisedResult);
         }
         catch (Exception)
@@ -24,5 +24,5 @@ public class FileController : IFileController
 
 public interface IFileController
 {
-    void Save(IResult result);
+    void Save(IMain main);
 }

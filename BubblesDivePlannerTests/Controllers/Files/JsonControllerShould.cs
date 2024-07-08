@@ -7,28 +7,22 @@ public class JsonControllerShould
     public void Serialise()
     {
         // Given
-        Mock<IDiveStepValidator> diveStepValidator = new();
-        DiveStep diveStep = new(diveStepValidator.Object)
+        DiveStep diveStep = new(new DiveStepValidator())
         {
             Depth = 50,
             Time = 10,
         };
-        Mock<IGasUsageValidator> gasUsageValidator = new();
-        GasUsage gasUsage = new(gasUsageValidator.Object)
+        GasMixture gasMixture = new(new GasMixtureValidator(), new CylinderController(), new DiveBoundaryController())
+        {
+            Oxygen = 21
+        };
+        GasUsage gasUsage = new(new GasUsageValidator())
         {
             Remaining = 1680,
             Used = 720,
             SurfaceAirConsumptionRate = 12,
         };
-        Mock<IGasMixtureValidator> gasMixtureValidator = new();
-        Mock<ICylinderController> cylinderController = new();
-        Mock<IDiveBoundaryController> diveBoundaryController = new();
-        GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object, diveBoundaryController.Object)
-        {
-            Oxygen = 21
-        };
-        Mock<ICylinderValidator> cylinderValidator = new();
-        Cylinder cylinder = new(cylinderValidator.Object, cylinderController.Object)
+        Cylinder cylinder = new(new CylinderValidator(), new CylinderController())
         {
             Name = "Air",
             Volume = 12,
@@ -37,21 +31,26 @@ public class JsonControllerShould
             GasMixture = gasMixture,
             GasUsage = gasUsage,
         };
-        Mock<IDiveStageValidator> diveStageValidator = new();
-        DiveStage diveStage = new(diveStageValidator.Object)
+        DiveStage diveStage = new(new DiveStageValidator())
         {
             DiveModel = new Zhl16Buhlmann(),
             DiveStep = diveStep,
             Cylinder = cylinder,
         };
-        Result result = new();
-        result.Results.Add(diveStage);
+        DivePlan divePlan=new()
+        {
+            DiveStage = diveStage
+        };
+        Main main = new()
+        {
+            DivePlan = divePlan,
+        };
         JsonController jsonController = new();
 
         // When
-        string serialisedResult = jsonController.Serialise(result);
+        string serialisedResult = jsonController.Serialise(main);
 
         // Then
-        Assert.Equal("[\n  {}\n]", serialisedResult);
+        Assert.Equal("{}", serialisedResult);
     }
 }

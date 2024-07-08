@@ -26,6 +26,6 @@ public class File
         JsonController jsonController = new();
         FileController fileController = new(jsonController);
 
-        fileController.Save(main.Result);
+        fileController.Save(main);
     }
 }
