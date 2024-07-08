@@ -23,6 +23,9 @@ public class File
 
     private void Save()
     {
-        
+        JsonController jsonController = new();
+        FileController fileController = new(jsonController);
+
+        fileController.Save(main.Result);
     }
 }

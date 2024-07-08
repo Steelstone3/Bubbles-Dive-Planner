@@ -1,36 +1,57 @@
-using System.Collections.ObjectModel;
 using Moq;
 using Xunit;
 
 public class JsonControllerShould
 {
-    [Fact(Skip = "Later")]
+    [Fact]
     public void Serialise()
     {
         // Given
-        Mock<IDiveStep> diveStep = new();
-        diveStep.Setup(ds => ds.Depth).Returns(50);
-        diveStep.Setup(ds => ds.Time).Returns(10);
-        Mock<IGasMixture> gasMixture = new();
-        gasMixture.Setup(gm => gm.Oxygen).Returns(21);
-        gasMixture.Setup(gm => gm.Nitrogen).Returns(79);
-        Mock<ICylinder> cylinder = new();
-        cylinder.Setup(c => c.Name).Returns("Air");
-        cylinder.Setup(c => c.Volume).Returns(12);
-        cylinder.Setup(c => c.Pressure).Returns(200);
-        cylinder.Setup(c => c.InitialPressurisedVolume).Returns(2400);
-        Mock<IDiveStage> diveStage = new();
-        diveStage.Setup(ds => ds.DiveModel).Returns(new Zhl16Buhlmann());
-        diveStage.Setup(ds => ds.DiveStep).Returns(diveStep.Object);
-        diveStage.Setup(ds => ds.Cylinder).Returns(cylinder.Object);
-        Mock<Result> result = new();
-        result.Setup(r => r.Results).Returns(new ObservableCollection<IDiveStage>() { diveStage.Object });
+        Mock<IDiveStepValidator> diveStepValidator = new();
+        DiveStep diveStep = new(diveStepValidator.Object)
+        {
+            Depth = 50,
+            Time = 10,
+        };
+        Mock<IGasUsageValidator> gasUsageValidator = new();
+        GasUsage gasUsage = new(gasUsageValidator.Object)
+        {
+            Remaining = 1680,
+            Used = 720,
+            SurfaceAirConsumptionRate = 12,
+        };
+        Mock<IGasMixtureValidator> gasMixtureValidator = new();
+        Mock<ICylinderController> cylinderController = new();
+        Mock<IDiveBoundaryController> diveBoundaryController = new();
+        GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object, diveBoundaryController.Object)
+        {
+            Oxygen = 21
+        };
+        Mock<ICylinderValidator> cylinderValidator = new();
+        Cylinder cylinder = new(cylinderValidator.Object, cylinderController.Object)
+        {
+            Name = "Air",
+            Volume = 12,
+            Pressure = 200,
+            InitialPressurisedVolume = 2400,
+            GasMixture = gasMixture,
+            GasUsage = gasUsage,
+        };
+        Mock<IDiveStageValidator> diveStageValidator = new();
+        DiveStage diveStage = new(diveStageValidator.Object)
+        {
+            DiveModel = new Zhl16Buhlmann(),
+            DiveStep = diveStep,
+            Cylinder = cylinder,
+        };
+        Result result = new();
+        result.Results.Add(diveStage);
         JsonController jsonController = new();
 
         // When
-        string serialisedResult = jsonController.Serialise(result.Object);
+        string serialisedResult = jsonController.Serialise(result);
 
         // Then
-        Assert.Equal("[]", serialisedResult);
+        Assert.Equal("[\n  {}\n]", serialisedResult);
     }
 }
