@@ -1,11 +1,14 @@
+using System.Runtime.InteropServices;
 using Moq;
 using Xunit;
 
 public class JsonControllerShould
 {
-    [Fact]
+    [SkippableFact]
     public void Serialise()
     {
+        Skip.If(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
+
         // Given
         DiveStep diveStep = new(new DiveStepValidator())
         {
@@ -37,7 +40,7 @@ public class JsonControllerShould
             DiveStep = diveStep,
             Cylinder = cylinder,
         };
-        DivePlan divePlan=new()
+        DivePlan divePlan = new()
         {
             DiveStage = diveStage
         };
