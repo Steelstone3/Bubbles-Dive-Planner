@@ -40,20 +40,16 @@ public class JsonControllerShould
             DiveStep = diveStep,
             Cylinder = cylinder,
         };
-        DivePlan divePlan = new()
-        {
-            DiveStage = diveStage
-        };
-        Main main = new()
-        {
-            DivePlan = divePlan,
-        };
+        Result result = new();
+
+        result.Results.Add(diveStage);
+
         JsonController jsonController = new();
 
         // When
-        string serialisedResult = jsonController.Serialise(main);
+        string serialisedResult = jsonController.Serialise(result);
 
         // Then
-        Assert.Equal("{}", serialisedResult);
+        Assert.Equal("{\n  \"Results\": [\n    {}\n  ]\n}", serialisedResult);
     }
 }

@@ -2,13 +2,14 @@ using Newtonsoft.Json;
 
 public class JsonController : IJsonController
 {
-    public string Serialise(IMain main)
+    // ICylinderSelector
+    public string Serialise(IResult result)
     {
-        return JsonConvert.SerializeObject(main, Formatting.Indented);
+        return JsonConvert.SerializeObject(result, Formatting.Indented);
     }
 }
 
 public interface IJsonController
 {
-    string Serialise(IMain main);
+    string Serialise(IResult result);
 }
