@@ -39,7 +39,7 @@ public class CylinderSelectorSerialiserShould
             GasMixture = gasMixture,
             GasUsage = gasUsage,
         };
-       
+
         CylinderSelector cylinderSelector = new()
         {
             SetupCylinder = cylinder,

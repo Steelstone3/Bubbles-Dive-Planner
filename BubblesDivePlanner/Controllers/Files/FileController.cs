@@ -24,7 +24,7 @@ public class FileController : IFileController
             string serialisedResult = resultSerialiser.Write(result);
             serialisedResult = serialisedResult.Remove(0, 1);
             serialised += serialisedResult;
-            
+
             writer.WriteLine(serialised);
         }
         catch (Exception e)

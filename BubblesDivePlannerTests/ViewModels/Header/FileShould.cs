@@ -15,10 +15,11 @@ public class FileShould
 
         // When
         file.NewCommand.Execute().Subscribe();
-    
+
         // Then
+        Assert.True(divePlan.DiveModelSelector.IsVisible);
         Assert.Same(header, main.Header);
-        Assert.NotSame(divePlan, main.DivePlan);
+        Assert.Same(divePlan, main.DivePlan);
         Assert.NotSame(diveInformation, main.DiveInformation);
         Assert.NotSame(result, main.Result);
     }
