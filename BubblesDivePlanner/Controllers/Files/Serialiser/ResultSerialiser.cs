@@ -1,14 +1,8 @@
 using System.Text.Json;
-using System.Xml;
 
 public class ResultSerialiser : ISerialiser<IResult>
 {
-    public string Write(IResult result)
-    {
-        string json = JsonSerializer.Serialize(result);
-        
-        return json;
-    }
+    public string Write(IResult result) => JsonSerializer.Serialize(result);
 
     public IResult Read(string json)
     {

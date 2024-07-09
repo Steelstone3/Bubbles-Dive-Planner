@@ -3,7 +3,6 @@ using Xunit;
 
 public class ResultSerialiserShould
 {
-
     [Fact]
     public void Construct()
     {
@@ -20,7 +19,7 @@ public class ResultSerialiserShould
         Skip.If(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
 
         // Given
-
+        // TODO AH Mock
         DiveStep diveStep = new(new DiveStepValidator())
         {
             Depth = 50,

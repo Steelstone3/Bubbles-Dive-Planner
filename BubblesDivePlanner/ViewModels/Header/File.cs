@@ -23,9 +23,10 @@ public class File
 
     private void Save()
     {
+        CylinderSelectorSerialiser cylinderSelectorSerialiser = new();
         ResultSerialiser resultSerialiser = new();
-        FileController fileController = new(resultSerialiser);
+        FileController fileController = new(cylinderSelectorSerialiser, resultSerialiser);
 
-        fileController.Write(main.Result);
+        fileController.Write(main.DivePlan.CylinderSelector, main.Result);
     }
 }

@@ -1,10 +1,10 @@
 using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Runtime.Serialization;
 using ReactiveUI;
 
 public class CylinderSelector : ReactiveObject, ICylinderSelector
 {
-
     public CylinderSelector()
     {
         AddCylinderCommand = ReactiveCommand.Create(AddCylinder); //, CanAddCylinder);
@@ -52,7 +52,6 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
 
 public interface ICylinderSelector
 {
-    Action SelectedCylinderChanged { get; set; }
     ObservableCollection<ICylinder> Cylinders { get; }
     ICylinder SetupCylinder { get; set; }
     ICylinder SelectedCylinder { get; set; }
