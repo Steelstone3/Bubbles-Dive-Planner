@@ -5,6 +5,7 @@ public class Zhl16Buhlmann : DiveModel
     public Zhl16Buhlmann()
     {
         CompartmentCount = COMPARTMENT_COUNT;
+        // Name = DiveModelName.ZHL16_B.ToString();
         Name = "Zhl16-B Model";
         NitrogenHalfTime = new float[COMPARTMENT_COUNT] { 4.0F, 8.0F, 12.5F, 18.5F, 27.0F, 38.3F, 54.3F, 77.0F, 109.0F, 146.0F, 187.0F, 239.0F, 305.0F, 390.0F, 498.0F, 635.0F };
         HeliumHalfTime = new float[COMPARTMENT_COUNT] { 1.51F, 3.02F, 4.72F, 6.99F, 10.21F, 14.48F, 20.53F, 29.11F, 41.20F, 55.19F, 70.69F, 90.34F, 115.29F, 147.42F, 188.24F, 240.03F };

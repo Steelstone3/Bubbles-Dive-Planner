@@ -5,6 +5,7 @@ public class UsnRevisionSix : DiveModel
     public UsnRevisionSix()
     {
         CompartmentCount = COMPARTMENT_COUNT;
+        // Name = DiveModelName.USN_REVISION_6.ToString();
         Name = "USN Revision 6 Model";
         NitrogenHalfTime = new float[COMPARTMENT_COUNT] { 5.0F, 10.0F, 20.0F, 40.0F, 80.0F, 120.0F, 160.0F, 200.0F, 240.0F };
         HeliumHalfTime = new float[COMPARTMENT_COUNT] { 5.0F, 10.0F, 20.0F, 40.0F, 80.0F, 120.0F, 160.0F, 200.0F, 240.0F };
