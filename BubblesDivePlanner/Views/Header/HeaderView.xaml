@@ -13,14 +13,18 @@
                           HotKey="Ctrl+N"
                           Command="{Binding Header.File.NewCommand}" />
                 <MenuItem Header="_Open"
+                          Command="{Binding Header.File.LoadCommand}"
                           HotKey="Ctrl+O" />
                 <MenuItem Header="_Save"
+                          Command="{Binding Header.File.SaveCommand}"
                           HotKey="Ctrl+S" />
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Header="_Undo"
+                          Command="{Binding Header.Edit.UndoCommand}"
                           HotKey="Ctrl+Z" />
                 <MenuItem Header="_Redo"
+                          Command="{Binding Header.Edit.RedoCommand}"
                           HotKey="Ctrl+Y" />
             </MenuItem>
             <MenuItem Header="_Help">
