@@ -14,18 +14,15 @@ public class FileController : IFileController
     {
         try
         {
-            using StreamWriter writer = new(FILE_NAME);
+            using StreamWriter cylinderSelectorWriter = new("cylinders.json");
 
-            string serialised = cylinderSelectorSerialiser.Write(cylinderSelector);
-            // TODO AH Hacky string manipulation to create valid json
-            serialised = serialised.Remove(serialised.Length - 1);
-            serialised += ",";
+            string serialisedCylinderSelector = cylinderSelectorSerialiser.Write(cylinderSelector);
+            cylinderSelectorWriter.Write(serialisedCylinderSelector);
+            
+            using StreamWriter resultWriter = new("results.json");
 
             string serialisedResult = resultSerialiser.Write(result);
-            serialisedResult = serialisedResult.Remove(0, 1);
-            serialised += serialisedResult;
-
-            writer.WriteLine(serialised);
+            resultWriter.Write(serialisedResult);
         }
         catch (Exception e)
         {
