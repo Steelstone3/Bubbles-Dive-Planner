@@ -14,8 +14,7 @@ public class ResultSerialiserShould
         Assert.IsAssignableFrom<ISerialiser<IResult>>(resultSerialiser);
     }
 
-    // [SkippableFact]
-    [Fact]
+    [SkippableFact]
     public void Write()
     {
         Skip.If(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
