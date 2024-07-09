@@ -1,19 +1,19 @@
 public class FileController : IFileController
 {
     private const string FILE_NAME = "dive_planner.json";
-    private readonly IJsonController jsonController;
+    private readonly ISerialiser<IResult> resultSerialiser;
 
-    public FileController(IJsonController jsonController)
+    public FileController(ISerialiser<IResult> resultSerialiser)
     {
-        this.jsonController = jsonController;
+        this.resultSerialiser = resultSerialiser;
     }
 
-    public void Save(IResult result)
+    public void Write(IResult result)
     {
         try
         {
             using StreamWriter writer = new(FILE_NAME);
-            string serialisedResult = jsonController.Serialise(result);
+            string serialisedResult = resultSerialiser.Write(result);
             writer.Write(serialisedResult);
         }
         catch (Exception)
@@ -24,5 +24,5 @@ public class FileController : IFileController
 
 public interface IFileController
 {
-    void Save(IResult result);
+    void Write(IResult result);
 }

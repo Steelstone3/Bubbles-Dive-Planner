@@ -23,9 +23,9 @@ public class File
 
     private void Save()
     {
-        JsonController jsonController = new();
-        FileController fileController = new(jsonController);
+        ResultSerialiser resultSerialiser = new();
+        FileController fileController = new(resultSerialiser);
 
-        fileController.Save(main.Result);
+        fileController.Write(main.Result);
     }
 }
