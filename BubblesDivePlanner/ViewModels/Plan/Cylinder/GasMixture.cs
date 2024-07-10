@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using ReactiveUI;
 
 public class GasMixture : ReactiveObject, IGasMixture
@@ -51,9 +52,11 @@ public class GasMixture : ReactiveObject, IGasMixture
         private set => this.RaiseAndSetIfChanged(ref maximumOperatingDepth, value);
     }
 
+    [JsonIgnore]
     public bool IsValid => gasMixtureValidator.Validate(this);
 }
 
+[JsonDerivedType(typeof(GasMixture))]
 public interface IGasMixture : IValidation
 {
     float Oxygen { get; set; }

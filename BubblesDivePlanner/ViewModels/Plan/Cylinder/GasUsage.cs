@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using ReactiveUI;
 
 public class GasUsage : ReactiveObject, IGasUsage
@@ -30,9 +31,11 @@ public class GasUsage : ReactiveObject, IGasUsage
         set => this.RaiseAndSetIfChanged(ref surfaceAirConsumptionRate, value);
     }
 
+    [JsonIgnore]
     public bool IsValid => gasUsageValidator.Validate(this);
 }
 
+[JsonDerivedType(typeof(GasUsage))]
 public interface IGasUsage : IValidation
 {
     ushort Remaining { get; set; }
