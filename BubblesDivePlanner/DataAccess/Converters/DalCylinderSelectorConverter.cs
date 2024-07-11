@@ -5,17 +5,18 @@ public class DalCylinderSelectorConverter : IDalConverter<DalCylinderSelector, I
 {
     public DalCylinderSelector ConvertTo(ICylinderSelector cylinderSelector)
     {
+        DalCylinderConverter dalCylinderConverter = new();
+
         DalCylinderSelector dalCylinderSelector = new()
         {
-            SetupCylinder = CylinderConvertTo(cylinderSelector.SetupCylinder),
-            SelectedCylinder = CylinderConvertTo(cylinderSelector.SelectedCylinder),
+            SetupCylinder = dalCylinderConverter.ConvertTo(cylinderSelector.SetupCylinder),
+            SelectedCylinder = dalCylinderConverter.ConvertTo(cylinderSelector.SelectedCylinder),
         };
 
-        // Add DalCylinders
         List<DalCylinder> cylinders = [];
-        foreach (ICylinder item in cylinderSelector.Cylinders)
+        foreach (ICylinder cylinder in cylinderSelector.Cylinders)
         {
-            cylinders.Add(CylinderConvertTo(item));
+            cylinders.Add(dalCylinderConverter.ConvertTo(cylinder));
         }
         dalCylinderSelector.Cylinders = [.. cylinders];
 
@@ -25,37 +26,5 @@ public class DalCylinderSelectorConverter : IDalConverter<DalCylinderSelector, I
     public ICylinderSelector ConvertFrom(DalCylinderSelector dalCoverterType)
     {
         return null;
-    }
-
-    private DalCylinder CylinderConvertTo(ICylinder cylinder)
-    {
-        return new()
-        {
-            Name = cylinder.Name,
-            Volume = cylinder.Volume,
-            Pressure = cylinder.Pressure,
-            InitialPressurisedVolume = cylinder.InitialPressurisedVolume,
-            GasMixture = GasMixtureConvertTo(cylinder.GasMixture),
-            GasUsage = GasUsageConvertTo(cylinder.GasUsage)
-        };
-    }
-
-    private DalGasMixture GasMixtureConvertTo(IGasMixture gasMixture)
-    {
-        return new()
-        {
-            Oxygen = gasMixture.Oxygen,
-            Helium = gasMixture.Helium,
-        };
-    }
-
-    private DalGasUsage GasUsageConvertTo(IGasUsage gasUsage)
-    {
-        return new()
-        {
-            Remaining = gasUsage.Remaining,
-            Used = gasUsage.Used,
-            SurfaceAirConsumptionRate = gasUsage.SurfaceAirConsumptionRate,
-        };
     }
 }
