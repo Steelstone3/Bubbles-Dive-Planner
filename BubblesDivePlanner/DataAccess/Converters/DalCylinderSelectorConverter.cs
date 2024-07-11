@@ -23,8 +23,21 @@ public class DalCylinderSelectorConverter : IDalConverter<DalCylinderSelector, I
         return dalCylinderSelector;
     }
 
-    public ICylinderSelector ConvertFrom(DalCylinderSelector dalCoverterType)
+    public ICylinderSelector ConvertFrom(DalCylinderSelector dalCylinderSelector)
     {
-        return null;
+         DalCylinderConverter dalCylinderConverter = new();
+
+        CylinderSelector cylinderSelector = new()
+        {
+            SetupCylinder = dalCylinderConverter.ConvertFrom(dalCylinderSelector.SetupCylinder),
+            SelectedCylinder = dalCylinderConverter.ConvertFrom(dalCylinderSelector.SelectedCylinder),
+        };
+
+        foreach (DalCylinder dalCylinder in dalCylinderSelector.Cylinders)
+        {
+            cylinderSelector.Cylinders.Add(dalCylinderConverter.ConvertFrom(dalCylinder));
+        }
+
+        return cylinderSelector;
     }
 }

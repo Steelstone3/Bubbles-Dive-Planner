@@ -1,10 +1,6 @@
+// TODO AH Test
 public class DalGasUsageConverter : IDalConverter<DalGasUsage, IGasUsage>
 {
-    public IGasUsage ConvertFrom(DalGasUsage dalGasUsage)
-    {
-        throw new NotImplementedException();
-    }
-
     public DalGasUsage ConvertTo(IGasUsage gasUsage)
     {
         return new()
@@ -12,6 +8,16 @@ public class DalGasUsageConverter : IDalConverter<DalGasUsage, IGasUsage>
             Remaining = gasUsage.Remaining,
             Used = gasUsage.Used,
             SurfaceAirConsumptionRate = gasUsage.SurfaceAirConsumptionRate,
+        };
+    }
+
+    public IGasUsage ConvertFrom(DalGasUsage dalGasUsage)
+    {
+        return new GasUsage(new GasUsageValidator())
+        {
+            Remaining = dalGasUsage.Remaining,
+            Used = dalGasUsage.Used,
+            SurfaceAirConsumptionRate = dalGasUsage.SurfaceAirConsumptionRate,
         };
     }
 }
