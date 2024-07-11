@@ -10,10 +10,12 @@ public class File
         this.main = main;
         NewCommand = ReactiveCommand.Create(NewInstance);
         SaveCommand = ReactiveCommand.Create(Save);
+        LoadCommand = ReactiveCommand.Create(Load);
     }
 
     public ReactiveCommand<Unit, Unit> NewCommand { get; }
     public ReactiveCommand<Unit, Unit> SaveCommand { get; }
+    public ReactiveCommand<Unit, Unit> LoadCommand { get; }
 
     private void NewInstance()
     {
@@ -27,6 +29,18 @@ public class File
         ResultSerialiser resultSerialiser = new();
         FileController fileController = new(cylinderSelectorSerialiser, resultSerialiser);
 
-        fileController.Write(main.DivePlan.CylinderSelector, main.Result);
+        fileController.Write(main);
+    }
+
+    private void Load()
+    {
+        CylinderSelectorSerialiser cylinderSelectorSerialiser = new();
+        ResultSerialiser resultSerialiser = new();
+        FileController fileController = new(cylinderSelectorSerialiser, resultSerialiser);
+
+        fileController.Read(main);
+
+        VisibilityController visibilityController = new();
+        visibilityController.SetVisibility(main);
     }
 }

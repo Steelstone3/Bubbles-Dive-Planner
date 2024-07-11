@@ -54,6 +54,24 @@ public class CylinderSelectorSerialiserShould
         string serialisedCylinderSelector = cylinderSelectorSerialiser.Write(cylinderSelector);
 
         // Then
-        Assert.Equal("{\"Cylinders\":[{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0,\"Nitrogen\":79,\"MaximumOperatingDepth\":56.67,\"IsValid\":true},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12,\"IsValid\":true},\"IsValid\":true,\"IsVisible\":true}],\"SetupCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0,\"Nitrogen\":79,\"MaximumOperatingDepth\":56.67,\"IsValid\":true},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12,\"IsValid\":true},\"IsValid\":true,\"IsVisible\":true},\"SelectedCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0,\"Nitrogen\":79,\"MaximumOperatingDepth\":56.67,\"IsValid\":true},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12,\"IsValid\":true},\"IsValid\":true,\"IsVisible\":true}}", serialisedCylinderSelector);
+        Assert.Equal("{\"Cylinders\":[{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}}],\"SetupCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}},\"SelectedCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}}}", serialisedCylinderSelector);
+    }
+
+    [Fact]
+    public void Read()
+    {
+        // Given
+        string json = "{\"Cylinders\":[{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}}],\"SetupCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}},\"SelectedCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}}}";
+        CylinderSelectorSerialiser resultSerialiser = new();
+
+        // When
+        ICylinderSelector cylinderSelector = resultSerialiser.Read(json);
+
+        // Then
+        Assert.NotNull(cylinderSelector);
+        Assert.NotNull(cylinderSelector.Cylinders);
+        Assert.NotEmpty(cylinderSelector.Cylinders);
+        Assert.NotNull(cylinderSelector.SetupCylinder);
+        Assert.NotNull(cylinderSelector.SelectedCylinder);
     }
 }

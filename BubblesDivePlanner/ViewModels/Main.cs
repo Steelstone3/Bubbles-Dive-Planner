@@ -6,7 +6,7 @@ public class Main : ReactiveObject, IMain
     public Main()
     {
         CalculateCommand = ReactiveCommand.Create(CalculateDiveStage); //, CanCalculateDiveStage);
-        ((CylinderSelector)DivePlan.CylinderSelector).SelectedCylinderChanged = () => CalculateDiveBoundaries();
+        DivePlan.CylinderSelector.SelectedCylinderChanged = () => CalculateDiveBoundaries();
         Header = new Header(this);
     }
 
