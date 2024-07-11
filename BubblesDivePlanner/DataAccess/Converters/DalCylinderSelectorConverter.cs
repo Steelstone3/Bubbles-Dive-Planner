@@ -25,7 +25,7 @@ public class DalCylinderSelectorConverter : IDalConverter<DalCylinderSelector, I
 
     public ICylinderSelector ConvertFrom(DalCylinderSelector dalCylinderSelector)
     {
-         DalCylinderConverter dalCylinderConverter = new();
+        DalCylinderConverter dalCylinderConverter = new();
 
         CylinderSelector cylinderSelector = new()
         {
