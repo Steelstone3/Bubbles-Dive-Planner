@@ -1,6 +1,5 @@
 public class FileController : IFileController
 {
-    private const string FILE_NAME = "dive_planner.json";
     private readonly ISerialiser<ICylinderSelector> cylinderSelectorSerialiser;
     private readonly ISerialiser<IResult> resultSerialiser;
 
