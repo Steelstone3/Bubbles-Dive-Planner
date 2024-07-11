@@ -13,7 +13,7 @@ public class CylinderSelectorSerialiserShould
         Assert.IsAssignableFrom<ISerialiser<ICylinderSelector>>(cylinderSelectorSerialiser);
     }
 
-    [SkippableFact (Skip = "Still doesn't work")]
+    [SkippableFact]
     public void Write()
     {
         Skip.If(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
@@ -54,7 +54,7 @@ public class CylinderSelectorSerialiserShould
         string serialisedCylinderSelector = cylinderSelectorSerialiser.Write(cylinderSelector);
 
         // Then
-        Assert.Equal("{\"Cylinders\":[{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0,\"Nitrogen\":79,\"MaximumOperatingDepth\":56.67,\"IsValid\":true},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12,\"IsValid\":true},\"IsValid\":true,\"IsVisible\":true}],\"SetupCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0,\"Nitrogen\":79,\"MaximumOperatingDepth\":56.67,\"IsValid\":true},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12,\"IsValid\":true},\"IsValid\":true,\"IsVisible\":true},\"SelectedCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0,\"Nitrogen\":79,\"MaximumOperatingDepth\":56.67,\"IsValid\":true},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12,\"IsValid\":true},\"IsValid\":true,\"IsVisible\":true}}", serialisedCylinderSelector);
+        Assert.Equal("{\"Cylinders\":[{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}}],\"SetupCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}},\"SelectedCylinder\":{\"Name\":\"Air\",\"Volume\":12,\"Pressure\":200,\"InitialPressurisedVolume\":2400,\"GasMixture\":{\"Oxygen\":21,\"Helium\":0},\"GasUsage\":{\"Remaining\":1680,\"Used\":720,\"SurfaceAirConsumptionRate\":12}}}", serialisedCylinderSelector);
     }
 
     [Fact(Skip = "Still doesn't work")]
