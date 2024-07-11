@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using ReactiveUI;
 
 public class Cylinder : ReactiveObject, ICylinder
@@ -66,7 +65,6 @@ public class Cylinder : ReactiveObject, ICylinder
         set => this.RaiseAndSetIfChanged(ref gasUsage, value);
     }
 
-    [JsonIgnore]
     private bool isVisibile = true;
     public bool IsVisible
     {
@@ -74,11 +72,9 @@ public class Cylinder : ReactiveObject, ICylinder
         set => this.RaiseAndSetIfChanged(ref isVisibile, value);
     }
 
-    [JsonIgnore]
     public bool IsValid => cylinderValidator.Validate(this);
 }
 
-[JsonDerivedType(typeof(Cylinder))]
 public interface ICylinder : IVisibility, IValidation
 {
     string Name { get; set; }

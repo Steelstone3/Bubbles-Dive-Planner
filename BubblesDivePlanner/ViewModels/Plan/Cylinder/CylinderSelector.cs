@@ -1,6 +1,5 @@
 using System.Collections.ObjectModel;
 using System.Reactive;
-using System.Text.Json.Serialization;
 using ReactiveUI;
 
 public class CylinderSelector : ReactiveObject, ICylinderSelector
@@ -10,10 +9,8 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
         AddCylinderCommand = ReactiveCommand.Create(AddCylinder); //, CanAddCylinder);
     }
 
-    [JsonIgnore]
     public Action SelectedCylinderChanged { get; set; }
 
-    [JsonIgnore]
     public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
 
     public ObservableCollection<ICylinder> Cylinders
@@ -52,12 +49,9 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
     }
 }
 
-[JsonDerivedType(typeof(CylinderSelector))]
 public interface ICylinderSelector
 {
-    [JsonIgnore]
     Action SelectedCylinderChanged { get; set; }
-    
     ObservableCollection<ICylinder> Cylinders { get; }
     ICylinder SetupCylinder { get; set; }
     ICylinder SelectedCylinder { get; set; }
