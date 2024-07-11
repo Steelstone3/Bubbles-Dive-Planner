@@ -9,5 +9,5 @@ public class DalDiveModel
     public float[] BValuesNitrogen { get; set; }
     public float[] AValuesHelium { get; set; }
     public float[] BValuesHelium { get; set; }
-    DalDiveModelProfile dalDiveModelProfile { get; set; }
+    public DalDiveModelProfile dalDiveModelProfile { get; set; }
 }
