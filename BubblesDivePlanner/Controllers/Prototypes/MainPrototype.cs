@@ -4,7 +4,9 @@ public class MainPrototype : IMainPrototype
     {
         DivePlan divePlan = new();
         main.DivePlan.DiveStage = divePlan.DiveStage;
-        main.DivePlan.CylinderSelector = divePlan.CylinderSelector;
+        main.DivePlan.CylinderSelector.Cylinders.Clear();
+        main.DivePlan.CylinderSelector.SetupCylinder = divePlan.CylinderSelector.SetupCylinder;
+        main.DivePlan.CylinderSelector.SelectedCylinder = divePlan.CylinderSelector.SelectedCylinder;
         main.DivePlan.DiveModelSelector.IsVisible = true;
 
         main.DiveInformation = new DiveInformation();
