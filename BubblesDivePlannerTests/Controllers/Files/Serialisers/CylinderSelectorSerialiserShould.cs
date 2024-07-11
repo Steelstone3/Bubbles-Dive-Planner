@@ -69,7 +69,9 @@ public class CylinderSelectorSerialiserShould
 
         // Then
         Assert.NotNull(cylinderSelector);
+        Assert.NotNull(cylinderSelector.Cylinders);
         Assert.NotEmpty(cylinderSelector.Cylinders);
-        // TODO AH ETC
+        Assert.NotNull(cylinderSelector.SetupCylinder);
+        Assert.NotNull(cylinderSelector.SelectedCylinder);
     }
 }
