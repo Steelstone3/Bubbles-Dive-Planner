@@ -17,7 +17,7 @@ public class FileController : IFileController
 
             string serialisedCylinderSelector = cylinderSelectorSerialiser.Write(cylinderSelector);
             cylinderSelectorWriter.Write(serialisedCylinderSelector);
-            
+
             using StreamWriter resultWriter = new("results.json");
 
             string serialisedResult = resultSerialiser.Write(result);
