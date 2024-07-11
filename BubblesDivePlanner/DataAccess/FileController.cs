@@ -56,6 +56,22 @@ public class FileController : IFileController
         {
             Console.WriteLine(e.ToString());
         }
+
+        try
+        {
+            string json = System.IO.File.ReadAllText("results.json");
+            IResult result = resultSerialiser.Read(json);
+
+            IDiveStage latestResult = result.Results.Last();
+
+            main.DivePlan.DiveModelSelector.DiveModelSelected = latestResult.DiveModel;
+            main.DivePlan.DiveStage = latestResult;
+            main.Result = result;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
     }
 }
 

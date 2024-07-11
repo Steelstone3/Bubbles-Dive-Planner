@@ -39,5 +39,8 @@ public class File
         FileController fileController = new(cylinderSelectorSerialiser, resultSerialiser);
 
         fileController.Read(main);
+
+        VisibilityController visibilityController = new();
+        visibilityController.SetVisibility(main);
     }
 }

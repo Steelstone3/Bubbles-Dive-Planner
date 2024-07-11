@@ -38,7 +38,7 @@ public class FileControllerShould
         cylinderSelectorSerialiser.Setup(css => css.Read(cylinderSelectorJson)).Returns(cylinderSelector.Object);
         Mock<IResult> result = new();
         Mock<ISerialiser<IResult>> resultSerialiser = new();
-        // resultSerialiser.Setup(rs => rs.Read("Results")).Returns(result.Object);
+        resultSerialiser.Setup(rs => rs.Read("Results")).Returns(result.Object);
         Mock<IDivePlan> divePlan = new();
         divePlan.Setup(dp => dp.CylinderSelector).Returns(cylinderSelector.Object);
         Mock<IMain> main = new();
@@ -51,6 +51,6 @@ public class FileControllerShould
 
         // Then
         cylinderSelectorSerialiser.Verify(css => css.Read(cylinderSelectorJson));
-        // resultSerialiser.Verify(rs => rs.Read("Results"));
+        resultSerialiser.Verify(rs => rs.Read("Results"));
     }
 }

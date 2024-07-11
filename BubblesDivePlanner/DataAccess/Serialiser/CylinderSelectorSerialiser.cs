@@ -11,7 +11,7 @@ public class CylinderSelectorSerialiser : ISerialiser<ICylinderSelector>
 
     public ICylinderSelector Read(string json)
     {
-        var dalCylinderSelector = JsonSerializer.Deserialize<DalCylinderSelector>(json);
+        DalCylinderSelector dalCylinderSelector = JsonSerializer.Deserialize<DalCylinderSelector>(json);
 
         return new DalCylinderSelectorConverter().ConvertFrom(dalCylinderSelector);
     }
