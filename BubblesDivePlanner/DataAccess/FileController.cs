@@ -1,3 +1,6 @@
+using System.IO;
+using DynamicData;
+
 public class FileController : IFileController
 {
     private readonly ISerialiser<ICylinderSelector> cylinderSelectorSerialiser;
@@ -17,7 +20,14 @@ public class FileController : IFileController
 
             string serialisedCylinderSelector = cylinderSelectorSerialiser.Write(main.DivePlan.CylinderSelector);
             cylinderSelectorWriter.Write(serialisedCylinderSelector);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
 
+        try
+        {
             using StreamWriter resultWriter = new("results.json");
 
             string serialisedResult = resultSerialiser.Write(main.Result);
@@ -32,7 +42,20 @@ public class FileController : IFileController
     // TODO AH Interaction Test
     public void Read(IMain main)
     {
-        throw new NotImplementedException();
+        try
+        {
+            string json = System.IO.File.ReadAllText("cylinders.json");
+            ICylinderSelector cylinderSelector = cylinderSelectorSerialiser.Read(json);
+
+            main.DivePlan.CylinderSelector.SetupCylinder = cylinderSelector.SetupCylinder;
+            main.DivePlan.CylinderSelector.SelectedCylinder = cylinderSelector.SelectedCylinder;
+            main.DivePlan.CylinderSelector.Cylinders.Clear();
+            main.DivePlan.CylinderSelector.Cylinders.AddRange(cylinderSelector.Cylinders);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
     }
 }
 
