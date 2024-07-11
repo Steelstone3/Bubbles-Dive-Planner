@@ -27,6 +27,6 @@ public class File
         ResultSerialiser resultSerialiser = new();
         FileController fileController = new(cylinderSelectorSerialiser, resultSerialiser);
 
-        fileController.Write(main.DivePlan.CylinderSelector, main.Result);
+        fileController.Write(main);
     }
 }
