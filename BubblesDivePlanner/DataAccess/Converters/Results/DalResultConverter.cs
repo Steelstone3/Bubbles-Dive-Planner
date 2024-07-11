@@ -1,9 +1,20 @@
 // TODO AH Test
+using DynamicData;
+
 public class DalResultConverter : IDalConverter<DalResult, IResult>
 {
     public IResult ConvertFrom(DalResult dalResult)
     {
-        throw new NotImplementedException();
+        DalDiveStageConverter dalDiveStageConverter = new();
+
+        Result result = new();
+
+        foreach (var item in dalResult.Results)
+        {
+            result.Results.Add(dalDiveStageConverter.ConvertFrom(item));
+        }
+
+        return result;
     }
 
     public DalResult ConvertTo(IResult result)

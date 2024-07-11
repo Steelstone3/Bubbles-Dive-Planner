@@ -3,7 +3,16 @@ public class DalDiveStageConverter : IDalConverter<DalDiveStage, IDiveStage>
 {
     public IDiveStage ConvertFrom(DalDiveStage dalDiveStage)
     {
-        throw new NotImplementedException();
+        DalDiveModelConverter dalDiveModelConverter = new();
+        DalDiveStepConverter dalDiveStepConverter = new();
+        DalCylinderConverter dalCylinderConverter = new();
+
+        return new DiveStage(new DiveStageValidator())
+        {
+            DiveModel = dalDiveModelConverter.ConvertFrom(dalDiveStage.DiveModel),
+            DiveStep = dalDiveStepConverter.ConvertFrom(dalDiveStage.DiveStep),
+            Cylinder = dalCylinderConverter.ConvertFrom(dalDiveStage.Cylinder),
+        };
     }
 
     public DalDiveStage ConvertTo(IDiveStage diveStage)

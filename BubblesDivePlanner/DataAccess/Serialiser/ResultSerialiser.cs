@@ -11,13 +11,8 @@ public class ResultSerialiser : ISerialiser<IResult>
 
     public IResult Read(string json)
     {
-        return JsonSerializer.Deserialize<IResult>(json);
+        DalResult dalResult = JsonSerializer.Deserialize<DalResult>(json);
+
+        return new DalResultConverter().ConvertFrom(dalResult);
     }
-
-    // public ICylinderSelector Read(string json)
-    // {
-    //     DalCylinderSelector dalCylinderSelector = JsonSerializer.Deserialize<DalCylinderSelector>(json);
-
-    //     return new DalCylinderSelectorConverter().ConvertFrom(dalCylinderSelector);
-    // }
 }

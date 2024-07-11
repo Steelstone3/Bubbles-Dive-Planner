@@ -3,7 +3,20 @@ public class DalDiveModelConverter : IDalConverter<DalDiveModel, IDiveModel>
 {
     public IDiveModel ConvertFrom(DalDiveModel dalDiveModel)
     {
-        throw new NotImplementedException();
+        DalDiveModelProfileConverter dalDiveModelProfileConverter = new();
+
+        return new DiveModel()
+        {
+            Name = dalDiveModel.Name,
+            CompartmentCount = dalDiveModel.CompartmentCount,
+            NitrogenHalfTime = dalDiveModel.NitrogenHalfTime,
+            HeliumHalfTime = dalDiveModel.HeliumHalfTime,
+            AValuesNitrogen = dalDiveModel.AValuesNitrogen,
+            BValuesNitrogen = dalDiveModel.BValuesNitrogen,
+            AValuesHelium = dalDiveModel.AValuesHelium,
+            BValuesHelium = dalDiveModel.BValuesHelium,
+            DiveModelProfile = dalDiveModelProfileConverter.ConvertFrom(dalDiveModel.DiveModelProfile),
+        };
     }
 
     public DalDiveModel ConvertTo(IDiveModel diveModel)
