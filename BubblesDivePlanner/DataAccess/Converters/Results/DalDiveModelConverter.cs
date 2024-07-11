@@ -20,7 +20,7 @@ public class DalDiveModelConverter : IDalConverter<DalDiveModel, IDiveModel>
             BValuesNitrogen = diveModel.BValuesNitrogen,
             AValuesHelium = diveModel.AValuesHelium,
             BValuesHelium = diveModel.BValuesHelium,
-            dalDiveModelProfile = dalDiveModelProfileConverter.ConvertTo(diveModel.DiveModelProfile)
+            DiveModelProfile = dalDiveModelProfileConverter.ConvertTo(diveModel.DiveModelProfile)
         };
     }
 }

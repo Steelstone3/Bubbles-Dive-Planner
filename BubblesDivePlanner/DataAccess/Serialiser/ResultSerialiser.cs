@@ -14,13 +14,6 @@ public class ResultSerialiser : ISerialiser<IResult>
         return JsonSerializer.Deserialize<IResult>(json);
     }
 
-    //  public string Write(ICylinderSelector cylinderSelector)
-    // {
-    //     DalCylinderSelector dalCylinderSelector = new DalCylinderSelectorConverter().ConvertTo(cylinderSelector);
-
-    //     return JsonSerializer.Serialize(dalCylinderSelector);
-    // }
-
     // public ICylinderSelector Read(string json)
     // {
     //     DalCylinderSelector dalCylinderSelector = JsonSerializer.Deserialize<DalCylinderSelector>(json);
