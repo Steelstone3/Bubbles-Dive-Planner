@@ -1,5 +1,5 @@
-use iced::widget::{button, column, text, Button, Column, Text};
-use iced_aw::Card;
+use cosmic::iced::widget::{button, column, text, Button, Column, Text};
+use cosmic::iced_aw::Card;
 
 use crate::{
     commands::messages::Message, models::dive_step::DiveStep,

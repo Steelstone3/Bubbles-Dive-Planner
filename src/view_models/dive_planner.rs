@@ -9,7 +9,7 @@ use crate::{
         results::DiveResults, select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
     },
 };
-use iced::Sandbox;
+use cosmic::iced::Sandbox;
 use serde::{Deserialize, Serialize};
 
 const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.json";

@@ -1,4 +1,4 @@
-use iced::{Sandbox, Settings};
+use cosmic::iced::{Sandbox, Settings};
 use view_models::dive_planner::DivePlanner;
 
 mod commands;
@@ -7,6 +7,6 @@ mod models;
 mod view_models;
 mod views;
 
-pub fn main() -> iced::Result {
+pub fn main() -> cosmic::iced::Result {
     DivePlanner::run(Settings::default())
 }

@@ -2,7 +2,7 @@ use crate::{
     commands::{messages::Message, selectable_dive_model::SelectableDiveModel},
     models::select_dive_model::SelectDiveModel,
 };
-use iced::{
+use cosmic::iced::{
     widget::{column, pick_list, Column, PickList},
     Length,
 };

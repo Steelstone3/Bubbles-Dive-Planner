@@ -1,5 +1,5 @@
 use crate::{commands::messages::Message, models::gas_mixture::GasMixture};
-use iced::widget::{column, text, text_input, Column, Text, TextInput};
+use cosmic::iced::widget::{column, text, text_input, Column, Text, TextInput};
 
 pub struct GasMixtureView<'a> {
     gas_mixture_text: Text<'a>,

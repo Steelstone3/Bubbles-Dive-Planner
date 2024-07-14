@@ -2,7 +2,7 @@ use crate::{
     commands::messages::Message, view_models::dive_planner::DivePlanner,
     views::information::cylinder_read_only::CylinderReadOnlyView,
 };
-use iced::widget::{column, Column};
+use cosmic::iced::widget::{column, Column};
 
 use super::{
     cylinder_parameters::cylinder::CylinderView, dive_profile::DiveProfileView,

@@ -1,6 +1,6 @@
 use super::{gas_management::GasManagementView, gas_mixture::GasMixtureView};
 use crate::{commands::messages::Message, models::cylinder::Cylinder};
-use iced::{
+use cosmic::iced::{
     widget::Text,
     widget::{column, text, text_input, Column, TextInput},
 };

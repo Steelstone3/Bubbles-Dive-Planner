@@ -3,9 +3,9 @@ use crate::view_models::dive_planner::DivePlanner;
 use crate::views::dive_results::results::ResultsView;
 use crate::views::information::dive_information::DiveInformationView;
 use crate::views::parameters::dive_stage::DiveStageView;
-use iced::widget::{column, scrollable};
-use iced::{Element, Sandbox};
-use iced_aw::Grid;
+use cosmic::iced::widget::{column, scrollable};
+use cosmic::iced::{Element, Sandbox};
+use cosmic::iced_aw::Grid;
 
 use super::menu_bar::MenuBarView;
 

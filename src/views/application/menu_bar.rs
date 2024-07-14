@@ -1,8 +1,8 @@
 use crate::commands::messages::Message;
 use crate::view_models::dive_planner::DivePlanner;
-use iced::widget::{button, row, Button, Row};
-use iced::Renderer;
-use iced_aw::{MenuBar, MenuTree};
+use cosmic::iced::widget::{button, row, Button, Row};
+use cosmic::iced::Renderer;
+use cosmic::iced_aw::{MenuBar, MenuTree};
 
 pub struct MenuBarView<'a> {
     file: MenuBar<'a, Message, Renderer>,

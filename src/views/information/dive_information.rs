@@ -1,5 +1,5 @@
-use iced::widget::{column, text, Column};
-use iced_aw::Card;
+use cosmic::iced::widget::{column, text, Column};
+use cosmic::iced_aw::Card;
 
 use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
 
@@ -41,7 +41,7 @@ impl DiveInformationView<'_> {
                     &dive_planner.cns_toxicity, maximum_operating_depth, dive_ceiling
                 )),
             )
-            .width(iced::Length::Fixed(500.0)),
+            .width(cosmic::iced::Length::Fixed(500.0)),
             decompression_steps: DecompressionStepsView::build_view(dive_planner),
         }
     }

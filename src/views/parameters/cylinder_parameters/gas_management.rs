@@ -1,5 +1,5 @@
 use crate::{commands::messages::Message, models::gas_management::GasManagement};
-use iced::widget::{column, text, text_input, Column, Text, TextInput};
+use cosmic::iced::widget::{column, text, text_input, Column, Text, TextInput};
 
 pub struct GasManagementView<'a> {
     surface_air_consumption_text: Text<'a>,

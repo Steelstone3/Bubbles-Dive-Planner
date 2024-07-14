@@ -1,5 +1,5 @@
-use iced::widget::{column, text, Column, Text};
-use iced_aw::Card;
+use cosmic::iced::widget::{column, text, Column, Text};
+use cosmic::iced_aw::Card;
 
 use crate::{
     commands::messages::Message,

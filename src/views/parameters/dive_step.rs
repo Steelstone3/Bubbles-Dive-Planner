@@ -1,5 +1,5 @@
 use crate::{commands::messages::Message, models::dive_step::DiveStep};
-use iced::widget::{column, text, text_input, Column, Text, TextInput};
+use cosmic::iced::widget::{column, text, text_input, Column, Text, TextInput};
 
 pub struct DiveStepView<'a> {
     dive_step_text: Text<'a>,

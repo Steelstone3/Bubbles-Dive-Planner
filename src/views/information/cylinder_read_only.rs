@@ -1,6 +1,6 @@
 use crate::{commands::messages::Message, models::cylinder::Cylinder};
-use iced::widget::{column, text, Column};
-use iced_aw::Card;
+use cosmic::iced::widget::{column, text, Column};
+use cosmic::iced_aw::Card;
 
 pub struct CylinderReadOnlyView<'a> {
     cylinder_read_only_text: Card<'a, Message>,

@@ -1,5 +1,5 @@
 use crate::{commands::messages::Message, models::dive_stage::DiveStage};
-use iced::widget::{button, column, Button, Column};
+use cosmic::iced::widget::{button, column, Button, Column};
 
 pub struct DiveProfileView<'a> {
     update_dive_profile: Button<'a, Message>,

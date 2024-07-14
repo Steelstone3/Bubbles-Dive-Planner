@@ -1,5 +1,5 @@
-use iced::widget::text;
-use iced_aw::Card;
+use cosmic::iced::widget::text;
+use cosmic::iced_aw::Card;
 
 use crate::{commands::messages::Message, models::dive_stage::DiveStage};
 
@@ -19,7 +19,7 @@ impl ResultView<'_> {
         Self {
             result_text: Card::new("Dive Profile", text(dive_stage.dive_model.dive_profile))
                 .foot(text(footer))
-                .width(iced::Length::Fixed(500.0)),
+                .width(cosmic::iced::Length::Fixed(500.0)),
         }
     }
 }
