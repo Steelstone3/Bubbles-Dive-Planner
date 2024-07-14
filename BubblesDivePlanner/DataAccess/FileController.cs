@@ -16,10 +16,10 @@ public class FileController : IFileController
     {
         try
         {
-            using StreamWriter cylinderSelectorWriter = new("cylinders.json");
+            using StreamWriter resultWriter = new("results.json");
 
-            string serialisedCylinderSelector = cylinderSelectorSerialiser.Write(main.DivePlan.CylinderSelector);
-            cylinderSelectorWriter.Write(serialisedCylinderSelector);
+            string serialisedResult = resultSerialiser.Write(main.Result);
+            resultWriter.Write(serialisedResult);
         }
         catch (Exception e)
         {
@@ -28,10 +28,10 @@ public class FileController : IFileController
 
         try
         {
-            using StreamWriter resultWriter = new("results.json");
+            using StreamWriter cylinderSelectorWriter = new("cylinders.json");
 
-            string serialisedResult = resultSerialiser.Write(main.Result);
-            resultWriter.Write(serialisedResult);
+            string serialisedCylinderSelector = cylinderSelectorSerialiser.Write(main.DivePlan.CylinderSelector);
+            cylinderSelectorWriter.Write(serialisedCylinderSelector);
         }
         catch (Exception e)
         {
@@ -44,34 +44,40 @@ public class FileController : IFileController
     {
         try
         {
-            string json = System.IO.File.ReadAllText("cylinders.json");
-            ICylinderSelector cylinderSelector = cylinderSelectorSerialiser.Read(json);
+            MainPrototype mainPrototype = new();
+            mainPrototype.NewInstance(main);
 
-            main.DivePlan.CylinderSelector.SetupCylinder = cylinderSelector.SetupCylinder;
-            main.DivePlan.CylinderSelector.SelectedCylinder = cylinderSelector.SelectedCylinder;
-            main.DivePlan.CylinderSelector.Cylinders.Clear();
-            main.DivePlan.CylinderSelector.Cylinders.AddRange(cylinderSelector.Cylinders);
+            string resultsJson = System.IO.File.ReadAllText("results.json");
+            IResult result = resultSerialiser.Read(resultsJson);
+
+            string cylindersJson = System.IO.File.ReadAllText("cylinders.json");
+            ICylinderSelector cylinderSelector = cylinderSelectorSerialiser.Read(cylindersJson);
+
+            UpdateCylinderSelector(main, cylinderSelector);
+            UpdateResult(main, result);
         }
         catch (Exception e)
         {
             Console.WriteLine(e.ToString());
         }
+    }
 
-        try
-        {
-            string json = System.IO.File.ReadAllText("results.json");
-            IResult result = resultSerialiser.Read(json);
+    private void UpdateCylinderSelector(IMain main, ICylinderSelector cylinderSelector)
+    {
+        main.DivePlan.CylinderSelector.SetupCylinder = cylinderSelector.SetupCylinder;
+        main.DivePlan.CylinderSelector.SelectedCylinder = cylinderSelector.SelectedCylinder;
+        // main.DivePlan.CylinderSelector.Cylinders.Clear();
+        // main.DivePlan.CylinderSelector.Cylinders.AddRange(cylinderSelector.Cylinders);
+    }
 
-            IDiveStage latestResult = result.Results.Last();
+    private void UpdateResult(IMain main, IResult result)
+    {
+        IDiveStage latestResult = result.Results.Last();
 
-            main.DivePlan.DiveModelSelector.DiveModelSelected = latestResult.DiveModel;
-            main.DivePlan.DiveStage = latestResult;
-            main.Result = result;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.ToString());
-        }
+        main.DivePlan.DiveModelSelector.DiveModelSelected = latestResult.DiveModel;
+        main.DivePlan.DiveStage = latestResult;
+        main.Result.Results.Clear();
+        main.Result.Results.AddRange(result.Results);
     }
 }
 
