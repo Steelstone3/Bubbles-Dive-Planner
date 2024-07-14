@@ -123,7 +123,7 @@ impl DiveProfile {
     fn display_results(&self) -> String {
         let mut dive_results = "".to_string();
 
-        for (_, compartment) in (0..self.number_of_compartments).enumerate() {
+        for compartment in 0..self.number_of_compartments {
             let total_tissue_pressures = format!("{:.3}", self.total_tissue_pressures[compartment]);
             let tolerated_ambient_pressures =
                 format!("{:.3}", self.tolerated_ambient_pressures[compartment]);
