@@ -22,7 +22,7 @@ public class MainPrototypeShould
         Assert.Same(divePlan, main.DivePlan);
         Assert.Same(divePlan.CylinderSelector, divePlan.CylinderSelector);
         Assert.Same(divePlan.CylinderSelector.Cylinders, divePlan.CylinderSelector.Cylinders);
-        Assert.NotSame(diveInformation, main.DiveInformation);
-        Assert.NotSame(result, main.Result);
+        Assert.Same(diveInformation, main.DiveInformation);
+        Assert.Same(result, main.Result);
     }
 }

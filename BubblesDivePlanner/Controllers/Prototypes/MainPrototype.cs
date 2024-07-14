@@ -9,8 +9,11 @@ public class MainPrototype : IMainPrototype
         main.DivePlan.CylinderSelector.SelectedCylinder = divePlan.CylinderSelector.SelectedCylinder;
         main.DivePlan.DiveModelSelector.IsVisible = true;
 
-        main.DiveInformation = new DiveInformation();
-        main.Result = new Result();
+        DiveInformation diveInformation = new();
+        main.DiveInformation.DecompressionProfile.DecompressionSteps.Clear();
+        main.DiveInformation.DecompressionProfile.DiveCeiling = diveInformation.DecompressionProfile.DiveCeiling;
+
+        main.Result.Results.Clear();
     }
 }
 
