@@ -1,13 +1,12 @@
 use crate::commands::messages::Message;
 use crate::view_models::dive_planner::DivePlanner;
-use crate::views::dive_results::results::ResultsView;
-use crate::views::information::dive_information::DiveInformationView;
-use crate::views::parameters::dive_stage::DiveStageView;
+// use crate::views::dive_results::results::ResultsView;
+// use crate::views::information::dive_information::DiveInformationView;
+// use crate::views::parameters::dive_stage::DiveStageView;
 use cosmic::iced::widget::{column, scrollable};
 use cosmic::iced::{Element, Sandbox};
-use cosmic::iced_aw::Grid;
 
-use super::menu_bar::MenuBarView;
+// use super::menu_bar::MenuBarView;
 
 impl Sandbox for DivePlanner {
     type Message = Message;
@@ -83,23 +82,36 @@ impl Sandbox for DivePlanner {
         }
     }
 
-    fn view(&self) -> Element<Message> {
-        let menu_bar = MenuBarView::build_view(self);
-        let dive_stage = DiveStageView::build_view(self);
-        let dive_information = DiveInformationView::build_view(self);
-        let results = ResultsView::build_view(self);
+    // fn view(&self) -> Element<Message> {
+    //     // let menu_bar = MenuBarView::build_view(self);
+    //     // let dive_stage = DiveStageView::build_view(self);
+    //     // let dive_information = DiveInformationView::build_view(self);
+    //     // let results = ResultsView::build_view(self);
 
-        column![]
-            .push(Grid::with_columns(1).push(menu_bar.spacing(10).padding(10)))
-            .push(
-                Grid::with_columns(2)
-                    .push(scrollable(dive_stage.width(300.0).spacing(10).padding(10)))
-                    .push(scrollable(
-                        column![dive_information.spacing(10), results.spacing(10.0)]
-                            .spacing(10)
-                            .padding(10),
-                    )),
-            )
-            .into()
+    //     column![].into()
+    // }
+    
+    fn view(&self, id: cosmic::iced::window::Id) -> Element<'_, Self::Message, cosmic::iced::Theme> {
+        column![].into()
     }
+
+    fn theme(&self) -> cosmic::iced::Theme {
+        cosmic::iced::Theme::default()
+    }
+    
+    fn style(&self) -> cosmic::iced::theme::Application {
+        cosmic::iced::theme::Application::default()
+    }
+    
+    fn scale_factor(&self) -> f64 {
+        1.0
+    }
+    
+    fn run(settings: cosmic::iced::Settings<()>) -> Result<(), cosmic::iced::Error>
+    where
+        Self: 'static + Sized,
+    {
+        <Self as cosmic::iced::Application>::run(settings)
+    }
+    
 }

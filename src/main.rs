@@ -7,6 +7,6 @@ mod models;
 mod view_models;
 mod views;
 
-pub fn main() -> cosmic::iced::Result {
+pub fn main() -> Result<(), cosmic::iced::Error> {
     DivePlanner::run(Settings::default())
 }

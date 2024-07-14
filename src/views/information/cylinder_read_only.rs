@@ -1,23 +1,23 @@
-use crate::{commands::messages::Message, models::cylinder::Cylinder};
-use cosmic::iced::widget::{column, text, Column};
-use cosmic::iced_aw::Card;
+// use crate::{commands::messages::Message, models::cylinder::Cylinder};
+// use cosmic::iced::widget::{column, text, Column};
+// use cosmic::iced_aw::Card;
 
-pub struct CylinderReadOnlyView<'a> {
-    cylinder_read_only_text: Card<'a, Message>,
-}
+// pub struct CylinderReadOnlyView<'a> {
+//     cylinder_read_only_text: Card<'a, Message>,
+// }
 
-impl CylinderReadOnlyView<'_> {
-    pub fn build_view<'a>(cylinder: &Cylinder) -> Column<'a, Message> {
-        let cylinder_read_only = CylinderReadOnlyView::new(cylinder);
+// impl CylinderReadOnlyView<'_> {
+//     pub fn build_view<'a>(cylinder: &Cylinder) -> Column<'a, Message> {
+//         let cylinder_read_only = CylinderReadOnlyView::new(cylinder);
 
-        column![cylinder_read_only.cylinder_read_only_text]
-            .padding(10.0)
-            .spacing(10.0)
-    }
+//         column![cylinder_read_only.cylinder_read_only_text]
+//             .padding(10.0)
+//             .spacing(10.0)
+//     }
 
-    fn new(cylinder: &Cylinder) -> Self {
-        Self {
-            cylinder_read_only_text: Card::new("Cylinder", text(cylinder)),
-        }
-    }
-}
+//     fn new(cylinder: &Cylinder) -> Self {
+//         Self {
+//             cylinder_read_only_text: Card::new("Cylinder", text(cylinder)),
+//         }
+//     }
+// }
