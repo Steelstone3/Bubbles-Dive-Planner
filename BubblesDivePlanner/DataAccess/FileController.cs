@@ -50,17 +50,24 @@ public class FileController : IFileController
             string resultsJson = System.IO.File.ReadAllText("results.json");
             IResult result = resultSerialiser.Read(resultsJson);
 
-            UpdateResult(main, result);
-      
             string cylindersJson = System.IO.File.ReadAllText("cylinders.json");
             ICylinderSelector cylinderSelector = cylinderSelectorSerialiser.Read(cylindersJson);
 
             UpdateCylinderSelector(main, cylinderSelector);
+            UpdateResult(main, result);
         }
         catch (Exception e)
         {
             Console.WriteLine(e.ToString());
         }
+    }
+
+    private void UpdateCylinderSelector(IMain main, ICylinderSelector cylinderSelector)
+    {
+        main.DivePlan.CylinderSelector.SetupCylinder = cylinderSelector.SetupCylinder;
+        main.DivePlan.CylinderSelector.SelectedCylinder = cylinderSelector.SelectedCylinder;
+        // main.DivePlan.CylinderSelector.Cylinders.Clear();
+        // main.DivePlan.CylinderSelector.Cylinders.AddRange(cylinderSelector.Cylinders);
     }
 
     private void UpdateResult(IMain main, IResult result)
@@ -71,14 +78,6 @@ public class FileController : IFileController
         main.DivePlan.DiveStage = latestResult;
         main.Result.Results.Clear();
         main.Result.Results.AddRange(result.Results);
-    }
-
-    private void UpdateCylinderSelector(IMain main, ICylinderSelector cylinderSelector)
-    {
-        main.DivePlan.CylinderSelector.SetupCylinder = cylinderSelector.SetupCylinder;
-        main.DivePlan.CylinderSelector.SelectedCylinder = cylinderSelector.SelectedCylinder;
-        main.DivePlan.CylinderSelector.Cylinders.Clear();
-        main.DivePlan.CylinderSelector.Cylinders.AddRange(cylinderSelector.Cylinders);
     }
 }
 
