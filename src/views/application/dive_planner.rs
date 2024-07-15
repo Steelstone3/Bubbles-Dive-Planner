@@ -91,7 +91,7 @@ impl Sandbox for DivePlanner {
     //     column![].into()
     // }
     
-    fn view(&self, id: cosmic::iced::window::Id) -> Element<'_, Self::Message, cosmic::iced::Theme> {
+    fn view(&self) -> Element<'_, Self::Message, cosmic::iced::Theme> {
         column![].into()
     }
 
