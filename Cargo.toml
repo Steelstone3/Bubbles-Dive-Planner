@@ -1,5 +1,5 @@
 [package]
-name = "bubbles-dive-planner-rust"
+name = "bubbles-dive-planner-cosmic"
 version = "0.1.0"
 authors = ["Skippy <steelstone3@gmail.com>"]
 edition = "2021"
