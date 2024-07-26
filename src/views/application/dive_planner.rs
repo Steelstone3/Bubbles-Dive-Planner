@@ -1,5 +1,4 @@
 use crate::commands::messages::Message;
-use crate::commands::selectable_cylinder::SelectableCylinder;
 use crate::commands::selectable_dive_model::SelectableDiveModel;
 use crate::view_models::dive_planner::DivePlanner;
 use cosmic::iced::widget::column;
@@ -7,7 +6,6 @@ use cosmic::iced::Sandbox;
 use cosmic::iced_core::widget::Text;
 use cosmic::iced_core::Element;
 use cosmic::iced_widget::{PickList, TextInput};
-use cosmic::widget::ComboBox;
 
 // use super::menu_bar::MenuBarView;
 
