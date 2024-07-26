@@ -1,3 +1,5 @@
+use super::selectable_dive_model::SelectableDiveModel;
+
 #[derive(Debug, Clone)]
 pub enum Message {
     // MenuBar,
@@ -8,7 +10,7 @@ pub enum Message {
     // EditRedo,
     // ViewToggleCentralNervousSystemToxicityVisibility,
     // ViewToggleSelectCylinderVisibility,
-    // DiveModelSelected(SelectableDiveModel),
+    DiveModelSelected(SelectableDiveModel),
     DepthChanged(String),
     TimeChanged(String),
     // CylinderVolumeChanged(String),

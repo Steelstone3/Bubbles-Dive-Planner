@@ -1,10 +1,13 @@
 use crate::commands::messages::Message;
+use crate::commands::selectable_cylinder::SelectableCylinder;
+use crate::commands::selectable_dive_model::SelectableDiveModel;
 use crate::view_models::dive_planner::DivePlanner;
 use cosmic::iced::widget::column;
 use cosmic::iced::Sandbox;
 use cosmic::iced_core::widget::Text;
 use cosmic::iced_core::Element;
-use cosmic::iced_widget::TextInput;
+use cosmic::iced_widget::{PickList, TextInput};
+use cosmic::widget::ComboBox;
 
 // use super::menu_bar::MenuBarView;
 
@@ -41,9 +44,9 @@ impl Sandbox for DivePlanner {
             // Message::ViewToggleSelectCylinderVisibility => {
             //     self.view_toggle_select_cylinder_visibility();
             // }
-            // Message::DiveModelSelected(selectable_dive_model) => {
-            //     self.dive_model_selected(selectable_dive_model)
-            // }
+            Message::DiveModelSelected(selectable_dive_model) => {
+                self.dive_model_selected(selectable_dive_model)
+            }
             Message::DepthChanged(depth) => self.dive_stage.dive_step.update_depth(depth),
             Message::TimeChanged(time) => self.dive_stage.dive_step.update_time(time),
             // Message::CylinderVolumeChanged(cylinder_volume) => {
@@ -93,6 +96,11 @@ impl Sandbox for DivePlanner {
 
     fn view(&self) -> Element<'_, Message, cosmic::iced::Theme, cosmic::iced::Renderer> {
         column!()
+            .push(PickList::new(
+                &SelectableDiveModel::ALL[..],
+                self.select_dive_model.selected_dive_model,
+                Message::DiveModelSelected,
+            ))
             .push(Text::new("Depth"))
             .push(
                 TextInput::new("Enter Depth", &self.dive_stage.dive_step.depth.to_string())
