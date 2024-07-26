@@ -45,7 +45,7 @@ impl Sandbox for DivePlanner {
             //     self.dive_model_selected(selectable_dive_model)
             // }
             Message::DepthChanged(depth) => self.dive_stage.dive_step.update_depth(depth),
-            // Message::TimeChanged(time) => self.dive_stage.dive_step.update_time(time),
+            Message::TimeChanged(time) => self.dive_stage.dive_step.update_time(time),
             // Message::CylinderVolumeChanged(cylinder_volume) => {
             //     self.dive_stage
             //         .cylinder
@@ -99,6 +99,10 @@ impl Sandbox for DivePlanner {
                     .on_input(Message::DepthChanged),
             )
             .push(Text::new("Time"))
+            .push(
+                TextInput::new("Enter Time", &self.dive_stage.dive_step.time.to_string())
+                    .on_input(Message::TimeChanged),
+            )
             .into()
     }
 

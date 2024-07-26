@@ -10,7 +10,7 @@ pub enum Message {
     // ViewToggleSelectCylinderVisibility,
     // DiveModelSelected(SelectableDiveModel),
     DepthChanged(String),
-    // TimeChanged(String),
+    TimeChanged(String),
     // CylinderVolumeChanged(String),
     // CylinderPressureChanged(String),
     // SurfaceAirConsumptionChanged(String),
