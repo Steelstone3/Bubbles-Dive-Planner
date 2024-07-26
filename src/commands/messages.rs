@@ -2,14 +2,14 @@ use super::{selectable_cylinder::SelectableCylinder, selectable_dive_model::Sele
 
 #[derive(Debug, Clone)]
 pub enum Message {
-    MenuBar,
-    FileNew,
-    FileSave,
-    FileLoad,
-    EditUndo,
-    EditRedo,
-    ViewToggleCentralNervousSystemToxicityVisibility,
-    ViewToggleSelectCylinderVisibility,
+    // MenuBar,
+    // FileNew,
+    // FileSave,
+    // FileLoad,
+    // EditUndo,
+    // EditRedo,
+    // ViewToggleCentralNervousSystemToxicityVisibility,
+    // ViewToggleSelectCylinderVisibility,
     DiveModelSelected(SelectableDiveModel),
     DepthChanged(String),
     TimeChanged(String),
@@ -21,5 +21,5 @@ pub enum Message {
     CylinderSelected(SelectableCylinder),
     UpdateCylinderSelected(SelectableCylinder),
     UpdateDiveProfile,
-    DecompressionUpdateDiveProfile,
+    // DecompressionUpdateDiveProfile,
 }

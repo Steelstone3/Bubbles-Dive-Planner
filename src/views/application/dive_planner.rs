@@ -1,9 +1,6 @@
 use crate::commands::messages::Message;
 use crate::view_models::dive_planner::DivePlanner;
-// use crate::views::dive_results::results::ResultsView;
-// use crate::views::information::dive_information::DiveInformationView;
-// use crate::views::parameters::dive_stage::DiveStageView;
-use cosmic::iced::widget::{column, scrollable};
+use cosmic::iced::widget::column;
 use cosmic::iced::{Element, Sandbox};
 
 // use super::menu_bar::MenuBarView;
@@ -29,18 +26,18 @@ impl Sandbox for DivePlanner {
 
     fn update(&mut self, message: Message) {
         match message {
-            Message::MenuBar => {}
-            Message::FileNew => self.file_new(),
-            Message::FileSave => self.file_save(),
-            Message::FileLoad => self.file_load(),
-            Message::EditUndo => self.edit_undo(),
-            Message::EditRedo => self.edit_redo(),
-            Message::ViewToggleCentralNervousSystemToxicityVisibility => {
-                self.view_toggle_central_nervous_system_toxicity_visibility();
-            }
-            Message::ViewToggleSelectCylinderVisibility => {
-                self.view_toggle_select_cylinder_visibility();
-            }
+            // Message::MenuBar => {}
+            // Message::FileNew => self.file_new(),
+            // Message::FileSave => self.file_save(),
+            // Message::FileLoad => self.file_load(),
+            // Message::EditUndo => self.edit_undo(),
+            // Message::EditRedo => self.edit_redo(),
+            // Message::ViewToggleCentralNervousSystemToxicityVisibility => {
+            //     self.view_toggle_central_nervous_system_toxicity_visibility();
+            // }
+            // Message::ViewToggleSelectCylinderVisibility => {
+            //     self.view_toggle_select_cylinder_visibility();
+            // }
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_model_selected(selectable_dive_model)
             }
@@ -76,9 +73,9 @@ impl Sandbox for DivePlanner {
             Message::UpdateDiveProfile => {
                 self.update_dive_profile();
             }
-            Message::DecompressionUpdateDiveProfile => {
-                self.decompression_update_dive_profile();
-            }
+            // Message::DecompressionUpdateDiveProfile => {
+            //     self.decompression_update_dive_profile();
+            // }
         }
     }
 
