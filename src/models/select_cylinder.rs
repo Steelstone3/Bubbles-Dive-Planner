@@ -80,12 +80,14 @@ impl SelectCylinder {
         }
     }
 
+    // TODO AH remove this in favour of is read only flag on dive planner
     pub fn read_only_view(&mut self) {
         self.cylinders[0].is_read_only = true;
         self.cylinders[1].is_read_only = true;
         self.cylinders[2].is_read_only = true;
     }
 
+    // TODO AH remove this in favour of is read only flag on dive planner
     pub fn toggle_visibility(&mut self) {
         let is_visible = match self.is_visible {
             true => false,
