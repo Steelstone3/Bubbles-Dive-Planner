@@ -24,6 +24,7 @@ pub struct DivePlanner {
     pub decompression_steps: DecompressionSteps,
     pub cns_toxicity: CentralNervousSystemToxicity,
     pub redo_buffer: Vec<DiveStage>,
+    pub is_planning: bool,
 }
 
 impl Default for DivePlanner {
@@ -77,10 +78,6 @@ impl DivePlanner {
         !self.redo_buffer.is_empty()
     }
 
-    pub fn view_toggle_central_nervous_system_toxicity_visibility(&mut self) {
-        self.cns_toxicity.toggle_visibility();
-    }
-
     pub fn view_toggle_select_cylinder_visibility(&mut self) {
         self.select_cylinder.toggle_visibility();
     }
@@ -108,8 +105,6 @@ impl DivePlanner {
         self.run_decompression_steps();
 
         self.assign_decompression_steps();
-
-        self.update_decompression_steps_visibility();
     }
 
     pub fn update_dive_profile(&mut self) {
@@ -144,10 +139,6 @@ impl DivePlanner {
         self.redo_buffer = Default::default();
     }
 
-    fn update_decompression_steps_visibility(&mut self) {
-        self.decompression_steps.update_visibility();
-    }
-
     fn assign_decompression_steps(&mut self) {
         self.decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
@@ -168,9 +159,12 @@ impl DivePlanner {
     }
 
     fn update_visibility(&mut self) {
+        self.is_planning = true;
+
+        // TODO AH depricate all the needless readonly and is visible flags
         self.select_cylinder.read_only_view();
+        // TODO AH depricate all the needless readonly and is visible flags
         self.dive_results.is_visible = true;
-        self.decompression_steps.update_visibility();
     }
 }
 
@@ -199,7 +193,6 @@ mod dive_planner_should {
             },
             dive_stage: dive_stage_test_fixture(),
             decompression_steps: DecompressionSteps {
-                is_visible: true,
                 dive_steps: vec![
                     DiveStep { depth: 9, time: 2 },
                     DiveStep { depth: 6, time: 3 },
@@ -229,7 +222,6 @@ mod dive_planner_should {
             dive_planner.decompression_steps
         );
         assert!(dive_planner.dive_results.is_visible);
-        assert!(dive_planner.decompression_steps.is_visible);
         assert!(dive_planner.select_cylinder.cylinders[0].is_read_only);
         assert!(dive_planner.select_cylinder.cylinders[1].is_read_only);
         assert!(dive_planner.select_cylinder.cylinders[2].is_read_only);
@@ -306,10 +298,7 @@ mod dive_planner_should {
                 ..Default::default()
             },
             dive_stage: dive_stage_test_fixture(),
-            decompression_steps: DecompressionSteps {
-                is_visible: false,
-                dive_steps: vec![],
-            },
+            decompression_steps: DecompressionSteps { dive_steps: vec![] },
             ..Default::default()
         };
         expected_dive_planner.dive_stage.dive_model.dive_profile = expected_dive_profile;
@@ -393,7 +382,6 @@ mod dive_planner_should {
     fn select_a_cylinder(#[case] selectable_cylinder: SelectableCylinder) {
         // Given
         let expected_decompression_steps = DecompressionSteps {
-            is_visible: false,
             dive_steps: vec![
                 DiveStep { depth: 6, time: 1 },
                 DiveStep { depth: 3, time: 3 },
@@ -769,28 +757,6 @@ mod dive_planner_should {
 
         // Then
         assert_eq!(expected_is_visible, dive_planner.select_cylinder.is_visible);
-    }
-
-    #[rstest]
-    #[case(false, true)]
-    #[case(true, false)]
-    fn toggle_the_central_nervous_system_toxicity_visibility(
-        #[case] is_visible: bool,
-        #[case] expected_is_visible: bool,
-    ) {
-        // Given
-        let mut cns_toxicity = CentralNervousSystemToxicity::default();
-        cns_toxicity.is_visible = is_visible;
-        let mut dive_planner = DivePlanner {
-            cns_toxicity,
-            ..Default::default()
-        };
-
-        // When
-        dive_planner.view_toggle_central_nervous_system_toxicity_visibility();
-
-        // Then
-        assert_eq!(expected_is_visible, dive_planner.cns_toxicity.is_visible)
     }
 
     #[rstest]
