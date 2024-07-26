@@ -96,11 +96,11 @@ impl Sandbox for DivePlanner {
     }
 
     fn theme(&self) -> cosmic::iced::Theme {
-        cosmic::iced::Theme::default()
+        cosmic::iced::Theme::Dark
     }
     
     fn style(&self) -> cosmic::iced::theme::Application {
-        cosmic::iced::theme::Application::default()
+        cosmic::iced::theme::Application::Default
     }
     
     fn scale_factor(&self) -> f64 {
