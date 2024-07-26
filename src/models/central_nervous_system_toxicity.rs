@@ -42,7 +42,7 @@ impl CentralNervousSystemToxicity {
 
         central_nervous_system.push_str("CNS Toxicity\n\n");
 
-        for (_, compartment) in (0..COLUMNS).enumerate() {
+        for compartment in 0..COLUMNS {
             let dive_result = format!(
                 "O2 PP (%): {} | Per Dive (min): {} | Per Day (min): {}\n",
                 self.oxygen_partial_pressure[compartment],
