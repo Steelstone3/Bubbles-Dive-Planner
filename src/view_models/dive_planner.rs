@@ -24,6 +24,7 @@ pub struct DivePlanner {
     pub decompression_steps: DecompressionSteps,
     pub cns_toxicity: CentralNervousSystemToxicity,
     pub redo_buffer: Vec<DiveStage>,
+    pub is_planning: bool,
 }
 
 impl Default for DivePlanner {
@@ -168,7 +169,11 @@ impl DivePlanner {
     }
 
     fn update_visibility(&mut self) {
+        self.is_planning = true;
+
+        // TODO AH depricate all the needless readonly and is visible flags
         self.select_cylinder.read_only_view();
+        // TODO AH depricate all the needless readonly and is visible flags
         self.dive_results.is_visible = true;
         self.decompression_steps.update_visibility();
     }

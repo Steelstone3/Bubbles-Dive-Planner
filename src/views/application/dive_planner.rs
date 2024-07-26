@@ -1,13 +1,15 @@
 use crate::commands::messages::Message;
 use crate::view_models::dive_planner::DivePlanner;
-use crate::views::dive_results::results::ResultsView;
-use crate::views::information::dive_information::DiveInformationView;
-use crate::views::parameters::dive_stage::DiveStageView;
-use iced::widget::{column, scrollable};
-use iced::{Element, Sandbox};
-use iced_aw::Grid;
+// use crate::views::dive_results::results::ResultsView;
+// use crate::views::information::dive_information::DiveInformationView;
+// use crate::views::parameters::dive_stage::DiveStageView;
+use iced::{
+    widget::{column, Scrollable},
+    Element, Sandbox,
+};
+// use iced_aw::Grid;
 
-use super::menu_bar::MenuBarView;
+// use super::menu_bar::MenuBarView;
 
 impl Sandbox for DivePlanner {
     type Message = Message;
@@ -21,6 +23,7 @@ impl Sandbox for DivePlanner {
             decompression_steps: Default::default(),
             cns_toxicity: Default::default(),
             redo_buffer: Default::default(),
+            is_planning: Default::default(),
         }
     }
 
@@ -30,18 +33,18 @@ impl Sandbox for DivePlanner {
 
     fn update(&mut self, message: Message) {
         match message {
-            Message::MenuBar => {}
-            Message::FileNew => self.file_new(),
-            Message::FileSave => self.file_save(),
-            Message::FileLoad => self.file_load(),
-            Message::EditUndo => self.edit_undo(),
-            Message::EditRedo => self.edit_redo(),
-            Message::ViewToggleCentralNervousSystemToxicityVisibility => {
-                self.view_toggle_central_nervous_system_toxicity_visibility();
-            }
-            Message::ViewToggleSelectCylinderVisibility => {
-                self.view_toggle_select_cylinder_visibility();
-            }
+            // Message::MenuBar => {}
+            // Message::FileNew => self.file_new(),
+            // Message::FileSave => self.file_save(),
+            // Message::FileLoad => self.file_load(),
+            // Message::EditUndo => self.edit_undo(),
+            // Message::EditRedo => self.edit_redo(),
+            // Message::ViewToggleCentralNervousSystemToxicityVisibility => {
+            //     self.view_toggle_central_nervous_system_toxicity_visibility();
+            // }
+            // Message::ViewToggleSelectCylinderVisibility => {
+            //     self.view_toggle_select_cylinder_visibility();
+            // }
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_model_selected(selectable_dive_model)
             }
@@ -67,39 +70,50 @@ impl Sandbox for DivePlanner {
             }
             Message::HeliumChanged(helium) => {
                 self.dive_stage.cylinder.gas_mixture.update_helium(helium)
-            }
-            Message::CylinderSelected(selectable_cylinder) => {
-                self.cylinder_selected(selectable_cylinder);
-            }
-            Message::UpdateCylinderSelected(selectable_cylinder) => {
-                self.update_cylinder_selected(selectable_cylinder)
-            }
+            } // Message::CylinderSelected(selectable_cylinder) => {
+            //     self.cylinder_selected(selectable_cylinder);
+            // }
+            // Message::UpdateCylinderSelected(selectable_cylinder) => {
+            //     self.update_cylinder_selected(selectable_cylinder)
+            // }
             Message::UpdateDiveProfile => {
                 self.update_dive_profile();
-            }
-            Message::DecompressionUpdateDiveProfile => {
-                self.decompression_update_dive_profile();
-            }
+            } // Message::DecompressionUpdateDiveProfile => {
+              //     self.decompression_update_dive_profile();
+              // }
         }
     }
 
-    fn view(&self) -> Element<Message> {
-        let menu_bar = MenuBarView::build_view(self);
-        let dive_stage = DiveStageView::build_view(self);
-        let dive_information = DiveInformationView::build_view(self);
-        let results = ResultsView::build_view(self);
+    // fn view(&self) -> Element<Message> {
+    //     let menu_bar = MenuBarView::build_view(self);
+    //     let dive_stage = DiveStageView::build_view(self);
+    //     let dive_information = DiveInformationView::build_view(self);
+    //     let results = ResultsView::build_view(self);
 
-        column![]
-            .push(Grid::with_columns(1).push(menu_bar.spacing(10).padding(10)))
-            .push(
-                Grid::with_columns(2)
-                    .push(scrollable(dive_stage.width(300.0).spacing(10).padding(10)))
-                    .push(scrollable(
-                        column![dive_information.spacing(10), results.spacing(10.0)]
-                            .spacing(10)
-                            .padding(10),
-                    )),
-            )
-            .into()
+    //     column![]
+    //         .push(Grid::with_columns(1).push(menu_bar.spacing(10).padding(10)))
+    //         .push(
+    //             Grid::with_columns(2)
+    //                 .push(scrollable(dive_stage.width(300.0).spacing(10).padding(10)))
+    //                 .push(scrollable(
+    //                     column![dive_information.spacing(10), results.spacing(10.0)]
+    //                         .spacing(10)
+    //                         .padding(10),
+    //                 )),
+    //         )
+    //         .into()
+    // }
+
+    fn view(&self) -> Element<Message> {
+        // TODO AH Consider a pane_grid for flexible user centric layout https://docs.rs/iced/latest/iced/widget/pane_grid/index.html
+
+        Scrollable::new(
+            column!()
+                .push(self.menu_view())
+                .push(self.plan_view())
+                .push(self.information_view())
+                .push(self.results_view()),
+        )
+        .into()
     }
 }
