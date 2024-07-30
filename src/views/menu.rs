@@ -1,33 +1,83 @@
 use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
 use iced::widget::{button, column};
-use iced_aw::menu::{Item, Menu, MenuBar};
+use iced::Length;
+use iced_aw::menu::{Item, Menu};
+use iced_aw::{menu_bar, menu_items};
 
 impl DivePlanner {
     pub fn menu_view(&self) -> iced::widget::Column<Message> {
-        let file = Item::with_menu(
+        // let file = Item::with_menu(
+        //     button("File").on_press(Message::MenuBar),
+        //     Menu::new(
+        //         [
+        //             Item::new(button("New").on_press(Message::FileNew)),
+        //             Item::new(button("Save").on_press(Message::FileSave)),
+        //             Item::new(button("Load").on_press(Message::FileLoad)),
+        //         ]
+        //         .into(),
+        //     ),
+        // );
+
+        // let edit = Item::with_menu(
+        //     button("Edit").on_press(Message::MenuBar),
+        //     Menu::new(
+        //         [
+        //             Item::new(button("Undo").on_press(Message::EditUndo)),
+        //             Item::new(button("Redo").on_press(Message::EditRedo)),
+        //         ]
+        //         .into(),
+        //     ),
+        // );
+
+        // column!().push(MenuBar::new(vec![file, edit]))
+
+        // use iced::widget::button;
+        // use iced_aw::menu::{Menu}
+        // use iced_aw::{menu_bar, menu_items}
+
+        // let menu_template = |items| Menu::new(items).max_width(180.0).offset(6.0);
+
+        // let menu_bar = menu_bar!(
+        //     (button("Menu 1"),menu_template(menu_items!(
+        //         (button("item_1"))
+        //         (button("item_2"))
+        //         (button("Sub Menu 1"), menu_template(menu_items!(
+        //             (button("item_1"))
+        //             (button("Sub Menu 2"), menu_template(menu_items!(
+        //                 (button("item_1"))
+        //                 (button("item_2"))
+        //                 (button("item_3"))
+        //             )))
+        //             (button("item_2"))
+        //             (button("item_3"))
+        //         )))
+        //         (button("item_3"))
+        //     )))
+        //     (button("Menu 2"), menu_template(menu_items!(
+        //         (button("item_1"))
+        //         (button("item_2"))
+        //         (button("item_3"))
+        //     )))
+        // )
+
+        let menu_template = |items| Menu::new(items).max_width(180.0).offset(6.0);
+
+        let menu_bar = menu_bar!((
             button("File").on_press(Message::MenuBar),
-            Menu::new(
-                [
-                    Item::new(button("New").on_press(Message::FileNew)),
-                    Item::new(button("Save").on_press(Message::FileSave)),
-                    Item::new(button("Load").on_press(Message::FileLoad)),
-                ]
-                .into(),
-            ),
-        );
+            menu_template(menu_items!((button("New")
+                .width(Length::Fill)
+                .on_press(Message::FileNew))(
+                button("Save")
+                    .width(Length::Fill)
+                    .on_press(Message::FileSave)
+            )(
+                button("Load")
+                    .width(Length::Fill)
+                    .on_press(Message::FileLoad)
+            )))
+        ));
 
-        let edit = Item::with_menu(
-            button("Edit").on_press(Message::MenuBar),
-            Menu::new(
-                [
-                    Item::new(button("Undo").on_press(Message::EditUndo)),
-                    Item::new(button("Redo").on_press(Message::EditRedo)),
-                ]
-                .into(),
-            ),
-        );
-
-        column!().push(MenuBar::new(vec![file, edit]))
+        column!().push(menu_bar)
     }
 
     // use iced::widget::button;
