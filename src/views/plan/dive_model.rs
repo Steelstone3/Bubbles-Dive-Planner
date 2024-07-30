@@ -9,14 +9,17 @@ use iced::{
 
 impl DivePlanner {
     pub fn select_dive_model_view(&self) -> Column<Message> {
-        column!().push(
-            pick_list(
-                &SelectableDiveModel::ALL[..],
-                self.select_dive_model.selected_dive_model,
-                Message::DiveModelSelected,
-            )
-            .width(Length::Fill)
-            .placeholder("Select Dive Model"),
-        )
+        match self.is_planning {
+            true => column!(),
+            false => column!().push(
+                pick_list(
+                    &SelectableDiveModel::ALL[..],
+                    self.select_dive_model.selected_dive_model,
+                    Message::DiveModelSelected,
+                )
+                .width(Length::Fill)
+                .placeholder("Select Dive Model"),
+            ),
+        }
     }
 }
