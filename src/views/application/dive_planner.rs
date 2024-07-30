@@ -33,9 +33,6 @@ impl Sandbox for DivePlanner {
             // Message::FileLoad => self.file_load(),
             // Message::EditUndo => self.edit_undo(),
             // Message::EditRedo => self.edit_redo(),
-            // Message::ViewToggleCentralNervousSystemToxicityVisibility => {
-            //     self.view_toggle_central_nervous_system_toxicity_visibility();
-            // }
             // Message::ViewToggleSelectCylinderVisibility => {
             //     self.view_toggle_select_cylinder_visibility();
             // }
