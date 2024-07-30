@@ -77,7 +77,18 @@ impl DivePlanner {
             )))
         ));
 
-        column!().push(menu_bar)
+        let menu_bar_2 = menu_bar!((
+            button("Edit").on_press(Message::MenuBar),
+            menu_template(menu_items!((button("Undo")
+                .width(Length::Fill)
+                .on_press(Message::EditUndo))(
+                button("Redo")
+                    .width(Length::Fill)
+                    .on_press(Message::EditRedo)
+            )))
+        ));
+
+        column!().push(menu_bar).push(menu_bar_2)
     }
 
     // use iced::widget::button;
