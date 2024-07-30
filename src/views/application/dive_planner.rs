@@ -76,26 +76,6 @@ impl Sandbox for DivePlanner {
         }
     }
 
-    // fn view(&self) -> Element<Message> {
-    //     let menu_bar = MenuBarView::build_view(self);
-    //     let dive_stage = DiveStageView::build_view(self);
-    //     let dive_information = DiveInformationView::build_view(self);
-    //     let results = ResultsView::build_view(self);
-
-    //     column![]
-    //         .push(Grid::with_columns(1).push(menu_bar.spacing(10).padding(10)))
-    //         .push(
-    //             Grid::with_columns(2)
-    //                 .push(scrollable(dive_stage.width(300.0).spacing(10).padding(10)))
-    //                 .push(scrollable(
-    //                     column![dive_information.spacing(10), results.spacing(10.0)]
-    //                         .spacing(10)
-    //                         .padding(10),
-    //                 )),
-    //         )
-    //         .into()
-    // }
-
     fn view(&self) -> Element<Message> {
         // TODO AH Consider a pane_grid for flexible user centric layout https://docs.rs/iced/latest/iced/widget/pane_grid/index.html
 
