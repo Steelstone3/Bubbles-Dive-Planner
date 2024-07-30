@@ -2,6 +2,8 @@ use super::selectable_dive_model::SelectableDiveModel;
 
 #[derive(Debug, Clone)]
 pub enum Message {
+    // PaneDragged(pane_grid::DragEvent),
+    // PaneResized(pane_grid::ResizeEvent),
     MenuBar,
     FileNew,
     FileSave,

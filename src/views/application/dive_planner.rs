@@ -5,6 +5,12 @@ use iced::{
     Element, Sandbox,
 };
 
+// pub enum PaneState {
+//     PlanPane,
+//     InformationPane,
+//     ResultsPane,
+// }
+
 impl Sandbox for DivePlanner {
     type Message = Message;
 
@@ -27,6 +33,8 @@ impl Sandbox for DivePlanner {
 
     fn update(&mut self, message: Message) {
         match message {
+            // Message::PaneDragged(_) => {}
+            // Message::PaneResized(_) => {}
             Message::MenuBar => {}
             Message::FileNew => self.file_new(),
             Message::FileSave => self.file_save(),
@@ -90,6 +98,20 @@ impl Sandbox for DivePlanner {
         );
 
         column = column.push(scrollable);
+
+        // let (state, _) = pane_grid::State::new(PaneState::PlanPane);
+
+        // let pane_grid = PaneGrid::new(&state, |pane, state, is_maximized| {
+        //     pane_grid::Content::new(match state {
+        //         PaneState::PlanPane => self.plan_view(),
+        //         PaneState::InformationPane => self.information_view(),
+        //         PaneState::ResultsPane => self.results_view(),
+        //     })
+        // })
+        // .on_drag(Message::PaneDragged)
+        // .on_resize(10, Message::PaneResized);
+
+        // column = column.push(pane_grid);
 
         column.into()
     }
