@@ -3,7 +3,7 @@ use super::selectable_dive_model::SelectableDiveModel;
 #[derive(Debug, Clone)]
 pub enum Message {
     // MenuBar,
-    // FileNew,
+    FileNew,
     // FileSave,
     // FileLoad,
     // EditUndo,

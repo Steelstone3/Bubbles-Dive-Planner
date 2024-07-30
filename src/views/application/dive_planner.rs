@@ -28,7 +28,7 @@ impl Sandbox for DivePlanner {
     fn update(&mut self, message: Message) {
         match message {
             // Message::MenuBar => {}
-            // Message::FileNew => self.file_new(),
+            Message::FileNew => self.file_new(),
             // Message::FileSave => self.file_save(),
             // Message::FileLoad => self.file_load(),
             // Message::EditUndo => self.edit_undo(),

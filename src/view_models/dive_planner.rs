@@ -298,9 +298,7 @@ mod dive_planner_should {
                 ..Default::default()
             },
             dive_stage: dive_stage_test_fixture(),
-            decompression_steps: DecompressionSteps {
-                dive_steps: vec![],
-            },
+            decompression_steps: DecompressionSteps { dive_steps: vec![] },
             ..Default::default()
         };
         expected_dive_planner.dive_stage.dive_model.dive_profile = expected_dive_profile;
