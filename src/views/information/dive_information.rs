@@ -7,6 +7,7 @@ impl DivePlanner {
             .push(text("Information"))
             .padding(10)
             .spacing(10)
+            // CNS Toxicity View
             .push(self.dive_boundaries_view())
             .padding(10)
             .spacing(10)
