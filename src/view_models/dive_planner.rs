@@ -78,10 +78,6 @@ impl DivePlanner {
         !self.redo_buffer.is_empty()
     }
 
-    pub fn view_toggle_central_nervous_system_toxicity_visibility(&mut self) {
-        self.cns_toxicity.toggle_visibility();
-    }
-
     pub fn view_toggle_select_cylinder_visibility(&mut self) {
         self.select_cylinder.toggle_visibility();
     }
@@ -763,28 +759,6 @@ mod dive_planner_should {
 
         // Then
         assert_eq!(expected_is_visible, dive_planner.select_cylinder.is_visible);
-    }
-
-    #[rstest]
-    #[case(false, true)]
-    #[case(true, false)]
-    fn toggle_the_central_nervous_system_toxicity_visibility(
-        #[case] is_visible: bool,
-        #[case] expected_is_visible: bool,
-    ) {
-        // Given
-        let mut cns_toxicity = CentralNervousSystemToxicity::default();
-        cns_toxicity.is_visible = is_visible;
-        let mut dive_planner = DivePlanner {
-            cns_toxicity,
-            ..Default::default()
-        };
-
-        // When
-        dive_planner.view_toggle_central_nervous_system_toxicity_visibility();
-
-        // Then
-        assert_eq!(expected_is_visible, dive_planner.cns_toxicity.is_visible)
     }
 
     #[rstest]
