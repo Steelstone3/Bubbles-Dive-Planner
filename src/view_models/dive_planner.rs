@@ -109,8 +109,6 @@ impl DivePlanner {
         self.run_decompression_steps();
 
         self.assign_decompression_steps();
-
-        self.update_decompression_steps_visibility();
     }
 
     pub fn update_dive_profile(&mut self) {
@@ -145,10 +143,6 @@ impl DivePlanner {
         self.redo_buffer = Default::default();
     }
 
-    fn update_decompression_steps_visibility(&mut self) {
-        self.decompression_steps.update_visibility();
-    }
-
     fn assign_decompression_steps(&mut self) {
         self.decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
@@ -175,7 +169,6 @@ impl DivePlanner {
         self.select_cylinder.read_only_view();
         // TODO AH depricate all the needless readonly and is visible flags
         self.dive_results.is_visible = true;
-        self.decompression_steps.update_visibility();
     }
 }
 
@@ -204,7 +197,6 @@ mod dive_planner_should {
             },
             dive_stage: dive_stage_test_fixture(),
             decompression_steps: DecompressionSteps {
-                is_visible: true,
                 dive_steps: vec![
                     DiveStep { depth: 9, time: 2 },
                     DiveStep { depth: 6, time: 3 },
@@ -234,7 +226,6 @@ mod dive_planner_should {
             dive_planner.decompression_steps
         );
         assert!(dive_planner.dive_results.is_visible);
-        assert!(dive_planner.decompression_steps.is_visible);
         assert!(dive_planner.select_cylinder.cylinders[0].is_read_only);
         assert!(dive_planner.select_cylinder.cylinders[1].is_read_only);
         assert!(dive_planner.select_cylinder.cylinders[2].is_read_only);
@@ -312,7 +303,6 @@ mod dive_planner_should {
             },
             dive_stage: dive_stage_test_fixture(),
             decompression_steps: DecompressionSteps {
-                is_visible: false,
                 dive_steps: vec![],
             },
             ..Default::default()
@@ -398,7 +388,6 @@ mod dive_planner_should {
     fn select_a_cylinder(#[case] selectable_cylinder: SelectableCylinder) {
         // Given
         let expected_decompression_steps = DecompressionSteps {
-            is_visible: false,
             dive_steps: vec![
                 DiveStep { depth: 6, time: 1 },
                 DiveStep { depth: 3, time: 3 },

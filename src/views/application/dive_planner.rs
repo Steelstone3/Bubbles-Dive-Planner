@@ -1,15 +1,9 @@
 use crate::commands::messages::Message;
 use crate::view_models::dive_planner::DivePlanner;
-// use crate::views::dive_results::results::ResultsView;
-// use crate::views::information::dive_information::DiveInformationView;
-// use crate::views::parameters::dive_stage::DiveStageView;
 use iced::{
     widget::{column, Scrollable},
     Element, Sandbox,
 };
-// use iced_aw::Grid;
-
-// use super::menu_bar::MenuBarView;
 
 impl Sandbox for DivePlanner {
     type Message = Message;
@@ -78,9 +72,10 @@ impl Sandbox for DivePlanner {
             // }
             Message::UpdateDiveProfile => {
                 self.update_dive_profile();
-            } // Message::DecompressionUpdateDiveProfile => {
-              //     self.decompression_update_dive_profile();
-              // }
+            }
+            Message::DecompressionUpdateDiveProfile => {
+                self.decompression_update_dive_profile();
+            }
         }
     }
 
