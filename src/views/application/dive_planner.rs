@@ -78,14 +78,19 @@ impl Sandbox for DivePlanner {
 
     fn view(&self) -> Element<Message> {
         // TODO AH Consider a pane_grid for flexible user centric layout https://docs.rs/iced/latest/iced/widget/pane_grid/index.html
+        let mut column = column!();
 
-        Scrollable::new(
+        column = column.push(self.menu_view());
+
+        let scrollable = Scrollable::new(
             column!()
-                .push(self.menu_view())
                 .push(self.plan_view())
                 .push(self.information_view())
                 .push(self.results_view()),
-        )
-        .into()
+        );
+
+        column = column.push(scrollable);
+
+        column.into()
     }
 }

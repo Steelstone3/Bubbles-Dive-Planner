@@ -6,7 +6,7 @@ impl DivePlanner {
     pub fn menu_view(&self) -> iced::widget::Column<Message> {
         let file = Item::with_menu(
             button("File").on_press(Message::MenuBar),
-            Menu::new([Item::new(button("New").on_press(Message::FileNew).width(100))].into()),
+            Menu::new([Item::new(button("New").on_press(Message::FileNew))].into()),
         );
 
         column!(MenuBar::new(vec![file]))
