@@ -6,10 +6,28 @@ impl DivePlanner {
     pub fn menu_view(&self) -> iced::widget::Column<Message> {
         let file = Item::with_menu(
             button("File").on_press(Message::MenuBar),
-            Menu::new([Item::new(button("New").on_press(Message::FileNew))].into()),
+            Menu::new(
+                [
+                    Item::new(button("New").on_press(Message::FileNew)),
+                    Item::new(button("Save").on_press(Message::FileSave)),
+                    Item::new(button("Load").on_press(Message::FileLoad)),
+                ]
+                .into(),
+            ),
         );
 
-        column!(MenuBar::new(vec![file]))
+        let edit = Item::with_menu(
+            button("Edit").on_press(Message::MenuBar),
+            Menu::new(
+                [
+                    Item::new(button("Undo").on_press(Message::EditUndo)),
+                    Item::new(button("Redo").on_press(Message::EditRedo)),
+                ]
+                .into(),
+            ),
+        );
+
+        column!().push(MenuBar::new(vec![file, edit]))
     }
 
     // use iced::widget::button;
@@ -54,9 +72,6 @@ impl DivePlanner {
     // );
 
     // let menu_bar = MenuBar::new(vec![root_1, root_2]);
-
-
-
 
     // MenuBarView {
     //             file: MenuBar::new(vec![MenuTree::with_children(

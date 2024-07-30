@@ -29,10 +29,10 @@ impl Sandbox for DivePlanner {
         match message {
             Message::MenuBar => {}
             Message::FileNew => self.file_new(),
-            // Message::FileSave => self.file_save(),
-            // Message::FileLoad => self.file_load(),
-            // Message::EditUndo => self.edit_undo(),
-            // Message::EditRedo => self.edit_redo(),
+            Message::FileSave => self.file_save(),
+            Message::FileLoad => self.file_load(),
+            Message::EditUndo => self.edit_undo(),
+            Message::EditRedo => self.edit_redo(),
             // Message::ViewToggleSelectCylinderVisibility => {
             //     self.view_toggle_select_cylinder_visibility();
             // }
