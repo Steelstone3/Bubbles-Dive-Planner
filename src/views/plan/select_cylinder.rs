@@ -3,7 +3,7 @@ use crate::{
     models::dive_planner::DivePlanner,
 };
 use iced::{
-    widget::{button, column, pick_list, text, Column},
+    widget::{button, column, pick_list, Column},
     Length,
 };
 use iced_aw::Card;
