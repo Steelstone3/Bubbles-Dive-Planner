@@ -11,11 +11,6 @@ impl DivePlanner {
     pub fn select_cylinder_view<'a>(&self) -> Column<'a, Message> {
         if self.is_planning && self.select_cylinder.is_multiple_cylinder {
             return column![
-                button("Update Cylinder").width(Length::Fill).on_press(
-                    Message::UpdateCylinderSelected(
-                        self.select_cylinder.selected_cylinder.unwrap()
-                    ),
-                ),
                 text("Select Cylinder"),
                 pick_list(
                     &SelectableCylinder::ALL[..],
@@ -24,6 +19,11 @@ impl DivePlanner {
                 )
                 .width(Length::Fill)
                 .placeholder("Select Cylinder"),
+                button("Update Cylinder").width(Length::Fill).on_press(
+                    Message::UpdateCylinderSelected(
+                        self.select_cylinder.selected_cylinder.unwrap()
+                    ),
+                ),
             ]
             .spacing(10.0);
         } else if !self.is_planning && self.select_cylinder.is_multiple_cylinder {

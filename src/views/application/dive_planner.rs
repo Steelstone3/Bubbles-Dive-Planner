@@ -23,7 +23,7 @@ impl Sandbox for DivePlanner {
             decompression_steps: Default::default(),
             cns_toxicity: Default::default(),
             redo_buffer: Default::default(),
-            is_planning: Default::default(),
+            is_planning: true,
         }
     }
 
