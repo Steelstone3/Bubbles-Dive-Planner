@@ -2,30 +2,11 @@ use crate::commands::messages::Message;
 use crate::models::dive_planner::DivePlanner;
 use iced::{
     widget::{column, Scrollable},
-    Element, Sandbox,
+    Element,
 };
 
-impl Sandbox for DivePlanner {
-    type Message = Message;
-
-    fn new() -> Self {
-        Self {
-            select_dive_model: Default::default(),
-            select_cylinder: Default::default(),
-            dive_stage: Default::default(),
-            dive_results: Default::default(),
-            decompression_steps: Default::default(),
-            cns_toxicity: Default::default(),
-            redo_buffer: Default::default(),
-            is_planning: true,
-        }
-    }
-
-    fn title(&self) -> String {
-        String::from("Bubbles Dive Planner")
-    }
-
-    fn update(&mut self, message: Message) {
+impl DivePlanner {
+    pub fn update(&mut self, message: Message) {
         match message {
             // Message::PaneDragged(_) => {}
             // Message::PaneResized(_) => {}
@@ -79,7 +60,7 @@ impl Sandbox for DivePlanner {
         }
     }
 
-    fn view(&self) -> Element<Message> {
+    pub fn view(&self) -> Element<Message> {
         // TODO AH Consider a tab view
         let mut column = column!();
 
