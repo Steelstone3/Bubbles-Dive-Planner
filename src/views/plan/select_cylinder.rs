@@ -28,20 +28,17 @@ impl DivePlanner {
             .spacing(10.0);
 
             return column!().push(Card::new("Select Cylinder", contents));
-        } 
-        else if !self.is_planning && self.select_cylinder.is_multiple_cylinder {
-            let contents = column![
-                pick_list(
-                    &SelectableCylinder::ALL[..],
-                    self.select_cylinder.selected_cylinder,
-                    Message::CylinderSelected,
-                )
-                .width(Length::Fill)
-                .placeholder("Select Cylinder"),
-            ]
+        } else if !self.is_planning && self.select_cylinder.is_multiple_cylinder {
+            let contents = column![pick_list(
+                &SelectableCylinder::ALL[..],
+                self.select_cylinder.selected_cylinder,
+                Message::CylinderSelected,
+            )
+            .width(Length::Fill)
+            .placeholder("Select Cylinder"),]
             .spacing(10.0);
-            
-            return column!().push(Card::new("Select Cylinder", contents))
+
+            return column!().push(Card::new("Select Cylinder", contents));
         } else {
             return column![];
         }

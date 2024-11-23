@@ -13,7 +13,10 @@ impl DivePlanner {
         } else {
             let mut column = column![];
 
-            column = column.push(text("Results").size(24)).padding(10).spacing(10);
+            column = column
+                .push(text("Results").size(24))
+                .padding(10)
+                .spacing(10);
 
             for result in self.result_cards() {
                 column = column.push(result).padding(10).spacing(10);
