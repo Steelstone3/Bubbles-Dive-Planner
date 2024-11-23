@@ -29,8 +29,7 @@ impl DivePlanner {
 
             return column!().push(Card::new("Select Cylinder", contents));
         } else if !self.is_planning && self.select_cylinder.is_multiple_cylinder {
-            return column![
-                text("Select Cylinder"),
+            let contents = column![
                 pick_list(
                     &SelectableCylinder::ALL[..],
                     self.select_cylinder.selected_cylinder,
@@ -40,6 +39,8 @@ impl DivePlanner {
                 .placeholder("Select Cylinder"),
             ]
             .spacing(10.0);
+            
+            return column!().push(Card::new("Select Cylinder", contents))
         } else {
             return column![];
         }
