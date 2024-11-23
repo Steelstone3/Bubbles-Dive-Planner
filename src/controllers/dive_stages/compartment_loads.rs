@@ -1,4 +1,4 @@
-use crate::models::dive_profile::DiveProfile;
+use crate::models::result::dive_profile::DiveProfile;
 
 pub fn calculate_compartment_loads(compartment: usize, dive_profile_model: DiveProfile) -> f32 {
     dive_profile_model.total_tissue_pressures[compartment]

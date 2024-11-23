@@ -1,4 +1,4 @@
-use crate::models::dive_model::DiveModel;
+use crate::models::plan::dive_model::DiveModel;
 
 pub fn calculate_a_values(compartment: usize, dive_model: DiveModel) -> f32 {
     (dive_model.a_values_nitrogen[compartment]
@@ -19,7 +19,7 @@ pub fn calculate_b_values(compartment: usize, dive_model: DiveModel) -> f32 {
 #[cfg(test)]
 mod commands_a_b_values_should {
     use super::*;
-    use crate::models::dive_profile::DiveProfile;
+    use crate::models::result::dive_profile::DiveProfile;
 
     #[test]
     fn calculate_a_values_of_the_dive_profile() {

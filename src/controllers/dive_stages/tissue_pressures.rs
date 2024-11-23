@@ -1,4 +1,7 @@
-use crate::models::{dive_model::DiveModel, dive_profile::DiveProfile, dive_step::DiveStep};
+use crate::models::{
+    plan::{dive_model::DiveModel, dive_step::DiveStep},
+    result::dive_profile::DiveProfile,
+};
 
 pub fn calculate_nitrogen_tissue_pressures(
     compartment: usize,

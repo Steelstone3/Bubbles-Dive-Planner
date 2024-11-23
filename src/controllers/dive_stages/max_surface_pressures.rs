@@ -1,4 +1,4 @@
-use crate::models::dive_profile::DiveProfile;
+use crate::models::result::dive_profile::DiveProfile;
 
 pub fn calculate_max_surface_pressures(compartment: usize, dive_profile_model: DiveProfile) -> f32 {
     (1.0 / dive_profile_model.b_values[compartment]) + dive_profile_model.a_values[compartment]

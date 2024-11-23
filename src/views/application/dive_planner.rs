@@ -1,48 +1,37 @@
-use crate::commands::messages::Message;
-use crate::view_models::dive_planner::DivePlanner;
-use crate::views::dive_results::results::ResultsView;
-use crate::views::information::dive_information::DiveInformationView;
-use crate::views::parameters::dive_stage::DiveStageView;
-use iced::widget::{column, scrollable};
-use iced::{Element, Sandbox};
-use iced_aw::Grid;
+use crate::{
+    commands::{messages::Message, tab_identifier::TabIdentifier},
+    models::application::dive_planner::DivePlanner,
+};
+use iced::{Element, Theme};
 
-use super::menu_bar::MenuBarView;
-
-impl Sandbox for DivePlanner {
-    type Message = Message;
-
-    fn new() -> Self {
-        Self {
-            select_dive_model: Default::default(),
-            select_cylinder: Default::default(),
-            dive_stage: Default::default(),
-            dive_results: Default::default(),
-            decompression_steps: Default::default(),
-            cns_toxicity: Default::default(),
-            redo_buffer: Default::default(),
-        }
-    }
-
-    fn title(&self) -> String {
-        String::from("Bubbles Dive Planner")
-    }
-
-    fn update(&mut self, message: Message) {
+impl DivePlanner {
+    pub fn update(&mut self, message: Message) {
         match message {
             Message::MenuBar => {}
+            Message::SelectedTabChanged(tab_identifier) => match tab_identifier {
+                TabIdentifier::Plan => {
+                    self.application_state.tab_identifier = TabIdentifier::Plan;
+                }
+                TabIdentifier::Information => {
+                    self.application_state.tab_identifier = TabIdentifier::Information;
+                }
+                TabIdentifier::Results => {
+                    self.application_state.tab_identifier = TabIdentifier::Results;
+                }
+            },
             Message::FileNew => self.file_new(),
             Message::FileSave => self.file_save(),
             Message::FileLoad => self.file_load(),
             Message::EditUndo => self.edit_undo(),
             Message::EditRedo => self.edit_redo(),
-            Message::ViewToggleCentralNervousSystemToxicityVisibility => {
-                self.view_toggle_central_nervous_system_toxicity_visibility();
-            }
-            Message::ViewToggleSelectCylinderVisibility => {
+            Message::ViewToggleTheme => match self.application_state.is_light_theme {
+                true => self.application_state.is_light_theme = false,
+                false => self.application_state.is_light_theme = true,
+            },
+            Message::ViewToggleSelectedCylinderVisibility => {
                 self.view_toggle_select_cylinder_visibility();
             }
-            Message::DiveModelSelected(selectable_dive_model) => {
+            Message::SelectedDiveModelChanged(selectable_dive_model) => {
                 self.dive_model_selected(selectable_dive_model)
             }
             Message::DepthChanged(depth) => self.dive_stage.dive_step.update_depth(depth),
@@ -68,10 +57,10 @@ impl Sandbox for DivePlanner {
             Message::HeliumChanged(helium) => {
                 self.dive_stage.cylinder.gas_mixture.update_helium(helium)
             }
-            Message::CylinderSelected(selectable_cylinder) => {
+            Message::SelectedCylinderChanged(selectable_cylinder) => {
                 self.cylinder_selected(selectable_cylinder);
             }
-            Message::UpdateCylinderSelected(selectable_cylinder) => {
+            Message::UpdateSelectedCylinder(selectable_cylinder) => {
                 self.update_cylinder_selected(selectable_cylinder)
             }
             Message::UpdateDiveProfile => {
@@ -83,23 +72,15 @@ impl Sandbox for DivePlanner {
         }
     }
 
-    fn view(&self) -> Element<Message> {
-        let menu_bar = MenuBarView::build_view(self);
-        let dive_stage = DiveStageView::build_view(self);
-        let dive_information = DiveInformationView::build_view(self);
-        let results = ResultsView::build_view(self);
+    pub fn view(&self) -> Element<Message> {
+        self.tab_bar_view().into()
+    }
 
-        column![]
-            .push(Grid::with_columns(1).push(menu_bar.spacing(10).padding(10)))
-            .push(
-                Grid::with_columns(2)
-                    .push(scrollable(dive_stage.width(300.0).spacing(10).padding(10)))
-                    .push(scrollable(
-                        column![dive_information.spacing(10), results.spacing(10.0)]
-                            .spacing(10)
-                            .padding(10),
-                    )),
-            )
-            .into()
+    pub fn theme(&self) -> Theme {
+        // Theme::GruvboxDark
+        match self.application_state.is_light_theme {
+            true => Theme::Light,
+            false => Theme::Dark,
+        }
     }
 }
