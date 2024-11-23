@@ -24,9 +24,9 @@ impl DivePlanner {
 mod file_should {
     use crate::{
         controllers::files::file::{DIVE_PLAN, DIVE_PLANNER_STATE_FILE_NAME},
+        models::dive_planner::DivePlanner,
         models::results::DiveResults,
         test_fixture::dive_stage_test_fixture,
-        models::dive_planner::DivePlanner,
     };
     use std::fs;
 

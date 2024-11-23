@@ -1,6 +1,4 @@
-use crate::{
-    commands::selectable_cylinder::SelectableCylinder, models::dive_planner::DivePlanner,
-};
+use crate::{commands::selectable_cylinder::SelectableCylinder, models::dive_planner::DivePlanner};
 
 impl DivePlanner {
     pub fn view_toggle_select_cylinder_visibility(&mut self) {
@@ -28,13 +26,13 @@ mod cylinder_should {
 
     use crate::{
         commands::selectable_cylinder::SelectableCylinder,
+        models::dive_planner::DivePlanner,
         models::{
             cylinder::Cylinder, decompression_steps::DecompressionSteps, dive_step::DiveStep,
             gas_management::GasManagement, gas_mixture::GasMixture,
             select_cylinder::SelectCylinder,
         },
         test_fixture::dive_stage_test_fixture,
-        models::dive_planner::DivePlanner,
     };
 
     #[rstest]

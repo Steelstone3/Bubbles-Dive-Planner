@@ -1,4 +1,4 @@
-use crate::{models::dive_profile::DiveProfile, models::dive_planner::DivePlanner};
+use crate::{models::dive_planner::DivePlanner, models::dive_profile::DiveProfile};
 
 impl DivePlanner {
     pub fn decompression_update_dive_profile(&mut self) {
@@ -31,12 +31,12 @@ impl DivePlanner {
 mod decompression_should {
     use crate::{
         commands::selectable_cylinder::SelectableCylinder,
+        models::dive_planner::DivePlanner,
         models::{
             decompression_steps::DecompressionSteps, dive_profile::DiveProfile,
             select_cylinder::SelectCylinder,
         },
         test_fixture::dive_stage_test_fixture,
-        models::dive_planner::DivePlanner,
     };
 
     #[test]

@@ -36,9 +36,9 @@ impl DivePlanner {
 #[cfg(test)]
 mod edit_should {
     use crate::{
+        models::dive_planner::DivePlanner,
         models::{dive_stage::DiveStage, results::DiveResults},
         test_fixture::{dive_stage_test_fixture, dive_stage_test_fixture_default},
-        models::dive_planner::DivePlanner,
     };
     use rstest::rstest;
 

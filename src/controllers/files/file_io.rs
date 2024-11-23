@@ -1,5 +1,5 @@
-use crate::models::dive_stage::DiveStage;
 use crate::models::dive_planner::DivePlanner;
+use crate::models::dive_stage::DiveStage;
 use std::fs::File;
 use std::io::{Read, Write};
 
