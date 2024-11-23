@@ -1,7 +1,5 @@
 use crate::{
-    commands::{
-        selectable_cylinder::SelectableCylinder, selectable_dive_model::SelectableDiveModel,
-    },
+    commands::selectable_cylinder::SelectableCylinder,
     models::{
         central_nervous_system_toxicity::CentralNervousSystemToxicity,
         decompression_steps::DecompressionSteps, dive_profile::DiveProfile, dive_stage::DiveStage,
@@ -34,16 +32,13 @@ impl DivePlanner {
         self.select_cylinder.toggle_visibility();
     }
 
-    pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
-        self.select_dive_model
-            .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
-    }
-
     pub fn cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
         self.select_cylinder
             .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
 
-        self.refresh_decompression();
+        // Refresh decompression steps
+        self.decompression_steps
+            .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
     }
 
     pub fn update_cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
@@ -52,29 +47,14 @@ impl DivePlanner {
     }
 
     pub fn decompression_update_dive_profile(&mut self) {
-        self.refresh_decompression();
+        // Refresh decompression steps
+        self.decompression_steps
+            .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
 
         self.run_decompression_steps();
 
-        self.assign_decompression_steps();
-    }
-
-    pub fn update_dive_profile(&mut self) {
-        self.assign_selected_cylinder();
-
-        self.assign_dive_stage(DiveProfile::update_dive_profile(self.dive_stage));
-
-        self.add_result();
-
-        self.assign_selected_cylinder();
-
-        self.assign_decompression_steps();
-
-        self.update_visibility();
-    }
-
-    fn refresh_decompression(&mut self) {
-        self.assign_decompression_steps();
+        self.decompression_steps
+            .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
     }
 
     fn run_decompression_steps(&mut self) {
@@ -90,43 +70,17 @@ impl DivePlanner {
 
         self.redo_buffer = Default::default();
     }
-
-    fn assign_decompression_steps(&mut self) {
-        self.decompression_steps
-            .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
-    }
-
-    fn assign_selected_cylinder(&mut self) {
-        self.select_cylinder
-            .assign_cylinder(self.dive_stage.cylinder);
-    }
-
-    fn assign_dive_stage(&mut self, dive_stage: DiveStage) {
-        self.dive_stage = dive_stage
-    }
-
-    fn add_result(&mut self) {
-        self.dive_results.results.push(self.dive_stage);
-        self.redo_buffer = Default::default();
-    }
-
-    fn update_visibility(&mut self) {
-        self.is_planning = true;
-
-        // TODO AH depricate all the needless readonly and is visible flags
-        self.select_cylinder.read_only_view();
-        // TODO AH depricate all the needless readonly and is visible flags
-        self.dive_results.is_visible = true;
-    }
 }
 
 #[cfg(test)]
 mod dive_planner_should {
     use super::*;
-    use crate::{models::{
-        cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile, dive_step::DiveStep,
-        gas_management::GasManagement, gas_mixture::GasMixture,
-    }, test_fixture::dive_stage_test_fixture};
+    use crate::{
+        commands::selectable_dive_model::SelectableDiveModel, models::{
+            cylinder::Cylinder, dive_model::DiveModel, dive_profile::DiveProfile,
+            dive_step::DiveStep, gas_management::GasManagement, gas_mixture::GasMixture,
+        }, test_fixture::dive_stage_test_fixture
+    };
     use rstest::rstest;
 
     #[test]
@@ -377,7 +331,7 @@ mod dive_planner_should {
             dive_planner.decompression_steps
         );
     }
-    
+
     #[test]
     fn reset_dive_planner_to_default_state() {
         // Given
