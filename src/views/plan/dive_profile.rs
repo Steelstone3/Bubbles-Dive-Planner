@@ -6,7 +6,7 @@ impl DivePlanner {
         match !self.dive_stage.validate() {
             true => column!().push(button("Invalid Parameters")),
             false => {
-                column!().push(button("Update Dive Profile").on_press(Message::UpdateDiveProfile))
+                column!().push(button("Run Dive Profile").on_press(Message::UpdateDiveProfile))
             }
         }
     }
