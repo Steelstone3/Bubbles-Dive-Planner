@@ -1,4 +1,7 @@
-use crate::models::{dive_profile::DiveProfile, dive_step::DiveStep, gas_mixture::GasMixture};
+use crate::models::{
+    plan::{dive_step::DiveStep, gas_mixture::GasMixture},
+    result::dive_profile::DiveProfile,
+};
 
 pub fn calculate_ambient_pressures(
     mut dive_profile_model: DiveProfile,

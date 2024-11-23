@@ -1,4 +1,4 @@
-use crate::models::dive_profile::DiveProfile;
+use crate::models::result::dive_profile::DiveProfile;
 
 pub fn calculate_tolerated_ambient_pressure(
     compartment: usize,

@@ -1,6 +1,9 @@
-use super::{selectable_cylinder::SelectableCylinder, selectable_dive_model::SelectableDiveModel};
+use super::{
+    selectable_cylinder::SelectableCylinder, selectable_dive_model::SelectableDiveModel,
+    tab_identifier::TabIdentifier,
+};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Message {
     MenuBar,
     FileNew,
@@ -8,9 +11,10 @@ pub enum Message {
     FileLoad,
     EditUndo,
     EditRedo,
-    ViewToggleCentralNervousSystemToxicityVisibility,
-    ViewToggleSelectCylinderVisibility,
-    DiveModelSelected(SelectableDiveModel),
+    ViewToggleTheme,
+    ViewToggleSelectedCylinderVisibility,
+    SelectedTabChanged(TabIdentifier),
+    SelectedDiveModelChanged(SelectableDiveModel),
     DepthChanged(String),
     TimeChanged(String),
     CylinderVolumeChanged(String),
@@ -18,8 +22,8 @@ pub enum Message {
     SurfaceAirConsumptionChanged(String),
     OxygenChanged(String),
     HeliumChanged(String),
-    CylinderSelected(SelectableCylinder),
-    UpdateCylinderSelected(SelectableCylinder),
+    SelectedCylinderChanged(SelectableCylinder),
+    UpdateSelectedCylinder(SelectableCylinder),
     UpdateDiveProfile,
     DecompressionUpdateDiveProfile,
 }

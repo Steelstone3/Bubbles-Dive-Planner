@@ -1,12 +1,20 @@
-use iced::{Sandbox, Settings};
-use view_models::dive_planner::DivePlanner;
+use iced::Settings;
+use models::application::dive_planner::DivePlanner;
 
 mod commands;
 mod controllers;
 mod models;
-mod view_models;
+mod test_fixture;
 mod views;
 
 pub fn main() -> iced::Result {
-    DivePlanner::run(Settings::default())
+    iced::application(
+        "Bubbles Dive Planner",
+        DivePlanner::update,
+        DivePlanner::view,
+    )
+    .theme(DivePlanner::theme)
+    .antialiasing(true)
+    .settings(Settings::default())
+    .run()
 }

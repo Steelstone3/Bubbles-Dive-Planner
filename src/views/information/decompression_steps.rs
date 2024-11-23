@@ -1,80 +1,40 @@
-use iced::widget::{button, column, text, Button, Column, Text};
-use iced_aw::Card;
-
-use crate::{
-    commands::messages::Message, models::dive_step::DiveStep,
-    view_models::dive_planner::DivePlanner,
+use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
+use iced::{
+    widget::{button, column, text},
+    Renderer, Theme,
 };
+use iced_aw::widgets::Card;
 
-use super::decompression_step::DecompressionStepView;
+impl DivePlanner {
+    pub fn decompression_steps_view(&self) -> iced::widget::Column<Message> {
+        let mut contents = column![];
 
-pub struct DecompressionStepsView<'a> {
-    decompression_steps_title_text: Text<'a>,
-    decompression_steps_text: Column<'a, Message>,
-    calculate_decompression: Button<'a, Message>,
-}
+        if !self.decompression_steps.dive_steps.is_empty() {
+            for decompression_steps in self.decompression_steps_cards() {
+                contents = contents.push(decompression_steps).spacing(10);
+            }
 
-impl DecompressionStepsView<'_> {
-    pub fn build_view<'a>(dive_planner: &DivePlanner) -> Column<'a, Message> {
-        let decompression_steps = DecompressionStepsView::new(dive_planner);
-
-        if !dive_planner.decompression_steps.is_visible {
-            return column![];
+            contents = contents
+                .push(
+                    button("Run Decompression Profile")
+                        .on_press(Message::DecompressionUpdateDiveProfile),
+                )
+                .spacing(10);
         }
-        column![
-            decompression_steps.decompression_steps_title_text,
-            decompression_steps.decompression_steps_text,
-            decompression_steps.calculate_decompression,
-        ]
-        .spacing(10.0)
+
+        contents
     }
 
-    fn new<'a>(dive_planner: &DivePlanner) -> DecompressionStepsView<'a> {
-        let decompression_step_views = DecompressionStepsView::to_decompression_step_views(
-            &dive_planner.decompression_steps.dive_steps,
-        );
-        let cards = DecompressionStepsView::to_cards(decompression_step_views);
-        let column = DecompressionStepsView::to_column(cards);
+    fn decompression_steps_cards(&self) -> Vec<Card<Message, Theme, Renderer>> {
+        let mut decompression_steps_cards = vec![];
 
-        DecompressionStepsView {
-            decompression_steps_title_text: text("Decompression Steps"),
-            decompression_steps_text: column,
-            calculate_decompression: button("Update Dive Profile")
-                .on_press(Message::DecompressionUpdateDiveProfile),
-        }
-    }
-
-    fn to_decompression_step_views<'a>(
-        dive_steps: &Vec<DiveStep>,
-    ) -> Vec<DecompressionStepView<'a>> {
-        let mut decompression_step_views = vec![];
-
-        for dive_step in dive_steps {
-            decompression_step_views.push(DecompressionStepView::new(dive_step));
+        for decompression_step in &self.decompression_steps.dive_steps {
+            decompression_steps_cards.push(Card::new(
+                "Decompression Step",
+                text(decompression_step.to_string()),
+            ))
         }
 
-        decompression_step_views
-    }
-
-    fn to_cards(
-        decompression_step_views: Vec<DecompressionStepView<'_>>,
-    ) -> Vec<Card<'_, Message>> {
-        let mut cards = vec![];
-
-        for decompression_step_view in decompression_step_views {
-            cards.push(decompression_step_view.decompression_step_text);
-        }
-
-        cards
-    }
-
-    fn to_column(cards: Vec<Card<'_, Message>>) -> Column<'_, Message> {
-        let mut column = column![];
-
-        for card in cards.into_iter() {
-            column = column.push(card);
-        }
-
-        column
+        decompression_steps_cards
     }
 }
