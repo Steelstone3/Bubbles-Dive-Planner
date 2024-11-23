@@ -3,7 +3,6 @@ use iced::widget::{column, text, Column};
 
 impl DivePlanner {
     pub fn plan_view(&self) -> Column<Message> {
-        // TODO AH Scrollable::new()
         column!()
             .push(text("Plan"))
             .padding(10)
