@@ -35,8 +35,11 @@ impl DivePlanner {
             .to_string();
 
             result_cards.push(
-                Card::new("Dive Profile", text(dive_stage.dive_model.dive_profile.to_string()))
-                    .foot(text(footer)),
+                Card::new(
+                    "Dive Profile",
+                    text(dive_stage.dive_model.dive_profile.to_string()),
+                )
+                .foot(text(footer)),
             );
         }
 
