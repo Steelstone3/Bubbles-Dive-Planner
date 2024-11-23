@@ -15,7 +15,6 @@ pub fn dive_stage_test_fixture() -> DiveStage {
             time: 10,
         },
         cylinder: Cylinder {
-            is_read_only: true,
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
@@ -43,7 +42,6 @@ pub fn dive_stage_test_fixture_default(default_array: [f32; 16]) -> DiveStage {
             time: 10,
         },
         cylinder: Cylinder {
-            is_read_only: true,
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
@@ -86,7 +84,6 @@ fn dive_model_test_fixture_default(default_array: [f32; 16]) -> DiveModel {
             nitrogen_at_pressure: 2.12,
             dive_ceiling: 0.0,
         },
-        is_read_only: Default::default(),
     }
 }
 

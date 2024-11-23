@@ -79,7 +79,6 @@ mod cylinder_should {
             is_multiple_cylinder: true,
         };
         let cylinder = Cylinder {
-            is_read_only: true,
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
@@ -124,7 +123,6 @@ mod cylinder_should {
             ],
         };
         let expected_cylinder = Cylinder {
-            is_read_only: true,
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,

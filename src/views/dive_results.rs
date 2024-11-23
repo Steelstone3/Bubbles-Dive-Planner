@@ -8,12 +8,12 @@ use crate::{commands::messages::Message, models::dive_planner::DivePlanner};
 
 impl DivePlanner {
     pub fn results_view(&self) -> iced::widget::Column<Message> {
-        if !self.is_planning {
+        if self.is_planning {
             column!()
         } else {
             let mut column = column![];
 
-            column = column.push(text("Results")).padding(10).spacing(10);
+            column = column.push(text("Results").size(24)).padding(10).spacing(10);
 
             for result in self.result_cards() {
                 column = column.push(result).padding(10).spacing(10);

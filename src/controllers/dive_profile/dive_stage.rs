@@ -23,7 +23,7 @@ impl DivePlanner {
         self.decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
 
-        self.update_visibility();
+        self.is_planning = false;
     }
 
     fn update_dive_stage(&mut self) {
@@ -34,15 +34,6 @@ impl DivePlanner {
     fn add_result(&mut self) {
         self.dive_results.add_dive_result(self.dive_stage);
         self.redo_buffer = Default::default();
-    }
-
-    fn update_visibility(&mut self) {
-        self.is_planning = false;
-
-        // TODO AH depricate all the needless readonly and is visible flags
-        self.select_cylinder.read_only_view();
-        // TODO AH depricate all the needless readonly and is visible flags
-        self.dive_results.is_visible = true;
     }
 }
 
@@ -143,9 +134,5 @@ mod dive_stage_should {
             expected_dive_planner.decompression_steps,
             dive_planner.decompression_steps
         );
-        assert!(dive_planner.dive_results.is_visible);
-        assert!(dive_planner.select_cylinder.cylinders[0].is_read_only);
-        assert!(dive_planner.select_cylinder.cylinders[1].is_read_only);
-        assert!(dive_planner.select_cylinder.cylinders[2].is_read_only);
     }
 }

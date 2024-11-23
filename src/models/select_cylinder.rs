@@ -80,14 +80,6 @@ impl SelectCylinder {
         }
     }
 
-    // TODO AH remove this in favour of is read only flag on dive planner
-    pub fn read_only_view(&mut self) {
-        self.cylinders[0].is_read_only = true;
-        self.cylinders[1].is_read_only = true;
-        self.cylinders[2].is_read_only = true;
-    }
-
-    // TODO AH remove this in favour of is read only flag on dive planner
     pub fn toggle_visibility(&mut self) {
         let is_visible = match self.is_multiple_cylinder {
             true => false,
@@ -124,24 +116,6 @@ mod select_cylinder_should {
         assert_eq!(expected_is_visible, select_cylinder.is_multiple_cylinder);
     }
 
-    #[test]
-    fn set_cylinders_to_read_only() {
-        // Given
-        let mut select_cylinder = SelectCylinder {
-            cylinders: Default::default(),
-            selected_cylinder: Default::default(),
-            is_multiple_cylinder: true,
-        };
-
-        // When
-        select_cylinder.read_only_view();
-
-        // Then
-        assert!(select_cylinder.cylinders[0].is_read_only);
-        assert!(select_cylinder.cylinders[1].is_read_only);
-        assert!(select_cylinder.cylinders[2].is_read_only);
-    }
-
     #[rstest]
     #[case(SelectableCylinder::Bottom, 0)]
     #[case(SelectableCylinder::Decompression, 1)]
@@ -156,7 +130,6 @@ mod select_cylinder_should {
             is_multiple_cylinder: true,
         };
         let cylinder = Cylinder {
-            is_read_only: true,
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
@@ -192,7 +165,6 @@ mod select_cylinder_should {
             ..Default::default()
         };
         let expected_cylinder = Cylinder {
-            is_read_only: true,
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
@@ -237,7 +209,6 @@ mod select_cylinder_should {
             is_multiple_cylinder: true,
         };
         let cylinder = Cylinder {
-            is_read_only: true,
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,

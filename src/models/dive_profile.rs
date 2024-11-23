@@ -68,9 +68,6 @@ impl DiveProfile {
 
         dive_stage.dive_model.dive_profile.calculate_dive_ceiling();
 
-        dive_stage.dive_model.is_read_only = true;
-        dive_stage.cylinder.is_read_only = true;
-
         dive_stage
     }
 
@@ -412,7 +409,6 @@ mod dive_profile_should {
                 used: 720,
                 surface_air_consumption_rate: 12,
             },
-            is_read_only: true,
         }
     }
 
