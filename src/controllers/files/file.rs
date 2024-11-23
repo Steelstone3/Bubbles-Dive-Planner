@@ -22,14 +22,38 @@ impl DivePlanner {
 
 #[cfg(test)]
 mod file_should {
-    use std::fs;
-
     use crate::{
         controllers::files::file::{DIVE_PLAN, DIVE_PLANNER_STATE_FILE_NAME},
         models::results::DiveResults,
         test_fixture::dive_stage_test_fixture,
         view_models::dive_planner::DivePlanner,
     };
+    use std::fs;
+
+    #[test]
+    fn reset_dive_planner_to_default_state() {
+        // Given
+        let expected = DivePlanner::default();
+        let mut dive_planner = DivePlanner {
+            dive_stage: dive_stage_test_fixture(),
+            dive_results: DiveResults {
+                results: vec![
+                    dive_stage_test_fixture(),
+                    dive_stage_test_fixture(),
+                    dive_stage_test_fixture(),
+                ],
+                ..Default::default()
+            },
+            redo_buffer: vec![dive_stage_test_fixture()],
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.file_new();
+
+        // Then
+        assert_eq!(expected, dive_planner);
+    }
 
     #[test]
     fn file_saves_and_loads_acceptance_test() {
