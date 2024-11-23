@@ -6,10 +6,6 @@ use iced::{
 };
 
 impl DivePlanner {
-    pub fn title(&self) -> String {
-        String::from("Bubbles Dive Planner")
-    }
-
     pub fn update(&mut self, message: Message) {
         match message {
             // Message::PaneDragged(_) => {}

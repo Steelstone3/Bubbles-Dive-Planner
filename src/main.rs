@@ -8,8 +8,11 @@ mod test_fixture;
 mod views;
 
 pub fn main() -> iced::Result {
-    iced::application("Clock - Iced", DivePlanner::update, DivePlanner::view)
-    // .subscription(DivePlanner::subscription)
+    iced::application(
+        "Bubbles Dive Planner",
+        DivePlanner::update,
+        DivePlanner::view,
+    )
     // .theme(DivePlanner::theme)
     .antialiasing(true)
     .settings(Settings::default())
