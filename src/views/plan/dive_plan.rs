@@ -4,7 +4,7 @@ use iced::widget::{column, text, Column};
 impl DivePlanner {
     pub fn plan_view(&self) -> Column<Message> {
         column!()
-            .push(text("Plan"))
+            .push(text("Plan").size(24))
             .padding(10)
             .spacing(10)
             .push(self.select_dive_model_view())

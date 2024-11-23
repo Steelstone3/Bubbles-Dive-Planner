@@ -6,12 +6,13 @@ use iced::{
     widget::{column, pick_list, Column},
     Length,
 };
+use iced_aw::Card;
 
 impl DivePlanner {
     pub fn select_dive_model_view(&self) -> Column<Message> {
         match self.is_planning {
-            true => column!(),
-            false => column!().push(
+            true => column!().push(Card::new(
+                "Select Dive Model",
                 pick_list(
                     &SelectableDiveModel::ALL[..],
                     self.select_dive_model.selected_dive_model,
@@ -19,7 +20,8 @@ impl DivePlanner {
                 )
                 .width(Length::Fill)
                 .placeholder("Select Dive Model"),
-            ),
+            )),
+            false => column!(),
         }
     }
 }

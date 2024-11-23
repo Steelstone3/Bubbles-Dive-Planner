@@ -5,7 +5,7 @@ impl DivePlanner {
     pub fn information_view(&self) -> iced::widget::Column<Message> {
         if self.is_planning {
             column!()
-                .push(text("Information"))
+                .push(text("Information").size(24))
                 .padding(10)
                 .spacing(10)
                 .push(self.dive_boundaries_view())
@@ -16,7 +16,7 @@ impl DivePlanner {
                 .spacing(10)
         } else {
             column!()
-                .push(text("Information"))
+                .push(text("Information").size(24))
                 .padding(10)
                 .spacing(10)
                 .push(self.dive_boundaries_view())
