@@ -41,9 +41,9 @@ impl Sandbox for DivePlanner {
             Message::FileLoad => self.file_load(),
             Message::EditUndo => self.edit_undo(),
             Message::EditRedo => self.edit_redo(),
-            // Message::ViewToggleSelectCylinderVisibility => {
-            //     self.view_toggle_select_cylinder_visibility();
-            // }
+            Message::ViewToggleSelectCylinderVisibility => {
+                self.view_toggle_select_cylinder_visibility();
+            }
             Message::DiveModelSelected(selectable_dive_model) => {
                 self.dive_model_selected(selectable_dive_model)
             }
@@ -69,12 +69,13 @@ impl Sandbox for DivePlanner {
             }
             Message::HeliumChanged(helium) => {
                 self.dive_stage.cylinder.gas_mixture.update_helium(helium)
-            } // Message::CylinderSelected(selectable_cylinder) => {
-            //     self.cylinder_selected(selectable_cylinder);
-            // }
-            // Message::UpdateCylinderSelected(selectable_cylinder) => {
-            //     self.update_cylinder_selected(selectable_cylinder)
-            // }
+            } 
+            Message::CylinderSelected(selectable_cylinder) => {
+                self.cylinder_selected(selectable_cylinder);
+            }
+            Message::UpdateCylinderSelected(selectable_cylinder) => {
+                self.update_cylinder_selected(selectable_cylinder)
+            }
             Message::UpdateDiveProfile => {
                 self.update_dive_profile();
             }
