@@ -18,7 +18,8 @@ impl DivePlanner {
 
             column = column
                 .push(
-                    button("Run Decompression Profile").on_press(Message::DecompressionUpdateDiveProfile),
+                    button("Run Decompression Profile")
+                        .on_press(Message::DecompressionUpdateDiveProfile),
                 )
                 .spacing(10);
         }

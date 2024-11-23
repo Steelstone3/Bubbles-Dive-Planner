@@ -69,7 +69,7 @@ impl Sandbox for DivePlanner {
             }
             Message::HeliumChanged(helium) => {
                 self.dive_stage.cylinder.gas_mixture.update_helium(helium)
-            } 
+            }
             Message::CylinderSelected(selectable_cylinder) => {
                 self.cylinder_selected(selectable_cylinder);
             }

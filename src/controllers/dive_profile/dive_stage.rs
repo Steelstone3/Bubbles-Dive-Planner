@@ -1,6 +1,5 @@
 use crate::{
-    commands::selectable_dive_model::SelectableDiveModel,
-    models::dive_profile::DiveProfile,
+    commands::selectable_dive_model::SelectableDiveModel, models::dive_profile::DiveProfile,
     view_models::dive_planner::DivePlanner,
 };
 
