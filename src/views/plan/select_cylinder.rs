@@ -6,12 +6,12 @@ use iced::{
     widget::{button, column, pick_list, text, Column},
     Length,
 };
+use iced_aw::Card;
 
 impl DivePlanner {
     pub fn select_cylinder_view<'a>(&self) -> Column<'a, Message> {
         if self.is_planning && self.select_cylinder.is_multiple_cylinder {
-            return column![
-                text("Select Cylinder"),
+            let contents = column![
                 pick_list(
                     &SelectableCylinder::ALL[..],
                     self.select_cylinder.selected_cylinder,
@@ -26,6 +26,8 @@ impl DivePlanner {
                 ),
             ]
             .spacing(10.0);
+
+            return column!().push(Card::new("Select Cylinder", contents));
         } else if !self.is_planning && self.select_cylinder.is_multiple_cylinder {
             return column![
                 text("Select Cylinder"),
