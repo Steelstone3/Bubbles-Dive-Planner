@@ -1,10 +1,10 @@
 use iced::{Sandbox, Settings};
-use view_models::dive_planner::DivePlanner;
+use models::dive_planner::DivePlanner;
 
 mod commands;
 mod controllers;
 mod models;
-mod view_models;
+mod test_fixture;
 mod views;
 
 pub fn main() -> iced::Result {
