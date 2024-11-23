@@ -3,13 +3,9 @@ install_crate = "cargo-watch"
 command = "cargo"
 args = ["watch", "-c", "-x", "test", "-x", "clippy"]
 
-[tasks.client]
+[tasks.run]
 command = "cargo"
 args = ["run"]
-
-[tasks.server]
-command = "cargo"
-args = ["run", "server"]
 
 [tasks.format]
 command = "cargo"
@@ -45,11 +41,8 @@ dependencies = ["check", "format", "test", "lint"]
 [tasks.w]
 alias = "watch"
 
-[tasks.rc]
-alias = "client"
-
-[tasks.rs]
-alias = "server"
+[tasks.r]
+alias = "run"
 
 [tasks.c]
 alias = "check_all"
