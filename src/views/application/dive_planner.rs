@@ -1,5 +1,5 @@
 use crate::commands::messages::Message;
-use crate::view_models::dive_planner::DivePlanner;
+use crate::models::dive_planner::DivePlanner;
 use iced::{
     widget::{column, Scrollable},
     Element, Sandbox,

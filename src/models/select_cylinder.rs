@@ -12,7 +12,7 @@ pub struct SelectCylinder {
 impl Default for SelectCylinder {
     fn default() -> Self {
         Self {
-            is_multiple_cylinder: Default::default(),
+            is_multiple_cylinder: true,
             cylinders: Default::default(),
             selected_cylinder: Some(SelectableCylinder::Bottom),
         }

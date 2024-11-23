@@ -1,4 +1,4 @@
-use crate::view_models::dive_planner::DivePlanner;
+use crate::models::dive_planner::DivePlanner;
 
 impl DivePlanner {
     pub fn edit_undo(&mut self) {
@@ -38,7 +38,7 @@ mod edit_should {
     use crate::{
         models::{dive_stage::DiveStage, results::DiveResults},
         test_fixture::{dive_stage_test_fixture, dive_stage_test_fixture_default},
-        view_models::dive_planner::DivePlanner,
+        models::dive_planner::DivePlanner,
     };
     use rstest::rstest;
 

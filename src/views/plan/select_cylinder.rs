@@ -1,6 +1,6 @@
 use crate::{
     commands::{messages::Message, selectable_cylinder::SelectableCylinder},
-    view_models::dive_planner::DivePlanner,
+    models::dive_planner::DivePlanner,
 };
 use iced::{
     widget::{button, column, pick_list, text, Column},

@@ -2,8 +2,6 @@ use super::{selectable_cylinder::SelectableCylinder, selectable_dive_model::Sele
 
 #[derive(Debug, Clone)]
 pub enum Message {
-    // PaneDragged(pane_grid::DragEvent),
-    // PaneResized(pane_grid::ResizeEvent),
     MenuBar,
     FileNew,
     FileSave,

@@ -1,4 +1,4 @@
-use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
+use crate::{commands::messages::Message, models::dive_planner::DivePlanner};
 use iced::widget::{column, text};
 
 impl DivePlanner {

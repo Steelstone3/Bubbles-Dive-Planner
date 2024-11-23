@@ -1,4 +1,4 @@
-use crate::view_models::dive_planner::DivePlanner;
+use crate::models::dive_planner::DivePlanner;
 
 use super::file_io::{read_dive_planner_state, upsert_dive_planner_state, upsert_dive_results};
 
@@ -26,7 +26,7 @@ mod file_should {
         controllers::files::file::{DIVE_PLAN, DIVE_PLANNER_STATE_FILE_NAME},
         models::results::DiveResults,
         test_fixture::dive_stage_test_fixture,
-        view_models::dive_planner::DivePlanner,
+        models::dive_planner::DivePlanner,
     };
     use std::fs;
 

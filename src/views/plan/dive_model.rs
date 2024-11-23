@@ -1,6 +1,6 @@
 use crate::{
     commands::{messages::Message, selectable_dive_model::SelectableDiveModel},
-    view_models::dive_planner::DivePlanner,
+    models::dive_planner::DivePlanner,
 };
 use iced::{
     widget::{column, pick_list, Column},

@@ -1,4 +1,4 @@
-use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
+use crate::{commands::messages::Message, models::dive_planner::DivePlanner};
 use iced::widget::{button, column};
 use iced::Length;
 use iced_aw::menu::{Item, Menu};
@@ -30,6 +30,13 @@ impl DivePlanner {
                     .width(Length::Fill)
                     .on_press(Message::EditRedo)
             )))
+        )(
+            button("View").on_press(Message::MenuBar),
+            menu_template(menu_items!(
+                (button("Toggle Cylinder View")
+                    .width(Length::Fill)
+                    .on_press(Message::ViewToggleSelectCylinderVisibility))
+            ))
         ));
 
         column!().push(menu_bar)

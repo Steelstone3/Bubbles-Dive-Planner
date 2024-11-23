@@ -1,5 +1,5 @@
 use crate::{
-    commands::selectable_cylinder::SelectableCylinder, view_models::dive_planner::DivePlanner,
+    commands::selectable_cylinder::SelectableCylinder, models::dive_planner::DivePlanner,
 };
 
 impl DivePlanner {
@@ -34,7 +34,7 @@ mod cylinder_should {
             select_cylinder::SelectCylinder,
         },
         test_fixture::dive_stage_test_fixture,
-        view_models::dive_planner::DivePlanner,
+        models::dive_planner::DivePlanner,
     };
 
     #[rstest]

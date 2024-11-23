@@ -1,6 +1,6 @@
 use crate::{
     commands::selectable_dive_model::SelectableDiveModel, models::dive_profile::DiveProfile,
-    view_models::dive_planner::DivePlanner,
+    models::dive_planner::DivePlanner,
 };
 
 impl DivePlanner {
@@ -60,7 +60,7 @@ mod dive_stage_should {
             select_dive_model::SelectDiveModel,
         },
         test_fixture::dive_stage_test_fixture,
-        view_models::dive_planner::DivePlanner,
+        models::dive_planner::DivePlanner,
     };
 
     #[rstest]

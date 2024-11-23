@@ -1,7 +1,7 @@
 use iced::widget::{column, text};
 use iced_aw::widgets::Card;
 
-use crate::{commands::messages::Message, view_models::dive_planner::DivePlanner};
+use crate::{commands::messages::Message, models::dive_planner::DivePlanner};
 
 impl DivePlanner {
     pub fn dive_boundaries_view(&self) -> iced::widget::Column<Message> {
