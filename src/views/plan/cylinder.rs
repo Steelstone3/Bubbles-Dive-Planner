@@ -66,8 +66,6 @@ impl DivePlanner {
                     )))
                     .spacing(10)
                     .push(self.gas_mixture_read_only_view())
-                    .spacing(10)
-                    .push(self.gas_management_view())
                     .spacing(10);
 
                 column!().push(Card::new("Cylinder", contents))
