@@ -37,7 +37,7 @@ impl DivePlanner {
     }
 
     fn update_visibility(&mut self) {
-        self.is_planning = true;
+        self.is_planning = false;
 
         // TODO AH depricate all the needless readonly and is visible flags
         self.select_cylinder.read_only_view();
