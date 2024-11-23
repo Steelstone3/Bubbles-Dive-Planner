@@ -6,6 +6,7 @@ mod controllers;
 mod models;
 mod view_models;
 mod views;
+mod test_fixture;
 
 pub fn main() -> iced::Result {
     DivePlanner::run(Settings::default())
