@@ -3,7 +3,6 @@ use crate::models::{
     decompression_steps::DecompressionSteps, dive_stage::DiveStage, results::DiveResults,
     select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
 };
-use iced::Sandbox;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -20,6 +19,15 @@ pub struct DivePlanner {
 
 impl Default for DivePlanner {
     fn default() -> Self {
-        Self::new()
+        Self {
+            select_dive_model: Default::default(),
+            select_cylinder: Default::default(),
+            dive_stage: Default::default(),
+            dive_results: Default::default(),
+            decompression_steps: Default::default(),
+            cns_toxicity: Default::default(),
+            redo_buffer: Default::default(),
+            is_planning: true,
+        }
     }
 }

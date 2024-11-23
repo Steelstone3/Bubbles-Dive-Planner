@@ -1,4 +1,4 @@
-use iced::{Sandbox, Settings};
+use iced::Settings;
 use models::dive_planner::DivePlanner;
 
 mod commands;
@@ -8,5 +8,10 @@ mod test_fixture;
 mod views;
 
 pub fn main() -> iced::Result {
-    DivePlanner::run(Settings::default())
+    iced::application("Clock - Iced", DivePlanner::update, DivePlanner::view)
+    // .subscription(DivePlanner::subscription)
+    // .theme(DivePlanner::theme)
+    .antialiasing(true)
+    .settings(Settings::default())
+    .run()
 }
