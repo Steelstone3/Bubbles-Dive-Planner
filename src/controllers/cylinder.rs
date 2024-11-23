@@ -38,6 +38,30 @@ mod cylinder_should {
     };
 
     #[rstest]
+    #[case(false, true)]
+    #[case(true, false)]
+    fn toggle_select_cylinder_visibility(
+        #[case] is_visible: bool,
+        #[case] expected_is_visible: bool,
+    ) {
+        // Given
+        let select_cylinder = SelectCylinder {
+            is_visible,
+            ..Default::default()
+        };
+        let mut dive_planner = DivePlanner {
+            select_cylinder,
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.view_toggle_select_cylinder_visibility();
+
+        // Then
+        assert_eq!(expected_is_visible, dive_planner.select_cylinder.is_visible);
+    }
+
+    #[rstest]
     #[case(SelectableCylinder::Bottom, 0)]
     #[case(SelectableCylinder::Decompression, 1)]
     #[case(SelectableCylinder::Descend, 2)]
