@@ -5,34 +5,6 @@ impl DivePlanner {
     pub fn cylinder_view(&self) -> Column<Message> {
         match self.is_planning {
             true => column!()
-                // Read Only View
-                .push(text("Cylinder"))
-                .spacing(10)
-                .push(text("Volume (l)"))
-                .spacing(10)
-                .push(text(self.dive_stage.cylinder.volume.to_string()))
-                .spacing(10)
-                .push("Pressure (bar)")
-                .spacing(10)
-                .push(text(self.dive_stage.cylinder.pressure.to_string()))
-                .spacing(10)
-                .push(text("Used (l)"))
-                .spacing(10)
-                .push(text(
-                    self.dive_stage.cylinder.gas_management.used.to_string(),
-                ))
-                .push(text("Remaining (l)"))
-                .spacing(10)
-                .push(text(format!(
-                    "{} {} {}",
-                    self.dive_stage.cylinder.gas_management.remaining,
-                    "/",
-                    self.dive_stage.cylinder.initial_pressurised_cylinder_volume
-                )))
-                .spacing(10)
-                .push(self.gas_mixture_read_only_view())
-                .spacing(10),
-            false => column!()
                 // Mutable View
                 .push(text("Cylinder Setup"))
                 .spacing(10)
@@ -64,6 +36,34 @@ impl DivePlanner {
                 .push(self.gas_mixture_view())
                 .spacing(10)
                 .push(self.gas_management_view())
+                .spacing(10),
+            false => column!()
+                // Read Only View
+                .push(text("Cylinder"))
+                .spacing(10)
+                .push(text("Volume (l)"))
+                .spacing(10)
+                .push(text(self.dive_stage.cylinder.volume.to_string()))
+                .spacing(10)
+                .push("Pressure (bar)")
+                .spacing(10)
+                .push(text(self.dive_stage.cylinder.pressure.to_string()))
+                .spacing(10)
+                .push(text("Used (l)"))
+                .spacing(10)
+                .push(text(
+                    self.dive_stage.cylinder.gas_management.used.to_string(),
+                ))
+                .push(text("Remaining (l)"))
+                .spacing(10)
+                .push(text(format!(
+                    "{} {} {}",
+                    self.dive_stage.cylinder.gas_management.remaining,
+                    "/",
+                    self.dive_stage.cylinder.initial_pressurised_cylinder_volume
+                )))
+                .spacing(10)
+                .push(self.gas_mixture_read_only_view())
                 .spacing(10),
         }
     }
