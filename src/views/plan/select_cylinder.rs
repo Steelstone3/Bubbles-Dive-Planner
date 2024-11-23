@@ -29,7 +29,6 @@ impl DivePlanner {
 
             return column!().push(Card::new("Select Cylinder", contents));
         } 
-        // TODO AH not hitting this after updating dive profile
         else if !self.is_planning && self.select_cylinder.is_multiple_cylinder {
             let contents = column![
                 pick_list(
