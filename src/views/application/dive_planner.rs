@@ -5,12 +5,6 @@ use iced::{
     Element, Sandbox,
 };
 
-// pub enum PaneState {
-//     PlanPane,
-//     InformationPane,
-//     ResultsPane,
-// }
-
 impl Sandbox for DivePlanner {
     type Message = Message;
 
@@ -86,7 +80,7 @@ impl Sandbox for DivePlanner {
     }
 
     fn view(&self) -> Element<Message> {
-        // TODO AH Consider a pane_grid for flexible user centric layout https://docs.rs/iced/latest/iced/widget/pane_grid/index.html
+        // TODO AH Consider a tab view
         let mut column = column!();
 
         column = column.push(self.menu_view());
@@ -99,20 +93,6 @@ impl Sandbox for DivePlanner {
         );
 
         column = column.push(scrollable);
-
-        // let (state, _) = pane_grid::State::new(PaneState::PlanPane);
-
-        // let pane_grid = PaneGrid::new(&state, |pane, state, is_maximized| {
-        //     pane_grid::Content::new(match state {
-        //         PaneState::PlanPane => self.plan_view(),
-        //         PaneState::InformationPane => self.information_view(),
-        //         PaneState::ResultsPane => self.results_view(),
-        //     })
-        // })
-        // .on_drag(Message::PaneDragged)
-        // .on_resize(10, Message::PaneResized);
-
-        // column = column.push(pane_grid);
 
         column.into()
     }
