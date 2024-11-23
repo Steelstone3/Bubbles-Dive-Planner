@@ -58,7 +58,10 @@ mod cylinder_should {
         dive_planner.view_toggle_select_cylinder_visibility();
 
         // Then
-        assert_eq!(expected_is_visible, dive_planner.select_cylinder.is_multiple_cylinder);
+        assert_eq!(
+            expected_is_visible,
+            dive_planner.select_cylinder.is_multiple_cylinder
+        );
     }
 
     #[rstest]
