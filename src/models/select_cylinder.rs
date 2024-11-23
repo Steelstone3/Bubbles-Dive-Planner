@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct SelectCylinder {
-    pub is_visible: bool,
+    pub is_multiple_cylinder: bool,
     pub cylinders: [Cylinder; 3],
     pub selected_cylinder: Option<SelectableCylinder>,
 }
@@ -12,7 +12,7 @@ pub struct SelectCylinder {
 impl Default for SelectCylinder {
     fn default() -> Self {
         Self {
-            is_visible: Default::default(),
+            is_multiple_cylinder: Default::default(),
             cylinders: Default::default(),
             selected_cylinder: Some(SelectableCylinder::Bottom),
         }
@@ -89,12 +89,12 @@ impl SelectCylinder {
 
     // TODO AH remove this in favour of is read only flag on dive planner
     pub fn toggle_visibility(&mut self) {
-        let is_visible = match self.is_visible {
+        let is_visible = match self.is_multiple_cylinder {
             true => false,
             false => true,
         };
 
-        self.is_visible = is_visible;
+        self.is_multiple_cylinder = is_visible;
     }
 }
 
@@ -108,12 +108,12 @@ mod select_cylinder_should {
     #[case(false, true)]
     #[case(true, false)]
     fn toggle_select_cylinder_visibility(
-        #[case] is_visible: bool,
+        #[case] is_multiple_cylinder: bool,
         #[case] expected_is_visible: bool,
     ) {
         // Given
         let mut select_cylinder = SelectCylinder {
-            is_visible,
+            is_multiple_cylinder,
             ..Default::default()
         };
 
@@ -121,7 +121,7 @@ mod select_cylinder_should {
         select_cylinder.toggle_visibility();
 
         // Then
-        assert_eq!(expected_is_visible, select_cylinder.is_visible);
+        assert_eq!(expected_is_visible, select_cylinder.is_multiple_cylinder);
     }
 
     #[test]
@@ -130,7 +130,7 @@ mod select_cylinder_should {
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
             selected_cylinder: Default::default(),
-            is_visible: true,
+            is_multiple_cylinder: true,
         };
 
         // When
@@ -153,7 +153,7 @@ mod select_cylinder_should {
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
             selected_cylinder: Some(selectable_cylinder),
-            is_visible: true,
+            is_multiple_cylinder: true,
         };
         let cylinder = Cylinder {
             is_read_only: true,
@@ -211,7 +211,7 @@ mod select_cylinder_should {
         let mut select_cylinder = SelectCylinder {
             cylinders: [expected_cylinder, expected_cylinder, expected_cylinder],
             selected_cylinder: Some(selectable_cylinder),
-            is_visible: true,
+            is_multiple_cylinder: true,
         };
 
         // When
@@ -234,7 +234,7 @@ mod select_cylinder_should {
         let mut select_cylinder = SelectCylinder {
             cylinders: Default::default(),
             selected_cylinder: Some(selectable_cylinder),
-            is_visible: true,
+            is_multiple_cylinder: true,
         };
         let cylinder = Cylinder {
             is_read_only: true,

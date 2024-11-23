@@ -41,12 +41,12 @@ mod cylinder_should {
     #[case(false, true)]
     #[case(true, false)]
     fn toggle_select_cylinder_visibility(
-        #[case] is_visible: bool,
+        #[case] is_multiple_cylinder: bool,
         #[case] expected_is_visible: bool,
     ) {
         // Given
         let select_cylinder = SelectCylinder {
-            is_visible,
+            is_multiple_cylinder,
             ..Default::default()
         };
         let mut dive_planner = DivePlanner {
@@ -58,7 +58,7 @@ mod cylinder_should {
         dive_planner.view_toggle_select_cylinder_visibility();
 
         // Then
-        assert_eq!(expected_is_visible, dive_planner.select_cylinder.is_visible);
+        assert_eq!(expected_is_visible, dive_planner.select_cylinder.is_multiple_cylinder);
     }
 
     #[rstest]
@@ -75,7 +75,7 @@ mod cylinder_should {
         let select_cylinder = SelectCylinder {
             cylinders: Default::default(),
             selected_cylinder: Some(selectable_cylinder),
-            is_visible: true,
+            is_multiple_cylinder: true,
         };
         let cylinder = Cylinder {
             is_read_only: true,
@@ -142,7 +142,7 @@ mod cylinder_should {
         let select_cylinder = SelectCylinder {
             cylinders: [expected_cylinder, expected_cylinder, expected_cylinder],
             selected_cylinder: Some(selectable_cylinder),
-            is_visible: true,
+            is_multiple_cylinder: true,
         };
         let dive_stage = dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {

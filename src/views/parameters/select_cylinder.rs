@@ -9,7 +9,7 @@ use iced::{
 
 impl DivePlanner {
     pub fn select_cylinder_view<'a>(&self) -> Column<'a, Message> {
-        if self.is_planning {
+        if self.is_planning && self.select_cylinder.is_multiple_cylinder {
             return column![
                 button("Update Cylinder").width(Length::Fill).on_press(
                     Message::UpdateCylinderSelected(
@@ -26,7 +26,7 @@ impl DivePlanner {
                 .placeholder("Select Cylinder"),
             ]
             .spacing(10.0);
-        } else if !self.is_planning {
+        } else if !self.is_planning && self.select_cylinder.is_multiple_cylinder {
             return column![
                 text("Select Cylinder"),
                 pick_list(
