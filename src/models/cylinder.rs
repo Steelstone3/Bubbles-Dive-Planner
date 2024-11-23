@@ -10,7 +10,6 @@ pub const MINIMUM_PRESSURE_VALUE: u32 = 50;
 
 #[derive(PartialEq, Debug, Clone, Copy, Default, Serialize, Deserialize)]
 pub struct Cylinder {
-    pub is_read_only: bool,
     pub volume: u32,
     pub pressure: u32,
     pub initial_pressurised_cylinder_volume: u32,
@@ -96,7 +95,6 @@ mod cylinder_should {
                 used: 720,
                 surface_air_consumption_rate: 12,
             },
-            is_read_only: true,
             gas_mixture: GasMixture {
                 oxygen: 21,
                 helium: 10,
@@ -125,7 +123,6 @@ mod cylinder_should {
                 used: 720,
                 surface_air_consumption_rate: 12,
             },
-            is_read_only: true,
             gas_mixture: GasMixture {
                 oxygen: 21,
                 helium: 10,
