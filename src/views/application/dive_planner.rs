@@ -1,34 +1,12 @@
 use crate::commands::messages::Message;
-use crate::view_models::dive_planner::DivePlanner;
-use crate::views::dive_results::results::ResultsView;
-use crate::views::information::dive_information::DiveInformationView;
-use crate::views::parameters::dive_stage::DiveStageView;
-use iced::widget::{column, scrollable};
-use iced::{Element, Sandbox};
-use iced_aw::Grid;
+use crate::models::dive_planner::DivePlanner;
+use iced::{
+    widget::{column, Scrollable},
+    Element,
+};
 
-use super::menu_bar::MenuBarView;
-
-impl Sandbox for DivePlanner {
-    type Message = Message;
-
-    fn new() -> Self {
-        Self {
-            select_dive_model: Default::default(),
-            select_cylinder: Default::default(),
-            dive_stage: Default::default(),
-            dive_results: Default::default(),
-            decompression_steps: Default::default(),
-            cns_toxicity: Default::default(),
-            redo_buffer: Default::default(),
-        }
-    }
-
-    fn title(&self) -> String {
-        String::from("Bubbles Dive Planner")
-    }
-
-    fn update(&mut self, message: Message) {
+impl DivePlanner {
+    pub fn update(&mut self, message: Message) {
         match message {
             Message::MenuBar => {}
             Message::FileNew => self.file_new(),
@@ -36,9 +14,6 @@ impl Sandbox for DivePlanner {
             Message::FileLoad => self.file_load(),
             Message::EditUndo => self.edit_undo(),
             Message::EditRedo => self.edit_redo(),
-            Message::ViewToggleCentralNervousSystemToxicityVisibility => {
-                self.view_toggle_central_nervous_system_toxicity_visibility();
-            }
             Message::ViewToggleSelectCylinderVisibility => {
                 self.view_toggle_select_cylinder_visibility();
             }
@@ -83,23 +58,20 @@ impl Sandbox for DivePlanner {
         }
     }
 
-    fn view(&self) -> Element<Message> {
-        let menu_bar = MenuBarView::build_view(self);
-        let dive_stage = DiveStageView::build_view(self);
-        let dive_information = DiveInformationView::build_view(self);
-        let results = ResultsView::build_view(self);
+    pub fn view(&self) -> Element<Message> {
+        let mut column = column!();
 
-        column![]
-            .push(Grid::with_columns(1).push(menu_bar.spacing(10).padding(10)))
-            .push(
-                Grid::with_columns(2)
-                    .push(scrollable(dive_stage.width(300.0).spacing(10).padding(10)))
-                    .push(scrollable(
-                        column![dive_information.spacing(10), results.spacing(10.0)]
-                            .spacing(10)
-                            .padding(10),
-                    )),
-            )
-            .into()
+        column = column.push(self.menu_view());
+
+        let scrollable = Scrollable::new(
+            column!()
+                .push(self.plan_view())
+                .push(self.information_view())
+                .push(self.results_view()),
+        );
+
+        column = column.push(scrollable);
+
+        column.into()
     }
 }
