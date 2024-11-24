@@ -11,9 +11,9 @@ impl DivePlanner {
         match message {
             Message::MenuBar => {}
             Message::TabSelected(tab_identifier) => match tab_identifier {
-                TabIdentifier::Plan => todo!(),
-                TabIdentifier::Information => todo!(),
-                TabIdentifier::Results => todo!(),
+                TabIdentifier::Plan => {}
+                TabIdentifier::Information => {}
+                TabIdentifier::Results => {}
             },
             Message::FileNew => self.file_new(),
             Message::FileSave => self.file_save(),
