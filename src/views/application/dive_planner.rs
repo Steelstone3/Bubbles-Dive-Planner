@@ -1,14 +1,22 @@
-use crate::commands::messages::Message;
+use crate::commands::{messages::Message, tab_identifier::TabIdentifier};
 use crate::models::dive_planner::DivePlanner;
-use iced::{
-    widget::{column, Scrollable},
-    Element,
-};
+use iced::Element;
 
 impl DivePlanner {
     pub fn update(&mut self, message: Message) {
         match message {
             Message::MenuBar => {}
+            Message::TabSelected(tab_identifier) => match tab_identifier {
+                TabIdentifier::Plan => {
+                    self.tab_identifier = TabIdentifier::Plan;
+                }
+                TabIdentifier::Information => {
+                    self.tab_identifier = TabIdentifier::Information;
+                }
+                TabIdentifier::Results => {
+                    self.tab_identifier = TabIdentifier::Results;
+                }
+            },
             Message::FileNew => self.file_new(),
             Message::FileSave => self.file_save(),
             Message::FileLoad => self.file_load(),
@@ -59,19 +67,6 @@ impl DivePlanner {
     }
 
     pub fn view(&self) -> Element<Message> {
-        let mut column = column!();
-
-        column = column.push(self.menu_view());
-
-        let scrollable = Scrollable::new(
-            column!()
-                .push(self.plan_view())
-                .push(self.information_view())
-                .push(self.results_view()),
-        );
-
-        column = column.push(scrollable);
-
-        column.into()
+        self.tab_bar_view().into()
     }
 }
