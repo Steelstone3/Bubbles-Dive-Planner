@@ -38,15 +38,15 @@ fn selected_tab_bar(active_tab: &TabIdentifier) -> TabBar<'static, Message, TabI
     let tab_bar = TabBar::new(Message::TabSelected)
         .push(
             TabIdentifier::Plan,
-            TabLabel::IconText('p', "Plan".to_string()),
+            TabLabel::IconText('\u{1F93F}', "Plan".to_string()),
         )
         .push(
             TabIdentifier::Information,
-            TabLabel::IconText('i', "Information".to_string()),
+            TabLabel::IconText('\u{1F50D}', "Information".to_string()),
         )
         .push(
             TabIdentifier::Results,
-            TabLabel::IconText('r', "Results".to_string()),
+            TabLabel::IconText('\u{1F4CA}', "Results".to_string()),
         )
         .set_active_tab(active_tab);
     tab_bar
