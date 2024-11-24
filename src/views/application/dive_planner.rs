@@ -11,9 +11,15 @@ impl DivePlanner {
         match message {
             Message::MenuBar => {}
             Message::TabSelected(tab_identifier) => match tab_identifier {
-                TabIdentifier::Plan => {}
-                TabIdentifier::Information => {}
-                TabIdentifier::Results => {}
+                TabIdentifier::Plan => {
+                    self.tab_identifier = TabIdentifier::Plan;
+                }
+                TabIdentifier::Information => {
+                    self.tab_identifier = TabIdentifier::Information;
+                }
+                TabIdentifier::Results => {
+                    self.tab_identifier = TabIdentifier::Results;
+                }
             },
             Message::FileNew => self.file_new(),
             Message::FileSave => self.file_save(),
@@ -81,15 +87,35 @@ impl DivePlanner {
             )
             .set_active_tab(&TabIdentifier::Plan);
 
-        let contents = Scrollable::new(
-            column!()
-                .push(self.plan_view())
-                .push(self.information_view())
-                .push(self.results_view()),
-        );
+        match self.tab_identifier {
+            TabIdentifier::Plan => {
+                let contents = Scrollable::new(column!().push(self.plan_view()));
+                let view = column!(self.menu_view(), tab_bar, contents);
 
-        let view = column!(self.menu_view(), tab_bar, contents);
+                view.into()
+            }
+            TabIdentifier::Information => {
+                let contents = Scrollable::new(column!().push(self.information_view()));
+                let view = column!(self.menu_view(), tab_bar, contents);
 
-        view.into()
+                view.into()
+            }
+            TabIdentifier::Results => {
+                let contents = Scrollable::new(column!().push(self.results_view()));
+                let view = column!(self.menu_view(), tab_bar, contents);
+
+                view.into()
+            }
+        }
+        // let contents = Scrollable::new(
+        //     column!()
+        //         .push(self.plan_view())
+        //         .push(self.information_view())
+        //         .push(self.results_view()),
+        // );
+
+        // let view = column!(self.menu_view(), tab_bar, contents);
+
+        // view.into()
     }
 }
