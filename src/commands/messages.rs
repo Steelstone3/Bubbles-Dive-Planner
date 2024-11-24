@@ -1,8 +1,12 @@
-use super::{selectable_cylinder::SelectableCylinder, selectable_dive_model::SelectableDiveModel};
+use super::{
+    selectable_cylinder::SelectableCylinder, selectable_dive_model::SelectableDiveModel,
+    tab_identifier::TabIdentifier,
+};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Message {
     MenuBar,
+    TabSelected(TabIdentifier),
     FileNew,
     FileSave,
     FileLoad,

@@ -1,14 +1,20 @@
-use crate::commands::messages::Message;
+use crate::commands::{messages::Message, tab_identifier::TabIdentifier};
 use crate::models::dive_planner::DivePlanner;
 use iced::{
     widget::{column, Scrollable},
     Element,
 };
+use iced_aw::{TabBar, TabLabel};
 
 impl DivePlanner {
     pub fn update(&mut self, message: Message) {
         match message {
             Message::MenuBar => {}
+            Message::TabSelected(tab_identifier) => match tab_identifier {
+                TabIdentifier::Plan => todo!(),
+                TabIdentifier::Information => todo!(),
+                TabIdentifier::Results => todo!(),
+            },
             Message::FileNew => self.file_new(),
             Message::FileSave => self.file_save(),
             Message::FileLoad => self.file_load(),
@@ -59,19 +65,31 @@ impl DivePlanner {
     }
 
     pub fn view(&self) -> Element<Message> {
-        let mut column = column!();
+        // TODO create a view for the tab bar
+        let tab_bar = TabBar::new(Message::TabSelected)
+            .push(
+                TabIdentifier::Plan,
+                TabLabel::IconText('p', "Plan".to_string()),
+            )
+            .push(
+                TabIdentifier::Information,
+                TabLabel::IconText('i', "Information".to_string()),
+            )
+            .push(
+                TabIdentifier::Results,
+                TabLabel::IconText('r', "Results".to_string()),
+            )
+            .set_active_tab(&TabIdentifier::Plan);
 
-        column = column.push(self.menu_view());
-
-        let scrollable = Scrollable::new(
+        let contents = Scrollable::new(
             column!()
                 .push(self.plan_view())
                 .push(self.information_view())
                 .push(self.results_view()),
         );
 
-        column = column.push(scrollable);
+        let view = column!(self.menu_view(), tab_bar, contents);
 
-        column.into()
+        view.into()
     }
 }
