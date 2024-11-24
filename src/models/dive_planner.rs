@@ -1,8 +1,11 @@
-use crate::{commands::tab_identifier::TabIdentifier, models::{
-    central_nervous_system_toxicity::CentralNervousSystemToxicity,
-    decompression_steps::DecompressionSteps, dive_stage::DiveStage, results::DiveResults,
-    select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
-}};
+use crate::{
+    commands::tab_identifier::TabIdentifier,
+    models::{
+        central_nervous_system_toxicity::CentralNervousSystemToxicity,
+        decompression_steps::DecompressionSteps, dive_stage::DiveStage, results::DiveResults,
+        select_cylinder::SelectCylinder, select_dive_model::SelectDiveModel,
+    },
+};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
