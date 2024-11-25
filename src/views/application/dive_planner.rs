@@ -1,6 +1,6 @@
 use crate::commands::{messages::Message, tab_identifier::TabIdentifier};
 use crate::models::dive_planner::DivePlanner;
-use iced::Element;
+use iced::{Element, Theme};
 
 impl DivePlanner {
     pub fn update(&mut self, message: Message) {
@@ -68,5 +68,10 @@ impl DivePlanner {
 
     pub fn view(&self) -> Element<Message> {
         self.tab_bar_view().into()
+    }
+
+    pub fn theme(&self) -> Theme {
+        // Theme::GruvboxDark
+        Theme::Dark
     }
 }

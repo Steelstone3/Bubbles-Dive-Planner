@@ -13,7 +13,7 @@ pub fn main() -> iced::Result {
         DivePlanner::update,
         DivePlanner::view,
     )
-    // .theme(DivePlanner::theme)
+    .theme(DivePlanner::theme)
     .antialiasing(true)
     .settings(Settings::default())
     .run()
