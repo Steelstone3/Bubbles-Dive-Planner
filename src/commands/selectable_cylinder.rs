@@ -1,7 +1,8 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
 pub enum SelectableCylinder {
+    #[default]
     Bottom,
     Decompression,
     Descend,

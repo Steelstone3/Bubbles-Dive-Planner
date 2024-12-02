@@ -25,8 +25,6 @@ impl SelectDiveModel {
         selectable_dive_model: SelectableDiveModel,
         dive_model: &mut DiveModel,
     ) {
-        self.selected_dive_model = Some(selectable_dive_model);
-
         match selectable_dive_model {
             SelectableDiveModel::Bulhmann => *dive_model = DiveModel::create_zhl16_dive_model(),
             SelectableDiveModel::Usn => *dive_model = DiveModel::create_usn_rev_6_dive_model(),

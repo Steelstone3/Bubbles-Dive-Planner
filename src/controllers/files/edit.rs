@@ -22,7 +22,7 @@ impl DivePlanner {
 
     pub fn edit_redo(&mut self) {
         if self.is_redoable() {
-            let redo = self.application_state.redo_buffer.pop().unwrap();
+            let redo = self.application_state.redo_buffer.pop().unwrap_or_default();
             self.dive_results.results.push(redo);
             self.dive_stage = redo;
 

@@ -11,14 +11,14 @@ impl DivePlanner {
 
     pub fn update_dive_profile(&mut self) {
         self.select_cylinder
-            .assign_cylinder(self.dive_stage.cylinder);
+            .assign_selected_cylinder(self.dive_stage.cylinder);
 
         self.update_dive_stage();
 
         self.add_result();
 
         self.select_cylinder
-            .assign_cylinder(self.dive_stage.cylinder);
+            .assign_selected_cylinder(self.dive_stage.cylinder);
 
         self.decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
