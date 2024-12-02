@@ -19,54 +19,42 @@ impl Default for SelectCylinder {
 }
 
 impl SelectCylinder {
-    pub fn update_cylinder_selected(
-        &mut self,
-        selectable_cylinder: SelectableCylinder,
-        cylinder: Cylinder,
-    ) {
-        self.selected_cylinder = Some(selectable_cylinder);
-
-        match selectable_cylinder {
-            SelectableCylinder::Bottom => {
-                self.selected_cylinder = Some(selectable_cylinder);
-                self.cylinders[0] = cylinder;
-            }
-            SelectableCylinder::Decompression => {
-                self.selected_cylinder = Some(selectable_cylinder);
-                self.cylinders[1] = cylinder;
-            }
-            SelectableCylinder::Descend => {
-                self.selected_cylinder = Some(selectable_cylinder);
-                self.cylinders[2] = cylinder;
-            }
-        }
-    }
-
-    pub fn on_cylinder_selected(
+    pub fn on_select_update_cylinder_from_selected_cylinder(
         &mut self,
         selectable_cylinder: SelectableCylinder,
         cylinder: &mut Cylinder,
     ) {
-        self.selected_cylinder = Some(selectable_cylinder);
-
         match selectable_cylinder {
             SelectableCylinder::Bottom => {
-                self.selected_cylinder = Some(selectable_cylinder);
-                *cylinder = self.cylinders[0]
+                self.selected_cylinder = Some(SelectableCylinder::Bottom);
+
+                if let Some(the_cylinder) = self.cylinders.first() {
+                    *cylinder = *the_cylinder
+                }
             }
             SelectableCylinder::Decompression => {
-                self.selected_cylinder = Some(selectable_cylinder);
-                *cylinder = self.cylinders[1]
+                self.selected_cylinder = Some(SelectableCylinder::Decompression);
+
+                if let Some(the_cylinder) = self.cylinders.get(1) {
+                    *cylinder = *the_cylinder
+                }
             }
             SelectableCylinder::Descend => {
-                self.selected_cylinder = Some(selectable_cylinder);
-                *cylinder = self.cylinders[2]
+                self.selected_cylinder = Some(SelectableCylinder::Descend);
+
+                if let Some(the_cylinder) = self.cylinders.get(2) {
+                    *cylinder = *the_cylinder
+                }
             }
         }
     }
 
-    pub fn assign_cylinder(&mut self, cylinder: Cylinder) {
-        match self.selected_cylinder.unwrap() {
+    pub fn on_update_selected_cylinder(
+        &mut self,
+        selectable_cylinder: SelectableCylinder,
+        cylinder: Cylinder,
+    ) {
+        match selectable_cylinder {
             SelectableCylinder::Bottom => {
                 self.cylinders[0] = cylinder;
             }
@@ -75,6 +63,16 @@ impl SelectCylinder {
             }
             SelectableCylinder::Descend => {
                 self.cylinders[2] = cylinder;
+            }
+        }
+    }
+
+    pub fn assign_selected_cylinder(&mut self, cylinder: Cylinder) {
+        if let Some(selected_cylinder) = self.selected_cylinder {
+            match selected_cylinder {
+                SelectableCylinder::Bottom => self.cylinders[0] = cylinder,
+                SelectableCylinder::Decompression => self.cylinders[1] = cylinder,
+                SelectableCylinder::Descend => self.cylinders[2] = cylinder,
             }
         }
     }
@@ -148,7 +146,7 @@ mod select_cylinder_should {
         };
 
         // When
-        select_cylinder.assign_cylinder(cylinder);
+        select_cylinder.assign_selected_cylinder(cylinder);
 
         // Then
         assert_eq!(cylinder, select_cylinder.cylinders[index]);
@@ -189,8 +187,10 @@ mod select_cylinder_should {
         };
 
         // When
-        select_cylinder
-            .on_cylinder_selected(select_cylinder.selected_cylinder.unwrap(), &mut cylinder);
+        select_cylinder.on_select_update_cylinder_from_selected_cylinder(
+            select_cylinder.selected_cylinder.unwrap(),
+            &mut cylinder,
+        );
 
         // Then
         assert_eq!(expected_cylinder, cylinder);
@@ -228,7 +228,7 @@ mod select_cylinder_should {
         };
 
         // When
-        select_cylinder.update_cylinder_selected(selectable_cylinder, cylinder);
+        select_cylinder.on_update_selected_cylinder(selectable_cylinder, cylinder);
 
         // Then
         assert_eq!(cylinder, select_cylinder.cylinders[index]);

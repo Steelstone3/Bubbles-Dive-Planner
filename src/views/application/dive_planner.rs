@@ -1,33 +1,16 @@
-use crate::{
-    commands::{messages::Message, tab_identifier::TabIdentifier},
-    models::application::dive_planner::DivePlanner,
-};
-use iced::{Element, Theme};
+use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
 
 impl DivePlanner {
     pub fn update(&mut self, message: Message) {
         match message {
             Message::MenuBar => {}
-            Message::SelectedTabChanged(tab_identifier) => match tab_identifier {
-                TabIdentifier::Plan => {
-                    self.application_state.tab_identifier = TabIdentifier::Plan;
-                }
-                TabIdentifier::Information => {
-                    self.application_state.tab_identifier = TabIdentifier::Information;
-                }
-                TabIdentifier::Results => {
-                    self.application_state.tab_identifier = TabIdentifier::Results;
-                }
-            },
+            Message::SelectedTabChanged(tab_identifier) => self.switch_tab(tab_identifier),
             Message::FileNew => self.file_new(),
             Message::FileSave => self.file_save(),
             Message::FileLoad => self.file_load(),
             Message::EditUndo => self.edit_undo(),
             Message::EditRedo => self.edit_redo(),
-            Message::ViewToggleTheme => match self.application_state.is_light_theme {
-                true => self.application_state.is_light_theme = false,
-                false => self.application_state.is_light_theme = true,
-            },
+            Message::ViewToggleTheme => self.switch_theme(),
             Message::ViewToggleSelectedCylinderVisibility => {
                 self.view_toggle_select_cylinder_visibility();
             }
@@ -61,7 +44,7 @@ impl DivePlanner {
                 self.cylinder_selected(selectable_cylinder);
             }
             Message::UpdateSelectedCylinder(selectable_cylinder) => {
-                self.update_cylinder_selected(selectable_cylinder)
+                self.update_selected_cylinder(selectable_cylinder)
             }
             Message::UpdateDiveProfile => {
                 self.update_dive_profile();
@@ -69,18 +52,6 @@ impl DivePlanner {
             Message::DecompressionUpdateDiveProfile => {
                 self.decompression_update_dive_profile();
             }
-        }
-    }
-
-    pub fn view(&self) -> Element<Message> {
-        self.tab_bar_view().into()
-    }
-
-    pub fn theme(&self) -> Theme {
-        // Theme::GruvboxDark
-        match self.application_state.is_light_theme {
-            true => Theme::Light,
-            false => Theme::Dark,
         }
     }
 }

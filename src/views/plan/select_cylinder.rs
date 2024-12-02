@@ -21,7 +21,7 @@ impl DivePlanner {
                 .placeholder("Select Cylinder"),
                 button("Update Cylinder").width(Length::Fill).on_press(
                     Message::UpdateSelectedCylinder(
-                        self.select_cylinder.selected_cylinder.unwrap()
+                        self.select_cylinder.selected_cylinder.unwrap_or_default()
                     ),
                 ),
             ]

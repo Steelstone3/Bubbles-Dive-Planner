@@ -1,32 +1,32 @@
 [tasks.watch]
-install_crate = "cargo-watch"
-command = "cargo"
 args = ["watch", "-c", "-x", "test", "-x", "clippy"]
+command = "cargo"
+install_crate = "cargo-watch"
 
 [tasks.run]
-command = "cargo"
 args = ["run"]
+command = "cargo"
 
 [tasks.format]
-command = "cargo"
 args = ["fmt", "--all"]
+command = "cargo"
 
 [tasks.check]
-command = "cargo"
 args = ["check", "--all-features"]
+command = "cargo"
 
 [tasks.lint]
+args = ["clippy", "--all-features", "--", "-D", "warnings"]
 command = "cargo"
-args = ["clippy", "--all-features"]
 
 [tasks.test]
-command = "cargo"
 args = ["test", "--all-features"]
+command = "cargo"
 
 [tasks.test_coverage]
-install_crate = "tarpaulin"
-command = "cargo"
 args = ["tarpaulin", "--skip-clean"]
+command = "cargo"
+install_crate = "tarpaulin"
 
 # workflows
 

@@ -10,16 +10,19 @@ impl DivePlanner {
 
     pub fn cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
         self.select_cylinder
-            .on_cylinder_selected(selectable_cylinder, &mut self.dive_stage.cylinder);
+            .on_select_update_cylinder_from_selected_cylinder(
+                selectable_cylinder,
+                &mut self.dive_stage.cylinder,
+            );
 
         // Refresh decompression steps
         self.decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
     }
 
-    pub fn update_cylinder_selected(&mut self, selectable_cylinder: SelectableCylinder) {
+    pub fn update_selected_cylinder(&mut self, selectable_cylinder: SelectableCylinder) {
         self.select_cylinder
-            .update_cylinder_selected(selectable_cylinder, self.dive_stage.cylinder);
+            .on_update_selected_cylinder(selectable_cylinder, self.dive_stage.cylinder);
     }
 }
 
@@ -106,7 +109,7 @@ mod cylinder_should {
         };
 
         // When
-        dive_planner.update_cylinder_selected(selectable_cylinder);
+        dive_planner.update_selected_cylinder(selectable_cylinder);
 
         // Then
         assert_eq!(cylinder, dive_planner.select_cylinder.cylinders[index]);
