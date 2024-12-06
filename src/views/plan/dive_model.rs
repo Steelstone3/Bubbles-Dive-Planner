@@ -3,7 +3,7 @@ use crate::{
     models::application::dive_planner::DivePlanner,
 };
 use iced::{
-    widget::{column, pick_list, Column},
+    widget::{column, pick_list, text, Column},
     Length,
 };
 use iced_aw::Card;
@@ -21,7 +21,15 @@ impl DivePlanner {
                 .width(Length::Fill)
                 .placeholder("Select Dive Model"),
             )),
-            false => column!(),
+            false => match self.select_dive_model.selected_dive_model {
+                Some(selected_dive_model) => column!().push(Card::new(
+                    "Selected Dive Model",
+                    text!("{}", selected_dive_model),
+                )),
+                None => {
+                    column!()
+                }
+            },
         }
     }
 }
