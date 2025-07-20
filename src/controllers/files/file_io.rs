@@ -4,29 +4,36 @@ use std::io::{Read, Write};
 use crate::models::{application::dive_planner::DivePlanner, plan::dive_stage::DiveStage};
 
 pub fn upsert_dive_planner_state(file_name: &str, dive_planner: &DivePlanner) {
-    let mut file = File::create(file_name).expect("Can't create file.");
-    let json = serde_json::ser::to_string_pretty(&dive_planner)
-        .expect("Can't parse application data to string");
-    write!(file, "{}", json).expect("Can't update file with application data");
+    let mut file = match File::create(file_name) {
+        Ok(file) => file,
+        Err(_) => return,
+    };
+    let json = serde_json::ser::to_string_pretty(&dive_planner).unwrap_or_default();
+
+    if let Ok(written_file) = write!(file, "{json}") {
+        written_file
+    }
 }
 
 pub fn read_dive_planner_state(file_name: &str) -> DivePlanner {
     let contents = get_file_contents(file_name);
 
-    if contents.is_empty() {
-        return DivePlanner::default();
-    }
-
-    serde_json::from_str(&contents).expect("Can't parse file contents to application data")
+    serde_json::from_str(&contents).unwrap_or_default()
 }
 
 pub fn upsert_dive_results(file_name: &str, dive_stages: &Vec<DiveStage>) {
-    let mut file = File::create(file_name).expect("Can't create file.");
+    let mut file = match File::create(file_name) {
+        Ok(file) => file,
+        Err(_) => return,
+    };
 
     for dive_stage in dive_stages {
-        let json = serde_json::ser::to_string_pretty(&dive_stage)
-            .expect("Can't parse application data to string");
-        write!(file, "{}", json).expect("Can't update file with application data");
+        let json = serde_json::ser::to_string_pretty(&dive_stage).unwrap_or_default();
+
+        match write!(file, "{json}") {
+            Ok(written_file) => written_file,
+            Err(_) => return,
+        }
     }
 }
 
@@ -34,7 +41,10 @@ fn get_file_contents(file_name: &str) -> String {
     let mut contents = String::new();
 
     if let Ok(mut file) = File::open(file_name) {
-        file.read_to_string(&mut contents).expect("Can't read file");
+        match file.read_to_string(&mut contents) {
+            Ok(_) => return contents,
+            Err(_) => String::new(),
+        };
     }
 
     contents

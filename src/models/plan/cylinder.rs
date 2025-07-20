@@ -59,7 +59,17 @@ impl Cylinder {
     }
 
     pub fn display_cylinder_summary(&self) -> String {
-        format!( "Cylinder\nVolume: {} (l) Pressure: {} (l)\nO2 (%): {} N (%): {} He (%): {}\nRemaining: {}/{} (l) Used: {} (l)" , self.volume, self.pressure, self.gas_mixture.oxygen, self.gas_mixture.nitrogen, self.gas_mixture.helium, self.gas_management.remaining, self.initial_pressurised_cylinder_volume, self.gas_management.used)
+        format!(
+            "Cylinder\nVolume: {} (l) Pressure: {} (l)\nO2 (%): {} N (%): {} He (%): {}\nRemaining: {}/{} (l) Used: {} (l)",
+            self.volume,
+            self.pressure,
+            self.gas_mixture.oxygen,
+            self.gas_mixture.nitrogen,
+            self.gas_mixture.helium,
+            self.gas_management.remaining,
+            self.initial_pressurised_cylinder_volume,
+            self.gas_management.used
+        )
     }
 
     fn display_cylinder(&self) -> String {

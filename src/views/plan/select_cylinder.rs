@@ -3,8 +3,8 @@ use crate::{
     models::application::dive_planner::DivePlanner,
 };
 use iced::{
-    widget::{button, column, pick_list, Column},
     Length,
+    widget::{Column, button, column, pick_list},
 };
 use iced_aw::Card;
 
@@ -29,13 +29,15 @@ impl DivePlanner {
 
             column!().push(Card::new("Select Cylinder", contents))
         } else if !self.application_state.is_planning && self.select_cylinder.is_multiple_cylinder {
-            let contents = column![pick_list(
-                &SelectableCylinder::ALL[..],
-                self.select_cylinder.selected_cylinder,
-                Message::SelectedCylinderChanged,
-            )
-            .width(Length::Fill)
-            .placeholder("Select Cylinder"),]
+            let contents = column![
+                pick_list(
+                    &SelectableCylinder::ALL[..],
+                    self.select_cylinder.selected_cylinder,
+                    Message::SelectedCylinderChanged,
+                )
+                .width(Length::Fill)
+                .placeholder("Select Cylinder"),
+            ]
             .spacing(10.0);
 
             column!().push(Card::new("Select Cylinder", contents))

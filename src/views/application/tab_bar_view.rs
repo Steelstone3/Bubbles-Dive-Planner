@@ -1,4 +1,4 @@
-use iced::widget::{column, Column, Scrollable};
+use iced::widget::{Column, Scrollable, column};
 use iced_aw::{TabBar, TabLabel};
 
 use crate::{
@@ -35,7 +35,7 @@ impl DivePlanner {
 }
 
 fn selected_tab_bar(active_tab: &TabIdentifier) -> TabBar<'static, Message, TabIdentifier> {
-    let tab_bar = TabBar::new(Message::SelectedTabChanged)
+    TabBar::new(Message::SelectedTabChanged)
         .push(
             TabIdentifier::Plan,
             TabLabel::IconText('\u{1F93F}', "Plan".to_string()),
@@ -48,6 +48,5 @@ fn selected_tab_bar(active_tab: &TabIdentifier) -> TabBar<'static, Message, TabI
             TabIdentifier::Results,
             TabLabel::IconText('\u{1F4CA}', "Results".to_string()),
         )
-        .set_active_tab(active_tab);
-    tab_bar
+        .set_active_tab(active_tab)
 }

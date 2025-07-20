@@ -1,7 +1,7 @@
 use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
 use iced::{
-    widget::{button, column, text},
     Renderer, Theme,
+    widget::{button, column, text},
 };
 use iced_aw::widgets::Card;
 

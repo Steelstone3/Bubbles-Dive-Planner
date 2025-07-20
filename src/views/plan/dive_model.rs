@@ -3,8 +3,8 @@ use crate::{
     models::application::dive_planner::DivePlanner,
 };
 use iced::{
-    widget::{column, pick_list, text, Column},
     Length,
+    widget::{Column, column, pick_list, text},
 };
 use iced_aw::Card;
 

@@ -1,7 +1,7 @@
 use crate::commands::messages::Message;
 use crate::models::application::dive_planner::DivePlanner;
-use iced::widget::{button, column};
 use iced::Length;
+use iced::widget::{button, column};
 use iced_aw::menu::{Item, Menu};
 use iced_aw::{menu_bar, menu_items};
 

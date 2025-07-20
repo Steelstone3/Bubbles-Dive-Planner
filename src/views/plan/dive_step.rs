@@ -1,5 +1,5 @@
 use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
-use iced::widget::{column, text, text_input, Column};
+use iced::widget::{Column, column, text, text_input};
 use iced_aw::Card;
 
 impl DivePlanner {

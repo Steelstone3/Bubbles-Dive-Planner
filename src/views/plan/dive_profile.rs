@@ -1,4 +1,4 @@
-use iced::widget::{button, column, Column};
+use iced::widget::{Column, button, column};
 
 use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
 

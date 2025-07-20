@@ -1,5 +1,5 @@
 use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
-use iced::widget::{column, text, Column};
+use iced::widget::{Column, column, text};
 
 impl DivePlanner {
     pub fn plan_view(&self) -> Column<Message> {
