@@ -1,4 +1,8 @@
-use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
+use crate::{
+    commands::messages::Message,
+    controllers::files::file_picker::{save_file_location, select_file_to_load},
+    models::application::dive_planner::DivePlanner,
+};
 
 impl DivePlanner {
     pub fn update(&mut self, message: Message) {
@@ -6,8 +10,9 @@ impl DivePlanner {
             Message::MenuBar => {}
             Message::SelectedTabChanged(tab_identifier) => self.switch_tab(tab_identifier),
             Message::FileNew => self.file_new(),
-            Message::FileSave => self.file_save(),
-            Message::FileLoad => self.file_load(),
+            Message::FileSave => self.file_save_application_state(&save_file_location()),
+            Message::FileSaveResults => self.file_save_results(&save_file_location()),
+            Message::FileLoad => self.file_load(&select_file_to_load()),
             Message::EditUndo => self.edit_undo(),
             Message::EditRedo => self.edit_redo(),
             Message::ViewToggleTheme => self.switch_theme(),

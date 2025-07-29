@@ -16,10 +16,6 @@ impl DivePlanner {
                     menu_template(menu_items!((button("New")
                         .width(Length::Fill)
                         .on_press(Message::FileNew))(
-                        button("Save")
-                            .width(Length::Fill)
-                            .on_press(Message::FileSave)
-                    )(
                         button("Load")
                             .width(Length::Fill)
                             .on_press(Message::FileLoad)
@@ -55,6 +51,10 @@ impl DivePlanner {
                         button("Save")
                             .width(Length::Fill)
                             .on_press(Message::FileSave)
+                    )(
+                        button("Save Results")
+                            .width(Length::Fill)
+                            .on_press(Message::FileSaveResults)
                     )(
                         button("Load")
                             .width(Length::Fill)

@@ -8,6 +8,7 @@ pub enum Message {
     MenuBar,
     FileNew,
     FileSave,
+    FileSaveResults,
     FileLoad,
     EditUndo,
     EditRedo,
