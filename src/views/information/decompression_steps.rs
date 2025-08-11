@@ -6,7 +6,7 @@ use iced::{
 use iced_aw::widgets::Card;
 
 impl DivePlanner {
-    pub fn decompression_steps_view(&self) -> iced::widget::Column<Message> {
+    pub fn decompression_steps_view(&self) -> iced::widget::Column<'_, Message> {
         let mut contents = column![];
 
         if !self.decompression_steps.dive_steps.is_empty() {
@@ -25,7 +25,7 @@ impl DivePlanner {
         contents
     }
 
-    fn decompression_steps_cards(&self) -> Vec<Card<Message, Theme, Renderer>> {
+    fn decompression_steps_cards(&self) -> Vec<Card<'_, Message, Theme, Renderer>> {
         let mut decompression_steps_cards = vec![];
 
         for decompression_step in &self.decompression_steps.dive_steps {

@@ -3,7 +3,7 @@ use iced::widget::{column, text};
 use iced_aw::widgets::Card;
 
 impl DivePlanner {
-    pub fn cns_toxicity_view(&self) -> iced::widget::Column<Message> {
+    pub fn cns_toxicity_view(&self) -> iced::widget::Column<'_, Message> {
         column!(Card::new(
             "CNS Toxicity",
             text(self.cns_toxicity.to_string())

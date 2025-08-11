@@ -3,7 +3,7 @@ use iced::widget::{column, text};
 use iced_aw::widgets::Card;
 
 impl DivePlanner {
-    pub fn dive_boundaries_view(&self) -> iced::widget::Column<Message> {
+    pub fn dive_boundaries_view(&self) -> iced::widget::Column<'_, Message> {
         column!(Card::new(
             "Dive Boundaries",
             text(format!(

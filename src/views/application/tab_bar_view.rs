@@ -7,7 +7,7 @@ use crate::{
 };
 
 impl DivePlanner {
-    pub fn tab_bar_view(&self) -> Column<Message> {
+    pub fn tab_bar_view(&self) -> Column<'_, Message> {
         match self.application_state.tab_identifier {
             TabIdentifier::Plan => {
                 let tab_bar = selected_tab_bar(&TabIdentifier::Plan);

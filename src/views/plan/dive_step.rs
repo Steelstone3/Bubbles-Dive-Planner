@@ -3,7 +3,7 @@ use iced::widget::{Column, column, text, text_input};
 use iced_aw::Card;
 
 impl DivePlanner {
-    pub fn dive_step_view(&self) -> Column<Message> {
+    pub fn dive_step_view(&self) -> Column<'_, Message> {
         let contents = column!()
             .push(text("Depth"))
             .spacing(10)

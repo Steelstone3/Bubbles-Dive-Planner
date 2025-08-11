@@ -5,7 +5,7 @@ use crate::{
 use iced::{Element, Theme};
 
 impl DivePlanner {
-    pub fn view(&self) -> Element<Message> {
+    pub fn view(&self) -> Element<'_, Message> {
         self.tab_bar_view().into()
     }
 

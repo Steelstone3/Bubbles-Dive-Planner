@@ -2,7 +2,7 @@ use crate::{commands::messages::Message, models::application::dive_planner::Dive
 use iced::widget::{Column, column, text};
 
 impl DivePlanner {
-    pub fn plan_view(&self) -> Column<Message> {
+    pub fn plan_view(&self) -> Column<'_, Message> {
         column!()
             .push(text("Plan").size(24))
             .padding(10)

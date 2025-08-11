@@ -58,7 +58,7 @@ mod file_should {
         assert_eq!(expected, dive_planner);
     }
 
-#[test]
+    #[test]
     fn file_saves_results() {
         // Given
         const DIVE_PLAN: &str = "dive_planner.json";

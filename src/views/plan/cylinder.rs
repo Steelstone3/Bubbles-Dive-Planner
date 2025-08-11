@@ -3,7 +3,7 @@ use iced::widget::{Column, column, text, text_input};
 use iced_aw::Card;
 
 impl DivePlanner {
-    pub fn cylinder_view(&self) -> Column<Message> {
+    pub fn cylinder_view(&self) -> Column<'_, Message> {
         match self.application_state.is_planning {
             true => {
                 let contents = column!()
@@ -73,7 +73,7 @@ impl DivePlanner {
         }
     }
 
-    fn gas_mixture_view(&self) -> Column<Message> {
+    fn gas_mixture_view(&self) -> Column<'_, Message> {
         let contents = column!()
             .push(text("Oxygen (%)"))
             .spacing(10)
@@ -102,7 +102,7 @@ impl DivePlanner {
         column!().push(Card::new("Gas Mixture", contents))
     }
 
-    fn gas_mixture_read_only_view(&self) -> Column<Message> {
+    fn gas_mixture_read_only_view(&self) -> Column<'_, Message> {
         let contents = column!()
             .push(text("Oxygen (%)"))
             .spacing(10)
@@ -123,7 +123,7 @@ impl DivePlanner {
         column!().push(Card::new("Gas Mixture", contents))
     }
 
-    fn gas_management_view(&self) -> Column<Message> {
+    fn gas_management_view(&self) -> Column<'_, Message> {
         let contents = column!()
             .push(text("S.A.C Rate (l/min)"))
             .spacing(10)

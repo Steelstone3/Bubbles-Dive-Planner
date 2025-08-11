@@ -9,7 +9,7 @@ use iced::{
 use iced_aw::Card;
 
 impl DivePlanner {
-    pub fn select_dive_model_view(&self) -> Column<Message> {
+    pub fn select_dive_model_view(&self) -> Column<'_, Message> {
         match self.application_state.is_planning {
             true => column!().push(Card::new(
                 "Select Dive Model",

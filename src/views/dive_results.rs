@@ -6,7 +6,7 @@ use iced::{
 use iced_aw::widgets::Card;
 
 impl DivePlanner {
-    pub fn results_view(&self) -> iced::widget::Column<Message> {
+    pub fn results_view(&self) -> iced::widget::Column<'_, Message> {
         if self.application_state.is_planning {
             column!()
         } else {
@@ -25,7 +25,7 @@ impl DivePlanner {
         }
     }
 
-    fn result_cards(&self) -> Vec<Card<Message, Theme, Renderer>> {
+    fn result_cards(&self) -> Vec<Card<'_, Message, Theme, Renderer>> {
         let mut result_cards = vec![];
 
         for dive_stage in &self.dive_results.results {
