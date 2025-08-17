@@ -29,4 +29,17 @@ public class GasMixtureShould
         Assert.Contains(nameof(gasMixture.Nitrogen), events);
         Assert.Contains(nameof(gasMixture.MaximumOperatingDepth), events);
     }
+
+    [Fact]
+    public void DeepClone()
+    {
+        // Given
+        GasMixture gasMixture = new();
+
+        // When
+        GasMixture clonedGasMixture = new(gasMixture);
+
+        // Then
+        Assert.NotSame(gasMixture, clonedGasMixture);
+    }
 }

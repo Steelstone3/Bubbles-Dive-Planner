@@ -2,9 +2,17 @@ using ReactiveUI;
 
 public class Cylinder : ReactiveObject, IVisibility
 {
-    public Cylinder()
+    public Cylinder(Cylinder cylinder)
     {
+        Name = cylinder.Name;
+        Volume = cylinder.Volume;
+        Pressure = cylinder.Pressure;
+        InitialPressurisedVolume = cylinder.InitialPressurisedVolume;
+        GasMixture = new GasMixture(cylinder.GasMixture);
+        GasUsage = new GasUsage(cylinder.GasUsage);
     }
+
+    public Cylinder() { }
 
     private string name = "Air";
     public string Name

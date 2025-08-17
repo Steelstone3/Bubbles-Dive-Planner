@@ -2,9 +2,14 @@ using ReactiveUI;
 
 public class GasUsage : ReactiveObject
 {
-    public GasUsage() { }
+    public GasUsage(GasUsage gasUsage)
+    {
+        Remaining = gasUsage.Remaining;
+        Remaining = gasUsage.Used;
+        Remaining = gasUsage.SurfaceAirConsumptionRate;
+    }
 
-    public GasUsage(GasUsage gasUsage) { }
+    public GasUsage() { }
 
     private ushort remaining;
     public ushort Remaining

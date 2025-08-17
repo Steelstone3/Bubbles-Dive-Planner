@@ -55,8 +55,7 @@ public class CylinderSelector : ReactiveObject
             return;
         }
 
-        ICylinderPrototype cylinderPrototype = new CylinderPrototype();
-        Cylinder clonedSelectedCylinder = cylinderPrototype.DeepClone(SetupCylinder);
+        Cylinder clonedSelectedCylinder = new Cylinder(SetupCylinder);
         Cylinders.Add(clonedSelectedCylinder);
     }
 }

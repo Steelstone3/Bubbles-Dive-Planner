@@ -83,8 +83,7 @@ public class Main : ReactiveObject
 
         DiveModelPrototype diveModelPrototype = new();
         DiveStepPrototype diveStepPrototype = new();
-        CylinderPrototype cylinderPrototype = new();
-        DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype, cylinderPrototype);
+        DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype);
 
         DiveProfileStagesCommand diveProfileStagesCommand = new();
 
@@ -103,8 +102,7 @@ public class Main : ReactiveObject
 
         DiveModelPrototype diveModelPrototype = new();
         DiveStepPrototype diveStepPrototype = new();
-        CylinderPrototype cylinderPrototype = new();
-        DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype, cylinderPrototype);
+        DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype);
 
         DiveBoundaryController diveBoundaryController = new();
         DecompressionController decompressionController = new();

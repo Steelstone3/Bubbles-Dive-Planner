@@ -2,9 +2,15 @@ using ReactiveUI;
 
 public class GasMixture : ReactiveObject
 {
-    public GasMixture()
+    public GasMixture(GasMixture gasMixture)
     {
+        Oxygen = gasMixture.Oxygen;
+        Helium = gasMixture.Helium;
+        Nitrogen = gasMixture.Nitrogen;
+        MaximumOperatingDepth = gasMixture.MaximumOperatingDepth;
     }
+
+    public GasMixture() { }
 
     private float oxygen;
     public float Oxygen

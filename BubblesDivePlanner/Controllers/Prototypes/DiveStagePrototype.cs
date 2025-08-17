@@ -2,13 +2,11 @@ public class DiveStagePrototype : IDiveStagePrototype
 {
     private readonly IDiveModelPrototype diveModelPrototype;
     private readonly IDiveStepPrototype diveStepPrototype;
-    private readonly ICylinderPrototype cylinderPrototype;
 
-    public DiveStagePrototype(IDiveModelPrototype diveModelPrototype, IDiveStepPrototype diveStepPrototype, ICylinderPrototype cylinderPrototype)
+    public DiveStagePrototype(IDiveModelPrototype diveModelPrototype, IDiveStepPrototype diveStepPrototype)
     {
         this.diveModelPrototype = diveModelPrototype;
         this.diveStepPrototype = diveStepPrototype;
-        this.cylinderPrototype = cylinderPrototype;
     }
 
     public DiveStage DeepClone(DiveStage diveStage)
@@ -17,7 +15,7 @@ public class DiveStagePrototype : IDiveStagePrototype
         {
             DiveModel = diveModelPrototype.DeepClone(diveStage.DiveModel),
             DiveStep = diveStepPrototype.DeepClone(diveStage.DiveStep),
-            Cylinder = cylinderPrototype.DeepClone(diveStage.Cylinder),
+            Cylinder = new Cylinder(diveStage.Cylinder),
         };
     }
 }
