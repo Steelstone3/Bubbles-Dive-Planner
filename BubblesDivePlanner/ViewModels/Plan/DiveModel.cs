@@ -12,6 +12,7 @@ public class DiveModel : ReactiveObject
         BValuesNitrogen = diveModel.BValuesNitrogen;
         AValuesHelium = diveModel.AValuesHelium;
         BValuesHelium = diveModel.BValuesHelium;
+        DiveModelProfile = new DiveModelProfile(diveModel.DiveModelProfile);
     }
 
     public DiveModel() { }

@@ -81,8 +81,7 @@ public class Main : ReactiveObject
 
         DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
 
-        DiveModelPrototype diveModelPrototype = new();
-        DiveStagePrototype diveStagePrototype = new(diveModelPrototype);
+        DiveStagePrototype diveStagePrototype = new();
 
         DiveProfileStagesCommand diveProfileStagesCommand = new();
 
@@ -99,8 +98,7 @@ public class Main : ReactiveObject
 
         DivePlan.DiveStage.Cylinder = DivePlan.CylinderSelector.SelectedCylinder;
 
-        DiveModelPrototype diveModelPrototype = new();
-        DiveStagePrototype diveStagePrototype = new(diveModelPrototype);
+        DiveStagePrototype diveStagePrototype = new();
 
         DiveBoundaryController diveBoundaryController = new();
         DecompressionController decompressionController = new();
