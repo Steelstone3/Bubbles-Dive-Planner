@@ -11,9 +11,7 @@ public class DiveStagePrototypeShould
         DiveStage diveStage = new();
         Mock<IDiveModelPrototype> diveModelPrototype = new();
         diveModelPrototype.Setup(dsp => dsp.DeepClone(diveStage.DiveModel)).Returns(diveModelFactory.CreateZhl16Buhlmann());
-        Mock<IDiveStepPrototype> diveStepPrototype = new();
-        diveStepPrototype.Setup(dsp => dsp.DeepClone(diveStage.DiveStep)).Returns(new DiveStep());
-        IDiveStagePrototype diveStagePrototype = new DiveStagePrototype(diveModelPrototype.Object, diveStepPrototype.Object);
+        IDiveStagePrototype diveStagePrototype = new DiveStagePrototype(diveModelPrototype.Object);
 
         // When
         DiveStage clonedDiveStage = diveStagePrototype.DeepClone(diveStage);
@@ -24,6 +22,5 @@ public class DiveStagePrototypeShould
         Assert.NotSame(diveStage.DiveStep, clonedDiveStage.DiveStep);
         Assert.NotSame(diveStage.Cylinder, clonedDiveStage.Cylinder);
         diveModelPrototype.VerifyAll();
-        diveStepPrototype.VerifyAll();
     }
 }
