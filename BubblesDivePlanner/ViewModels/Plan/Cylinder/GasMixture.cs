@@ -2,13 +2,11 @@ using ReactiveUI;
 
 public class GasMixture : ReactiveObject
 {
-    private readonly ICylinderController cylinderController;
     private readonly IDiveBoundaryController diveBoundaryController;
 
     // TODO AH remove controller polution
     public GasMixture()
     {
-        cylinderController = new CylinderController();
         diveBoundaryController = new DiveBoundaryController();
     }
 
@@ -19,7 +17,6 @@ public class GasMixture : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref oxygen, value);
-            Nitrogen = cylinderController.CalculateNitrogen(Oxygen, Helium);
             MaximumOperatingDepth = diveBoundaryController.CalculateMaximumOperatingDepth(Oxygen);
         }
     }
@@ -31,7 +28,6 @@ public class GasMixture : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref helium, value);
-            Nitrogen = cylinderController.CalculateNitrogen(Oxygen, Helium);
         }
     }
 
@@ -40,7 +36,7 @@ public class GasMixture : ReactiveObject
     public float Nitrogen
     {
         get => nitrogen;
-        private set => this.RaiseAndSetIfChanged(ref nitrogen, value);
+        set => this.RaiseAndSetIfChanged(ref nitrogen, value);
     }
 
     private float maximumOperatingDepth;

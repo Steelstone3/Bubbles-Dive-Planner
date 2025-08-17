@@ -44,13 +44,10 @@ public class CylinderSelector : ReactiveObject
         }
         
         CylinderValidator cylinderValidator = new();
-
-        // TODO AH Calculate gas mixture
-        // TODO AH Calculate initial pressure
         CylinderController cylinderController = new();
-
-
+        
         SetupCylinder.InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(SetupCylinder.Volume, SetupCylinder.Pressure);
+        SetupCylinder.GasMixture.Nitrogen = cylinderController.CalculateNitrogen(SetupCylinder.GasMixture.Oxygen, SetupCylinder.GasMixture.Helium);
 
         if (!cylinderValidator.Validate(SetupCylinder))
         {
