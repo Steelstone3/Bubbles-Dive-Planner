@@ -44,11 +44,11 @@ public class Main : ReactiveObject
     {
         // Nuke these
         main.DivePlan.DiveStage = new DiveStage();
-        main.DivePlan.DiveModelSelector = new DiveModelSelector();
         main.DiveInformation = new DiveInformation();
         main.Result.Results.Clear();
 
-        // Clean up cylinder selector
+        // Neat these
+        main.DivePlan.DiveModelSelector.IsVisible = true;
         main.DivePlan.CylinderSelector.New(main.DivePlan.CylinderSelector);
     }
 
