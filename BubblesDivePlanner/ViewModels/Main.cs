@@ -40,13 +40,19 @@ public class Main : ReactiveObject
 
     // public IObservable<bool> CanCalculateDiveStage { get; }
 
+    // TODO AH temporary whilst CanCalculateDiveStage is not implemented
     private void CalculateDiveStage()
     {
+        if (DivePlan.DiveModelSelector.DiveModelSelected == null || DivePlan.CylinderSelector.SelectedCylinder == null)
+        {
+            return;
+        }
+
         DivePlan.DiveStage.DiveModel = DivePlan.DiveModelSelector.DiveModelSelected;
         DivePlan.DiveStage.Cylinder = DivePlan.CylinderSelector.SelectedCylinder;
 
-        // TODO AH temporary whilst CanCalculateDiveStage is not implemented
         DiveStageValidator diveStageValidator = new();
+
         if (DivePlan.DiveStage.Cylinder == null || !diveStageValidator.Validate(DivePlan.DiveStage))
         {
             return;
