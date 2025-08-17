@@ -1,13 +1,10 @@
 using ReactiveUI;
 
-public class GasUsage : ReactiveObject, IGasUsage
+public class GasUsage : ReactiveObject
 {
-    private readonly IGasUsageValidator gasUsageValidator;
+    public GasUsage() { }
 
-    public GasUsage(IGasUsageValidator gasUsageValidator)
-    {
-        this.gasUsageValidator = gasUsageValidator;
-    }
+    public GasUsage(GasUsage gasUsage) { }
 
     private ushort remaining;
     public ushort Remaining
@@ -29,13 +26,4 @@ public class GasUsage : ReactiveObject, IGasUsage
         get => surfaceAirConsumptionRate;
         set => this.RaiseAndSetIfChanged(ref surfaceAirConsumptionRate, value);
     }
-
-    public bool IsValid => gasUsageValidator.Validate(this);
-}
-
-public interface IGasUsage : IValidation
-{
-    ushort Remaining { get; set; }
-    ushort Used { get; set; }
-    byte SurfaceAirConsumptionRate { get; set; }
 }

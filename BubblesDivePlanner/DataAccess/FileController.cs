@@ -2,16 +2,16 @@ using DynamicData;
 
 public class FileController : IFileController
 {
-    private readonly ISerialiser<ICylinderSelector> cylinderSelectorSerialiser;
-    private readonly ISerialiser<IResult> resultSerialiser;
+    private readonly ISerialiser<CylinderSelector> cylinderSelectorSerialiser;
+    private readonly ISerialiser<Result> resultSerialiser;
 
-    public FileController(ISerialiser<ICylinderSelector> cylinderSelectorSerialiser, ISerialiser<IResult> resultSerialiser)
+    public FileController(ISerialiser<CylinderSelector> cylinderSelectorSerialiser, ISerialiser<Result> resultSerialiser)
     {
         this.cylinderSelectorSerialiser = cylinderSelectorSerialiser;
         this.resultSerialiser = resultSerialiser;
     }
 
-    public void Write(IMain main)
+    public void Write(Main main)
     {
         try
         {
@@ -39,7 +39,7 @@ public class FileController : IFileController
     }
 
     // TODO AH Interaction Test
-    public void Read(IMain main)
+    public void Read(Main main)
     {
         try
         {
@@ -47,10 +47,10 @@ public class FileController : IFileController
             mainPrototype.NewInstance(main);
 
             string resultsJson = System.IO.File.ReadAllText("results.json");
-            IResult result = resultSerialiser.Read(resultsJson);
+            Result result = resultSerialiser.Read(resultsJson);
 
             string cylindersJson = System.IO.File.ReadAllText("cylinders.json");
-            ICylinderSelector cylinderSelector = cylinderSelectorSerialiser.Read(cylindersJson);
+            CylinderSelector cylinderSelector = cylinderSelectorSerialiser.Read(cylindersJson);
 
             UpdateCylinderSelector(main, cylinderSelector);
             UpdateResult(main, result);
@@ -61,7 +61,7 @@ public class FileController : IFileController
         }
     }
 
-    private void UpdateCylinderSelector(IMain main, ICylinderSelector cylinderSelector)
+    private void UpdateCylinderSelector(Main main, CylinderSelector cylinderSelector)
     {
         main.DivePlan.CylinderSelector.SetupCylinder = cylinderSelector.SetupCylinder;
         main.DivePlan.CylinderSelector.SelectedCylinder = cylinderSelector.SelectedCylinder;
@@ -69,9 +69,9 @@ public class FileController : IFileController
         // main.DivePlan.CylinderSelector.Cylinders.AddRange(cylinderSelector.Cylinders);
     }
 
-    private void UpdateResult(IMain main, IResult result)
+    private void UpdateResult(Main main, Result result)
     {
-        IDiveStage latestResult = result.Results.Last();
+        DiveStage latestResult = result.Results.Last();
 
         main.DivePlan.DiveModelSelector.DiveModelSelected = latestResult.DiveModel;
         main.DivePlan.DiveStage = latestResult;
@@ -82,6 +82,6 @@ public class FileController : IFileController
 
 public interface IFileController
 {
-    void Write(IMain main);
-    void Read(IMain main);
+    void Write(Main main);
+    void Read(Main main);
 }

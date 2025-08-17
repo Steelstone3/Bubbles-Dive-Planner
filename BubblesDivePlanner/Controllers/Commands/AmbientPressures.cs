@@ -1,8 +1,8 @@
 public class AmbientPressures : IDiveProfileStage
 {
-    private IDiveStage diveStage;
+    private DiveStage diveStage;
 
-    public AmbientPressures(IDiveStage diveStage)
+    public AmbientPressures(DiveStage diveStage)
     {
         this.diveStage = diveStage;
     }

@@ -1,6 +1,6 @@
 public class MainPrototype : IMainPrototype
 {
-    public void NewInstance(IMain main)
+    public void NewInstance(Main main)
     {
         DivePlan divePlan = new();
         main.DivePlan.DiveStage = divePlan.DiveStage;
@@ -19,5 +19,5 @@ public class MainPrototype : IMainPrototype
 
 public interface IMainPrototype
 {
-    void NewInstance(IMain main);
+    void NewInstance(Main main);
 }

@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using System.Reactive;
 using ReactiveUI;
 
-public class CylinderSelector : ReactiveObject, ICylinderSelector
+public class CylinderSelector : ReactiveObject
 {
     public CylinderSelector()
     {
@@ -13,20 +13,20 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
 
     public ReactiveCommand<Unit, Unit> AddCylinderCommand { get; }
 
-    public ObservableCollection<ICylinder> Cylinders
+    public ObservableCollection<Cylinder> Cylinders
     {
         get;
-    } = new ObservableCollection<ICylinder>();
+    } = new ObservableCollection<Cylinder>();
 
-    private ICylinder setupCylinder = new Cylinder(new CylinderValidator(), new CylinderController());
-    public ICylinder SetupCylinder
+    private Cylinder setupCylinder = new Cylinder();
+    public Cylinder SetupCylinder
     {
         get => setupCylinder;
         set => this.RaiseAndSetIfChanged(ref setupCylinder, value);
     }
 
-    private ICylinder selectedCylinder;
-    public ICylinder SelectedCylinder
+    private Cylinder selectedCylinder;
+    public Cylinder SelectedCylinder
     {
         get => selectedCylinder;
         set
@@ -38,21 +38,27 @@ public class CylinderSelector : ReactiveObject, ICylinderSelector
 
     private void AddCylinder()
     {
-        if (!SetupCylinder.IsValid)
+        if (SetupCylinder == null)
+        {
+            return;
+        }
+        
+        CylinderValidator cylinderValidator = new();
+
+        // TODO AH Calculate gas mixture
+        // TODO AH Calculate initial pressure
+        CylinderController cylinderController = new();
+
+
+        SetupCylinder.InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(SetupCylinder.Volume, SetupCylinder.Pressure);
+
+        if (!cylinderValidator.Validate(SetupCylinder))
         {
             return;
         }
 
         ICylinderPrototype cylinderPrototype = new CylinderPrototype();
-        ICylinder clonedSelectedCylinder = cylinderPrototype.DeepClone(SetupCylinder);
+        Cylinder clonedSelectedCylinder = cylinderPrototype.DeepClone(SetupCylinder);
         Cylinders.Add(clonedSelectedCylinder);
     }
-}
-
-public interface ICylinderSelector
-{
-    Action SelectedCylinderChanged { get; set; }
-    ObservableCollection<ICylinder> Cylinders { get; }
-    ICylinder SetupCylinder { get; set; }
-    ICylinder SelectedCylinder { get; set; }
 }

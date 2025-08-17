@@ -1,7 +1,7 @@
 // TODO AH Test
-public class DalCylinderConverter : IDalConverter<DalCylinder, ICylinder>
+public class DalCylinderConverter : IDalConverter<DalCylinder, Cylinder>
 {
-    public DalCylinder ConvertTo(ICylinder cylinder)
+    public DalCylinder ConvertTo(Cylinder cylinder)
     {
         DalGasMixtureConverter dalGasMixtureConverter = new();
         DalGasUsageConverter dalGasUsageConverter = new();
@@ -17,12 +17,12 @@ public class DalCylinderConverter : IDalConverter<DalCylinder, ICylinder>
         };
     }
 
-    public ICylinder ConvertFrom(DalCylinder dalCylinder)
+    public Cylinder ConvertFrom(DalCylinder dalCylinder)
     {
         DalGasMixtureConverter dalGasMixtureConverter = new();
         DalGasUsageConverter dalGasUsageConverter = new();
 
-        return new Cylinder(new CylinderValidator(), new CylinderController())
+        return new Cylinder()
         {
             Name = dalCylinder.Name,
             Volume = dalCylinder.Volume,

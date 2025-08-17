@@ -1,13 +1,13 @@
 // TODO AH Test
-public class DalDiveStageConverter : IDalConverter<DalDiveStage, IDiveStage>
+public class DalDiveStageConverter : IDalConverter<DalDiveStage, DiveStage>
 {
-    public IDiveStage ConvertFrom(DalDiveStage dalDiveStage)
+    public DiveStage ConvertFrom(DalDiveStage dalDiveStage)
     {
         DalDiveModelConverter dalDiveModelConverter = new();
         DalDiveStepConverter dalDiveStepConverter = new();
         DalCylinderConverter dalCylinderConverter = new();
 
-        return new DiveStage(new DiveStageValidator())
+        return new DiveStage()
         {
             DiveModel = dalDiveModelConverter.ConvertFrom(dalDiveStage.DiveModel),
             DiveStep = dalDiveStepConverter.ConvertFrom(dalDiveStage.DiveStep),
@@ -15,7 +15,7 @@ public class DalDiveStageConverter : IDalConverter<DalDiveStage, IDiveStage>
         };
     }
 
-    public DalDiveStage ConvertTo(IDiveStage diveStage)
+    public DalDiveStage ConvertTo(DiveStage diveStage)
     {
         DalDiveModelConverter dalDiveModelConverter = new();
         DalDiveStepConverter dalDiveStepConverter = new();

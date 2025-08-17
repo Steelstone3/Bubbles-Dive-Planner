@@ -7,11 +7,10 @@ public class HeaderShould
     public void Construct()
     {
         // Given
-        Mock<IMain> main = new();
-        Header header = new(main.Object);
+        Main main = new();
+        Header header = new(main);
 
         // Then
-        Assert.IsAssignableFrom<IHeader>(header);
         Assert.NotNull(header.Help);
         Assert.NotNull(header.File);
     }

@@ -1,16 +1,16 @@
 // TODO AH Test
-public class DalDiveStepConverter : IDalConverter<DalDiveStep, IDiveStep>
+public class DalDiveStepConverter : IDalConverter<DalDiveStep, DiveStep>
 {
-    public IDiveStep ConvertFrom(DalDiveStep dalDiveStep)
+    public DiveStep ConvertFrom(DalDiveStep dalDiveStep)
     {
-        return new DiveStep(new DiveStepValidator())
+        return new DiveStep()
         {
             Depth = dalDiveStep.Depth,
             Time = dalDiveStep.Time,
         };
     }
 
-    public DalDiveStep ConvertTo(IDiveStep diveStep)
+    public DalDiveStep ConvertTo(DiveStep diveStep)
     {
         return new()
         {

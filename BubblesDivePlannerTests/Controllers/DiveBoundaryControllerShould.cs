@@ -1,4 +1,3 @@
-using Moq;
 using Xunit;
 
 public class DiveBoundaryControllerShould
@@ -39,7 +38,7 @@ public class DiveBoundaryControllerShould
     {
         // Given
         float expectedDiveCeiling = 0.0F;
-        List<IDiveStage> diveStages = null;
+        List<DiveStage> diveStages = null;
 
         // When
         float diveCeiling = diveBoundaryController.GetOverallDiveCeiling(diveStages);
@@ -52,20 +51,25 @@ public class DiveBoundaryControllerShould
     public void GetOverallDiveCeiling()
     {
         // Given
-        float expectedDiveCeiling = 3.0F;
-        Mock<IDiveModelProfile> diveModelProfile = new();
-        diveModelProfile.Setup(dp => dp.DiveCeiling).Returns(expectedDiveCeiling);
-        Mock<IDiveModel> diveModel = new();
-        diveModel.Setup(dm => dm.DiveModelProfile).Returns(diveModelProfile.Object);
-        Mock<IDiveStage> diveStage = new();
-        diveStage.Setup(ds => ds.DiveModel).Returns(diveModel.Object);
-        List<IDiveStage> diveStages = new() { diveStage.Object };
+        float expectedDiveCeiling = 55.0F;
+        DiveModelProfile diveModelProfile = new(3)
+        {
+            ToleratedAmbientPressures = [2.0F, 4.0F, 6.5F],
+        };
+        DiveModel diveModel = new()
+        {
+            DiveModelProfile = diveModelProfile
+        };
+        DiveStage diveStage = new()
+        {
+            DiveModel = diveModel
+        };
+        List<DiveStage> diveStages = new() { diveStage };
 
         // When
         float diveCeiling = diveBoundaryController.GetOverallDiveCeiling(diveStages);
 
         // Then
         Assert.Equal(expectedDiveCeiling, diveCeiling);
-        diveStage.VerifyAll();
     }
 }

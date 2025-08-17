@@ -8,18 +8,18 @@ public class DiveStagePrototypeShould
     public void DeepClone()
     {
         // Given
-        Mock<IDiveStageValidator> diveStageValidator = new();
-        IDiveStage diveStage = new DiveStage(diveStageValidator.Object);
+        DiveModelFactory diveModelFactory = new();
+        DiveStage diveStage = new();
         Mock<IDiveModelPrototype> diveModelPrototype = new();
-        diveModelPrototype.Setup(dsp => dsp.DeepClone(diveStage.DiveModel)).Returns(new Zhl16Buhlmann());
+        diveModelPrototype.Setup(dsp => dsp.DeepClone(diveStage.DiveModel)).Returns(diveModelFactory.CreateZhl16Buhlmann());
         Mock<IDiveStepPrototype> diveStepPrototype = new();
-        diveStepPrototype.Setup(dsp => dsp.DeepClone(diveStage.DiveStep)).Returns(new DiveStep(new DiveStepValidator()));
+        diveStepPrototype.Setup(dsp => dsp.DeepClone(diveStage.DiveStep)).Returns(new DiveStep());
         Mock<ICylinderPrototype> cylinderPrototype = new();
-        cylinderPrototype.Setup(cp => cp.DeepClone(diveStage.Cylinder)).Returns(new Cylinder(new CylinderValidator(), new CylinderController()));
+        cylinderPrototype.Setup(cp => cp.DeepClone(diveStage.Cylinder)).Returns(new Cylinder());
         IDiveStagePrototype diveStagePrototype = new DiveStagePrototype(diveModelPrototype.Object, diveStepPrototype.Object, cylinderPrototype.Object);
 
         // When
-        IDiveStage clonedDiveStage = diveStagePrototype.DeepClone(diveStage);
+        DiveStage clonedDiveStage = diveStagePrototype.DeepClone(diveStage);
 
         // Then
         Assert.NotSame(diveStage, clonedDiveStage);

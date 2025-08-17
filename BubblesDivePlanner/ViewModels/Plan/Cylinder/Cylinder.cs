@@ -1,14 +1,9 @@
 using ReactiveUI;
 
-public class Cylinder : ReactiveObject, ICylinder
+public class Cylinder : ReactiveObject, IVisibility
 {
-    private readonly ICylinderValidator cylinderValidator;
-    private readonly ICylinderController cylinderController;
-
-    public Cylinder(ICylinderValidator cylinderValidator, ICylinderController cylinderController)
+    public Cylinder()
     {
-        this.cylinderValidator = cylinderValidator;
-        this.cylinderController = cylinderController;
     }
 
     private string name = "Air";
@@ -25,7 +20,6 @@ public class Cylinder : ReactiveObject, ICylinder
         set
         {
             this.RaiseAndSetIfChanged(ref volume, value);
-            InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(volume, pressure);
         }
     }
 
@@ -36,7 +30,6 @@ public class Cylinder : ReactiveObject, ICylinder
         set
         {
             this.RaiseAndSetIfChanged(ref pressure, value);
-            InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(volume, pressure);
         }
     }
 
@@ -51,15 +44,15 @@ public class Cylinder : ReactiveObject, ICylinder
         }
     }
 
-    private IGasMixture gasMixture = new GasMixture(new GasMixtureValidator(), new CylinderController(), new DiveBoundaryController());
-    public IGasMixture GasMixture
+    private GasMixture gasMixture = new();
+    public GasMixture GasMixture
     {
         get => gasMixture;
         set => this.RaiseAndSetIfChanged(ref gasMixture, value);
     }
 
-    private IGasUsage gasUsage = new GasUsage(new GasUsageValidator());
-    public IGasUsage GasUsage
+    private GasUsage gasUsage = new GasUsage();
+    public GasUsage GasUsage
     {
         get => gasUsage;
         set => this.RaiseAndSetIfChanged(ref gasUsage, value);
@@ -71,16 +64,4 @@ public class Cylinder : ReactiveObject, ICylinder
         get => isVisibile;
         set => this.RaiseAndSetIfChanged(ref isVisibile, value);
     }
-
-    public bool IsValid => cylinderValidator.Validate(this);
-}
-
-public interface ICylinder : IVisibility, IValidation
-{
-    string Name { get; set; }
-    byte Volume { get; set; }
-    ushort Pressure { get; set; }
-    ushort InitialPressurisedVolume { get; set; }
-    IGasMixture GasMixture { get; set; }
-    IGasUsage GasUsage { get; set; }
 }

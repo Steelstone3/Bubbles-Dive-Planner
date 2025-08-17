@@ -3,15 +3,6 @@ using Xunit;
 
 public class ResultSerialiserShould
 {
-    [Fact]
-    public void Construct()
-    {
-        // Given
-        ResultSerialiser resultSerialiser = new();
-
-        // Then
-        Assert.IsAssignableFrom<ISerialiser<IResult>>(resultSerialiser);
-    }
 
     [SkippableFact]
     public void Write()
@@ -19,23 +10,22 @@ public class ResultSerialiserShould
         Skip.If(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
 
         // Given
-        // TODO AH Mock
-        DiveStep diveStep = new(new DiveStepValidator())
+        DiveStep diveStep = new()
         {
             Depth = 50,
             Time = 10,
         };
-        GasMixture gasMixture = new(new GasMixtureValidator(), new CylinderController(), new DiveBoundaryController())
+        GasMixture gasMixture = new()
         {
             Oxygen = 21
         };
-        GasUsage gasUsage = new(new GasUsageValidator())
+        GasUsage gasUsage = new()
         {
             Remaining = 1680,
             Used = 720,
             SurfaceAirConsumptionRate = 12,
         };
-        Cylinder cylinder = new(new CylinderValidator(), new CylinderController())
+        Cylinder cylinder = new()
         {
             Name = "Air",
             Volume = 12,
@@ -44,9 +34,11 @@ public class ResultSerialiserShould
             GasMixture = gasMixture,
             GasUsage = gasUsage,
         };
-        DiveStage diveStage = new(new DiveStageValidator())
+
+        DiveModelFactory diveModelFactory = new();
+        DiveStage diveStage = new()
         {
-            DiveModel = new Zhl16Buhlmann(),
+            DiveModel = diveModelFactory.CreateZhl16Buhlmann(),
             DiveStep = diveStep,
             Cylinder = cylinder,
         };
@@ -71,7 +63,7 @@ public class ResultSerialiserShould
         ResultSerialiser resultSerialiser = new();
 
         // When
-        IResult result = resultSerialiser.Read(json);
+        Result result = resultSerialiser.Read(json);
 
         // Then
         Assert.NotNull(result);

@@ -18,12 +18,5 @@
                    FontWeight="Bold" />
         <TextBox Margin="4"
                  Text="{Binding DivePlan.CylinderSelector.SetupCylinder.GasMixture.Helium}" />
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Margin="4,4,0,4"
-                       Text="Nitrogen (%): "
-                       FontWeight="Bold" />
-            <TextBlock Margin="0,4,4,4"
-                       Text="{Binding DivePlan.CylinderSelector.SetupCylinder.GasMixture.Nitrogen}" />
-        </StackPanel>
     </StackPanel>
 </UserControl>

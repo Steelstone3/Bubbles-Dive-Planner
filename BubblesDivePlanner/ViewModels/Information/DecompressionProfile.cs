@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using ReactiveUI;
 
-public class DecompressionProfile : ReactiveObject, IDecompressionProfile
+public class DecompressionProfile : ReactiveObject
 {
     private float diveCeiling;
     public float DiveCeiling
@@ -10,14 +10,8 @@ public class DecompressionProfile : ReactiveObject, IDecompressionProfile
         set => this.RaiseAndSetIfChanged(ref diveCeiling, value);
     }
 
-    public ObservableCollection<IDiveStep> DecompressionSteps
+    public ObservableCollection<DiveStep> DecompressionSteps
     {
         get;
-    } = new ObservableCollection<IDiveStep>();
-}
-
-public interface IDecompressionProfile
-{
-    float DiveCeiling { get; set; }
-    ObservableCollection<IDiveStep> DecompressionSteps { get; }
+    } = new ObservableCollection<DiveStep>();
 }

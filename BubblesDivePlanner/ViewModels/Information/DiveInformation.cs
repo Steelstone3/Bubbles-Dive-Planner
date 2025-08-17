@@ -1,19 +1,13 @@
 using ReactiveUI;
 
-public class DiveInformation : ReactiveObject, IDiveInformation
+public class DiveInformation : ReactiveObject
 {
-    private IDecompressionProfile decompressionProfile = new DecompressionProfile();
-    public IDecompressionProfile DecompressionProfile
+    private DecompressionProfile decompressionProfile = new DecompressionProfile();
+    public DecompressionProfile DecompressionProfile
     {
         get => decompressionProfile;
         set => this.RaiseAndSetIfChanged(ref decompressionProfile, value);
     }
 
-    public ICentralNervousSystemToxicity CentralNervousSystemToxicity { get; } = new CentralNervousSystemToxicity();
-}
-
-public interface IDiveInformation
-{
-    IDecompressionProfile DecompressionProfile { get; set; }
-    ICentralNervousSystemToxicity CentralNervousSystemToxicity { get; }
+    public CentralNervousSystemToxicity CentralNervousSystemToxicity { get; } = new CentralNervousSystemToxicity();
 }

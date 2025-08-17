@@ -1,16 +1,15 @@
 using ReactiveUI;
 
-public class GasMixture : ReactiveObject, IGasMixture
+public class GasMixture : ReactiveObject
 {
-    private readonly IGasMixtureValidator gasMixtureValidator;
     private readonly ICylinderController cylinderController;
     private readonly IDiveBoundaryController diveBoundaryController;
 
-    public GasMixture(IGasMixtureValidator gasMixtureValidator, ICylinderController cylinderController, IDiveBoundaryController diveBoundaryController)
+    // TODO AH remove controller polution
+    public GasMixture()
     {
-        this.gasMixtureValidator = gasMixtureValidator;
-        this.cylinderController = cylinderController;
-        this.diveBoundaryController = diveBoundaryController;
+        cylinderController = new CylinderController();
+        diveBoundaryController = new DiveBoundaryController();
     }
 
     private float oxygen;
@@ -50,14 +49,4 @@ public class GasMixture : ReactiveObject, IGasMixture
         get => maximumOperatingDepth;
         private set => this.RaiseAndSetIfChanged(ref maximumOperatingDepth, value);
     }
-
-    public bool IsValid => gasMixtureValidator.Validate(this);
-}
-
-public interface IGasMixture : IValidation
-{
-    float Oxygen { get; set; }
-    float Helium { get; set; }
-    float Nitrogen { get; }
-    float MaximumOperatingDepth { get; }
 }

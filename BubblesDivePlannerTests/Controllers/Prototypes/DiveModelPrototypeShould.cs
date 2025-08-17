@@ -6,11 +6,12 @@ public class DiveModelPrototypeShould
     public void DeepClone()
     {
         // Given
+        DiveModelFactory diveModelFactory = new();
         IDiveModelPrototype diveModelPrototype = new DiveModelPrototype();
-        IDiveModel diveModel = new Zhl16Buhlmann();
+        DiveModel diveModel = diveModelFactory.CreateZhl16Buhlmann();
 
         // When
-        IDiveModel clonedDiveModel = diveModelPrototype.DeepClone(diveModel);
+        DiveModel clonedDiveModel = diveModelPrototype.DeepClone(diveModel);
 
         // Then
         Assert.NotSame(diveModel, clonedDiveModel);

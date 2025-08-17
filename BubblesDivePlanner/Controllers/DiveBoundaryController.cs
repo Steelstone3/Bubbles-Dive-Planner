@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
 public class DiveBoundaryController : IDiveBoundaryController
 {
     public float CalculateMaximumOperatingDepth(float oxygen)
@@ -18,7 +15,7 @@ public class DiveBoundaryController : IDiveBoundaryController
         return (float)Math.Round((toleratedAmbientPressures.Max() - 1.0) * 10.0, 2);
     }
 
-    public float GetOverallDiveCeiling(IEnumerable<IDiveStage> Results)
+    public float GetOverallDiveCeiling(IEnumerable<DiveStage> Results)
     {
         if (Results == null || Results.LastOrDefault() == null)
         {
@@ -35,5 +32,5 @@ public interface IDiveBoundaryController
 {
     float CalculateMaximumOperatingDepth(float oxygen);
     float CalculateDiveCeiling(float[] toleratedAmbientPressures);
-    float GetOverallDiveCeiling(IEnumerable<IDiveStage> Results);
+    float GetOverallDiveCeiling(IEnumerable<DiveStage> Results);
 }

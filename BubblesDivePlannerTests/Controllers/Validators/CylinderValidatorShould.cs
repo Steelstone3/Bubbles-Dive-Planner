@@ -10,20 +10,29 @@ public class CylinderValidatorShould
     public void ValidateValidCylinder(string name, byte volume, ushort pressure)
     {
         // Given
-        Mock<IGasMixture> gasMixture = new();
-        gasMixture.Setup(gm => gm.IsValid).Returns(true);
-        Mock<IGasUsage> gasUsage = new();
-        gasUsage.Setup(gu => gu.IsValid).Returns(true);
-        Mock<ICylinder> cylinder = new();
-        cylinder.Setup(c => c.Name).Returns(name);
-        cylinder.Setup(c => c.Volume).Returns(volume);
-        cylinder.Setup(c => c.Pressure).Returns(pressure);
-        cylinder.Setup(c => c.GasMixture).Returns(gasMixture.Object);
-        cylinder.Setup(c => c.GasUsage).Returns(gasUsage.Object);
+        GasMixture gasMixture = new()
+        {
+            Oxygen = 21,
+            Helium = 10,
+        };
+        GasUsage gasUsage = new()
+        {
+            Remaining = 1680,
+            Used = 720,
+            SurfaceAirConsumptionRate = 12,
+        };
+        Cylinder cylinder = new()
+        {
+            Name = name,
+            Volume = volume,
+            Pressure = pressure,
+            GasMixture = gasMixture,
+            GasUsage = gasUsage,
+        };
         CylinderValidator cylinderValidator = new();
 
         // When
-        bool isValid = cylinderValidator.Validate(cylinder.Object);
+        bool isValid = cylinderValidator.Validate(cylinder);
 
         // Then
         Assert.True(isValid);
@@ -41,20 +50,32 @@ public class CylinderValidatorShould
     public void ValidateInvalidCylinder(string name, byte volume, ushort pressure)
     {
         // Given
-        Mock<IGasMixture> gasMixture = new();
-        gasMixture.Setup(gm => gm.IsValid).Returns(true);
-        Mock<IGasUsage> gasUsage = new();
-        gasUsage.Setup(gu => gu.IsValid).Returns(true);
-        Mock<ICylinder> cylinder = new();
-        cylinder.Setup(c => c.Name).Returns(name);
-        cylinder.Setup(c => c.Volume).Returns(volume);
-        cylinder.Setup(c => c.Pressure).Returns(pressure);
-        cylinder.Setup(c => c.GasMixture).Returns(gasMixture.Object);
-        cylinder.Setup(c => c.GasUsage).Returns(gasUsage.Object);
+        Mock<ICylinderController> cylinderController = new();
+        Mock<IDiveBoundaryController> diveBoundary = new();
+        GasMixture gasMixture = new()
+        {
+            Oxygen = 21,
+            Helium = 10,
+        };
+
+        GasUsage gasUsage = new()
+        {
+            Remaining = 1680,
+            Used = 720,
+            SurfaceAirConsumptionRate = 12,
+        };
+        Cylinder cylinder = new()
+        {
+            Name = name,
+            Volume = volume,
+            Pressure = pressure,
+            GasMixture = gasMixture,
+            GasUsage = gasUsage
+        };
         CylinderValidator cylinderValidator = new();
 
         // When
-        bool isValid = cylinderValidator.Validate(cylinder.Object);
+        bool isValid = cylinderValidator.Validate(cylinder);
 
         // Then
         Assert.False(isValid);

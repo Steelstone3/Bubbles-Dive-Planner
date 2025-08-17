@@ -1,7 +1,7 @@
 // TODO AH Test
-public class DalGasUsageConverter : IDalConverter<DalGasUsage, IGasUsage>
+public class DalGasUsageConverter : IDalConverter<DalGasUsage, GasUsage>
 {
-    public DalGasUsage ConvertTo(IGasUsage gasUsage)
+    public DalGasUsage ConvertTo(GasUsage gasUsage)
     {
         return new()
         {
@@ -11,9 +11,9 @@ public class DalGasUsageConverter : IDalConverter<DalGasUsage, IGasUsage>
         };
     }
 
-    public IGasUsage ConvertFrom(DalGasUsage dalGasUsage)
+    public GasUsage ConvertFrom(DalGasUsage dalGasUsage)
     {
-        return new GasUsage(new GasUsageValidator())
+        return new GasUsage()
         {
             Remaining = dalGasUsage.Remaining,
             Used = dalGasUsage.Used,

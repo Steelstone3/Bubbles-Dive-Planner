@@ -11,9 +11,9 @@ public class DiveStagePrototype : IDiveStagePrototype
         this.cylinderPrototype = cylinderPrototype;
     }
 
-    public IDiveStage DeepClone(IDiveStage diveStage)
+    public DiveStage DeepClone(DiveStage diveStage)
     {
-        return new DiveStage(new DiveStageValidator())
+        return new DiveStage()
         {
             DiveModel = diveModelPrototype.DeepClone(diveStage.DiveModel),
             DiveStep = diveStepPrototype.DeepClone(diveStage.DiveStep),
@@ -24,5 +24,5 @@ public class DiveStagePrototype : IDiveStagePrototype
 
 public interface IDiveStagePrototype
 {
-    IDiveStage DeepClone(IDiveStage diveStage);
+    DiveStage DeepClone(DiveStage diveStage);
 }

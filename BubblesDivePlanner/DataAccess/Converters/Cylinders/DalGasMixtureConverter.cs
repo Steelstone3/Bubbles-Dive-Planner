@@ -1,7 +1,7 @@
 // TODO AH Test
-public class DalGasMixtureConverter : IDalConverter<DalGasMixture, IGasMixture>
+public class DalGasMixtureConverter : IDalConverter<DalGasMixture, GasMixture>
 {
-    public DalGasMixture ConvertTo(IGasMixture gasMixture)
+    public DalGasMixture ConvertTo(GasMixture gasMixture)
     {
         return new()
         {
@@ -10,9 +10,9 @@ public class DalGasMixtureConverter : IDalConverter<DalGasMixture, IGasMixture>
         };
     }
 
-    public IGasMixture ConvertFrom(DalGasMixture dalGasMixture)
+    public GasMixture ConvertFrom(DalGasMixture dalGasMixture)
     {
-        return new GasMixture(new GasMixtureValidator(), new CylinderController(), new DiveBoundaryController())
+        return new GasMixture()
         {
             Oxygen = dalGasMixture.Oxygen,
             Helium = dalGasMixture.Helium,

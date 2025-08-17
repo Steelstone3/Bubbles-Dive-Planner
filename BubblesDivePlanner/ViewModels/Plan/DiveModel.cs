@@ -1,6 +1,6 @@
 using ReactiveUI;
 
-public class DiveModel : ReactiveObject, IDiveModel
+public class DiveModel : ReactiveObject
 {
     public string Name { get; set; }
     public byte CompartmentCount { get; set; }
@@ -11,23 +11,10 @@ public class DiveModel : ReactiveObject, IDiveModel
     public float[] AValuesHelium { get; set; }
     public float[] BValuesHelium { get; set; }
 
-    private IDiveModelProfile diveModelProfile;
-    public IDiveModelProfile DiveModelProfile
+    private DiveModelProfile diveModelProfile;
+    public DiveModelProfile DiveModelProfile
     {
         get => diveModelProfile;
         set => this.RaiseAndSetIfChanged(ref diveModelProfile, value);
     }
-}
-
-public interface IDiveModel
-{
-    string Name { get; set; }
-    byte CompartmentCount { get; set; }
-    float[] NitrogenHalfTime { get; set; }
-    float[] HeliumHalfTime { get; set; }
-    float[] AValuesNitrogen { get; set; }
-    float[] BValuesNitrogen { get; set; }
-    float[] AValuesHelium { get; set; }
-    float[] BValuesHelium { get; set; }
-    IDiveModelProfile DiveModelProfile { get; set; }
 }

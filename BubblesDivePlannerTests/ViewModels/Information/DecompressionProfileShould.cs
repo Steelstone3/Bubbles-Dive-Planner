@@ -12,7 +12,6 @@ public class DecompressionProfileShould
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(diveInformation);
-        Assert.IsAssignableFrom<IDecompressionProfile>(diveInformation);
         Assert.Equal(0.0F, diveInformation.DiveCeiling);
         Assert.NotNull(diveInformation.DecompressionSteps);
         Assert.Empty(diveInformation.DecompressionSteps);
@@ -38,13 +37,13 @@ public class DecompressionProfileShould
     public void CollectionChangedEvents()
     {
         // Given
-        Mock<IDiveStep> diveStage = new();
+        DiveStep diveStep = new();
         DecompressionProfile decompressionProfile = new();
         List<string> events = new();
         decompressionProfile.DecompressionSteps.CollectionChanged += (sender, e) => events.Add(e.NewItems.ToString());
 
         // When
-        decompressionProfile.DecompressionSteps.Add(diveStage.Object);
+        decompressionProfile.DecompressionSteps.Add(diveStep);
 
         // Then
         Assert.NotNull(decompressionProfile.DecompressionSteps);

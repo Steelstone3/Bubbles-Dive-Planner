@@ -1,19 +1,19 @@
 public class CylinderPrototype : ICylinderPrototype
 {
-    public ICylinder DeepClone(ICylinder cylinder)
+    public Cylinder DeepClone(Cylinder cylinder)
     {
-        return new Cylinder(new CylinderValidator(), new CylinderController())
+        return new Cylinder()
         {
             Name = cylinder.Name,
             Volume = cylinder.Volume,
             Pressure = cylinder.Pressure,
             InitialPressurisedVolume = cylinder.InitialPressurisedVolume,
-            GasMixture = new GasMixture(new GasMixtureValidator(), new CylinderController(), new DiveBoundaryController())
+            GasMixture = new GasMixture()
             {
                 Oxygen = cylinder.GasMixture.Oxygen,
                 Helium = cylinder.GasMixture.Helium,
             },
-            GasUsage = new GasUsage(new GasUsageValidator())
+            GasUsage = new GasUsage()
             {
                 Remaining = cylinder.GasUsage.Remaining,
                 Used = cylinder.GasUsage.Used,
@@ -25,5 +25,5 @@ public class CylinderPrototype : ICylinderPrototype
 
 public interface ICylinderPrototype
 {
-    ICylinder DeepClone(ICylinder cylinder);
+    Cylinder DeepClone(Cylinder cylinder);
 }

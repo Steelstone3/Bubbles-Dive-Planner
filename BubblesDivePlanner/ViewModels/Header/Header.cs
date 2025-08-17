@@ -1,10 +1,7 @@
-public class Header : IHeader
+public class Header
 {
-    private IMain main;
-
-    public Header(IMain main)
+    public Header(Main main)
     {
-        this.main = main;
         File = new File(main);
     }
 
@@ -17,17 +14,4 @@ public class Header : IHeader
     {
         get;
     } = new Help();
-}
-
-public interface IHeader
-{
-    File File
-    {
-        get;
-    }
-
-    Help Help
-    {
-        get;
-    }
 }

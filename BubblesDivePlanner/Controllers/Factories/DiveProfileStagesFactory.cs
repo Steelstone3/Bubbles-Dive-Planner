@@ -1,16 +1,6 @@
 public class DiveProfileStagesFactory : IDiveProfileStagesFactory
 {
-    public void Run(IDiveStage diveStage)
-    {
-        IDiveProfileStage[] diveProfileStages = Create(diveStage);
-
-        foreach (IDiveProfileStage diveProfileStage in diveProfileStages)
-        {
-            diveProfileStage.Run();
-        }
-    }
-
-    private IDiveProfileStage[] Create(IDiveStage diveStage)
+    public IDiveProfileStage[] Create(DiveStage diveStage)
     {
         return [
             new AmbientPressures(diveStage),
@@ -25,5 +15,5 @@ public class DiveProfileStagesFactory : IDiveProfileStagesFactory
 
 public interface IDiveProfileStagesFactory
 {
-    void Run(IDiveStage diveStage);
+    IDiveProfileStage[] Create(DiveStage diveStage);
 }

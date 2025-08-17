@@ -1,4 +1,3 @@
-using Moq;
 using ReactiveUI;
 using Xunit;
 
@@ -8,16 +7,15 @@ public class DiveModelShould
     public void RaisePropertyChangedEvents()
     {
         // Given
-        Mock<IDiveModelProfile> diveModelProfile = new();
+        DiveModelProfile diveModelProfile = new(16);
         DiveModel diveModel = new();
         List<string> events = new();
         diveModel.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        diveModel.DiveModelProfile = diveModelProfile.Object;
+        diveModel.DiveModelProfile = diveModelProfile;
 
         // Then
-        Assert.IsAssignableFrom<IDiveModel>(diveModel);
         Assert.IsAssignableFrom<ReactiveObject>(diveModel);
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveModel.DiveModelProfile), events);

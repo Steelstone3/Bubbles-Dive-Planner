@@ -1,8 +1,8 @@
 public class AbValues : IDiveProfileStage
 {
-    private IDiveStage diveStage;
+    private DiveStage diveStage;
 
-    public AbValues(IDiveStage diveStage)
+    public AbValues(DiveStage diveStage)
     {
         this.diveStage = diveStage;
     }

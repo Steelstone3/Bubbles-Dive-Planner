@@ -1,10 +1,9 @@
-using System.Runtime.InteropServices;
 using Moq;
 using Xunit;
 
 public class GasUsageValidatorShould
 {
-    IGasUsageValidator gasUsageValidator = new GasUsageValidator();
+    IValidator<GasUsage> gasUsageValidator = new GasUsageValidator();
 
     [Theory]
     [InlineData(6)]
@@ -14,11 +13,13 @@ public class GasUsageValidatorShould
     public void ValidateValidGasUsage(byte surfaceAirConsumptionRate)
     {
         // Given
-        Mock<IGasUsage> gasUsage = new();
-        gasUsage.Setup(gu => gu.SurfaceAirConsumptionRate).Returns(surfaceAirConsumptionRate);
+        GasUsage gasUsage = new()
+        {
+            SurfaceAirConsumptionRate = surfaceAirConsumptionRate
+        };
 
         // When
-        var isValid = gasUsageValidator.Validate(gasUsage.Object);
+        var isValid = gasUsageValidator.Validate(gasUsage);
 
         // Then
         Assert.True(isValid);
@@ -30,11 +31,13 @@ public class GasUsageValidatorShould
     public void ValidateInvalidGasUsage(byte surfaceAirConsumptionRate)
     {
         // Given
-        Mock<IGasUsage> gasUsage = new();
-        gasUsage.Setup(gu => gu.SurfaceAirConsumptionRate).Returns(surfaceAirConsumptionRate);
+        GasUsage gasUsage = new()
+        {
+            SurfaceAirConsumptionRate = surfaceAirConsumptionRate
+        };
 
         // When
-        var isValid = gasUsageValidator.Validate(gasUsage.Object);
+        var isValid = gasUsageValidator.Validate(gasUsage);
 
         // Then
         Assert.False(isValid);

@@ -1,7 +1,7 @@
 ﻿using System.Reactive;
 using ReactiveUI;
 
-public class Main : ReactiveObject, IMain
+public class Main : ReactiveObject
 {
     public Main()
     {
@@ -10,27 +10,27 @@ public class Main : ReactiveObject, IMain
         Header = new Header(this);
     }
 
-    public IHeader Header
+    public Header Header
     {
         get;
     }
 
-    private IDivePlan divePlan = new DivePlan();
-    public IDivePlan DivePlan
+    private DivePlan divePlan = new();
+    public DivePlan DivePlan
     {
         get => divePlan;
         set => this.RaiseAndSetIfChanged(ref divePlan, value);
     }
 
-    private IDiveInformation diveInformation = new DiveInformation();
-    public IDiveInformation DiveInformation
+    private DiveInformation diveInformation = new DiveInformation();
+    public DiveInformation DiveInformation
     {
         get => diveInformation;
         set => this.RaiseAndSetIfChanged(ref diveInformation, value);
     }
 
-    private IResult result = new Result();
-    public IResult Result
+    private Result result = new Result();
+    public Result Result
     {
         get => result;
         set => this.RaiseAndSetIfChanged(ref result, value);
@@ -46,7 +46,8 @@ public class Main : ReactiveObject, IMain
         DivePlan.DiveStage.Cylinder = DivePlan.CylinderSelector.SelectedCylinder;
 
         // TODO AH temporary whilst CanCalculateDiveStage is not implemented
-        if (!DivePlan.DiveStage.IsValid)
+        DiveStageValidator diveStageValidator = new();
+        if (DivePlan.DiveStage.Cylinder == null || !diveStageValidator.Validate(DivePlan.DiveStage))
         {
             return;
         }
@@ -79,9 +80,9 @@ public class Main : ReactiveObject, IMain
         CylinderPrototype cylinderPrototype = new();
         DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype, cylinderPrototype);
 
-        DiveProfileStagesFactory diveProfileStagesFactory = new();
+        DiveProfileStagesCommand diveProfileStagesCommand = new();
 
-        diveProfileStagesFactory.Run(DivePlan.DiveStage);
+        diveProfileStagesCommand.Run(DivePlan.DiveStage);
         Result.Results.Add(diveStagePrototype.DeepClone(DivePlan.DiveStage));
     }
 
@@ -104,37 +105,11 @@ public class Main : ReactiveObject, IMain
 
         DiveInformation.DecompressionProfile.DiveCeiling = diveBoundaryController.GetOverallDiveCeiling(Result.Results);
         DiveInformation.DecompressionProfile.DecompressionSteps.Clear();
-        List<IDiveStep> decompressionSteps = decompressionController.CollateDecompressionDiveSteps(diveStagePrototype.DeepClone(DivePlan.DiveStage));
+        List<DiveStep> decompressionSteps = decompressionController.CollateDecompressionDiveSteps(diveStagePrototype.DeepClone(DivePlan.DiveStage));
 
         foreach (var decompressionStep in decompressionSteps)
         {
             DiveInformation.DecompressionProfile.DecompressionSteps.Add(decompressionStep);
         }
-    }
-}
-
-public interface IMain
-{
-    public IHeader Header
-    {
-        get;
-    }
-
-    public IDivePlan DivePlan
-    {
-        get;
-        set;
-    }
-
-    public IDiveInformation DiveInformation
-    {
-        get;
-        set;
-    }
-
-    public IResult Result
-    {
-        get;
-        set;
     }
 }

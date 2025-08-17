@@ -1,15 +1,15 @@
 using System.Text.Json;
 
-public class ResultSerialiser : ISerialiser<IResult>
+public class ResultSerialiser : ISerialiser<Result>
 {
-    public string Write(IResult result)
+    public string Write(Result result)
     {
         DalResult dalResult = new DalResultConverter().ConvertTo(result);
 
         return JsonSerializer.Serialize(dalResult);
     }
 
-    public IResult Read(string json)
+    public Result Read(string json)
     {
         DalResult dalResult = JsonSerializer.Deserialize<DalResult>(json);
 

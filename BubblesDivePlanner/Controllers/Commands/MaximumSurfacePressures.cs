@@ -1,8 +1,8 @@
 public class MaximumSurfacePressures : IDiveProfileStage
 {
-    private IDiveStage diveStage;
+    private DiveStage diveStage;
 
-    public MaximumSurfacePressures(IDiveStage diveStage)
+    public MaximumSurfacePressures(DiveStage diveStage)
     {
         this.diveStage = diveStage;
     }

@@ -1,9 +1,9 @@
 // TODO AH Test
-public class DalDiveModelProfileConverter : IDalConverter<DalDiveModelProfile, IDiveModelProfile>
+public class DalDiveModelProfileConverter : IDalConverter<DalDiveModelProfile, DiveModelProfile>
 {
-    public IDiveModelProfile ConvertFrom(DalDiveModelProfile dalDiveModelProfile)
+    public DiveModelProfile ConvertFrom(DalDiveModelProfile dalDiveModelProfile)
     {
-        return new DiveModelProfile((byte)(dalDiveModelProfile.CompartmentLoads.Length - 1), new DiveBoundaryController())
+        return new DiveModelProfile((byte)(dalDiveModelProfile.CompartmentLoads.Length - 1))
         {
             OxygenAtPressure = dalDiveModelProfile.OxygenAtPressure,
             NitrogenAtPressure = dalDiveModelProfile.NitrogenAtPressure,
@@ -19,7 +19,7 @@ public class DalDiveModelProfileConverter : IDalConverter<DalDiveModelProfile, I
         };
     }
 
-    public DalDiveModelProfile ConvertTo(IDiveModelProfile diveModelProfile)
+    public DalDiveModelProfile ConvertTo(DiveModelProfile diveModelProfile)
     {
         return new()
         {

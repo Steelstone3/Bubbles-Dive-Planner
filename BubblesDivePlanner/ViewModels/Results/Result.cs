@@ -1,14 +1,9 @@
 using System.Collections.ObjectModel;
 
-public class Result : IResult
+public class Result
 {
-    public ObservableCollection<IDiveStage> Results
+    public ObservableCollection<DiveStage> Results
     {
         get;
     } = [];
-}
-
-public interface IResult
-{
-    ObservableCollection<IDiveStage> Results { get; }
 }

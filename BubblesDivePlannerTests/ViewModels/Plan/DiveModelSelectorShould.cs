@@ -11,7 +11,6 @@ public class DiveModelSelectorShould
         DiveModelSelector diveModelSelector = new();
 
         // Then
-        Assert.IsAssignableFrom<IDiveModelSelector>(diveModelSelector);
         Assert.IsAssignableFrom<IVisibility>(diveModelSelector);
         Assert.True(diveModelSelector.IsVisible);
         Assert.NotEmpty(diveModelSelector.DiveModels);
@@ -21,13 +20,13 @@ public class DiveModelSelectorShould
     public void RaisePropertyChangedEvents()
     {
         // Given
-        Mock<IDiveModel> diveModel = new();
+        DiveModel diveModel = new();
         DiveModelSelector diveModelSelector = new();
         List<string> events = new();
         diveModelSelector.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        diveModelSelector.DiveModelSelected = diveModel.Object;
+        diveModelSelector.DiveModelSelected = diveModel;
         diveModelSelector.IsVisible = false;
 
         // Then

@@ -1,4 +1,3 @@
-using Moq;
 using Xunit;
 
 public class CylinderPrototypeShould
@@ -9,12 +8,10 @@ public class CylinderPrototypeShould
     public void DeepClone()
     {
         // Given
-        Mock<ICylinderValidator> cylinderValidator = new();
-        Mock<ICylinderController> cylinderController = new();
-        ICylinder cylinder = new Cylinder(cylinderValidator.Object, cylinderController.Object);
+        Cylinder cylinder = new Cylinder();
 
         // When
-        ICylinder clonedCylinder = cylinderPrototype.DeepClone(cylinder);
+        Cylinder clonedCylinder = cylinderPrototype.DeepClone(cylinder);
 
         // Then
         Assert.NotSame(cylinder, clonedCylinder);

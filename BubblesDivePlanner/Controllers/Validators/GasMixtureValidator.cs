@@ -1,6 +1,6 @@
-public class GasMixtureValidator : IGasMixtureValidator
+public class GasMixtureValidator : IValidator<GasMixture>
 {
-    public bool Validate(IGasMixture gasMixture)
+    public bool Validate(GasMixture gasMixture)
     {
         if (gasMixture.Oxygen < 5.0F || gasMixture.Oxygen + gasMixture.Helium + gasMixture.Nitrogen > 100.0F)
         {
@@ -9,9 +9,4 @@ public class GasMixtureValidator : IGasMixtureValidator
 
         return true;
     }
-}
-
-public interface IGasMixtureValidator
-{
-    bool Validate(IGasMixture gasMixture);
 }

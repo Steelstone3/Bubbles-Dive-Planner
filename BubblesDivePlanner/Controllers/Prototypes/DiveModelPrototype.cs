@@ -1,6 +1,6 @@
 public class DiveModelPrototype : IDiveModelPrototype
 {
-    public IDiveModel DeepClone(IDiveModel diveModel)
+    public DiveModel DeepClone(DiveModel diveModel)
     {
         return new DiveModel
         {
@@ -16,9 +16,9 @@ public class DiveModelPrototype : IDiveModelPrototype
         };
     }
 
-    private IDiveModelProfile DiveModelProfileDeepClone(IDiveModelProfile diveModelProfile)
+    private DiveModelProfile DiveModelProfileDeepClone(DiveModelProfile diveModelProfile)
     {
-        return new DiveModelProfile(0, new DiveBoundaryController())
+        return new DiveModelProfile(0)
         {
             OxygenAtPressure = diveModelProfile.OxygenAtPressure,
             NitrogenAtPressure = diveModelProfile.NitrogenAtPressure,
@@ -37,5 +37,5 @@ public class DiveModelPrototype : IDiveModelPrototype
 
 public interface IDiveModelPrototype
 {
-    IDiveModel DeepClone(IDiveModel diveModel);
+    DiveModel DeepClone(DiveModel diveModel);
 }

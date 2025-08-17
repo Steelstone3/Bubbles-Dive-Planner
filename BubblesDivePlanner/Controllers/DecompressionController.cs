@@ -1,8 +1,8 @@
 public class DecompressionController
 {
-    public List<IDiveStep> CollateDecompressionDiveSteps(IDiveStage diveStage)
+    public List<DiveStep> CollateDecompressionDiveSteps(DiveStage diveStage)
     {
-        List<IDiveStep> diveStepModelQueue = new();
+        List<DiveStep> diveStepModelQueue = new();
 
         while (diveStage.DiveModel.DiveModelProfile.DiveCeiling > 0)
         {
@@ -12,7 +12,7 @@ public class DecompressionController
         return diveStepModelQueue;
     }
 
-    private IDiveStep CalculateDecompressionSteps(IDiveStage diveStage)
+    private DiveStep CalculateDecompressionSteps(DiveStage diveStage)
     {
         float diveCeiling = diveStage.DiveModel.DiveModelProfile.DiveCeiling;
 
@@ -21,8 +21,8 @@ public class DecompressionController
             return null;
         }
 
-        IDiveStep diveStep = GetNearestDepthToStepInterval(diveCeiling);
-        diveStep = RunDecompressionSimulation(new DiveStage(new DiveStageValidator())
+        DiveStep diveStep = GetNearestDepthToStepInterval(diveCeiling);
+        diveStep = RunDecompressionSimulation(new DiveStage()
         {
             DiveModel = diveStage.DiveModel,
             DiveStep = diveStep,
@@ -32,9 +32,9 @@ public class DecompressionController
         return diveStep;
     }
 
-    private IDiveStep GetNearestDepthToStepInterval(float diveCeiling)
+    private DiveStep GetNearestDepthToStepInterval(float diveCeiling)
     {
-        var diveStepModel = new DiveStep(new DiveStepValidator())
+        var diveStepModel = new DiveStep()
         {
             Depth = FindNearestDepthToDiveCeiling(diveCeiling),
             Time = 1
@@ -49,9 +49,9 @@ public class DecompressionController
         return diveCeiling > 0 ? (byte)(Math.Ceiling(diveCeiling / stepInterval) * stepInterval) : (byte)0;
     }
 
-    private IDiveStep RunDecompressionSimulation(IDiveStage diveStage)
+    private DiveStep RunDecompressionSimulation(DiveStage diveStage)
     {
-        DiveProfileStagesFactory diveProfileStagesFactory = new();
+        DiveProfileStagesCommand diveProfileStagesCommand = new();
 
         byte time = 0;
 
@@ -59,10 +59,10 @@ public class DecompressionController
         {
             time++;
 
-            diveProfileStagesFactory.Run(diveStage);
+            diveProfileStagesCommand.Run(diveStage);
         }
 
-        return new DiveStep(new DiveStepValidator())
+        return new DiveStep()
         {
             Depth = diveStage.DiveStep.Depth,
             Time = time

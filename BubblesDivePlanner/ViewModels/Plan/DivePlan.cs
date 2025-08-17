@@ -1,47 +1,25 @@
 using ReactiveUI;
 
-public class DivePlan : ReactiveObject, IDivePlan
+public class DivePlan : ReactiveObject
 {
-    private IDiveModelSelector diveModelSelector = new DiveModelSelector();
-    public IDiveModelSelector DiveModelSelector
+    private DiveModelSelector diveModelSelector = new DiveModelSelector();
+    public DiveModelSelector DiveModelSelector
     {
         get => diveModelSelector;
         set => this.RaiseAndSetIfChanged(ref diveModelSelector, value);
     }
 
-    private ICylinderSelector cylinderSelector = new CylinderSelector();
-    public ICylinderSelector CylinderSelector
+    private CylinderSelector cylinderSelector = new CylinderSelector();
+    public CylinderSelector CylinderSelector
     {
         get => cylinderSelector;
         set => this.RaiseAndSetIfChanged(ref cylinderSelector, value);
     }
 
-    private IDiveStage diveStage = new DiveStage(new DiveStageValidator());
-    public IDiveStage DiveStage
+    private DiveStage diveStage = new();
+    public DiveStage DiveStage
     {
         get => diveStage;
         set => this.RaiseAndSetIfChanged(ref diveStage, value);
-    }
-
-}
-
-public interface IDivePlan
-{
-    public IDiveModelSelector DiveModelSelector
-    {
-        get;
-        set;
-    }
-
-    public ICylinderSelector CylinderSelector
-    {
-        get;
-        set;
-    }
-
-    public IDiveStage DiveStage
-    {
-        get;
-        set;
     }
 }

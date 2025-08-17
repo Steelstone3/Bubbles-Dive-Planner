@@ -1,5 +1,5 @@
-public interface IDalConverter<T, I>
+public interface IDalConverter<DalModel, Model>
 {
-    T ConvertTo(I abstractType);
-    I ConvertFrom(T dalCoverterType);
+    DalModel ConvertTo(Model abstractType);
+    Model ConvertFrom(DalModel dalCoverterType);
 }

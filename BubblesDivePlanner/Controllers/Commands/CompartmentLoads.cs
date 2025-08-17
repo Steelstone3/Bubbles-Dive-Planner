@@ -1,8 +1,8 @@
 public class CompartmentLoads : IDiveProfileStage
 {
-    private IDiveStage diveStage;
+    private DiveStage diveStage;
 
-    public CompartmentLoads(IDiveStage diveStage)
+    public CompartmentLoads(DiveStage diveStage)
     {
         this.diveStage = diveStage;
     }

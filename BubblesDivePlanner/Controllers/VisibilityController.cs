@@ -1,6 +1,6 @@
 public class VisibilityController : IVisibilityController
 {
-    public void SetVisibility(IMain main)
+    public void SetVisibility(Main main)
     {
         SetInvisible(main.DivePlan.DiveModelSelector);
         SetInvisible(main.DivePlan.CylinderSelector.SetupCylinder);
@@ -17,5 +17,5 @@ public class VisibilityController : IVisibilityController
 
 public interface IVisibilityController
 {
-    void SetVisibility(IMain main);
+    void SetVisibility(Main main);
 }

@@ -7,10 +7,10 @@ public class FileShould
     {
         // Given
         Main main = new();
-        IHeader header = main.Header;
-        IDivePlan divePlan = main.DivePlan;
-        IDiveInformation diveInformation = main.DiveInformation;
-        IResult result = main.Result;
+        Header header = main.Header;
+        DivePlan divePlan = main.DivePlan;
+        DiveInformation diveInformation = main.DiveInformation;
+        Result result = main.Result;
         File file = new(main);
 
         // When

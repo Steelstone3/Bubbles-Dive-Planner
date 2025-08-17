@@ -1,8 +1,8 @@
 public class TissuePressures : IDiveProfileStage
 {
-    private IDiveStage diveStage;
+    private DiveStage diveStage;
 
-    public TissuePressures(IDiveStage diveStage)
+    public TissuePressures(DiveStage diveStage)
     {
         this.diveStage = diveStage;
     }

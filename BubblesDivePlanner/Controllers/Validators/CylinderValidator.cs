@@ -1,19 +1,21 @@
-public class CylinderValidator : ICylinderValidator
+public class CylinderValidator : IValidator<Cylinder>
 {
-    public bool Validate(ICylinder cylinder)
+    public bool Validate(Cylinder cylinder)
     {
-        bool isValid = !string.IsNullOrWhiteSpace(cylinder.Name) && cylinder.Pressure >= 50 && cylinder.Pressure <= 300 && cylinder.Volume >= 3 && cylinder.Volume <= 30;
+        bool isValidCylinder = IsValidCylinder(cylinder);
 
-        if (isValid)
+        if (!isValidCylinder)
         {
-            return cylinder.GasMixture.IsValid && cylinder.GasUsage.IsValid; ;
+            return false;
         }
 
-        return false;
+        GasMixtureValidator gasMixtureValidator = new();
+        GasUsageValidator gasUsageValidator = new();
+        return gasMixtureValidator.Validate(cylinder.GasMixture) && gasUsageValidator.Validate(cylinder.GasUsage);
     }
-}
 
-public interface ICylinderValidator
-{
-    bool Validate(ICylinder cylinder);
+    private bool IsValidCylinder(Cylinder cylinder)
+    {
+        return !string.IsNullOrWhiteSpace(cylinder.Name) && cylinder.Pressure >= 50 && cylinder.Pressure <= 300 && cylinder.Volume >= 3 && cylinder.Volume <= 30;
+    }
 }

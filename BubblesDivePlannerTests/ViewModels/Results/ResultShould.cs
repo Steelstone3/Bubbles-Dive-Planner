@@ -10,7 +10,6 @@ public class ResultShould
         Result result = new();
 
         // Then
-        Assert.IsAssignableFrom<IResult>(result);
         Assert.NotNull(result.Results);
         Assert.Empty(result.Results);
     }
@@ -19,13 +18,13 @@ public class ResultShould
     public void CollectionChangedEvents()
     {
         // Given
-        Mock<IDiveStage> diveStage = new();
+        DiveStage diveStage = new();
         Result result = new();
         List<string> events = new();
         result.Results.CollectionChanged += (sender, e) => events.Add(e.NewItems.ToString());
 
         // When
-        result.Results.Add(diveStage.Object);
+        result.Results.Add(diveStage);
 
         // Then
         Assert.NotNull(result.Results);

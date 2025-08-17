@@ -1,4 +1,3 @@
-using Moq;
 using Xunit;
 
 public class DiveStageValidatorShould
@@ -7,20 +6,41 @@ public class DiveStageValidatorShould
     public void ValidateDiveStage()
     {
         // Given
-        Mock<IDiveStep> diveStep = new();
-        diveStep.Setup(ds => ds.IsValid).Returns(true);
-        Mock<ICylinder> cylinder = new();
-        cylinder.Setup(c => c.IsValid).Returns(true);
-        Mock<IDiveStage> diveStage = new();
-        diveStage.Setup(ds => ds.DiveStep).Returns(diveStep.Object);
-        diveStage.Setup(ds => ds.Cylinder).Returns(cylinder.Object);
+        DiveStep diveStep = new()
+        {
+            Depth = 50,
+            Time = 10,
+        };
+        GasMixture gasMixture = new()
+        {
+            Oxygen = 21
+        };
+        GasUsage gasUsage = new()
+        {
+            Remaining = 2400,
+            Used = 0,
+            SurfaceAirConsumptionRate = 12,
+        };
+        Cylinder cylinder = new()
+        {
+            Name = "Air",
+            Pressure = 200,
+            Volume = 12,
+            GasMixture = gasMixture,
+            GasUsage = gasUsage,
+        };
+        DiveStage diveStage = new()
+        {
+            DiveStep = diveStep,
+            Cylinder = cylinder,
+        };
+
         DiveStageValidator diveStageValidator = new();
 
         // When
-        bool isValid = diveStageValidator.Validate(diveStage.Object);
+        bool isValid = diveStageValidator.Validate(diveStage);
 
         // Then
         Assert.True(isValid);
-        diveStage.VerifyAll();
     }
 }

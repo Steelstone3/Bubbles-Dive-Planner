@@ -4,27 +4,14 @@ using Xunit;
 
 public class GasMixtureShould
 {
-    private readonly Mock<IGasMixtureValidator> gasMixtureValidator = new();
     private readonly Mock<ICylinderController> cylinderController = new();
     private readonly Mock<IDiveBoundaryController> diveBoundaryController = new();
-
-    [Fact]
-    public void Construct()
-    {
-        // Given
-        GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object, diveBoundaryController.Object);
-
-        // Then
-        Assert.IsAssignableFrom<IGasMixture>(gasMixture);
-        Assert.IsAssignableFrom<IValidation>(gasMixture);
-        Assert.Equal(100.0F, gasMixture.Nitrogen);
-    }
 
     [Fact]
     public void RaisePropertyChangedEvents()
     {
         // Given
-        GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object, diveBoundaryController.Object);
+        GasMixture gasMixture = new();
         List<string> events = new();
         gasMixture.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
@@ -39,6 +26,7 @@ public class GasMixtureShould
         Assert.Contains(nameof(gasMixture.Helium), events);
     }
 
+    // TODO AH Uses controller. Needs to be outside the model.
     [Fact]
     public void CalculateNitrogen()
     {
@@ -46,49 +34,30 @@ public class GasMixtureShould
         float oxygen = 21;
         float helium = 10;
 
-        Mock<ICylinderController> cylinderController = new();
-        cylinderController.Setup(cc => cc.CalculateNitrogen(oxygen, helium));
-        GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object, diveBoundaryController.Object)
+        GasMixture gasMixture = new()
         {
             Oxygen = oxygen,
             Helium = helium
         };
 
         // Then
-        cylinderController.VerifyAll();
+        Assert.Equal(69.0, gasMixture.Nitrogen);
     }
 
+    // TODO AH Uses controller. Needs to be outside the model.
     [Fact]
     public void CalculateMaximumOperatingDepth()
     {
         // Given
         float oxygen = 21.0F;
-        float maximumOperatingDepth = 56.6F;
-        Mock<IDiveBoundaryController> diveBoundaryController = new();
+        float maximumOperatingDepth = 56.6666666666F;
         diveBoundaryController.Setup(db => db.CalculateMaximumOperatingDepth(oxygen)).Returns(maximumOperatingDepth);
-        GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object, diveBoundaryController.Object)
+        GasMixture gasMixture = new()
         {
             Oxygen = oxygen
         };
 
         // Then
-        diveBoundaryController.VerifyAll();
-        Assert.Equal(gasMixture.MaximumOperatingDepth, maximumOperatingDepth);
-    }
-
-    [Fact]
-    public void Validate()
-    {
-        // Given
-        Mock<IGasMixtureValidator> gasMixtureValidator = new();
-        GasMixture gasMixture = new(gasMixtureValidator.Object, cylinderController.Object, diveBoundaryController.Object);
-        gasMixtureValidator.Setup(gmv => gmv.Validate(gasMixture)).Returns(true);
-
-        // When
-        bool isValid = gasMixture.IsValid;
-
-        // Then
-        Assert.True(isValid);
-        gasMixtureValidator.VerifyAll();
+        Assert.Equal(maximumOperatingDepth, gasMixture.MaximumOperatingDepth, 0.01);
     }
 }

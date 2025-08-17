@@ -1,15 +1,15 @@
 using System.Text.Json;
 
-public class CylinderSelectorSerialiser : ISerialiser<ICylinderSelector>
+public class CylinderSelectorSerialiser : ISerialiser<CylinderSelector>
 {
-    public string Write(ICylinderSelector cylinderSelector)
+    public string Write(CylinderSelector cylinderSelector)
     {
         DalCylinderSelector dalCylinderSelector = new DalCylinderSelectorConverter().ConvertTo(cylinderSelector);
 
         return JsonSerializer.Serialize(dalCylinderSelector);
     }
 
-    public ICylinderSelector Read(string json)
+    public CylinderSelector Read(string json)
     {
         DalCylinderSelector dalCylinderSelector = JsonSerializer.Deserialize<DalCylinderSelector>(json);
 

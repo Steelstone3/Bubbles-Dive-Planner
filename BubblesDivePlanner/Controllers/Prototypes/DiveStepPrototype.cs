@@ -1,8 +1,8 @@
 public class DiveStepPrototype : IDiveStepPrototype
 {
-    public IDiveStep DeepClone(IDiveStep diveStep)
+    public DiveStep DeepClone(DiveStep diveStep)
     {
-        return new DiveStep(new DiveStepValidator())
+        return new DiveStep()
         {
             Depth = diveStep.Depth,
             Time = diveStep.Time,
@@ -12,5 +12,5 @@ public class DiveStepPrototype : IDiveStepPrototype
 
 public interface IDiveStepPrototype
 {
-    IDiveStep DeepClone(IDiveStep diveStep);
+    DiveStep DeepClone(DiveStep diveStep);
 }

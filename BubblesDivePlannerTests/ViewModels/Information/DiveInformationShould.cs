@@ -12,7 +12,6 @@ public class DiveInformationShould
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(diveInformation);
-        Assert.IsAssignableFrom<IDiveInformation>(diveInformation);
         Assert.NotNull(diveInformation.DecompressionProfile);
         Assert.NotNull(diveInformation.CentralNervousSystemToxicity);
     }
@@ -21,13 +20,13 @@ public class DiveInformationShould
     public void RaisePropertyChangedEvents()
     {
         // Given
-        Mock<IDecompressionProfile> decompressionProfile = new();
+        DecompressionProfile decompressionProfile = new();
         DiveInformation diveInformation = new();
         List<string> events = new();
         diveInformation.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        diveInformation.DecompressionProfile = decompressionProfile.Object;
+        diveInformation.DecompressionProfile = decompressionProfile;
 
         // Then
         Assert.NotEmpty(events);

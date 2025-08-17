@@ -1,4 +1,3 @@
-using Moq;
 using Xunit;
 
 public class DiveStepValidatorShould
@@ -10,13 +9,15 @@ public class DiveStepValidatorShould
     public void ValidateValidDiveStep(byte depth, byte time)
     {
         // Given
-        Mock<IDiveStep> diveStep = new();
-        diveStep.Setup(diveStep => diveStep.Depth).Returns(depth);
-        diveStep.Setup(diveStep => diveStep.Time).Returns(time);
+        DiveStep diveStep = new()
+        {
+            Depth = depth,
+            Time = time,
+        };
         DiveStepValidator diveStepValidator = new();
 
         // When
-        bool isValid = diveStepValidator.Validate(diveStep.Object);
+        bool isValid = diveStepValidator.Validate(diveStep);
 
         // Then
         Assert.True(isValid);
@@ -30,13 +31,15 @@ public class DiveStepValidatorShould
     public void ValidateInvalidDiveStep(byte depth, byte time)
     {
         // Given
-        Mock<IDiveStep> diveStep = new();
-        diveStep.Setup(diveStep => diveStep.Depth).Returns(depth);
-        diveStep.Setup(diveStep => diveStep.Time).Returns(time);
+        DiveStep diveStep = new()
+        {
+            Depth = depth,
+            Time = time,
+        };
         DiveStepValidator diveStepValidator = new();
 
         // When
-        bool isValid = diveStepValidator.Validate(diveStep.Object);
+        bool isValid = diveStepValidator.Validate(diveStep);
 
         // Then
         Assert.False(isValid);

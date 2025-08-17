@@ -9,7 +9,6 @@ public class CentralNervousSystemToxicityShould
         CentralNervousSystemToxicity centralNervousSystemToxicity = new();
 
         // Then
-        Assert.IsAssignableFrom<ICentralNervousSystemToxicity>(centralNervousSystemToxicity);
         Assert.NotNull(centralNervousSystemToxicity.OxygenPartialPressureConstant);
         Assert.NotEmpty(centralNervousSystemToxicity.OxygenPartialPressureConstant);
         Assert.NotNull(centralNervousSystemToxicity.MaximumSingleDiveDuration);

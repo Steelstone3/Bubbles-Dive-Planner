@@ -9,7 +9,7 @@ public class VisibilityControllerShould
     public void SetVisibility()
     {
         // Given
-        IMain main = new Main();
+        Main main = new Main();
 
         // When
         visibilityController.SetVisibility(main);

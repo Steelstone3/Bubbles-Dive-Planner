@@ -38,21 +38,19 @@ public class CylinderControllerShould
     public void UpdateGasUsage()
     {
         // Given
-        Mock<IDiveStepValidator> diveStepValidator = new();
-        DiveStep diveStep = new(diveStepValidator.Object)
+        DiveStep diveStep = new()
         {
             Depth = 50,
             Time = 10,
         };
-        Mock<IGasUsageValidator> gasUsageValidator = new();
-        GasUsage gasUsage = new(gasUsageValidator.Object)
+        GasUsage gasUsage = new()
         {
             Remaining = 2400,
             SurfaceAirConsumptionRate = 12,
         };
 
         // When
-        IGasUsage updatedGasUsage = cylinderController.UpdateGasUsage(diveStep, gasUsage);
+        GasUsage updatedGasUsage = cylinderController.UpdateGasUsage(diveStep, gasUsage);
 
         // Then
         Assert.Equal(1680, updatedGasUsage.Remaining);

@@ -1,15 +1,17 @@
 using ReactiveUI;
 
-public class DiveModelSelector : ReactiveObject, IDiveModelSelector
+public class DiveModelSelector : ReactiveObject, IVisibility
 {
-    public IList<IDiveModel> DiveModels => new List<IDiveModel>
+    private DiveModelFactory diveModelFactory = new();
+
+    public List<DiveModel> DiveModels => new List<DiveModel>
     {
-        new Zhl16Buhlmann(),
-        new UsnRevisionSix(),
+        diveModelFactory.CreateZhl16Buhlmann(),
+        diveModelFactory.CreateUsnRevisionSix(),
     };
 
-    private IDiveModel diveModelSelected;
-    public IDiveModel DiveModelSelected
+    private DiveModel diveModelSelected;
+    public DiveModel DiveModelSelected
     {
         get => diveModelSelected;
         set => this.RaiseAndSetIfChanged(ref diveModelSelected, value);
@@ -21,10 +23,4 @@ public class DiveModelSelector : ReactiveObject, IDiveModelSelector
         get => isVisible;
         set => this.RaiseAndSetIfChanged(ref isVisible, value);
     }
-}
-
-public interface IDiveModelSelector : IVisibility
-{
-    IList<IDiveModel> DiveModels { get; }
-    IDiveModel DiveModelSelected { get; set; }
 }

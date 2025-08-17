@@ -1,9 +1,7 @@
 // TODO AH Test
-using DynamicData;
-
-public class DalCylinderSelectorConverter : IDalConverter<DalCylinderSelector, ICylinderSelector>
+public class DalCylinderSelectorConverter : IDalConverter<DalCylinderSelector, CylinderSelector>
 {
-    public DalCylinderSelector ConvertTo(ICylinderSelector cylinderSelector)
+    public DalCylinderSelector ConvertTo(CylinderSelector cylinderSelector)
     {
         DalCylinderConverter dalCylinderConverter = new();
 
@@ -14,7 +12,7 @@ public class DalCylinderSelectorConverter : IDalConverter<DalCylinderSelector, I
         };
 
         List<DalCylinder> cylinders = [];
-        foreach (ICylinder cylinder in cylinderSelector.Cylinders)
+        foreach (Cylinder cylinder in cylinderSelector.Cylinders)
         {
             cylinders.Add(dalCylinderConverter.ConvertTo(cylinder));
         }
@@ -23,7 +21,7 @@ public class DalCylinderSelectorConverter : IDalConverter<DalCylinderSelector, I
         return dalCylinderSelector;
     }
 
-    public ICylinderSelector ConvertFrom(DalCylinderSelector dalCylinderSelector)
+    public CylinderSelector ConvertFrom(DalCylinderSelector dalCylinderSelector)
     {
         DalCylinderConverter dalCylinderConverter = new();
 

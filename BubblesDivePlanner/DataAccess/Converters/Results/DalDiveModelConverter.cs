@@ -1,7 +1,7 @@
 // TODO AH Test
-public class DalDiveModelConverter : IDalConverter<DalDiveModel, IDiveModel>
+public class DalDiveModelConverter : IDalConverter<DalDiveModel, DiveModel>
 {
-    public IDiveModel ConvertFrom(DalDiveModel dalDiveModel)
+    public DiveModel ConvertFrom(DalDiveModel dalDiveModel)
     {
         DalDiveModelProfileConverter dalDiveModelProfileConverter = new();
 
@@ -19,7 +19,7 @@ public class DalDiveModelConverter : IDalConverter<DalDiveModel, IDiveModel>
         };
     }
 
-    public DalDiveModel ConvertTo(IDiveModel diveModel)
+    public DalDiveModel ConvertTo(DiveModel diveModel)
     {
         DalDiveModelProfileConverter dalDiveModelProfileConverter = new();
 

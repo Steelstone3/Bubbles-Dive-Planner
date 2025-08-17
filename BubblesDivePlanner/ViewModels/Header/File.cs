@@ -3,9 +3,9 @@ using ReactiveUI;
 
 public class File
 {
-    private readonly IMain main;
+    private readonly Main main;
 
-    public File(IMain main)
+    public File(Main main)
     {
         this.main = main;
         NewCommand = ReactiveCommand.Create(NewInstance);

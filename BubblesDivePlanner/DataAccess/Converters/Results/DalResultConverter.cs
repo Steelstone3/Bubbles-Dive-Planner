@@ -1,9 +1,9 @@
 // TODO AH Test
 using DynamicData;
 
-public class DalResultConverter : IDalConverter<DalResult, IResult>
+public class DalResultConverter : IDalConverter<DalResult, Result>
 {
-    public IResult ConvertFrom(DalResult dalResult)
+    public Result ConvertFrom(DalResult dalResult)
     {
         DalDiveStageConverter dalDiveStageConverter = new();
 
@@ -17,14 +17,14 @@ public class DalResultConverter : IDalConverter<DalResult, IResult>
         return result;
     }
 
-    public DalResult ConvertTo(IResult result)
+    public DalResult ConvertTo(Result result)
     {
         DalDiveStageConverter dalDiveStageConverter = new();
 
         DalResult dalResult = new();
 
         List<DalDiveStage> dalDiveStages = [];
-        foreach (IDiveStage diveStage in result.Results)
+        foreach (DiveStage diveStage in result.Results)
         {
             dalDiveStages.Add(dalDiveStageConverter.ConvertTo(diveStage));
         }

@@ -9,11 +9,10 @@ public class DiveStepPrototypeShould
     public void DeepClone()
     {
         // Given
-        Mock<IDiveStepValidator> diveStepValidator = new();
-        IDiveStep diveStep = new DiveStep(diveStepValidator.Object);
+        DiveStep diveStep = new DiveStep();
 
         // When
-        IDiveStep clonedDiveStep = diveStepPrototype.DeepClone(diveStep);
+        DiveStep clonedDiveStep = diveStepPrototype.DeepClone(diveStep);
 
         // Then
         Assert.NotSame(diveStep, clonedDiveStep);

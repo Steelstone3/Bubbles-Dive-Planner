@@ -4,6 +4,8 @@ using Xunit;
 
 public class MainShould
 {
+    private DiveModelFactory diveModelFactory = new();
+
     [Fact]
     public void Construct()
     {
@@ -11,7 +13,6 @@ public class MainShould
         Main main = new();
 
         // Then
-        Assert.IsAssignableFrom<IMain>(main);
         Assert.NotNull(main.Header);
         Assert.NotNull(main.DivePlan);
         Assert.NotNull(main.DiveInformation);
@@ -22,18 +23,17 @@ public class MainShould
     public void RaisePropertyChangedEvents()
     {
         // Given
-        Mock<IHeader> header = new();
-        Mock<IDivePlan> divePlan = new();
-        Mock<IDiveInformation> diveInformation = new();
-        Mock<IResult> results = new();
+        DivePlan divePlan = new();
+        DiveInformation diveInformation = new();
+        Result results = new();
         Main main = new();
         List<string> events = new();
         main.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        main.DivePlan = divePlan.Object;
-        main.DiveInformation = diveInformation.Object;
-        main.Result = results.Object;
+        main.DivePlan = divePlan;
+        main.DiveInformation = diveInformation;
+        main.Result = results;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(main);
@@ -48,7 +48,7 @@ public class MainShould
     {
         // Given
         Main main = new();
-        main.DivePlan.DiveModelSelector.DiveModelSelected = new Zhl16Buhlmann();
+        main.DivePlan.DiveModelSelector.DiveModelSelected = diveModelFactory.CreateZhl16Buhlmann();
         main.DivePlan.DiveStage.DiveStep.Depth = 50;
         main.DivePlan.DiveStage.DiveStep.Time = 10;
         main.DivePlan.CylinderSelector.SetupCylinder.Name = "Air";
@@ -72,7 +72,7 @@ public class MainShould
     {
         // Given
         Main main = new();
-        main.DivePlan.DiveModelSelector.DiveModelSelected = new Zhl16Buhlmann();
+        main.DivePlan.DiveModelSelector.DiveModelSelected = diveModelFactory.CreateZhl16Buhlmann();
         main.DivePlan.DiveStage.DiveStep.Depth = 50;
         main.DivePlan.DiveStage.DiveStep.Time = 10;
 

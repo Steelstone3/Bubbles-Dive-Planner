@@ -5,16 +5,14 @@ using Xunit;
 public class DiveModelProfileShould
 {
     private const int COMPARTMENTS = 16;
-    private readonly Mock<IDiveBoundaryController> diveBoundaryController = new();
 
     [Fact]
     public void Construct()
     {
         // Given
-        DiveModelProfile diveModelProfile = new(COMPARTMENTS, diveBoundaryController.Object);
+        DiveModelProfile diveModelProfile = new(COMPARTMENTS);
 
         // Then
-        Assert.IsAssignableFrom<IDiveModelProfile>(diveModelProfile);
         Assert.Equal(0.0F, diveModelProfile.OxygenAtPressure);
         Assert.Equal(0.0F, diveModelProfile.HeliumAtPressure);
         Assert.Equal(0.0F, diveModelProfile.NitrogenAtPressure);
@@ -37,7 +35,7 @@ public class DiveModelProfileShould
     {
         // Given
         float[] defaultValue = [5.0F, 10.0F];
-        DiveModelProfile diveModelProfile = new(COMPARTMENTS, diveBoundaryController.Object);
+        DiveModelProfile diveModelProfile = new(COMPARTMENTS);
         List<string> events = new();
         diveModelProfile.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
@@ -68,22 +66,21 @@ public class DiveModelProfileShould
         Assert.Contains(nameof(diveModelProfile.CompartmentLoads), events);
     }
 
+    // TODO AH Remove controller polution
     [Fact]
     public void CalculateDiveCeiling()
     {
         // Given
-        float diveCeiling = 2.0F;
-        float[] toleratedAmbientPressures = new float[COMPARTMENTS] { 0.9F, 0.2F, 0.3F, 1.0F, 1.1F, 1.2F, 0.1F, 0.11F, 0.12F, 0.14F, 0.15F, 0.16F, 0.17F, 0.18F, 0.19F, 0.21F };
-        diveBoundaryController.Setup(db => db.CalculateDiveCeiling(toleratedAmbientPressures)).Returns(diveCeiling);
-        DiveModelProfile diveModelProfile = new(COMPARTMENTS, diveBoundaryController.Object)
+        float[] toleratedAmbientPressures = [0.9F, 0.2F, 0.3F, 1.0F, 1.1F, 1.2F, 0.1F, 0.11F, 0.12F, 0.14F, 0.15F, 0.16F, 0.17F, 0.18F, 0.19F, 0.21F];
+        DiveModelProfile diveModelProfile = new(COMPARTMENTS)
         {
             ToleratedAmbientPressures = toleratedAmbientPressures
         };
 
         // When
-        diveCeiling = diveModelProfile.DiveCeiling;
+        float diveCeiling = diveModelProfile.DiveCeiling;
 
         // Then
-        diveBoundaryController.VerifyAll();
+        Assert.Equal(2.0F, diveCeiling);
     }
 }

@@ -5,23 +5,10 @@ using Xunit;
 public class GasUsageShould
 {
     [Fact]
-    public void Construct()
-    {
-        // Given
-        Mock<IGasUsageValidator> gasUsageValidator = new();
-        GasUsage gasUsage = new(gasUsageValidator.Object);
-
-        // Then
-        Assert.IsAssignableFrom<IGasUsage>(gasUsage);
-        Assert.IsAssignableFrom<IValidation>(gasUsage);
-    }
-
-    [Fact]
     public void RaisePropertyChangedEvents()
     {
         // Given
-        Mock<IGasUsageValidator> gasUsageValidator = new();
-        GasUsage gasUsage = new(gasUsageValidator.Object);
+        GasUsage gasUsage = new();
         List<string> events = new();
         gasUsage.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
@@ -36,21 +23,5 @@ public class GasUsageShould
         Assert.Contains(nameof(gasUsage.Remaining), events);
         Assert.Contains(nameof(gasUsage.Used), events);
         Assert.Contains(nameof(gasUsage.SurfaceAirConsumptionRate), events);
-    }
-
-    [Fact]
-    public void Validate()
-    {
-        // Given
-        Mock<IGasUsageValidator> gasUsageValidator = new();
-        GasUsage gasUsage = new(gasUsageValidator.Object);
-        gasUsageValidator.Setup(guv => guv.Validate(gasUsage)).Returns(true);
-
-        // When
-        bool isValid = gasUsage.IsValid;
-
-        // Then
-        Assert.True(isValid);
-        gasUsageValidator.VerifyAll();
     }
 }

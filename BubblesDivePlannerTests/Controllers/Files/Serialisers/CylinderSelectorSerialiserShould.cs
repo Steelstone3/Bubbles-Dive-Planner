@@ -10,7 +10,7 @@ public class CylinderSelectorSerialiserShould
         CylinderSelectorSerialiser cylinderSelectorSerialiser = new();
 
         // Then
-        Assert.IsAssignableFrom<ISerialiser<ICylinderSelector>>(cylinderSelectorSerialiser);
+        Assert.IsAssignableFrom<ISerialiser<CylinderSelector>>(cylinderSelectorSerialiser);
     }
 
     [SkippableFact]
@@ -19,18 +19,17 @@ public class CylinderSelectorSerialiserShould
         Skip.If(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
 
         // Given
-        // TODO AH Mock
-        GasMixture gasMixture = new(new GasMixtureValidator(), new CylinderController(), new DiveBoundaryController())
+        GasMixture gasMixture = new()
         {
             Oxygen = 21
         };
-        GasUsage gasUsage = new(new GasUsageValidator())
+        GasUsage gasUsage = new()
         {
             Remaining = 1680,
             Used = 720,
             SurfaceAirConsumptionRate = 12,
         };
-        Cylinder cylinder = new(new CylinderValidator(), new CylinderController())
+        Cylinder cylinder = new()
         {
             Name = "Air",
             Volume = 12,
@@ -65,7 +64,7 @@ public class CylinderSelectorSerialiserShould
         CylinderSelectorSerialiser resultSerialiser = new();
 
         // When
-        ICylinderSelector cylinderSelector = resultSerialiser.Read(json);
+        CylinderSelector cylinderSelector = resultSerialiser.Read(json);
 
         // Then
         Assert.NotNull(cylinderSelector);

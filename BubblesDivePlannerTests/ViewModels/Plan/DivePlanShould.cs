@@ -11,7 +11,6 @@ public class DivePlanShould
         DivePlan divePlan = new();
 
         // Then
-        Assert.IsAssignableFrom<IDivePlan>(divePlan);
         Assert.NotNull(divePlan.DiveModelSelector);
         Assert.NotNull(divePlan.CylinderSelector);
         Assert.NotNull(divePlan.DiveStage);
@@ -21,17 +20,17 @@ public class DivePlanShould
     public void RaisePropertyChangedEvents()
     {
         // Given
-        Mock<IDiveModelSelector> diveModelSelector = new();
-        Mock<ICylinderSelector> cylinderSelector = new();
-        Mock<IDiveStage> diveStage = new();
+        DiveModelSelector diveModelSelector = new();
+        CylinderSelector cylinderSelector = new();
+        DiveStage diveStage = new();
         DivePlan divePlan = new();
         List<string> events = new();
         divePlan.PropertyChanged += (sender, e) => events.Add(e.PropertyName);
 
         // When
-        divePlan.DiveModelSelector = diveModelSelector.Object;
-        divePlan.CylinderSelector = cylinderSelector.Object;
-        divePlan.DiveStage = diveStage.Object;
+        divePlan.DiveModelSelector = diveModelSelector;
+        divePlan.CylinderSelector = cylinderSelector;
+        divePlan.DiveStage = diveStage;
 
         // Then
         Assert.IsAssignableFrom<ReactiveObject>(divePlan);

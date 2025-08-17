@@ -37,4 +37,4 @@ jobs:
       run: dotnet restore
     - name: Test
       working-directory: ./BubblesDivePlannerTests
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal --blame-hang-timeout 15s

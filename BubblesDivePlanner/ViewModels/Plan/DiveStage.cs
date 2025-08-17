@@ -1,41 +1,30 @@
 using ReactiveUI;
 
-public class DiveStage : ReactiveObject, IDiveStage
+public class DiveStage : ReactiveObject
 {
-    private readonly IDiveStageValidator diveStageValidator;
-
-    public DiveStage(IDiveStageValidator diveStageValidator)
+    public DiveStage()
     {
-        this.diveStageValidator = diveStageValidator;
+
     }
 
-    private IDiveModel diveModel;
-    public IDiveModel DiveModel
+    private DiveModel diveModel;
+    public DiveModel DiveModel
     {
         get => diveModel;
         set => this.RaiseAndSetIfChanged(ref diveModel, value);
     }
 
-    private IDiveStep diveStep = new DiveStep(new DiveStepValidator());
-    public IDiveStep DiveStep
+    private DiveStep diveStep = new();
+    public DiveStep DiveStep
     {
         get => diveStep;
         set => this.RaiseAndSetIfChanged(ref diveStep, value);
     }
 
-    private ICylinder cylinder = new Cylinder(new CylinderValidator(), new CylinderController());
-    public ICylinder Cylinder
+    private Cylinder cylinder = new();
+    public Cylinder Cylinder
     {
         get => cylinder;
         set => this.RaiseAndSetIfChanged(ref cylinder, value);
     }
-
-    public bool IsValid => diveStageValidator.Validate(this);
-}
-
-public interface IDiveStage : IValidation
-{
-    IDiveModel DiveModel { get; set; }
-    IDiveStep DiveStep { get; set; }
-    ICylinder Cylinder { get; set; }
 }

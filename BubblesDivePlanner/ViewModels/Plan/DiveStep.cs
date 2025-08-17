@@ -1,12 +1,9 @@
 using ReactiveUI;
 
-public class DiveStep : ReactiveObject, IDiveStep
+public class DiveStep : ReactiveObject
 {
-    private readonly IDiveStepValidator diveStepValidator;
-
-    public DiveStep(IDiveStepValidator diveStepValidator)
+    public DiveStep()
     {
-        this.diveStepValidator = diveStepValidator;
     }
 
     private byte _depth;
@@ -22,12 +19,4 @@ public class DiveStep : ReactiveObject, IDiveStep
         get => _time;
         set => this.RaiseAndSetIfChanged(ref _time, value);
     }
-
-    public bool IsValid => diveStepValidator.Validate(this);
-}
-
-public interface IDiveStep : IValidation
-{
-    byte Depth { get; set; }
-    byte Time { get; set; }
 }
