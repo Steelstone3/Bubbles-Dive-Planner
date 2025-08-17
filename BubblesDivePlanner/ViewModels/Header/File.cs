@@ -19,8 +19,7 @@ public class File
 
     private void NewInstance()
     {
-        MainPrototype mainPrototype = new();
-        mainPrototype.NewInstance(main);
+        main.New(main);
     }
 
     private void Save()

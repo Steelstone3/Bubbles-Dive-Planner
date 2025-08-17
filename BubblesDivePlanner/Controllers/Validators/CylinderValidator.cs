@@ -1,6 +1,6 @@
 public class CylinderValidator : IValidator<Cylinder>
 {
-    public bool Validate(Cylinder cylinder)
+    public bool IsValid(Cylinder cylinder)
     {
         bool isValidCylinder = IsValidCylinder(cylinder);
 
@@ -11,7 +11,7 @@ public class CylinderValidator : IValidator<Cylinder>
 
         GasMixtureValidator gasMixtureValidator = new();
         GasUsageValidator gasUsageValidator = new();
-        return gasMixtureValidator.Validate(cylinder.GasMixture) && gasUsageValidator.Validate(cylinder.GasUsage);
+        return gasMixtureValidator.IsValid(cylinder.GasMixture) && gasUsageValidator.IsValid(cylinder.GasUsage);
     }
 
     private bool IsValidCylinder(Cylinder cylinder)

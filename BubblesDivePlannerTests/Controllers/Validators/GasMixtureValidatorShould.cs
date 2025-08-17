@@ -19,7 +19,7 @@ public class GasMixtureValidatorShould
         GasMixtureValidator gasMixtureValidator = new();
 
         // When
-        bool isValid = gasMixtureValidator.Validate(gasMixture);
+        bool isValid = gasMixtureValidator.IsValid(gasMixture);
 
         // Then
         Assert.True(isValid);

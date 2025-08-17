@@ -39,7 +39,7 @@ public class DiveStageValidatorShould
         DiveStageValidator diveStageValidator = new();
 
         // When
-        bool isValid = diveStageValidator.Validate(diveStage);
+        bool isValid = diveStageValidator.IsValid(diveStage);
 
         // Then
         Assert.True(isValid);

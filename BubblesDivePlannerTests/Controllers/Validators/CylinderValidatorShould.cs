@@ -33,7 +33,7 @@ public class CylinderValidatorShould
         CylinderValidator cylinderValidator = new();
 
         // When
-        bool isValid = cylinderValidator.Validate(cylinder);
+        bool isValid = cylinderValidator.IsValid(cylinder);
 
         // Then
         Assert.True(isValid);
@@ -75,7 +75,7 @@ public class CylinderValidatorShould
         CylinderValidator cylinderValidator = new();
 
         // When
-        bool isValid = cylinderValidator.Validate(cylinder);
+        bool isValid = cylinderValidator.IsValid(cylinder);
 
         // Then
         Assert.False(isValid);

@@ -36,13 +36,20 @@ public class CylinderSelector : ReactiveObject
         }
     }
 
+    public void New(CylinderSelector cylinderSelector)
+    {
+        cylinderSelector.SelectedCylinder = null;
+        cylinderSelector.Cylinders.Clear();
+        cylinderSelector.SetupCylinder = new Cylinder();
+    }
+
     private void AddCylinder()
     {
         if (SetupCylinder == null)
         {
             return;
         }
-        
+
         CylinderValidator cylinderValidator = new();
         CylinderController cylinderController = new();
         DiveBoundaryController diveBoundaryController = new();
@@ -50,7 +57,7 @@ public class CylinderSelector : ReactiveObject
         SetupCylinder.GasMixture.Nitrogen = cylinderController.CalculateNitrogen(SetupCylinder.GasMixture.Oxygen, SetupCylinder.GasMixture.Helium);
         SetupCylinder.GasMixture.MaximumOperatingDepth = diveBoundaryController.CalculateMaximumOperatingDepth(SetupCylinder.GasMixture.Oxygen);
 
-        if (!cylinderValidator.Validate(SetupCylinder))
+        if (!cylinderValidator.IsValid(SetupCylinder))
         {
             return;
         }

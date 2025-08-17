@@ -40,6 +40,18 @@ public class Main : ReactiveObject
 
     // public IObservable<bool> CanCalculateDiveStage { get; }
 
+    public void New(Main main)
+    {
+        // Nuke these
+        main.DivePlan.DiveStage = new DiveStage();
+        main.DivePlan.DiveModelSelector = new DiveModelSelector();
+        main.DiveInformation = new DiveInformation();
+        main.Result.Results.Clear();
+
+        // Clean up cylinder selector
+        main.DivePlan.CylinderSelector.New(main.DivePlan.CylinderSelector);
+    }
+
     // TODO AH temporary whilst CanCalculateDiveStage is not implemented
     private void CalculateDiveStage()
     {
@@ -53,7 +65,7 @@ public class Main : ReactiveObject
 
         DiveStageValidator diveStageValidator = new();
 
-        if (DivePlan.DiveStage.Cylinder == null || diveStageValidator.Validate(DivePlan.DiveStage))
+        if (DivePlan.DiveStage.Cylinder == null || !diveStageValidator.IsValid(DivePlan.DiveStage))
         {
             return;
         }
@@ -81,12 +93,10 @@ public class Main : ReactiveObject
 
         DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
 
-        DiveStagePrototype diveStagePrototype = new();
-
         DiveProfileStagesCommand diveProfileStagesCommand = new();
 
         diveProfileStagesCommand.Run(DivePlan.DiveStage);
-        Result.Results.Add(diveStagePrototype.DeepClone(DivePlan.DiveStage));
+        Result.Results.Add(new DiveStage(DivePlan.DiveStage));
     }
 
     private void CalculateDiveBoundaries()
@@ -98,14 +108,12 @@ public class Main : ReactiveObject
 
         DivePlan.DiveStage.Cylinder = DivePlan.CylinderSelector.SelectedCylinder;
 
-        DiveStagePrototype diveStagePrototype = new();
-
         DiveBoundaryController diveBoundaryController = new();
         DecompressionController decompressionController = new();
 
         DiveInformation.DecompressionProfile.DiveCeiling = diveBoundaryController.GetOverallDiveCeiling(Result.Results);
         DiveInformation.DecompressionProfile.DecompressionSteps.Clear();
-        List<DiveStep> decompressionSteps = decompressionController.CollateDecompressionDiveSteps(diveStagePrototype.DeepClone(DivePlan.DiveStage));
+        List<DiveStep> decompressionSteps = decompressionController.CollateDecompressionDiveSteps(new DiveStage(DivePlan.DiveStage));
 
         foreach (var decompressionStep in decompressionSteps)
         {
