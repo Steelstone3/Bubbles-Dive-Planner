@@ -1,9 +1,9 @@
 public class DiveStageValidator : IValidator<DiveStage>
 {
-    public bool Validate(DiveStage diveStage)
+    public bool IsValid(DiveStage diveStage)
     {
         DiveStepValidator diveStepValidator = new();
         CylinderValidator cylinderValidator = new();
-        return diveStepValidator.Validate(diveStage.DiveStep) && cylinderValidator.Validate(diveStage.Cylinder);
+        return diveStepValidator.IsValid(diveStage.DiveStep) && cylinderValidator.IsValid(diveStage.Cylinder);
     }
 }

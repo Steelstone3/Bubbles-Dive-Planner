@@ -83,4 +83,17 @@ public class DiveModelProfileShould
         // Then
         Assert.Equal(2.0F, diveCeiling);
     }
+
+    [Fact]
+    public void DeepClone()
+    {
+        // Given
+        DiveModelProfile diveModelProfile = new DiveModelProfile(16);
+
+        // When
+        DiveModelProfile clonedDiveModelProfile = new(diveModelProfile);
+
+        // Then
+        Assert.NotSame(diveModelProfile, clonedDiveModelProfile);
+    }
 }

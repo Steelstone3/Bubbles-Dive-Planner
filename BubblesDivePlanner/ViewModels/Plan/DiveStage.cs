@@ -2,6 +2,13 @@ using ReactiveUI;
 
 public class DiveStage : ReactiveObject
 {
+    public DiveStage(DiveStage diveStage)
+    {
+        DiveModel = new DiveModel(diveStage.DiveModel);
+        DiveStep = new DiveStep(diveStage.DiveStep);
+        Cylinder = new Cylinder(diveStage.Cylinder);
+    }
+
     public DiveStage()
     {
 

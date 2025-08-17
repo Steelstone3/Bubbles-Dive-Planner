@@ -1,6 +1,6 @@
 public class DiveStepValidator : IValidator<DiveStep>
 {
-    public bool Validate(DiveStep diveStep)
+    public bool IsValid(DiveStep diveStep)
     {
         if (diveStep.Depth < 1 || diveStep.Depth > 101 || diveStep.Time < 1 || diveStep.Time > 60)
         {

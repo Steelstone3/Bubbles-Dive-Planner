@@ -13,7 +13,8 @@ public class DiveStageValidatorShould
         };
         GasMixture gasMixture = new()
         {
-            Oxygen = 21
+            Oxygen = 21,
+            Nitrogen = 79
         };
         GasUsage gasUsage = new()
         {
@@ -38,7 +39,7 @@ public class DiveStageValidatorShould
         DiveStageValidator diveStageValidator = new();
 
         // When
-        bool isValid = diveStageValidator.Validate(diveStage);
+        bool isValid = diveStageValidator.IsValid(diveStage);
 
         // Then
         Assert.True(isValid);

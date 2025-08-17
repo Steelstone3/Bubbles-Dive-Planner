@@ -1,4 +1,3 @@
-using Moq;
 using ReactiveUI;
 using Xunit;
 
@@ -32,5 +31,18 @@ public class CylinderShould
         Assert.Contains(nameof(cylinder.GasUsage), events);
         Assert.Contains(nameof(cylinder.GasMixture), events);
         Assert.Contains(nameof(cylinder.IsVisible), events);
+    }
+
+    [Fact]
+    public void DeepClone()
+    {
+        // Given
+        Cylinder cylinder = new();
+
+        // When
+        Cylinder clonedCylinder = new(cylinder);
+
+        // Then
+        Assert.NotSame(cylinder, clonedCylinder);
     }
 }

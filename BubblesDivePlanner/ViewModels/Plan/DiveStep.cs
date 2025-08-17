@@ -2,9 +2,13 @@ using ReactiveUI;
 
 public class DiveStep : ReactiveObject
 {
-    public DiveStep()
+    public DiveStep(DiveStep diveStep)
     {
+        Depth = diveStep.Depth;
+        Time = diveStep.Time;
     }
+
+    public DiveStep() { }
 
     private byte _depth;
     public byte Depth

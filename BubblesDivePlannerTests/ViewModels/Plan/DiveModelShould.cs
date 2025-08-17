@@ -20,4 +20,19 @@ public class DiveModelShould
         Assert.NotEmpty(events);
         Assert.Contains(nameof(diveModel.DiveModelProfile), events);
     }
+
+    [Fact]
+    public void DeepClone()
+    {
+        // Given
+        DiveModelFactory diveModelFactory = new();
+        DiveModel diveModel = diveModelFactory.CreateZhl16Buhlmann();
+
+        // When
+        DiveModel clonedDiveModel = new(diveModel);
+
+        // Then
+        Assert.NotSame(diveModel, clonedDiveModel);
+        Assert.NotSame(diveModel.DiveModelProfile, clonedDiveModel.DiveModelProfile);
+    }
 }

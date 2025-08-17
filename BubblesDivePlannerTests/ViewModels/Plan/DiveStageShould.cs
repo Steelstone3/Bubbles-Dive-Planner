@@ -26,4 +26,22 @@ public class DiveStageShould
         Assert.Contains(nameof(diveStage.DiveStep), events);
         Assert.Contains(nameof(diveStage.Cylinder), events);
     }
+
+    [Fact]
+    public void DeepClone()
+    {
+        // Given
+        DiveModelFactory diveModelFactory = new();
+        DiveStage diveStage = new();
+        diveStage.DiveModel = diveModelFactory.CreateZhl16Buhlmann();
+
+        // When
+        DiveStage clonedDiveStage = new DiveStage(diveStage);
+
+        // Then
+        Assert.NotSame(diveStage, clonedDiveStage);
+        Assert.NotSame(diveStage.DiveModel, clonedDiveStage.DiveModel);
+        Assert.NotSame(diveStage.DiveStep, clonedDiveStage.DiveStep);
+        Assert.NotSame(diveStage.Cylinder, clonedDiveStage.Cylinder);
+    }
 }

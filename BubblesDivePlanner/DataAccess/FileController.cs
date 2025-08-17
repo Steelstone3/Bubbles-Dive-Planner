@@ -43,8 +43,7 @@ public class FileController : IFileController
     {
         try
         {
-            MainPrototype mainPrototype = new();
-            mainPrototype.NewInstance(main);
+            main.New(main);
 
             string resultsJson = System.IO.File.ReadAllText("results.json");
             Result result = resultSerialiser.Read(resultsJson);

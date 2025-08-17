@@ -2,6 +2,21 @@ using ReactiveUI;
 
 public class DiveModel : ReactiveObject
 {
+    public DiveModel(DiveModel diveModel)
+    {
+        Name = diveModel.Name;
+        CompartmentCount = diveModel.CompartmentCount;
+        NitrogenHalfTime = diveModel.NitrogenHalfTime;
+        HeliumHalfTime = diveModel.HeliumHalfTime;
+        AValuesNitrogen = diveModel.AValuesNitrogen;
+        BValuesNitrogen = diveModel.BValuesNitrogen;
+        AValuesHelium = diveModel.AValuesHelium;
+        BValuesHelium = diveModel.BValuesHelium;
+        DiveModelProfile = new DiveModelProfile(diveModel.DiveModelProfile);
+    }
+
+    public DiveModel() { }
+
     public string Name { get; set; }
     public byte CompartmentCount { get; set; }
     public float[] NitrogenHalfTime { get; set; }

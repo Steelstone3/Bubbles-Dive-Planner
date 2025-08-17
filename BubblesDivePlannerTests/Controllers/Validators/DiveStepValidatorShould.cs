@@ -17,7 +17,7 @@ public class DiveStepValidatorShould
         DiveStepValidator diveStepValidator = new();
 
         // When
-        bool isValid = diveStepValidator.Validate(diveStep);
+        bool isValid = diveStepValidator.IsValid(diveStep);
 
         // Then
         Assert.True(isValid);
@@ -39,7 +39,7 @@ public class DiveStepValidatorShould
         DiveStepValidator diveStepValidator = new();
 
         // When
-        bool isValid = diveStepValidator.Validate(diveStep);
+        bool isValid = diveStepValidator.IsValid(diveStep);
 
         // Then
         Assert.False(isValid);

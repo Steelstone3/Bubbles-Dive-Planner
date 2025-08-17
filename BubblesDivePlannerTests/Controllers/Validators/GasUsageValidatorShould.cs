@@ -19,7 +19,7 @@ public class GasUsageValidatorShould
         };
 
         // When
-        var isValid = gasUsageValidator.Validate(gasUsage);
+        var isValid = gasUsageValidator.IsValid(gasUsage);
 
         // Then
         Assert.True(isValid);
@@ -37,7 +37,7 @@ public class GasUsageValidatorShould
         };
 
         // When
-        var isValid = gasUsageValidator.Validate(gasUsage);
+        var isValid = gasUsageValidator.IsValid(gasUsage);
 
         // Then
         Assert.False(isValid);

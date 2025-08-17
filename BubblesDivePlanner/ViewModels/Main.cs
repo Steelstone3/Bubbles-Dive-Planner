@@ -40,14 +40,32 @@ public class Main : ReactiveObject
 
     // public IObservable<bool> CanCalculateDiveStage { get; }
 
+    public void New(Main main)
+    {
+        // Nuke these
+        main.DivePlan.DiveStage = new DiveStage();
+        main.DiveInformation = new DiveInformation();
+        main.Result.Results.Clear();
+
+        // Neat these
+        main.DivePlan.DiveModelSelector.IsVisible = true;
+        main.DivePlan.CylinderSelector.New(main.DivePlan.CylinderSelector);
+    }
+
+    // TODO AH temporary whilst CanCalculateDiveStage is not implemented
     private void CalculateDiveStage()
     {
+        if (DivePlan.DiveModelSelector.DiveModelSelected == null || DivePlan.CylinderSelector.SelectedCylinder == null)
+        {
+            return;
+        }
+
         DivePlan.DiveStage.DiveModel = DivePlan.DiveModelSelector.DiveModelSelected;
         DivePlan.DiveStage.Cylinder = DivePlan.CylinderSelector.SelectedCylinder;
 
-        // TODO AH temporary whilst CanCalculateDiveStage is not implemented
         DiveStageValidator diveStageValidator = new();
-        if (DivePlan.DiveStage.Cylinder == null || !diveStageValidator.Validate(DivePlan.DiveStage))
+
+        if (DivePlan.DiveStage.Cylinder == null || !diveStageValidator.IsValid(DivePlan.DiveStage))
         {
             return;
         }
@@ -75,15 +93,10 @@ public class Main : ReactiveObject
 
         DivePlan.DiveStage.Cylinder.GasUsage = cylinderController.UpdateGasUsage(DivePlan.DiveStage.DiveStep, DivePlan.DiveStage.Cylinder.GasUsage);
 
-        DiveModelPrototype diveModelPrototype = new();
-        DiveStepPrototype diveStepPrototype = new();
-        CylinderPrototype cylinderPrototype = new();
-        DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype, cylinderPrototype);
-
         DiveProfileStagesCommand diveProfileStagesCommand = new();
 
         diveProfileStagesCommand.Run(DivePlan.DiveStage);
-        Result.Results.Add(diveStagePrototype.DeepClone(DivePlan.DiveStage));
+        Result.Results.Add(new DiveStage(DivePlan.DiveStage));
     }
 
     private void CalculateDiveBoundaries()
@@ -95,17 +108,12 @@ public class Main : ReactiveObject
 
         DivePlan.DiveStage.Cylinder = DivePlan.CylinderSelector.SelectedCylinder;
 
-        DiveModelPrototype diveModelPrototype = new();
-        DiveStepPrototype diveStepPrototype = new();
-        CylinderPrototype cylinderPrototype = new();
-        DiveStagePrototype diveStagePrototype = new(diveModelPrototype, diveStepPrototype, cylinderPrototype);
-
         DiveBoundaryController diveBoundaryController = new();
         DecompressionController decompressionController = new();
 
         DiveInformation.DecompressionProfile.DiveCeiling = diveBoundaryController.GetOverallDiveCeiling(Result.Results);
         DiveInformation.DecompressionProfile.DecompressionSteps.Clear();
-        List<DiveStep> decompressionSteps = decompressionController.CollateDecompressionDiveSteps(diveStagePrototype.DeepClone(DivePlan.DiveStage));
+        List<DiveStep> decompressionSteps = decompressionController.CollateDecompressionDiveSteps(new DiveStage(DivePlan.DiveStage));
 
         foreach (var decompressionStep in decompressionSteps)
         {

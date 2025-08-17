@@ -21,4 +21,17 @@ public class DiveStepShould
         Assert.Contains(nameof(diveStep.Depth), events);
         Assert.Contains(nameof(diveStep.Time), events);
     }
+
+    [Fact]
+    public void DeepClone()
+    {
+        // Given
+        DiveStep diveStep = new();
+
+        // When
+        DiveStep clonedDiveStep = new(diveStep);
+
+        // Then
+        Assert.NotSame(diveStep, clonedDiveStep);
+    }
 }

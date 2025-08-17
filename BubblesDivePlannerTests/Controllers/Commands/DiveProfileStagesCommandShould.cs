@@ -19,7 +19,8 @@ public class DiveProfileStagesCommandShould
         GasMixture gasMixture = new()
         {
             Oxygen = 21,
-            Helium = 10
+            Helium = 10,
+            Nitrogen = 69
         };
 
         Cylinder cylinder = new()

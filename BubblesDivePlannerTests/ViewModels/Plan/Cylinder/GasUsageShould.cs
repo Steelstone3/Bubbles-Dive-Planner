@@ -24,4 +24,17 @@ public class GasUsageShould
         Assert.Contains(nameof(gasUsage.Used), events);
         Assert.Contains(nameof(gasUsage.SurfaceAirConsumptionRate), events);
     }
+
+    [Fact]
+    public void DeepClone()
+    {
+        // Given
+        GasUsage gasUsage = new();
+
+        // When
+        GasUsage clonedGasUsage = new(gasUsage);
+
+        // Then
+        Assert.NotSame(gasUsage, clonedGasUsage);
+    }
 }

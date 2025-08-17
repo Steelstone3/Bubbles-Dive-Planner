@@ -20,7 +20,11 @@ public class FileShould
         Assert.True(divePlan.DiveModelSelector.IsVisible);
         Assert.Same(header, main.Header);
         Assert.Same(divePlan, main.DivePlan);
-        Assert.Same(diveInformation, main.DiveInformation);
         Assert.Same(result, main.Result);
+        Assert.NotSame(divePlan, main.DivePlan.CylinderSelector);
+        Assert.NotSame(result, main.Result.Results);
+        Assert.NotSame(divePlan, main.DivePlan.DiveModelSelector);
+        Assert.NotSame(divePlan, main.DivePlan.DiveStage);
+        Assert.NotSame(diveInformation, main.DiveInformation);
     }
 }

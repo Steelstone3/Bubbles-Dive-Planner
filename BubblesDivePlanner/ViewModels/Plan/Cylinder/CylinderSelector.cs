@@ -36,29 +36,33 @@ public class CylinderSelector : ReactiveObject
         }
     }
 
+    public void New(CylinderSelector cylinderSelector)
+    {
+        cylinderSelector.SelectedCylinder = null;
+        cylinderSelector.Cylinders.Clear();
+        cylinderSelector.SetupCylinder = new Cylinder();
+    }
+
     private void AddCylinder()
     {
         if (SetupCylinder == null)
         {
             return;
         }
-        
+
         CylinderValidator cylinderValidator = new();
-
-        // TODO AH Calculate gas mixture
-        // TODO AH Calculate initial pressure
         CylinderController cylinderController = new();
-
-
+        DiveBoundaryController diveBoundaryController = new();
         SetupCylinder.InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(SetupCylinder.Volume, SetupCylinder.Pressure);
+        SetupCylinder.GasMixture.Nitrogen = cylinderController.CalculateNitrogen(SetupCylinder.GasMixture.Oxygen, SetupCylinder.GasMixture.Helium);
+        SetupCylinder.GasMixture.MaximumOperatingDepth = diveBoundaryController.CalculateMaximumOperatingDepth(SetupCylinder.GasMixture.Oxygen);
 
-        if (!cylinderValidator.Validate(SetupCylinder))
+        if (!cylinderValidator.IsValid(SetupCylinder))
         {
             return;
         }
 
-        ICylinderPrototype cylinderPrototype = new CylinderPrototype();
-        Cylinder clonedSelectedCylinder = cylinderPrototype.DeepClone(SetupCylinder);
+        Cylinder clonedSelectedCylinder = new Cylinder(SetupCylinder);
         Cylinders.Add(clonedSelectedCylinder);
     }
 }
