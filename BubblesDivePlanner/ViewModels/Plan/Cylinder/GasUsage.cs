@@ -5,8 +5,8 @@ public class GasUsage : ReactiveObject
     public GasUsage(GasUsage gasUsage)
     {
         Remaining = gasUsage.Remaining;
-        Remaining = gasUsage.Used;
-        Remaining = gasUsage.SurfaceAirConsumptionRate;
+        Used = gasUsage.Used;
+        SurfaceAirConsumptionRate = gasUsage.SurfaceAirConsumptionRate;
     }
 
     public GasUsage() { }
