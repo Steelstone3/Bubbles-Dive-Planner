@@ -2,7 +2,21 @@ using ReactiveUI;
 
 public class DiveModelProfile : ReactiveObject
 {
-    private readonly IDiveBoundaryController diveBoundaryController;
+
+    public DiveModelProfile(DiveModelProfile diveModelProfile)
+    {
+        OxygenAtPressure = diveModelProfile.OxygenAtPressure;
+        NitrogenAtPressure = diveModelProfile.NitrogenAtPressure;
+        HeliumAtPressure = diveModelProfile.HeliumAtPressure;
+        NitrogenTissuePressures = diveModelProfile.NitrogenTissuePressures;
+        HeliumTissuePressures = diveModelProfile.HeliumTissuePressures;
+        TotalTissuePressures = diveModelProfile.TotalTissuePressures;
+        AValues = diveModelProfile.AValues;
+        BValues = diveModelProfile.BValues;
+        ToleratedAmbientPressures = diveModelProfile.ToleratedAmbientPressures;
+        MaxSurfacePressures = diveModelProfile.MaxSurfacePressures;
+        CompartmentLoads = diveModelProfile.CompartmentLoads;
+    }
 
     public DiveModelProfile(byte compartmentCount)
     {
@@ -20,9 +34,6 @@ public class DiveModelProfile : ReactiveObject
             nitrogenTissuePressures[compartment] = 0.79F;
             totalTissuePressures[compartment] = 0.79F;
         }
-
-        // TODO AH Controller polution
-        diveBoundaryController = new DiveBoundaryController();
     }
 
     private float oxygenAtPressure;
@@ -104,6 +115,7 @@ public class DiveModelProfile : ReactiveObject
 
     public float DiveCeiling
     {
-        get => ToleratedAmbientPressures.Max() <= 0.0F ? 0.0F : diveBoundaryController.CalculateDiveCeiling(ToleratedAmbientPressures);
+        // TODO AH Controller polution
+        get => ToleratedAmbientPressures.Max() <= 0.0F ? 0.0F : new DiveBoundaryController().CalculateDiveCeiling(ToleratedAmbientPressures);
     }
 }
