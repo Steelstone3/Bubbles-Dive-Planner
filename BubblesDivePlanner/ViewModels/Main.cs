@@ -53,7 +53,7 @@ public class Main : ReactiveObject
 
         DiveStageValidator diveStageValidator = new();
 
-        if (DivePlan.DiveStage.Cylinder == null || !diveStageValidator.Validate(DivePlan.DiveStage))
+        if (DivePlan.DiveStage.Cylinder == null || diveStageValidator.Validate(DivePlan.DiveStage))
         {
             return;
         }
