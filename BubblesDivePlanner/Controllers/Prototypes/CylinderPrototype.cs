@@ -13,6 +13,7 @@ public class CylinderPrototype : ICylinderPrototype
                 Oxygen = cylinder.GasMixture.Oxygen,
                 Helium = cylinder.GasMixture.Helium,
                 Nitrogen = cylinder.GasMixture.Nitrogen,
+                MaximumOperatingDepth = cylinder.GasMixture.MaximumOperatingDepth,
             },
             GasUsage = new GasUsage()
             {

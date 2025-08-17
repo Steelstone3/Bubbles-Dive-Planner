@@ -45,9 +45,10 @@ public class CylinderSelector : ReactiveObject
         
         CylinderValidator cylinderValidator = new();
         CylinderController cylinderController = new();
-        
+        DiveBoundaryController diveBoundaryController = new();
         SetupCylinder.InitialPressurisedVolume = cylinderController.CalculateInitialPressurisedVolume(SetupCylinder.Volume, SetupCylinder.Pressure);
         SetupCylinder.GasMixture.Nitrogen = cylinderController.CalculateNitrogen(SetupCylinder.GasMixture.Oxygen, SetupCylinder.GasMixture.Helium);
+        SetupCylinder.GasMixture.MaximumOperatingDepth = diveBoundaryController.CalculateMaximumOperatingDepth(SetupCylinder.GasMixture.Oxygen);
 
         if (!cylinderValidator.Validate(SetupCylinder))
         {

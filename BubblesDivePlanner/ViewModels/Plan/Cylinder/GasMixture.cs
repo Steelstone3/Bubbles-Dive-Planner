@@ -2,12 +2,8 @@ using ReactiveUI;
 
 public class GasMixture : ReactiveObject
 {
-    private readonly IDiveBoundaryController diveBoundaryController;
-
-    // TODO AH remove controller polution
     public GasMixture()
     {
-        diveBoundaryController = new DiveBoundaryController();
     }
 
     private float oxygen;
@@ -17,7 +13,6 @@ public class GasMixture : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref oxygen, value);
-            MaximumOperatingDepth = diveBoundaryController.CalculateMaximumOperatingDepth(Oxygen);
         }
     }
 
@@ -43,6 +38,6 @@ public class GasMixture : ReactiveObject
     public float MaximumOperatingDepth
     {
         get => maximumOperatingDepth;
-        private set => this.RaiseAndSetIfChanged(ref maximumOperatingDepth, value);
+        set => this.RaiseAndSetIfChanged(ref maximumOperatingDepth, value);
     }
 }
