@@ -18,6 +18,7 @@ public class AmbientPressuresShould
         {
             Oxygen = 21,
             Helium = 0,
+            Nitrogen = 79,
         };
         Cylinder cylinder = new()
         {

@@ -13,7 +13,8 @@ public class DiveStageValidatorShould
         };
         GasMixture gasMixture = new()
         {
-            Oxygen = 21
+            Oxygen = 21,
+            Nitrogen = 79
         };
         GasUsage gasUsage = new()
         {

@@ -1,4 +1,3 @@
-using Moq;
 using ReactiveUI;
 using Xunit;
 
@@ -56,6 +55,7 @@ public class MainShould
         main.DivePlan.CylinderSelector.SetupCylinder.Pressure = 200;
         main.DivePlan.CylinderSelector.SetupCylinder.GasUsage.SurfaceAirConsumptionRate = 12;
         main.DivePlan.CylinderSelector.SetupCylinder.GasMixture.Oxygen = 21;
+        main.DivePlan.CylinderSelector.SetupCylinder.GasMixture.Nitrogen = 79;
         main.DivePlan.CylinderSelector.SelectedCylinder = main.DivePlan.CylinderSelector.SetupCylinder;
         main.DivePlan.CylinderSelector.Cylinders.Add(main.DivePlan.CylinderSelector.SelectedCylinder);
 
@@ -81,6 +81,7 @@ public class MainShould
         main.DivePlan.CylinderSelector.SetupCylinder.Pressure = 200;
         main.DivePlan.CylinderSelector.SetupCylinder.GasUsage.SurfaceAirConsumptionRate = 12;
         main.DivePlan.CylinderSelector.SetupCylinder.GasMixture.Oxygen = 21;
+        main.DivePlan.CylinderSelector.SetupCylinder.GasMixture.Nitrogen = 79;
 
         main.DivePlan.CylinderSelector.SelectedCylinder = main.DivePlan.CylinderSelector.SetupCylinder;
         main.DivePlan.CylinderSelector.Cylinders.Add(main.DivePlan.CylinderSelector.SelectedCylinder);
@@ -99,6 +100,7 @@ public class MainShould
         // Given
         main.DivePlan.CylinderSelector.SetupCylinder.Name = "EAN50";
         main.DivePlan.CylinderSelector.SetupCylinder.GasMixture.Oxygen = 50;
+        main.DivePlan.CylinderSelector.SetupCylinder.GasMixture.Nitrogen = 50;
 
         main.DivePlan.CylinderSelector.SelectedCylinder = main.DivePlan.CylinderSelector.SetupCylinder;
         main.DivePlan.CylinderSelector.Cylinders.Add(main.DivePlan.CylinderSelector.SelectedCylinder);

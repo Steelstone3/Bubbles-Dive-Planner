@@ -14,6 +14,7 @@ public class CylinderValidatorShould
         {
             Oxygen = 21,
             Helium = 10,
+            Nitrogen = 69
         };
         GasUsage gasUsage = new()
         {
@@ -50,12 +51,11 @@ public class CylinderValidatorShould
     public void ValidateInvalidCylinder(string name, byte volume, ushort pressure)
     {
         // Given
-        Mock<ICylinderController> cylinderController = new();
-        Mock<IDiveBoundaryController> diveBoundary = new();
         GasMixture gasMixture = new()
         {
             Oxygen = 21,
             Helium = 10,
+            Nitrogen = 69
         };
 
         GasUsage gasUsage = new()
