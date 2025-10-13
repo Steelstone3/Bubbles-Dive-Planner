@@ -1,6 +1,6 @@
 [package]
 name = "bubbles-dive-planner-iced"
-version = "1.6.1"
+version = "1.6.2"
 authors = ["Skippy <steelstone3@gmail.com>"]
 edition = "2024"
 homepage = "https://github.com/Steelstone3/Bubbles-Dive-Planner/tree/iced-version"
