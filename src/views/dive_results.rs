@@ -1,4 +1,7 @@
-use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
+use crate::{
+    commands::messages::Message, models::application::dive_planner::DivePlanner,
+    views::dive_results_table::dive_results_table,
+};
 use iced::{
     Renderer, Theme,
     widget::{column, text},
@@ -39,7 +42,10 @@ impl DivePlanner {
             result_cards.push(
                 Card::new(
                     "Dive Profile",
-                    text(dive_stage.dive_model.dive_profile.to_string()),
+                    dive_results_table(
+                        &dive_stage.dive_model.dive_profile,
+                        self.theme().palette().text,
+                    ),
                 )
                 .foot(text(footer)),
             );

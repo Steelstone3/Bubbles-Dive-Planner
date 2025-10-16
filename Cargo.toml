@@ -1,6 +1,6 @@
 [package]
 name = "bubbles-dive-planner-iced"
-version = "1.6.2"
+version = "1.7.0"
 authors = ["Skippy <steelstone3@gmail.com>"]
 edition = "2024"
 homepage = "https://github.com/Steelstone3/Bubbles-Dive-Planner/tree/iced-version"
@@ -32,6 +32,7 @@ rstest = "0"
 # Fixed Version
 iced = "0.13"
 iced_aw = "0.12"
+iced_table = { git = "https://github.com/Steelstone3/Iced-Table" }
 
 # Variable Version
 serde = { version = "1", features = ["derive"] }
