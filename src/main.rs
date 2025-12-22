@@ -8,13 +8,12 @@ mod test_fixture;
 mod views;
 
 pub fn main() -> iced::Result {
-    iced::application(
-        "Bubbles Dive Planner",
-        DivePlanner::update,
-        DivePlanner::view,
-    )
-    .theme(DivePlanner::theme)
-    .antialiasing(true)
-    .settings(Settings::default())
-    .run()
+    iced::application(DivePlanner::boot, DivePlanner::update, DivePlanner::view)
+        .theme(DivePlanner::theme)
+        .antialiasing(true)
+        .settings(Settings {
+            id: Some("Bubbles Dive Planner".to_string()),
+            ..Default::default()
+        })
+        .run()
 }

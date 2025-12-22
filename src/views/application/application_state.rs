@@ -2,9 +2,13 @@ use crate::{
     commands::{messages::Message, tab_identifier::TabIdentifier},
     models::application::dive_planner::DivePlanner,
 };
-use iced::{Element, Theme};
+use iced::{Element, Task, Theme};
 
 impl DivePlanner {
+    pub fn boot() -> (Self, Task<Message>) {
+        (Self::default(), Task::none())
+    }
+
     pub fn view(&self) -> Element<'_, Message> {
         self.tab_bar_view().into()
     }
