@@ -1,7 +1,7 @@
 use iced::Settings;
 use models::application::dive_planner::DivePlanner;
 
-mod commands;
+mod application;
 mod controllers;
 mod models;
 mod test;

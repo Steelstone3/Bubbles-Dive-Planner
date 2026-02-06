@@ -2,8 +2,8 @@ use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
 use crate::{
-    models::information::gas_management::GasManagement,
-    views::application::input_parser::parse_input_u32,
+    application::input_parser::parse_input_u32,
+    models::plan::cylinders::gas_management::GasManagement,
 };
 
 use super::gas_mixture::GasMixture;

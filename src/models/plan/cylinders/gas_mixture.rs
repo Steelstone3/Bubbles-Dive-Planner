@@ -1,6 +1,5 @@
+use crate::application::input_parser::parse_input_u32;
 use serde::{Deserialize, Serialize};
-
-use crate::views::application::input_parser::parse_input_u32;
 
 pub const MAXIMUM_OXYGEN_VALUE: u32 = 100;
 pub const MINIMUM_OXYGEN_VALUE: u32 = 5;

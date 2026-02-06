@@ -1,5 +1,5 @@
 use crate::models::{
-    plan::{dive_step::DiveStep, gas_mixture::GasMixture},
+    plan::{cylinders::gas_mixture::GasMixture, dive_step::DiveStep},
     result::dive_profile::DiveProfile,
 };
 

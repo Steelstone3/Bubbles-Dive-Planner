@@ -1,4 +1,6 @@
-use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
+use crate::{
+    application::messages::message::Message, models::application::dive_planner::DivePlanner,
+};
 use iced::widget::{Column, column, text};
 
 impl DivePlanner {
@@ -12,8 +14,6 @@ impl DivePlanner {
             .spacing(10)
             .push(self.dive_step_view())
             .padding(10)
-            .spacing(10)
-            .push(self.select_cylinder_view())
             .spacing(10)
             .push(self.cylinder_view())
             .padding(10)

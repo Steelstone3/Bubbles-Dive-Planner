@@ -1,10 +1,12 @@
-use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
+use crate::{
+    application::messages::message::Message, models::application::dive_planner::DivePlanner,
+};
 use iced::widget::{Column, column, text, text_input};
 use iced_aw::Card;
 
 impl DivePlanner {
     pub fn cylinder_view(&self) -> Column<'_, Message> {
-        match self.application_state.is_planning {
+        match self.dive_planning.is_planning {
             true => {
                 let contents = column!()
                     // Mutable View
@@ -15,7 +17,7 @@ impl DivePlanner {
                             "Enter Cylinder Volume",
                             &self.dive_stage.cylinder.volume.to_string(),
                         )
-                        .on_input(Message::CylinderVolumeChanged),
+                        .on_input(Message::CylinderVolumeOnChanged),
                     )
                     .spacing(10)
                     .push(text("Pressure (bar)"))
@@ -25,7 +27,7 @@ impl DivePlanner {
                             "Enter Cylinder Pressure (bar)",
                             &self.dive_stage.cylinder.pressure.to_string(),
                         )
-                        .on_input(Message::CylinderPressureChanged),
+                        .on_input(Message::CylinderPressureOnChanged),
                     )
                     .spacing(10)
                     .push(text("Pressurised Volume (l)"))
@@ -82,7 +84,7 @@ impl DivePlanner {
                     "Enter Oxygen (%)",
                     &self.dive_stage.cylinder.gas_mixture.oxygen.to_string(),
                 )
-                .on_input(Message::OxygenChanged),
+                .on_input(Message::OxygenOnChanged),
             )
             .push(text("Helium (%)"))
             .spacing(10)
@@ -91,7 +93,7 @@ impl DivePlanner {
                     "Enter Helium (%)",
                     &self.dive_stage.cylinder.gas_mixture.helium.to_string(),
                 )
-                .on_input(Message::HeliumChanged),
+                .on_input(Message::HeliumOnChanged),
             )
             .spacing(10)
             .push(text("Nitrogen (%)"))
@@ -137,7 +139,7 @@ impl DivePlanner {
                         .surface_air_consumption_rate
                         .to_string(),
                 )
-                .on_input(Message::SurfaceAirConsumptionChanged),
+                .on_input(Message::SurfaceAirConsumptionOnChanged),
             )
             .spacing(10);
 

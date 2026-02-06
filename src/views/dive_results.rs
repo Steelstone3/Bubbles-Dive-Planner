@@ -1,5 +1,5 @@
 use crate::{
-    commands::messages::Message, models::application::dive_planner::DivePlanner,
+    application::messages::message::Message, models::application::dive_planner::DivePlanner,
     views::dive_results_table::dive_results_table,
 };
 use iced::{
@@ -10,7 +10,7 @@ use iced_aw::widgets::Card;
 
 impl DivePlanner {
     pub fn results_view(&self) -> iced::widget::Column<'_, Message> {
-        if self.application_state.is_planning {
+        if self.dive_planning.is_planning {
             column!()
         } else {
             let mut column = column![];

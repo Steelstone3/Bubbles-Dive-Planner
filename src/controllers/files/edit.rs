@@ -13,7 +13,8 @@ impl DivePlanner {
                 .unwrap_or(&Default::default());
 
             // Refresh decompression steps
-            self.decompression_steps
+            self.dive_information
+                .decompression_steps
                 .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
         } else {
             self.file_new();
@@ -27,7 +28,8 @@ impl DivePlanner {
             self.dive_stage = redo;
 
             // Refresh decompression steps
-            self.decompression_steps
+            self.dive_information
+                .decompression_steps
                 .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
         }
     }
@@ -46,7 +48,9 @@ mod edit_should {
     use crate::{
         models::{
             application::{application_state::ApplicationState, dive_planner::DivePlanner},
-            information::decompression_steps::DecompressionSteps,
+            information::{
+                decompression_steps::DecompressionSteps, dive_information::DiveInformation,
+            },
             plan::{dive_stage::DiveStage, dive_step::DiveStep},
             result::results::DiveResults,
         },
@@ -181,7 +185,10 @@ mod edit_should {
                 redo_buffer: vec![],
                 ..Default::default()
             },
-            decompression_steps: decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
@@ -194,7 +201,10 @@ mod edit_should {
                 redo_buffer: vec![dive_stage],
                 ..Default::default()
             },
-            decompression_steps: decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
 
@@ -218,7 +228,10 @@ mod edit_should {
                 redo_buffer: vec![],
                 ..Default::default()
             },
-            decompression_steps: large_decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: large_decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
@@ -231,7 +244,10 @@ mod edit_should {
                 redo_buffer: vec![dive_stage],
                 ..Default::default()
             },
-            decompression_steps: decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
 
@@ -240,8 +256,8 @@ mod edit_should {
 
         // Then
         assert_eq!(
-            expected_dive_planner.decompression_steps,
-            dive_planner.decompression_steps
+            expected_dive_planner.dive_information.decompression_steps,
+            dive_planner.dive_information.decompression_steps
         );
     }
 
@@ -287,7 +303,10 @@ mod edit_should {
                 redo_buffer: vec![dive_stage],
                 ..Default::default()
             },
-            decompression_steps: decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
@@ -296,7 +315,10 @@ mod edit_should {
                 results: vec![dive_stage, dive_stage],
                 ..Default::default()
             },
-            decompression_steps: decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
 
@@ -321,7 +343,10 @@ mod edit_should {
                 redo_buffer: vec![dive_stage, dive_stage],
                 ..Default::default()
             },
-            decompression_steps: decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
@@ -334,7 +359,10 @@ mod edit_should {
                 redo_buffer: vec![dive_stage],
                 ..Default::default()
             },
-            decompression_steps: decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
 
@@ -359,7 +387,10 @@ mod edit_should {
                 redo_buffer: vec![dive_stage, dive_stage],
                 ..Default::default()
             },
-            decompression_steps: large_decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: large_decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
         let expected_dive_planner = DivePlanner {
@@ -372,7 +403,10 @@ mod edit_should {
                 redo_buffer: vec![dive_stage],
                 ..Default::default()
             },
-            decompression_steps: decompression_steps_test_fixture(),
+            dive_information: DiveInformation {
+                decompression_steps: decompression_steps_test_fixture(),
+                ..Default::default()
+            },
             ..Default::default()
         };
 
@@ -381,8 +415,8 @@ mod edit_should {
 
         // Then
         assert_eq!(
-            expected_dive_planner.decompression_steps,
-            dive_planner.decompression_steps
+            expected_dive_planner.dive_information.decompression_steps,
+            dive_planner.dive_information.decompression_steps
         );
     }
 

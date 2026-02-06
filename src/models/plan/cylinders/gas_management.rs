@@ -1,6 +1,6 @@
-use crate::{models::plan::dive_step::DiveStep, views::application::input_parser::parse_input_u32};
-
 use serde::{Deserialize, Serialize};
+
+use crate::{application::input_parser::parse_input_u32, models::plan::dive_step::DiveStep};
 
 pub const MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE: u32 = 30;
 pub const MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE: u32 = 3;

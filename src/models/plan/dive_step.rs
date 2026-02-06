@@ -1,7 +1,6 @@
+use crate::application::input_parser::parse_input_u32;
 use serde::{Deserialize, Serialize};
 use std::fmt::Display;
-
-use crate::views::application::input_parser::parse_input_u32;
 
 pub const MAXIMUM_DEPTH_VALUE: u32 = 100;
 pub const MINIMUM_DEPTH_VALUE: u32 = 1;

@@ -1,5 +1,5 @@
 use crate::{
-    commands::{messages::Message, tab_identifier::TabIdentifier},
+    application::{messages::message::Message, states::tab_identifier::TabIdentifier},
     models::application::dive_planner::DivePlanner,
 };
 use iced::{Element, Task, Theme};

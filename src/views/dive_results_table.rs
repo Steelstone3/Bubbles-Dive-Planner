@@ -1,4 +1,4 @@
-use crate::{commands::messages::Message, models::result::dive_profile::DiveProfile};
+use crate::{application::messages::message::Message, models::result::dive_profile::DiveProfile};
 use iced::{Color, Element};
 use iced_table::Table;
 

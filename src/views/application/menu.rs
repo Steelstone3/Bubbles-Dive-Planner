@@ -1,4 +1,4 @@
-use crate::commands::messages::Message;
+use crate::application::messages::message::Message;
 use crate::models::application::dive_planner::DivePlanner;
 use iced::Length;
 use iced::widget::{button, column};
@@ -9,16 +9,18 @@ impl DivePlanner {
     pub fn menu_view(&self) -> iced::widget::Column<'_, Message> {
         let menu_template = |items| Menu::new(items).max_width(180.0).offset(6.0);
 
-        match self.application_state.is_planning {
+        match self.dive_planning.is_planning {
             true => {
                 let menu_bar = menu_bar!(
                     (
                         button("File").on_press(Message::MenuBar),
                         menu_template(menu_items!(
-                            (button("New").width(Length::Fill).on_press(Message::FileNew)),
+                            (button("New")
+                                .width(Length::Fill)
+                                .on_press(Message::FileOnNewClicked)),
                             (button("Load")
                                 .width(Length::Fill)
-                                .on_press(Message::FileLoad))
+                                .on_press(Message::FileOnLoadClicked))
                         ))
                     ),
                     (
@@ -26,10 +28,10 @@ impl DivePlanner {
                         menu_template(menu_items!(
                             (button("Undo")
                                 .width(Length::Fill)
-                                .on_press(Message::EditUndo)),
+                                .on_press(Message::EditOnUndoClicked)),
                             (button("Redo")
                                 .width(Length::Fill)
-                                .on_press(Message::EditRedo))
+                                .on_press(Message::EditOnRedoClicked))
                         ))
                     ),
                     (
@@ -37,10 +39,7 @@ impl DivePlanner {
                         menu_template(menu_items!(
                             (button("Toggle Theme")
                                 .width(Length::Fill)
-                                .on_press(Message::ViewToggleTheme)),
-                            (button("Toggle Cylinder View")
-                                .width(Length::Fill)
-                                .on_press(Message::ViewToggleSelectedCylinderVisibility))
+                                .on_press(Message::ViewOnToggleThemeClicked)),
                         ))
                     )
                 );
@@ -52,16 +51,18 @@ impl DivePlanner {
                     (
                         button("File").on_press(Message::MenuBar),
                         menu_template(menu_items!(
-                            (button("New").width(Length::Fill).on_press(Message::FileNew)),
+                            (button("New")
+                                .width(Length::Fill)
+                                .on_press(Message::FileOnNewClicked)),
                             (button("Save")
                                 .width(Length::Fill)
-                                .on_press(Message::FileSave)),
+                                .on_press(Message::FileOnSaveClicked)),
                             (button("Save Results")
                                 .width(Length::Fill)
-                                .on_press(Message::FileSaveResults)),
+                                .on_press(Message::FileOnSaveResultsClicked)),
                             (button("Load")
                                 .width(Length::Fill)
-                                .on_press(Message::FileLoad))
+                                .on_press(Message::FileOnLoadClicked))
                         ))
                     ),
                     (
@@ -69,10 +70,10 @@ impl DivePlanner {
                         menu_template(menu_items!(
                             (button("Undo")
                                 .width(Length::Fill)
-                                .on_press(Message::EditUndo)),
+                                .on_press(Message::EditOnUndoClicked)),
                             (button("Redo")
                                 .width(Length::Fill)
-                                .on_press(Message::EditRedo))
+                                .on_press(Message::EditOnRedoClicked))
                         ))
                     ),
                     (
@@ -80,7 +81,7 @@ impl DivePlanner {
                         menu_template(menu_items!(
                             (button("Toggle Theme")
                                 .width(Length::Fill)
-                                .on_press(Message::ViewToggleTheme))
+                                .on_press(Message::ViewOnToggleThemeClicked))
                         ))
                     )
                 );

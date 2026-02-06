@@ -1,4 +1,6 @@
-use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
+use crate::{
+    application::messages::message::Message, models::application::dive_planner::DivePlanner,
+};
 use iced::widget::{Column, column, text, text_input};
 use iced_aw::Card;
 
@@ -9,14 +11,14 @@ impl DivePlanner {
             .spacing(10)
             .push(
                 text_input("Enter Depth", &self.dive_stage.dive_step.depth.to_string())
-                    .on_input(Message::DepthChanged),
+                    .on_input(Message::DepthOnChanged),
             )
             .spacing(10)
             .push(text("Time"))
             .spacing(10)
             .push(
                 text_input("Enter Time", &self.dive_stage.dive_step.time.to_string())
-                    .on_input(Message::TimeChanged),
+                    .on_input(Message::TimeOnChanged),
             )
             .spacing(10);
 

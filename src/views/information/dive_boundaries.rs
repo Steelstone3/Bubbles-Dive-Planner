@@ -1,4 +1,6 @@
-use crate::{commands::messages::Message, models::application::dive_planner::DivePlanner};
+use crate::{
+    application::messages::message::Message, models::application::dive_planner::DivePlanner,
+};
 use iced::widget::{column, text};
 use iced_aw::widgets::Card;
 

@@ -122,12 +122,10 @@ impl DiveProfile {
 #[cfg(test)]
 mod dive_profile_should {
     use super::*;
-    use crate::models::{
-        information::gas_management::GasManagement,
-        plan::{
-            cylinder::Cylinder, dive_model::DiveModel, dive_stage::DiveStage, dive_step::DiveStep,
-            gas_mixture::GasMixture,
-        },
+    use crate::models::plan::{
+        cylinders::{cylinder::Cylinder, gas_management::GasManagement, gas_mixture::GasMixture},
+        dive_model::DiveModel,
+        dive_step::DiveStep,
     };
 
     #[test]

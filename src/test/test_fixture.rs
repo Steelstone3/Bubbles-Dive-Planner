@@ -1,8 +1,9 @@
 use crate::models::{
-    information::gas_management::GasManagement,
     plan::{
-        cylinder::Cylinder, dive_model::DiveModel, dive_stage::DiveStage, dive_step::DiveStep,
-        gas_mixture::GasMixture,
+        cylinders::{cylinder::Cylinder, gas_management::GasManagement, gas_mixture::GasMixture},
+        dive_model::DiveModel,
+        dive_stage::DiveStage,
+        dive_step::DiveStep,
     },
     result::dive_profile::DiveProfile,
 };

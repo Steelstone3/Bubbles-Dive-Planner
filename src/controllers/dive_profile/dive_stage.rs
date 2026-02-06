@@ -1,29 +1,35 @@
 use crate::{
-    commands::selectable_dive_model::SelectableDiveModel,
-    models::{application::dive_planner::DivePlanner, result::dive_profile::DiveProfile},
+    application::states::selectable_dive_model::SelectableDiveModel,
+    models::{
+        application::dive_planner::DivePlanner, plan::dive_model::DiveModel,
+        result::dive_profile::DiveProfile,
+    },
 };
 
 impl DivePlanner {
     pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
-        self.select_dive_model
-            .select_dive_model(selectable_dive_model, &mut self.dive_stage.dive_model);
+        self.dive_planning.select_dive_model.selected_dive_model = Some(selectable_dive_model);
+
+        match selectable_dive_model {
+            SelectableDiveModel::Bulhmann => {
+                self.dive_stage.dive_model = DiveModel::create_zhl16_dive_model()
+            }
+            SelectableDiveModel::Usn => {
+                self.dive_stage.dive_model = DiveModel::create_usn_rev_6_dive_model()
+            }
+        }
     }
 
     pub fn update_dive_profile(&mut self) {
-        self.select_cylinder
-            .assign_selected_cylinder(self.dive_stage.cylinder);
-
         self.update_dive_stage();
 
         self.add_result();
 
-        self.select_cylinder
-            .assign_selected_cylinder(self.dive_stage.cylinder);
-
-        self.decompression_steps
+        self.dive_information
+            .decompression_steps
             .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
 
-        self.application_state.is_planning = false;
+        self.dive_planning.is_planning = false;
     }
 
     fn update_dive_stage(&mut self) {
@@ -40,13 +46,16 @@ impl DivePlanner {
 #[cfg(test)]
 mod dive_stage_should {
     use crate::{
-        commands::{
-            selectable_cylinder::SelectableCylinder, selectable_dive_model::SelectableDiveModel,
-        },
+        application::states::selectable_dive_model::SelectableDiveModel,
         models::{
-            application::{dive_planner::DivePlanner, select_cylinder::SelectCylinder},
-            information::decompression_steps::DecompressionSteps,
-            plan::{dive_model::DiveModel, dive_step::DiveStep},
+            application::dive_planner::DivePlanner,
+            information::{
+                decompression_steps::DecompressionSteps, dive_information::DiveInformation,
+            },
+            plan::{
+                dive_model::DiveModel, dive_planning::dive_pre_planning::DivePrePlanning,
+                dive_step::DiveStep,
+            },
         },
         test::test_fixture::dive_stage_test_fixture,
     };
@@ -71,8 +80,8 @@ mod dive_stage_should {
         // Given
 
         use crate::models::{
-            application::{dive_planner::DivePlanner, select_dive_model::SelectDiveModel},
-            plan::dive_stage::DiveStage,
+            application::dive_planner::DivePlanner,
+            plan::{dive_planning::select_dive_model::SelectDiveModel, dive_stage::DiveStage},
         };
         let select_dive_model = SelectDiveModel {
             dive_model_list: Default::default(),
@@ -83,7 +92,10 @@ mod dive_stage_should {
                 dive_model,
                 ..Default::default()
             },
-            select_dive_model,
+            dive_planning: DivePrePlanning {
+                select_dive_model: select_dive_model,
+                is_planning: false,
+            },
             ..Default::default()
         };
 
@@ -97,32 +109,21 @@ mod dive_stage_should {
     #[test]
     fn update_dive_profile() {
         // Given
-        let mut expected_cylinder = dive_stage_test_fixture().cylinder;
-        expected_cylinder.gas_management.remaining = 960;
-        let cylinder = dive_stage_test_fixture().cylinder;
-        let selectable_cylinder = SelectableCylinder::Bottom;
         let expected_dive_planner = DivePlanner {
-            select_cylinder: SelectCylinder {
-                selected_cylinder: Some(selectable_cylinder),
-                cylinders: [cylinder, Default::default(), Default::default()],
-                ..Default::default()
-            },
             dive_stage: dive_stage_test_fixture(),
-            decompression_steps: DecompressionSteps {
-                dive_steps: vec![
-                    DiveStep { depth: 9, time: 2 },
-                    DiveStep { depth: 6, time: 3 },
-                    DiveStep { depth: 3, time: 7 },
-                ],
+            dive_information: DiveInformation {
+                decompression_steps: DecompressionSteps {
+                    dive_steps: vec![
+                        DiveStep { depth: 9, time: 2 },
+                        DiveStep { depth: 6, time: 3 },
+                        DiveStep { depth: 3, time: 7 },
+                    ],
+                },
+                ..Default::default()
             },
             ..Default::default()
         };
         let mut dive_planner = DivePlanner {
-            select_cylinder: SelectCylinder {
-                selected_cylinder: Some(selectable_cylinder),
-                cylinders: [Default::default(), Default::default(), Default::default()],
-                ..Default::default()
-            },
             dive_stage: dive_stage_test_fixture(),
             ..Default::default()
         };
@@ -132,10 +133,9 @@ mod dive_stage_should {
 
         // Then
         assert!(!dive_planner.dive_results.results.is_empty());
-        assert_eq!(expected_cylinder, dive_planner.select_cylinder.cylinders[0]);
         assert_eq!(
-            expected_dive_planner.decompression_steps,
-            dive_planner.decompression_steps
+            expected_dive_planner.dive_information.decompression_steps,
+            dive_planner.dive_information.decompression_steps
         );
     }
 }

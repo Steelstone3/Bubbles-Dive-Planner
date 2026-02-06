@@ -1,6 +1,7 @@
-use crate::models::result::dive_profile::DiveProfile;
-
-use super::{cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep};
+use crate::models::{
+    plan::{cylinders::cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep},
+    result::dive_profile::DiveProfile,
+};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Clone, Copy, Default, Serialize, Deserialize)]
@@ -87,9 +88,7 @@ impl DiveStage {
 #[cfg(test)]
 mod dive_stage_should {
     use super::*;
-    use crate::models::{
-        information::gas_management::GasManagement, plan::gas_mixture::GasMixture,
-    };
+    use crate::models::plan::cylinders::{gas_management::GasManagement, gas_mixture::GasMixture};
     use rstest::rstest;
 
     #[rstest]
