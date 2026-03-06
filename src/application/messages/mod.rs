@@ -1,2 +1,2 @@
-pub mod dive_planner;
+pub mod dive_planner_messages;
 pub mod message;
