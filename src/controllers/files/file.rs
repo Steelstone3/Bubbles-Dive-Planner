@@ -20,6 +20,7 @@ mod file_should {
     use crate::{
         models::{
             application::{application_state::ApplicationState, dive_planner::DivePlanner},
+            plan::dive_planning::dive_pre_planning::DivePrePlanning,
             result::results::DiveResults,
         },
         test::test_fixture::dive_stage_test_fixture,
@@ -59,6 +60,10 @@ mod file_should {
         // Given
         const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.json";
         let expected_dive_planner = DivePlanner {
+            dive_planning: DivePrePlanning {
+                is_planning: false,
+                ..Default::default()
+            },
             dive_stage: dive_stage_test_fixture(),
             dive_results: DiveResults {
                 results: vec![dive_stage_test_fixture()],
