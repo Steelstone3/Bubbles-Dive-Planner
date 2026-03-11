@@ -57,9 +57,6 @@ impl DivePlanner {
                             (button("Save")
                                 .width(Length::Fill)
                                 .on_press(Message::FileOnSaveCompleted)),
-                            (button("Save Results")
-                                .width(Length::Fill)
-                                .on_press(Message::FileOnSaveResultsCompleted)),
                             (button("Load")
                                 .width(Length::Fill)
                                 .on_press(Message::FileOnLoadCompleted))

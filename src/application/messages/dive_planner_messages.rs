@@ -23,11 +23,6 @@ impl DivePlanner {
                 self.file_save_application_state(&save_file_location());
                 Task::none()
             }
-            Message::FileOnSaveResultsRequested => Task::none(),
-            Message::FileOnSaveResultsCompleted => {
-                self.file_save_results(&save_file_location());
-                Task::none()
-            }
             Message::FileOnLoadRequested => Task::none(),
             Message::FileOnLoadCompleted => {
                 self.file_load(&select_file_to_load());

@@ -19,7 +19,7 @@ pub struct DivePlanner {
 }
 
 impl DivePlanner {
-    fn new_from_load(dive_planner_file: DivePlannerFile) -> DivePlanner {
+    pub fn new_from_load(dive_planner_file: DivePlannerFile) -> DivePlanner {
         DivePlanner {
             application_state: Default::default(),
             dive_planning: DivePrePlanning::new_from_load(dive_planner_file.dive_model),
@@ -29,7 +29,7 @@ impl DivePlanner {
         }
     }
 
-    fn convert_to_dive_planner_file(&self) -> DivePlannerFile {
+    pub fn convert_to_dive_planner_file(&self) -> DivePlannerFile {
         DivePlannerFile {
             dive_model: self
                 .dive_planning

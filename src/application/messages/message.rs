@@ -8,10 +8,6 @@ pub enum Message {
     FileOnNewClicked,
     FileOnSaveRequested,
     FileOnSaveCompleted,
-    // TODO Remove
-    FileOnSaveResultsRequested,
-    // TODO Remove
-    FileOnSaveResultsCompleted,
     FileOnLoadRequested,
     FileOnLoadCompleted,
     EditOnUndoClicked,
