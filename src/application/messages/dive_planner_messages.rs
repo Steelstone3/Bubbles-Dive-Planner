@@ -18,15 +18,18 @@ impl DivePlanner {
                 self.file_new();
                 Task::none()
             }
-            Message::FileOnSaveClicked => {
+            Message::FileOnSaveRequested => Task::none(),
+            Message::FileOnSaveCompleted => {
                 self.file_save_application_state(&save_file_location());
                 Task::none()
             }
-            Message::FileOnSaveResultsClicked => {
+            Message::FileOnSaveResultsRequested => Task::none(),
+            Message::FileOnSaveResultsCompleted => {
                 self.file_save_results(&save_file_location());
                 Task::none()
             }
-            Message::FileOnLoadClicked => {
+            Message::FileOnLoadRequested => Task::none(),
+            Message::FileOnLoadCompleted => {
                 self.file_load(&select_file_to_load());
                 Task::none()
             }

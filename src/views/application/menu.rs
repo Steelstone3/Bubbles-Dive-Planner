@@ -20,7 +20,7 @@ impl DivePlanner {
                                 .on_press(Message::FileOnNewClicked)),
                             (button("Load")
                                 .width(Length::Fill)
-                                .on_press(Message::FileOnLoadClicked))
+                                .on_press(Message::FileOnLoadCompleted))
                         ))
                     ),
                     (
@@ -56,13 +56,13 @@ impl DivePlanner {
                                 .on_press(Message::FileOnNewClicked)),
                             (button("Save")
                                 .width(Length::Fill)
-                                .on_press(Message::FileOnSaveClicked)),
+                                .on_press(Message::FileOnSaveCompleted)),
                             (button("Save Results")
                                 .width(Length::Fill)
-                                .on_press(Message::FileOnSaveResultsClicked)),
+                                .on_press(Message::FileOnSaveResultsCompleted)),
                             (button("Load")
                                 .width(Length::Fill)
-                                .on_press(Message::FileOnLoadClicked))
+                                .on_press(Message::FileOnLoadCompleted))
                         ))
                     ),
                     (

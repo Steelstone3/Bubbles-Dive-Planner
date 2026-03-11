@@ -6,9 +6,14 @@ use crate::application::states::{
 pub enum Message {
     MenuBar,
     FileOnNewClicked,
-    FileOnSaveClicked,
-    FileOnSaveResultsClicked,
-    FileOnLoadClicked,
+    FileOnSaveRequested,
+    FileOnSaveCompleted,
+    // TODO Remove
+    FileOnSaveResultsRequested,
+    // TODO Remove
+    FileOnSaveResultsCompleted,
+    FileOnLoadRequested,
+    FileOnLoadCompleted,
     EditOnUndoClicked,
     EditOnRedoClicked,
     ViewOnToggleThemeClicked,
