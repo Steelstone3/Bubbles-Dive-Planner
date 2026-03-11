@@ -25,7 +25,7 @@ impl DivePrePlanning {
         let mut select_dive_model = SelectDiveModel::default();
         select_dive_model.selected_dive_model = Some(selected_dive_model);
         Self {
-            is_planning: false,
+            is_planning: true,
             select_dive_model,
         }
     }

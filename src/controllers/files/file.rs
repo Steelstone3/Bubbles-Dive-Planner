@@ -82,6 +82,6 @@ mod file_should {
         // Then
         assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).is_ok());
         assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).unwrap().len() != 0);
-        assert_eq!(expected_dive_planner, dive_planner);
+        pretty_assertions::assert_eq!(expected_dive_planner, dive_planner);
     }
 }

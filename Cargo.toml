@@ -27,6 +27,7 @@ opt-level = 3
 
 [dev-dependencies]
 rstest = "0"
+pretty_assertions="0"
 
 [dependencies]
 # Fixed Version
