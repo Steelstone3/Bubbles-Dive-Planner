@@ -1,5 +1,4 @@
 use crate::application::input_parser::parse_input_u32;
-use iced::wgpu::wgc::validation;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
@@ -10,28 +9,26 @@ pub struct DiveStep {
 
 impl DiveStep {
     // TODO test
-    pub fn new(mut depth: u32, mut time: u32) -> Self {
+    pub fn new(depth: u32, time: u32) -> Self {
+        Self { depth, time }
+    }
+
+    // TODO test
+    pub fn update_depth(depth: String) -> u32 {
         const MAXIMUM_DEPTH_VALUE: u32 = 100;
         const MINIMUM_DEPTH_VALUE: u32 = 1;
+
+        parse_input_u32(depth, MINIMUM_DEPTH_VALUE, MAXIMUM_DEPTH_VALUE)
+    }
+
+    // TODO test
+    pub fn update_time(time: String) -> u32 {
         const MAXIMUM_TIME_VALUE: u32 = 60;
         const MINIMUM_TIME_VALUE: u32 = 1;
 
-        if depth > MAXIMUM_DEPTH_VALUE {
-            depth = MAXIMUM_DEPTH_VALUE;
-        } else if depth < MINIMUM_DEPTH_VALUE {
-            depth = MINIMUM_DEPTH_VALUE
-        }
-
-        if time > MAXIMUM_DEPTH_VALUE {
-            time = MAXIMUM_DEPTH_VALUE;
-        } else if time < MINIMUM_DEPTH_VALUE {
-            time = MINIMUM_DEPTH_VALUE
-        }
-
-        Self { depth, time }
+        parse_input_u32(time, MINIMUM_TIME_VALUE, MAXIMUM_TIME_VALUE)
     }
 }
 
 #[cfg(test)]
-mod dive_step_should {
-}
+mod dive_step_should {}

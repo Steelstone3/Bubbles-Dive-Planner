@@ -118,7 +118,7 @@ impl DivePlanner {
                                                 .push(text("Nitrogen (%):"))
                                                 .spacing(10)
                                                 .push(text(
-                                                    dive_stage.cylinder.gas_mixture.nitrogen,
+                                                    dive_stage.cylinder.gas_mixture.get_nitrogen(),
                                                 ))
                                                 .spacing(10),
                                         )

@@ -15,7 +15,10 @@ impl DivePlanner {
                         .spacing(10)
                         .push(text(format!(
                             "{:.2}",
-                            self.dive_stage.cylinder.gas_mixture.maximum_operating_depth
+                            self.dive_stage
+                                .cylinder
+                                .gas_mixture
+                                .get_maximum_operating_depth()
                         )))
                         .spacing(10),
                 )

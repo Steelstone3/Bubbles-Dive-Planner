@@ -14,34 +14,36 @@ pub fn dive_stage_test_fixture() -> DiveStage {
     dive_model.dive_profile = dive_profile_test_fixture();
 
     // TODO create a new layer like this
-    // let gas_mixture = GasMixture::new(32,10)
-    // let cylinder = Cylinder::new(12,200, gas_mixture)
-    // let dive_step = DiveStep::new(50,10)
-    // DiveStage::new(dive_model, dive_step, cylinder)
+    let gas_mixture = GasMixture::new(32, 10);
+    // let cylinder = Cylinder::new(12,200, gas_mixture);
+    let dive_step = DiveStep::new(50, 10);
+    //DiveStage::new(dive_model, dive_step, cylinder);
 
-    DiveStage {
-        dive_model,
-        dive_step: DiveStep {
-            depth: 50,
-            time: 10,
-        },
-        cylinder: Cylinder {
-            volume: 12,
-            pressure: 200,
-            initial_pressurised_cylinder_volume: 2400,
-            gas_mixture: GasMixture {
-                oxygen: 32,
-                helium: 10,
-                nitrogen: 58,
-                maximum_operating_depth: 0.0,
-            },
-            gas_management: GasManagement {
-                remaining: 1680,
-                used: 720,
-                surface_air_consumption_rate: 12,
-            },
-        },
-    }
+    todo!()
+    
+    // DiveStage {
+    //     dive_model,
+    //     dive_step: DiveStep {
+    //         depth: 50,
+    //         time: 10,
+    //     },
+    //     cylinder: Cylinder {
+    //         volume: 12,
+    //         pressure: 200,
+    //         initial_pressurised_cylinder_volume: 2400,
+    //         gas_mixture: GasMixture {
+    //             oxygen: 32,
+    //             helium: 10,
+    //             nitrogen: 58,
+    //             maximum_operating_depth: 0.0,
+    //         },
+    //         gas_management: GasManagement {
+    //             remaining: 1680,
+    //             used: 720,
+    //             surface_air_consumption_rate: 12,
+    //         },
+    //     },
+    // }
 }
 
 fn dive_profile_test_fixture() -> DiveProfile {

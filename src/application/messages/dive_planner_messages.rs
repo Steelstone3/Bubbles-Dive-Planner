@@ -48,11 +48,11 @@ impl DivePlanner {
                 Task::none()
             }
             Message::DepthOnChanged(depth) => {
-                // self.dive_stage.dive_step;
+                self.dive_stage.dive_step.depth = DiveStep::update_depth(depth);
                 Task::none()
             }
             Message::TimeOnChanged(time) => {
-                // self.dive_stage.dive_step.update_time(time);
+                self.dive_stage.dive_step.time = DiveStep::update_time(time);
                 Task::none()
             }
             Message::CylinderVolumeOnChanged(cylinder_volume) => {
@@ -75,11 +75,13 @@ impl DivePlanner {
                 Task::none()
             }
             Message::OxygenOnChanged(oxygen) => {
-                // self.dive_stage.cylinder.gas_mixture.update_oxygen(oxygen);
+                self.dive_stage.cylinder.gas_mixture =
+                    self.dive_stage.cylinder.gas_mixture.update_oxygen(oxygen);
                 Task::none()
             }
             Message::HeliumOnChanged(helium) => {
-                // self.dive_stage.cylinder.gas_mixture.update_helium(helium);
+                self.dive_stage.cylinder.gas_mixture =
+                    self.dive_stage.cylinder.gas_mixture.update_helium(helium);
                 Task::none()
             }
             Message::DiveProfileOnClicked => {

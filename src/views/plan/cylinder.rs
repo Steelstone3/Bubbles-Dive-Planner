@@ -114,7 +114,7 @@ impl DivePlanner {
             .spacing(10)
             .push(text("Nitrogen (%)"))
             .spacing(10)
-            .push(text(self.dive_stage.cylinder.gas_mixture.nitrogen))
+            .push(text(self.dive_stage.cylinder.gas_mixture.get_nitrogen()))
             .spacing(10);
 
         column!().push(Card::new("Gas Mixture", contents))
@@ -146,9 +146,7 @@ impl DivePlanner {
                 row!()
                     .push(text("Nitrogen (%):"))
                     .spacing(10)
-                    .push(text(
-                        self.dive_stage.cylinder.gas_mixture.nitrogen.to_string(),
-                    ))
+                    .push(text(self.dive_stage.cylinder.gas_mixture.get_nitrogen()))
                     .spacing(10),
             )
             .spacing(10);

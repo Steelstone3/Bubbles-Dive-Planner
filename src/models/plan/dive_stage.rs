@@ -1,4 +1,6 @@
-use crate::models::plan::{cylinders::cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep};
+use crate::models::plan::{
+    cylinders::cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep,
+};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
@@ -9,10 +11,10 @@ pub struct DiveStage {
 }
 
 impl DiveStage {
-    
+    // pub fn new() -> Self {
+
+    // }
 }
 
 #[cfg(test)]
-mod dive_stage_should {
-   
-}
+mod dive_stage_should {}
