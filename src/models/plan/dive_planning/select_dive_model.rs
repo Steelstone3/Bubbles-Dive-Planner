@@ -5,7 +5,7 @@ use crate::{
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, PartialEq, Copy, Clone, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct SelectDiveModel {
     pub dive_model_list: [DiveModel; 2],
     pub selected_dive_model: Option<SelectableDiveModel>,

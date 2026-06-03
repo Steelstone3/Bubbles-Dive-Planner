@@ -13,6 +13,12 @@ pub fn dive_stage_test_fixture() -> DiveStage {
     let mut dive_model = DiveModel::create_zhl16_dive_model();
     dive_model.dive_profile = dive_profile_test_fixture();
 
+    // TODO create a new layer like this
+    // let gas_mixture = GasMixture::new(32,10)
+    // let cylinder = Cylinder::new(12,200, gas_mixture)
+    // let dive_step = DiveStep::new(50,10)
+    // DiveStage::new(dive_model, dive_step, cylinder)
+
     DiveStage {
         dive_model,
         dive_step: DiveStep {
