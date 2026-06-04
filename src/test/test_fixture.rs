@@ -1,11 +1,9 @@
-use crate::models::{
-    plan::{
-        cylinders::{cylinder::Cylinder, gas_mixture::GasMixture},
-        dive_model::DiveModel,
-        dive_stage::DiveStage,
-        dive_step::DiveStep,
-    },
-    result::dive_profile::DiveProfile,
+use crate::models::plan::{
+    cylinders::{cylinder::Cylinder, gas_mixture::GasMixture},
+    dive_model::DiveModel,
+    dive_profile_result::{ambient_pressure::AmbientPressure, dive_profile::DiveProfile},
+    dive_stage::DiveStage,
+    dive_step::DiveStep,
 };
 
 #[allow(dead_code)]
@@ -13,7 +11,7 @@ pub fn default_dive_stage_test_fixture() -> DiveStage {
     let dive_model = DiveModel::create_zhl16_dive_model();
 
     let dive_step = DiveStep::new(50, 10);
-    let gas_mixture = GasMixture::new(32, 10);
+    let gas_mixture = GasMixture::new(21, 10);
     let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
     DiveStage::new(dive_model, dive_step, cylinder)
 }
@@ -25,9 +23,9 @@ pub fn dive_stage_test_fixture() -> DiveStage {
 
     let dive_step = DiveStep::new(50, 10);
 
-    let gas_mixture = GasMixture::new(32, 10);
+    let gas_mixture = GasMixture::new(21, 10);
     let mut cylinder = Cylinder::new(12, 200, gas_mixture, 12);
-    
+
     cylinder = cylinder.update_gas_management(&dive_step);
 
     DiveStage::new(dive_model, dive_step, cylinder)
@@ -66,9 +64,7 @@ fn dive_profile_test_fixture() -> DiveProfile {
             0.493, 0.637, 0.708, 0.769, 0.800, 0.84, 0.859, 0.89, 0.910, 0.920, 0.93, 0.94, 0.95,
             0.95, 0.96, 0.96,
         ],
-        oxygen_at_pressure: 1.26,
-        helium_at_pressure: 0.600,
-        nitrogen_at_pressure: 4.14,
+        ambient_pressure: AmbientPressure::new(1.26, 0.6, 4.14),
         dive_ceiling: 4.1,
     }
 }

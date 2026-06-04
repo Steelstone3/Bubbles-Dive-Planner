@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
-
-use crate::models::result::dive_profile::DiveProfile;
+use crate::models::plan::dive_profile_result::dive_profile::DiveProfile;
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DiveModel {

@@ -29,6 +29,43 @@ impl DivePlanner {
             .cylinder
             .update_gas_management(&self.dive_stage.dive_step);
 
+        for compartment in 0..self
+            .dive_stage
+            .dive_model
+            .dive_profile
+            .number_of_compartments
+        {
+            // dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =
+            //     calculate_nitrogen_tissue_pressures(
+            //         compartment,
+            //         dive_stage.dive_model,
+            //         dive_stage.dive_step,
+            //     );
+            // dive_stage.dive_model.dive_profile.helium_tissue_pressures[compartment] =
+            //     calculate_helium_tissue_pressures(
+            //         compartment,
+            //         dive_stage.dive_model,
+            //         dive_stage.dive_step,
+            //     );
+            // dive_stage.dive_model.dive_profile.total_tissue_pressures[compartment] =
+            //     calculate_total_tissue_pressure(compartment, dive_stage.dive_model.dive_profile);
+            // dive_stage.dive_model.dive_profile.a_values[compartment] =
+            //     calculate_a_values(compartment, dive_stage.dive_model);
+            // dive_stage.dive_model.dive_profile.b_values[compartment] =
+            //     calculate_b_values(compartment, dive_stage.dive_model);
+            // dive_stage
+            //     .dive_model
+            //     .dive_profile
+            //     .tolerated_ambient_pressures[compartment] = calculate_tolerated_ambient_pressure(
+            //     compartment,
+            //     dive_stage.dive_model.dive_profile,
+            // );
+            // dive_stage.dive_model.dive_profile.maximum_surface_pressures[compartment] =
+            //     calculate_max_surface_pressures(compartment, dive_stage.dive_model.dive_profile);
+            // dive_stage.dive_model.dive_profile.compartment_loads[compartment] =
+            //     calculate_compartment_loads(compartment, dive_stage.dive_model.dive_profile);
+        }
+
         DiveStage::new(
             // TODO update dive profile in here
             self.dive_stage.dive_model.clone(),
