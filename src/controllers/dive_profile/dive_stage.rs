@@ -43,9 +43,21 @@ impl DivePlanner {
             .dive_profile
             .number_of_compartments
         {
-            // dive_model.dive_profile = 
-            
-            
+            // calculate ambient pressure
+            dive_model.dive_profile.ambient_pressure = calculate_ambient_pressures(
+                &self.dive_stage.dive_step,
+                &self.dive_stage.cylinder.gas_mixture,
+            );
+
+            // calculate tissue pressures
+            // dive_model.dive_profile.tissue_pressure = 
+
+            // calculate tolerated ambient pressures
+
+
+            // calculate tolerated surface pressures
+
+
             // TODO REMOVE OLD
             // dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =
             //     calculate_nitrogen_tissue_pressures(
