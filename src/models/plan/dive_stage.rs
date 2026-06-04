@@ -6,7 +6,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
 pub struct DiveStage {
     pub dive_model: DiveModel,
+    // TODO Need to work out validation
     pub dive_step: DiveStep,
+    // TODO Need to work out validation
     pub cylinder: Cylinder,
 }
 
