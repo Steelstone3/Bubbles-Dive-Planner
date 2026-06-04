@@ -1,27 +1,21 @@
 use serde::{Deserialize, Serialize};
 
-use crate::models::plan::dive_profile_result::ambient_pressure::AmbientPressure;
+use crate::models::plan::dive_profile_result::{
+    ambient_pressure::AmbientPressure, tissue_pressure::TissuePressure,
+};
 
 #[derive(PartialEq, Debug, Default, Clone, Serialize, Deserialize)]
 pub struct DiveProfile {
     pub number_of_compartments: usize,
-    pub maximum_surface_pressures: [f32; 16],
-    pub compartment_loads: [f32; 16],
-    pub nitrogen_tissue_pressures: [f32; 16],
-    pub helium_tissue_pressures: [f32; 16],
-    pub total_tissue_pressures: [f32; 16],
-    pub tolerated_ambient_pressures: [f32; 16],
-    pub a_values: [f32; 16],
-    pub b_values: [f32; 16],
+    pub maximum_surface_pressures: Vec<f32>,
+    pub compartment_loads: Vec<f32>,
+    pub tissue_pressure: TissuePressure,
+    pub tolerated_ambient_pressures: Vec<f32>,
+    pub a_values: Vec<f32>,
+    pub b_values: Vec<f32>,
     pub ambient_pressure: AmbientPressure,
-    // pub oxygen_at_pressure: f32,
-    // pub helium_at_pressure: f32,
-    // pub nitrogen_at_pressure: f32,
     pub dive_ceiling: f32,
 }
-
-#[derive(PartialEq, Debug, Default, Clone, Serialize, Deserialize)]
-pub struct TissuePressure {}
 
 #[derive(PartialEq, Debug, Default, Clone, Serialize, Deserialize)]
 pub struct ToleratedAmbientPressure {}
@@ -29,20 +23,22 @@ pub struct ToleratedAmbientPressure {}
 #[derive(PartialEq, Debug, Default, Clone, Serialize, Deserialize)]
 pub struct ToleratedSurfacePressure {}
 
-
-
 impl DiveProfile {
     pub fn new(number_of_compartments: usize) -> Self {
+        let nitrogen_tissue_pressures: Vec<f32> = std::iter::repeat(0.79)
+            .take(number_of_compartments)
+            .collect();
+        let helium_tissue_pressures: Vec<f32> = std::iter::repeat(0.0)
+            .take(number_of_compartments)
+            .collect();
+
         Self {
             number_of_compartments,
-            nitrogen_tissue_pressures: [
-                0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79,
-                0.79, 0.79,
-            ],
-            total_tissue_pressures: [
-                0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79,
-                0.79, 0.79,
-            ],
+            tissue_pressure: TissuePressure::new(
+                nitrogen_tissue_pressures.clone(),
+                helium_tissue_pressures,
+                nitrogen_tissue_pressures.clone(),
+            ),
             ..Default::default()
         }
     }

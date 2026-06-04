@@ -22,17 +22,15 @@ pub fn calculate_ambient_pressures(
             nitrogen_at_pressure,
         ),
 
-        nitrogen_tissue_pressures: dive_profile_model.nitrogen_tissue_pressures,
-        helium_tissue_pressures: dive_profile_model.helium_tissue_pressures,
-        total_tissue_pressures: dive_profile_model.total_tissue_pressures,
+        tissue_pressure: dive_profile_model.tissue_pressure.clone(),
 
-        tolerated_ambient_pressures: dive_profile_model.tolerated_ambient_pressures,
-        a_values: dive_profile_model.a_values,
-        b_values: dive_profile_model.b_values,
+        tolerated_ambient_pressures: dive_profile_model.tolerated_ambient_pressures.clone(),
+        a_values: dive_profile_model.a_values.clone(),
+        b_values: dive_profile_model.b_values.clone(),
 
-        maximum_surface_pressures: dive_profile_model.maximum_surface_pressures,
-        compartment_loads: dive_profile_model.compartment_loads,
-        dive_ceiling: dive_profile_model.dive_ceiling,
+        maximum_surface_pressures: dive_profile_model.maximum_surface_pressures.clone(),
+        compartment_loads: dive_profile_model.compartment_loads.clone(),
+        dive_ceiling: dive_profile_model.dive_ceiling.clone(),
     }
 }
 
