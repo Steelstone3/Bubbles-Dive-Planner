@@ -88,7 +88,7 @@ impl DivePlanner {
                 Task::none()
             }
             Message::DiveProfileOnClicked => {
-                // self.update_dive_profile();
+                self.dive_stage.dive_model.dive_profile = self.update_dive_profile();
                 Task::none()
             }
             Message::DecompressionProfileOnClicked => {

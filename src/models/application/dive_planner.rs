@@ -45,21 +45,6 @@ impl DivePlanner {
             dive_results: self.dive_results.clone(),
         }
     }
-
-    pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
-        match selectable_dive_model {
-            SelectableDiveModel::Bulhmann => {
-                self.dive_planning.select_dive_model.selected_dive_model =
-                    Some(SelectableDiveModel::Bulhmann);
-                self.dive_stage.dive_model = DiveModel::create_zhl16_dive_model()
-            }
-            SelectableDiveModel::Usn => {
-                self.dive_planning.select_dive_model.selected_dive_model =
-                    Some(SelectableDiveModel::Usn);
-                self.dive_stage.dive_model = DiveModel::create_usn_rev_6_dive_model()
-            }
-        }
-    }
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Default)]

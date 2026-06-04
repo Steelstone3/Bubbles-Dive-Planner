@@ -50,8 +50,7 @@ impl DiveModel {
                 0.4245, 0.5747, 0.6527, 0.7223, 0.7582, 0.7957, 0.8279, 0.8553, 0.8757, 0.8903,
                 0.8997, 0.9073, 0.9122, 0.9171, 0.9217, 0.9267,
             ],
-            dive_profile: DiveProfile::default(),
-            // dive_profile: DiveProfile::new(number_of_compartments),
+            dive_profile: DiveProfile::new(number_of_compartments),
         }
     }
 
@@ -84,8 +83,7 @@ impl DiveModel {
                 0.67, 0.714, 0.769, 0.83, 0.83, 0.91, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                 0.0,
             ],
-            dive_profile: DiveProfile::default(),
-            // dive_profile: DiveProfile::new(number_of_compartments),
+            dive_profile: DiveProfile::new(number_of_compartments),
         }
     }
 }
@@ -147,8 +145,7 @@ mod dive_model_should {
                 0.4245, 0.5747, 0.6527, 0.7223, 0.7582, 0.7957, 0.8279, 0.8553, 0.8757, 0.8903,
                 0.8997, 0.9073, 0.9122, 0.9171, 0.9217, 0.9267,
             ],
-            dive_profile: DiveProfile::default()
-            // dive_profile: DiveProfile::new(number_of_compartments),
+            dive_profile: DiveProfile::new(number_of_compartments),
         }
     }
 
@@ -181,8 +178,7 @@ mod dive_model_should {
                 0.67, 0.714, 0.769, 0.83, 0.83, 0.91, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                 0.0,
             ],
-            dive_profile: DiveProfile::default()
-            // dive_profile: DiveProfile::new(number_of_compartments),
+            dive_profile: DiveProfile::new(number_of_compartments),
         }
     }
 }

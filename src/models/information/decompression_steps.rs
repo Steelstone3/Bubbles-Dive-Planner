@@ -7,7 +7,7 @@ pub struct DecompressionSteps {
 }
 
 impl DecompressionSteps {
-    pub fn assign_decompression_steps(&mut self, decompression_dive_steps: Vec<DiveStep>) {
+    pub fn update_decompression_steps(&mut self, decompression_dive_steps: Vec<DiveStep>) {
         self.dive_steps = decompression_dive_steps
     }
 }
@@ -24,7 +24,7 @@ mod decompression_steps_should {
         let mut decompression_steps = DecompressionSteps { dive_steps: vec![] };
 
         // When
-        decompression_steps.assign_decompression_steps(vec![DiveStep {
+        decompression_steps.update_decompression_steps(vec![DiveStep {
             depth: 50,
             time: 10,
         }]);

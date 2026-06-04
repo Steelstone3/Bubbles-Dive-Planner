@@ -6,10 +6,8 @@ use crate::application::states::{
 pub enum Message {
     MenuBar,
     FileOnNewClicked,
-    #[allow(dead_code)]
     FileOnSaveRequested,
     FileOnSaveCompleted(Option<String>),
-    #[allow(dead_code)]
     FileOnLoadRequested,
     FileOnLoadCompleted(Option<String>),
     EditOnUndoClicked,

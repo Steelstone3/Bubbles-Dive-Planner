@@ -17,7 +17,22 @@ pub struct DiveProfile {
     pub dive_ceiling: f32,
 }
 
-#[cfg(test)]
-mod dive_profile_should {
-    
+impl DiveProfile {
+    pub fn new(number_of_compartments: usize) -> Self {
+        Self {
+            number_of_compartments,
+            nitrogen_tissue_pressures: [
+                0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79,
+                0.79, 0.79,
+            ],
+            total_tissue_pressures: [
+                0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79,
+                0.79, 0.79,
+            ],
+            ..Default::default()
+        }
+    }
 }
+
+#[cfg(test)]
+mod dive_profile_should {}
