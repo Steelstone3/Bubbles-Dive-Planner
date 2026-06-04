@@ -64,7 +64,11 @@ fn dive_profile_test_fixture() -> DiveProfile {
             0.493, 0.637, 0.708, 0.769, 0.800, 0.84, 0.859, 0.89, 0.910, 0.920, 0.93, 0.94, 0.95,
             0.95, 0.96, 0.96,
         ],
-        ambient_pressure: AmbientPressure::new(1.26, 0.6, 4.14),
+        ambient_pressure: ambient_pressure_test_fixture(),
         dive_ceiling: 4.1,
     }
+}
+
+pub fn ambient_pressure_test_fixture() -> AmbientPressure {
+    AmbientPressure::new(1.26, 0.6, 4.14)
 }

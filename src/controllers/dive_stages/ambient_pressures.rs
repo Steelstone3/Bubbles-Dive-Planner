@@ -38,33 +38,23 @@ pub fn calculate_ambient_pressures(
 
 #[cfg(test)]
 mod commands_ambient_pressures_should {
-    use crate::test::test_fixture::dive_stage_test_fixture;
-
     use super::*;
+    use crate::test::test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture};
 
     #[test]
     fn calculate_ambient_pressures_of_the_dive_profile() {
         // Given
         let dive_step = dive_stage_test_fixture().dive_step;
         let gas_mixture = dive_stage_test_fixture().cylinder.gas_mixture;
-        let expected_dive_profile_model = dive_profile_test_fixture();
-        let dive_profile_model = DiveProfile::default();
+        let ambient_pressure = ambient_pressure_test_fixture();
 
         // When
-        let actual_dive_profile_model = super::calculate_ambient_pressures(
-            &dive_profile_model,
-            &dive_step,
-            &gas_mixture,
-        );
+        let actual_dive_profile_model =
+            super::calculate_ambient_pressures(&DiveProfile::default(), &dive_step, &gas_mixture);
 
         // Then
         assert_eq!(
-            format!(
-                "{:.3}",
-                expected_dive_profile_model
-                    .ambient_pressure
-                    .get_oxygen_at_pressure()
-            ),
+            format!("{:.3}", ambient_pressure.get_oxygen_at_pressure()),
             format!(
                 "{:.3}",
                 actual_dive_profile_model
@@ -73,12 +63,7 @@ mod commands_ambient_pressures_should {
             )
         );
         assert_eq!(
-            format!(
-                "{:.3}",
-                expected_dive_profile_model
-                    .ambient_pressure
-                    .get_nitrogen_at_pressure()
-            ),
+            format!("{:.3}", ambient_pressure.get_nitrogen_at_pressure()),
             format!(
                 "{:.3}",
                 actual_dive_profile_model
@@ -87,12 +72,7 @@ mod commands_ambient_pressures_should {
             )
         );
         assert_eq!(
-            format!(
-                "{:.3}",
-                expected_dive_profile_model
-                    .ambient_pressure
-                    .get_helium_at_pressure()
-            ),
+            format!("{:.3}", ambient_pressure.get_helium_at_pressure()),
             format!(
                 "{:.3}",
                 actual_dive_profile_model
@@ -100,15 +80,5 @@ mod commands_ambient_pressures_should {
                     .get_helium_at_pressure()
             )
         );
-    }
-
-    fn dive_profile_test_fixture() -> DiveProfile {
-        DiveProfile {
-            ambient_pressure: dive_stage_test_fixture()
-                .dive_model
-                .dive_profile
-                .ambient_pressure,
-            ..Default::default()
-        }
     }
 }
