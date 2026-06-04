@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 
+use crate::models::plan::dive_stage::DiveStage;
+
 #[derive(PartialEq, Debug, Default, Clone, Serialize, Deserialize)]
 pub struct DiveProfile {
     pub number_of_compartments: usize,
@@ -31,6 +33,10 @@ impl DiveProfile {
             ],
             ..Default::default()
         }
+    }
+
+    pub fn update_dive_profile(dive_stage: &DiveStage){
+        
     }
 }
 
