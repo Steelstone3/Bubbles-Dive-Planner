@@ -86,7 +86,7 @@ impl DivePlanner {
                                     row!()
                                         .push(text("Used (l):"))
                                         .spacing(10)
-                                        .push(text(dive_stage.cylinder.gas_management.used))
+                                        .push(text(dive_stage.cylinder.gas_management.get_used()))
                                         .spacing(10),
                                 )
                                 .spacing(10)
@@ -96,8 +96,8 @@ impl DivePlanner {
                                         .spacing(10)
                                         .push(text(format!(
                                             "{}/{}",
-                                            dive_stage.cylinder.gas_management.remaining,
-                                            dive_stage.cylinder.initial_pressurised_cylinder_volume
+                                            dive_stage.cylinder.gas_management.get_remaining(),
+                                            dive_stage.cylinder.get_initial_pressurised_cylinder_volume()
                                         )))
                                         .spacing(10),
                                 )

@@ -1,7 +1,7 @@
 use crate::application::input_parser::parse_input_u32;
 use serde::{Deserialize, Serialize};
 
-#[derive(PartialEq, Debug, Copy, Clone, Serialize, Deserialize)]
+#[derive(PartialEq, Debug, Clone, Serialize, Deserialize)]
 pub struct GasMixture {
     pub oxygen: u32,
     pub helium: u32,

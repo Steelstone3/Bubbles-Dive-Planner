@@ -1,6 +1,6 @@
 use crate::models::{
     plan::{
-        cylinders::{cylinder::Cylinder, gas_management::GasManagement, gas_mixture::GasMixture},
+        cylinders::{cylinder::Cylinder, gas_mixture::GasMixture},
         dive_model::DiveModel,
         dive_stage::DiveStage,
         dive_step::DiveStep,
@@ -9,41 +9,24 @@ use crate::models::{
 };
 
 #[allow(dead_code)]
+pub fn default_dive_stage_test_fixture() -> DiveStage {
+    let dive_model = DiveModel::create_zhl16_dive_model();
+
+    let gas_mixture = GasMixture::new(32, 10);
+    let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
+    let dive_step = DiveStep::new(50, 10);
+    DiveStage::new(dive_model, dive_step, cylinder)
+}
+
+#[allow(dead_code)]
 pub fn dive_stage_test_fixture() -> DiveStage {
     let mut dive_model = DiveModel::create_zhl16_dive_model();
     dive_model.dive_profile = dive_profile_test_fixture();
 
-    // TODO create a new layer like this
     let gas_mixture = GasMixture::new(32, 10);
-    // let cylinder = Cylinder::new(12,200, gas_mixture);
+    let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
     let dive_step = DiveStep::new(50, 10);
-    //DiveStage::new(dive_model, dive_step, cylinder);
-
-    todo!()
-    
-    // DiveStage {
-    //     dive_model,
-    //     dive_step: DiveStep {
-    //         depth: 50,
-    //         time: 10,
-    //     },
-    //     cylinder: Cylinder {
-    //         volume: 12,
-    //         pressure: 200,
-    //         initial_pressurised_cylinder_volume: 2400,
-    //         gas_mixture: GasMixture {
-    //             oxygen: 32,
-    //             helium: 10,
-    //             nitrogen: 58,
-    //             maximum_operating_depth: 0.0,
-    //         },
-    //         gas_management: GasManagement {
-    //             remaining: 1680,
-    //             used: 720,
-    //             surface_air_consumption_rate: 12,
-    //         },
-    //     },
-    // }
+    DiveStage::new(dive_model, dive_step, cylinder)
 }
 
 fn dive_profile_test_fixture() -> DiveProfile {

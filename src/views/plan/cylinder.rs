@@ -33,7 +33,9 @@ impl DivePlanner {
                     .push(text("Pressurised Volume (l)"))
                     .spacing(10)
                     .push(text(
-                        self.dive_stage.cylinder.initial_pressurised_cylinder_volume,
+                        self.dive_stage
+                            .cylinder
+                            .get_initial_pressurised_cylinder_volume(),
                     ))
                     .push(self.gas_mixture_view())
                     .spacing(10)
@@ -66,7 +68,11 @@ impl DivePlanner {
                             .push(text("Used (l):"))
                             .spacing(10)
                             .push(text(
-                                self.dive_stage.cylinder.gas_management.used.to_string(),
+                                self.dive_stage
+                                    .cylinder
+                                    .gas_management
+                                    .get_used()
+                                    .to_string(),
                             ))
                             .spacing(10),
                     )
@@ -77,9 +83,11 @@ impl DivePlanner {
                             .spacing(10)
                             .push(text(format!(
                                 "{} {} {}",
-                                self.dive_stage.cylinder.gas_management.remaining,
+                                self.dive_stage.cylinder.gas_management.get_remaining(),
                                 "/",
-                                self.dive_stage.cylinder.initial_pressurised_cylinder_volume
+                                self.dive_stage
+                                    .cylinder
+                                    .get_initial_pressurised_cylinder_volume()
                             ))),
                     )
                     .spacing(10)
@@ -165,7 +173,7 @@ impl DivePlanner {
                         .dive_stage
                         .cylinder
                         .gas_management
-                        .surface_air_consumption_rate
+                        .get_surface_air_consumption_rate()
                         .to_string(),
                 )
                 .on_input(Message::SurfaceAirConsumptionOnChanged),

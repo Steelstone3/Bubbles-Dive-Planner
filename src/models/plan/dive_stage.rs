@@ -11,9 +11,13 @@ pub struct DiveStage {
 }
 
 impl DiveStage {
-    // pub fn new() -> Self {
-
-    // }
+    pub fn new(dive_model: DiveModel, dive_step: DiveStep, cylinder: Cylinder) -> Self {
+        Self {
+            dive_model,
+            dive_step,
+            cylinder,
+        }
+    }
 }
 
 #[cfg(test)]
