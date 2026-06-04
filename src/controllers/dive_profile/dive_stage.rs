@@ -1,5 +1,6 @@
 use crate::{
     application::states::selectable_dive_model::SelectableDiveModel,
+    controllers::dive_stages::ambient_pressures::calculate_ambient_pressures,
     models::{
         application::dive_planner::DivePlanner,
         plan::{dive_model::DiveModel, dive_stage::DiveStage},
@@ -29,12 +30,23 @@ impl DivePlanner {
             .cylinder
             .update_gas_management(&self.dive_stage.dive_step);
 
+        let mut dive_model = self.dive_stage.dive_model.clone();
+
+        dive_model.dive_profile.ambient_pressure = calculate_ambient_pressures(
+            &self.dive_stage.dive_step,
+            &self.dive_stage.cylinder.gas_mixture,
+        );
+
         for compartment in 0..self
             .dive_stage
             .dive_model
             .dive_profile
             .number_of_compartments
         {
+            // dive_model.dive_profile = 
+            
+            
+            // TODO REMOVE OLD
             // dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =
             //     calculate_nitrogen_tissue_pressures(
             //         compartment,
@@ -68,7 +80,7 @@ impl DivePlanner {
 
         DiveStage::new(
             // TODO update dive profile in here
-            self.dive_stage.dive_model.clone(),
+            dive_model,
             self.dive_stage.dive_step.clone(),
             cylinder,
         )
