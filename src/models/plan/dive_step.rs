@@ -1,10 +1,16 @@
 use crate::application::input_parser::parse_input_u32;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct DiveStep {
     pub depth: u32,
     pub time: u32,
+}
+
+impl Default for DiveStep {
+    fn default() -> Self {
+        Self { depth: 1, time: 1 }
+    }
 }
 
 impl DiveStep {

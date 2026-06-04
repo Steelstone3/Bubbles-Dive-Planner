@@ -88,7 +88,15 @@ impl DivePlanner {
                 Task::none()
             }
             Message::DiveProfileOnClicked => {
-                self.dive_stage.dive_model.dive_profile = self.update_dive_profile();
+                // Update dive stage (tick)
+                // Add a result (tick)
+                // Calculate decompression steps
+                // Add decompression steps
+                // is dive planning false (tick)
+                self.dive_planning.is_planning = false;
+                self.dive_stage = self.update_dive_profile();
+                self.dive_results.results.push(self.dive_stage.clone());
+
                 Task::none()
             }
             Message::DecompressionProfileOnClicked => {

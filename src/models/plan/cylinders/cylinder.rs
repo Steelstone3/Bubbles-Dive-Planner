@@ -7,13 +7,20 @@ use crate::{
 
 use super::gas_mixture::GasMixture;
 
-#[derive(PartialEq, Debug, Clone, Default, Serialize, Deserialize)]
+#[derive(PartialEq, Debug, Clone, Serialize, Deserialize)]
 pub struct Cylinder {
     pub volume: u32,
     pub pressure: u32,
     initial_pressurised_cylinder_volume: u32,
     pub gas_mixture: GasMixture,
     pub gas_management: GasManagement,
+}
+
+impl Default for Cylinder {
+    fn default() -> Self {
+        let gas_mixture = GasMixture::new(21,0);
+        Self::new(3, 50, gas_mixture, 12)
+    }
 }
 
 impl Cylinder {

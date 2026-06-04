@@ -34,10 +34,6 @@ impl DiveProfile {
             ..Default::default()
         }
     }
-
-    pub fn update_dive_profile(dive_stage: &DiveStage){
-        
-    }
 }
 
 #[cfg(test)]
