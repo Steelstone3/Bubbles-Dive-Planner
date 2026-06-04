@@ -14,7 +14,7 @@ pub fn default_dive_stage_test_fixture() -> DiveStage {
     let dive_model = DiveModel::create_zhl16_dive_model();
 
     let dive_step = DiveStep::new(50, 10);
-    let gas_mixture = GasMixture::new(21, 10);
+    let gas_mixture = GasMixture::new(32, 10);
     let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
     DiveStage::new(dive_model, dive_step, cylinder)
 }
@@ -46,23 +46,6 @@ pub fn dive_profile_test_fixture() -> DiveProfile {
 pub fn ambient_pressure_test_fixture() -> AmbientPressure {
     AmbientPressure::new(1.26, 0.6, 4.14)
 }
-
-// pub fn tissue_pressure_test_fixture() -> TissuePressure {
-//     TissuePressure::new(
-//         vec![
-//             3.408, 2.399, 1.762, 1.294, 0.937, 0.685, 0.496, 0.356, 0.255, 0.192, 0.151, 0.118,
-//             0.093, 0.073, 0.057, 0.045,
-//         ],
-//         vec![
-//             0.594, 0.540, 0.462, 0.377, 0.296, 0.228, 0.172, 0.127, 0.093, 0.071, 0.056, 0.044,
-//             0.035, 0.028, 0.022, 0.017,
-//         ],
-//         vec![
-//             4.002, 2.939, 2.224, 1.671, 1.233, 0.913, 0.668, 0.483, 0.348, 0.263, 0.207, 0.162,
-//             0.128, 0.101, 0.079, 0.062,
-//         ],
-//     )
-// }
 
 pub fn tissue_pressure_test_fixture() -> TissuePressure {
     TissuePressure::new(
