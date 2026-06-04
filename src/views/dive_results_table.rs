@@ -1,4 +1,7 @@
-use crate::{application::messages::message::Message, models::plan::dive_profile_result::dive_profile::DiveProfile};
+use crate::{
+    application::messages::message::Message,
+    models::plan::dive_profile_result::dive_profile::DiveProfile,
+};
 use iced::{Color, Element};
 use iced_table::Table;
 
@@ -13,15 +16,28 @@ pub fn dive_results_table(dive_profile: &DiveProfile, color: Color) -> Element<'
     ]);
 
     for compartment in 0..dive_profile.number_of_compartments {
-        let total_tissue_pressures =
-            format!("{:.3}", dive_profile.tissue_pressure.get_total_tissue_pressures()[compartment]);
+        let total_tissue_pressures = format!(
+            "{:.3}",
+            dive_profile.tissue_pressure.get_total_tissue_pressures()[compartment]
+        );
         let tolerated_ambient_pressures = format!(
             "{:.3}",
-            dive_profile.tolerated_ambient_pressures[compartment]
+            dive_profile
+                .tolerated_ambient_pressure
+                .get_tolerated_ambient_pressure()[compartment]
         );
-        let maximum_surface_pressures =
-            format!("{:.3}", dive_profile.maximum_surface_pressures[compartment]);
-        let compartment_loads = format!("{:.3}", dive_profile.compartment_loads[compartment]);
+        let maximum_surface_pressures = format!(
+            "{:.3}",
+            dive_profile
+                .tolerated_surface_pressure
+                .get_maximum_surface_pressures()[compartment]
+        );
+        let compartment_loads = format!(
+            "{:.3}",
+            dive_profile
+                .tolerated_surface_pressure
+                .get_compartment_loads()[compartment]
+        );
 
         table.add_row(vec![
             &(compartment + 1).to_string(),

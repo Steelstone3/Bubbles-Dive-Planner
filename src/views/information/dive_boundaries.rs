@@ -29,7 +29,11 @@ impl DivePlanner {
                         .spacing(10)
                         .push(text(format!(
                             "{:.2}",
-                            self.dive_stage.dive_model.dive_profile.dive_ceiling
+                            self.dive_stage
+                                .dive_model
+                                .dive_profile
+                                .tolerated_surface_pressure
+                                .get_dive_ceiling()
                         )))
                         .spacing(10),
                 )

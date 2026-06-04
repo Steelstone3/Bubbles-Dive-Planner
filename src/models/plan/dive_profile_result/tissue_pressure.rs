@@ -20,6 +20,21 @@ impl TissuePressure {
         }
     }
 
+    pub fn new_default(number_of_compartments: usize) -> TissuePressure {
+        let nitrogen_compartments: Vec<f32> = std::iter::repeat(0.79)
+            .take(number_of_compartments)
+            .collect();
+        let default_compartments: Vec<f32> = std::iter::repeat(0.0)
+            .take(number_of_compartments)
+            .collect();
+
+        TissuePressure::new(
+            nitrogen_compartments.clone(),
+            default_compartments,
+            nitrogen_compartments.clone(),
+        )
+    }
+
     pub fn get_nitrogen_tissue_pressures(&self) -> Vec<f32> {
         self.nitrogen_tissue_pressures.clone()
     }
