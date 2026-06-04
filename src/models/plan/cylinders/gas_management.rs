@@ -1,8 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::application::{
-    input_parser::parse_input_u32, messages::message::Message::SurfaceAirConsumptionOnChanged,
-};
+use crate::{application::input_parser::parse_input_u32, models::plan::dive_step::DiveStep};
 
 #[derive(PartialEq, Debug, Clone, Default, Serialize, Deserialize)]
 pub struct GasManagement {
@@ -15,11 +13,12 @@ impl GasManagement {
     // TODO test
     pub fn new(
         initial_pressurised_cylinder_volume: u32,
+        used: u32,
         surface_air_consumption_rate: u32,
     ) -> Self {
         Self {
             remaining: initial_pressurised_cylinder_volume,
-            used: 0,
+            used: used,
             surface_air_consumption_rate,
         }
     }
@@ -38,7 +37,21 @@ impl GasManagement {
             MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE,
         );
 
-        GasManagement::new(self.remaining, surface_air_consumption_rate)
+        GasManagement::new(self.remaining, self.used, surface_air_consumption_rate)
+    }
+
+    // TODO test
+    pub fn update_gas_management(&self, dive_step: &DiveStep) -> GasManagement {
+        let pressure_at_depth = (dive_step.depth / 10) + 1;
+        let used = pressure_at_depth * dive_step.time * self.surface_air_consumption_rate;
+
+        if used > self.remaining {
+            // is out of air
+            Self::new(0, used, self.surface_air_consumption_rate)
+        } else {
+            let remaining = self.remaining - used;
+            Self::new(remaining, used, self.surface_air_consumption_rate)
+        }
     }
 
     // TODO test

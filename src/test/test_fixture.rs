@@ -12,9 +12,9 @@ use crate::models::{
 pub fn default_dive_stage_test_fixture() -> DiveStage {
     let dive_model = DiveModel::create_zhl16_dive_model();
 
+    let dive_step = DiveStep::new(50, 10);
     let gas_mixture = GasMixture::new(32, 10);
     let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
-    let dive_step = DiveStep::new(50, 10);
     DiveStage::new(dive_model, dive_step, cylinder)
 }
 
@@ -23,9 +23,13 @@ pub fn dive_stage_test_fixture() -> DiveStage {
     let mut dive_model = DiveModel::create_zhl16_dive_model();
     dive_model.dive_profile = dive_profile_test_fixture();
 
-    let gas_mixture = GasMixture::new(32, 10);
-    let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
     let dive_step = DiveStep::new(50, 10);
+
+    let gas_mixture = GasMixture::new(32, 10);
+    let mut cylinder = Cylinder::new(12, 200, gas_mixture, 12);
+    
+    cylinder = cylinder.update_gas_management(&dive_step);
+
     DiveStage::new(dive_model, dive_step, cylinder)
 }
 

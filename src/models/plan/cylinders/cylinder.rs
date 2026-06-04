@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     application::input_parser::parse_input_u32,
-    models::plan::cylinders::gas_management::GasManagement,
+    models::plan::{cylinders::gas_management::GasManagement, dive_step::DiveStep},
 };
 
 use super::gas_mixture::GasMixture;
@@ -34,13 +34,25 @@ impl Cylinder {
             gas_mixture,
             gas_management: GasManagement::new(
                 initial_pressurised_cylinder_volume,
+                0,
                 surface_air_consumption_rate,
             ),
         }
     }
 
+    // TODO test, speculative generality
+    pub fn update_gas_management(&self, dive_step: &DiveStep) -> Cylinder {
+        Cylinder {
+            volume: self.volume,
+            pressure: self.pressure,
+            initial_pressurised_cylinder_volume: self.initial_pressurised_cylinder_volume,
+            gas_mixture: self.gas_mixture.clone(),
+            gas_management: self.gas_management.update_gas_management(dive_step),
+        }
+    }
+
     // TODO test
-    pub fn update_volume(&self, volume: String) -> Self {
+    pub fn update_cylinder_volume(&self, volume: String) -> Self {
         const MINIMUM_VOLUME_VALUE: u32 = 3;
         const MAXIMUM_VOLUME_VALUE: u32 = 30;
 
@@ -55,7 +67,7 @@ impl Cylinder {
     }
 
     // TODO test
-    pub fn update_pressure(&self, pressure: String) -> Self {
+    pub fn update_cylinder_pressure(&self, pressure: String) -> Self {
         const MINIMUM_PRESSURE_VALUE: u32 = 50;
         const MAXIMUM_PRESSURE_VALUE: u32 = 300;
 

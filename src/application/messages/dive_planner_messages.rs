@@ -44,7 +44,7 @@ impl DivePlanner {
                 Task::none()
             }
             Message::DiveModelSelectionOnSelect(selectable_dive_model) => {
-                // self.dive_model_selected(selectable_dive_model);
+                self.dive_model_selected(selectable_dive_model);
                 Task::none()
             }
             Message::DepthOnChanged(depth) => {
@@ -56,22 +56,25 @@ impl DivePlanner {
                 Task::none()
             }
             Message::CylinderVolumeOnChanged(cylinder_volume) => {
-                // self.dive_stage
-                //     .cylinder
-                //     .update_cylinder_volume(cylinder_volume);
+                self.dive_stage.cylinder = self
+                    .dive_stage
+                    .cylinder
+                    .update_cylinder_volume(cylinder_volume);
                 Task::none()
             }
             Message::CylinderPressureOnChanged(cylinder_pressure) => {
-                // self.dive_stage
-                //     .cylinder
-                //     .update_cylinder_pressure(cylinder_pressure);
+                self.dive_stage.cylinder = self
+                    .dive_stage
+                    .cylinder
+                    .update_cylinder_pressure(cylinder_pressure);
                 Task::none()
             }
             Message::SurfaceAirConsumptionOnChanged(surface_air_consumption) => {
-                // self.dive_stage
-                //     .cylinder
-                //     .gas_management
-                //     .update_surface_air_consumption_rate(surface_air_consumption);
+                self.dive_stage.cylinder.gas_management = self
+                    .dive_stage
+                    .cylinder
+                    .gas_management
+                    .update_surface_air_consumption_rate(surface_air_consumption);
                 Task::none()
             }
             Message::OxygenOnChanged(oxygen) => {
