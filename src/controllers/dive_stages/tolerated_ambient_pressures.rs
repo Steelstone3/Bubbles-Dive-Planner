@@ -25,7 +25,6 @@ mod commands_tolerated_ambient_pressures_should {
     fn calculate_tolerated_ambient_pressures_of_the_dive_profile() {
         // Given
         let dive_profile_model = DiveProfile {
-            number_of_compartments: 16,
             ambient_pressure: ambient_pressure_test_fixture(),
             tissue_pressure: tissue_pressure_test_fixture(),
             tolerated_ambient_pressure: ToleratedAmbientPressure::new(

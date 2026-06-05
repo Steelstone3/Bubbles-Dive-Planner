@@ -49,7 +49,6 @@ mod commands_a_b_values_should {
         let mut zhl16 = DiveModel::create_zhl16_dive_model();
         let expected_dive_profile_model = dive_profile_test_fixture();
         zhl16.dive_profile = DiveProfile {
-            number_of_compartments: 16,
             tissue_pressure: tissue_pressure_test_fixture(),
             ..Default::default()
         };
@@ -207,7 +206,6 @@ mod commands_a_b_values_should {
         let mut zhl16 = DiveModel::create_zhl16_dive_model();
         let expected_dive_profile_model = dive_profile_test_fixture();
         zhl16.dive_profile = DiveProfile {
-            number_of_compartments: 16,
             tissue_pressure: tissue_pressure_test_fixture(),
             ..Default::default()
         };

@@ -91,8 +91,8 @@ pub fn tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
 pub fn tolerated_surface_pressure_test_fixture() -> ToleratedSurfacePressure {
     ToleratedSurfacePressure::new(
         vec![
-            3.350, 2.630, 2.33, 2.10, 1.95, 1.79, 1.68, 1.60, 1.54, 1.48, 1.44, 1.400, 1.35, 1.33,
-            1.300, 1.28,
+            3.354, 2.665, 2.327, 2.101, 1.952, 1.794, 1.681, 1.598, 1.538, 1.479, 1.435, 1.397,
+            1.351, 1.33, 1.302, 1.274,
         ],
         vec![
             124.0, 124.0, 115.0, 105.0, 94.0, 88.0, 81.0, 75.0, 71.0, 69.0, 67.0, 67.0, 67.0, 66.0,
