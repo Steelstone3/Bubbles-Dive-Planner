@@ -8,6 +8,4 @@ pub struct DiveResults {
 }
 
 #[cfg(test)]
-mod dive_results_should {
-    
-}
+mod dive_results_should {}

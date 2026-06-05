@@ -97,7 +97,9 @@ impl DivePlanner {
                                         .push(text(format!(
                                             "{}/{}",
                                             dive_stage.cylinder.gas_management.get_remaining(),
-                                            dive_stage.cylinder.get_initial_pressurised_cylinder_volume()
+                                            dive_stage
+                                                .cylinder
+                                                .get_initial_pressurised_cylinder_volume()
                                         )))
                                         .spacing(10),
                                 )

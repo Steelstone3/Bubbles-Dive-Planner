@@ -2,7 +2,7 @@ pub fn parse_input_u32(input: String, minimum_value: u32, maximum_value: u32) ->
     let value = input.parse::<u32>().unwrap_or(minimum_value);
 
     if value > maximum_value {
-        return maximum_value
+        return maximum_value;
     }
 
     value

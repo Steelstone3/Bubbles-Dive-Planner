@@ -18,7 +18,7 @@ pub struct Cylinder {
 
 impl Default for Cylinder {
     fn default() -> Self {
-        let gas_mixture = GasMixture::new(21,0);
+        let gas_mixture = GasMixture::new(21, 0);
         Self::new(3, 50, gas_mixture, 12)
     }
 }
