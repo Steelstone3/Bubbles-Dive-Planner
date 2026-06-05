@@ -3,6 +3,7 @@ use crate::{
     controllers::dive_stages::{
         a_b_values::{calculate_a_values, calculate_b_values},
         ambient_pressures::calculate_ambient_pressures,
+        compartment_loads::calculate_compartment_loads,
         max_surface_pressures::calculate_max_surface_pressures,
         tissue_pressures::{
             calculate_helium_tissue_pressures, calculate_nitrogen_tissue_pressures,
@@ -103,7 +104,12 @@ impl DivePlanner {
                 .maximum_surface_pressures[compartment] =
                 calculate_max_surface_pressures(compartment, &dive_model.dive_profile);
 
-                            
+            dive_model
+                .dive_profile
+                .tolerated_surface_pressure
+                .compartment_loads[compartment] =
+                calculate_compartment_loads(compartment, &dive_model.dive_profile);
+
             // TODO REMOVE OLD
             // dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =
             //     calculate_nitrogen_tissue_pressures(
