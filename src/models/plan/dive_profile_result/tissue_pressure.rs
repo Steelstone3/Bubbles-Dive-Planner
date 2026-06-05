@@ -2,9 +2,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(PartialEq, Debug, Default, Clone, Serialize, Deserialize)]
 pub struct TissuePressure {
-    nitrogen_tissue_pressures: Vec<f32>,
-    helium_tissue_pressures: Vec<f32>,
-    total_tissue_pressures: Vec<f32>,
+    pub nitrogen_tissue_pressures: Vec<f32>,
+    pub helium_tissue_pressures: Vec<f32>,
+    pub total_tissue_pressures: Vec<f32>,
 }
 
 impl TissuePressure {
@@ -33,17 +33,5 @@ impl TissuePressure {
             default_compartments,
             nitrogen_compartments.clone(),
         )
-    }
-
-    pub fn get_nitrogen_tissue_pressures(&self) -> Vec<f32> {
-        self.nitrogen_tissue_pressures.clone()
-    }
-
-    pub fn get_helium_tissue_pressures(&self) -> Vec<f32> {
-        self.helium_tissue_pressures.clone()
-    }
-
-    pub fn get_total_tissue_pressures(&self) -> Vec<f32> {
-        self.total_tissue_pressures.clone()
     }
 }

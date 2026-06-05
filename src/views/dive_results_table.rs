@@ -18,7 +18,7 @@ pub fn dive_results_table(dive_profile: &DiveProfile, color: Color) -> Element<'
     for compartment in 0..dive_profile.number_of_compartments {
         let total_tissue_pressures = format!(
             "{:.3}",
-            dive_profile.tissue_pressure.get_total_tissue_pressures()[compartment]
+            dive_profile.tissue_pressure.total_tissue_pressures[compartment]
         );
         let tolerated_ambient_pressures = format!(
             "{:.3}",

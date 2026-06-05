@@ -1,9 +1,19 @@
 use crate::{
     application::states::selectable_dive_model::SelectableDiveModel,
-    controllers::dive_stages::ambient_pressures::calculate_ambient_pressures,
+    controllers::dive_stages::{
+        ambient_pressures::calculate_ambient_pressures,
+        tissue_pressures::{
+            calculate_helium_tissue_pressures, calculate_nitrogen_tissue_pressures,
+            calculate_total_tissue_pressure,
+        },
+    },
     models::{
         application::dive_planner::DivePlanner,
-        plan::{dive_model::DiveModel, dive_stage::DiveStage},
+        plan::{
+            dive_model::DiveModel,
+            dive_profile_result::tissue_pressure::{self, TissuePressure},
+            dive_stage::DiveStage,
+        },
     },
 };
 
@@ -50,13 +60,33 @@ impl DivePlanner {
             );
 
             // calculate tissue pressures
-            // dive_model.dive_profile.tissue_pressure = 
+            dive_model
+                .dive_profile
+                .tissue_pressure
+                .nitrogen_tissue_pressures[compartment] = calculate_nitrogen_tissue_pressures(
+                compartment,
+                &dive_model,
+                &self.dive_stage.dive_step,
+            );
+
+            dive_model
+                .dive_profile
+                .tissue_pressure
+                .helium_tissue_pressures[compartment] = calculate_helium_tissue_pressures(
+                compartment,
+                &dive_model,
+                &self.dive_stage.dive_step,
+            );
+
+            dive_model
+                .dive_profile
+                .tissue_pressure
+                .total_tissue_pressures[compartment] =
+                calculate_total_tissue_pressure(compartment, &dive_model.dive_profile);
 
             // calculate tolerated ambient pressures
 
-
             // calculate tolerated surface pressures
-
 
             // TODO REMOVE OLD
             // dive_model.dive_profile.nitrogen_tissue_pressures[compartment] =

@@ -4,13 +4,13 @@ use crate::models::plan::{
 
 pub fn calculate_nitrogen_tissue_pressures(
     compartment: usize,
-    dive_model: DiveModel,
-    dive_step: DiveStep,
+    dive_model: &DiveModel,
+    dive_step: &DiveStep,
 ) -> f32 {
     dive_model
         .dive_profile
         .tissue_pressure
-        .get_nitrogen_tissue_pressures()[compartment]
+        .nitrogen_tissue_pressures[compartment]
         + ((dive_model
             .dive_profile
             .ambient_pressure
@@ -18,7 +18,7 @@ pub fn calculate_nitrogen_tissue_pressures(
             - dive_model
                 .dive_profile
                 .tissue_pressure
-                .get_nitrogen_tissue_pressures()[compartment])
+                .nitrogen_tissue_pressures[compartment])
             * (1.0
                 - f32::powf(
                     2.0,
@@ -28,13 +28,13 @@ pub fn calculate_nitrogen_tissue_pressures(
 
 pub fn calculate_helium_tissue_pressures(
     compartment: usize,
-    dive_model: DiveModel,
-    dive_step: DiveStep,
+    dive_model: &DiveModel,
+    dive_step: &DiveStep,
 ) -> f32 {
     dive_model
         .dive_profile
         .tissue_pressure
-        .get_helium_tissue_pressures()[compartment]
+        .helium_tissue_pressures[compartment]
         + ((dive_model
             .dive_profile
             .ambient_pressure
@@ -42,7 +42,7 @@ pub fn calculate_helium_tissue_pressures(
             - dive_model
                 .dive_profile
                 .tissue_pressure
-                .get_helium_tissue_pressures()[compartment])
+                .helium_tissue_pressures[compartment])
             * (1.0
                 - f32::powf(
                     2.0,
@@ -50,9 +50,9 @@ pub fn calculate_helium_tissue_pressures(
                 )))
 }
 
-pub fn calculate_total_tissue_pressure(compartment: usize, dive_profile: DiveProfile) -> f32 {
-    dive_profile.tissue_pressure.get_helium_tissue_pressures()[compartment]
-        + dive_profile.tissue_pressure.get_nitrogen_tissue_pressures()[compartment]
+pub fn calculate_total_tissue_pressure(compartment: usize, dive_profile: &DiveProfile) -> f32 {
+    dive_profile.tissue_pressure.helium_tissue_pressures[compartment]
+        + dive_profile.tissue_pressure.nitrogen_tissue_pressures[compartment]
 }
 
 #[cfg(test)]
@@ -84,8 +84,8 @@ mod commands_tissue_pressure_should {
                 "{:.3}",
                 super::calculate_nitrogen_tissue_pressures(
                     compartment,
-                    zhl16.clone(),
-                    expected_dive_stage.dive_step.clone()
+                    &zhl16,
+                    &expected_dive_stage.dive_step
                 )
             );
 
@@ -97,7 +97,7 @@ mod commands_tissue_pressure_should {
                         .dive_model
                         .dive_profile
                         .tissue_pressure
-                        .get_nitrogen_tissue_pressures()[compartment]
+                        .nitrogen_tissue_pressures[compartment]
                 ),
                 nitrogen_tissue_pressure
             );
@@ -122,8 +122,8 @@ mod commands_tissue_pressure_should {
                 "{:.3}",
                 super::calculate_helium_tissue_pressures(
                     compartment,
-                    zhl16.clone(),
-                    expected_dive_stage.dive_step.clone()
+                    &zhl16,
+                    &expected_dive_stage.dive_step
                 )
             );
 
@@ -135,7 +135,7 @@ mod commands_tissue_pressure_should {
                         .dive_model
                         .dive_profile
                         .tissue_pressure
-                        .get_helium_tissue_pressures()[compartment]
+                        .helium_tissue_pressures[compartment]
                 ),
                 helium_tissue_pressures
             );
@@ -149,13 +149,13 @@ mod commands_tissue_pressure_should {
             number_of_compartments: 16,
             ambient_pressure: ambient_pressure_test_fixture(),
             tissue_pressure: TissuePressure::new(
-                tissue_pressure_test_fixture().get_nitrogen_tissue_pressures(),
-                tissue_pressure_test_fixture().get_helium_tissue_pressures(),
+                tissue_pressure_test_fixture().nitrogen_tissue_pressures,
+                tissue_pressure_test_fixture().helium_tissue_pressures,
                 default_dive_stage_test_fixture()
                     .dive_model
                     .dive_profile
                     .tissue_pressure
-                    .get_total_tissue_pressures(),
+                    .total_tissue_pressures,
             ),
             ..Default::default()
         };
@@ -165,7 +165,7 @@ mod commands_tissue_pressure_should {
             // When
             let total_tissue_pressure = format!(
                 "{:.3}",
-                super::calculate_total_tissue_pressure(compartment, dive_profile.clone())
+                super::calculate_total_tissue_pressure(compartment, &dive_profile)
             );
 
             // Then
@@ -174,7 +174,7 @@ mod commands_tissue_pressure_should {
                     "{:.3}",
                     expected_dive_profile_model
                         .tissue_pressure
-                        .get_total_tissue_pressures()[compartment]
+                        .total_tissue_pressures[compartment]
                 ),
                 total_tissue_pressure
             );
