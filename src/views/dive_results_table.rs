@@ -24,19 +24,17 @@ pub fn dive_results_table(dive_profile: &DiveProfile, color: Color) -> Element<'
             "{:.3}",
             dive_profile
                 .tolerated_ambient_pressure
-                .get_tolerated_ambient_pressure()[compartment]
+                .tolerated_ambient_pressures[compartment]
         );
         let maximum_surface_pressures = format!(
             "{:.3}",
             dive_profile
                 .tolerated_surface_pressure
-                .get_maximum_surface_pressures()[compartment]
+                .maximum_surface_pressures[compartment]
         );
         let compartment_loads = format!(
             "{:.3}",
-            dive_profile
-                .tolerated_surface_pressure
-                .get_compartment_loads()[compartment]
+            dive_profile.tolerated_surface_pressure.compartment_loads[compartment]
         );
 
         table.add_row(vec![
