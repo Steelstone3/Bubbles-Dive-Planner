@@ -9,11 +9,7 @@ use crate::{
     },
     models::{
         application::dive_planner::DivePlanner,
-        plan::{
-            dive_model::DiveModel,
-            dive_profile_result::tissue_pressure::{self, TissuePressure},
-            dive_stage::DiveStage,
-        },
+        plan::{dive_model::DiveModel, dive_stage::DiveStage},
     },
 };
 

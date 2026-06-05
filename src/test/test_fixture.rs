@@ -10,6 +10,7 @@ use crate::models::plan::{
     dive_step::DiveStep,
 };
 
+#[allow(dead_code)]
 pub fn default_dive_stage_test_fixture() -> DiveStage {
     let dive_model = DiveModel::create_zhl16_dive_model();
 
@@ -19,6 +20,7 @@ pub fn default_dive_stage_test_fixture() -> DiveStage {
     DiveStage::new(dive_model, dive_step, cylinder)
 }
 
+#[allow(dead_code)]
 pub fn dive_stage_test_fixture() -> DiveStage {
     let mut dive_model = DiveModel::create_zhl16_dive_model();
     dive_model.dive_profile = dive_profile_test_fixture();
@@ -33,6 +35,7 @@ pub fn dive_stage_test_fixture() -> DiveStage {
     DiveStage::new(dive_model, dive_step, cylinder)
 }
 
+#[allow(dead_code)]
 pub fn dive_profile_test_fixture() -> DiveProfile {
     DiveProfile {
         number_of_compartments: 16,
@@ -43,26 +46,29 @@ pub fn dive_profile_test_fixture() -> DiveProfile {
     }
 }
 
+#[allow(dead_code)]
 pub fn ambient_pressure_test_fixture() -> AmbientPressure {
     AmbientPressure::new(1.26, 0.6, 4.14)
 }
 
+#[allow(dead_code)]
 pub fn tissue_pressure_test_fixture() -> TissuePressure {
     TissuePressure::new(
         vec![
-            3.500, 2.700, 2.200, 1.8, 1.5, 1.3, 1.2, 1.1, 1.0, 0.9, 0.9, 0.9, 0.9, 0.8, 0.8, 0.8,
+            3.548, 2.731, 2.216, 1.837, 1.548, 1.345, 1.191, 1.078, 0.996, 0.945, 0.912, 0.886, 0.865, 0.849, 0.836, 0.826,
         ],
         vec![
             0.594, 0.540, 0.462, 0.377, 0.296, 0.228, 0.172, 0.127, 0.093, 0.071, 0.056, 0.044,
             0.035, 0.028, 0.022, 0.017,
         ],
         vec![
-            4.140, 3.270, 2.68, 2.21, 1.84, 1.57, 1.36, 1.21, 1.09, 1.02, 0.97, 0.93, 0.90, 0.88,
-            0.86, 0.84,
+            4.142, 3.271, 2.678, 2.214, 1.844, 1.573, 1.363, 1.205, 1.089, 1.016, 0.968, 0.93, 0.90, 0.877,
+            0.858, 0.843,
         ],
     )
 }
 
+#[allow(dead_code)]
 pub fn tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
     ToleratedAmbientPressure::new(
         vec![
@@ -79,6 +85,7 @@ pub fn tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
     )
 }
 
+#[allow(dead_code)]
 pub fn tolerated_surface_pressure_test_fixture() -> ToleratedSurfacePressure {
     ToleratedSurfacePressure::new(
         vec![
