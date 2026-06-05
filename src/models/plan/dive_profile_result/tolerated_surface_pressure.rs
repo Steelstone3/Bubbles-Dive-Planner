@@ -21,9 +21,8 @@ impl ToleratedSurfacePressure {
     }
 
     pub fn new_default(number_of_compartments: usize) -> ToleratedSurfacePressure {
-        let default_compartments: Vec<f32> = std::iter::repeat(0.0)
-            .take(number_of_compartments)
-            .collect();
+        let default_compartments: Vec<f32> =
+            std::iter::repeat_n(0.0, number_of_compartments).collect();
 
         ToleratedSurfacePressure::new(
             default_compartments.clone(),

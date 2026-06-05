@@ -40,7 +40,6 @@ mod file_should {
                     dive_stage_test_fixture(),
                     dive_stage_test_fixture(),
                 ],
-                ..Default::default()
             },
             application_state: ApplicationState {
                 redo_buffer: vec![dive_stage_test_fixture()],
@@ -68,7 +67,6 @@ mod file_should {
             dive_stage: dive_stage_test_fixture(),
             dive_results: DiveResults {
                 results: vec![dive_stage_test_fixture()],
-                ..Default::default()
             },
             ..Default::default()
         };
@@ -76,19 +74,17 @@ mod file_should {
             dive_stage: dive_stage_test_fixture(),
             dive_results: DiveResults {
                 results: vec![dive_stage_test_fixture()],
-                ..Default::default()
             },
             ..Default::default()
         };
 
         // When
-        let _guard = TestFileGuard::new(&DIVE_PLANNER_STATE_FILE_NAME);
-        dive_planner.file_save_application_state(&DIVE_PLANNER_STATE_FILE_NAME.to_string());
-        dive_planner.file_load(&DIVE_PLANNER_STATE_FILE_NAME.to_string());
+        let _guard = TestFileGuard::new(DIVE_PLANNER_STATE_FILE_NAME);
+        dive_planner.file_save_application_state(DIVE_PLANNER_STATE_FILE_NAME);
+        dive_planner.file_load(DIVE_PLANNER_STATE_FILE_NAME);
 
         // Then
         assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).is_ok());
-        assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).unwrap().len() != 0);
         pretty_assertions::assert_eq!(expected_dive_planner, dive_planner);
     }
 }

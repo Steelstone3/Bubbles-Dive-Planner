@@ -77,9 +77,8 @@ impl GasMixture {
         const TOLERATED_PARTIAL_PRESSURE: f32 = 1.4;
         let oxygen_partial_pressure = oxygen as f32 / 100.0;
         let tolerated_pressure = TOLERATED_PARTIAL_PRESSURE / oxygen_partial_pressure;
-        let maximum_operating_depth = (tolerated_pressure * 10.0) - 10.0;
-
-        maximum_operating_depth
+        
+        (tolerated_pressure * 10.0) - 10.0
     }
 }
 

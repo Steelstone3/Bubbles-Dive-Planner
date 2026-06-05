@@ -20,6 +20,7 @@ impl AmbientPressure {
         }
     }
 
+    #[allow(dead_code)]
     pub fn get_oxygen_at_pressure(&self) -> f32 {
         self.oxygen_at_pressure
     }

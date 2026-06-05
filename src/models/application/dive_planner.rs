@@ -4,7 +4,7 @@ use crate::{
     models::{
         information::dive_information::DiveInformation,
         plan::{
-            dive_model::DiveModel, dive_planning::dive_pre_planning::DivePrePlanning,
+            dive_planning::dive_pre_planning::DivePrePlanning,
             dive_stage::DiveStage,
         },
         result::results::DiveResults,

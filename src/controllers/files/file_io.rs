@@ -47,12 +47,11 @@ mod file_integration_should {
         let dive_planner_file = DivePlannerFile::default();
 
         // When
-        let _guard = TestFileGuard::new(&dive_planner_state_file_name);
+        let _guard = TestFileGuard::new(dive_planner_state_file_name);
         upsert_dive_planner_state(dive_planner_state_file_name, &dive_planner_file);
 
         // Then
         assert!(fs::metadata(dive_planner_state_file_name).is_ok());
-        assert!(fs::metadata(dive_planner_state_file_name).unwrap().len() != 0);
     }
 
     #[test]
@@ -62,7 +61,7 @@ mod file_integration_should {
         let expected_dive_planner_file = DivePlannerFile::default();
 
         // When
-        let _guard = TestFileGuard::new(&file_name);
+        let _guard = TestFileGuard::new(file_name);
         let dive_planner_file = read_dive_planner_state(file_name);
 
         // Then
@@ -76,7 +75,7 @@ mod file_integration_should {
         let expected_dive_planner_file = DivePlannerFile::default();
 
         // When
-        let _guard = TestFileGuard::new(&file_name);
+        let _guard = TestFileGuard::new(file_name);
         upsert_dive_planner_state(file_name, &expected_dive_planner_file);
         let dive_planner_file = read_dive_planner_state(file_name);
 

@@ -18,7 +18,7 @@ impl GasManagement {
     ) -> Self {
         Self {
             remaining: initial_pressurised_cylinder_volume,
-            used: used,
+            used,
             surface_air_consumption_rate,
         }
     }
