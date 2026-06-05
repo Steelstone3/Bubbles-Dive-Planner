@@ -1,59 +1,192 @@
-// use crate::models::result::dive_profile::DiveProfile;
+use crate::models::plan::dive_profile_result::dive_profile::DiveProfile;
 
-// pub fn calculate_compartment_loads(compartment: usize, dive_profile_model: DiveProfile) -> f32 {
-//     dive_profile_model.total_tissue_pressures[compartment]
-//         / dive_profile_model.maximum_surface_pressures[compartment]
-//         * 100.0
-// }
+pub fn calculate_compartment_loads(compartment: usize, dive_profile_model: &DiveProfile) -> f32 {
+    dive_profile_model.tissue_pressure.total_tissue_pressures[compartment]
+        / dive_profile_model
+            .tolerated_surface_pressure
+            .maximum_surface_pressures[compartment]
+        * 100.0
+}
 
-// #[cfg(test)]
-// mod commands_compartment_loads_should {
-//     use super::*;
+#[cfg(test)]
+mod commands_compartment_loads_should {
+    use crate::{
+        models::plan::dive_profile_result::tolerated_surface_pressure::ToleratedSurfacePressure,
+        test::test_fixture::{
+            dive_profile_test_fixture, tissue_pressure_test_fixture,
+            tolerated_surface_pressure_test_fixture,
+        },
+    };
 
-//     #[test]
-//     fn calculate_compartment_loads_of_the_dive_profile() {
-//         // Given
-//         let actual_dive_profile = compartment_loads_dive_profile_test_fixture();
-//         let expected_dive_profile = dive_profile_test_fixture();
+    use super::*;
 
-//         for compartment in 0..16 {
-//             // When
-//             let compartment_load = format!(
-//                 "{:.3}",
-//                 super::calculate_compartment_loads(compartment, actual_dive_profile)
-//             );
-//             // Then
-//             assert_eq!(
-//                 format!(
-//                     "{:.3}",
-//                     expected_dive_profile.compartment_loads[compartment]
-//                 ),
-//                 compartment_load
-//             );
-//         }
-//     }
+    #[test]
+    fn calculate_compartment_loads_of_the_dive_profile() {
+        // Given
+        let dive_profile = DiveProfile {
+            tissue_pressure: tissue_pressure_test_fixture(),
+            tolerated_surface_pressure: ToleratedSurfacePressure::new(
+                tolerated_surface_pressure_test_fixture().maximum_surface_pressures,
+                Default::default(),
+                Default::default(),
+            ),
+            ..Default::default()
+        };
+        let expected_dive_profile = dive_profile_test_fixture();
+        let mut compartment_loads = vec![];
 
-//     fn compartment_loads_dive_profile_test_fixture() -> DiveProfile {
-//         DiveProfile {
-//             maximum_surface_pressures: [
-//                 3.356, 2.640, 2.342, 2.122, 1.978, 1.828, 1.719, 1.637, 1.577, 1.521, 1.482, 1.450,
-//                 1.415, 1.400, 1.380, 1.356,
-//             ],
-//             total_tissue_pressures: [
-//                 4.002, 2.939, 2.224, 1.671, 1.233, 0.913, 0.668, 0.483, 0.348, 0.263, 0.207, 0.162,
-//                 0.128, 0.101, 0.079, 0.062,
-//             ],
-//             ..Default::default()
-//         }
-//     }
+        // When
+        for compartment in 0..16 {
+            compartment_loads.push(format!(
+                "{:.3}",
+                super::calculate_compartment_loads(compartment, &dive_profile)
+            ));
+        }
 
-//     fn dive_profile_test_fixture() -> DiveProfile {
-//         DiveProfile {
-//             compartment_loads: [
-//                 119.249, 111.326, 94.962, 78.746, 62.336, 49.945, 38.860, 29.505, 22.067, 17.291,
-//                 13.968, 11.172, 9.046, 7.214, 5.725, 4.572,
-//             ],
-//             ..Default::default()
-//         }
-//     }
-// }
+        // Then
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[0]
+            ),
+            compartment_loads[0]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[1]
+            ),
+            compartment_loads[1]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[2]
+            ),
+            compartment_loads[2]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[3]
+            ),
+            compartment_loads[3]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[4]
+            ),
+            compartment_loads[4]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[5]
+            ),
+            compartment_loads[5]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[6]
+            ),
+            compartment_loads[6]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[7]
+            ),
+            compartment_loads[7]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[8]
+            ),
+            compartment_loads[8]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[9]
+            ),
+            compartment_loads[9]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[10]
+            ),
+            compartment_loads[10]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[11]
+            ),
+            compartment_loads[11]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[12]
+            ),
+            compartment_loads[12]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[13]
+            ),
+            compartment_loads[13]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[14]
+            ),
+            compartment_loads[14]
+        );
+        assert_eq!(
+            format!(
+                "{:.3}",
+                expected_dive_profile
+                    .tolerated_surface_pressure
+                    .compartment_loads[15]
+            ),
+            compartment_loads[15]
+        );
+    }
+}
