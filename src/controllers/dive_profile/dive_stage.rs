@@ -28,7 +28,6 @@ impl DivePlanner {
         }
     }
 
-    // TODO test
     pub fn update_dive_profile(&self) -> DiveStage {
         // calculate gas usage
         let cylinder = self
