@@ -6,10 +6,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
 pub struct DiveStage {
     pub dive_model: DiveModel,
-    // TODO Need to work out validation
     pub dive_step: DiveStep,
-    // TODO Need to work out validation
     pub cylinder: Cylinder,
+    pub decompression_steps: Vec<DiveStep>,
 }
 
 impl DiveStage {
@@ -18,9 +17,11 @@ impl DiveStage {
             dive_model,
             dive_step,
             cylinder,
+            decompression_steps: Default::default(),
         }
     }
 
+    // TODO test
     pub fn is_valid(&self) -> bool {
         if !self.dive_step.is_valid() || !self.cylinder.is_valid() {
             return false;

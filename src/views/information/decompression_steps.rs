@@ -9,12 +9,7 @@ use iced_aw::widgets::Card;
 
 impl DivePlanner {
     pub fn decompression_steps_view(&self) -> iced::widget::Column<'_, Message> {
-        if !self
-            .dive_information
-            .decompression_steps
-            .dive_steps
-            .is_empty()
-        {
+        if !self.dive_stage.decompression_steps.is_empty() {
             let mut contents = column![];
 
             for decompression_steps in self.decompression_steps_cards() {
@@ -37,7 +32,7 @@ impl DivePlanner {
     fn decompression_steps_cards(&self) -> Vec<Card<'_, Message, Theme, Renderer>> {
         let mut decompression_steps_cards = vec![];
 
-        for decompression_step in &self.dive_information.decompression_steps.dive_steps {
+        for decompression_step in &self.dive_stage.decompression_steps {
             decompression_steps_cards.push(Card::new(
                 "Decompression Step",
                 column!()
