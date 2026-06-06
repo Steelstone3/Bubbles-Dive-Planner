@@ -131,42 +131,7 @@ impl DiveStage {
 //         assert_eq!(is_valid, is_valid_actual);
 //     }
 
-//     #[rstest]
-//     #[case(12, 200, true)]
-//     #[case(31, 200, false)]
-//     #[case(2, 200, false)]
-//     #[case(12, 301, false)]
-//     #[case(12, 49, false)]
-//     fn validate_cylinder(#[case] volume: u32, #[case] pressure: u32, #[case] is_valid: bool) {
-//         // Given
-//         let dive_stage = DiveStage {
-//             dive_step: DiveStep {
-//                 depth: 50,
-//                 time: 10,
-//             },
-//             cylinder: Cylinder {
-//                 volume,
-//                 pressure,
-//                 gas_mixture: GasMixture {
-//                     oxygen: 21,
-//                     helium: 0,
-//                     ..Default::default()
-//                 },
-//                 gas_management: GasManagement {
-//                     surface_air_consumption_rate: 12,
-//                     ..Default::default()
-//                 },
-//                 ..Default::default()
-//             },
-//             ..Default::default()
-//         };
 
-//         // When
-//         let is_valid_actual = dive_stage.validate();
-
-//         // Then
-//         assert_eq!(is_valid, is_valid_actual);
-//     }
 
 //     #[rstest]
 //     #[case(21, 0, true)]

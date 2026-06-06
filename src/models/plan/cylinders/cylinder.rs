@@ -22,7 +22,7 @@ pub struct Cylinder {
 impl Default for Cylinder {
     fn default() -> Self {
         let gas_mixture = GasMixture::new(21, 0);
-        Self::new(3, 50, gas_mixture, 12)
+        Self::new(12, 200, gas_mixture, 12)
     }
 }
 
@@ -35,8 +35,8 @@ impl Cylinder {
         surface_air_consumption_rate: u32,
     ) -> Self {
         let initial_pressurised_cylinder_volume =
-        Cylinder::initial_pressurised_cylinder_volume(volume, pressure);
-        
+            Cylinder::initial_pressurised_cylinder_volume(volume, pressure);
+
         Self {
             volume,
             pressure,
@@ -49,8 +49,7 @@ impl Cylinder {
             ),
         }
     }
-    
-    // TODO test
+
     pub fn is_valid(&self) -> bool {
         if self.volume > MAXIMUM_VOLUME_VALUE {
             return false;
@@ -60,14 +59,12 @@ impl Cylinder {
             return false;
         } else if self.pressure < MINIMUM_PRESSURE_VALUE {
             return false;
-        }
-        else if !self.gas_mixture.is_valid() {
+        } else if !self.gas_mixture.is_valid() {
+            return false;
+        } else if !self.gas_management.is_valid() {
             return false;
         }
-        else if !self.gas_management.is_valid() {
-            return false;
-        }
-    
+
         true
     }
 
@@ -111,11 +108,33 @@ impl Cylinder {
         self.initial_pressurised_cylinder_volume
     }
 
-
     fn initial_pressurised_cylinder_volume(volume: u32, pressure: u32) -> u32 {
         volume * pressure
     }
 }
 
 #[cfg(test)]
-mod cylinder_should {}
+mod cylinder_should {
+    use crate::models::plan::cylinders::cylinder::Cylinder;
+    use crate::models::plan::cylinders::gas_mixture::GasMixture;
+    use rstest::rstest;
+
+    #[rstest]
+    #[case(12, 200, true)]
+    #[case(30, 300, true)]
+    #[case(3, 50, true)]
+    #[case(31, 200, false)]
+    #[case(2, 200, false)]
+    #[case(12, 301, false)]
+    #[case(12, 49, false)]
+    fn validate_cylinder(#[case] volume: u32, #[case] pressure: u32, #[case] is_valid: bool) {
+        // Given
+        let cylinder = Cylinder::new(volume, pressure, GasMixture::default(), 12);
+
+        // When
+        let is_valid_actual = cylinder.is_valid();
+
+        // Then
+        assert_eq!(is_valid, is_valid_actual);
+    }
+}

@@ -16,12 +16,7 @@ pub struct GasMixture {
 
 impl Default for GasMixture {
     fn default() -> Self {
-        Self {
-            oxygen: 0,
-            helium: 0,
-            nitrogen: 100,
-            maximum_operating_depth: 0.0,
-        }
+        Self::new(21, MINIMUM_HELIUM_VALUE)
     }
 }
 
@@ -96,6 +91,4 @@ impl GasMixture {
 }
 
 #[cfg(test)]
-mod gas_mixture_should {
-    
-}
+mod gas_mixture_should {}
