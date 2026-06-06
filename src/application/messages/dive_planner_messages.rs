@@ -89,7 +89,7 @@ impl DivePlanner {
                 Task::none()
             }
             Message::DiveProfileOnClicked => {
-                match self.update_dive_profile() {
+                match DivePlanner::update_dive_profile(&self.dive_stage) {
                     Some(dive_stage) => {
                         // Calculate decompression steps
                         // Add decompression steps

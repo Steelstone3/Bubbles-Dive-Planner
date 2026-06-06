@@ -81,4 +81,25 @@ impl GasManagement {
 }
 
 #[cfg(test)]
-mod gas_management_should {}
+mod gas_management_should {
+    use crate::models::plan::cylinders::gas_management::GasManagement;
+    use rstest::rstest;
+
+    #[rstest]
+    #[case(12, true)]
+    #[case(31, false)]
+    #[case(2, false)]
+    fn test_validate_gas_management(
+        #[case] surface_air_consumption_rate: u32,
+        #[case] expected_is_valid: bool,
+    ) {
+        // Given
+        let gas_management = GasManagement::new(0, 0, surface_air_consumption_rate);
+
+        // When
+        let is_valid = gas_management.is_valid();
+
+        // Then
+        assert_eq!(expected_is_valid, is_valid);
+    }
+}

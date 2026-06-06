@@ -29,28 +29,25 @@ impl DivePlanner {
         }
     }
 
-    pub fn update_dive_profile(&self) -> Option<DiveStage> {
-        if !self.dive_stage.is_valid() {
+    pub fn update_dive_profile(dive_stage: &DiveStage) -> Option<DiveStage> {
+        if !dive_stage.is_valid() {
             return None;
         }
 
         // calculate gas usage
-        let cylinder = self
-            .dive_stage
+        let cylinder = dive_stage
             .cylinder
-            .update_gas_management(&self.dive_stage.dive_step);
+            .update_gas_management(&dive_stage.dive_step);
 
-        let mut dive_model = self.dive_stage.dive_model.clone();
+        let mut dive_model = dive_stage.dive_model.clone();
 
         // calculate ambient pressure
-        dive_model.dive_profile.ambient_pressure = calculate_ambient_pressures(
-            &self.dive_stage.dive_step,
-            &self.dive_stage.cylinder.gas_mixture,
-        );
+        dive_model.dive_profile.ambient_pressure =
+            calculate_ambient_pressures(&dive_stage.dive_step, &dive_stage.cylinder.gas_mixture);
 
         // calculate tissue pressures
         dive_model.dive_profile.tissue_pressure =
-            calculate_tissue_pressures(&dive_model, &self.dive_stage.dive_step);
+            calculate_tissue_pressures(&dive_model, &dive_stage.dive_step);
 
         // calculate tolerated ambient pressures
         dive_model.dive_profile.tolerated_ambient_pressure =
@@ -60,7 +57,11 @@ impl DivePlanner {
         dive_model.dive_profile.tolerated_surface_pressure =
             calculate_tolerated_surface_pressures(&dive_model.dive_profile);
 
-        Some(DiveStage::new(dive_model, self.dive_stage.dive_step.clone(), cylinder))
+        Some(DiveStage::new(
+            dive_model,
+            dive_stage.dive_step.clone(),
+            cylinder,
+        ))
     }
 }
 
@@ -75,11 +76,9 @@ mod dive_stage_should {
     fn test_update_dive_profile() {
         // Given
         let expected_dive_stage = Some(dive_stage_test_fixture());
-        let mut dive_planner = DivePlanner::default();
-        dive_planner.dive_stage = default_dive_stage_test_fixture();
 
         // When
-        let dive_stage = dive_planner.update_dive_profile();
+        let dive_stage = DivePlanner::update_dive_profile(&default_dive_stage_test_fixture());
 
         // Then
         pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);

@@ -62,14 +62,14 @@ mod dive_step_should {
     #[case(0, 10, false)]
     #[case(50, 61, false)]
     #[case(50, 0, false)]
-    fn validate_dive_step(#[case] depth: u32, #[case] time: u32, #[case] is_valid: bool) {
+    fn validate_dive_step(#[case] depth: u32, #[case] time: u32, #[case] expected_is_valid: bool) {
         // Given
         let dive_step = DiveStep { depth, time };
 
         // When
-        let is_valid_actual = dive_step.is_valid();
+        let is_valid = dive_step.is_valid();
 
         // Then
-        assert_eq!(is_valid, is_valid_actual);
+        pretty_assertions::assert_eq!(expected_is_valid, is_valid);
     }
 }

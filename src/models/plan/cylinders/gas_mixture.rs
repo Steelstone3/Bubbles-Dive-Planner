@@ -64,6 +64,10 @@ impl GasMixture {
     }
 
     fn update_nitrogen(oxygen: u32, helium: u32) -> u32 {
+        if oxygen + helium > 100 {
+            return 0;
+        }
+
         100 - oxygen - helium
     }
 
@@ -84,6 +88,8 @@ impl GasMixture {
             return false;
         } else if self.helium < MINIMUM_HELIUM_VALUE {
             return false;
+        } else if self.helium + self.oxygen + self.nitrogen > 100 {
+            return false;
         }
 
         true
@@ -91,4 +97,29 @@ impl GasMixture {
 }
 
 #[cfg(test)]
-mod gas_mixture_should {}
+mod gas_mixture_should {
+    use crate::models::plan::cylinders::gas_mixture::GasMixture;
+    use rstest::rstest;
+
+    #[rstest]
+    #[case(21, 0, true)]
+    #[case(101, 0, false)]
+    #[case(4, 0, false)]
+    #[case(21, 101, false)]
+    #[case(51, 50, false)]
+    #[case(50, 51, false)]
+    fn test_validate_gas_mixture(
+        #[case] oxygen: u32,
+        #[case] helium: u32,
+        #[case] expected_is_valid: bool,
+    ) {
+        // Given
+        let gas_mixture = GasMixture::new(oxygen, helium);
+
+        // When
+        let is_valid = gas_mixture.is_valid();
+
+        // Then
+        assert_eq!(expected_is_valid, is_valid);
+    }
+}
