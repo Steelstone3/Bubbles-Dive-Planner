@@ -2,9 +2,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(PartialEq, Debug, Default, Clone, Serialize, Deserialize)]
 pub struct ToleratedAmbientPressure {
-    pub tolerated_ambient_pressures: Vec<f32>,
-    pub a_values: Vec<f32>,
-    pub b_values: Vec<f32>,
+    tolerated_ambient_pressures: Vec<f32>,
+    a_values: Vec<f32>,
+    b_values: Vec<f32>,
 }
 
 impl ToleratedAmbientPressure {
@@ -29,5 +29,17 @@ impl ToleratedAmbientPressure {
             default_compartments.clone(),
             default_compartments.clone(),
         )
+    }
+
+    pub fn get_a_values(&self) -> Vec<f32> {
+        self.a_values.clone()
+    }
+
+    pub fn get_b_values(&self) -> Vec<f32> {
+        self.b_values.clone()
+    }
+
+    pub fn get_tolerated_ambient_pressures(&self) -> Vec<f32> {
+        self.tolerated_ambient_pressures.clone()
     }
 }

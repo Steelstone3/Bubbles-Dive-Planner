@@ -18,23 +18,25 @@ pub fn dive_results_table(dive_profile: &DiveProfile, color: Color) -> Element<'
     for compartment in 0..dive_profile.number_of_compartments {
         let total_tissue_pressures = format!(
             "{:.3}",
-            dive_profile.tissue_pressure.total_tissue_pressures[compartment]
+            dive_profile.tissue_pressure.get_total_tissue_pressures()[compartment]
         );
         let tolerated_ambient_pressures = format!(
             "{:.3}",
             dive_profile
                 .tolerated_ambient_pressure
-                .tolerated_ambient_pressures[compartment]
+                .get_tolerated_ambient_pressures()[compartment]
         );
         let maximum_surface_pressures = format!(
             "{:.3}",
             dive_profile
                 .tolerated_surface_pressure
-                .maximum_surface_pressures[compartment]
+                .get_maximum_surface_pressures()[compartment]
         );
         let compartment_loads = format!(
             "{:.3}",
-            dive_profile.tolerated_surface_pressure.compartment_loads[compartment]
+            dive_profile
+                .tolerated_surface_pressure
+                .get_compartment_loads()[compartment]
         );
 
         table.add_row(vec![
