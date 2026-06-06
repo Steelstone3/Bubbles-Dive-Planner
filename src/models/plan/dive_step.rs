@@ -24,7 +24,6 @@ impl DiveStep {
         Self { depth, time }
     }
 
-    // TODO test
     pub fn is_valid(&self) -> bool {
         if self.depth > MAXIMUM_DEPTH_VALUE {
             return false;
@@ -51,4 +50,26 @@ impl DiveStep {
 }
 
 #[cfg(test)]
-mod dive_step_should {}
+mod dive_step_should {
+    use crate::models::plan::dive_step::DiveStep;
+    use rstest::rstest;
+
+    #[rstest]
+    #[case(50, 10, true)]
+    #[case(100, 60, true)]
+    #[case(1, 1, true)]
+    #[case(101, 10, false)]
+    #[case(0, 10, false)]
+    #[case(50, 61, false)]
+    #[case(50, 0, false)]
+    fn validate_dive_step(#[case] depth: u32, #[case] time: u32, #[case] is_valid: bool) {
+        // Given
+        let dive_step = DiveStep { depth, time };
+
+        // When
+        let is_valid_actual = dive_step.is_valid();
+
+        // Then
+        assert_eq!(is_valid, is_valid_actual);
+    }
+}
