@@ -5,6 +5,11 @@ use iced::widget::{Column, button, column};
 
 impl DivePlanner {
     pub fn dive_profile_view(&self) -> Column<'_, Message> {
-        column!().push(button("Run Dive Profile").on_press(Message::DiveProfileOnClicked))
+        match self.dive_stage.is_valid() {
+            true => {
+                column!().push(button("Run Dive Profile").on_press(Message::DiveProfileOnClicked))
+            }
+            false => column!().push(button("Invalid Parameters")),
+        }
     }
 }
