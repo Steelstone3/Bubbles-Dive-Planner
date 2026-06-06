@@ -1,8 +1,40 @@
 use crate::models::plan::{
-    dive_model::DiveModel, dive_profile_result::dive_profile::DiveProfile, dive_step::DiveStep,
+    dive_model::DiveModel,
+    dive_profile_result::{dive_profile::DiveProfile, tissue_pressure::TissuePressure},
+    dive_step::DiveStep,
 };
 
-pub fn calculate_nitrogen_tissue_pressures(
+pub fn calculate_tissue_pressures(dive_model: &DiveModel, dive_step: &DiveStep) -> TissuePressure {
+    let mut nitrogen_tissue_pressures = vec![];
+    let mut helium_tissue_pressures = vec![];
+    let mut total_tissue_pressures = vec![];
+
+    for compartment in 0..dive_model.number_of_compartments {
+        nitrogen_tissue_pressures.push(calculate_nitrogen_tissue_pressures(
+            compartment,
+            dive_model,
+            dive_step,
+        ));
+        helium_tissue_pressures.push(calculate_helium_tissue_pressures(
+            compartment,
+            dive_model,
+            dive_step,
+        ));
+        total_tissue_pressures.push(calculate_total_tissue_pressures_2(
+            compartment,
+            nitrogen_tissue_pressures.clone(),
+            helium_tissue_pressures.clone(),
+        ));
+    }
+
+    TissuePressure::new(
+        nitrogen_tissue_pressures.clone(),
+        helium_tissue_pressures.clone(),
+        total_tissue_pressures,
+    )
+}
+
+fn calculate_nitrogen_tissue_pressures(
     compartment: usize,
     dive_model: &DiveModel,
     dive_step: &DiveStep,
@@ -26,7 +58,7 @@ pub fn calculate_nitrogen_tissue_pressures(
                 )))
 }
 
-pub fn calculate_helium_tissue_pressures(
+fn calculate_helium_tissue_pressures(
     compartment: usize,
     dive_model: &DiveModel,
     dive_step: &DiveStep,
@@ -50,7 +82,15 @@ pub fn calculate_helium_tissue_pressures(
                 )))
 }
 
-pub fn calculate_total_tissue_pressure(compartment: usize, dive_profile: &DiveProfile) -> f32 {
+fn calculate_total_tissue_pressures_2(
+    compartment: usize,
+    nitrogen_tissue_pressures: Vec<f32>,
+    helium_tissue_pressures: Vec<f32>,
+) -> f32 {
+    nitrogen_tissue_pressures[compartment] + helium_tissue_pressures[compartment]
+}
+
+fn calculate_total_tissue_pressures(compartment: usize, dive_profile: &DiveProfile) -> f32 {
     dive_profile.tissue_pressure.helium_tissue_pressures[compartment]
         + dive_profile.tissue_pressure.nitrogen_tissue_pressures[compartment]
 }
@@ -276,7 +316,7 @@ mod commands_tissue_pressure_should {
         for compartment in 0..16 {
             total_tissue_pressures.push(format!(
                 "{:.3}",
-                super::calculate_total_tissue_pressure(compartment, &dive_profile)
+                super::calculate_total_tissue_pressures(compartment, &dive_profile)
             ));
         }
 
