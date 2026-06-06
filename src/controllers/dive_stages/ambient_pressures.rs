@@ -30,20 +30,17 @@ mod commands_ambient_pressures_should {
         let ambient_pressure = super::calculate_ambient_pressures(&dive_step, &gas_mixture);
 
         // Then
-        assert_eq!(
-            format!("{:.3}", expected_ambient_pressure.get_oxygen_at_pressure()),
-            format!("{:.3}", ambient_pressure.get_oxygen_at_pressure())
+        pretty_assertions::assert_eq!(
+            expected_ambient_pressure.get_oxygen_at_pressure(),
+            ambient_pressure.get_oxygen_at_pressure()
         );
-        assert_eq!(
-            format!(
-                "{:.3}",
-                expected_ambient_pressure.get_nitrogen_at_pressure()
-            ),
-            format!("{:.3}", ambient_pressure.get_nitrogen_at_pressure())
+        pretty_assertions::assert_eq!(
+            expected_ambient_pressure.get_nitrogen_at_pressure(),
+            ambient_pressure.get_nitrogen_at_pressure()
         );
-        assert_eq!(
-            format!("{:.3}", expected_ambient_pressure.get_helium_at_pressure()),
-            format!("{:.3}", ambient_pressure.get_helium_at_pressure())
+        pretty_assertions::assert_eq!(
+            expected_ambient_pressure.get_helium_at_pressure(),
+            ambient_pressure.get_helium_at_pressure()
         );
     }
 }

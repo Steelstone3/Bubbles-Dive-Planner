@@ -13,6 +13,7 @@ use crate::{
 };
 
 impl DivePlanner {
+    // TODO test
     pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
         match selectable_dive_model {
             SelectableDiveModel::Bulhmann => {

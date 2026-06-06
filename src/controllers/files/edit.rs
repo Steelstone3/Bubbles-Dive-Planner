@@ -6,16 +6,15 @@
 //             let latest = self.dive_stage;
 //             self.application_state.redo_buffer.push(latest);
 //             self.dive_results.results.pop();
-//             self.dive_stage = *self
+//             self.dive_stage = self
 //                 .dive_results
 //                 .results
 //                 .last()
 //                 .unwrap_or(&Default::default());
 
 //             // Refresh decompression steps
-//             self.dive_information
-//                 .decompression_steps
-//                 .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
+//             // self.dive_information.decompression_steps =
+//             //     (self.dive_stage.calculate_decompression_dive_steps());
 //         } else {
 //             self.file_new();
 //         }
@@ -28,9 +27,8 @@
 //             self.dive_stage = redo;
 
 //             // Refresh decompression steps
-//             self.dive_information
-//                 .decompression_steps
-//                 .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
+//             // self.dive_information.decompression_steps =
+//             //     (self.dive_stage.calculate_decompression_dive_steps());
 //         }
 //     }
 
@@ -140,9 +138,9 @@
 //         // Given
 //         let dive_stage = dive_stage_test_fixture();
 //         let mut dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage],
+//                 results: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
@@ -158,7 +156,7 @@
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
-//                 redo_buffer: vec![dive_stage],
+//                 redo_buffer: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             ..Default::default()
@@ -176,9 +174,9 @@
 //         // Given
 //         let dive_stage = dive_stage_test_fixture();
 //         let mut dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage, dive_stage],
+//                 results: vec![dive_stage.clone(), dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
@@ -192,13 +190,13 @@
 //             ..Default::default()
 //         };
 //         let expected_dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage],
+//                 results: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
-//                 redo_buffer: vec![dive_stage],
+//                 redo_buffer: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             dive_information: DiveInformation {
@@ -219,9 +217,9 @@
 //     fn undo_dive_stage_recalculates_decompression_steps() {
 //         let dive_stage = dive_stage_test_fixture();
 //         let mut dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage, dive_stage],
+//                 results: vec![dive_stage.clone(), dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
@@ -235,13 +233,13 @@
 //             ..Default::default()
 //         };
 //         let expected_dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage],
+//                 results: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
-//                 redo_buffer: vec![dive_stage],
+//                 redo_buffer: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             dive_information: DiveInformation {
@@ -266,17 +264,17 @@
 //         // Given
 //         let dive_stage = dive_stage_test_fixture();
 //         let mut dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage, dive_stage],
+//                 results: vec![dive_stage.clone(), dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             ..Default::default()
 //         };
 //         let expected_dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage, dive_stage],
+//                 results: vec![dive_stage.clone(), dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             ..Default::default()
@@ -294,9 +292,9 @@
 //         // Given
 //         let dive_stage = dive_stage_test_fixture();
 //         let mut dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage],
+//                 results: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
@@ -310,9 +308,9 @@
 //             ..Default::default()
 //         };
 //         let expected_dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage, dive_stage],
+//                 results: vec![dive_stage.clone(), dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             dive_information: DiveInformation {
@@ -334,13 +332,13 @@
 //         // Given
 //         let dive_stage = dive_stage_test_fixture();
 //         let mut dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
 //                 results: vec![],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
-//                 redo_buffer: vec![dive_stage, dive_stage],
+//                 redo_buffer: vec![dive_stage.clone(), dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             dive_information: DiveInformation {
@@ -350,13 +348,13 @@
 //             ..Default::default()
 //         };
 //         let expected_dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage],
+//                 results: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
-//                 redo_buffer: vec![dive_stage],
+//                 redo_buffer: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             dive_information: DiveInformation {
@@ -378,13 +376,13 @@
 //         // Given
 //         let dive_stage = dive_stage_test_fixture();
 //         let mut dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
 //                 results: vec![],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
-//                 redo_buffer: vec![dive_stage, dive_stage],
+//                 redo_buffer: vec![dive_stage.clone(), dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             dive_information: DiveInformation {
@@ -394,13 +392,13 @@
 //             ..Default::default()
 //         };
 //         let expected_dive_planner = DivePlanner {
-//             dive_stage,
+//             dive_stage: dive_stage.clone(),
 //             dive_results: DiveResults {
-//                 results: vec![dive_stage],
+//                 results: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             application_state: ApplicationState {
-//                 redo_buffer: vec![dive_stage],
+//                 redo_buffer: vec![dive_stage.clone()],
 //                 ..Default::default()
 //             },
 //             dive_information: DiveInformation {
