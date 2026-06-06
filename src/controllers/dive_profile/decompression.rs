@@ -6,30 +6,6 @@ use crate::models::{
 };
 
 impl DiveStage {
-    pub fn decompression_update_dive_profile(&self) -> Vec<DiveStage> {
-        let mut dive_stage = self.clone();
-        let mut dive_results = vec![];
-
-        let mut decompression_steps: VecDeque<DiveStep> = self.calculate_decompression_dive_steps().into();
-
-        while let Some(decompression_step) = decompression_steps.pop_front() {
-            dive_stage.dive_step = decompression_step;
-            dive_stage = DivePlanner::update_dive_profile(&dive_stage.clone());
-            dive_stage.decompression_steps = decompression_steps.clone();
-            dive_results.push(dive_stage.clone());
-        }
-
-        // for decompression_step in decompression_steps {
-        //     dive_stage.dive_step = decompression_step.clone();
-        //     dive_stage = DivePlanner::update_dive_profile(&dive_stage.clone());
-        //     dive_results.push(dive_stage.clone());
-        // }
-
-        dive_results
-    }
-}
-
-impl DiveStage {
     pub fn calculate_decompression_dive_steps(&self) -> Vec<DiveStep> {
         if self
             .dive_model
@@ -53,6 +29,23 @@ impl DiveStage {
         }
 
         decompression_steps
+    }
+
+    pub fn decompression_update_dive_profile(&self) -> Vec<DiveStage> {
+        let mut dive_stage = self.clone();
+        let mut dive_results = vec![];
+
+        let mut decompression_steps: VecDeque<DiveStep> =
+            self.calculate_decompression_dive_steps().into();
+
+        while let Some(decompression_step) = decompression_steps.pop_front() {
+            dive_stage.dive_step = decompression_step;
+            dive_stage = DivePlanner::update_dive_profile(&dive_stage.clone());
+            dive_stage.decompression_steps = decompression_steps.clone();
+            dive_results.push(dive_stage.clone());
+        }
+
+        dive_results
     }
 
     fn calculate_decompression_dive_step(&self) -> DiveStep {
