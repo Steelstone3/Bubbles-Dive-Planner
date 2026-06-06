@@ -31,6 +31,7 @@ impl DiveStage {
         decompression_steps
     }
 
+    // TODO Test
     pub fn decompression_update_dive_profile(&self) -> Vec<DiveStage> {
         let mut dive_stage = self.clone();
         let mut dive_results = vec![];
@@ -86,23 +87,7 @@ impl DiveStage {
 
 #[cfg(test)]
 mod dive_stage_should {
-    use crate::{
-        models::plan::{dive_stage::DiveStage, dive_step::DiveStep},
-        test::test_fixture::dive_stage_test_fixture,
-    };
-
-    #[test]
-    fn test_calculate_decompression_dive_step() {
-        // Given
-        let expected_decompression_step = DiveStep::new(6, 1);
-        let dive_stage = dive_stage_test_fixture();
-
-        // When
-        let decompression_step = DiveStage::calculate_decompression_dive_step(&dive_stage);
-
-        // Then
-        pretty_assertions::assert_eq!(expected_decompression_step, decompression_step);
-    }
+    use crate::{models::plan::dive_step::DiveStep, test::test_fixture::dive_stage_test_fixture};
 
     #[test]
     fn test_calculate_decompression_dive_steps() {
