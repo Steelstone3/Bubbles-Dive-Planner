@@ -1,11 +1,14 @@
-use serde::{Deserialize, Serialize};
-
+use super::gas_mixture::GasMixture;
 use crate::{
     application::input_parser::parse_input_u32,
     models::plan::{cylinders::gas_management::GasManagement, dive_step::DiveStep},
 };
+use serde::{Deserialize, Serialize};
 
-use super::gas_mixture::GasMixture;
+const MAXIMUM_VOLUME_VALUE: u32 = 30;
+const MAXIMUM_PRESSURE_VALUE: u32 = 300;
+const MINIMUM_VOLUME_VALUE: u32 = 3;
+const MINIMUM_PRESSURE_VALUE: u32 = 50;
 
 #[derive(PartialEq, Debug, Clone, Serialize, Deserialize)]
 pub struct Cylinder {
@@ -32,8 +35,8 @@ impl Cylinder {
         surface_air_consumption_rate: u32,
     ) -> Self {
         let initial_pressurised_cylinder_volume =
-            Cylinder::initial_pressurised_cylinder_volume(volume, pressure);
-
+        Cylinder::initial_pressurised_cylinder_volume(volume, pressure);
+        
         Self {
             volume,
             pressure,
@@ -46,8 +49,29 @@ impl Cylinder {
             ),
         }
     }
+    
+    // TODO test
+    pub fn is_valid(&self) -> bool {
+        if self.volume > MAXIMUM_VOLUME_VALUE {
+            return false;
+        } else if self.volume < MINIMUM_VOLUME_VALUE {
+            return false;
+        } else if self.pressure > MAXIMUM_PRESSURE_VALUE {
+            return false;
+        } else if self.pressure < MINIMUM_PRESSURE_VALUE {
+            return false;
+        }
+        else if !self.gas_mixture.is_valid() {
+            return false;
+        }
+        else if !self.gas_management.is_valid() {
+            return false;
+        }
+    
+        true
+    }
 
-    // TODO test, speculative generality
+    // TODO test
     pub fn update_gas_management(&self, dive_step: &DiveStep) -> Cylinder {
         Cylinder {
             volume: self.volume,
@@ -60,9 +84,6 @@ impl Cylinder {
 
     // TODO test
     pub fn update_cylinder_volume(&self, volume: String) -> Self {
-        const MINIMUM_VOLUME_VALUE: u32 = 3;
-        const MAXIMUM_VOLUME_VALUE: u32 = 30;
-
         let volume = parse_input_u32(volume, MINIMUM_VOLUME_VALUE, MAXIMUM_VOLUME_VALUE);
 
         Self::new(
@@ -75,9 +96,6 @@ impl Cylinder {
 
     // TODO test
     pub fn update_cylinder_pressure(&self, pressure: String) -> Self {
-        const MINIMUM_PRESSURE_VALUE: u32 = 50;
-        const MAXIMUM_PRESSURE_VALUE: u32 = 300;
-
         let pressure = parse_input_u32(pressure, MINIMUM_PRESSURE_VALUE, MAXIMUM_PRESSURE_VALUE);
 
         Self::new(
@@ -92,6 +110,7 @@ impl Cylinder {
     pub fn get_initial_pressurised_cylinder_volume(&self) -> u32 {
         self.initial_pressurised_cylinder_volume
     }
+
 
     fn initial_pressurised_cylinder_volume(volume: u32, pressure: u32) -> u32 {
         volume * pressure

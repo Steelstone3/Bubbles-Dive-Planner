@@ -20,6 +20,14 @@ impl DiveStage {
             cylinder,
         }
     }
+
+    pub fn is_valid(&self) -> bool {
+        if !self.dive_step.is_valid() || !self.cylinder.is_valid() {
+            return false;
+        }
+
+        true
+    }
 }
 
 #[cfg(test)]

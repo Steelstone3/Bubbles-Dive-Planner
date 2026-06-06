@@ -1,6 +1,8 @@
+use crate::{application::input_parser::parse_input_u32, models::plan::dive_step::DiveStep};
 use serde::{Deserialize, Serialize};
 
-use crate::{application::input_parser::parse_input_u32, models::plan::dive_step::DiveStep};
+pub const MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE: u32 = 30;
+pub const MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE: u32 = 3;
 
 #[derive(PartialEq, Debug, Clone, Default, Serialize, Deserialize)]
 pub struct GasManagement {
@@ -24,13 +26,21 @@ impl GasManagement {
     }
 
     // TODO test
+    pub fn is_valid(&self) -> bool {
+        if self.surface_air_consumption_rate > MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE {
+            return false;
+        } else if self.surface_air_consumption_rate < MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE {
+            return false;
+        }
+
+        true
+    }
+
+    // TODO test
     pub fn update_surface_air_consumption_rate(
         &self,
         surface_air_consumption_rate: String,
     ) -> Self {
-        pub const MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE: u32 = 3;
-        pub const MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE: u32 = 30;
-
         let surface_air_consumption_rate = parse_input_u32(
             surface_air_consumption_rate,
             MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE,

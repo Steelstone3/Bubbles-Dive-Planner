@@ -1,6 +1,11 @@
 use crate::application::input_parser::parse_input_u32;
 use serde::{Deserialize, Serialize};
 
+const MAXIMUM_OXYGEN_VALUE: u32 = 100;
+const MAXIMUM_HELIUM_VALUE: u32 = 100;
+const MINIMUM_OXYGEN_VALUE: u32 = 5;
+const MINIMUM_HELIUM_VALUE: u32 = 0;
+
 #[derive(PartialEq, Debug, Clone, Serialize, Deserialize)]
 pub struct GasMixture {
     pub oxygen: u32,
@@ -33,9 +38,6 @@ impl GasMixture {
 
     // TODO test
     pub fn update_oxygen(&self, oxygen: String) -> Self {
-        const MINIMUM_OXYGEN_VALUE: u32 = 5;
-        const MAXIMUM_OXYGEN_VALUE: u32 = 100;
-
         let oxygen = parse_input_u32(
             oxygen,
             MINIMUM_OXYGEN_VALUE,
@@ -47,9 +49,6 @@ impl GasMixture {
 
     // TODO test
     pub fn update_helium(&self, helium: String) -> Self {
-        const MINIMUM_HELIUM_VALUE: u32 = 0;
-        const MAXIMUM_HELIUM_VALUE: u32 = 100;
-
         let helium = parse_input_u32(
             helium,
             MINIMUM_HELIUM_VALUE,
@@ -77,8 +76,22 @@ impl GasMixture {
         const TOLERATED_PARTIAL_PRESSURE: f32 = 1.4;
         let oxygen_partial_pressure = oxygen as f32 / 100.0;
         let tolerated_pressure = TOLERATED_PARTIAL_PRESSURE / oxygen_partial_pressure;
-        
+
         (tolerated_pressure * 10.0) - 10.0
+    }
+
+    pub fn is_valid(&self) -> bool {
+        if self.oxygen > MAXIMUM_OXYGEN_VALUE {
+            return false;
+        } else if self.oxygen < MINIMUM_OXYGEN_VALUE {
+            return false;
+        } else if self.helium > MAXIMUM_HELIUM_VALUE {
+            return false;
+        } else if self.helium < MINIMUM_HELIUM_VALUE {
+            return false;
+        }
+
+        true
     }
 }
 
