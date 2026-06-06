@@ -29,9 +29,9 @@ impl DivePlanner {
         }
     }
 
-    pub fn update_dive_profile(dive_stage: &DiveStage) -> Option<DiveStage> {
+    pub fn update_dive_profile(dive_stage: &DiveStage) -> DiveStage {
         if !dive_stage.is_valid() {
-            return None;
+            return dive_stage.clone();
         }
 
         // calculate gas usage
@@ -57,11 +57,7 @@ impl DivePlanner {
         dive_model.dive_profile.tolerated_surface_pressure =
             calculate_tolerated_surface_pressures(&dive_model.dive_profile);
 
-        Some(DiveStage::new(
-            dive_model,
-            dive_stage.dive_step.clone(),
-            cylinder,
-        ))
+        DiveStage::new(dive_model, dive_stage.dive_step.clone(), cylinder)
     }
 }
 
@@ -75,7 +71,7 @@ mod dive_stage_should {
     #[test]
     fn test_update_dive_profile() {
         // Given
-        let expected_dive_stage = Some(dive_stage_test_fixture());
+        let expected_dive_stage = dive_stage_test_fixture();
 
         // When
         let dive_stage = DivePlanner::update_dive_profile(&default_dive_stage_test_fixture());

@@ -1,7 +1,33 @@
+use std::collections::VecDeque;
+
 use crate::models::{
     application::dive_planner::DivePlanner,
     plan::{dive_stage::DiveStage, dive_step::DiveStep},
 };
+
+impl DiveStage {
+    pub fn decompression_update_dive_profile(&self) -> Vec<DiveStage> {
+        let mut dive_stage = self.clone();
+        let mut dive_results = vec![];
+
+        let mut decompression_steps: VecDeque<DiveStep> = self.calculate_decompression_dive_steps().into();
+
+        while let Some(decompression_step) = decompression_steps.pop_front() {
+            dive_stage.dive_step = decompression_step;
+            dive_stage = DivePlanner::update_dive_profile(&dive_stage.clone());
+            dive_stage.decompression_steps = decompression_steps.clone();
+            dive_results.push(dive_stage.clone());
+        }
+
+        // for decompression_step in decompression_steps {
+        //     dive_stage.dive_step = decompression_step.clone();
+        //     dive_stage = DivePlanner::update_dive_profile(&dive_stage.clone());
+        //     dive_results.push(dive_stage.clone());
+        // }
+
+        dive_results
+    }
+}
 
 impl DiveStage {
     pub fn calculate_decompression_dive_steps(&self) -> Vec<DiveStep> {
@@ -23,10 +49,7 @@ impl DiveStage {
             decompression_steps.push(decompression_step.clone());
             updated_dive_stage.dive_step = decompression_step.clone();
 
-            match DivePlanner::update_dive_profile(&updated_dive_stage) {
-                Some(dive_stage) => updated_dive_stage = dive_stage,
-                None => break,
-            }
+            updated_dive_stage = DivePlanner::update_dive_profile(&updated_dive_stage);
         }
 
         decompression_steps
@@ -40,13 +63,8 @@ impl DiveStage {
         while updated_dive_stage.get_dive_ceiling() < nearest_decompression_depth as f32
             && updated_dive_stage.get_dive_ceiling() > 0.0
         {
-            match DivePlanner::update_dive_profile(&updated_dive_stage) {
-                Some(dive_stage) => {
-                    updated_dive_stage = dive_stage;
-                    time += 1;
-                }
-                None => break,
-            }
+            updated_dive_stage = DivePlanner::update_dive_profile(&updated_dive_stage);
+            time += 1;
         }
 
         DiveStep::new(nearest_decompression_depth, time)

@@ -89,21 +89,19 @@ impl DivePlanner {
                 Task::none()
             }
             Message::DiveProfileOnClicked => {
-                match DivePlanner::update_dive_profile(&self.dive_stage) {
-                    Some(dive_stage) => {
-                        // Calculate decompression steps
-                        // Add decompression steps
-                        self.dive_planning.is_planning = false;
-                        self.dive_stage = dive_stage;
-                        self.dive_results.results.push(self.dive_stage.clone());
-                    }
-                    None => (),
-                };
+                self.dive_planning.is_planning = false;
+                self.dive_stage = DivePlanner::update_dive_profile(&self.dive_stage);
+                self.dive_results.results.push(self.dive_stage.clone());
+                self.dive_stage.decompression_steps =
+                    self.dive_stage.calculate_decompression_dive_steps().into();
 
                 Task::none()
             }
             Message::DecompressionProfileOnClicked => {
-                // self.decompression_update_dive_profile();
+                let results = self.dive_stage.decompression_update_dive_profile();
+
+                self.dive_stage = results.last().unwrap_or(&self.dive_stage).clone();
+                self.dive_results.results.extend(results);
                 Task::none()
             }
         }

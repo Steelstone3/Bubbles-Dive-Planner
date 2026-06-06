@@ -2,13 +2,14 @@ use crate::models::plan::{
     cylinders::cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep,
 };
 use serde::{Deserialize, Serialize};
+use std::collections::VecDeque;
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
 pub struct DiveStage {
     pub dive_model: DiveModel,
     pub dive_step: DiveStep,
     pub cylinder: Cylinder,
-    pub decompression_steps: Vec<DiveStep>,
+    pub decompression_steps: VecDeque<DiveStep>,
 }
 
 impl DiveStage {
