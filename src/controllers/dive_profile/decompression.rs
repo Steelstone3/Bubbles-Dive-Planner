@@ -4,7 +4,7 @@ use crate::models::{
 };
 
 impl DiveStage {
-    pub fn calculate_decompression_dive_steps(&self) -> DiveStage {
+    pub fn calculate_decompression_dive_steps(&self) -> Vec<DiveStep> {
         if self
             .dive_model
             .dive_profile
@@ -16,49 +16,20 @@ impl DiveStage {
         }
 
         let mut updated_dive_stage = self.clone();
-        // let mut decompression_steps = vec![];
+        let mut decompression_steps = vec![];
 
-        while (updated_dive_stage
-            .dive_model
-            .dive_profile
-            .tolerated_surface_pressure
-            .get_dive_ceiling()
-            > 0.0)
-        {
+        while updated_dive_stage.get_dive_ceiling() > 0.0 {
+            let decompression_step = updated_dive_stage.calculate_decompression_dive_step();
+            decompression_steps.push(decompression_step.clone());
+            updated_dive_stage.dive_step = decompression_step.clone();
+
             match DivePlanner::update_dive_profile(&updated_dive_stage) {
-                Some(mut dive_stage) => {
-                    dive_stage
-                        .decompression_steps
-                        .push(dive_stage.calculate_decompression_dive_step());
-                    updated_dive_stage = dive_stage
-                }
+                Some(dive_stage) => updated_dive_stage = dive_stage,
                 None => break,
             }
         }
 
-        //         Some(dive_stage) => {
-        //             depth = dive_stage.dive_step.depth;
-        //             time += 1;
-        //         }
-        //         None => return None,
-        //     }
-        // }
-
-        // let nearest_decompression_dive_step = DiveStage::find_nearest_decompression_depth(
-        //     self.dive_model
-        //         .dive_profile
-        //         .tolerated_surface_pressure
-        //         .get_dive_ceiling(),
-        // );
-
-        // match DiveStage::calculate_decompression_time_at_depth(&self) {
-        //     Some(dive_step) => {
-        //         dive_steps.push(dive_step);
-        //     }
-        //     None => (),
-        // }
-
-        updated_dive_stage
+        decompression_steps
     }
 
     fn calculate_decompression_dive_step(&self) -> DiveStep {
@@ -66,14 +37,15 @@ impl DiveStage {
         let nearest_decompression_depth = self.find_nearest_decompression_depth();
         let mut time = 0;
 
-        while DiveStage::get_dive_ceiling(&updated_dive_stage) < nearest_decompression_depth as f32
+        while updated_dive_stage.get_dive_ceiling() < nearest_decompression_depth as f32
+            && updated_dive_stage.get_dive_ceiling() > 0.0
         {
-            match DivePlanner::update_dive_profile(&self) {
+            match DivePlanner::update_dive_profile(&updated_dive_stage) {
                 Some(dive_stage) => {
                     updated_dive_stage = dive_stage;
                     time += 1;
                 }
-                None => (),
+                None => break,
             }
         }
 
@@ -99,47 +71,6 @@ impl DiveStage {
             .tolerated_surface_pressure
             .get_dive_ceiling()
     }
-
-    // fn find_nearest_decompression_depth(dive_ceiling: f32) -> Option<DiveStep> {
-    //     let step_interval = 3;
-
-    //     if dive_ceiling <= 0.0 {
-    //         return None;
-    //     }
-
-    //     let nearest_decompression_depth =
-    //         (dive_ceiling / (step_interval as f32)).ceil() as u32 * step_interval;
-
-    //     Some(DiveStep::new(nearest_decompression_depth, 1))
-    // }
-
-    // fn calculate_decompression_time_at_depth(dive_stage: &DiveStage) -> Option<DiveStep> {
-    //     let mut depth = 0;
-    //     let mut time = 0;
-
-    //     let nearest_decompression_depth = match DiveStage::find_nearest_decompression_depth(
-    //         dive_stage
-    //             .dive_model
-    //             .dive_profile
-    //             .tolerated_surface_pressure
-    //             .get_dive_ceiling(),
-    //     ) {
-    //         Some(dive_step) => dive_step.depth,
-    //         None => return None,
-    //     };
-
-    //     while dive_stage.dive_step.depth == nearest_decompression_depth {
-    //         match DivePlanner::update_dive_profile(&dive_stage) {
-    //             Some(dive_stage) => {
-    //                 depth = dive_stage.dive_step.depth;
-    //                 time += 1;
-    //             }
-    //             None => return None,
-    //         }
-    //     }
-
-    //     Some(DiveStep::new(depth, time))
-    // }
 }
 
 #[cfg(test)]
@@ -165,13 +96,13 @@ mod dive_stage_should {
     #[test]
     fn test_calculate_decompression_dive_steps() {
         // Given
-        let expected_decompression_steps = vec![DiveStep::new(6, 1), DiveStep::new(3, 3)];
+        let expected_decompression_steps = vec![DiveStep::new(6, 1), DiveStep::new(3, 4)];
         let dive_stage = dive_stage_test_fixture();
 
         // When
-        let dive_stage = dive_stage.calculate_decompression_dive_steps();
+        let decompression_steps = dive_stage.calculate_decompression_dive_steps();
 
         // Then
-        pretty_assertions::assert_eq!(expected_decompression_steps, dive_stage.decompression_steps);
+        pretty_assertions::assert_eq!(expected_decompression_steps, decompression_steps);
     }
 }
