@@ -15,7 +15,7 @@ pub fn default_dive_stage_test_fixture() -> DiveStage {
     let dive_model = DiveModel::create_zhl16_dive_model();
 
     let dive_step = DiveStep::new(50, 10);
-    let gas_mixture = GasMixture::new(32, 10);
+    let gas_mixture = GasMixture::new(21, 10);
     let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
     DiveStage::new(dive_model, dive_step, cylinder)
 }

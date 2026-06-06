@@ -59,3 +59,25 @@ impl DivePlanner {
         DiveStage::new(dive_model, self.dive_stage.dive_step.clone(), cylinder)
     }
 }
+
+#[cfg(test)]
+mod dive_stage_should {
+    use crate::{
+        models::application::dive_planner::DivePlanner,
+        test::test_fixture::{default_dive_stage_test_fixture, dive_stage_test_fixture},
+    };
+
+    #[test]
+    fn test_update_dive_profile() {
+        // Given
+        let expected_dive_stage = dive_stage_test_fixture();
+        let mut dive_planner = DivePlanner::default();
+        dive_planner.dive_stage = default_dive_stage_test_fixture();
+
+        // When
+        let dive_stage = dive_planner.update_dive_profile();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);
+    }
+}
