@@ -36,7 +36,7 @@ impl DivePlanner {
                 Card::new(
                     "Dive Profile",
                     dive_results_table(
-                        &dive_stage.dive_model.get_dive_profile_reference(),
+                        &dive_stage.dive_model.dive_profile,
                         self.theme().palette().text,
                     ),
                 )

@@ -39,15 +39,15 @@ fn calculate_nitrogen_tissue_pressures(
     dive_step: &DiveStep,
 ) -> f32 {
     dive_model
-        .get_dive_profile()
+        .dive_profile
         .tissue_pressure
         .get_nitrogen_tissue_pressures()[compartment]
         + ((dive_model
-            .get_dive_profile()
+            .dive_profile
             .ambient_pressure
             .get_nitrogen_at_pressure()
             - dive_model
-                .get_dive_profile()
+                .dive_profile
                 .tissue_pressure
                 .get_nitrogen_tissue_pressures()[compartment])
             * (1.0
@@ -63,15 +63,15 @@ fn calculate_helium_tissue_pressures(
     dive_step: &DiveStep,
 ) -> f32 {
     dive_model
-        .get_dive_profile()
+        .dive_profile
         .tissue_pressure
         .get_helium_tissue_pressures()[compartment]
         + ((dive_model
-            .get_dive_profile()
+            .dive_profile
             .ambient_pressure
             .get_helium_at_pressure()
             - dive_model
-                .get_dive_profile()
+                .dive_profile
                 .tissue_pressure
                 .get_helium_tissue_pressures()[compartment])
             * (1.0
@@ -118,7 +118,7 @@ mod commands_tissue_pressure_should {
 
         // Then
         pretty_assertions::assert_eq!(
-            expected_dive_stage.dive_model.get_dive_profile().tissue_pressure,
+            expected_dive_stage.dive_model.dive_profile.tissue_pressure,
             tissue_pressure,
         );
     }

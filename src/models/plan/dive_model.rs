@@ -10,7 +10,7 @@ pub struct DiveModel {
     b_values_nitrogen: Vec<f32>,
     a_values_helium: Vec<f32>,
     b_values_helium: Vec<f32>,
-    dive_profile: DiveProfile,
+    pub dive_profile: DiveProfile,
 }
 
 impl Default for DiveModel {
@@ -53,6 +53,7 @@ impl DiveModel {
         }
     }
 
+    #[allow(dead_code)]
     pub fn create_zhl16_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
         let dive_model = DiveModel::create_zhl16_dive_model();
         let dive_profile = DiveProfile {
@@ -108,6 +109,7 @@ impl DiveModel {
         }
     }
 
+    #[allow(dead_code)]
     pub fn create_usn_rev_6_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
         let dive_model = DiveModel::create_usn_rev_6_dive_model();
         let dive_profile = DiveProfile {
@@ -156,14 +158,6 @@ impl DiveModel {
 
     pub fn get_b_values_helium(&self) -> Vec<f32> {
         self.b_values_helium.clone()
-    }
-
-    pub fn get_dive_profile(&self) -> DiveProfile {
-        self.dive_profile.clone()
-    }
-
-    pub fn get_dive_profile_reference(&self) -> &DiveProfile {
-        &self.dive_profile
     }
 }
 

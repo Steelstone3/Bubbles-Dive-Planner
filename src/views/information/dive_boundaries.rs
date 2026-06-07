@@ -31,7 +31,7 @@ impl DivePlanner {
                             "{:.2}",
                             self.dive_stage
                                 .dive_model
-                                .get_dive_profile()
+                                .dive_profile
                                 .tolerated_surface_pressure
                                 .get_dive_ceiling()
                         )))

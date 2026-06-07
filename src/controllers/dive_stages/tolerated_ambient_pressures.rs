@@ -15,7 +15,7 @@ pub fn calculate_tolerated_ambient_pressures(dive_model: &DiveModel) -> Tolerate
         b_values.push(calculate_b_values(compartment, dive_model));
         tolerated_ambient_pressures.push(calculate_tolerated_ambient_pressure(
             compartment,
-            &dive_model.get_dive_profile(),
+            &dive_model.dive_profile,
             a_values.clone(),
             b_values.clone(),
         ));
@@ -31,16 +31,16 @@ pub fn calculate_tolerated_ambient_pressures(dive_model: &DiveModel) -> Tolerate
 fn calculate_a_values(compartment: usize, dive_model: &DiveModel) -> f32 {
     (dive_model.get_a_values_nitrogen()[compartment]
         * dive_model
-            .get_dive_profile()
+            .dive_profile
             .tissue_pressure
             .get_nitrogen_tissue_pressures()[compartment]
         + dive_model.get_a_values_helium()[compartment]
             * dive_model
-                .get_dive_profile()
+                .dive_profile
                 .tissue_pressure
                 .get_helium_tissue_pressures()[compartment])
         / dive_model
-            .get_dive_profile()
+            .dive_profile
             .tissue_pressure
             .get_total_tissue_pressures()[compartment]
 }
@@ -48,16 +48,16 @@ fn calculate_a_values(compartment: usize, dive_model: &DiveModel) -> f32 {
 fn calculate_b_values(compartment: usize, dive_model: &DiveModel) -> f32 {
     (dive_model.get_b_values_nitrogen()[compartment]
         * dive_model
-            .get_dive_profile()
+            .dive_profile
             .tissue_pressure
             .get_nitrogen_tissue_pressures()[compartment]
         + dive_model.get_b_values_helium()[compartment]
             * dive_model
-                .get_dive_profile()
+                .dive_profile
                 .tissue_pressure
                 .get_helium_tissue_pressures()[compartment])
         / dive_model
-            .get_dive_profile()
+            .dive_profile
             .tissue_pressure
             .get_total_tissue_pressures()[compartment]
 }
@@ -101,7 +101,7 @@ mod commands_tolerated_ambient_pressures_should {
 
         // Then
         pretty_assertions::assert_eq!(
-            expected_dive_model.get_dive_profile().tolerated_ambient_pressure,
+            expected_dive_model.dive_profile.tolerated_ambient_pressure,
             tolerated_ambient_pressure
         );
     }
