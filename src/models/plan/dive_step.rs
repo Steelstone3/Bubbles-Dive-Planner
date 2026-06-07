@@ -25,13 +25,11 @@ impl DiveStep {
     }
 
     pub fn is_valid(&self) -> bool {
-        if self.depth > MAXIMUM_DEPTH_VALUE {
-            return false;
-        } else if self.depth < MINIMUM_DEPTH_VALUE {
-            return false;
-        } else if self.time > MAXIMUM_TIME_VALUE {
-            return false;
-        } else if self.time < MINIMUM_TIME_VALUE {
+        if self.depth > MAXIMUM_DEPTH_VALUE
+            || self.depth < MINIMUM_DEPTH_VALUE
+            || self.time > MAXIMUM_TIME_VALUE
+            || self.time < MINIMUM_TIME_VALUE
+        {
             return false;
         }
 

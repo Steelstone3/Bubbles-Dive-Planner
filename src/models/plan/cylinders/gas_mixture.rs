@@ -80,15 +80,11 @@ impl GasMixture {
     }
 
     pub fn is_valid(&self) -> bool {
-        if self.oxygen > MAXIMUM_OXYGEN_VALUE {
-            return false;
-        } else if self.oxygen < MINIMUM_OXYGEN_VALUE {
-            return false;
-        } else if self.helium > MAXIMUM_HELIUM_VALUE {
-            return false;
-        } else if self.helium < MINIMUM_HELIUM_VALUE {
-            return false;
-        } else if self.helium + self.oxygen + self.nitrogen > 100 {
+        if self.oxygen > MAXIMUM_OXYGEN_VALUE
+            || self.oxygen < MINIMUM_OXYGEN_VALUE
+            || self.helium > MAXIMUM_HELIUM_VALUE
+            || self.helium + self.oxygen + self.nitrogen > 100
+        {
             return false;
         }
 

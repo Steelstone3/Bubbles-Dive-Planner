@@ -3,10 +3,7 @@ use crate::{
     application::states::selectable_dive_model::SelectableDiveModel,
     models::{
         information::dive_information::DiveInformation,
-        plan::{
-            dive_planning::dive_pre_planning::DivePrePlanning,
-            dive_stage::DiveStage,
-        },
+        plan::{dive_planning::dive_pre_planning::DivePrePlanning, dive_stage::DiveStage},
         result::results::DiveResults,
     },
 };

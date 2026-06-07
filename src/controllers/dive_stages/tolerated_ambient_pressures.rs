@@ -11,8 +11,8 @@ pub fn calculate_tolerated_ambient_pressures(dive_model: &DiveModel) -> Tolerate
     let mut tolerated_ambient_pressures = vec![];
 
     for compartment in 0..dive_model.number_of_compartments {
-        a_values.push(calculate_a_values(compartment, &dive_model));
-        b_values.push(calculate_b_values(compartment, &dive_model));
+        a_values.push(calculate_a_values(compartment, dive_model));
+        b_values.push(calculate_b_values(compartment, dive_model));
         tolerated_ambient_pressures.push(calculate_tolerated_ambient_pressure(
             compartment,
             &dive_model.dive_profile,

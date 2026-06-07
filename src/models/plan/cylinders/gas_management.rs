@@ -27,9 +27,9 @@ impl GasManagement {
 
     // TODO test
     pub fn is_valid(&self) -> bool {
-        if self.surface_air_consumption_rate > MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE {
-            return false;
-        } else if self.surface_air_consumption_rate < MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE {
+        if self.surface_air_consumption_rate > MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE
+            || self.surface_air_consumption_rate < MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE
+        {
             return false;
         }
 

@@ -51,17 +51,13 @@ impl Cylinder {
     }
 
     pub fn is_valid(&self) -> bool {
-        if self.volume > MAXIMUM_VOLUME_VALUE {
-            return false;
-        } else if self.volume < MINIMUM_VOLUME_VALUE {
-            return false;
-        } else if self.pressure > MAXIMUM_PRESSURE_VALUE {
-            return false;
-        } else if self.pressure < MINIMUM_PRESSURE_VALUE {
-            return false;
-        } else if !self.gas_mixture.is_valid() {
-            return false;
-        } else if !self.gas_management.is_valid() {
+        if self.volume > MAXIMUM_VOLUME_VALUE
+            || self.volume < MINIMUM_VOLUME_VALUE
+            || self.pressure > MAXIMUM_PRESSURE_VALUE
+            || self.pressure < MINIMUM_PRESSURE_VALUE
+            || !self.gas_mixture.is_valid()
+            || !self.gas_management.is_valid()
+        {
             return false;
         }
 

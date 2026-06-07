@@ -66,15 +66,14 @@ impl DiveStage {
 
     fn find_nearest_decompression_depth(&self) -> u32 {
         let step_interval = 3;
-        let nearest_decompression_depth = (self
+        (self
             .dive_model
             .dive_profile
             .tolerated_surface_pressure
             .get_dive_ceiling()
             / (step_interval as f32))
             .ceil() as u32
-            * step_interval;
-        nearest_decompression_depth
+            * step_interval
     }
 
     fn get_dive_ceiling(&self) -> f32 {
