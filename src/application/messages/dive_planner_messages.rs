@@ -33,11 +33,17 @@ impl DivePlanner {
                 Task::none()
             }
             Message::EditOnUndoClicked => {
-                // self.edit_undo();
+                self.edit_undo();
+                self.dive_stage.decompression_steps =
+                    self.dive_stage.calculate_decompression_dive_steps().into();
+
                 Task::none()
             }
             Message::EditOnRedoClicked => {
-                // self.edit_redo();
+                self.edit_redo();
+                self.dive_stage.decompression_steps =
+                    self.dive_stage.calculate_decompression_dive_steps().into();
+
                 Task::none()
             }
             Message::ViewOnToggleThemeClicked => {
