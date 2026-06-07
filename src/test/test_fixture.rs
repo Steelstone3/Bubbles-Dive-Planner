@@ -22,8 +22,8 @@ pub fn default_dive_stage_test_fixture() -> DiveStage {
 
 #[allow(dead_code)]
 pub fn dive_stage_test_fixture() -> DiveStage {
-    let mut dive_model = DiveModel::create_zhl16_dive_model();
-    dive_model.dive_profile = dive_profile_test_fixture();
+    let dive_profile = dive_profile_test_fixture();
+    let dive_model = DiveModel::create_zhl16_dive_model_with_dive_profile(dive_profile);
 
     let dive_step = DiveStep::new(50, 10);
 

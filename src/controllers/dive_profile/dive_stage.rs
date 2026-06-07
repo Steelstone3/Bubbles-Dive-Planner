@@ -42,20 +42,20 @@ impl DivePlanner {
         let mut dive_model = dive_stage.dive_model.clone();
 
         // calculate ambient pressure
-        dive_model.dive_profile.ambient_pressure =
+        dive_model.get_dive_profile().ambient_pressure =
             calculate_ambient_pressures(&dive_stage.dive_step, &dive_stage.cylinder.gas_mixture);
 
         // calculate tissue pressures
-        dive_model.dive_profile.tissue_pressure =
+        dive_model.get_dive_profile().tissue_pressure =
             calculate_tissue_pressures(&dive_model, &dive_stage.dive_step);
 
         // calculate tolerated ambient pressures
-        dive_model.dive_profile.tolerated_ambient_pressure =
+        dive_model.get_dive_profile().tolerated_ambient_pressure =
             calculate_tolerated_ambient_pressures(&dive_model);
 
         // calculate tolerated surface pressures
-        dive_model.dive_profile.tolerated_surface_pressure =
-            calculate_tolerated_surface_pressures(&dive_model.dive_profile);
+        dive_model.get_dive_profile().tolerated_surface_pressure =
+            calculate_tolerated_surface_pressures(&dive_model.get_dive_profile());
 
         DiveStage::new(dive_model, dive_stage.dive_step.clone(), cylinder)
     }

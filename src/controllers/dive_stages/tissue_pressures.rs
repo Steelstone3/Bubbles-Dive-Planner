@@ -8,7 +8,7 @@ pub fn calculate_tissue_pressures(dive_model: &DiveModel, dive_step: &DiveStep) 
     let mut helium_tissue_pressures = vec![];
     let mut total_tissue_pressures = vec![];
 
-    for compartment in 0..dive_model.number_of_compartments {
+    for compartment in 0..dive_model.get_number_of_compartments() {
         nitrogen_tissue_pressures.push(calculate_nitrogen_tissue_pressures(
             compartment,
             dive_model,
@@ -39,21 +39,21 @@ fn calculate_nitrogen_tissue_pressures(
     dive_step: &DiveStep,
 ) -> f32 {
     dive_model
-        .dive_profile
+        .get_dive_profile()
         .tissue_pressure
         .get_nitrogen_tissue_pressures()[compartment]
         + ((dive_model
-            .dive_profile
+            .get_dive_profile()
             .ambient_pressure
             .get_nitrogen_at_pressure()
             - dive_model
-                .dive_profile
+                .get_dive_profile()
                 .tissue_pressure
                 .get_nitrogen_tissue_pressures()[compartment])
             * (1.0
                 - f32::powf(
                     2.0,
-                    -(dive_step.time as f32 / dive_model.nitrogen_half_times[compartment]),
+                    -(dive_step.time as f32 / dive_model.get_nitrogen_half_times()[compartment]),
                 )))
 }
 
@@ -63,21 +63,21 @@ fn calculate_helium_tissue_pressures(
     dive_step: &DiveStep,
 ) -> f32 {
     dive_model
-        .dive_profile
+        .get_dive_profile()
         .tissue_pressure
         .get_helium_tissue_pressures()[compartment]
         + ((dive_model
-            .dive_profile
+            .get_dive_profile()
             .ambient_pressure
             .get_helium_at_pressure()
             - dive_model
-                .dive_profile
+                .get_dive_profile()
                 .tissue_pressure
                 .get_helium_tissue_pressures()[compartment])
             * (1.0
                 - f32::powf(
                     2.0,
-                    -(dive_step.time as f32 / dive_model.helium_half_times[compartment]),
+                    -(dive_step.time as f32 / dive_model.get_helium_half_times()[compartment]),
                 )))
 }
 
@@ -102,13 +102,13 @@ mod commands_tissue_pressure_should {
     #[test]
     fn calculate_tissue_pressure_of_the_dive_profile() {
         // Given
-        let mut zhl16 = DiveModel::create_zhl16_dive_model();
-        zhl16.dive_profile = DiveProfile {
+        let dive_profile = DiveProfile {
             number_of_compartments: 16,
             ambient_pressure: ambient_pressure_test_fixture(),
             tissue_pressure: TissuePressure::new_default(16),
             ..Default::default()
         };
+        let zhl16 = DiveModel::create_zhl16_dive_model_with_dive_profile(dive_profile);
         let expected_dive_stage = dive_stage_test_fixture();
 
         // When
@@ -118,7 +118,7 @@ mod commands_tissue_pressure_should {
 
         // Then
         pretty_assertions::assert_eq!(
-            expected_dive_stage.dive_model.dive_profile.tissue_pressure,
+            expected_dive_stage.dive_model.get_dive_profile().tissue_pressure,
             tissue_pressure,
         );
     }

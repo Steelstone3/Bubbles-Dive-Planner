@@ -9,7 +9,7 @@ impl DiveStage {
     pub fn calculate_decompression_dive_steps(&self) -> Vec<DiveStep> {
         if self
             .dive_model
-            .dive_profile
+            .get_dive_profile()
             .tolerated_surface_pressure
             .get_dive_ceiling()
             <= 0.0
@@ -68,7 +68,7 @@ impl DiveStage {
         let step_interval = 3;
         (self
             .dive_model
-            .dive_profile
+            .get_dive_profile()
             .tolerated_surface_pressure
             .get_dive_ceiling()
             / (step_interval as f32))
@@ -78,7 +78,7 @@ impl DiveStage {
 
     fn get_dive_ceiling(&self) -> f32 {
         self.dive_model
-            .dive_profile
+            .get_dive_profile()
             .tolerated_surface_pressure
             .get_dive_ceiling()
     }

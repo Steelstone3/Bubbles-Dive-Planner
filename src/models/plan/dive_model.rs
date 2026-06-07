@@ -3,14 +3,14 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DiveModel {
-    pub number_of_compartments: usize,
-    pub nitrogen_half_times: Vec<f32>,
-    pub helium_half_times: Vec<f32>,
-    pub a_values_nitrogen: Vec<f32>,
-    pub b_values_nitrogen: Vec<f32>,
-    pub a_values_helium: Vec<f32>,
-    pub b_values_helium: Vec<f32>,
-    pub dive_profile: DiveProfile,
+    number_of_compartments: usize,
+    nitrogen_half_times: Vec<f32>,
+    helium_half_times: Vec<f32>,
+    a_values_nitrogen: Vec<f32>,
+    b_values_nitrogen: Vec<f32>,
+    a_values_helium: Vec<f32>,
+    b_values_helium: Vec<f32>,
+    dive_profile: DiveProfile,
 }
 
 impl Default for DiveModel {
@@ -53,6 +53,28 @@ impl DiveModel {
         }
     }
 
+    pub fn create_zhl16_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
+        let dive_model = DiveModel::create_zhl16_dive_model();
+        let dive_profile = DiveProfile {
+            number_of_compartments: dive_model.get_number_of_compartments(),
+            ambient_pressure: dive_profile.ambient_pressure,
+            tissue_pressure: dive_profile.tissue_pressure,
+            tolerated_ambient_pressure: dive_profile.tolerated_ambient_pressure,
+            tolerated_surface_pressure: dive_profile.tolerated_surface_pressure,
+        };
+
+        DiveModel {
+            number_of_compartments: dive_model.number_of_compartments,
+            nitrogen_half_times: dive_model.nitrogen_half_times,
+            helium_half_times: dive_model.helium_half_times,
+            a_values_nitrogen: dive_model.a_values_nitrogen,
+            b_values_nitrogen: dive_model.b_values_nitrogen,
+            a_values_helium: dive_model.a_values_helium,
+            b_values_helium: dive_model.b_values_helium,
+            dive_profile,
+        }
+    }
+
     pub fn create_usn_rev_6_dive_model() -> DiveModel {
         let number_of_compartments = 9;
 
@@ -84,6 +106,64 @@ impl DiveModel {
             ],
             dive_profile: DiveProfile::new(number_of_compartments),
         }
+    }
+
+    pub fn create_usn_rev_6_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
+        let dive_model = DiveModel::create_usn_rev_6_dive_model();
+        let dive_profile = DiveProfile {
+            number_of_compartments: dive_model.get_number_of_compartments(),
+            ambient_pressure: dive_profile.ambient_pressure,
+            tissue_pressure: dive_profile.tissue_pressure,
+            tolerated_ambient_pressure: dive_profile.tolerated_ambient_pressure,
+            tolerated_surface_pressure: dive_profile.tolerated_surface_pressure,
+        };
+
+        DiveModel {
+            number_of_compartments: dive_model.number_of_compartments,
+            nitrogen_half_times: dive_model.nitrogen_half_times,
+            helium_half_times: dive_model.helium_half_times,
+            a_values_nitrogen: dive_model.a_values_nitrogen,
+            b_values_nitrogen: dive_model.b_values_nitrogen,
+            a_values_helium: dive_model.a_values_helium,
+            b_values_helium: dive_model.b_values_helium,
+            dive_profile,
+        }
+    }
+
+    pub fn get_number_of_compartments(&self) -> usize {
+        self.number_of_compartments
+    }
+
+    pub fn get_nitrogen_half_times(&self) -> Vec<f32> {
+        self.nitrogen_half_times.clone()
+    }
+
+    pub fn get_helium_half_times(&self) -> Vec<f32> {
+        self.helium_half_times.clone()
+    }
+
+    pub fn get_a_values_nitrogen(&self) -> Vec<f32> {
+        self.a_values_nitrogen.clone()
+    }
+
+    pub fn get_b_values_nitrogen(&self) -> Vec<f32> {
+        self.b_values_nitrogen.clone()
+    }
+
+    pub fn get_a_values_helium(&self) -> Vec<f32> {
+        self.a_values_helium.clone()
+    }
+
+    pub fn get_b_values_helium(&self) -> Vec<f32> {
+        self.b_values_helium.clone()
+    }
+
+    pub fn get_dive_profile(&self) -> DiveProfile {
+        self.dive_profile.clone()
+    }
+
+    pub fn get_dive_profile_reference(&self) -> &DiveProfile {
+        &self.dive_profile
     }
 }
 
