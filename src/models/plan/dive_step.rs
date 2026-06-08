@@ -19,7 +19,6 @@ impl Default for DiveStep {
 }
 
 impl DiveStep {
-    // TODO test
     pub fn new(depth: u32, time: u32) -> Self {
         Self { depth, time }
     }
@@ -36,12 +35,10 @@ impl DiveStep {
         true
     }
 
-    // TODO test
     pub fn update_depth(depth: String) -> u32 {
         parse_input_u32(depth, MINIMUM_DEPTH_VALUE, MAXIMUM_DEPTH_VALUE)
     }
 
-    // TODO test
     pub fn update_time(time: String) -> u32 {
         parse_input_u32(time, MINIMUM_TIME_VALUE, MAXIMUM_TIME_VALUE)
     }
@@ -52,6 +49,46 @@ mod dive_step_should {
     use crate::models::plan::dive_step::DiveStep;
     use rstest::rstest;
 
+    #[test]
+    fn test_default() {
+        // Given
+        let expected_dive_step = DiveStep { depth: 1, time: 1 };
+
+        // When
+        let dive_step = DiveStep::default();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_dive_step.depth, dive_step.depth);
+        pretty_assertions::assert_eq!(expected_dive_step.time, dive_step.time);
+    }
+
+    #[test]
+    fn test_new() {
+        // Given
+        let depth = 50;
+        let time = 10;
+        let expected_dive_step = DiveStep { depth, time };
+
+        // When
+        let dive_step = DiveStep::new(depth, time);
+
+        // Then
+        pretty_assertions::assert_eq!(expected_dive_step.depth, dive_step.depth);
+        pretty_assertions::assert_eq!(expected_dive_step.time, dive_step.time);
+    }
+
+    #[test]
+    fn test_get_depth() {
+        // Given
+        let expected_depth = 50;
+
+        // When
+        let depth = DiveStep::update_depth("50".to_string());
+
+        // Then
+        pretty_assertions::assert_eq!(expected_depth, depth);
+    }
+
     #[rstest]
     #[case(50, 10, true)]
     #[case(100, 60, true)]
@@ -60,7 +97,11 @@ mod dive_step_should {
     #[case(0, 10, false)]
     #[case(50, 61, false)]
     #[case(50, 0, false)]
-    fn validate_dive_step(#[case] depth: u32, #[case] time: u32, #[case] expected_is_valid: bool) {
+    fn test_is_valid_dive_step(
+        #[case] depth: u32,
+        #[case] time: u32,
+        #[case] expected_is_valid: bool,
+    ) {
         // Given
         let dive_step = DiveStep { depth, time };
 
