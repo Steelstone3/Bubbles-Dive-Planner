@@ -52,10 +52,7 @@ mod edit_should {
     fn is_undoable(#[case] results: Vec<DiveStage>, #[case] expected_is_undoable: bool) {
         // Given
         let dive_planner = DivePlanner {
-            dive_results: DiveResults {
-                results,
-                ..Default::default()
-            },
+            dive_results: DiveResults { results },
             ..Default::default()
         };
 
@@ -93,10 +90,7 @@ mod edit_should {
         let dive_stage = dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {
             dive_stage,
-            dive_results: DiveResults {
-                results: vec![],
-                ..Default::default()
-            },
+            dive_results: DiveResults { results: vec![] },
             application_state: ApplicationState {
                 redo_buffer: vec![],
                 ..Default::default()
@@ -105,10 +99,7 @@ mod edit_should {
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: Default::default(),
-            dive_results: DiveResults {
-                results: vec![],
-                ..Default::default()
-            },
+            dive_results: DiveResults { results: vec![] },
             application_state: ApplicationState {
                 redo_buffer: vec![],
                 ..Default::default()
@@ -131,7 +122,6 @@ mod edit_should {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
                 results: vec![dive_stage.clone()],
-                ..Default::default()
             },
             application_state: ApplicationState {
                 redo_buffer: vec![],
@@ -141,10 +131,7 @@ mod edit_should {
         };
         let expected_dive_planner = DivePlanner {
             dive_stage: Default::default(),
-            dive_results: DiveResults {
-                results: vec![],
-                ..Default::default()
-            },
+            dive_results: DiveResults { results: vec![] },
             application_state: ApplicationState {
                 redo_buffer: vec![dive_stage.clone()],
                 ..Default::default()
@@ -167,7 +154,6 @@ mod edit_should {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
                 results: vec![dive_stage.clone(), dive_stage.clone()],
-                ..Default::default()
             },
             application_state: ApplicationState {
                 redo_buffer: vec![],
@@ -179,7 +165,6 @@ mod edit_should {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
                 results: vec![dive_stage.clone()],
-                ..Default::default()
             },
             application_state: ApplicationState {
                 redo_buffer: vec![dive_stage.clone()],
@@ -203,7 +188,6 @@ mod edit_should {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
                 results: vec![dive_stage.clone(), dive_stage.clone()],
-                ..Default::default()
             },
             ..Default::default()
         };
@@ -211,7 +195,6 @@ mod edit_should {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
                 results: vec![dive_stage.clone(), dive_stage.clone()],
-                ..Default::default()
             },
             ..Default::default()
         };
@@ -231,7 +214,6 @@ mod edit_should {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
                 results: vec![dive_stage.clone()],
-                ..Default::default()
             },
             application_state: ApplicationState {
                 redo_buffer: vec![dive_stage.clone()],
@@ -243,7 +225,6 @@ mod edit_should {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
                 results: vec![dive_stage.clone(), dive_stage.clone()],
-                ..Default::default()
             },
             ..Default::default()
         };
@@ -261,10 +242,7 @@ mod edit_should {
         let dive_stage = dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
-            dive_results: DiveResults {
-                results: vec![],
-                ..Default::default()
-            },
+            dive_results: DiveResults { results: vec![] },
             application_state: ApplicationState {
                 redo_buffer: vec![dive_stage.clone(), dive_stage.clone()],
                 ..Default::default()
@@ -275,7 +253,6 @@ mod edit_should {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
                 results: vec![dive_stage.clone()],
-                ..Default::default()
             },
             application_state: ApplicationState {
                 redo_buffer: vec![dive_stage.clone()],
