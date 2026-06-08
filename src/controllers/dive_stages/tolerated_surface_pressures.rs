@@ -63,7 +63,7 @@ fn calculate_dive_ceiling(dive_profile_model: &DiveProfile) -> f32 {
 #[cfg(test)]
 mod commands_max_surface_pressures_should {
     use super::*;
-    use crate::test::test_fixture::{
+    use crate::test_fixture::{
         dive_profile_test_fixture, tissue_pressure_test_fixture,
         tolerated_ambient_pressure_test_fixture,
     };

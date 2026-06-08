@@ -24,7 +24,7 @@ mod file_should {
             plan::dive_planning::dive_pre_planning::DivePrePlanning,
             result::results::DiveResults,
         },
-        test::test_fixture::dive_stage_test_fixture,
+        test_fixture::dive_stage_test_fixture,
     };
     use std::fs;
 

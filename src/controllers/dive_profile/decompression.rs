@@ -86,7 +86,7 @@ impl DiveStage {
 
 #[cfg(test)]
 mod dive_stage_should {
-    use crate::{models::plan::dive_step::DiveStep, test::test_fixture::dive_stage_test_fixture};
+    use crate::{models::plan::dive_step::DiveStep, test_fixture::dive_stage_test_fixture};
 
     #[test]
     fn test_calculate_decompression_dive_steps() {

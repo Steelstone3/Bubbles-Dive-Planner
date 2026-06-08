@@ -42,7 +42,7 @@ mod edit_should {
             plan::dive_stage::DiveStage,
             result::results::DiveResults,
         },
-        test::test_fixture::dive_stage_test_fixture,
+        test_fixture::dive_stage_test_fixture,
     };
     use rstest::rstest;
 

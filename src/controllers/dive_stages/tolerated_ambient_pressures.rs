@@ -80,7 +80,7 @@ mod commands_tolerated_ambient_pressures_should {
     use crate::{
         controllers::dive_stages::tolerated_ambient_pressures::calculate_tolerated_ambient_pressures,
         models::plan::{dive_model::DiveModel, dive_profile_result::dive_profile::DiveProfile},
-        test::test_fixture::{
+        test_fixture::{
             ambient_pressure_test_fixture, dive_stage_test_fixture, tissue_pressure_test_fixture,
         },
     };

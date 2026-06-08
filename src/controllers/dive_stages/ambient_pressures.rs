@@ -17,7 +17,7 @@ pub fn calculate_ambient_pressures(
 
 #[cfg(test)]
 mod commands_ambient_pressures_should {
-    use crate::test::test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture};
+    use crate::test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture};
 
     #[test]
     fn calculate_ambient_pressures_of_the_dive_profile() {

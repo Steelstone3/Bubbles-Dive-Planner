@@ -4,7 +4,7 @@ use models::application::dive_planner::DivePlanner;
 mod application;
 mod controllers;
 mod models;
-mod test;
+mod test_fixture;
 mod views;
 
 pub fn main() -> iced::Result {

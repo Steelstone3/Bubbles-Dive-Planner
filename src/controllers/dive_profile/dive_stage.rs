@@ -65,7 +65,7 @@ impl DivePlanner {
 mod dive_stage_should {
     use crate::{
         models::application::dive_planner::DivePlanner,
-        test::test_fixture::{default_dive_stage_test_fixture, dive_stage_test_fixture},
+        test_fixture::{default_dive_stage_test_fixture, dive_stage_test_fixture},
     };
 
     #[test]

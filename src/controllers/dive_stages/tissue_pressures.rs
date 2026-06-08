@@ -96,7 +96,7 @@ mod commands_tissue_pressure_should {
         models::plan::dive_profile_result::{
             dive_profile::DiveProfile, tissue_pressure::TissuePressure,
         },
-        test::test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture},
+        test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture},
     };
 
     #[test]
