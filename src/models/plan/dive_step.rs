@@ -97,11 +97,7 @@ mod dive_step_should {
     #[case(0, 10, false)]
     #[case(50, 61, false)]
     #[case(50, 0, false)]
-    fn test_is_valid_dive_step(
-        #[case] depth: u32,
-        #[case] time: u32,
-        #[case] expected_is_valid: bool,
-    ) {
+    fn test_is_valid(#[case] depth: u32, #[case] time: u32, #[case] expected_is_valid: bool) {
         // Given
         let dive_step = DiveStep { depth, time };
 

@@ -123,7 +123,7 @@ mod cylinder_should {
     #[case(2, 200, false)]
     #[case(12, 301, false)]
     #[case(12, 49, false)]
-    fn validate_cylinder(#[case] volume: u32, #[case] pressure: u32, #[case] is_valid: bool) {
+    fn test_is_valid(#[case] volume: u32, #[case] pressure: u32, #[case] is_valid: bool) {
         // Given
         let cylinder = Cylinder::new(volume, pressure, GasMixture::default(), 12);
 
