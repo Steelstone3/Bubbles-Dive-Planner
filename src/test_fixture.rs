@@ -1,3 +1,4 @@
+#[cfg(test)]
 use crate::models::plan::{
     cylinders::{cylinder::Cylinder, gas_mixture::GasMixture},
     dive_model::DiveModel,
@@ -10,7 +11,7 @@ use crate::models::plan::{
     dive_step::DiveStep,
 };
 
-#[allow(dead_code)]
+#[cfg(test)]
 pub fn default_dive_stage_test_fixture() -> DiveStage {
     let dive_model = DiveModel::create_zhl16_dive_model();
 
@@ -20,7 +21,7 @@ pub fn default_dive_stage_test_fixture() -> DiveStage {
     DiveStage::new(dive_model, dive_step, cylinder)
 }
 
-#[allow(dead_code)]
+#[cfg(test)]
 pub fn dive_stage_test_fixture() -> DiveStage {
     let dive_profile = dive_profile_test_fixture();
     let dive_model = DiveModel::create_zhl16_dive_model_with_dive_profile(dive_profile);
@@ -35,7 +36,7 @@ pub fn dive_stage_test_fixture() -> DiveStage {
     DiveStage::new(dive_model, dive_step, cylinder)
 }
 
-#[allow(dead_code)]
+#[cfg(test)]
 pub fn dive_profile_test_fixture() -> DiveProfile {
     DiveProfile {
         number_of_compartments: 16,
@@ -46,12 +47,12 @@ pub fn dive_profile_test_fixture() -> DiveProfile {
     }
 }
 
-#[allow(dead_code)]
+#[cfg(test)]
 pub fn ambient_pressure_test_fixture() -> AmbientPressure {
     AmbientPressure::new(1.26, 0.6, 4.14)
 }
 
-#[allow(dead_code)]
+#[cfg(test)]
 pub fn tissue_pressure_test_fixture() -> TissuePressure {
     TissuePressure::new(
         vec![
@@ -85,7 +86,7 @@ pub fn tissue_pressure_test_fixture() -> TissuePressure {
     )
 }
 
-#[allow(dead_code)]
+#[cfg(test)]
 pub fn tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
     ToleratedAmbientPressure::new(
         vec![
@@ -106,7 +107,7 @@ pub fn tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
     )
 }
 
-#[allow(dead_code)]
+#[cfg(test)]
 pub fn tolerated_surface_pressure_test_fixture() -> ToleratedSurfacePressure {
     ToleratedSurfacePressure::new(
         vec![

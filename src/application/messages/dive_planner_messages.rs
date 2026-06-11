@@ -7,6 +7,7 @@ use iced::Task;
 
 impl DivePlanner {
     // TODO Test
+    #[allow(dead_code)]
     pub fn update(&mut self, message: Message) -> Task<Message> {
         match message {
             Message::MenuBar => Task::none(),

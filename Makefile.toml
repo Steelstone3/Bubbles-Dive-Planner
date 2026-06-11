@@ -24,7 +24,13 @@ args = ["test", "--all-features"]
 command = "cargo"
 
 [tasks.test_coverage]
-args = ["tarpaulin", "--skip-clean"]
+args = [
+    "tarpaulin",
+    "--skip-clean",
+    "--locked",
+    "--exclude-files",
+    "src/views/*",
+]
 command = "cargo"
 install_crate = "tarpaulin"
 
