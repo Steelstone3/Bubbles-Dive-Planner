@@ -12,8 +12,8 @@ const MINIMUM_PRESSURE_VALUE: u32 = 50;
 
 #[derive(PartialEq, Debug, Clone, Serialize, Deserialize)]
 pub struct Cylinder {
-    pub volume: u32,
-    pub pressure: u32,
+    volume: u32,
+    pressure: u32,
     initial_pressurised_cylinder_volume: u32,
     pub gas_mixture: GasMixture,
     pub gas_management: GasManagement,
@@ -62,6 +62,14 @@ impl Cylinder {
         }
 
         true
+    }
+
+    pub fn get_volume(&self) -> u32 {
+        self.volume
+    }
+
+    pub fn get_pressure(&self) -> u32 {
+        self.pressure
     }
 
     // TODO test

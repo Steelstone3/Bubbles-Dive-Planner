@@ -70,7 +70,7 @@ impl DivePlanner {
                                     row!()
                                         .push(text("Volume (l):"))
                                         .spacing(10)
-                                        .push(text(dive_stage.cylinder.volume.to_string()))
+                                        .push(text(dive_stage.cylinder.get_volume().to_string()))
                                         .spacing(10),
                                 )
                                 .spacing(10)
@@ -78,7 +78,7 @@ impl DivePlanner {
                                     row!()
                                         .push(text("Pressure (bar):"))
                                         .spacing(10)
-                                        .push(text(dive_stage.cylinder.pressure.to_string()))
+                                        .push(text(dive_stage.cylinder.get_pressure().to_string()))
                                         .spacing(10),
                                 )
                                 .spacing(10)

@@ -15,7 +15,7 @@ impl DivePlanner {
                     .push(
                         text_input(
                             "Enter Cylinder Volume",
-                            &self.dive_stage.cylinder.volume.to_string(),
+                            &self.dive_stage.cylinder.get_volume().to_string(),
                         )
                         .on_input(Message::CylinderVolumeOnChanged),
                     )
@@ -25,7 +25,7 @@ impl DivePlanner {
                     .push(
                         text_input(
                             "Enter Cylinder Pressure (bar)",
-                            &self.dive_stage.cylinder.pressure.to_string(),
+                            &self.dive_stage.cylinder.get_pressure().to_string(),
                         )
                         .on_input(Message::CylinderPressureOnChanged),
                     )
@@ -51,7 +51,7 @@ impl DivePlanner {
                         row!()
                             .push(text("Volume (l):"))
                             .spacing(10)
-                            .push(text(self.dive_stage.cylinder.volume.to_string()))
+                            .push(text(self.dive_stage.cylinder.get_volume().to_string()))
                             .spacing(10),
                     )
                     .spacing(10)
@@ -59,7 +59,7 @@ impl DivePlanner {
                         row!()
                             .push(text("Pressure (bar):"))
                             .spacing(10)
-                            .push(text(self.dive_stage.cylinder.pressure.to_string()))
+                            .push(text(self.dive_stage.cylinder.get_pressure().to_string()))
                             .spacing(10),
                     )
                     .spacing(10)
