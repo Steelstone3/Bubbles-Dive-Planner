@@ -169,8 +169,17 @@ mod cylinder_should {
     }
 
     #[test]
-    #[ignore]
-    fn test_get_volume() {}
+    fn test_get_volume() {
+        // Given
+        let expected_volume = 12;
+        let cylinder = Cylinder::new(expected_volume, 200, GasMixture::new(21, 0), 12);
+
+        // When
+        let volume = cylinder.get_volume();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_volume, volume);
+    }
 
     #[test]
     #[ignore]
