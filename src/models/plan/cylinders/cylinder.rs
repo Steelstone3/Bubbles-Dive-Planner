@@ -27,7 +27,6 @@ impl Default for Cylinder {
 }
 
 impl Cylinder {
-    // TODO test
     pub fn new(
         volume: u32,
         pressure: u32,
@@ -48,28 +47,6 @@ impl Cylinder {
                 surface_air_consumption_rate,
             ),
         }
-    }
-
-    pub fn is_valid(&self) -> bool {
-        if self.volume > MAXIMUM_VOLUME_VALUE
-            || self.volume < MINIMUM_VOLUME_VALUE
-            || self.pressure > MAXIMUM_PRESSURE_VALUE
-            || self.pressure < MINIMUM_PRESSURE_VALUE
-            || !self.gas_mixture.is_valid()
-            || !self.gas_management.is_valid()
-        {
-            return false;
-        }
-
-        true
-    }
-
-    pub fn get_volume(&self) -> u32 {
-        self.volume
-    }
-
-    pub fn get_pressure(&self) -> u32 {
-        self.pressure
     }
 
     pub fn update_gas_management(&self, dive_step: &DiveStep) -> Cylinder {
@@ -104,8 +81,30 @@ impl Cylinder {
         )
     }
 
+    pub fn get_volume(&self) -> u32 {
+        self.volume
+    }
+
+    pub fn get_pressure(&self) -> u32 {
+        self.pressure
+    }
+
     pub fn get_initial_pressurised_cylinder_volume(&self) -> u32 {
         self.initial_pressurised_cylinder_volume
+    }
+
+    pub fn is_valid(&self) -> bool {
+        if self.volume > MAXIMUM_VOLUME_VALUE
+            || self.volume < MINIMUM_VOLUME_VALUE
+            || self.pressure > MAXIMUM_PRESSURE_VALUE
+            || self.pressure < MINIMUM_PRESSURE_VALUE
+            || !self.gas_mixture.is_valid()
+            || !self.gas_management.is_valid()
+        {
+            return false;
+        }
+
+        true
     }
 
     fn initial_pressurised_cylinder_volume(volume: u32, pressure: u32) -> u32 {
@@ -118,6 +117,24 @@ mod cylinder_should {
     use crate::models::plan::cylinders::cylinder::Cylinder;
     use crate::models::plan::cylinders::gas_mixture::GasMixture;
     use rstest::rstest;
+
+    #[test]
+    fn test_update_gas_management() {}
+
+    #[test]
+    fn test_update_cylinder_volume() {}
+
+    #[test]
+    fn test_update_cylinder_pressure() {}
+
+    #[test]
+    fn test_get_volume() {}
+
+    #[test]
+    fn test_get_pressure() {}
+
+    #[test]
+    fn test_get_initial_pressurised_cylinder_volume() {}
 
     #[rstest]
     #[case(12, 200, true)]
