@@ -12,7 +12,6 @@ pub struct GasManagement {
 }
 
 impl GasManagement {
-    // TODO test
     pub fn new(
         initial_pressurised_cylinder_volume: u32,
         used: u32,
@@ -25,7 +24,6 @@ impl GasManagement {
         }
     }
 
-    // TODO test
     pub fn is_valid(&self) -> bool {
         if self.surface_air_consumption_rate > MAXIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE
             || self.surface_air_consumption_rate < MINIMUM_SURFACE_AIR_CONSUMPTION_RATE_VALUE
@@ -36,7 +34,6 @@ impl GasManagement {
         true
     }
 
-    // TODO test
     pub fn update_surface_air_consumption_rate(
         &self,
         surface_air_consumption_rate: String,
@@ -50,7 +47,6 @@ impl GasManagement {
         GasManagement::new(self.remaining, self.used, surface_air_consumption_rate)
     }
 
-    // TODO test
     pub fn update_gas_management(&self, dive_step: &DiveStep) -> GasManagement {
         let pressure_at_depth = (dive_step.depth / 10) + 1;
         let used = pressure_at_depth * dive_step.time * self.surface_air_consumption_rate;
@@ -64,17 +60,14 @@ impl GasManagement {
         }
     }
 
-    // TODO test
     pub fn get_remaining(&self) -> u32 {
         self.remaining
     }
 
-    // TODO test
     pub fn get_used(&self) -> u32 {
         self.used
     }
 
-    // TODO test
     pub fn get_surface_air_consumption_rate(&self) -> u32 {
         self.surface_air_consumption_rate
     }
@@ -82,7 +75,7 @@ impl GasManagement {
 
 #[cfg(test)]
 mod gas_management_should {
-    use crate::models::plan::cylinders::gas_management::GasManagement;
+    use crate::models::plan::{cylinders::gas_management::GasManagement, dive_step::DiveStep};
     use rstest::rstest;
 
     #[rstest]
@@ -100,6 +93,94 @@ mod gas_management_should {
         let is_valid = gas_management.is_valid();
 
         // Then
-        assert_eq!(expected_is_valid, is_valid);
+        pretty_assertions::assert_eq!(expected_is_valid, is_valid);
+    }
+
+    #[test]
+    fn test_update_surface_air_consumption_rate() {
+        // Given
+        let expected_surface_air_consumption = "15".to_string();
+        let gas_management = GasManagement::new(2400, 0, 12);
+        let expected_gas_management = GasManagement::new(2400, 0, 15);
+
+        // When
+        let gas_management =
+            gas_management.update_surface_air_consumption_rate(expected_surface_air_consumption);
+
+        // Then
+        pretty_assertions::assert_eq!(expected_gas_management, gas_management);
+    }
+
+    #[test]
+    fn test_update_gas_management() {
+        // Given
+        let dive_step = DiveStep::new(50, 10);
+        let original_gas_management = GasManagement::new(2400, 0, 12);
+        let expected_gas_management = GasManagement::new(1680, 720, 12);
+
+        // When
+        let gas_management = original_gas_management.update_gas_management(&dive_step);
+
+        // Then
+        pretty_assertions::assert_eq!(expected_gas_management, gas_management);
+    }
+
+    #[test]
+    fn test_update_gas_management_out_of_air() {
+        // Given
+        let dive_step = DiveStep::new(50, 10);
+        let original_gas_management = GasManagement::new(719, 0, 12);
+        let expected_gas_management = GasManagement::new(0, 720, 12);
+
+        // When
+        let gas_management = original_gas_management.update_gas_management(&dive_step);
+
+        // Then
+        pretty_assertions::assert_eq!(expected_gas_management, gas_management);
+    }
+
+    #[test]
+    fn test_get_remaining() {
+        // Given
+        let expected_remaining = 2400;
+        let gas_management =
+            GasManagement::new(expected_remaining, Default::default(), Default::default());
+
+        // When
+        let remaining = gas_management.get_remaining();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_remaining, remaining);
+    }
+
+    #[test]
+    fn test_get_used() {
+        // Given
+        let expected_used = 720;
+        let gas_management =
+            GasManagement::new(Default::default(), expected_used, Default::default());
+
+        // When
+        let used = gas_management.get_used();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_used, used);
+    }
+
+    #[test]
+    fn test_get_surface_air_consumption() {
+        // Given
+        let expected_surface_air_consumption = 12;
+        let gas_management = GasManagement::new(
+            Default::default(),
+            Default::default(),
+            expected_surface_air_consumption,
+        );
+
+        // When
+        let surface_air_consumption = gas_management.get_surface_air_consumption_rate();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_surface_air_consumption, surface_air_consumption);
     }
 }

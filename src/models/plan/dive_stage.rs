@@ -22,7 +22,6 @@ impl DiveStage {
         }
     }
 
-    // TODO test
     pub fn is_valid(&self) -> bool {
         if !self.dive_step.is_valid() || !self.cylinder.is_valid() {
             return false;
