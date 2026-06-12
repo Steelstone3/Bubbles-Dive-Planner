@@ -155,8 +155,18 @@ mod cylinder_should {
     }
 
     #[test]
-    #[ignore]
-    fn test_update_cylinder_pressure() {}
+    fn test_update_cylinder_pressure() {
+        // Given
+        let pressure = "300".to_string();
+        let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
+        let expected_cylinder = Cylinder::new(12, 300, GasMixture::new(21, 0), 12);
+
+        // When
+        let cylinder = original_cylinder.update_cylinder_pressure(pressure.to_string());
+
+        // Then
+        pretty_assertions::assert_eq!(expected_cylinder, cylinder);
+    }
 
     #[test]
     #[ignore]
