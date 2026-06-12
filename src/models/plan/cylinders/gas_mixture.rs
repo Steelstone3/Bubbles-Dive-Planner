@@ -89,11 +89,37 @@ impl GasMixture {
 
 #[cfg(test)]
 mod gas_mixture_should {
-    use crate::models::plan::cylinders::gas_mixture::{self, GasMixture};
+    use crate::models::plan::cylinders::gas_mixture::GasMixture;
     use rstest::rstest;
 
     #[test]
-    fn get_nitrogen() {
+    fn test_update_oxygen() {
+        // Given
+        let original_gas_mixture = GasMixture::new(21, 0);
+        let expected_gas_mixture = GasMixture::new(50, 0);
+
+        // When
+        let gas_mixture = original_gas_mixture.update_oxygen("50".to_string());
+
+        // Then
+        pretty_assertions::assert_eq!(expected_gas_mixture, gas_mixture);
+    }
+
+    #[test]
+    fn test_update_helium() {
+        // Given
+        let original_gas_mixture = GasMixture::new(21, 0);
+        let expected_gas_mixture = GasMixture::new(21, 10);
+
+        // When
+        let gas_mixture = original_gas_mixture.update_helium("10".to_string());
+
+        // Then
+        pretty_assertions::assert_eq!(expected_gas_mixture, gas_mixture);
+    }
+
+    #[test]
+    fn test_get_nitrogen() {
         // Given
         let expected_nitrogen = 79;
         let gas_mixture = GasMixture::new(21, 0);
@@ -106,7 +132,7 @@ mod gas_mixture_should {
     }
 
     #[test]
-    fn get_maximum_operating_depth() {
+    fn test_get_maximum_operating_depth() {
         // Given
         let expected_maximum_operating_depth = 56.66667;
         let gas_mixture = GasMixture::new(21, 0);
