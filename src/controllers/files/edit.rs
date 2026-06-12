@@ -42,12 +42,12 @@ mod edit_should {
             plan::dive_stage::DiveStage,
             result::results::DiveResults,
         },
-        test_fixture::dive_stage_test_fixture,
+        test_fixture::dive_stage_test_fixture_zhl16,
     };
     use rstest::rstest;
 
     #[rstest]
-    #[case(vec![dive_stage_test_fixture()], true)]
+    #[case(vec![dive_stage_test_fixture_zhl16()], true)]
     #[case(vec![], false)]
     fn is_undoable(#[case] results: Vec<DiveStage>, #[case] expected_is_undoable: bool) {
         // Given
@@ -64,7 +64,7 @@ mod edit_should {
     }
 
     #[rstest]
-    #[case(vec![dive_stage_test_fixture()], true)]
+    #[case(vec![dive_stage_test_fixture_zhl16()], true)]
     #[case(vec![], false)]
     fn is_redoable(#[case] redo_buffer: Vec<DiveStage>, #[case] expected_is_redoable: bool) {
         // Given
@@ -87,7 +87,7 @@ mod edit_should {
     #[test]
     fn undo_a_dive_stage_with_no_results() {
         // Given
-        let dive_stage = dive_stage_test_fixture();
+        let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage,
             dive_results: DiveResults { results: vec![] },
@@ -117,7 +117,7 @@ mod edit_should {
     #[test]
     fn undo_a_dive_stage_with_one_result() {
         // Given
-        let dive_stage = dive_stage_test_fixture();
+        let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
@@ -149,7 +149,7 @@ mod edit_should {
     #[test]
     fn undo_a_dive_stage_with_multiple_results() {
         // Given
-        let dive_stage = dive_stage_test_fixture();
+        let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
@@ -183,7 +183,7 @@ mod edit_should {
     #[test]
     fn redo_when_buffer_is_empty() {
         // Given
-        let dive_stage = dive_stage_test_fixture();
+        let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
@@ -209,7 +209,7 @@ mod edit_should {
     #[test]
     fn redo_dive_stage() {
         // Given
-        let dive_stage = dive_stage_test_fixture();
+        let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
@@ -239,7 +239,7 @@ mod edit_should {
     #[test]
     fn redo_multiple_dive_stages() {
         // Given
-        let dive_stage = dive_stage_test_fixture();
+        let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults { results: vec![] },

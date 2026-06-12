@@ -65,16 +65,16 @@ impl DivePlanner {
 mod dive_stage_should {
     use crate::{
         models::application::dive_planner::DivePlanner,
-        test_fixture::{default_dive_stage_test_fixture, dive_stage_test_fixture},
+        test_fixture::{default_dive_stage_test_fixture_zhl16, dive_stage_test_fixture_zhl16},
     };
 
     #[test]
     fn test_update_dive_profile() {
         // Given
-        let expected_dive_stage = dive_stage_test_fixture();
+        let expected_dive_stage = dive_stage_test_fixture_zhl16();
 
         // When
-        let dive_stage = DivePlanner::update_dive_profile(&default_dive_stage_test_fixture());
+        let dive_stage = DivePlanner::update_dive_profile(&default_dive_stage_test_fixture_zhl16());
 
         // Then
         pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);

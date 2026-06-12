@@ -81,14 +81,14 @@ mod commands_tolerated_ambient_pressures_should {
         controllers::dive_stages::tolerated_ambient_pressures::calculate_tolerated_ambient_pressures,
         models::plan::{dive_model::DiveModel, dive_profile_result::dive_profile::DiveProfile},
         test_fixture::{
-            ambient_pressure_test_fixture, dive_stage_test_fixture, tissue_pressure_test_fixture,
+            ambient_pressure_test_fixture, dive_stage_test_fixture_zhl16, tissue_pressure_test_fixture,
         },
     };
 
     #[test]
     fn test_calculate_tolerated_ambient_pressures() {
         // Given
-        let expected_dive_model = dive_stage_test_fixture().dive_model;
+        let expected_dive_model = dive_stage_test_fixture_zhl16().dive_model;
         let dive_profile = DiveProfile {
             ambient_pressure: ambient_pressure_test_fixture(),
             tissue_pressure: tissue_pressure_test_fixture(),

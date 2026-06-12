@@ -96,7 +96,7 @@ mod commands_tissue_pressure_should {
         models::plan::dive_profile_result::{
             dive_profile::DiveProfile, tissue_pressure::TissuePressure,
         },
-        test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture},
+        test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture_zhl16},
     };
 
     #[test]
@@ -109,7 +109,7 @@ mod commands_tissue_pressure_should {
             ..Default::default()
         };
         let zhl16 = DiveModel::create_zhl16_dive_model_with_dive_profile(dive_profile);
-        let expected_dive_stage = dive_stage_test_fixture();
+        let expected_dive_stage = dive_stage_test_fixture_zhl16();
 
         // When
 

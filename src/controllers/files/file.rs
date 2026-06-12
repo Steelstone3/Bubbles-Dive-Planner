@@ -24,7 +24,7 @@ mod file_should {
             plan::dive_planning::dive_pre_planning::DivePrePlanning,
             result::results::DiveResults,
         },
-        test_fixture::dive_stage_test_fixture,
+        test_fixture::dive_stage_test_fixture_zhl16,
     };
     use std::fs;
 
@@ -33,16 +33,16 @@ mod file_should {
         // Given
         let expected = DivePlanner::default();
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture(),
+            dive_stage: dive_stage_test_fixture_zhl16(),
             dive_results: DiveResults {
                 results: vec![
-                    dive_stage_test_fixture(),
-                    dive_stage_test_fixture(),
-                    dive_stage_test_fixture(),
+                    dive_stage_test_fixture_zhl16(),
+                    dive_stage_test_fixture_zhl16(),
+                    dive_stage_test_fixture_zhl16(),
                 ],
             },
             application_state: ApplicationState {
-                redo_buffer: vec![dive_stage_test_fixture()],
+                redo_buffer: vec![dive_stage_test_fixture_zhl16()],
                 ..Default::default()
             },
             ..Default::default()
@@ -64,16 +64,16 @@ mod file_should {
                 is_planning: false,
                 ..Default::default()
             },
-            dive_stage: dive_stage_test_fixture(),
+            dive_stage: dive_stage_test_fixture_zhl16(),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture()],
+                results: vec![dive_stage_test_fixture_zhl16()],
             },
             ..Default::default()
         };
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture(),
+            dive_stage: dive_stage_test_fixture_zhl16(),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture()],
+                results: vec![dive_stage_test_fixture_zhl16()],
             },
             ..Default::default()
         };

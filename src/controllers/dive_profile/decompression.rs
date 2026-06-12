@@ -86,13 +86,13 @@ impl DiveStage {
 
 #[cfg(test)]
 mod dive_stage_should {
-    use crate::{models::plan::dive_step::DiveStep, test_fixture::dive_stage_test_fixture};
+    use crate::{models::plan::dive_step::DiveStep, test_fixture::dive_stage_test_fixture_zhl16};
 
     #[test]
     fn test_calculate_decompression_dive_steps() {
         // Given
         let expected_decompression_steps = vec![DiveStep::new(6, 1), DiveStep::new(3, 4)];
-        let dive_stage = dive_stage_test_fixture();
+        let dive_stage = dive_stage_test_fixture_zhl16();
 
         // When
         let decompression_steps = dive_stage.calculate_decompression_dive_steps();
