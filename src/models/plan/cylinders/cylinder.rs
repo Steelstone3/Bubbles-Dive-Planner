@@ -115,12 +115,30 @@ impl Cylinder {
 #[cfg(test)]
 mod cylinder_should {
     use crate::models::plan::cylinders::cylinder::Cylinder;
+    use crate::models::plan::cylinders::gas_management::GasManagement;
     use crate::models::plan::cylinders::gas_mixture::GasMixture;
+use crate::models::plan::dive_step::DiveStep;
     use rstest::rstest;
 
     #[test]
-    #[ignore]
-    fn test_update_gas_management() {}
+    fn test_update_gas_management() {
+        // Given
+        let dive_step = DiveStep::new(50, 10);
+        let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
+        let expected_cylinder = Cylinder {
+            volume: 12,
+            pressure: 200,
+            initial_pressurised_cylinder_volume: 2400,
+            gas_mixture: GasMixture::new(21, 0),
+            gas_management: GasManagement::new(1680, 720, 12),
+        };
+
+        // When
+        let cylinder = original_cylinder.update_gas_management(&dive_step);
+
+        // Then
+        pretty_assertions::assert_eq!(expected_cylinder, cylinder);
+    }
 
     #[test]
     #[ignore]
