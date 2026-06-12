@@ -195,8 +195,21 @@ mod cylinder_should {
     }
 
     #[test]
-    #[ignore]
-    fn test_get_initial_pressurised_cylinder_volume() {}
+    fn test_get_initial_pressurised_cylinder_volume() {
+        // Given
+        let expected_initial_pressurised_cylinder_volume = 2400;
+        let cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
+
+        // When
+        let initial_pressurised_cylinder_volume =
+            cylinder.get_initial_pressurised_cylinder_volume();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            expected_initial_pressurised_cylinder_volume,
+            initial_pressurised_cylinder_volume
+        );
+    }
 
     #[rstest]
     #[case(12, 200, true)]
