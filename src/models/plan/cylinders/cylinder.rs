@@ -119,21 +119,27 @@ mod cylinder_should {
     use rstest::rstest;
 
     #[test]
+    #[ignore]
     fn test_update_gas_management() {}
 
     #[test]
+    #[ignore]
     fn test_update_cylinder_volume() {}
 
     #[test]
+    #[ignore]
     fn test_update_cylinder_pressure() {}
 
     #[test]
+    #[ignore]
     fn test_get_volume() {}
 
     #[test]
+    #[ignore]
     fn test_get_pressure() {}
 
     #[test]
+    #[ignore]
     fn test_get_initial_pressurised_cylinder_volume() {}
 
     #[rstest]
