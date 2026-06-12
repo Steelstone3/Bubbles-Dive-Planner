@@ -21,7 +21,6 @@ impl Default for GasMixture {
 }
 
 impl GasMixture {
-    // TODO test
     pub fn new(oxygen: u32, helium: u32) -> Self {
         Self {
             oxygen,
@@ -31,7 +30,6 @@ impl GasMixture {
         }
     }
 
-    // TODO test
     pub fn update_oxygen(&self, oxygen: String) -> Self {
         let oxygen = parse_input_u32(
             oxygen,
@@ -42,7 +40,6 @@ impl GasMixture {
         Self::new(oxygen, self.helium)
     }
 
-    // TODO test
     pub fn update_helium(&self, helium: String) -> Self {
         let helium = parse_input_u32(
             helium,
@@ -53,14 +50,24 @@ impl GasMixture {
         Self::new(self.oxygen, helium)
     }
 
-    // TODO test
     pub fn get_nitrogen(&self) -> u32 {
         self.nitrogen
     }
 
-    // TODO test
     pub fn get_maximum_operating_depth(&self) -> f32 {
         self.maximum_operating_depth
+    }
+
+    pub fn is_valid(&self) -> bool {
+        if self.oxygen > MAXIMUM_OXYGEN_VALUE
+            || self.oxygen < MINIMUM_OXYGEN_VALUE
+            || self.helium > MAXIMUM_HELIUM_VALUE
+            || self.helium + self.oxygen + self.nitrogen > 100
+        {
+            return false;
+        }
+
+        true
     }
 
     fn update_nitrogen(oxygen: u32, helium: u32) -> u32 {
@@ -78,24 +85,38 @@ impl GasMixture {
 
         (tolerated_pressure * 10.0) - 10.0
     }
-
-    pub fn is_valid(&self) -> bool {
-        if self.oxygen > MAXIMUM_OXYGEN_VALUE
-            || self.oxygen < MINIMUM_OXYGEN_VALUE
-            || self.helium > MAXIMUM_HELIUM_VALUE
-            || self.helium + self.oxygen + self.nitrogen > 100
-        {
-            return false;
-        }
-
-        true
-    }
 }
 
 #[cfg(test)]
 mod gas_mixture_should {
-    use crate::models::plan::cylinders::gas_mixture::GasMixture;
+    use crate::models::plan::cylinders::gas_mixture::{self, GasMixture};
     use rstest::rstest;
+
+    #[test]
+    fn get_nitrogen() {
+        // Given
+        let expected_nitrogen = 79;
+        let gas_mixture = GasMixture::new(21, 0);
+
+        // When
+        let nitrogen = gas_mixture.get_nitrogen();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_nitrogen, nitrogen);
+    }
+
+    #[test]
+    fn get_maximum_operating_depth() {
+        // Given
+        let expected_maximum_operating_depth = 56.66667;
+        let gas_mixture = GasMixture::new(21, 0);
+
+        // When
+        let maximum_operating_depth = gas_mixture.get_maximum_operating_depth();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_maximum_operating_depth, maximum_operating_depth);
+    }
 
     #[rstest]
     #[case(21, 0, true)]
@@ -104,11 +125,7 @@ mod gas_mixture_should {
     #[case(21, 101, false)]
     #[case(51, 50, false)]
     #[case(50, 51, false)]
-    fn test_validate_gas_mixture(
-        #[case] oxygen: u32,
-        #[case] helium: u32,
-        #[case] expected_is_valid: bool,
-    ) {
+    fn test_is_valid(#[case] oxygen: u32, #[case] helium: u32, #[case] expected_is_valid: bool) {
         // Given
         let gas_mixture = GasMixture::new(oxygen, helium);
 
@@ -116,6 +133,6 @@ mod gas_mixture_should {
         let is_valid = gas_mixture.is_valid();
 
         // Then
-        assert_eq!(expected_is_valid, is_valid);
+        pretty_assertions::assert_eq!(expected_is_valid, is_valid);
     }
 }
