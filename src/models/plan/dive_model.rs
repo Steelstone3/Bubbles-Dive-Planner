@@ -53,7 +53,7 @@ impl DiveModel {
         }
     }
 
-    #[allow(dead_code)]
+    #[cfg(test)]
     pub fn create_zhl16_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
         let dive_model = DiveModel::create_zhl16_dive_model();
         let dive_profile = DiveProfile {

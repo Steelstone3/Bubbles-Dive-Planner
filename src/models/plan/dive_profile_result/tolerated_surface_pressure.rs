@@ -43,3 +43,34 @@ impl ToleratedSurfacePressure {
         self.dive_ceiling
     }
 }
+
+#[cfg(test)]
+mod tolerated_surface_pressure_should {
+    use crate::models::plan::dive_profile_result::tolerated_surface_pressure::ToleratedSurfacePressure;
+
+    #[test]
+    fn test_get_maximum_surface_pressures() {
+        // Given
+        let expected_maximum_surface_pressures = vec![23.0, 24.0, 25.0];
+        let tolerated_surface_pressure = ToleratedSurfacePressure::new(
+            expected_maximum_surface_pressures.clone(),
+            Default::default(),
+            Default::default(),
+        );
+
+        // When
+        let maximum_surface_pressures = tolerated_surface_pressure.get_maximum_surface_pressures();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            expected_maximum_surface_pressures.clone(),
+            maximum_surface_pressures
+        );
+    }
+
+    #[test]
+    fn test_get_compartment_loads() {}
+
+    #[test]
+    fn test_get_dive_ceiling() {}
+}
