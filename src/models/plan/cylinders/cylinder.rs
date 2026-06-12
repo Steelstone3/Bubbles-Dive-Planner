@@ -72,7 +72,6 @@ impl Cylinder {
         self.pressure
     }
 
-    // TODO test
     pub fn update_gas_management(&self, dive_step: &DiveStep) -> Cylinder {
         Cylinder {
             volume: self.volume,
@@ -83,7 +82,6 @@ impl Cylinder {
         }
     }
 
-    // TODO test
     pub fn update_cylinder_volume(&self, volume: String) -> Self {
         let volume = parse_input_u32(volume, MINIMUM_VOLUME_VALUE, MAXIMUM_VOLUME_VALUE);
 
@@ -95,7 +93,6 @@ impl Cylinder {
         )
     }
 
-    // TODO test
     pub fn update_cylinder_pressure(&self, pressure: String) -> Self {
         let pressure = parse_input_u32(pressure, MINIMUM_PRESSURE_VALUE, MAXIMUM_PRESSURE_VALUE);
 
@@ -107,7 +104,6 @@ impl Cylinder {
         )
     }
 
-    // TODO test
     pub fn get_initial_pressurised_cylinder_volume(&self) -> u32 {
         self.initial_pressurised_cylinder_volume
     }
