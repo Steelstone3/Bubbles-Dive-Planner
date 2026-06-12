@@ -69,8 +69,10 @@ mod tolerated_surface_pressure_should {
     }
 
     #[test]
+    #[ignore]
     fn test_get_compartment_loads() {}
 
     #[test]
+    #[ignore]
     fn test_get_dive_ceiling() {}
 }
