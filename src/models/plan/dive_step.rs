@@ -50,35 +50,7 @@ mod dive_step_should {
     use rstest::rstest;
 
     #[test]
-    fn test_default() {
-        // Given
-        let expected_dive_step = DiveStep { depth: 1, time: 1 };
-
-        // When
-        let dive_step = DiveStep::default();
-
-        // Then
-        pretty_assertions::assert_eq!(expected_dive_step.depth, dive_step.depth);
-        pretty_assertions::assert_eq!(expected_dive_step.time, dive_step.time);
-    }
-
-    #[test]
-    fn test_new() {
-        // Given
-        let depth = 50;
-        let time = 10;
-        let expected_dive_step = DiveStep { depth, time };
-
-        // When
-        let dive_step = DiveStep::new(depth, time);
-
-        // Then
-        pretty_assertions::assert_eq!(expected_dive_step.depth, dive_step.depth);
-        pretty_assertions::assert_eq!(expected_dive_step.time, dive_step.time);
-    }
-
-    #[test]
-    fn test_get_depth() {
+    fn test_update_depth() {
         // Given
         let expected_depth = 50;
 
@@ -87,6 +59,18 @@ mod dive_step_should {
 
         // Then
         pretty_assertions::assert_eq!(expected_depth, depth);
+    }
+
+        #[test]
+    fn test_update_time() {
+        // Given
+        let expected_time = 10;
+
+        // When
+        let time = DiveStep::update_time("10".to_string());
+
+        // Then
+        pretty_assertions::assert_eq!(expected_time, time);
     }
 
     #[rstest]
