@@ -36,7 +36,7 @@ fn get_file_contents(file_name: &str) -> String {
 #[cfg(test)]
 mod file_integration_should {
     use super::*;
-    use crate::controllers::files::test_file_guard::test_file_guard::TestFileGuard;
+    use crate::controllers::files::test_file_guard::file_guard::TestFileGuard;
     use std::fs;
 
     #[test]

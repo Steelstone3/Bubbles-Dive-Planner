@@ -1,5 +1,5 @@
 #[cfg(test)]
-pub mod test_file_guard {
+pub mod file_guard {
     use std::{fs, path::PathBuf};
 
     // File guard to ensure test file cleanup

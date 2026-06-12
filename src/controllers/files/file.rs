@@ -18,7 +18,7 @@ impl DivePlanner {
 #[cfg(test)]
 mod file_should {
     use crate::{
-        controllers::files::test_file_guard::test_file_guard::TestFileGuard,
+        controllers::files::test_file_guard::file_guard::TestFileGuard,
         models::{
             application::{application_state::ApplicationState, dive_planner::DivePlanner},
             plan::dive_planning::dive_pre_planning::DivePrePlanning,
