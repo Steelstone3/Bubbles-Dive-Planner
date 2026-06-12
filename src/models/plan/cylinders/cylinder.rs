@@ -117,7 +117,7 @@ mod cylinder_should {
     use crate::models::plan::cylinders::cylinder::Cylinder;
     use crate::models::plan::cylinders::gas_management::GasManagement;
     use crate::models::plan::cylinders::gas_mixture::GasMixture;
-use crate::models::plan::dive_step::DiveStep;
+    use crate::models::plan::dive_step::DiveStep;
     use rstest::rstest;
 
     #[test]
@@ -141,8 +141,18 @@ use crate::models::plan::dive_step::DiveStep;
     }
 
     #[test]
-    #[ignore]
-    fn test_update_cylinder_volume() {}
+    fn test_update_cylinder_volume() {
+        // Given
+        let volume = "15".to_string();
+        let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
+        let expected_cylinder = Cylinder::new(15, 200, GasMixture::new(21, 0), 12);
+
+        // When
+        let cylinder = original_cylinder.update_cylinder_volume(volume.to_string());
+
+        // Then
+        pretty_assertions::assert_eq!(expected_cylinder, cylinder);
+    }
 
     #[test]
     #[ignore]
