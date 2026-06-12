@@ -61,7 +61,7 @@ mod dive_step_should {
         pretty_assertions::assert_eq!(expected_depth, depth);
     }
 
-        #[test]
+    #[test]
     fn test_update_time() {
         // Given
         let expected_time = 10;
