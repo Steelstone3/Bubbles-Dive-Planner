@@ -78,7 +78,6 @@ impl DiveModel {
 
     pub fn create_usn_rev_6_dive_model() -> DiveModel {
         let number_of_compartments = 9;
-
         DiveModel {
             number_of_compartments,
             nitrogen_half_times: vec![
