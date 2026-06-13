@@ -58,7 +58,7 @@ mod file_should {
     #[test]
     fn acceptance_test_file_saves_and_loads_application_state() {
         // given
-        const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.toml";
+        const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state_1.toml";
         let expected_dive_planner = DivePlanner {
             dive_planning: DivePrePlanning {
                 is_planning: false,
@@ -77,9 +77,9 @@ mod file_should {
             },
             ..Default::default()
         };
+        let _guard = TestFileGuard::new(DIVE_PLANNER_STATE_FILE_NAME);
 
         // when
-        let _guard = TestFileGuard::new(DIVE_PLANNER_STATE_FILE_NAME);
         dive_planner.file_save_application_state(DIVE_PLANNER_STATE_FILE_NAME);
         dive_planner.file_load(DIVE_PLANNER_STATE_FILE_NAME);
 
