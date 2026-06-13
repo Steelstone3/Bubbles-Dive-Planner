@@ -140,6 +140,51 @@ mod dive_planner_messages_should {
     };
 
     #[test]
+    fn test_menu_bar() {}
+
+    #[test]
+    fn test_tab_selection_on_select() {}
+
+    #[test]
+    fn test_file_on_new_clicked() {}
+
+    #[test]
+    fn test_acceptance_test_file_save_and_load() {}
+
+    #[test]
+    fn test_edit_on_undo_clicked() {}
+
+    #[test]
+    fn test_edit_on_redo_clicked() {}
+
+    #[test]
+    fn test_view_on_toggle_theme_clicked() {}
+
+    #[test]
+    fn test_dive_model_selection_on_select() {}
+
+    #[test]
+    fn test_depth_on_changed() {}
+
+    #[test]
+    fn test_time_on_changed() {}
+
+    #[test]
+    fn test_cylinder_volume_on_changed() {}
+
+    #[test]
+    fn test_cylinder_pressure_on_changed() {}
+
+    #[test]
+    fn test_surface_air_consumption_on_changed() {}
+
+    #[test]
+    fn test_oxygen_on_changed() {}
+
+    #[test]
+    fn test_helium_on_changed() {}
+
+    #[test]
     fn test_dive_profile_on_clicked() {
         // Given
         let mut dive_planner = DivePlanner::default();

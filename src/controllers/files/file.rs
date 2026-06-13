@@ -29,7 +29,7 @@ mod file_should {
     use std::fs;
 
     #[test]
-    fn reset_dive_planner_to_default_state() {
+    fn test_file_new() {
         // Given
         let expected = DivePlanner::default();
         let mut dive_planner = DivePlanner {
@@ -56,7 +56,7 @@ mod file_should {
     }
 
     #[test]
-    fn file_saves_and_loads_application_state_acceptance_test() {
+    fn acceptance_test_file_saves_and_loads_application_state() {
         // Given
         const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.toml";
         let expected_dive_planner = DivePlanner {
