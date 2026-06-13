@@ -94,53 +94,53 @@ mod gas_mixture_should {
 
     #[test]
     fn test_update_oxygen() {
-        // Given
+        // given
         let original_gas_mixture = GasMixture::new(21, 0);
         let expected_gas_mixture = GasMixture::new(50, 0);
 
-        // When
+        // when
         let gas_mixture = original_gas_mixture.update_oxygen("50".to_string());
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_gas_mixture, gas_mixture);
     }
 
     #[test]
     fn test_update_helium() {
-        // Given
+        // given
         let original_gas_mixture = GasMixture::new(21, 0);
         let expected_gas_mixture = GasMixture::new(21, 10);
 
-        // When
+        // when
         let gas_mixture = original_gas_mixture.update_helium("10".to_string());
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_gas_mixture, gas_mixture);
     }
 
     #[test]
     fn test_get_nitrogen() {
-        // Given
+        // given
         let expected_nitrogen = 79;
         let gas_mixture = GasMixture::new(21, 0);
 
-        // When
+        // when
         let nitrogen = gas_mixture.get_nitrogen();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_nitrogen, nitrogen);
     }
 
     #[test]
     fn test_get_maximum_operating_depth() {
-        // Given
+        // given
         let expected_maximum_operating_depth = 56.66667;
         let gas_mixture = GasMixture::new(21, 0);
 
-        // When
+        // when
         let maximum_operating_depth = gas_mixture.get_maximum_operating_depth();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_maximum_operating_depth, maximum_operating_depth);
     }
 
@@ -152,13 +152,13 @@ mod gas_mixture_should {
     #[case(51, 50, false)]
     #[case(50, 51, false)]
     fn test_is_valid(#[case] oxygen: u32, #[case] helium: u32, #[case] expected_is_valid: bool) {
-        // Given
+        // given
         let gas_mixture = GasMixture::new(oxygen, helium);
 
-        // When
+        // when
         let is_valid = gas_mixture.is_valid();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_is_valid, is_valid);
     }
 }

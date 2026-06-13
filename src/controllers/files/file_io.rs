@@ -41,45 +41,45 @@ mod file_integration_should {
 
     #[test]
     fn test_upsert_dive_planner_state() {
-        // Given
+        // given
         let dive_planner_state_file_name = "test_file_2.toml";
         let dive_planner_file = DivePlannerFile::default();
 
-        // When
+        // when
         let _guard = TestFileGuard::new(dive_planner_state_file_name);
         upsert_dive_planner_state(dive_planner_state_file_name, &dive_planner_file);
 
-        // Then
+        // then
         assert!(fs::metadata(dive_planner_state_file_name).is_ok());
     }
 
     #[test]
     fn test_read_dive_planner_state() {
-        // Given
+        // given
         let root = env::current_dir().unwrap_or_default();
         let file_name = root.to_string_lossy();
         let expected_dive_planner_file = DivePlannerFile::default();
 
-        // When
+        // when
         let _guard = TestFileGuard::new(&file_name);
         let dive_planner_file = read_dive_planner_state(&file_name);
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner_file, dive_planner_file);
     }
 
     #[test]
     fn acceptance_test_save_and_load_dive_planner_state() {
-        // Given
+        // given
         let file_name = "test_file_3.toml";
         let expected_dive_planner_file = DivePlannerFile::default();
 
-        // When
+        // when
         let _guard = TestFileGuard::new(file_name);
         upsert_dive_planner_state(file_name, &expected_dive_planner_file);
         let dive_planner_file = read_dive_planner_state(file_name);
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner_file, dive_planner_file);
     }
 }

@@ -105,20 +105,20 @@ mod dive_stage_should {
 
     #[test]
     fn test_calculate_decompression_dive_steps() {
-        // Given
+        // given
         let expected_decompression_steps = vec![DiveStep::new(6, 1), DiveStep::new(3, 4)];
         let dive_stage = dive_stage_test_fixture_zhl16();
 
-        // When
+        // when
         let decompression_steps = dive_stage.calculate_decompression_dive_steps();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_decompression_steps, decompression_steps);
     }
 
     #[test]
     fn test_decompression_update_dive_profile() {
-        // Given
+        // given
         let dive_profile_1 = DiveProfile {
             number_of_compartments: 16,
             ambient_pressure: AmbientPressure::new(0.336, 0.16000001, 1.104),
@@ -272,23 +272,23 @@ mod dive_stage_should {
         ];
         let dive_stage = dive_stage_test_fixture_zhl16();
 
-        // When
+        // when
         let decompression_steps = dive_stage.decompression_update_dive_profile();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_dive_stages, decompression_steps);
     }
 
     #[test]
     fn test_decompression_update_dive_profile_with_no_decompression() {
-        // Given
+        // given
         let expected_decompression_steps: Vec<DiveStage> = vec![];
         let dive_stage = default_dive_stage_test_fixture_zhl16();
 
-        // When
+        // when
         let decompression_steps = dive_stage.decompression_update_dive_profile();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_decompression_steps, decompression_steps);
     }
 }

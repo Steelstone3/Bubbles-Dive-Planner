@@ -30,7 +30,7 @@ mod file_should {
 
     #[test]
     fn test_file_new() {
-        // Given
+        // given
         let expected = DivePlanner::default();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage_test_fixture_zhl16(),
@@ -48,16 +48,16 @@ mod file_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.file_new();
 
-        // Then
+        // then
         assert_eq!(expected, dive_planner);
     }
 
     #[test]
     fn acceptance_test_file_saves_and_loads_application_state() {
-        // Given
+        // given
         const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.toml";
         let expected_dive_planner = DivePlanner {
             dive_planning: DivePrePlanning {
@@ -78,12 +78,12 @@ mod file_should {
             ..Default::default()
         };
 
-        // When
+        // when
         let _guard = TestFileGuard::new(DIVE_PLANNER_STATE_FILE_NAME);
         dive_planner.file_save_application_state(DIVE_PLANNER_STATE_FILE_NAME);
         dive_planner.file_load(DIVE_PLANNER_STATE_FILE_NAME);
 
-        // Then
+        // then
         assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).is_ok());
         pretty_assertions::assert_eq!(expected_dive_planner, dive_planner);
     }

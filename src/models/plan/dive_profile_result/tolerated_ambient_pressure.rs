@@ -50,7 +50,7 @@ mod tolerated_ambient_pressures_should {
 
     #[test]
     fn test_get_tolerated_ambient_pressures() {
-        // Given
+        // given
         let expected_tolerated_ambient_pressures = vec![23.0, 22.0, 21.0];
         let tolerated_ambient_pressure = ToleratedAmbientPressure::new(
             expected_tolerated_ambient_pressures.clone(),
@@ -58,11 +58,11 @@ mod tolerated_ambient_pressures_should {
             vec![],
         );
 
-        // When
+        // when
         let tolerated_ambient_pressures =
             tolerated_ambient_pressure.get_tolerated_ambient_pressures();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_tolerated_ambient_pressures.clone(),
             tolerated_ambient_pressures
@@ -71,29 +71,29 @@ mod tolerated_ambient_pressures_should {
 
     #[test]
     fn test_get_a_values() {
-        // Given
+        // given
         let expected_a_values = vec![23.0, 22.0, 21.0];
         let tolerated_ambient_pressure =
             ToleratedAmbientPressure::new(vec![], expected_a_values.clone(), vec![]);
 
-        // When
+        // when
         let a_values = tolerated_ambient_pressure.get_a_values();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_a_values.clone(), a_values);
     }
 
     #[test]
     fn test_get_b_values() {
-        // Given
+        // given
         let expected_b_values = vec![23.0, 22.0, 21.0];
         let tolerated_ambient_pressure =
             ToleratedAmbientPressure::new(vec![], vec![], expected_b_values.clone());
 
-        // When
+        // when
         let b_values = tolerated_ambient_pressure.get_b_values();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_b_values.clone(), b_values);
     }
 }

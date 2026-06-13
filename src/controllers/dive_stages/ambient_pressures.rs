@@ -21,15 +21,15 @@ mod commands_ambient_pressures_should {
 
     #[test]
     fn calculate_ambient_pressures_of_the_dive_profile() {
-        // Given
+        // given
         let dive_step = dive_stage_test_fixture_zhl16().dive_step;
         let gas_mixture = dive_stage_test_fixture_zhl16().cylinder.gas_mixture;
         let expected_ambient_pressure = ambient_pressure_test_fixture();
 
-        // When
+        // when
         let ambient_pressure = super::calculate_ambient_pressures(&dive_step, &gas_mixture);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_ambient_pressure.get_oxygen_at_pressure(),
             ambient_pressure.get_oxygen_at_pressure()

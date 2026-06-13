@@ -88,7 +88,7 @@ mod commands_tolerated_ambient_pressures_should {
 
     #[test]
     fn test_calculate_tolerated_ambient_pressures() {
-        // Given
+        // given
         let expected_dive_model = dive_stage_test_fixture_zhl16().dive_model;
         let dive_profile = DiveProfile {
             ambient_pressure: ambient_pressure_test_fixture(),
@@ -97,10 +97,10 @@ mod commands_tolerated_ambient_pressures_should {
         };
         let dive_model = DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile);
 
-        // When
+        // when
         let tolerated_ambient_pressure = calculate_tolerated_ambient_pressures(&dive_model);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_dive_model.dive_profile.tolerated_ambient_pressure,
             tolerated_ambient_pressure

@@ -70,7 +70,7 @@ mod commands_max_surface_pressures_should {
 
     #[test]
     fn test_calculate_tolerated_surface_pressures() {
-        // Given
+        // given
         let expected_dive_profile = dive_profile_test_fixture();
         let dive_profile = DiveProfile {
             tissue_pressure: tissue_pressure_test_fixture(),
@@ -79,10 +79,10 @@ mod commands_max_surface_pressures_should {
             ..Default::default()
         };
 
-        // When
+        // when
         let tolerated_surface_pressure = calculate_tolerated_surface_pressures(&dive_profile);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_dive_profile.tolerated_surface_pressure,
             tolerated_surface_pressure

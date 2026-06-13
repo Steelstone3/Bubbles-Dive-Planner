@@ -50,16 +50,16 @@ mod edit_should {
     #[case(vec![dive_stage_test_fixture_zhl16()], true)]
     #[case(vec![], false)]
     fn is_undoable(#[case] results: Vec<DiveStage>, #[case] expected_is_undoable: bool) {
-        // Given
+        // given
         let dive_planner = DivePlanner {
             dive_results: DiveResults { results },
             ..Default::default()
         };
 
-        // When
+        // when
         let is_undoable = dive_planner.is_undoable();
 
-        // Then
+        // then
         assert_eq!(expected_is_undoable, is_undoable)
     }
 
@@ -67,7 +67,7 @@ mod edit_should {
     #[case(vec![dive_stage_test_fixture_zhl16()], true)]
     #[case(vec![], false)]
     fn is_redoable(#[case] redo_buffer: Vec<DiveStage>, #[case] expected_is_redoable: bool) {
-        // Given
+        // given
 
         let dive_planner = DivePlanner {
             application_state: ApplicationState {
@@ -77,16 +77,16 @@ mod edit_should {
             ..Default::default()
         };
 
-        // When
+        // when
         let is_redoable = dive_planner.is_redoable();
 
-        // Then
+        // then
         assert_eq!(expected_is_redoable, is_redoable)
     }
 
     #[test]
     fn undo_a_dive_stage_with_no_results() {
-        // Given
+        // given
         let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage,
@@ -107,16 +107,16 @@ mod edit_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.edit_undo();
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner, dive_planner);
     }
 
     #[test]
     fn undo_a_dive_stage_with_one_result() {
-        // Given
+        // given
         let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
@@ -139,16 +139,16 @@ mod edit_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.edit_undo();
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner, dive_planner);
     }
 
     #[test]
     fn undo_a_dive_stage_with_multiple_results() {
-        // Given
+        // given
         let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
@@ -173,16 +173,16 @@ mod edit_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.edit_undo();
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner, dive_planner);
     }
 
     #[test]
     fn redo_when_buffer_is_empty() {
-        // Given
+        // given
         let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
@@ -199,16 +199,16 @@ mod edit_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.edit_redo();
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner, dive_planner);
     }
 
     #[test]
     fn redo_dive_stage() {
-        // Given
+        // given
         let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
@@ -229,16 +229,16 @@ mod edit_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.edit_redo();
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner, dive_planner);
     }
 
     #[test]
     fn redo_multiple_dive_stages() {
-        // Given
+        // given
         let dive_stage = dive_stage_test_fixture_zhl16();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
@@ -261,10 +261,10 @@ mod edit_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.edit_redo();
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner, dive_planner);
     }
 }

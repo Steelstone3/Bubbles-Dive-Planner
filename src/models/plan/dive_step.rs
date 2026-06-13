@@ -51,25 +51,25 @@ mod dive_step_should {
 
     #[test]
     fn test_update_depth() {
-        // Given
+        // given
         let expected_depth = 50;
 
-        // When
+        // when
         let depth = DiveStep::update_depth("50".to_string());
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_depth, depth);
     }
 
     #[test]
     fn test_update_time() {
-        // Given
+        // given
         let expected_time = 10;
 
-        // When
+        // when
         let time = DiveStep::update_time("10".to_string());
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_time, time);
     }
 
@@ -82,13 +82,13 @@ mod dive_step_should {
     #[case(50, 61, false)]
     #[case(50, 0, false)]
     fn test_is_valid(#[case] depth: u32, #[case] time: u32, #[case] expected_is_valid: bool) {
-        // Given
+        // given
         let dive_step = DiveStep { depth, time };
 
-        // When
+        // when
         let is_valid = dive_step.is_valid();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_is_valid, is_valid);
     }
 }

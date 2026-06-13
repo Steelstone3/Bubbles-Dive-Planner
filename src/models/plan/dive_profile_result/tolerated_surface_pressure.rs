@@ -50,7 +50,7 @@ mod tolerated_surface_pressure_should {
 
     #[test]
     fn test_get_maximum_surface_pressures() {
-        // Given
+        // given
         let expected_maximum_surface_pressures = vec![23.0, 24.0, 25.0];
         let tolerated_surface_pressure = ToleratedSurfacePressure::new(
             expected_maximum_surface_pressures.clone(),
@@ -58,10 +58,10 @@ mod tolerated_surface_pressure_should {
             Default::default(),
         );
 
-        // When
+        // when
         let maximum_surface_pressures = tolerated_surface_pressure.get_maximum_surface_pressures();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_maximum_surface_pressures.clone(),
             maximum_surface_pressures
@@ -70,7 +70,7 @@ mod tolerated_surface_pressure_should {
 
     #[test]
     fn test_get_compartment_loads() {
-        // Given
+        // given
         let expected_compartment_loads = vec![23.0, 24.0, 25.0];
         let tolerated_surface_pressure = ToleratedSurfacePressure::new(
             Default::default(),
@@ -78,16 +78,16 @@ mod tolerated_surface_pressure_should {
             Default::default(),
         );
 
-        // When
+        // when
         let comparment_loads = tolerated_surface_pressure.get_compartment_loads();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_compartment_loads.clone(), comparment_loads);
     }
 
     #[test]
     fn test_get_dive_ceiling() {
-        // Given
+        // given
         let expected_dive_ceiling = 23.0;
         let tolerated_surface_pressure = ToleratedSurfacePressure::new(
             Default::default(),
@@ -95,10 +95,10 @@ mod tolerated_surface_pressure_should {
             expected_dive_ceiling,
         );
 
-        // When
+        // when
         let dive_ceiling = tolerated_surface_pressure.get_dive_ceiling();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_dive_ceiling.clone(), dive_ceiling);
     }
 }

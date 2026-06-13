@@ -83,10 +83,10 @@ mod dive_stage_should {
         false
     )]
     fn test_is_valid_2(#[case] dive_stage: DiveStage, #[case] expected_is_valid: bool) {
-        // When
+        // when
         let is_valid = dive_stage.is_valid();
 
-        // Then
+        // then
         assert_eq!(expected_is_valid, is_valid)
     }
 }

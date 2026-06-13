@@ -141,7 +141,7 @@ mod cylinder_should {
 
     #[test]
     fn test_update_gas_management() {
-        // Given
+        // given
         let dive_step = DiveStep::new(50, 10);
         let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
         let expected_cylinder = Cylinder {
@@ -152,78 +152,78 @@ mod cylinder_should {
             gas_management: GasManagement::new(1680, 720, 12),
         };
 
-        // When
+        // when
         let cylinder = original_cylinder.update_gas_management(&dive_step);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_cylinder, cylinder);
     }
 
     #[test]
     fn test_update_cylinder_volume() {
-        // Given
+        // given
         let volume = "15".to_string();
         let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
         let expected_cylinder = Cylinder::new(15, 200, GasMixture::new(21, 0), 12);
 
-        // When
+        // when
         let cylinder = original_cylinder.update_cylinder_volume(volume.to_string());
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_cylinder, cylinder);
     }
 
     #[test]
     fn test_update_cylinder_pressure() {
-        // Given
+        // given
         let pressure = "300".to_string();
         let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
         let expected_cylinder = Cylinder::new(12, 300, GasMixture::new(21, 0), 12);
 
-        // When
+        // when
         let cylinder = original_cylinder.update_cylinder_pressure(pressure.to_string());
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_cylinder, cylinder);
     }
 
     #[test]
     fn test_get_volume() {
-        // Given
+        // given
         let expected_volume = 12;
         let cylinder = Cylinder::new(expected_volume, 200, GasMixture::new(21, 0), 12);
 
-        // When
+        // when
         let volume = cylinder.get_volume();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_volume, volume);
     }
 
     #[test]
     fn test_get_pressure() {
-        // Given
+        // given
         let expected_pressue = 200;
         let cylinder = Cylinder::new(12, expected_pressue, GasMixture::new(21, 0), 12);
 
-        // When
+        // when
         let pressure = cylinder.get_pressure();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_pressue, pressure);
     }
 
     #[test]
     fn test_get_initial_pressurised_cylinder_volume() {
-        // Given
+        // given
         let expected_initial_pressurised_cylinder_volume = 2400;
         let cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
 
-        // When
+        // when
         let initial_pressurised_cylinder_volume =
             cylinder.get_initial_pressurised_cylinder_volume();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_initial_pressurised_cylinder_volume,
             initial_pressurised_cylinder_volume
@@ -239,13 +239,13 @@ mod cylinder_should {
     #[case(12, 301, false)]
     #[case(12, 49, false)]
     fn test_is_valid(#[case] volume: u32, #[case] pressure: u32, #[case] is_valid: bool) {
-        // Given
+        // given
         let cylinder = Cylinder::new(volume, pressure, GasMixture::default(), 12);
 
-        // When
+        // when
         let is_valid_actual = cylinder.is_valid();
 
-        // Then
+        // then
         assert_eq!(is_valid, is_valid_actual);
     }
 }

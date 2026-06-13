@@ -78,55 +78,55 @@ mod dive_stage_should {
 
     #[test]
     fn test_dive_model_selected_zhl16() {
-        // Given
+        // given
         let expected_dive_model = DiveModel::new_zhl16_dive_model();
         let mut dive_planner = DivePlanner::default();
 
-        // When
+        // when
         dive_planner.dive_model_selected(SelectableDiveModel::BulhmannZhl16);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_dive_model, dive_planner.dive_stage.dive_model);
     }
 
     #[test]
     fn test_dive_model_selected_usn_revision_6() {
-        // Given
+        // given
         let expected_dive_model = DiveModel::new_usn_revision_6_dive_model();
         let mut dive_planner = DivePlanner::default();
 
-        // When
+        // when
         dive_planner.dive_model_selected(SelectableDiveModel::UsnRevision6);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_dive_model, dive_planner.dive_stage.dive_model);
     }
 
     #[test]
     fn test_update_dive_profile_invalid() {
-        // Given
+        // given
         let expected_dive_stage = DiveStage::new(
             DiveModel::new_zhl16_dive_model(),
             DiveStep::new(0, 0),
             Cylinder::new(0, 0, GasMixture::new(100, 100), 12),
         );
 
-        // When
+        // when
         let dive_stage = DivePlanner::update_dive_profile(&expected_dive_stage);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);
     }
 
     #[test]
     fn test_update_dive_profile() {
-        // Given
+        // given
         let expected_dive_stage = dive_stage_test_fixture_zhl16();
 
-        // When
+        // when
         let dive_stage = DivePlanner::update_dive_profile(&default_dive_stage_test_fixture_zhl16());
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);
     }
 }

@@ -58,7 +58,7 @@ mod application_state_should {
     #[case(true, Theme::Light)]
     #[case(false, Theme::Dark)]
     fn test_theme(#[case] expected_is_light_theme: bool, #[case] expected_theme: Theme) {
-        // Given
+        // given
         let dive_planner = DivePlanner {
             application_state: ApplicationState {
                 is_light_theme: expected_is_light_theme,
@@ -67,10 +67,10 @@ mod application_state_should {
             ..Default::default()
         };
 
-        // When
+        // when
         let theme = dive_planner.theme();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_is_light_theme,
             dive_planner.application_state.is_light_theme
@@ -86,7 +86,7 @@ mod application_state_should {
         #[case] expected_theme: Theme,
         #[case] expected_is_light_theme: bool,
     ) {
-        // Given
+        // given
         let mut dive_planner = DivePlanner {
             application_state: ApplicationState {
                 is_light_theme,
@@ -95,10 +95,10 @@ mod application_state_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.switch_theme();
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_is_light_theme,
             dive_planner.application_state.is_light_theme
@@ -115,7 +115,7 @@ mod application_state_should {
         #[case] tab_identifier: TabIdentifier,
         #[case] expected_tab_identifier: TabIdentifier,
     ) {
-        // Given
+        // given
         let mut dive_planner = DivePlanner {
             application_state: ApplicationState {
                 tab_identifier,
@@ -124,10 +124,10 @@ mod application_state_should {
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.switch_tab(expected_tab_identifier.clone());
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_tab_identifier.clone(),
             dive_planner.application_state.tab_identifier

@@ -101,7 +101,7 @@ mod commands_tissue_pressure_should {
 
     #[test]
     fn calculate_tissue_pressure_of_the_dive_profile() {
-        // Given
+        // given
         let dive_profile = DiveProfile {
             number_of_compartments: 16,
             ambient_pressure: ambient_pressure_test_fixture(),
@@ -111,12 +111,12 @@ mod commands_tissue_pressure_should {
         let zhl16 = DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile);
         let expected_dive_stage = dive_stage_test_fixture_zhl16();
 
-        // When
+        // when
 
         let tissue_pressure =
             super::calculate_tissue_pressures(&zhl16, &expected_dive_stage.dive_step);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(
             expected_dive_stage.dive_model.dive_profile.tissue_pressure,
             tissue_pressure,

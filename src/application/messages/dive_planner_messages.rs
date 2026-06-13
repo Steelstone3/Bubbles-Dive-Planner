@@ -182,28 +182,34 @@ mod dive_planner_messages_should {
     fn test_oxygen_on_changed() {}
 
     #[test]
-    fn test_helium_on_changed() {}
+    fn test_helium_on_changed() {
+        // given
+
+        // when
+
+        // then
+    }
 
     #[test]
     fn test_dive_profile_on_clicked() {
-        // Given
+        // given
         let mut dive_planner = DivePlanner::default();
         dive_planner.dive_stage = default_dive_stage_test_fixture_zhl16();
         let mut expected_dive_stage = dive_stage_test_fixture_zhl16();
         expected_dive_stage.decompression_steps =
             vec![DiveStep::new(6, 1), DiveStep::new(3, 4)].into();
 
-        // When
+        // when
         let task = dive_planner.update(Message::DiveProfileOnClicked);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(0, task.units());
         pretty_assertions::assert_eq!(expected_dive_stage, dive_planner.dive_stage)
     }
 
     #[test]
     fn test_decompression_profile_on_clicked() {
-        // Given
+        // given
         let dive_profile_1 = DiveProfile {
             number_of_compartments: 16,
             ambient_pressure: AmbientPressure::new(0.336, 0.16000001, 1.104),
@@ -360,10 +366,10 @@ mod dive_planner_messages_should {
         let mut dive_planner = DivePlanner::default();
         dive_planner.dive_stage = dive_stage_test_fixture_zhl16();
 
-        // When
+        // when
         let tasks = dive_planner.update(Message::DecompressionProfileOnClicked);
 
-        // Then
+        // then
         pretty_assertions::assert_eq!(0, tasks.units());
         pretty_assertions::assert_eq!(expected_dive_results, dive_planner.dive_results);
     }

@@ -14,28 +14,28 @@ mod input_parser_should {
 
     #[test]
     fn parse_input_of_u32_type() {
-        // When
+        // when
         let number = parse_input_u32(30.to_string(), 0, 50);
 
-        // Then
+        // then
         assert_eq!(30, number);
     }
 
     #[test]
     fn return_minimum_value_for_invalid_input() {
-        // When
+        // when
         let number = parse_input_u32("Jeff".to_string(), 5, 200);
 
-        // Then
+        // then
         assert_eq!(5, number);
     }
 
     #[test]
     fn return_maximum_value_for_invalid_input() {
-        // When
+        // when
         let number = parse_input_u32("2222".to_string(), 5, 200);
 
-        // Then
+        // then
         assert_eq!(200, number);
     }
 }
