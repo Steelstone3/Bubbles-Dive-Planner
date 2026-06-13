@@ -44,3 +44,64 @@ impl DivePlanner {
         }
     }
 }
+
+#[cfg(test)]
+mod application_state_should {
+    use crate::models::application::{
+        application_state::ApplicationState, dive_planner::DivePlanner,
+    };
+    use iced::Theme;
+    use rstest::rstest;
+
+    #[rstest]
+    #[case(true, Theme::Light)]
+    #[case(false, Theme::Dark)]
+    fn test_theme(#[case] expected_is_light_theme: bool, #[case] expected_theme: Theme) {
+        // Given
+        let dive_planner = DivePlanner {
+            application_state: ApplicationState {
+                is_light_theme: expected_is_light_theme,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // When
+        let theme = dive_planner.theme();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            expected_is_light_theme,
+            dive_planner.application_state.is_light_theme
+        );
+        pretty_assertions::assert_eq!(expected_theme, theme);
+    }
+
+    #[rstest]
+    #[case(true, Theme::Dark, false)]
+    #[case(false, Theme::Light, true)]
+    fn test_switch_theme(
+        #[case] is_light_theme: bool,
+        #[case] expected_theme: Theme,
+        #[case] expected_is_light_theme: bool,
+    ) {
+        // Given
+        let mut dive_planner = DivePlanner {
+            application_state: ApplicationState {
+                is_light_theme,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.switch_theme();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            expected_is_light_theme,
+            dive_planner.application_state.is_light_theme
+        );
+        pretty_assertions::assert_eq!(expected_theme, dive_planner.theme());
+    }
+}
