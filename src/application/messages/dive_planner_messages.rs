@@ -179,15 +179,31 @@ mod dive_planner_messages_should {
     fn test_surface_air_consumption_on_changed() {}
 
     #[test]
-    fn test_oxygen_on_changed() {}
+    fn test_oxygen_on_changed() {
+        // given
+        let oxygen = 10;
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::OxygenOnChanged(oxygen.to_string()));
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(oxygen, dive_planner.dive_stage.cylinder.gas_mixture.oxygen)
+    }
 
     #[test]
     fn test_helium_on_changed() {
         // given
+        let helium = 10;
+        let mut dive_planner = DivePlanner::default();
 
         // when
+        let tasks = dive_planner.update(Message::HeliumOnChanged(helium.to_string()));
 
         // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(helium, dive_planner.dive_stage.cylinder.gas_mixture.helium)
     }
 
     #[test]
