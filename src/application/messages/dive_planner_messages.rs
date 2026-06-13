@@ -117,7 +117,10 @@ impl DivePlanner {
 #[cfg(test)]
 mod dive_planner_messages_should {
     use crate::{
-        application::messages::message::Message,
+        application::{
+            messages::message::Message,
+            states::{selectable_dive_model::SelectableDiveModel, tab_identifier::TabIdentifier},
+        },
         models::{
             application::dive_planner::DivePlanner,
             plan::{
@@ -140,13 +143,47 @@ mod dive_planner_messages_should {
     };
 
     #[test]
-    fn test_menu_bar() {}
+    fn test_menu_bar() {
+        // given
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::MenuBar);
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+    }
 
     #[test]
-    fn test_tab_selection_on_select() {}
+    fn test_tab_selection_on_select() {
+        // given
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::TabSelectionOnSelect(TabIdentifier::Information));
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(
+            TabIdentifier::Information,
+            dive_planner.application_state.tab_identifier
+        )
+    }
 
     #[test]
-    fn test_file_on_new_clicked() {}
+    fn test_file_on_new_clicked() {
+        // given
+        let mut dive_planner = DivePlanner::default();
+        dive_planner.dive_stage = dive_stage_test_fixture_zhl16();
+        let expected_dive_stage = DiveStage::default();
+
+        // when
+        let tasks = dive_planner.update(Message::FileOnNewClicked);
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(expected_dive_stage, dive_planner.dive_stage)
+    }
 
     #[test]
     fn test_acceptance_test_file_save_and_load() {}
@@ -158,25 +195,122 @@ mod dive_planner_messages_should {
     fn test_edit_on_redo_clicked() {}
 
     #[test]
-    fn test_view_on_toggle_theme_clicked() {}
+    fn test_view_on_toggle_theme_clicked() {
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::ViewOnToggleThemeClicked);
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(true, dive_planner.application_state.is_light_theme)
+    }
 
     #[test]
-    fn test_dive_model_selection_on_select() {}
+    fn test_dive_model_selection_on_select() {
+        // given
+        let selected_dive_model = SelectableDiveModel::BulhmannZhl16;
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::DiveModelSelectionOnSelect(selected_dive_model));
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(
+            default_dive_stage_test_fixture_zhl16().dive_model,
+            dive_planner.dive_stage.dive_model
+        )
+    }
 
     #[test]
-    fn test_depth_on_changed() {}
+    fn test_depth_on_changed() {
+        // given
+        let depth = 12;
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::DepthOnChanged(depth.to_string()));
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(depth, dive_planner.dive_stage.dive_step.depth)
+    }
 
     #[test]
-    fn test_time_on_changed() {}
+    fn test_time_on_changed() {
+        // given
+        let time = 12;
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::TimeOnChanged(time.to_string()));
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(time, dive_planner.dive_stage.dive_step.time)
+    }
 
     #[test]
-    fn test_cylinder_volume_on_changed() {}
+    fn test_cylinder_volume_on_changed() {
+        // given
+        let cylinder_volume = 12;
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::CylinderVolumeOnChanged(
+            cylinder_volume.to_string(),
+        ));
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(
+            cylinder_volume,
+            dive_planner.dive_stage.cylinder.get_volume()
+        )
+    }
 
     #[test]
-    fn test_cylinder_pressure_on_changed() {}
+    fn test_cylinder_pressure_on_changed() {
+        // given
+        let cylinder_pressure = 200;
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::CylinderPressureOnChanged(
+            cylinder_pressure.to_string(),
+        ));
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(
+            cylinder_pressure,
+            dive_planner.dive_stage.cylinder.get_pressure()
+        )
+    }
 
     #[test]
-    fn test_surface_air_consumption_on_changed() {}
+    fn test_surface_air_consumption_on_changed() {
+        // given
+        let surface_air_consumption = 10;
+        let mut dive_planner = DivePlanner::default();
+
+        // when
+        let tasks = dive_planner.update(Message::SurfaceAirConsumptionOnChanged(
+            surface_air_consumption.to_string(),
+        ));
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(
+            surface_air_consumption,
+            dive_planner
+                .dive_stage
+                .cylinder
+                .gas_management
+                .get_surface_air_consumption_rate()
+        )
+    }
 
     #[test]
     fn test_oxygen_on_changed() {
