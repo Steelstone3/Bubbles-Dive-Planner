@@ -1,4 +1,6 @@
-use crate::models::plan::{cylinders::cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep};
+use crate::models::plan::{
+    cylinders::cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep,
+};
 use serde::{Deserialize, Serialize};
 use std::collections::VecDeque;
 
