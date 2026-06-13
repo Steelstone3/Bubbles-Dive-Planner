@@ -95,7 +95,7 @@ mod commands_tolerated_ambient_pressures_should {
             tissue_pressure: tissue_pressure_test_fixture(),
             ..Default::default()
         };
-        let dive_model = DiveModel::create_zhl16_dive_model_with_dive_profile(dive_profile);
+        let dive_model = DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile);
 
         // When
         let tolerated_ambient_pressure = calculate_tolerated_ambient_pressures(&dive_model);

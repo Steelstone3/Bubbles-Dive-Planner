@@ -15,12 +15,12 @@ pub struct DiveModel {
 
 impl Default for DiveModel {
     fn default() -> Self {
-        DiveModel::create_zhl16_dive_model()
+        DiveModel::new_zhl16_dive_model()
     }
 }
 
 impl DiveModel {
-    pub fn create_zhl16_dive_model() -> DiveModel {
+    pub fn new_zhl16_dive_model() -> DiveModel {
         let number_of_compartments = 16;
 
         DiveModel {
@@ -54,8 +54,8 @@ impl DiveModel {
     }
 
     #[cfg(test)]
-    pub fn create_zhl16_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
-        let dive_model = DiveModel::create_zhl16_dive_model();
+    pub fn new_zhl16_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
+        let dive_model = DiveModel::new_zhl16_dive_model();
         let dive_profile = DiveProfile {
             number_of_compartments: dive_model.get_number_of_compartments(),
             ambient_pressure: dive_profile.ambient_pressure,
@@ -76,7 +76,7 @@ impl DiveModel {
         }
     }
 
-    pub fn create_usn_rev_6_dive_model() -> DiveModel {
+    pub fn new_usn_rev_6_dive_model() -> DiveModel {
         let number_of_compartments = 9;
 
         DiveModel {
@@ -110,8 +110,8 @@ impl DiveModel {
     }
 
     #[allow(dead_code)]
-    pub fn create_usn_rev_6_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
-        let dive_model = DiveModel::create_usn_rev_6_dive_model();
+    pub fn new_usn_rev_6_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
+        let dive_model = DiveModel::new_usn_rev_6_dive_model();
         let dive_profile = DiveProfile {
             number_of_compartments: dive_model.get_number_of_compartments(),
             ambient_pressure: dive_profile.ambient_pressure,
@@ -206,7 +206,7 @@ mod dive_model_should {
         };
 
         // When
-        let zhl16_dive_model = DiveModel::create_zhl16_dive_model();
+        let zhl16_dive_model = DiveModel::new_zhl16_dive_model();
 
         // Then
         pretty_assertions::assert_eq!(expected_zhl16_dive_model, zhl16_dive_model);
@@ -268,7 +268,7 @@ mod dive_model_should {
 
         // When
         let zhl16_dive_model =
-            DiveModel::create_zhl16_dive_model_with_dive_profile(dive_profile.clone());
+            DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile.clone());
 
         // Then
         pretty_assertions::assert_eq!(expected_zhl16_dive_model, zhl16_dive_model);
@@ -310,7 +310,7 @@ mod dive_model_should {
         };
 
         // When
-        let usn_rev_6_model = DiveModel::create_usn_rev_6_dive_model();
+        let usn_rev_6_model = DiveModel::new_usn_rev_6_dive_model();
 
         // Then
         pretty_assertions::assert_eq!(expected_usn_rev_6_model, usn_rev_6_model);
@@ -372,9 +372,129 @@ mod dive_model_should {
 
         // When
         let usn_rev_6_model =
-            DiveModel::create_usn_rev_6_dive_model_with_dive_profile(dive_profile.clone());
+            DiveModel::new_usn_rev_6_dive_model_with_dive_profile(dive_profile.clone());
 
         // Then
         pretty_assertions::assert_eq!(expected_usn_rev_6_model, usn_rev_6_model);
+    }
+
+    #[test]
+    fn get_number_of_compartments() {
+        // Given
+        let dive_model = DiveModel::new_zhl16_dive_model();
+
+        // When
+        let number_of_compartments = dive_model.get_number_of_compartments();
+
+        // Then
+        pretty_assertions::assert_eq!(16, number_of_compartments)
+    }
+
+    #[test]
+    fn get_nitrogen_half_times() {
+        // Given
+        let dive_model = DiveModel::new_zhl16_dive_model();
+
+        // When
+        let nitrogen_half_times = dive_model.get_nitrogen_half_times();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            vec![
+                4.0, 8.0, 12.5, 18.5, 27.0, 38.3, 54.3, 77.0, 109.0, 146.0, 187.0, 239.0, 305.0,
+                390.0, 498.0, 635.0,
+            ],
+            nitrogen_half_times
+        )
+    }
+
+    #[test]
+    fn get_helium_half_times() {
+        // Given
+        let dive_model = DiveModel::new_zhl16_dive_model();
+
+        // When
+        let helium_half_times = dive_model.get_helium_half_times();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            vec![
+                1.51, 3.02, 4.72, 6.99, 10.21, 14.48, 20.53, 29.11, 41.2, 55.19, 70.69, 90.34,
+                115.29, 147.42, 188.24, 240.03,
+            ],
+            helium_half_times
+        )
+    }
+
+    #[test]
+    fn get_a_values_nitrogen() {
+        // Given
+        let dive_model = DiveModel::new_zhl16_dive_model();
+
+        // When
+        let a_values_nitrogen = dive_model.get_a_values_nitrogen();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            vec![
+                1.2559, 1.0, 0.8618, 0.7562, 0.6667, 0.56, 0.4947, 0.45, 0.4187, 0.3798, 0.3497,
+                0.3223, 0.285, 0.2737, 0.2523, 0.2327,
+            ],
+            a_values_nitrogen
+        )
+    }
+
+    #[test]
+    fn get_b_values_nitrogen() {
+        // Given
+        let dive_model = DiveModel::new_zhl16_dive_model();
+
+        // When
+        let b_values_nitrogen = dive_model.get_b_values_nitrogen();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            vec![
+                0.505, 0.6514, 0.7222, 0.7825, 0.8126, 0.8434, 0.8693, 0.891, 0.9092, 0.9222,
+                0.9319, 0.9403, 0.9477, 0.9544, 0.9602, 0.9653,
+            ],
+            b_values_nitrogen
+        )
+    }
+
+    #[test]
+    fn get_a_values_helium() {
+        // Given
+        let dive_model = DiveModel::new_zhl16_dive_model();
+
+        // When
+        let a_values_helium = dive_model.get_a_values_helium();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            vec![
+                1.7424, 1.383, 1.1919, 1.0458, 0.922, 0.8205, 0.7305, 0.6502, 0.595, 0.5545,
+                0.5333, 0.5189, 0.5181, 0.5176, 0.5172, 0.5119,
+            ],
+            a_values_helium
+        )
+    }
+
+    #[test]
+    fn get_b_values_helium() {
+        // Given
+        let dive_model = DiveModel::new_zhl16_dive_model();
+
+        // When
+        let b_values_helium = dive_model.get_b_values_helium();
+
+        // Then
+        pretty_assertions::assert_eq!(
+            vec![
+                0.4245, 0.5747, 0.6527, 0.7223, 0.7582, 0.7957, 0.8279, 0.8553, 0.8757, 0.8903,
+                0.8997, 0.9073, 0.9122, 0.9171, 0.9217, 0.9267,
+            ],
+            b_values_helium
+        )
     }
 }

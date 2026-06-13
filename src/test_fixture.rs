@@ -13,7 +13,7 @@ use crate::models::plan::{
 
 #[cfg(test)]
 pub fn default_dive_stage_test_fixture_zhl16() -> DiveStage {
-    let dive_model = DiveModel::create_zhl16_dive_model();
+    let dive_model = DiveModel::new_zhl16_dive_model();
 
     let dive_step = DiveStep::new(50, 10);
     let gas_mixture = GasMixture::new(21, 10);
@@ -24,7 +24,7 @@ pub fn default_dive_stage_test_fixture_zhl16() -> DiveStage {
 #[cfg(test)]
 #[allow(dead_code)]
 pub fn default_dive_stage_test_fixture_usn_rev_6() -> DiveStage {
-    let dive_model = DiveModel::create_usn_rev_6_dive_model();
+    let dive_model = DiveModel::new_usn_rev_6_dive_model();
 
     let dive_step = DiveStep::new(50, 10);
     let gas_mixture = GasMixture::new(21, 10);
@@ -35,7 +35,7 @@ pub fn default_dive_stage_test_fixture_usn_rev_6() -> DiveStage {
 #[cfg(test)]
 pub fn dive_stage_test_fixture_zhl16() -> DiveStage {
     let dive_profile = dive_profile_test_fixture();
-    let dive_model = DiveModel::create_zhl16_dive_model_with_dive_profile(dive_profile);
+    let dive_model = DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile);
 
     let dive_step = DiveStep::new(50, 10);
 
@@ -51,7 +51,7 @@ pub fn dive_stage_test_fixture_zhl16() -> DiveStage {
 #[allow(dead_code)]
 pub fn dive_stage_test_fixture_usn_rev_6() -> DiveStage {
     let dive_profile = dive_profile_test_fixture();
-    let dive_model = DiveModel::create_usn_rev_6_dive_model_with_dive_profile(dive_profile);
+    let dive_model = DiveModel::new_usn_rev_6_dive_model_with_dive_profile(dive_profile);
 
     let dive_step = DiveStep::new(50, 10);
 

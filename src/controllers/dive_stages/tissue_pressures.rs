@@ -108,7 +108,7 @@ mod commands_tissue_pressure_should {
             tissue_pressure: TissuePressure::new_default(16),
             ..Default::default()
         };
-        let zhl16 = DiveModel::create_zhl16_dive_model_with_dive_profile(dive_profile);
+        let zhl16 = DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile);
         let expected_dive_stage = dive_stage_test_fixture_zhl16();
 
         // When
