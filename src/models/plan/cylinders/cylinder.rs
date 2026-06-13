@@ -49,6 +49,25 @@ impl Cylinder {
         }
     }
 
+    #[cfg(test)]
+    pub fn new_with_gas_management(
+        volume: u32,
+        pressure: u32,
+        gas_mixture: GasMixture,
+        gas_management: GasManagement,
+    ) -> Self {
+        let initial_pressurised_cylinder_volume =
+            Cylinder::initial_pressurised_cylinder_volume(volume, pressure);
+
+        Self {
+            volume,
+            pressure,
+            initial_pressurised_cylinder_volume,
+            gas_mixture,
+            gas_management,
+        }
+    }
+
     pub fn update_gas_management(&self, dive_step: &DiveStep) -> Cylinder {
         Cylinder {
             volume: self.volume,

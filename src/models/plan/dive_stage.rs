@@ -1,5 +1,6 @@
-use crate::models::plan::{
-    cylinders::cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep,
+use crate::{
+    models::plan::{cylinders::cylinder::Cylinder, dive_model::DiveModel, dive_step::DiveStep},
+    views::information::decompression_steps,
 };
 use serde::{Deserialize, Serialize};
 use std::collections::VecDeque;
@@ -19,6 +20,21 @@ impl DiveStage {
             dive_step,
             cylinder,
             decompression_steps: Default::default(),
+        }
+    }
+
+    #[cfg(test)]
+    pub fn new_with_decompression_steps(
+        dive_model: DiveModel,
+        dive_step: DiveStep,
+        cylinder: Cylinder,
+        decompression_steps: Vec<DiveStep>,
+    ) -> Self {
+        Self {
+            dive_model,
+            dive_step,
+            cylinder,
+            decompression_steps: decompression_steps.into(),
         }
     }
 
