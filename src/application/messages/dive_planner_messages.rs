@@ -190,48 +190,6 @@ mod dive_planner_messages_should {
     }
 
     #[test]
-    #[ignore]
-    fn acceptance_test_file_save_and_load_fails() {
-        // given
-        // const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state_2.toml";
-        // let expected_dive_planner = DivePlanner {
-        //     dive_planning: DivePrePlanning {
-        //         is_planning: false,
-        //         ..Default::default()
-        //     },
-        //     dive_stage: dive_stage_test_fixture_zhl16(),
-        //     dive_results: DiveResults {
-        //         results: vec![dive_stage_test_fixture_zhl16()],
-        //     },
-        //     ..Default::default()
-        // };
-        // let mut dive_planner = DivePlanner {
-        //     dive_stage: dive_stage_test_fixture_zhl16(),
-        //     dive_results: DiveResults {
-        //         results: vec![dive_stage_test_fixture_zhl16()],
-        //     },
-        //     ..Default::default()
-        // };
-
-        let mut dive_planner = DivePlanner::default();
-
-        // when
-        // let _guard = TestFileGuard::new(DIVE_PLANNER_STATE_FILE_NAME);
-
-        let tasks_1 = dive_planner.update(Message::FileOnSaveRequested);
-        let tasks_2 = dive_planner.update(Message::FileOnSaveCompleted(None));
-        let tasks_3 = dive_planner.update(Message::FileOnLoadRequested);
-        let tasks_4 = dive_planner.update(Message::FileOnLoadCompleted(None));
-
-        // then
-        pretty_assertions::assert_eq!(1, tasks_1.units());
-        pretty_assertions::assert_eq!(0, tasks_2.units());
-        pretty_assertions::assert_eq!(1, tasks_3.units());
-        pretty_assertions::assert_eq!(0, tasks_4.units());
-        pretty_assertions::assert_eq!(DivePlanner::default(), dive_planner);
-    }
-
-    #[test]
     fn acceptance_test_file_save_and_load() {
         // given
         const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state_2.toml";
