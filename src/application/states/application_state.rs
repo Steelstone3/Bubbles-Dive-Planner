@@ -1,8 +1,8 @@
 use crate::{
-    application::{messages::message::Message, states::tab_identifier::TabIdentifier},
+    application::states::tab_identifier::TabIdentifier,
     models::application::dive_planner::DivePlanner,
 };
-use iced::{Element, Task, Theme};
+use iced::Theme;
 
 impl DivePlanner {
     pub fn switch_tab(&mut self, tab_identifier: TabIdentifier) {

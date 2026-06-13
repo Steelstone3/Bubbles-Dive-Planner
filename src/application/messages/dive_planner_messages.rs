@@ -177,8 +177,10 @@ mod dive_planner_messages_should {
     #[test]
     fn test_file_on_new_clicked() {
         // given
-        let mut dive_planner = DivePlanner::default();
-        dive_planner.dive_stage = dive_stage_test_fixture_zhl16();
+        let mut dive_planner = DivePlanner {
+            dive_stage: dive_stage_test_fixture_zhl16(),
+            ..Default::default()
+        };
         let expected_dive_stage = DiveStage::default();
 
         // when
@@ -452,8 +454,10 @@ mod dive_planner_messages_should {
     #[test]
     fn test_dive_profile_on_clicked() {
         // given
-        let mut dive_planner = DivePlanner::default();
-        dive_planner.dive_stage = default_dive_stage_test_fixture_zhl16();
+        let mut dive_planner = DivePlanner {
+            dive_stage: default_dive_stage_test_fixture_zhl16(),
+            ..Default::default()
+        };
         let mut expected_dive_stage = dive_stage_test_fixture_zhl16();
         expected_dive_stage.decompression_steps =
             vec![DiveStep::new(6, 1), DiveStep::new(3, 4)].into();
@@ -622,8 +626,10 @@ mod dive_planner_messages_should {
         let expected_dive_results: DiveResults = DiveResults {
             results: vec![dive_stage_1, dive_stage_2],
         };
-        let mut dive_planner = DivePlanner::default();
-        dive_planner.dive_stage = dive_stage_test_fixture_zhl16();
+        let mut dive_planner = DivePlanner {
+            dive_stage: dive_stage_test_fixture_zhl16(),
+            ..Default::default()
+        };
 
         // when
         let tasks = dive_planner.update(Message::DecompressionProfileOnClicked);
