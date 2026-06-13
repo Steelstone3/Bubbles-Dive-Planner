@@ -1,153 +1,94 @@
 use crate::application::input_parser::parse_input_u32;
 use serde::{Deserialize, Serialize};
 
-pub const MAXIMUM_DEPTH_VALUE: u32 = 100;
-pub const MINIMUM_DEPTH_VALUE: u32 = 1;
-pub const MAXIMUM_TIME_VALUE: u32 = 60;
-pub const MINIMUM_TIME_VALUE: u32 = 1;
+const MAXIMUM_DEPTH_VALUE: u32 = 100;
+const MAXIMUM_TIME_VALUE: u32 = 60;
+const MINIMUM_DEPTH_VALUE: u32 = 1;
+const MINIMUM_TIME_VALUE: u32 = 1;
 
-#[derive(Debug, PartialEq, Copy, Clone, Default, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct DiveStep {
     pub depth: u32,
     pub time: u32,
 }
 
+impl Default for DiveStep {
+    fn default() -> Self {
+        Self { depth: 1, time: 1 }
+    }
+}
+
 impl DiveStep {
-    pub fn update_depth(&mut self, depth: String) {
-        self.depth = parse_input_u32(depth, MINIMUM_DEPTH_VALUE, MAXIMUM_DEPTH_VALUE)
+    pub fn new(depth: u32, time: u32) -> Self {
+        Self { depth, time }
     }
 
-    pub fn update_time(&mut self, time: String) {
-        self.time = parse_input_u32(time, MINIMUM_TIME_VALUE, MAXIMUM_TIME_VALUE)
-    }
-
-    pub fn validate(&self) -> bool {
-        let depth_validation = self.depth < MINIMUM_DEPTH_VALUE || self.depth > MAXIMUM_DEPTH_VALUE;
-        let time_validation = self.time < MINIMUM_TIME_VALUE || self.time > MAXIMUM_TIME_VALUE;
-
-        if depth_validation || time_validation {
+    pub fn is_valid(&self) -> bool {
+        if self.depth > MAXIMUM_DEPTH_VALUE
+            || self.depth < MINIMUM_DEPTH_VALUE
+            || self.time > MAXIMUM_TIME_VALUE
+            || self.time < MINIMUM_TIME_VALUE
+        {
             return false;
         }
 
         true
     }
+
+    pub fn update_depth(depth: String) -> u32 {
+        parse_input_u32(depth, MINIMUM_DEPTH_VALUE, MAXIMUM_DEPTH_VALUE)
+    }
+
+    pub fn update_time(time: String) -> u32 {
+        parse_input_u32(time, MINIMUM_TIME_VALUE, MAXIMUM_TIME_VALUE)
+    }
 }
 
 #[cfg(test)]
 mod dive_step_should {
-    use super::*;
+    use crate::models::plan::dive_step::DiveStep;
     use rstest::rstest;
 
     #[test]
-    fn update_depth_by_parsing_and_validating_input_successfully() {
-        // Given
-        let expected = 50;
-        let input = "50".to_string();
-        let mut dive_step = DiveStep {
-            ..Default::default()
-        };
+    fn test_update_depth() {
+        // given
+        let expected_depth = 50;
 
-        // When
-        dive_step.update_depth(input);
+        // when
+        let depth = DiveStep::update_depth("50".to_string());
 
-        // Then
-        assert_eq!(expected, dive_step.depth);
+        // then
+        pretty_assertions::assert_eq!(expected_depth, depth);
     }
 
     #[test]
-    fn update_depth_by_parsing_an_input_beyond_range() {
-        // Given
-        let expected = 100;
-        let input = "101".to_string();
-        let mut dive_step = DiveStep {
-            ..Default::default()
-        };
+    fn test_update_time() {
+        // given
+        let expected_time = 10;
 
-        // When
-        dive_step.update_depth(input);
+        // when
+        let time = DiveStep::update_time("10".to_string());
 
-        // Then
-        assert_eq!(expected, dive_step.depth);
-    }
-
-    #[test]
-    fn update_depth_by_being_unable_to_parse_input() {
-        // Given
-        let expected = 1;
-        let input = "$%45sdg".to_string();
-        let mut dive_step = DiveStep {
-            ..Default::default()
-        };
-
-        // When
-        dive_step.update_depth(input);
-
-        // Then
-        assert_eq!(expected, dive_step.depth);
-    }
-
-    #[test]
-    fn update_time_by_parsing_and_validating_input_successfully() {
-        // Given
-        let expected = 10;
-        let input = "10".to_string();
-        let mut dive_step = DiveStep {
-            ..Default::default()
-        };
-
-        // When
-        dive_step.update_time(input);
-
-        // Then
-        assert_eq!(expected, dive_step.time);
-    }
-
-    #[test]
-    fn update_time_by_parsing_an_input_beyond_range() {
-        // Given
-        let expected = 60;
-        let input = "61".to_string();
-        let mut dive_step = DiveStep {
-            ..Default::default()
-        };
-
-        // When
-        dive_step.update_time(input);
-
-        // Then
-        assert_eq!(expected, dive_step.time);
-    }
-
-    #[test]
-    fn update_time_by_being_unable_to_parse_input() {
-        // Given
-        let expected = 1;
-        let input = "$£61asd".to_string();
-        let mut dive_step = DiveStep {
-            ..Default::default()
-        };
-
-        // When
-        dive_step.update_time(input);
-
-        // Then
-        assert_eq!(expected, dive_step.time);
+        // then
+        pretty_assertions::assert_eq!(expected_time, time);
     }
 
     #[rstest]
     #[case(50, 10, true)]
+    #[case(100, 60, true)]
+    #[case(1, 1, true)]
     #[case(101, 10, false)]
     #[case(0, 10, false)]
     #[case(50, 61, false)]
     #[case(50, 0, false)]
-    fn validate(#[case] depth: u32, #[case] time: u32, #[case] is_valid: bool) {
-        // Given
+    fn test_is_valid(#[case] depth: u32, #[case] time: u32, #[case] expected_is_valid: bool) {
+        // given
         let dive_step = DiveStep { depth, time };
 
-        // When
-        let is_valid_actual: bool = dive_step.validate();
+        // when
+        let is_valid = dive_step.is_valid();
 
-        // Then
-        assert_eq!(is_valid, is_valid_actual);
+        // then
+        pretty_assertions::assert_eq!(expected_is_valid, is_valid);
     }
 }

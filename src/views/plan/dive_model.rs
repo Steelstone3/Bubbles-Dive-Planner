@@ -15,13 +15,21 @@ impl DivePlanner {
                 "Select Dive Model",
                 pick_list(
                     &SelectableDiveModel::ALL[..],
-                    self.dive_planning.select_dive_model.selected_dive_model,
+                    self.dive_planning
+                        .select_dive_model
+                        .selected_dive_model
+                        .clone(),
                     Message::DiveModelSelectionOnSelect,
                 )
                 .width(Length::Fill)
                 .placeholder("Select Dive Model"),
             )),
-            false => match self.dive_planning.select_dive_model.selected_dive_model {
+            false => match self
+                .dive_planning
+                .select_dive_model
+                .selected_dive_model
+                .clone()
+            {
                 Some(selected_dive_model) => column!().push(Card::new(
                     "Selected Dive Model",
                     text!("{}", selected_dive_model),

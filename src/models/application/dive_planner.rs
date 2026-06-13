@@ -35,8 +35,9 @@ impl DivePlanner {
                 .dive_planning
                 .select_dive_model
                 .selected_dive_model
+                .clone()
                 .unwrap_or_default(),
-            dive_stage: self.dive_stage,
+            dive_stage: self.dive_stage.clone(),
             dive_information: self.dive_information.clone(),
             dive_results: self.dive_results.clone(),
         }

@@ -1,18 +1,10 @@
 use crate::{
-    application::{messages::message::Message, states::tab_identifier::TabIdentifier},
+    application::states::tab_identifier::TabIdentifier,
     models::application::dive_planner::DivePlanner,
 };
-use iced::{Element, Task, Theme};
+use iced::Theme;
 
 impl DivePlanner {
-    pub fn boot() -> (Self, Task<Message>) {
-        (Self::default(), Task::none())
-    }
-
-    pub fn view(&self) -> Element<'_, Message> {
-        self.tab_bar_view().into()
-    }
-
     pub fn switch_tab(&mut self, tab_identifier: TabIdentifier) {
         match tab_identifier {
             TabIdentifier::Plan => {
@@ -40,5 +32,95 @@ impl DivePlanner {
             true => self.application_state.is_light_theme = false,
             false => self.application_state.is_light_theme = true,
         }
+    }
+}
+
+#[cfg(test)]
+mod application_state_should {
+    use crate::{
+        application::states::tab_identifier::TabIdentifier,
+        models::application::{application_state::ApplicationState, dive_planner::DivePlanner},
+    };
+    use iced::Theme;
+    use rstest::rstest;
+
+    #[rstest]
+    #[case(true, Theme::Light)]
+    #[case(false, Theme::Dark)]
+    fn test_theme(#[case] expected_is_light_theme: bool, #[case] expected_theme: Theme) {
+        // given
+        let dive_planner = DivePlanner {
+            application_state: ApplicationState {
+                is_light_theme: expected_is_light_theme,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // when
+        let theme = dive_planner.theme();
+
+        // then
+        pretty_assertions::assert_eq!(
+            expected_is_light_theme,
+            dive_planner.application_state.is_light_theme
+        );
+        pretty_assertions::assert_eq!(expected_theme, theme);
+    }
+
+    #[rstest]
+    #[case(true, Theme::Dark, false)]
+    #[case(false, Theme::Light, true)]
+    fn test_switch_theme(
+        #[case] is_light_theme: bool,
+        #[case] expected_theme: Theme,
+        #[case] expected_is_light_theme: bool,
+    ) {
+        // given
+        let mut dive_planner = DivePlanner {
+            application_state: ApplicationState {
+                is_light_theme,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // when
+        dive_planner.switch_theme();
+
+        // then
+        pretty_assertions::assert_eq!(
+            expected_is_light_theme,
+            dive_planner.application_state.is_light_theme
+        );
+        pretty_assertions::assert_eq!(expected_theme, dive_planner.theme());
+    }
+
+    #[rstest]
+    #[case(TabIdentifier::Plan, TabIdentifier::Plan)]
+    #[case(TabIdentifier::Information, TabIdentifier::Plan)]
+    #[case(TabIdentifier::Plan, TabIdentifier::Information)]
+    #[case(TabIdentifier::Plan, TabIdentifier::Results)]
+    fn test_switch_tab(
+        #[case] tab_identifier: TabIdentifier,
+        #[case] expected_tab_identifier: TabIdentifier,
+    ) {
+        // given
+        let mut dive_planner = DivePlanner {
+            application_state: ApplicationState {
+                tab_identifier,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // when
+        dive_planner.switch_tab(expected_tab_identifier.clone());
+
+        // then
+        pretty_assertions::assert_eq!(
+            expected_tab_identifier.clone(),
+            dive_planner.application_state.tab_identifier
+        )
     }
 }

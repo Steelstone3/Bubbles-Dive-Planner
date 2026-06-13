@@ -7,8 +7,5 @@ pub struct DiveResults {
     pub results: Vec<DiveStage>,
 }
 
-impl DiveResults {
-    pub fn add_dive_result(&mut self, dive_stage: DiveStage) {
-        self.results.push(dive_stage);
-    }
-}
+#[cfg(test)]
+mod dive_results_should {}

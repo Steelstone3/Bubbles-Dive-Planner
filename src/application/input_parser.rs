@@ -11,31 +11,18 @@ pub fn parse_input_u32(input: String, minimum_value: u32, maximum_value: u32) ->
 #[cfg(test)]
 mod input_parser_should {
     use super::*;
+    use rstest::rstest;
 
-    #[test]
-    fn parse_input_of_u32_type() {
-        // When
-        let number = parse_input_u32(30.to_string(), 0, 50);
+    #[rstest]
+    #[case("30".to_string(), 30)]
+    #[case("Jeff".to_string(), 5)]
+    #[case("".to_string(), 5)]
+    #[case("2222".to_string(), 50)]
+    fn test_parse_input_u32(#[case] input: String, #[case] expected_output: u32) {
+        // when
+        let output = parse_input_u32(input, 5, 50);
 
-        // Then
-        assert_eq!(30, number);
-    }
-
-    #[test]
-    fn return_minimum_value_for_invalid_input() {
-        // When
-        let number = parse_input_u32("Jeff".to_string(), 5, 200);
-
-        // Then
-        assert_eq!(5, number);
-    }
-
-    #[test]
-    fn return_maximum_value_for_invalid_input() {
-        // When
-        let number = parse_input_u32("2222".to_string(), 5, 200);
-
-        // Then
-        assert_eq!(200, number);
+        // then
+        pretty_assertions::assert_eq!(expected_output, output)
     }
 }

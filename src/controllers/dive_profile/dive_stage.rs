@@ -1,45 +1,62 @@
 use crate::{
     application::states::selectable_dive_model::SelectableDiveModel,
+    controllers::dive_stages::{
+        ambient_pressures::calculate_ambient_pressures,
+        tissue_pressures::calculate_tissue_pressures,
+        tolerated_ambient_pressures::calculate_tolerated_ambient_pressures,
+        tolerated_surface_pressures::calculate_tolerated_surface_pressures,
+    },
     models::{
-        application::dive_planner::DivePlanner, plan::dive_model::DiveModel,
-        result::dive_profile::DiveProfile,
+        application::dive_planner::DivePlanner,
+        plan::{dive_model::DiveModel, dive_stage::DiveStage},
     },
 };
 
 impl DivePlanner {
     pub fn dive_model_selected(&mut self, selectable_dive_model: SelectableDiveModel) {
-        self.dive_planning.select_dive_model.selected_dive_model = Some(selectable_dive_model);
-
         match selectable_dive_model {
-            SelectableDiveModel::Bulhmann => {
-                self.dive_stage.dive_model = DiveModel::create_zhl16_dive_model()
+            SelectableDiveModel::BulhmannZhl16 => {
+                self.dive_planning.select_dive_model.selected_dive_model =
+                    Some(SelectableDiveModel::BulhmannZhl16);
+                self.dive_stage.dive_model = DiveModel::new_zhl16_dive_model()
             }
-            SelectableDiveModel::Usn => {
-                self.dive_stage.dive_model = DiveModel::create_usn_rev_6_dive_model()
+            SelectableDiveModel::UsnRevision6 => {
+                self.dive_planning.select_dive_model.selected_dive_model =
+                    Some(SelectableDiveModel::UsnRevision6);
+                self.dive_stage.dive_model = DiveModel::new_usn_revision_6_dive_model()
             }
         }
     }
 
-    pub fn update_dive_profile(&mut self) {
-        self.update_dive_stage();
+    pub fn update_dive_profile(dive_stage: &DiveStage) -> DiveStage {
+        if !dive_stage.is_valid() {
+            return dive_stage.clone();
+        }
 
-        self.add_result();
+        // calculate gas usage
+        let cylinder = dive_stage
+            .cylinder
+            .update_gas_management(&dive_stage.dive_step);
 
-        self.dive_information
-            .decompression_steps
-            .assign_decompression_steps(self.dive_stage.calculate_decompression_dive_steps());
+        let mut dive_model = dive_stage.dive_model.clone();
 
-        self.dive_planning.is_planning = false;
-    }
+        // calculate ambient pressure
+        dive_model.dive_profile.ambient_pressure =
+            calculate_ambient_pressures(&dive_stage.dive_step, &dive_stage.cylinder.gas_mixture);
 
-    fn update_dive_stage(&mut self) {
-        let dive_stage = DiveProfile::update_dive_profile(self.dive_stage);
-        self.dive_stage = dive_stage;
-    }
+        // calculate tissue pressures
+        dive_model.dive_profile.tissue_pressure =
+            calculate_tissue_pressures(&dive_model, &dive_stage.dive_step);
 
-    fn add_result(&mut self) {
-        self.dive_results.add_dive_result(self.dive_stage);
-        self.application_state.redo_buffer = Default::default();
+        // calculate tolerated ambient pressures
+        dive_model.dive_profile.tolerated_ambient_pressure =
+            calculate_tolerated_ambient_pressures(&dive_model);
+
+        // calculate tolerated surface pressures
+        dive_model.dive_profile.tolerated_surface_pressure =
+            calculate_tolerated_surface_pressures(&dive_model.dive_profile);
+
+        DiveStage::new(dive_model, dive_stage.dive_step.clone(), cylinder)
     }
 }
 
@@ -49,93 +66,67 @@ mod dive_stage_should {
         application::states::selectable_dive_model::SelectableDiveModel,
         models::{
             application::dive_planner::DivePlanner,
-            information::{
-                decompression_steps::DecompressionSteps, dive_information::DiveInformation,
-            },
             plan::{
-                dive_model::DiveModel, dive_planning::dive_pre_planning::DivePrePlanning,
+                cylinders::{cylinder::Cylinder, gas_mixture::GasMixture},
+                dive_model::DiveModel,
+                dive_stage::DiveStage,
                 dive_step::DiveStep,
             },
         },
-        test::test_fixture::dive_stage_test_fixture,
+        test_fixture::{default_dive_stage_test_fixture_zhl16, dive_stage_test_fixture_zhl16},
     };
-    use rstest::rstest;
 
-    #[rstest]
-    #[case(
-        DiveModel::create_zhl16_dive_model(),
-        SelectableDiveModel::Bulhmann,
-        DiveModel::create_usn_rev_6_dive_model()
-    )]
-    #[case(
-        DiveModel::create_usn_rev_6_dive_model(),
-        SelectableDiveModel::Usn,
-        DiveModel::create_zhl16_dive_model()
-    )]
-    fn select_dive_model(
-        #[case] expected_dive_model: DiveModel,
-        #[case] selectable_dive_model: SelectableDiveModel,
-        #[case] dive_model: DiveModel,
-    ) {
-        // Given
+    #[test]
+    fn test_dive_model_selected_zhl16() {
+        // given
+        let expected_dive_model = DiveModel::new_zhl16_dive_model();
+        let mut dive_planner = DivePlanner::default();
 
-        use crate::models::{
-            application::dive_planner::DivePlanner,
-            plan::{dive_planning::select_dive_model::SelectDiveModel, dive_stage::DiveStage},
-        };
-        let select_dive_model = SelectDiveModel {
-            dive_model_list: Default::default(),
-            selected_dive_model: Some(selectable_dive_model),
-        };
-        let mut dive_planner = DivePlanner {
-            dive_stage: DiveStage {
-                dive_model,
-                ..Default::default()
-            },
-            dive_planning: DivePrePlanning {
-                select_dive_model: select_dive_model,
-                is_planning: false,
-            },
-            ..Default::default()
-        };
+        // when
+        dive_planner.dive_model_selected(SelectableDiveModel::BulhmannZhl16);
 
-        // When
-        dive_planner.dive_model_selected(select_dive_model.selected_dive_model.unwrap());
-
-        // Then
-        assert_eq!(expected_dive_model, dive_planner.dive_stage.dive_model);
+        // then
+        pretty_assertions::assert_eq!(expected_dive_model, dive_planner.dive_stage.dive_model);
     }
 
     #[test]
-    fn update_dive_profile() {
-        // Given
-        let expected_dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture(),
-            dive_information: DiveInformation {
-                decompression_steps: DecompressionSteps {
-                    dive_steps: vec![
-                        DiveStep { depth: 9, time: 2 },
-                        DiveStep { depth: 6, time: 3 },
-                        DiveStep { depth: 3, time: 7 },
-                    ],
-                },
-                ..Default::default()
-            },
-            ..Default::default()
-        };
-        let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture(),
-            ..Default::default()
-        };
+    fn test_dive_model_selected_usn_revision_6() {
+        // given
+        let expected_dive_model = DiveModel::new_usn_revision_6_dive_model();
+        let mut dive_planner = DivePlanner::default();
 
-        // When
-        dive_planner.update_dive_profile();
+        // when
+        dive_planner.dive_model_selected(SelectableDiveModel::UsnRevision6);
 
-        // Then
-        assert!(!dive_planner.dive_results.results.is_empty());
-        assert_eq!(
-            expected_dive_planner.dive_information.decompression_steps,
-            dive_planner.dive_information.decompression_steps
+        // then
+        pretty_assertions::assert_eq!(expected_dive_model, dive_planner.dive_stage.dive_model);
+    }
+
+    #[test]
+    fn test_update_dive_profile_invalid() {
+        // given
+        let expected_dive_stage = DiveStage::new(
+            DiveModel::new_zhl16_dive_model(),
+            DiveStep::new(0, 0),
+            Cylinder::new(0, 0, GasMixture::new(100, 100), 12),
         );
+
+        // when
+        let dive_stage = DivePlanner::update_dive_profile(&expected_dive_stage);
+
+        // then
+        pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);
+    }
+
+    #[test]
+    fn test_update_dive_profile() {
+        // given
+        let expected_dive_stage = dive_stage_test_fixture_zhl16();
+
+        // when
+        let dive_stage = DivePlanner::update_dive_profile(&default_dive_stage_test_fixture_zhl16());
+
+        // then
+        pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);
     }
 }

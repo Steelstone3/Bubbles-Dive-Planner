@@ -18,77 +18,73 @@ impl DivePlanner {
 #[cfg(test)]
 mod file_should {
     use crate::{
-        controllers::files::test_file_guard::TestFileGuard,
+        controllers::files::test_file_guard::file_guard::TestFileGuard,
         models::{
             application::{application_state::ApplicationState, dive_planner::DivePlanner},
             plan::dive_planning::dive_pre_planning::DivePrePlanning,
             result::results::DiveResults,
         },
-        test::test_fixture::dive_stage_test_fixture,
+        test_fixture::dive_stage_test_fixture_zhl16,
     };
     use std::fs;
 
     #[test]
-    fn reset_dive_planner_to_default_state() {
-        // Given
+    fn test_file_new() {
+        // given
         let expected = DivePlanner::default();
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture(),
+            dive_stage: dive_stage_test_fixture_zhl16(),
             dive_results: DiveResults {
                 results: vec![
-                    dive_stage_test_fixture(),
-                    dive_stage_test_fixture(),
-                    dive_stage_test_fixture(),
+                    dive_stage_test_fixture_zhl16(),
+                    dive_stage_test_fixture_zhl16(),
+                    dive_stage_test_fixture_zhl16(),
                 ],
-                ..Default::default()
             },
             application_state: ApplicationState {
-                redo_buffer: vec![dive_stage_test_fixture()],
+                redo_buffer: vec![dive_stage_test_fixture_zhl16()],
                 ..Default::default()
             },
             ..Default::default()
         };
 
-        // When
+        // when
         dive_planner.file_new();
 
-        // Then
+        // then
         assert_eq!(expected, dive_planner);
     }
 
     #[test]
-    fn file_saves_and_loads_application_state_acceptance_test() {
-        // Given
-        const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state.toml";
+    fn acceptance_test_file_saves_and_loads_application_state() {
+        // given
+        const DIVE_PLANNER_STATE_FILE_NAME: &str = "dive_planner_state_1.toml";
         let expected_dive_planner = DivePlanner {
             dive_planning: DivePrePlanning {
                 is_planning: false,
                 ..Default::default()
             },
-            dive_stage: dive_stage_test_fixture(),
+            dive_stage: dive_stage_test_fixture_zhl16(),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture()],
-                ..Default::default()
+                results: vec![dive_stage_test_fixture_zhl16()],
             },
             ..Default::default()
         };
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture(),
+            dive_stage: dive_stage_test_fixture_zhl16(),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture()],
-                ..Default::default()
+                results: vec![dive_stage_test_fixture_zhl16()],
             },
             ..Default::default()
         };
+        let _guard = TestFileGuard::new(DIVE_PLANNER_STATE_FILE_NAME);
 
-        // When
-        let _guard = TestFileGuard::new(&DIVE_PLANNER_STATE_FILE_NAME);
-        dive_planner.file_save_application_state(&DIVE_PLANNER_STATE_FILE_NAME.to_string());
-        dive_planner.file_load(&DIVE_PLANNER_STATE_FILE_NAME.to_string());
+        // when
+        dive_planner.file_save_application_state(DIVE_PLANNER_STATE_FILE_NAME);
+        dive_planner.file_load(DIVE_PLANNER_STATE_FILE_NAME);
 
-        // Then
+        // then
         assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).is_ok());
-        assert!(fs::metadata(DIVE_PLANNER_STATE_FILE_NAME).unwrap().len() != 0);
         pretty_assertions::assert_eq!(expected_dive_planner, dive_planner);
     }
 }

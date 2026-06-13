@@ -35,52 +35,51 @@ fn get_file_contents(file_name: &str) -> String {
 
 #[cfg(test)]
 mod file_integration_should {
-    use crate::controllers::files::test_file_guard::TestFileGuard;
-
     use super::*;
-    use std::fs;
+    use crate::controllers::files::test_file_guard::file_guard::TestFileGuard;
+    use std::{env, fs};
 
     #[test]
-    fn save_dive_planner_state_file() {
-        // Given
+    fn test_upsert_dive_planner_state() {
+        // given
         let dive_planner_state_file_name = "test_file_2.toml";
         let dive_planner_file = DivePlannerFile::default();
+        let _guard = TestFileGuard::new(dive_planner_state_file_name);
 
-        // When
-        let _guard = TestFileGuard::new(&dive_planner_state_file_name);
+        // when
         upsert_dive_planner_state(dive_planner_state_file_name, &dive_planner_file);
 
-        // Then
+        // then
         assert!(fs::metadata(dive_planner_state_file_name).is_ok());
-        assert!(fs::metadata(dive_planner_state_file_name).unwrap().len() != 0);
     }
 
     #[test]
-    fn handle_loading_an_empty_dive_planner_state() {
-        // Given
-        let file_name = "non_existant_file.toml";
+    fn test_read_dive_planner_state() {
+        // given
+        let root = env::current_dir().unwrap_or_default();
+        let file_name = root.to_string_lossy();
         let expected_dive_planner_file = DivePlannerFile::default();
-
-        // When
         let _guard = TestFileGuard::new(&file_name);
-        let dive_planner_file = read_dive_planner_state(file_name);
 
-        // Then
+        // when
+        let dive_planner_file = read_dive_planner_state(&file_name);
+
+        // then
         assert_eq!(expected_dive_planner_file, dive_planner_file);
     }
 
     #[test]
-    fn create_a_file_saving_and_loading_dive_planner_state() {
-        // Given
+    fn acceptance_test_save_and_load_dive_planner_state() {
+        // given
         let file_name = "test_file_3.toml";
         let expected_dive_planner_file = DivePlannerFile::default();
+        let _guard = TestFileGuard::new(file_name);
 
-        // When
-        let _guard = TestFileGuard::new(&file_name);
+        // when
         upsert_dive_planner_state(file_name, &expected_dive_planner_file);
         let dive_planner_file = read_dive_planner_state(file_name);
 
-        // Then
+        // then
         assert_eq!(expected_dive_planner_file, dive_planner_file);
     }
 }

@@ -1,346 +1,251 @@
-use serde::{Deserialize, Serialize};
-
+use super::gas_mixture::GasMixture;
 use crate::{
     application::input_parser::parse_input_u32,
-    models::plan::cylinders::gas_management::GasManagement,
+    models::plan::{cylinders::gas_management::GasManagement, dive_step::DiveStep},
 };
+use serde::{Deserialize, Serialize};
 
-use super::gas_mixture::GasMixture;
+const MAXIMUM_VOLUME_VALUE: u32 = 30;
+const MAXIMUM_PRESSURE_VALUE: u32 = 300;
+const MINIMUM_VOLUME_VALUE: u32 = 3;
+const MINIMUM_PRESSURE_VALUE: u32 = 50;
 
-pub const MAXIMUM_VOLUME_VALUE: u32 = 30;
-pub const MINIMUM_VOLUME_VALUE: u32 = 3;
-pub const MAXIMUM_PRESSURE_VALUE: u32 = 300;
-pub const MINIMUM_PRESSURE_VALUE: u32 = 50;
-
-#[derive(PartialEq, Debug, Clone, Copy, Default, Serialize, Deserialize)]
+#[derive(PartialEq, Debug, Clone, Serialize, Deserialize)]
 pub struct Cylinder {
-    pub volume: u32,
-    pub pressure: u32,
-    pub initial_pressurised_cylinder_volume: u32,
+    volume: u32,
+    pressure: u32,
+    initial_pressurised_cylinder_volume: u32,
     pub gas_mixture: GasMixture,
     pub gas_management: GasManagement,
 }
 
+impl Default for Cylinder {
+    fn default() -> Self {
+        let gas_mixture = GasMixture::new(21, 0);
+        Self::new(12, 200, gas_mixture, 12)
+    }
+}
+
 impl Cylinder {
-    pub fn update_cylinder_volume(&mut self, cylinder_volume: String) {
-        self.volume = parse_input_u32(cylinder_volume, MINIMUM_VOLUME_VALUE, MAXIMUM_VOLUME_VALUE);
-        self.update_initial_pressurised_cylinder_volume();
+    pub fn new(
+        volume: u32,
+        pressure: u32,
+        gas_mixture: GasMixture,
+        surface_air_consumption_rate: u32,
+    ) -> Self {
+        let initial_pressurised_cylinder_volume =
+            Cylinder::initial_pressurised_cylinder_volume(volume, pressure);
+
+        Self {
+            volume,
+            pressure,
+            initial_pressurised_cylinder_volume,
+            gas_mixture,
+            gas_management: GasManagement::new(
+                initial_pressurised_cylinder_volume,
+                0,
+                surface_air_consumption_rate,
+            ),
+        }
     }
 
-    pub fn update_cylinder_pressure(&mut self, cylinder_pressure: String) {
-        self.pressure = parse_input_u32(
-            cylinder_pressure,
-            MINIMUM_PRESSURE_VALUE,
-            MAXIMUM_PRESSURE_VALUE,
-        );
-        self.update_initial_pressurised_cylinder_volume();
+    #[cfg(test)]
+    pub fn new_with_gas_management(
+        volume: u32,
+        pressure: u32,
+        gas_mixture: GasMixture,
+        gas_management: GasManagement,
+    ) -> Self {
+        let initial_pressurised_cylinder_volume =
+            Cylinder::initial_pressurised_cylinder_volume(volume, pressure);
+
+        Self {
+            volume,
+            pressure,
+            initial_pressurised_cylinder_volume,
+            gas_mixture,
+            gas_management,
+        }
     }
 
-    pub fn update_initial_pressurised_cylinder_volume(&mut self) {
-        self.initial_pressurised_cylinder_volume = self.volume * self.pressure;
-        self.gas_management.remaining = self.initial_pressurised_cylinder_volume;
+    pub fn update_gas_management(&self, dive_step: &DiveStep) -> Cylinder {
+        Cylinder {
+            volume: self.volume,
+            pressure: self.pressure,
+            initial_pressurised_cylinder_volume: self.initial_pressurised_cylinder_volume,
+            gas_mixture: self.gas_mixture.clone(),
+            gas_management: self.gas_management.update_gas_management(dive_step),
+        }
     }
 
-    pub fn validate(&self) -> bool {
-        let volume_validation =
-            self.volume < MINIMUM_VOLUME_VALUE || self.volume > MAXIMUM_VOLUME_VALUE;
-        let pressure_validation =
-            self.pressure < MINIMUM_PRESSURE_VALUE || self.pressure > MAXIMUM_PRESSURE_VALUE;
-        if !self.gas_management.validate()
-            || !self.gas_mixture.validate()
-            || volume_validation
-            || pressure_validation
+    pub fn update_cylinder_volume(&self, volume: String) -> Self {
+        let volume = parse_input_u32(volume, MINIMUM_VOLUME_VALUE, MAXIMUM_VOLUME_VALUE);
+
+        Self::new(
+            volume,
+            self.pressure,
+            self.gas_mixture.clone(),
+            self.gas_management.get_surface_air_consumption_rate(),
+        )
+    }
+
+    pub fn update_cylinder_pressure(&self, pressure: String) -> Self {
+        let pressure = parse_input_u32(pressure, MINIMUM_PRESSURE_VALUE, MAXIMUM_PRESSURE_VALUE);
+
+        Self::new(
+            self.volume,
+            pressure,
+            self.gas_mixture.clone(),
+            self.gas_management.get_surface_air_consumption_rate(),
+        )
+    }
+
+    pub fn get_volume(&self) -> u32 {
+        self.volume
+    }
+
+    pub fn get_pressure(&self) -> u32 {
+        self.pressure
+    }
+
+    pub fn get_initial_pressurised_cylinder_volume(&self) -> u32 {
+        self.initial_pressurised_cylinder_volume
+    }
+
+    pub fn is_valid(&self) -> bool {
+        if self.volume > MAXIMUM_VOLUME_VALUE
+            || self.volume < MINIMUM_VOLUME_VALUE
+            || self.pressure > MAXIMUM_PRESSURE_VALUE
+            || self.pressure < MINIMUM_PRESSURE_VALUE
+            || !self.gas_mixture.is_valid()
+            || !self.gas_management.is_valid()
         {
             return false;
         }
 
         true
     }
+
+    fn initial_pressurised_cylinder_volume(volume: u32, pressure: u32) -> u32 {
+        volume * pressure
+    }
 }
 
 #[cfg(test)]
 mod cylinder_should {
-    use super::*;
+    use crate::models::plan::cylinders::cylinder::Cylinder;
+    use crate::models::plan::cylinders::gas_management::GasManagement;
+    use crate::models::plan::cylinders::gas_mixture::GasMixture;
+    use crate::models::plan::dive_step::DiveStep;
     use rstest::rstest;
 
     #[test]
-    fn calculate_the_initial_pressurised_cylinder_volume() {
-        // Given
+    fn test_update_gas_management() {
+        // given
+        let dive_step = DiveStep::new(50, 10);
+        let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
         let expected_cylinder = Cylinder {
             volume: 12,
             pressure: 200,
             initial_pressurised_cylinder_volume: 2400,
-            gas_management: GasManagement {
-                remaining: 2400,
-                ..Default::default()
-            },
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            volume: 12,
-            pressure: 200,
-            ..Default::default()
+            gas_mixture: GasMixture::new(21, 0),
+            gas_management: GasManagement::new(1680, 720, 12),
         };
 
-        // When
-        cylinder.update_initial_pressurised_cylinder_volume();
+        // when
+        let cylinder = original_cylinder.update_gas_management(&dive_step);
 
-        // Then
-        assert_eq!(expected_cylinder, cylinder);
+        // then
+        pretty_assertions::assert_eq!(expected_cylinder, cylinder);
+    }
+
+    #[test]
+    fn test_update_cylinder_volume() {
+        // given
+        let volume = "15".to_string();
+        let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
+        let expected_cylinder = Cylinder::new(15, 200, GasMixture::new(21, 0), 12);
+
+        // when
+        let cylinder = original_cylinder.update_cylinder_volume(volume.to_string());
+
+        // then
+        pretty_assertions::assert_eq!(expected_cylinder, cylinder);
+    }
+
+    #[test]
+    fn test_update_cylinder_pressure() {
+        // given
+        let pressure = "300".to_string();
+        let original_cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
+        let expected_cylinder = Cylinder::new(12, 300, GasMixture::new(21, 0), 12);
+
+        // when
+        let cylinder = original_cylinder.update_cylinder_pressure(pressure.to_string());
+
+        // then
+        pretty_assertions::assert_eq!(expected_cylinder, cylinder);
+    }
+
+    #[test]
+    fn test_get_volume() {
+        // given
+        let expected_volume = 12;
+        let cylinder = Cylinder::new(expected_volume, 200, GasMixture::new(21, 0), 12);
+
+        // when
+        let volume = cylinder.get_volume();
+
+        // then
+        pretty_assertions::assert_eq!(expected_volume, volume);
+    }
+
+    #[test]
+    fn test_get_pressure() {
+        // given
+        let expected_pressue = 200;
+        let cylinder = Cylinder::new(12, expected_pressue, GasMixture::new(21, 0), 12);
+
+        // when
+        let pressure = cylinder.get_pressure();
+
+        // then
+        pretty_assertions::assert_eq!(expected_pressue, pressure);
+    }
+
+    #[test]
+    fn test_get_initial_pressurised_cylinder_volume() {
+        // given
+        let expected_initial_pressurised_cylinder_volume = 2400;
+        let cylinder = Cylinder::new(12, 200, GasMixture::new(21, 0), 12);
+
+        // when
+        let initial_pressurised_cylinder_volume =
+            cylinder.get_initial_pressurised_cylinder_volume();
+
+        // then
+        pretty_assertions::assert_eq!(
+            expected_initial_pressurised_cylinder_volume,
+            initial_pressurised_cylinder_volume
+        );
     }
 
     #[rstest]
     #[case(12, 200, true)]
+    #[case(30, 300, true)]
+    #[case(3, 50, true)]
     #[case(31, 200, false)]
     #[case(2, 200, false)]
     #[case(12, 301, false)]
     #[case(12, 49, false)]
-    fn validate_cylinder(#[case] volume: u32, #[case] pressure: u32, #[case] is_valid: bool) {
-        // Given
-        let cylinder = Cylinder {
-            volume,
-            pressure,
-            gas_mixture: GasMixture {
-                oxygen: 21,
-                helium: 0,
-                ..Default::default()
-            },
-            gas_management: GasManagement {
-                surface_air_consumption_rate: 12,
-                ..Default::default()
-            },
-            ..Default::default()
-        };
+    fn test_is_valid(#[case] volume: u32, #[case] pressure: u32, #[case] is_valid: bool) {
+        // given
+        let cylinder = Cylinder::new(volume, pressure, GasMixture::default(), 12);
 
-        // When
-        let is_valid_actual: bool = cylinder.validate();
+        // when
+        let is_valid_actual = cylinder.is_valid();
 
-        // Then
+        // then
         assert_eq!(is_valid, is_valid_actual);
-    }
-
-    #[rstest]
-    #[case(21, 0, true)]
-    #[case(101, 0, false)]
-    #[case(4, 0, false)]
-    #[case(21, 101, false)]
-    #[case(51, 50, false)]
-    #[case(50, 51, false)]
-    fn validate_gas_mixture(#[case] oxygen: u32, #[case] helium: u32, #[case] is_valid: bool) {
-        // Given
-        let cylinder = Cylinder {
-            volume: 12,
-            pressure: 200,
-            gas_mixture: GasMixture {
-                oxygen,
-                helium,
-                ..Default::default()
-            },
-            gas_management: GasManagement {
-                surface_air_consumption_rate: 12,
-                ..Default::default()
-            },
-            ..Default::default()
-        };
-
-        // When
-        let is_valid_actual: bool = cylinder.validate();
-
-        // Then
-        assert_eq!(is_valid, is_valid_actual);
-    }
-
-    #[rstest]
-    #[case(12, true)]
-    #[case(31, false)]
-    #[case(2, false)]
-    fn validate_gas_management(#[case] surface_air_consumption_rate: u32, #[case] is_valid: bool) {
-        // Given
-        let cylinder = Cylinder {
-            volume: 12,
-            pressure: 200,
-            gas_mixture: GasMixture {
-                oxygen: 21,
-                helium: 0,
-                ..Default::default()
-            },
-            gas_management: GasManagement {
-                surface_air_consumption_rate,
-                ..Default::default()
-            },
-            ..Default::default()
-        };
-
-        // When
-        let is_valid_actual: bool = cylinder.validate();
-
-        // Then
-        assert_eq!(is_valid, is_valid_actual);
-    }
-
-    #[test]
-    fn update_cylinder_volume_by_parsing_and_validating_input_successfully() {
-        // Given
-        let expected = Cylinder {
-            volume: 12,
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            ..Default::default()
-        };
-        let input = "12".to_string();
-
-        // When
-        cylinder.update_cylinder_volume(input);
-
-        // Then
-        assert_eq!(expected, cylinder);
-    }
-
-    #[test]
-    fn updating_cylinder_volume_updates_initial_pressurised_cylinder_volume() {
-        // Given
-        let expected = Cylinder {
-            volume: 12,
-            pressure: 200,
-            initial_pressurised_cylinder_volume: 2400,
-            gas_management: GasManagement {
-                remaining: 2400,
-                ..Default::default()
-            },
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            pressure: 200,
-            ..Default::default()
-        };
-        let input = "12".to_string();
-
-        // When
-        cylinder.update_cylinder_volume(input);
-
-        // Then
-        assert_eq!(expected, cylinder);
-    }
-
-    #[test]
-    fn update_cylinder_volume_by_parsing_an_input_beyond_range() {
-        // Given
-        let expected = Cylinder {
-            volume: 30,
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            ..Default::default()
-        };
-        let input = "31".to_string();
-
-        // When
-        cylinder.update_cylinder_volume(input);
-
-        // Then
-        assert_eq!(expected, cylinder);
-    }
-
-    #[test]
-    fn update_cylinder_volume_by_being_unable_to_parse_input() {
-        // Given
-        let expected = Cylinder {
-            volume: 3,
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            ..Default::default()
-        };
-        let input = "2£%^sdf".to_string();
-
-        // When
-        cylinder.update_cylinder_volume(input);
-
-        // Then
-        assert_eq!(expected, cylinder);
-    }
-
-    #[test]
-    fn update_cylinder_pressure_by_parsing_and_validating_input_successfully() {
-        // Given
-        let expected = Cylinder {
-            pressure: 200,
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            ..Default::default()
-        };
-        let input = "200".to_string();
-
-        // When
-        cylinder.update_cylinder_pressure(input);
-
-        // Then
-        assert_eq!(expected, cylinder);
-    }
-
-    #[test]
-    fn updating_cylinder_pressure_updates_initial_pressurised_cylinder_volume() {
-        // Given
-        let expected = Cylinder {
-            volume: 12,
-            pressure: 200,
-            initial_pressurised_cylinder_volume: 2400,
-            gas_management: GasManagement {
-                remaining: 2400,
-                ..Default::default()
-            },
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            volume: 12,
-            ..Default::default()
-        };
-        let input = "200".to_string();
-
-        // When
-        cylinder.update_cylinder_pressure(input);
-
-        // Then
-        assert_eq!(expected, cylinder);
-    }
-
-    #[test]
-    fn update_cylinder_pressure_by_parsing_an_input_beyond_range() {
-        // Given
-        let expected = Cylinder {
-            pressure: 300,
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            ..Default::default()
-        };
-        let input = "301".to_string();
-
-        // When
-        cylinder.update_cylinder_pressure(input);
-
-        // Then
-        assert_eq!(expected, cylinder);
-    }
-
-    #[test]
-    fn update_cylinder_pressure_by_being_unable_to_parse_input() {
-        // Given
-        let expected = Cylinder {
-            pressure: 50,
-            ..Default::default()
-        };
-        let mut cylinder = Cylinder {
-            ..Default::default()
-        };
-        let input = "2£%^sdf".to_string();
-
-        // When
-        cylinder.update_cylinder_pressure(input);
-
-        // Then
-        assert_eq!(expected, cylinder);
     }
 }
