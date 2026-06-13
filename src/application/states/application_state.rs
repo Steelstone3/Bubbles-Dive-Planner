@@ -5,16 +5,6 @@ use crate::{
 use iced::{Element, Task, Theme};
 
 impl DivePlanner {
-    #[allow(dead_code)]
-    pub fn boot() -> (Self, Task<Message>) {
-        (Self::default(), Task::none())
-    }
-
-    #[allow(dead_code)]
-    pub fn view(&self) -> Element<'_, Message> {
-        self.tab_bar_view().into()
-    }
-
     pub fn switch_tab(&mut self, tab_identifier: TabIdentifier) {
         match tab_identifier {
             TabIdentifier::Plan => {
