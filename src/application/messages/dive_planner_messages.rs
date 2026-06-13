@@ -122,7 +122,7 @@ mod dive_planner_messages_should {
             states::{selectable_dive_model::SelectableDiveModel, tab_identifier::TabIdentifier},
         },
         models::{
-            application::dive_planner::DivePlanner,
+            application::{application_state::ApplicationState, dive_planner::DivePlanner},
             plan::{
                 cylinders::{
                     cylinder::Cylinder, gas_management::GasManagement, gas_mixture::GasMixture,
@@ -189,7 +189,40 @@ mod dive_planner_messages_should {
     fn test_acceptance_test_file_save_and_load() {}
 
     #[test]
-    fn test_edit_on_undo_clicked() {}
+    fn test_edit_on_undo_clicked() {
+        // given
+        let mut dive_stage = dive_stage_test_fixture_zhl16();
+        dive_stage.decompression_steps = vec![DiveStep::new(6, 1), DiveStep::new(3, 4)].into();
+        let mut dive_planner = DivePlanner {
+            dive_stage: dive_stage.clone(),
+            dive_results: DiveResults {
+                results: vec![dive_stage.clone(), dive_stage.clone()],
+            },
+            application_state: ApplicationState {
+                redo_buffer: vec![],
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+        let expected_dive_planner = DivePlanner {
+            dive_stage: dive_stage.clone(),
+            dive_results: DiveResults {
+                results: vec![dive_stage.clone()],
+            },
+            application_state: ApplicationState {
+                redo_buffer: vec![dive_stage.clone()],
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // when
+        let tasks = dive_planner.update(Message::EditOnUndoClicked);
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(expected_dive_planner, dive_planner);
+    }
 
     #[test]
     fn test_edit_on_redo_clicked() {}
