@@ -30,8 +30,6 @@ args = [
     "--locked",
     "--exclude-files",
     "src/views/*",
-    "src/models/*",
-    "src/application/*",
 ]
 command = "cargo"
 install_crate = "tarpaulin"
