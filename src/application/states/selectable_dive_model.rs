@@ -8,8 +8,10 @@ pub enum SelectableDiveModel {
 }
 
 impl SelectableDiveModel {
-    pub const ALL: [SelectableDiveModel; 2] =
-        [SelectableDiveModel::BulhmannZhl16, SelectableDiveModel::UsnRevision6];
+    pub const ALL: [SelectableDiveModel; 2] = [
+        SelectableDiveModel::BulhmannZhl16,
+        SelectableDiveModel::UsnRevision6,
+    ];
 }
 
 impl std::fmt::Display for SelectableDiveModel {
