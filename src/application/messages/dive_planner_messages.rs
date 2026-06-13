@@ -225,7 +225,38 @@ mod dive_planner_messages_should {
     }
 
     #[test]
-    fn test_edit_on_redo_clicked() {}
+    fn test_edit_on_redo_clicked() {
+        // given
+        let mut dive_stage = dive_stage_test_fixture_zhl16();
+        dive_stage.decompression_steps = vec![DiveStep::new(6, 1), DiveStep::new(3, 4)].into();
+        let mut dive_planner = DivePlanner {
+            dive_stage: dive_stage.clone(),
+            dive_results: DiveResults { results: vec![] },
+            application_state: ApplicationState {
+                redo_buffer: vec![dive_stage.clone(), dive_stage.clone()],
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+        let expected_dive_planner = DivePlanner {
+            dive_stage: dive_stage.clone(),
+            dive_results: DiveResults {
+                results: vec![dive_stage.clone()],
+            },
+            application_state: ApplicationState {
+                redo_buffer: vec![dive_stage.clone()],
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // when
+        let tasks = dive_planner.update(Message::EditOnRedoClicked);
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        assert_eq!(expected_dive_planner, dive_planner);
+    }
 
     #[test]
     fn test_view_on_toggle_theme_clicked() {
