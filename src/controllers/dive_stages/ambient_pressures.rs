@@ -17,17 +17,20 @@ pub fn calculate_ambient_pressures(
 
 #[cfg(test)]
 mod commands_ambient_pressures_should {
-    use crate::test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture_zhl16};
+    use crate::{
+        controllers::dive_stages::ambient_pressures::calculate_ambient_pressures,
+        test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture_zhl16},
+    };
 
     #[test]
-    fn calculate_ambient_pressures_of_the_dive_profile() {
+    fn test_calculate_ambient_pressures() {
         // given
         let dive_step = dive_stage_test_fixture_zhl16().dive_step;
         let gas_mixture = dive_stage_test_fixture_zhl16().cylinder.gas_mixture;
         let expected_ambient_pressure = ambient_pressure_test_fixture();
 
         // when
-        let ambient_pressure = super::calculate_ambient_pressures(&dive_step, &gas_mixture);
+        let ambient_pressure = calculate_ambient_pressures(&dive_step, &gas_mixture);
 
         // then
         pretty_assertions::assert_eq!(

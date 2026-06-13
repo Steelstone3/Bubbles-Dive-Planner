@@ -171,7 +171,7 @@ mod dive_model_should {
     };
 
     #[test]
-    fn test_create_zhl16_dive_model() {
+    fn test_new_zhl16_dive_model() {
         // given
         let number_of_compartments = 16;
         let expected_zhl16_dive_model = {
@@ -213,7 +213,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn test_create_zhl16_dive_model_with_dive_profile() {
+    fn test_new_zhl16_dive_model_with_dive_profile() {
         // given
         let number_of_compartments = 16;
         let dive_profile = DiveProfile {
@@ -275,7 +275,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn test_create_usn_rev_6_model() {
+    fn test_new_usn_rev_6_model() {
         // given
         let number_of_compartments = 9;
         let expected_usn_rev_6_model = {
@@ -317,7 +317,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn test_create_usn_rev_6_dive_model_with_dive_profile() {
+    fn test_new_usn_rev_6_dive_model_with_dive_profile() {
         // given
         let number_of_compartments = 9;
         let dive_profile = DiveProfile {
@@ -379,7 +379,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn get_number_of_compartments() {
+    fn test_get_number_of_compartments() {
         // given
         let dive_model = DiveModel::new_zhl16_dive_model();
 
@@ -391,7 +391,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn get_nitrogen_half_times() {
+    fn test_get_nitrogen_half_times() {
         // given
         let dive_model = DiveModel::new_zhl16_dive_model();
 
@@ -409,7 +409,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn get_helium_half_times() {
+    fn test_get_helium_half_times() {
         // given
         let dive_model = DiveModel::new_zhl16_dive_model();
 
@@ -427,7 +427,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn get_a_values_nitrogen() {
+    fn test_get_a_values_nitrogen() {
         // given
         let dive_model = DiveModel::new_zhl16_dive_model();
 
@@ -445,7 +445,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn get_b_values_nitrogen() {
+    fn test_get_b_values_nitrogen() {
         // given
         let dive_model = DiveModel::new_zhl16_dive_model();
 
@@ -463,7 +463,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn get_a_values_helium() {
+    fn test_get_a_values_helium() {
         // given
         let dive_model = DiveModel::new_zhl16_dive_model();
 
@@ -481,7 +481,7 @@ mod dive_model_should {
     }
 
     #[test]
-    fn get_b_values_helium() {
+    fn test_get_b_values_helium() {
         // given
         let dive_model = DiveModel::new_zhl16_dive_model();
 

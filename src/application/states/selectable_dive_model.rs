@@ -32,7 +32,7 @@ mod selectable_dive_model_should {
     use super::*;
 
     #[test]
-    fn display_selectable_dive_models() {
+    fn test_selectable_dive_models() {
         assert_eq!("Zhl16", SelectableDiveModel::BulhmannZhl16.to_string());
         assert_eq!("USN Rev 6", SelectableDiveModel::UsnRevision6.to_string());
     }

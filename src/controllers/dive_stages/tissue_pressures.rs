@@ -100,7 +100,7 @@ mod commands_tissue_pressure_should {
     };
 
     #[test]
-    fn calculate_tissue_pressure_of_the_dive_profile() {
+    fn test_calculate_tissue_pressures() {
         // given
         let dive_profile = DiveProfile {
             number_of_compartments: 16,
