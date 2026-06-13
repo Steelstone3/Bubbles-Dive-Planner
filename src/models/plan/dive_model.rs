@@ -76,7 +76,7 @@ impl DiveModel {
         }
     }
 
-    pub fn new_usn_rev_6_dive_model() -> DiveModel {
+    pub fn new_usn_revision_6_dive_model() -> DiveModel {
         let number_of_compartments = 9;
 
         DiveModel {
@@ -110,8 +110,8 @@ impl DiveModel {
     }
 
     #[allow(dead_code)]
-    pub fn new_usn_rev_6_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
-        let dive_model = DiveModel::new_usn_rev_6_dive_model();
+    pub fn new_usn_revision_6_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
+        let dive_model = DiveModel::new_usn_revision_6_dive_model();
         let dive_profile = DiveProfile {
             number_of_compartments: dive_model.get_number_of_compartments(),
             ambient_pressure: dive_profile.ambient_pressure,
@@ -310,7 +310,7 @@ mod dive_model_should {
         };
 
         // When
-        let usn_rev_6_model = DiveModel::new_usn_rev_6_dive_model();
+        let usn_rev_6_model = DiveModel::new_usn_revision_6_dive_model();
 
         // Then
         pretty_assertions::assert_eq!(expected_usn_rev_6_model, usn_rev_6_model);
@@ -372,7 +372,7 @@ mod dive_model_should {
 
         // When
         let usn_rev_6_model =
-            DiveModel::new_usn_rev_6_dive_model_with_dive_profile(dive_profile.clone());
+            DiveModel::new_usn_revision_6_dive_model_with_dive_profile(dive_profile.clone());
 
         // Then
         pretty_assertions::assert_eq!(expected_usn_rev_6_model, usn_rev_6_model);

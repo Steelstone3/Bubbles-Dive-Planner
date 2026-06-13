@@ -15,7 +15,7 @@ impl Default for SelectDiveModel {
     fn default() -> Self {
         Self {
             dive_model_list: Default::default(),
-            selected_dive_model: Some(SelectableDiveModel::Bulhmann),
+            selected_dive_model: Some(SelectableDiveModel::BulhmannZhl16),
         }
     }
 }
