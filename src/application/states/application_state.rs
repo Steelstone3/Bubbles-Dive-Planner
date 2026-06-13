@@ -107,7 +107,10 @@ mod application_state_should {
     }
 
     #[rstest]
+    #[case(TabIdentifier::Plan, TabIdentifier::Plan)]
+    #[case(TabIdentifier::Information, TabIdentifier::Plan)]
     #[case(TabIdentifier::Plan, TabIdentifier::Information)]
+    #[case(TabIdentifier::Plan, TabIdentifier::Results)]
     fn test_switch_tab(
         #[case] tab_identifier: TabIdentifier,
         #[case] expected_tab_identifier: TabIdentifier,

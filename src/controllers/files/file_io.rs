@@ -37,10 +37,10 @@ fn get_file_contents(file_name: &str) -> String {
 mod file_integration_should {
     use super::*;
     use crate::controllers::files::test_file_guard::file_guard::TestFileGuard;
-    use std::fs;
+    use std::{env, fs};
 
     #[test]
-    fn save_dive_planner_state_file() {
+    fn test_upsert_dive_planner_state() {
         // Given
         let dive_planner_state_file_name = "test_file_2.toml";
         let dive_planner_file = DivePlannerFile::default();
@@ -54,21 +54,22 @@ mod file_integration_should {
     }
 
     #[test]
-    fn handle_loading_an_empty_dive_planner_state() {
+    fn test_read_dive_planner_state() {
         // Given
-        let file_name = "non_existant_file.toml";
+        let root = env::current_dir().unwrap_or_default();
+        let file_name = root.to_string_lossy();
         let expected_dive_planner_file = DivePlannerFile::default();
 
         // When
-        let _guard = TestFileGuard::new(file_name);
-        let dive_planner_file = read_dive_planner_state(file_name);
+        let _guard = TestFileGuard::new(&file_name);
+        let dive_planner_file = read_dive_planner_state(&file_name);
 
         // Then
         assert_eq!(expected_dive_planner_file, dive_planner_file);
     }
 
     #[test]
-    fn create_a_file_saving_and_loading_dive_planner_state() {
+    fn acceptance_test_save_and_load_dive_planner_state() {
         // Given
         let file_name = "test_file_3.toml";
         let expected_dive_planner_file = DivePlannerFile::default();
