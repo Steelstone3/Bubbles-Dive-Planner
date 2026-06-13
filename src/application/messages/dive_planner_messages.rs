@@ -136,8 +136,25 @@ mod dive_planner_messages_should {
             },
             result::results::DiveResults,
         },
-        test_fixture::dive_stage_test_fixture_zhl16,
+        test_fixture::{default_dive_stage_test_fixture_zhl16, dive_stage_test_fixture_zhl16},
     };
+
+    #[test]
+    fn test_dive_profile_on_clicked() {
+        // Given
+        let mut dive_planner = DivePlanner::default();
+        dive_planner.dive_stage = default_dive_stage_test_fixture_zhl16();
+        let mut expected_dive_stage = dive_stage_test_fixture_zhl16();
+        expected_dive_stage.decompression_steps =
+            vec![DiveStep::new(6, 1), DiveStep::new(3, 4)].into();
+
+        // When
+        let task = dive_planner.update(Message::DiveProfileOnClicked);
+
+        // Then
+        pretty_assertions::assert_eq!(0, task.units());
+        pretty_assertions::assert_eq!(expected_dive_stage, dive_planner.dive_stage)
+    }
 
     #[test]
     fn test_decompression_profile_on_clicked() {
