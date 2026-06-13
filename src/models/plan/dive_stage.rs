@@ -34,7 +34,9 @@ impl DiveStage {
 #[cfg(test)]
 mod dive_stage_should {
     use crate::models::plan::{
-        cylinders::{cylinder::Cylinder, gas_mixture::GasMixture}, dive_model::DiveModel, dive_stage::DiveStage,
+        cylinders::{cylinder::Cylinder, gas_mixture::GasMixture},
+        dive_model::DiveModel,
+        dive_stage::DiveStage,
         dive_step::DiveStep,
     };
 
@@ -44,7 +46,7 @@ mod dive_stage_should {
         let dive_stage = DiveStage::new(
             DiveModel::new_zhl16_dive_model(),
             DiveStep::new(50, 10),
-            Cylinder::new(12,200,GasMixture::new(21,0),12),
+            Cylinder::new(12, 200, GasMixture::new(21, 0), 12),
         );
 
         // When
@@ -54,13 +56,13 @@ mod dive_stage_should {
         assert_eq!(true, is_valid)
     }
 
-        #[test]
+    #[test]
     fn test_is_valid_invalid_dive_step() {
         // Given
         let dive_stage = DiveStage::new(
             DiveModel::new_zhl16_dive_model(),
             DiveStep::new(0, 0),
-            Cylinder::new(12,200,GasMixture::new(21,0),12),
+            Cylinder::new(12, 200, GasMixture::new(21, 0), 12),
         );
 
         // When
@@ -70,13 +72,13 @@ mod dive_stage_should {
         assert_eq!(false, is_valid)
     }
 
-            #[test]
+    #[test]
     fn test_is_valid_invalid_cylinder() {
         // Given
         let dive_stage = DiveStage::new(
             DiveModel::new_zhl16_dive_model(),
             DiveStep::new(50, 10),
-            Cylinder::new(0,0,GasMixture::new(100,100),100),
+            Cylinder::new(0, 0, GasMixture::new(100, 100), 100),
         );
 
         // When
