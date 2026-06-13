@@ -31,6 +31,7 @@ args = [
     "--exclude-files",
     "src/views/*",
     "src/models/*",
+    "src/controllers/*",
 ]
 command = "cargo"
 install_crate = "tarpaulin"

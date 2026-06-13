@@ -47,8 +47,9 @@ impl DivePlanner {
 
 #[cfg(test)]
 mod application_state_should {
-    use crate::models::application::{
-        application_state::ApplicationState, dive_planner::DivePlanner,
+    use crate::{
+        application::states::tab_identifier::TabIdentifier,
+        models::application::{application_state::ApplicationState, dive_planner::DivePlanner},
     };
     use iced::Theme;
     use rstest::rstest;
@@ -103,5 +104,30 @@ mod application_state_should {
             dive_planner.application_state.is_light_theme
         );
         pretty_assertions::assert_eq!(expected_theme, dive_planner.theme());
+    }
+
+    #[rstest]
+    #[case(TabIdentifier::Plan, TabIdentifier::Information)]
+    fn test_switch_tab(
+        #[case] tab_identifier: TabIdentifier,
+        #[case] expected_tab_identifier: TabIdentifier,
+    ) {
+        // Given
+        let mut dive_planner = DivePlanner {
+            application_state: ApplicationState {
+                tab_identifier,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+
+        // When
+        dive_planner.switch_tab(expected_tab_identifier.clone());
+
+        // Then
+        pretty_assertions::assert_eq!(
+            expected_tab_identifier.clone(),
+            dive_planner.application_state.tab_identifier
+        )
     }
 }
