@@ -69,10 +69,36 @@ mod tolerated_surface_pressure_should {
     }
 
     #[test]
-    #[ignore]
-    fn test_get_compartment_loads() {}
+    fn test_get_compartment_loads() {
+        // Given
+        let expected_compartment_loads = vec![23.0, 24.0, 25.0];
+        let tolerated_surface_pressure = ToleratedSurfacePressure::new(
+            Default::default(),
+            expected_compartment_loads.clone(),
+            Default::default(),
+        );
+
+        // When
+        let comparment_loads = tolerated_surface_pressure.get_compartment_loads();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_compartment_loads.clone(), comparment_loads);
+    }
 
     #[test]
-    #[ignore]
-    fn test_get_dive_ceiling() {}
+    fn test_get_dive_ceiling() {
+        // Given
+        let expected_dive_ceiling = 23.0;
+        let tolerated_surface_pressure = ToleratedSurfacePressure::new(
+            Default::default(),
+            Default::default(),
+            expected_dive_ceiling,
+        );
+
+        // When
+        let dive_ceiling = tolerated_surface_pressure.get_dive_ceiling();
+
+        // Then
+        pretty_assertions::assert_eq!(expected_dive_ceiling.clone(), dive_ceiling);
+    }
 }
