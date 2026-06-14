@@ -96,20 +96,47 @@ mod commands_tissue_pressure_should {
         models::plan::dive_profile_result::{
             dive_profile::DiveProfile, tissue_pressure::TissuePressure,
         },
-        test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture_zhl16},
+        test_fixture::{
+            usn_revision_6_ambient_pressure_test_fixture, usn_revision_6_dive_stage_test_fixture,
+            zhl16_ambient_pressure_test_fixture, zhl16_dive_stage_test_fixture,
+        },
     };
 
     #[test]
-    fn test_calculate_tissue_pressures() {
+    fn test_zhl16_calculate_tissue_pressures() {
         // given
         let dive_profile = DiveProfile {
             number_of_compartments: 16,
-            ambient_pressure: ambient_pressure_test_fixture(),
+            ambient_pressure: zhl16_ambient_pressure_test_fixture(),
             tissue_pressure: TissuePressure::new_default(16),
             ..Default::default()
         };
         let zhl16 = DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile);
-        let expected_dive_stage = dive_stage_test_fixture_zhl16();
+        let expected_dive_stage = zhl16_dive_stage_test_fixture();
+
+        // when
+
+        let tissue_pressure =
+            super::calculate_tissue_pressures(&zhl16, &expected_dive_stage.dive_step);
+
+        // then
+        pretty_assertions::assert_eq!(
+            expected_dive_stage.dive_model.dive_profile.tissue_pressure,
+            tissue_pressure,
+        );
+    }
+
+    #[test]
+    fn test_usn_revision_6_calculate_tissue_pressures() {
+        // given
+        let dive_profile = DiveProfile {
+            number_of_compartments: 9,
+            ambient_pressure: usn_revision_6_ambient_pressure_test_fixture(),
+            tissue_pressure: TissuePressure::new_default(9),
+            ..Default::default()
+        };
+        let zhl16 = DiveModel::new_usn_revision_6_dive_model_with_dive_profile(dive_profile);
+        let expected_dive_stage = usn_revision_6_dive_stage_test_fixture();
 
         // when
 

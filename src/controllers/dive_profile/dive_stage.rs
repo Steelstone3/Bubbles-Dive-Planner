@@ -73,11 +73,14 @@ mod dive_stage_should {
                 dive_step::DiveStep,
             },
         },
-        test_fixture::{default_dive_stage_test_fixture_zhl16, dive_stage_test_fixture_zhl16},
+        test_fixture::{
+            usn_revision_6_default_dive_stage_test_fixture, usn_revision_6_dive_stage_test_fixture,
+            zhl16_default_dive_stage_test_fixture, zhl16_dive_stage_test_fixture,
+        },
     };
 
     #[test]
-    fn test_dive_model_selected_zhl16() {
+    fn test_zhl16_dive_model_selected() {
         // given
         let expected_dive_model = DiveModel::new_zhl16_dive_model();
         let mut dive_planner = DivePlanner::default();
@@ -90,7 +93,7 @@ mod dive_stage_should {
     }
 
     #[test]
-    fn test_dive_model_selected_usn_revision_6() {
+    fn test_usn_revision_6_dive_model_selected() {
         // given
         let expected_dive_model = DiveModel::new_usn_revision_6_dive_model();
         let mut dive_planner = DivePlanner::default();
@@ -119,12 +122,25 @@ mod dive_stage_should {
     }
 
     #[test]
-    fn test_update_dive_profile() {
+    fn test_zhl16_update_dive_profile() {
         // given
-        let expected_dive_stage = dive_stage_test_fixture_zhl16();
+        let expected_dive_stage = zhl16_dive_stage_test_fixture();
 
         // when
-        let dive_stage = DivePlanner::update_dive_profile(&default_dive_stage_test_fixture_zhl16());
+        let dive_stage = DivePlanner::update_dive_profile(&zhl16_default_dive_stage_test_fixture());
+
+        // then
+        pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);
+    }
+
+    #[test]
+    fn test_usn_revision_6_update_dive_profile() {
+        // given
+        let expected_dive_stage = usn_revision_6_dive_stage_test_fixture();
+
+        // when
+        let dive_stage =
+            DivePlanner::update_dive_profile(&usn_revision_6_default_dive_stage_test_fixture());
 
         // then
         pretty_assertions::assert_eq!(expected_dive_stage, dive_stage);

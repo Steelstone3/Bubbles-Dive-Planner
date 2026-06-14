@@ -143,7 +143,10 @@ mod dive_planner_messages_should {
             },
             result::results::DiveResults,
         },
-        test_fixture::{default_dive_stage_test_fixture_zhl16, dive_stage_test_fixture_zhl16},
+        test_fixture::{
+            usn_revision_6_default_dive_stage_test_fixture, usn_revision_6_dive_stage_test_fixture,
+            zhl16_default_dive_stage_test_fixture, zhl16_dive_stage_test_fixture,
+        },
     };
 
     #[test]
@@ -178,7 +181,7 @@ mod dive_planner_messages_should {
     fn test_file_on_new_clicked() {
         // given
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_zhl16(),
+            dive_stage: zhl16_dive_stage_test_fixture(),
             ..Default::default()
         };
         let expected_dive_stage = DiveStage::default();
@@ -200,16 +203,16 @@ mod dive_planner_messages_should {
                 is_planning: false,
                 ..Default::default()
             },
-            dive_stage: dive_stage_test_fixture_zhl16(),
+            dive_stage: zhl16_dive_stage_test_fixture(),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture_zhl16()],
+                results: vec![zhl16_dive_stage_test_fixture()],
             },
             ..Default::default()
         };
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_zhl16(),
+            dive_stage: zhl16_dive_stage_test_fixture(),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture_zhl16()],
+                results: vec![zhl16_dive_stage_test_fixture()],
             },
             ..Default::default()
         };
@@ -238,7 +241,7 @@ mod dive_planner_messages_should {
     #[test]
     fn test_edit_on_undo_clicked() {
         // given
-        let mut dive_stage = dive_stage_test_fixture_zhl16();
+        let mut dive_stage = zhl16_dive_stage_test_fixture();
         dive_stage.decompression_steps = vec![DiveStep::new(6, 1), DiveStep::new(3, 4)].into();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
@@ -274,7 +277,7 @@ mod dive_planner_messages_should {
     #[test]
     fn test_edit_on_redo_clicked() {
         // given
-        let mut dive_stage = dive_stage_test_fixture_zhl16();
+        let mut dive_stage = zhl16_dive_stage_test_fixture();
         dive_stage.decompression_steps = vec![DiveStep::new(6, 1), DiveStep::new(3, 4)].into();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
@@ -329,7 +332,7 @@ mod dive_planner_messages_should {
         // then
         pretty_assertions::assert_eq!(0, tasks.units());
         pretty_assertions::assert_eq!(
-            default_dive_stage_test_fixture_zhl16().dive_model,
+            zhl16_default_dive_stage_test_fixture().dive_model,
             dive_planner.dive_stage.dive_model
         )
     }
@@ -452,13 +455,13 @@ mod dive_planner_messages_should {
     }
 
     #[test]
-    fn test_dive_profile_on_clicked() {
+    fn test_zhl16_dive_profile_on_clicked() {
         // given
         let mut dive_planner = DivePlanner {
-            dive_stage: default_dive_stage_test_fixture_zhl16(),
+            dive_stage: zhl16_default_dive_stage_test_fixture(),
             ..Default::default()
         };
-        let mut expected_dive_stage = dive_stage_test_fixture_zhl16();
+        let mut expected_dive_stage = zhl16_dive_stage_test_fixture();
         expected_dive_stage.decompression_steps =
             vec![DiveStep::new(6, 1), DiveStep::new(3, 4)].into();
 
@@ -471,7 +474,26 @@ mod dive_planner_messages_should {
     }
 
     #[test]
-    fn test_decompression_profile_on_clicked() {
+    fn test_usn_revision_6_dive_profile_on_clicked() {
+        // given
+        let mut dive_planner = DivePlanner {
+            dive_stage: usn_revision_6_default_dive_stage_test_fixture(),
+            ..Default::default()
+        };
+        let mut expected_dive_stage = usn_revision_6_dive_stage_test_fixture();
+        expected_dive_stage.decompression_steps =
+            vec![DiveStep::new(6, 1), DiveStep::new(3, 2)].into();
+
+        // when
+        let task = dive_planner.update(Message::DiveProfileOnClicked);
+
+        // then
+        pretty_assertions::assert_eq!(0, task.units());
+        pretty_assertions::assert_eq!(expected_dive_stage, dive_planner.dive_stage)
+    }
+
+    #[test]
+    fn test_zhl16_decompression_profile_on_clicked() {
         // given
         let dive_profile_1 = DiveProfile {
             number_of_compartments: 16,
@@ -627,7 +649,148 @@ mod dive_planner_messages_should {
             results: vec![dive_stage_1, dive_stage_2],
         };
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_zhl16(),
+            dive_stage: zhl16_dive_stage_test_fixture(),
+            ..Default::default()
+        };
+
+        // when
+        let tasks = dive_planner.update(Message::DecompressionProfileOnClicked);
+
+        // then
+        pretty_assertions::assert_eq!(0, tasks.units());
+        pretty_assertions::assert_eq!(expected_dive_results, dive_planner.dive_results);
+    }
+
+    #[test]
+    fn test_usn_revision_6_decompression_profile_on_clicked() {
+        // given
+        let dive_profile_1 = DiveProfile {
+            number_of_compartments: 9,
+            ambient_pressure: AmbientPressure::new(0.336, 0.16000001, 1.104),
+            tissue_pressure: TissuePressure::new(
+                vec![
+                    3.0179052, 2.3738577, 1.7484653, 1.3192347, 1.0683467, 0.9787467, 0.9327724,
+                    0.90480494, 0.8859986,
+                ],
+                vec![
+                    0.41245967,
+                    0.29062462,
+                    0.17519993,
+                    0.09657087,
+                    0.05074828,
+                    0.034403,
+                    0.026019722,
+                    0.020921068,
+                    0.017493019,
+                ],
+                vec![
+                    3.4303648, 2.6644824, 1.9236653, 1.4158056, 1.119095, 1.0131497, 0.9587921,
+                    0.925726, 0.9034916,
+                ],
+            ),
+            tolerated_ambient_pressure: ToleratedAmbientPressure::new(
+                vec![
+                    1.1890906, 1.0216056, 0.8319638, 0.7892641, 0.5956795, 0.5273667, 0.48480165,
+                    0.43011895, 0.43699533,
+                ],
+                vec![
+                    1.3399405, 1.0549132, 0.69182146, 0.32250902, 0.34725565, 0.38203737,
+                    0.40379936, 0.45361596, 0.4236787,
+                ],
+                vec![
+                    0.5688274, 0.6347075, 0.6753809, 0.7219122, 0.77176625, 0.8356146, 0.87352794,
+                    0.9110566, 0.9107619,
+                ],
+            ),
+            tolerated_surface_pressure: ToleratedSurfacePressure::new(
+                vec![
+                    3.097943, 2.6304421, 2.1724675, 1.7077191, 1.6429849, 1.5787613, 1.5485823,
+                    1.5512426, 1.5216606,
+                ],
+                vec![
+                    110.7304, 101.29409, 88.547485, 82.906235, 68.11353, 64.17371, 61.91418,
+                    59.676414, 59.37537,
+                ],
+                1.8909061,
+            ),
+        };
+        let dive_stage_1 = DiveStage::new_with_decompression_steps(
+            DiveModel::new_usn_revision_6_dive_model_with_dive_profile(dive_profile_1),
+            DiveStep::new(6, 1),
+            Cylinder::new_with_gas_management(
+                12,
+                200,
+                GasMixture::new(21, 10),
+                GasManagement::new(1668, 12, 12),
+            ),
+            vec![DiveStep::new(3, 2)],
+        );
+        let dive_profile_2 = DiveProfile {
+            number_of_compartments: 9,
+            ambient_pressure: AmbientPressure::new(0.27299997, 0.13, 0.89699996),
+            tissue_pressure: TissuePressure::new(
+                vec![
+                    2.5043454, 2.1826794, 1.6914452, 1.3048519, 1.0654031, 0.97780776, 0.93246377,
+                    0.904751, 0.88606197,
+                ],
+                vec![
+                    0.3440644,
+                    0.26983187,
+                    0.17217302,
+                    0.09770959,
+                    0.05210978,
+                    0.035501026,
+                    0.026916754,
+                    0.021674534,
+                    0.018141015,
+                ],
+                vec![
+                    2.84841, 2.4525113, 1.8636183, 1.4025614, 1.117513, 1.0133088, 0.9593805,
+                    0.9264255, 0.904203,
+                ],
+            ),
+            tolerated_ambient_pressure: ToleratedAmbientPressure::new(
+                vec![
+                    0.8582336, 0.8873228, 0.7915495, 0.7795385, 0.5943604, 0.527498, 0.48526967,
+                    0.43067443, 0.4375525,
+                ],
+                vec![
+                    1.339802, 1.0546948, 0.6918477, 0.32298952, 0.3474608, 0.38210207, 0.4039279,
+                    0.45374334, 0.42381194,
+                ],
+                vec![
+                    0.5688911, 0.63479203, 0.6755158, 0.7220811, 0.7718444, 0.8356977, 0.87364733,
+                    0.911129, 0.91082567,
+                ],
+            ),
+            tolerated_surface_pressure: ToleratedSurfacePressure::new(
+                vec![
+                    3.0976076, 2.630014, 2.172198, 1.7078755, 1.6430588, 1.578707, 1.5485545,
+                    1.5512828, 1.5217168,
+                ],
+                vec![
+                    91.955154, 93.250885, 85.79412, 82.12317, 68.01418, 64.186, 61.953293,
+                    59.719963, 59.419926,
+                ],
+                -1.1267722,
+            ),
+        };
+        let dive_stage_2 = DiveStage::new_with_decompression_steps(
+            DiveModel::new_usn_revision_6_dive_model_with_dive_profile(dive_profile_2),
+            DiveStep::new(3, 2),
+            Cylinder::new_with_gas_management(
+                12,
+                200,
+                GasMixture::new(21, 10),
+                GasManagement::new(1644, 24, 12),
+            ),
+            vec![],
+        );
+        let expected_dive_results: DiveResults = DiveResults {
+            results: vec![dive_stage_1, dive_stage_2],
+        };
+        let mut dive_planner = DivePlanner {
+            dive_stage: usn_revision_6_dive_stage_test_fixture(),
             ..Default::default()
         };
 

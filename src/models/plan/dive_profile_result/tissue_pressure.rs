@@ -46,3 +46,50 @@ impl TissuePressure {
         self.total_tissue_pressures.clone()
     }
 }
+
+#[cfg(test)]
+mod tissue_pressure_should {
+    use crate::models::plan::dive_profile_result::tissue_pressure::TissuePressure;
+
+    #[test]
+    fn test_get_nitrogen_tissue_pressures() {
+        // given
+        let expected_tissue_pressures = vec![12.0, 10.2];
+        let tissue_pressure =
+            TissuePressure::new(expected_tissue_pressures.clone(), vec![], vec![]);
+
+        // when
+        let nitrogen_tissue_pressure = tissue_pressure.get_nitrogen_tissue_pressures();
+
+        // then
+        pretty_assertions::assert_eq!(expected_tissue_pressures.clone(), nitrogen_tissue_pressure);
+    }
+
+    #[test]
+    fn test_get_helium_tissue_pressures() {
+        // given
+        let expected_tissue_pressures = vec![12.0, 10.2];
+        let tissue_pressure =
+            TissuePressure::new(vec![], expected_tissue_pressures.clone(), vec![]);
+
+        // when
+        let helium_tissue_pressure = tissue_pressure.get_helium_tissue_pressures();
+
+        // then
+        pretty_assertions::assert_eq!(expected_tissue_pressures.clone(), helium_tissue_pressure);
+    }
+
+    #[test]
+    fn test_get_total_tissue_pressures() {
+        // given
+        let expected_tissue_pressures = vec![12.0, 10.2];
+        let tissue_pressure =
+            TissuePressure::new(vec![], vec![], expected_tissue_pressures.clone());
+
+        // when
+        let total_tissue_pressure = tissue_pressure.get_total_tissue_pressures();
+
+        // then
+        pretty_assertions::assert_eq!(expected_tissue_pressures.clone(), total_tissue_pressure);
+    }
+}

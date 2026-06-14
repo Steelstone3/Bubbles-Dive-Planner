@@ -81,21 +81,43 @@ mod commands_tolerated_ambient_pressures_should {
         controllers::dive_stages::tolerated_ambient_pressures::calculate_tolerated_ambient_pressures,
         models::plan::{dive_model::DiveModel, dive_profile_result::dive_profile::DiveProfile},
         test_fixture::{
-            ambient_pressure_test_fixture, dive_stage_test_fixture_zhl16,
-            tissue_pressure_test_fixture,
+            usn_revision_6_ambient_pressure_test_fixture, usn_revision_6_dive_stage_test_fixture,
+            usn_revision_6_tissue_pressure_test_fixture, zhl16_ambient_pressure_test_fixture,
+            zhl16_dive_stage_test_fixture, zhl16_tissue_pressure_test_fixture,
         },
     };
 
     #[test]
-    fn test_calculate_tolerated_ambient_pressures() {
+    fn test_zhl16_calculate_tolerated_ambient_pressures() {
         // given
-        let expected_dive_model = dive_stage_test_fixture_zhl16().dive_model;
+        let expected_dive_model = zhl16_dive_stage_test_fixture().dive_model;
         let dive_profile = DiveProfile {
-            ambient_pressure: ambient_pressure_test_fixture(),
-            tissue_pressure: tissue_pressure_test_fixture(),
+            ambient_pressure: zhl16_ambient_pressure_test_fixture(),
+            tissue_pressure: zhl16_tissue_pressure_test_fixture(),
             ..Default::default()
         };
         let dive_model = DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile);
+
+        // when
+        let tolerated_ambient_pressure = calculate_tolerated_ambient_pressures(&dive_model);
+
+        // then
+        pretty_assertions::assert_eq!(
+            expected_dive_model.dive_profile.tolerated_ambient_pressure,
+            tolerated_ambient_pressure
+        );
+    }
+
+    #[test]
+    fn test_usn_revision_6_calculate_tolerated_ambient_pressures() {
+        // given
+        let expected_dive_model = usn_revision_6_dive_stage_test_fixture().dive_model;
+        let dive_profile = DiveProfile {
+            ambient_pressure: usn_revision_6_ambient_pressure_test_fixture(),
+            tissue_pressure: usn_revision_6_tissue_pressure_test_fixture(),
+            ..Default::default()
+        };
+        let dive_model = DiveModel::new_usn_revision_6_dive_model_with_dive_profile(dive_profile);
 
         // when
         let tolerated_ambient_pressure = calculate_tolerated_ambient_pressures(&dive_model);

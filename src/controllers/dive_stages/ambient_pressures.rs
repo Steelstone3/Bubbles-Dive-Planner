@@ -19,15 +19,45 @@ pub fn calculate_ambient_pressures(
 mod commands_ambient_pressures_should {
     use crate::{
         controllers::dive_stages::ambient_pressures::calculate_ambient_pressures,
-        test_fixture::{ambient_pressure_test_fixture, dive_stage_test_fixture_zhl16},
+        test_fixture::{
+            usn_revision_6_ambient_pressure_test_fixture, usn_revision_6_dive_stage_test_fixture,
+            zhl16_ambient_pressure_test_fixture, zhl16_dive_stage_test_fixture,
+        },
     };
 
     #[test]
-    fn test_calculate_ambient_pressures() {
+    fn test_zhl16_calculate_ambient_pressures() {
         // given
-        let dive_step = dive_stage_test_fixture_zhl16().dive_step;
-        let gas_mixture = dive_stage_test_fixture_zhl16().cylinder.gas_mixture;
-        let expected_ambient_pressure = ambient_pressure_test_fixture();
+        let dive_step = zhl16_dive_stage_test_fixture().dive_step;
+        let gas_mixture = zhl16_dive_stage_test_fixture().cylinder.gas_mixture;
+        let expected_ambient_pressure = zhl16_ambient_pressure_test_fixture();
+
+        // when
+        let ambient_pressure = calculate_ambient_pressures(&dive_step, &gas_mixture);
+
+        // then
+        pretty_assertions::assert_eq!(
+            expected_ambient_pressure.get_oxygen_at_pressure(),
+            ambient_pressure.get_oxygen_at_pressure()
+        );
+        pretty_assertions::assert_eq!(
+            expected_ambient_pressure.get_nitrogen_at_pressure(),
+            ambient_pressure.get_nitrogen_at_pressure()
+        );
+        pretty_assertions::assert_eq!(
+            expected_ambient_pressure.get_helium_at_pressure(),
+            ambient_pressure.get_helium_at_pressure()
+        );
+    }
+
+    #[test]
+    fn test_usn_revision_6_calculate_ambient_pressures() {
+        // given
+        let dive_step = usn_revision_6_dive_stage_test_fixture().dive_step;
+        let gas_mixture = usn_revision_6_dive_stage_test_fixture()
+            .cylinder
+            .gas_mixture;
+        let expected_ambient_pressure = usn_revision_6_ambient_pressure_test_fixture();
 
         // when
         let ambient_pressure = calculate_ambient_pressures(&dive_step, &gas_mixture);

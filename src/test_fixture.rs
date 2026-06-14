@@ -12,7 +12,7 @@ use crate::models::plan::{
 };
 
 #[cfg(test)]
-pub fn default_dive_stage_test_fixture_zhl16() -> DiveStage {
+pub fn zhl16_default_dive_stage_test_fixture() -> DiveStage {
     let dive_model = DiveModel::new_zhl16_dive_model();
 
     let dive_step = DiveStep::new(50, 10);
@@ -22,19 +22,8 @@ pub fn default_dive_stage_test_fixture_zhl16() -> DiveStage {
 }
 
 #[cfg(test)]
-#[allow(dead_code)]
-pub fn default_dive_stage_test_fixture_usn_rev_6() -> DiveStage {
-    let dive_model = DiveModel::new_usn_revision_6_dive_model();
-
-    let dive_step = DiveStep::new(50, 10);
-    let gas_mixture = GasMixture::new(21, 10);
-    let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
-    DiveStage::new(dive_model, dive_step, cylinder)
-}
-
-#[cfg(test)]
-pub fn dive_stage_test_fixture_zhl16() -> DiveStage {
-    let dive_profile = dive_profile_test_fixture();
+pub fn zhl16_dive_stage_test_fixture() -> DiveStage {
+    let dive_profile = zhl16_dive_profile_test_fixture();
     let dive_model = DiveModel::new_zhl16_dive_model_with_dive_profile(dive_profile);
 
     let dive_step = DiveStep::new(50, 10);
@@ -48,39 +37,23 @@ pub fn dive_stage_test_fixture_zhl16() -> DiveStage {
 }
 
 #[cfg(test)]
-#[allow(dead_code)]
-pub fn dive_stage_test_fixture_usn_rev_6() -> DiveStage {
-    let dive_profile = dive_profile_test_fixture();
-    let dive_model = DiveModel::new_usn_revision_6_dive_model_with_dive_profile(dive_profile);
-
-    let dive_step = DiveStep::new(50, 10);
-
-    let gas_mixture = GasMixture::new(21, 10);
-    let mut cylinder = Cylinder::new(12, 200, gas_mixture, 12);
-
-    cylinder = cylinder.update_gas_management(&dive_step);
-
-    DiveStage::new(dive_model, dive_step, cylinder)
-}
-
-#[cfg(test)]
-pub fn dive_profile_test_fixture() -> DiveProfile {
+pub fn zhl16_dive_profile_test_fixture() -> DiveProfile {
     DiveProfile {
         number_of_compartments: 16,
-        ambient_pressure: ambient_pressure_test_fixture(),
-        tissue_pressure: tissue_pressure_test_fixture(),
-        tolerated_ambient_pressure: tolerated_ambient_pressure_test_fixture(),
-        tolerated_surface_pressure: tolerated_surface_pressure_test_fixture(),
+        ambient_pressure: zhl16_ambient_pressure_test_fixture(),
+        tissue_pressure: zhl16_tissue_pressure_test_fixture(),
+        tolerated_ambient_pressure: zhl16_tolerated_ambient_pressure_test_fixture(),
+        tolerated_surface_pressure: zhl16_tolerated_surface_pressure_test_fixture(),
     }
 }
 
 #[cfg(test)]
-pub fn ambient_pressure_test_fixture() -> AmbientPressure {
+pub fn zhl16_ambient_pressure_test_fixture() -> AmbientPressure {
     AmbientPressure::new(1.26, 0.6, 4.14)
 }
 
 #[cfg(test)]
-pub fn tissue_pressure_test_fixture() -> TissuePressure {
+pub fn zhl16_tissue_pressure_test_fixture() -> TissuePressure {
     TissuePressure::new(
         vec![
             3.547798, 2.7314985, 2.2159302, 1.8368304, 1.548494, 1.3445811, 1.1914635, 1.078389,
@@ -114,7 +87,7 @@ pub fn tissue_pressure_test_fixture() -> TissuePressure {
 }
 
 #[cfg(test)]
-pub fn tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
+pub fn zhl16_tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
     ToleratedAmbientPressure::new(
         vec![
             1.3895957, 1.4102788, 1.2492926, 1.0878413, 0.91364884, 0.81558466, 0.7249213,
@@ -135,7 +108,7 @@ pub fn tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
 }
 
 #[cfg(test)]
-pub fn tolerated_surface_pressure_test_fixture() -> ToleratedSurfacePressure {
+pub fn zhl16_tolerated_surface_pressure_test_fixture() -> ToleratedSurfacePressure {
     ToleratedSurfacePressure::new(
         vec![
             3.3521843, 2.6287365, 2.3267612, 2.100498, 1.9516046, 1.7932919, 1.6817353, 1.5982095,
@@ -146,5 +119,104 @@ pub fn tolerated_surface_pressure_test_fixture() -> ToleratedSurfacePressure {
             70.86904, 68.70667, 67.426125, 66.57953, 66.6487, 65.88606, 65.92345, 66.14547,
         ],
         4.102788,
+    )
+}
+
+#[cfg(test)]
+pub fn usn_revision_6_default_dive_stage_test_fixture() -> DiveStage {
+    let dive_model = DiveModel::new_usn_revision_6_dive_model();
+
+    let dive_step = DiveStep::new(50, 10);
+    let gas_mixture = GasMixture::new(21, 10);
+    let cylinder = Cylinder::new(12, 200, gas_mixture, 12);
+    DiveStage::new(dive_model, dive_step, cylinder)
+}
+
+#[cfg(test)]
+pub fn usn_revision_6_dive_stage_test_fixture() -> DiveStage {
+    let dive_profile = usn_revision_6_dive_profile_test_fixture();
+    let dive_model = DiveModel::new_usn_revision_6_dive_model_with_dive_profile(dive_profile);
+
+    let dive_step = DiveStep::new(50, 10);
+
+    let gas_mixture = GasMixture::new(21, 10);
+    let mut cylinder = Cylinder::new(12, 200, gas_mixture, 12);
+
+    cylinder = cylinder.update_gas_management(&dive_step);
+
+    DiveStage::new(dive_model, dive_step, cylinder)
+}
+
+#[cfg(test)]
+pub fn usn_revision_6_dive_profile_test_fixture() -> DiveProfile {
+    DiveProfile {
+        number_of_compartments: 9,
+        ambient_pressure: usn_revision_6_ambient_pressure_test_fixture(),
+        tissue_pressure: usn_revision_6_tissue_pressure_test_fixture(),
+        tolerated_ambient_pressure: usn_revision_6_tolerated_ambient_pressure_test_fixture(),
+        tolerated_surface_pressure: usn_revision_6_tolerated_surface_pressure_test_fixture(),
+    }
+}
+
+#[cfg(test)]
+pub fn usn_revision_6_ambient_pressure_test_fixture() -> AmbientPressure {
+    AmbientPressure::new(1.26, 0.6, 4.14)
+}
+
+#[cfg(test)]
+pub fn usn_revision_6_tissue_pressure_test_fixture() -> TissuePressure {
+    TissuePressure::new(
+        vec![
+            3.3024998, 2.465, 1.7711923, 1.322997, 1.0680364, 0.97802114, 0.932029, 0.9041134,
+            0.88536805,
+        ],
+        vec![
+            0.45000002,
+            0.3,
+            0.17573595,
+            0.09546215,
+            0.049797572,
+            0.03367542,
+            0.025438035,
+            0.020438218,
+            0.017080843,
+        ],
+        vec![
+            3.7524998, 2.7649999, 1.9469283, 1.4184592, 1.117834, 1.0116966, 0.957467, 0.9245516,
+            0.9024489,
+        ],
+    )
+}
+
+#[cfg(test)]
+pub fn usn_revision_6_tolerated_ambient_pressure_test_fixture() -> ToleratedAmbientPressure {
+    ToleratedAmbientPressure::new(
+        vec![
+            1.3721964, 1.0852337, 0.8475809, 0.79128087, 0.5947675, 0.5261535, 0.48367286,
+            0.4290998, 0.4361019,
+        ],
+        vec![
+            1.34002, 1.0550452, 0.69180524, 0.32220894, 0.34712774, 0.38199717, 0.40371954,
+            0.453537, 0.42359614,
+        ],
+        vec![
+            0.56879085, 0.6346564, 0.6752971, 0.72180676, 0.7717175, 0.835563, 0.87345386,
+            0.91101164, 0.9107224,
+        ],
+    )
+}
+
+#[cfg(test)]
+pub fn usn_revision_6_tolerated_surface_pressure_test_fixture() -> ToleratedSurfacePressure {
+    ToleratedSurfacePressure::new(
+        vec![
+            3.0981355, 2.630701, 2.172635, 1.7076213, 1.6429386, 1.578795, 1.5485997, 1.5512178,
+            1.5216256,
+        ],
+        vec![
+            121.12123, 105.10506, 89.61138, 83.066376, 68.0387, 64.08031, 61.827923, 59.601665,
+            59.30821,
+        ],
+        3.7219644,
     )
 }

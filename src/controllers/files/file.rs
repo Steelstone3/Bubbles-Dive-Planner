@@ -24,7 +24,7 @@ mod file_should {
             plan::dive_planning::dive_pre_planning::DivePrePlanning,
             result::results::DiveResults,
         },
-        test_fixture::dive_stage_test_fixture_zhl16,
+        test_fixture::zhl16_dive_stage_test_fixture,
     };
     use std::fs;
 
@@ -33,16 +33,16 @@ mod file_should {
         // given
         let expected = DivePlanner::default();
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_zhl16(),
+            dive_stage: zhl16_dive_stage_test_fixture(),
             dive_results: DiveResults {
                 results: vec![
-                    dive_stage_test_fixture_zhl16(),
-                    dive_stage_test_fixture_zhl16(),
-                    dive_stage_test_fixture_zhl16(),
+                    zhl16_dive_stage_test_fixture(),
+                    zhl16_dive_stage_test_fixture(),
+                    zhl16_dive_stage_test_fixture(),
                 ],
             },
             application_state: ApplicationState {
-                redo_buffer: vec![dive_stage_test_fixture_zhl16()],
+                redo_buffer: vec![zhl16_dive_stage_test_fixture()],
                 ..Default::default()
             },
             ..Default::default()
@@ -64,16 +64,16 @@ mod file_should {
                 is_planning: false,
                 ..Default::default()
             },
-            dive_stage: dive_stage_test_fixture_zhl16(),
+            dive_stage: zhl16_dive_stage_test_fixture(),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture_zhl16()],
+                results: vec![zhl16_dive_stage_test_fixture()],
             },
             ..Default::default()
         };
         let mut dive_planner = DivePlanner {
-            dive_stage: dive_stage_test_fixture_zhl16(),
+            dive_stage: zhl16_dive_stage_test_fixture(),
             dive_results: DiveResults {
-                results: vec![dive_stage_test_fixture_zhl16()],
+                results: vec![zhl16_dive_stage_test_fixture()],
             },
             ..Default::default()
         };

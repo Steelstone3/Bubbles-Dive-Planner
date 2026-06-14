@@ -109,7 +109,7 @@ impl DiveModel {
         }
     }
 
-    #[allow(dead_code)]
+    #[cfg(test)]
     pub fn new_usn_revision_6_dive_model_with_dive_profile(dive_profile: DiveProfile) -> DiveModel {
         let dive_model = DiveModel::new_usn_revision_6_dive_model();
         let dive_profile = DiveProfile {

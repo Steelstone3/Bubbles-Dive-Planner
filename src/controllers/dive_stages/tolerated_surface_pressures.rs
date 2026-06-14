@@ -64,18 +64,40 @@ fn calculate_dive_ceiling(dive_profile_model: &DiveProfile) -> f32 {
 mod commands_max_surface_pressures_should {
     use super::*;
     use crate::test_fixture::{
-        dive_profile_test_fixture, tissue_pressure_test_fixture,
-        tolerated_ambient_pressure_test_fixture,
+        usn_revision_6_dive_profile_test_fixture, usn_revision_6_tissue_pressure_test_fixture,
+        usn_revision_6_tolerated_ambient_pressure_test_fixture, zhl16_dive_profile_test_fixture,
+        zhl16_tissue_pressure_test_fixture, zhl16_tolerated_ambient_pressure_test_fixture,
     };
 
     #[test]
-    fn test_calculate_tolerated_surface_pressures() {
+    fn test_zhl16_calculate_tolerated_surface_pressures() {
         // given
-        let expected_dive_profile = dive_profile_test_fixture();
+        let expected_dive_profile = zhl16_dive_profile_test_fixture();
         let dive_profile = DiveProfile {
-            tissue_pressure: tissue_pressure_test_fixture(),
-            tolerated_ambient_pressure: tolerated_ambient_pressure_test_fixture(),
+            tissue_pressure: zhl16_tissue_pressure_test_fixture(),
+            tolerated_ambient_pressure: zhl16_tolerated_ambient_pressure_test_fixture(),
             number_of_compartments: 16,
+            ..Default::default()
+        };
+
+        // when
+        let tolerated_surface_pressure = calculate_tolerated_surface_pressures(&dive_profile);
+
+        // then
+        pretty_assertions::assert_eq!(
+            expected_dive_profile.tolerated_surface_pressure,
+            tolerated_surface_pressure
+        )
+    }
+
+    #[test]
+    fn test_usn_revision_6_calculate_tolerated_surface_pressures() {
+        // given
+        let expected_dive_profile = usn_revision_6_dive_profile_test_fixture();
+        let dive_profile = DiveProfile {
+            tissue_pressure: usn_revision_6_tissue_pressure_test_fixture(),
+            tolerated_ambient_pressure: usn_revision_6_tolerated_ambient_pressure_test_fixture(),
+            number_of_compartments: 9,
             ..Default::default()
         };
 

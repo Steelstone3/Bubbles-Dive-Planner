@@ -42,14 +42,14 @@ mod edit_should {
             plan::dive_stage::DiveStage,
             result::results::DiveResults,
         },
-        test_fixture::dive_stage_test_fixture_zhl16,
+        test_fixture::zhl16_dive_stage_test_fixture,
     };
     use rstest::rstest;
 
     #[test]
     fn test_edit_undo_no_result() {
         // given
-        let dive_stage = dive_stage_test_fixture_zhl16();
+        let dive_stage = zhl16_dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {
             dive_stage,
             dive_results: DiveResults { results: vec![] },
@@ -79,7 +79,7 @@ mod edit_should {
     #[test]
     fn test_edit_undo() {
         // given
-        let dive_stage = dive_stage_test_fixture_zhl16();
+        let dive_stage = zhl16_dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
@@ -113,7 +113,7 @@ mod edit_should {
     #[test]
     fn test_edit_redo_empty_buffer() {
         // given
-        let dive_stage = dive_stage_test_fixture_zhl16();
+        let dive_stage = zhl16_dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults {
@@ -139,7 +139,7 @@ mod edit_should {
     #[test]
     fn test_edit_redo() {
         // given
-        let dive_stage = dive_stage_test_fixture_zhl16();
+        let dive_stage = zhl16_dive_stage_test_fixture();
         let mut dive_planner = DivePlanner {
             dive_stage: dive_stage.clone(),
             dive_results: DiveResults { results: vec![] },
@@ -169,7 +169,7 @@ mod edit_should {
     }
 
     #[rstest]
-    #[case(vec![dive_stage_test_fixture_zhl16()], true)]
+    #[case(vec![zhl16_dive_stage_test_fixture()], true)]
     #[case(vec![], false)]
     fn test_is_undoable(#[case] results: Vec<DiveStage>, #[case] expected_is_undoable: bool) {
         // given
@@ -186,7 +186,7 @@ mod edit_should {
     }
 
     #[rstest]
-    #[case(vec![dive_stage_test_fixture_zhl16()], true)]
+    #[case(vec![zhl16_dive_stage_test_fixture()], true)]
     #[case(vec![], false)]
     fn test_is_redoable(#[case] redo_buffer: Vec<DiveStage>, #[case] expected_is_redoable: bool) {
         // given

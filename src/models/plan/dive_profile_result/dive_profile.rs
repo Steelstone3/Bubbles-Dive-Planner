@@ -29,6 +29,3 @@ impl DiveProfile {
         }
     }
 }
-
-#[cfg(test)]
-mod dive_profile_should {}

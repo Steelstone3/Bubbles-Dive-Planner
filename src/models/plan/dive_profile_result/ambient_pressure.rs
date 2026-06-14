@@ -20,7 +20,7 @@ impl AmbientPressure {
         }
     }
 
-    #[allow(dead_code)]
+    #[cfg(test)]
     pub fn get_oxygen_at_pressure(&self) -> f32 {
         self.oxygen_at_pressure
     }
@@ -31,5 +31,46 @@ impl AmbientPressure {
 
     pub fn get_nitrogen_at_pressure(&self) -> f32 {
         self.nitrogen_at_pressure
+    }
+}
+
+#[cfg(test)]
+mod ambient_pressure_should {
+    use crate::models::plan::dive_profile_result::ambient_pressure::AmbientPressure;
+
+    #[test]
+    fn test_get_oxygen_at_pressure() {
+        // given
+        let ambient_pressure = AmbientPressure::new(23.4, Default::default(), Default::default());
+
+        // when
+        let oxygen_at_pressure = ambient_pressure.get_oxygen_at_pressure();
+
+        // then
+        pretty_assertions::assert_eq!(23.4, oxygen_at_pressure)
+    }
+
+    #[test]
+    fn test_get_helium_at_pressure() {
+        // given
+        let ambient_pressure = AmbientPressure::new(Default::default(), 23.4, Default::default());
+
+        // when
+        let oxygen_at_pressure = ambient_pressure.get_helium_at_pressure();
+
+        // then
+        pretty_assertions::assert_eq!(23.4, oxygen_at_pressure)
+    }
+
+    #[test]
+    fn test_get_nitrogen_at_pressure() {
+        // given
+        let ambient_pressure = AmbientPressure::new(Default::default(), Default::default(), 23.4);
+
+        // when
+        let oxygen_at_pressure = ambient_pressure.get_nitrogen_at_pressure();
+
+        // then
+        pretty_assertions::assert_eq!(23.4, oxygen_at_pressure)
     }
 }
